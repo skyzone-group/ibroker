@@ -20289,6 +20289,57 @@ var _hoisted_9 = /*#__PURE__*/_withScopeId(function () {
 
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Профиль ");
 
+var _hoisted_11 = {
+  "class": "user_block-ul-li"
+};
+
+var _hoisted_12 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "icon-div"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+    "data-name": "IconLike",
+    width: "16",
+    height: "16",
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 16 16"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+    "stroke-width": "1.6",
+    d: "M8 13.967c5.99-4.902 7.2-6.39 7.2-8.737 0-1.89-1.53-3.424-3.42-3.43-1.33 0-2.165.522-3.18 1.67l-.6.677-.6-.677C6.386 2.322 5.55 1.8 4.22 1.8 2.33 1.805.8 3.34.8 5.23c0 2.347 1.21 3.835 7.2 8.737z"
+  })])], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_13 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "txt"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Избранное "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+    "data-name": "IconArrowLabel",
+    width: "5",
+    height: "5",
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 5 5"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+    fill: "currentColor",
+    "fill-rule": "evenodd",
+    d: "M3 1h1v1L1 5 0 4l3-3zm2 3V0H1v1h3v3h1z",
+    opacity: ".4"
+  })])], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_14 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "number-saved"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "data-name": "Badge",
+    "class": "circle_num"
+  }, "2")], -1
+  /* HOISTED */
+  );
+});
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
@@ -20312,6 +20363,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_9, _hoisted_10];
+    }),
+    _: 1
+    /* STABLE */
+
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'myaccount'
+    },
+    "class": "user_block-ul-li-link"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_12, _hoisted_13, _hoisted_14];
     }),
     _: 1
     /* STABLE */
@@ -21959,7 +22022,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_public_images_avatar_jpg__WEBPACK_IMPORTED_MODULE_2__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.user-area-sidebar[data-v-0ced77c0]{\r\n    flex: 1 1 auto;\r\n    background-color: #f4f4f4;\r\n    height: 100%;\n}\n.user_block[data-v-0ced77c0]{\r\n    display: flex;\r\n    flex-shrink: 0;\r\n    flex-direction: column;\r\n    border-right: 1px solid #e4e4e4;\r\n    padding: 20px 10px;\r\n    width: 300px;\r\n    height: 100%;\r\n    overflow: hidden;\r\n    overflow-y: auto;\n}\n.user-profile[data-v-0ced77c0]{\r\n    margin-bottom: 8px;\r\n    border-bottom: 1px solid #e4e4e4;\r\n    padding: 0 10px 20px;\n}\n.user-profile-avatar[data-v-0ced77c0]{\r\n    display: flex;\r\n    flex: 0 0 56px;\r\n    justify-content: center;\r\n    align-items: center;\r\n    margin-right: 15px;\r\n    border-radius: 50%;\r\n    background-color: #e4e4e4;\r\n    height: 56px;\r\n    overflow: hidden;\r\n    -webkit-user-select: none;\r\n       -moz-user-select: none;\r\n            user-select: none;\r\n    text-decoration: none;\n}\n.user-profile-img[data-v-0ced77c0]{\r\n    background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n    background-size: cover;\r\n    width: 100%;\r\n    height: 100%;\n}\n.user-profile-info[data-v-0ced77c0]{\r\n    display: flex;\r\n    flex: 1 1;\r\n    flex-direction: column;\r\n    justify-content: center;\n}\n.user-profile-info-link[data-v-0ced77c0]{\r\n    cursor: pointer;\r\n    color: #2b87db;\r\n    font-weight: 400;\r\n    font-size: 14px;\r\n    line-height: 1.29;\r\n    text-decoration: none;\n}\n.user-profile-info-linktxt[data-v-0ced77c0]{\r\n    color: #121212;\r\n    font-weight: 700;\r\n    font-size: 14px;\r\n    line-height: 1.43;\n}\n.user-profile-info-id[data-v-0ced77c0]{\r\n    margin-top: 1px;\r\n    color: #7a7a7a;\r\n    font-size: 12px;\r\n    line-height: 1.5;\n}\n.user_block-ul[data-v-0ced77c0]{\r\n    margin: 0;\r\n    border-bottom: 1px solid #e4e4e4;\r\n    padding: 0 0 20px;\r\n    list-style: none;\n}\n.user_block-ul-li[data-v-0ced77c0]{\r\n    position: relative;\r\n    margin-bottom: 2px;\r\n    border-radius: 3px;\n}\n.user_block-ul-li-link[data-v-0ced77c0]{\r\n    display: flex;\r\n    padding: 12px 10px 10px 40px;\r\n    color: #121212;\r\n    font-weight: 700;\r\n    font-size: 14px;\r\n    line-height: 1.29;\r\n    text-decoration: none;\r\n    background-color: transparent;\n}\n.icon-div[data-v-0ced77c0]{\r\n    fill: none;\r\n    stroke: #475258;\r\n    position: absolute;\r\n    left: 10px;\r\n    color: #475258;\n}\nsvg[data-v-0ced77c0]:not(:root) {\r\n    overflow: hidden;\n}\n.user-area-sidebar li a.router-link-active[data-v-0ced77c0]{\r\n    background-color: hsla(0,0%,7%,.05);\r\n    border-radius: 3px;\n}\r\n/* ************************************************* */\n@media (min-width: 1025px){\n.user-profile-info-link[data-v-0ced77c0] {\r\n        line-height: 1.43;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.user-area-sidebar[data-v-0ced77c0]{\r\n    flex: 1 1 auto;\r\n    background-color: #f4f4f4;\r\n    height: 100%;\n}\n.user_block[data-v-0ced77c0]{\r\n    display: flex;\r\n    flex-shrink: 0;\r\n    flex-direction: column;\r\n    border-right: 1px solid #e4e4e4;\r\n    padding: 20px 10px;\r\n    width: 300px;\r\n    height: 100%;\r\n    overflow: hidden;\r\n    overflow-y: auto;\n}\n.user-profile[data-v-0ced77c0]{\r\n    margin-bottom: 8px;\r\n    border-bottom: 1px solid #e4e4e4;\r\n    padding: 0 10px 20px;\n}\n.user-profile-avatar[data-v-0ced77c0]{\r\n    display: flex;\r\n    flex: 0 0 56px;\r\n    justify-content: center;\r\n    align-items: center;\r\n    margin-right: 15px;\r\n    border-radius: 50%;\r\n    background-color: #e4e4e4;\r\n    height: 56px;\r\n    overflow: hidden;\r\n    -webkit-user-select: none;\r\n       -moz-user-select: none;\r\n            user-select: none;\r\n    text-decoration: none;\n}\n.user-profile-img[data-v-0ced77c0]{\r\n    background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n    background-size: cover;\r\n    width: 100%;\r\n    height: 100%;\n}\n.user-profile-info[data-v-0ced77c0]{\r\n    display: flex;\r\n    flex: 1 1;\r\n    flex-direction: column;\r\n    justify-content: center;\n}\n.user-profile-info-link[data-v-0ced77c0]{\r\n    cursor: pointer;\r\n    color: #2b87db;\r\n    font-weight: 400;\r\n    font-size: 14px;\r\n    line-height: 1.29;\r\n    text-decoration: none;\n}\n.user-profile-info-linktxt[data-v-0ced77c0]{\r\n    color: #121212;\r\n    font-weight: 700;\r\n    font-size: 14px;\r\n    line-height: 1.43;\n}\n.user-profile-info-id[data-v-0ced77c0]{\r\n    margin-top: 1px;\r\n    color: #7a7a7a;\r\n    font-size: 12px;\r\n    line-height: 1.5;\n}\n.user_block-ul[data-v-0ced77c0]{\r\n    margin: 0;\r\n    border-bottom: 1px solid #e4e4e4;\r\n    padding: 0 0 20px;\r\n    list-style: none;\n}\n.user_block-ul-li[data-v-0ced77c0]{\r\n    position: relative;\r\n    margin-bottom: 2px;\r\n    border-radius: 3px;\n}\n.user_block-ul-li-link[data-v-0ced77c0]{\r\n    display: flex;\r\n    padding: 12px 10px 10px 40px;\r\n    color: #121212;\r\n    font-weight: 700;\r\n    font-size: 14px;\r\n    line-height: 1.29;\r\n    text-decoration: none;\r\n    background-color: transparent;\n}\n.icon-div[data-v-0ced77c0]{\r\n    fill: none;\r\n    stroke: #475258;\r\n    position: absolute;\r\n    left: 10px;\r\n    color: #475258;\n}\nsvg[data-v-0ced77c0]:not(:root) {\r\n    overflow: hidden;\n}\n.user-area-sidebar li a.router-link-active[data-v-0ced77c0]{\r\n    background-color: hsla(0,0%,7%,.05);\r\n    border-radius: 3px;\n}\n.txt[data-v-0ced77c0]{\r\n    position: relative;\r\n    margin-right: 5px;\n}\n.txt svg[data-v-0ced77c0]{\r\n    position: absolute;\r\n    top: 3px;\r\n    right: -7px;\n}\n.number-saved[data-v-0ced77c0]{\r\n    margin-left: 10px;\n}\n.circle_num[data-v-0ced77c0]{\r\n    border-radius: 100px;\r\n    background-color: hsla(0,0%,7%,.1);\r\n    padding: 3px 10px 4px;\r\n    color: rgba(0,0,0,.87);\r\n    font-weight: 700;\r\n    font-size: 14px;\r\n    line-height: 1.2;\n}\r\n/* ************************************************* */\n@media (min-width: 1025px){\n.user-profile-info-link[data-v-0ced77c0] {\r\n        line-height: 1.43;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

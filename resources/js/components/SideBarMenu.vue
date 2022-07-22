@@ -38,6 +38,20 @@
                         Профиль
                     </router-link>
                 </li>
+                <li class="user_block-ul-li">
+                    <router-link :to="{ name: 'myaccount'}" class="user_block-ul-li-link">
+                        <div class="icon-div">
+                            <svg data-name="IconLike" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path stroke-width="1.6" d="M8 13.967c5.99-4.902 7.2-6.39 7.2-8.737 0-1.89-1.53-3.424-3.42-3.43-1.33 0-2.165.522-3.18 1.67l-.6.677-.6-.677C6.386 2.322 5.55 1.8 4.22 1.8 2.33 1.805.8 3.34.8 5.23c0 2.347 1.21 3.835 7.2 8.737z"></path></svg>
+                        </div>
+                        <div class="txt">
+                            Избранное
+                            <svg data-name="IconArrowLabel" width="5" height="5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 5"><path fill="currentColor" fill-rule="evenodd" d="M3 1h1v1L1 5 0 4l3-3zm2 3V0H1v1h3v3h1z" opacity=".4"></path></svg>
+                        </div>
+                        <div class="number-saved">
+                            <span data-name="Badge" class="circle_num">2</span>
+                        </div>
+                    </router-link>
+                </li>
             </ul>
         </div>
     </div>
@@ -165,6 +179,29 @@ svg:not(:root) {
 .user-area-sidebar li a.router-link-active{
     background-color: hsla(0,0%,7%,.05);
     border-radius: 3px;
+}
+.txt{
+    position: relative;
+    margin-right: 5px;
+}
+.txt svg{
+    position: absolute;
+    top: 3px;
+    right: -7px;
+}
+
+.number-saved{
+    margin-left: 10px;
+}
+
+.circle_num{
+    border-radius: 100px;
+    background-color: hsla(0,0%,7%,.1);
+    padding: 3px 10px 4px;
+    color: rgba(0,0,0,.87);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.2;
 }
 /* ************************************************* */
 @media (min-width: 1025px){
