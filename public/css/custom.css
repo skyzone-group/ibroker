@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+:root{
+    --white_100: #fff;
+    --black_100: #152242;
+    --gray10_100: #e8e9ec;
+    --gray60_100: #737a8e;
+    --primary_100: #0468ff;
+    --secondary_button_10: rgba(4,104,255,.1);
+    --superblack_40: rgba(0,0,0,.4);
+}
+
+.main-container{
+    min-width: 704px;
+    max-width: 1376px;
+    padding: 0 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.header__nav-container{
+    display: flex;
+    margin: 0 auto;
+    padding: 0 20px;
+    min-width: 320px;
+    max-width: 1376px;
+}
+/* /////////////////////////////////////////////////////////////////////////////////////// */
