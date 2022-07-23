@@ -39,7 +39,7 @@
                     </router-link>
                 </li>
                 <li class="user_block-ul-li">
-                    <router-link :to="{ name: 'myaccount'}" class="user_block-ul-li-link">
+                    <router-link :to="{ name: 'userfavorites'}" class="user_block-ul-li-link">
                         <div class="icon-div">
                             <svg data-name="IconLike" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path stroke-width="1.6" d="M8 13.967c5.99-4.902 7.2-6.39 7.2-8.737 0-1.89-1.53-3.424-3.42-3.43-1.33 0-2.165.522-3.18 1.67l-.6.677-.6-.677C6.386 2.322 5.55 1.8 4.22 1.8 2.33 1.805.8 3.34.8 5.23c0 2.347 1.21 3.835 7.2 8.737z"></path></svg>
                         </div>

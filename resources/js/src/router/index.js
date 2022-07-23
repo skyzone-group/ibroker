@@ -11,7 +11,7 @@ import IndexPage from '../../src/views/HomeIndex.vue'
 import UserDashboard  from '../views/account/UsersDashboard.vue'
 import MainView from '../views/account/UserMainView.vue'
 import UserAccount from '../views/account/UserAccount.vue'
-
+import UserFavorites from '../views/account/UserFavorites.vue'
 const routes = [
     {
         path: '/',
@@ -45,8 +45,16 @@ const routes = [
                             content: UserAccount,
                         }
                     },
+                    
                 ]
-            }
+            },
+            {
+                path: 'user/favorites',
+                name: 'userfavorites',
+                components: {
+                    main: UserFavorites,
+                }
+            },
         ]
     },
 ]
