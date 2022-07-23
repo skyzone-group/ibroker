@@ -173,4 +173,10 @@ export default {
     }
     
 }
+
+@media (max-width: 640px){   
+    .user_account_main_block-item-card_bottom_info{
+        display: block;
+    }
+}
 </style>

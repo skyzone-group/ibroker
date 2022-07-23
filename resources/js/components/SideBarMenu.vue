@@ -52,6 +52,44 @@
                         </div>
                     </router-link>
                 </li>
+                <li class="user_block-ul-li">
+                    <router-link :to="{ name: 'userfavorites'}" class="user_block-ul-li-link">
+                        <div class="icon-div">
+                            <svg data-name="IconMessage" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 17"><g fill="currentColor" stroke="none"><path d="M16.65 7.458C16.196 3.236 12.644.03 8.386 0c-1.62.002-3.192.47-4.55 1.35C1.57 2.804.29 4.927.036 7.657-.116 9.302.232 10.93 1.05 12.39c-.045.347-.096.696-.147 1.043l-.377 2.702.615-.046c1.05-.15 2.1-.29 3.1-.43l.125.02c1.215.66 2.587 1.01 3.97 1.01.62-.003 1.24-.07 1.84-.204 4.15-.926 6.938-4.81 6.486-9.04zM2.468 14.23l.083-.57c.05-.346.1-.702.15-1.08.03-.314-.02-.628-.16-.91l-.04-.098c-.64-1.148-.92-2.448-.8-3.76.205-2.198 1.23-3.903 3.05-5.068C5.84 2.04 7.1 1.664 8.396 1.66H8.4c2.822 0 5.35 1.79 6.284 4.457.66 1.8.5 3.795-.436 5.47-.933 1.68-2.544 2.88-4.42 3.292-.492.1-.996.16-1.492.16-1.11-.01-2.21-.29-3.19-.83-.265-.14-.56-.217-.86-.217-.074 0-.147.005-.222.014l-1.588.214z"></path><circle cx="5.149" cy="8.35" r="1"></circle><circle cx="8.349" cy="8.35" r="1"></circle><circle cx="11.549" cy="8.35" r="1"></circle></g></svg>
+                        </div>
+                        <div class="txt">
+                            Сообщения
+                            <svg data-name="IconArrowLabel" width="5" height="5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 5"><path fill="currentColor" fill-rule="evenodd" d="M3 1h1v1L1 5 0 4l3-3zm2 3V0H1v1h3v3h1z" opacity=".4"></path></svg>
+                        </div>
+                        <div class="number-saved">
+                            <span data-name="Badge" class="circle_num">0</span>
+                        </div>
+                    </router-link>
+                </li>
+                <li class="user_block-ul-li">
+                    <router-link :to="{ name: 'myaccount'}" class="user_block-ul-li-link">
+                        <div class="icon-div">
+                            <svg data-name="IconComplaints" width="16" height="16" viewBox="0 0 75 75"><g fill="#475258"><path d="M59.41176509857178,3.911764621734619 H15.411765098571777 a14.017,14.017 0 0 0 -14,14 v28 a14.017,14.017 0 0 0 14,14 H26.474265098571777 l9.4023,11.2813 a1.999,1.999 0 0 0 3.07,0 L48.34926509857178,59.91176462173462 H59.41176509857178 a14.0169,14.0169 0 0 0 14,-14 v-28 A14.017,14.017 0 0 0 59.41176509857178,3.911764621734619 zm10,42 a10.0105,10.0105 0 0 1 -10,10 H47.41176509857178 a1.9978,1.9978 0 0 0 -1.5352000000000001,0.7188000000000003 L37.41176509857178,66.78676462173462 L28.94696509857178,56.63056462173462 A1.9975,1.9975 0 0 0 27.411765098571777,55.91176462173462 H15.411765098571777 a10.0105,10.0105 0 0 1 -10,-10 v-28 a10.0105,10.0105 0 0 1 10,-10 H59.41176509857178 a10.0105,10.0105 0 0 1 10,10 z"></path><path d="M37.41176509857178,39.91176462173462 a4,4 0 1 0 4,4 A4.004,4.004 0 0 0 37.41176509857178,39.91176462173462 zm0,3.9961 "></path><path d="M37.41176509857178,15.91176462173462 a4.004,4.004 0 0 0 -4,4 v12 a4,4 0 0 0 8,0 v-12 A4.004,4.004 0 0 0 37.41176509857178,15.91176462173462 z"></path></g></svg>
+                        </div>
+                        Жалобы
+                    </router-link>
+                </li>
+                <li class="user_block-ul-li">
+                    <router-link :to="{ name: 'myaccount'}" class="user_block-ul-li-link">
+                        <div class="icon-div">
+                            <svg data-name="IconSavedSearches" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><g fill="currentColor" stroke="none"><path d="M19.805 18.148L14.5 12.88l.327-.44.008-.01c.06-.08.118-.157.174-.236v-.007c1.054-1.496 1.455-3.306 1.236-5.08-.768-.076-1.538-.11-2.31-.107.06.332.09.674.09 1.023 0 3.232-2.662 5.862-5.936 5.862s-5.937-2.63-5.937-5.862c0-3.2 2.613-5.812 5.844-5.86C8 1.308 8.01.595 8.05 0 5.927.013 3.89.857 2.38 2.352.857 3.846-.002 5.894 0 8.03c0 2.145.846 4.16 2.382 5.678 1.526 1.51 3.59 2.353 5.736 2.345 1.3 0 2.594-.31 3.752-.9.13-.074.516-.295.826-.542l5.39 5.2c.123.12.286.19.458.19.11 0 .276-.03.436-.182l.27-.257c.205-.195.42-.4.576-.553.3-.298.155-.672-.02-.856z"></path><path d="M12.87 5.493l.63.512.63-.512C16.17 3.837 17 3.04 17 1.813 17 .813 16.172 0 15.154 0 14.36 0 13.89.4 13.5.832 13.11.4 12.64 0 11.846 0 10.828 0 10 .813 10 1.813c0 1.23.83 2.025 2.87 3.68z"></path></g></svg>
+                        </div>
+                        Сохранённые поиски
+                    </router-link>
+                </li>
+            </ul>
+            <ul class="user_block-ul">
+                <li class="logout">
+                    <span>
+                        <svg data-name="IconLogout" width="16" height="16" class="logout__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.2 15.2"><g fill="currentColor" stroke="none"><path d="M14.8.4h-8c-.22 0-.4.18-.4.4v.8c0 .22.18.4.4.4h6.64c.088 0 .16.072.16.16v10.88c0 .088-.072.16-.16.16H6.8c-.22 0-.4.18-.4.4v.8c0 .22.18.4.4.4h8c.22 0 .4-.18.4-.4V.8c0-.22-.18-.4-.4-.4z"></path><path d="M4.04 9.784L2.658 8.4H10.8c.22 0 .4-.18.4-.4v-.8c0-.22-.18-.4-.4-.4H2.657L4.04 5.416c.157-.156.157-.41 0-.566l-.397-.396c-.156-.156-.41-.156-.565 0L.048 7.487c-.063.062-.063.164 0 .226l3.03 3.033c.157.156.41.156.566 0l.396-.396c.156-.156.157-.41 0-.566z"></path></g></svg>
+                        Выйти
+                    </span>
+                </li>
             </ul>
         </div>
     </div>
@@ -203,10 +241,55 @@ svg:not(:root) {
     font-size: 14px;
     line-height: 1.2;
 }
+.user_block-ul:not(:first-of-type) {
+    margin-top: 6px;
+    border-bottom: none;
+    padding: 0 0 20px;
+}
+.user_block-ul:last-of-type {
+    margin-bottom: 20px;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.logout{
+    margin-bottom: 0;
+    display: block;
+    position: relative;
+    cursor: pointer !important;
+    border-radius: 3px;
+    padding: 12px 10px 10px 40px;
+    color: #121212;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.29;
+    text-decoration: none;
+}
+.logout:hover{
+    background-color: hsla(0,0%,7%,.05);
+    color: #121212;
+    cursor: pointer !important;
+}
+
+.logout__icon{
+    fill: none;
+    stroke: #475258;
+    position: absolute;
+    left: 10px;
+    color: #475258;
+}
 /* ************************************************* */
 @media (min-width: 1025px){
     .user-profile-info-link {
         line-height: 1.43;
     }
+}
+
+@media (max-width: 767px){
+    .user-area-sidebar{
+        display: none;
+    }
+    
+    
 }
 </style>

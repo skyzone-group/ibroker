@@ -9,6 +9,15 @@
                     <div class="frontend-user-area" style="flex: 1 0 auto;">
                         <router-view name="content"></router-view>
                     </div>
+                    <div class="ual-footer-desktop">
+                        <div>© 2021 ЦИАН ГРУПП</div>
+                        <div class="ual-footer-desktop-service-link">
+                            <a href="#!" target="_blank"> Справочный центр </a>
+                        </div>
+                        <div class="ual-footer-desktop-service-link"> 
+                            <a href="#!" target="_blank"> Лицензионное соглашение</a> 
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -19,7 +28,7 @@
 import SideBar from '../../../components/SideBarMenu.vue'
 export default {
     components: {
-        SideBar
+        SideBar,
     }
 }
 </script>
@@ -55,5 +64,41 @@ export default {
 
 .frontend-user-area{
     display: flex;
+}
+
+.ual-footer-desktop{
+    margin-top: auto;
+    padding: 17px 20px 0;
+    flex: 0 0 auto;
+    display: flex;
+    font-size: 14px;
+    line-height: 1.43;
+    color: #929294;
+    border-top: 1px solid #e4e4e4;
+}
+
+.ual-footer-desktop-service-link{
+    margin-left: 40px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.ual-footer-desktop-service-link a {
+    color: #929294;
+}
+
+
+/* ************************************************************* */
+@media (max-width: 475px){
+    .ual-footer-desktop{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .ual-footer-desktop-service-link{
+        margin-left: 0;
+    }
 }
 </style>

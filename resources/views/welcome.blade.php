@@ -15,12 +15,8 @@
         <link rel="stylesheet" href="{{asset('css/custom.css')}}">
     </head>
     <body class="antialiased">
-        <div class="mainBody">
-            <div id="app" style="height: 100%">
-            </div>
+        <div id="app" style="height: 100%">
         </div>
-        
-        
         
         
         <!-- Bootstrap scripts -->

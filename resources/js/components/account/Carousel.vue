@@ -51,8 +51,24 @@ export default defineComponent({
             },
             breakpoints: {
                 // 700px and up
+                400: {
+                    itemsToShow: 2,
+                    snapAlign: 'center',
+                },
+                500: {
+                    itemsToShow: 2,
+                    snapAlign: 'center',
+                },
+                600: {
+                    itemsToShow: 2,
+                    snapAlign: 'center',
+                },
                 700: {
-                    itemsToShow: 2.5,
+                    itemsToShow: 2,
+                    snapAlign: 'center',
+                },
+                767: {
+                    itemsToShow: 2,
                     snapAlign: 'center',
                 },
                 // 1024 and up
@@ -144,6 +160,13 @@ export default defineComponent({
     .slider-link-contet {
         margin: 14px 14px 14px 20px;
         line-height: 1.25;
+    }
+    
+}
+
+@media (max-width: 450px){
+    .slider-link-contet {
+        margin: 9px;
     }
 }
 </style>

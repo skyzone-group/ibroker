@@ -3,6 +3,7 @@
         <div class="summary_main-div">
             <div class="summary_main-div-content">
                 <div class="summary_main-div-wrapper">
+                    <user-profile></user-profile>
                     <div class="summary_main-div-cards">
                         <Carousel :images="images" />
                     </div>
@@ -11,6 +12,7 @@
                             <promo-code></promo-code>
                             <confirm-phone></confirm-phone>
                             <saved-objects></saved-objects>
+                            <widget-summary></widget-summary>
                         </div>
                         <div class="summary_main-div-item-blocks">
                             
@@ -28,6 +30,8 @@ import Carousel from '../../../components/account/Carousel.vue'
 import PromoCode from '../../../components/account/PromoCode.vue'
 import ConfirmPhone from '../../../components/account/ConfirmPhone.vue'
 import SavedObjects from '../../../components/account/SavedObjects.vue'
+import UserProfile from '../../../components/account/UserProfile.vue'
+import WidgetSummary from '../../../components/account/WidgetSummary.vue'
 import { ref } from "vue";
 
 
@@ -37,7 +41,9 @@ export default {
         Carousel,
         PromoCode,
         ConfirmPhone,
-        SavedObjects
+        SavedObjects,
+        UserProfile,
+        WidgetSummary
     },
     setup() {
         const _images = [
@@ -130,5 +136,31 @@ export default {
     
     .summary_main-div-item-blocks:nth-child(2){
         overflow: hidden;
+    }
+    
+    
+    /* ***************************************************** */
+    @media (max-width: 767px){
+        .slider-link-contet{
+            margin: 15px;
+        }
+        
+        .summary_main-div-item-blocks:first-child{
+            width: 100%;
+        }
+        
+        .summary_main-div-item-blocks:nth-child(2){
+            display: none;
+        }
+    }
+    
+    @media (max-width: 640px){
+        .summary_main-div-cards {
+            padding: 0; 
+        }
+        .summary_main-div-cards .carousel__next,
+        .summary_main-div-cards .carousel__prev{
+            display: none;
+        }
     }
 </style>

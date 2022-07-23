@@ -50,4 +50,14 @@ export default {
 .user_account_main_block-item:first-child{
     margin-left: 0;
 }
+
+/* *************************************************** */
+    @media (max-width: 640px){
+        .user_account_main_block{
+            flex-direction: column;
+        }
+        .user_account_main_block-item:nth-child(2){
+            margin: 15px 0 0 0;
+        }
+    }
 </style>

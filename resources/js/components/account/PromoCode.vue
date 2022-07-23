@@ -99,4 +99,11 @@ export default {
         width: 270px;
     }
 }
+
+@media (max-width: 767px){
+    .input-div-code{
+        position: relative;
+        margin-bottom: 16px;
+    }
+}
 </style>
