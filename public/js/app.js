@@ -19843,6 +19843,43 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/account/ChangeUserPassword.vue?vue&type=script&lang=js":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/account/ChangeUserPassword.vue?vue&type=script&lang=js ***!
+  \********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var primevue_accordion__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! primevue/accordion */ "./node_modules/primevue/accordion/accordion.esm.js");
+/* harmony import */ var primevue_accordiontab__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primevue/accordiontab */ "./node_modules/primevue/accordiontab/accordiontab.esm.js");
+/* harmony import */ var primevue_password__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primevue/password */ "./node_modules/primevue/password/password.esm.js");
+/* harmony import */ var primevue_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primevue/button */ "./node_modules/primevue/button/button.esm.js");
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    Accordion: primevue_accordion__WEBPACK_IMPORTED_MODULE_0__["default"],
+    AccordionTab: primevue_accordiontab__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Password: primevue_password__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Button: primevue_button__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
+  data: function data() {
+    return {
+      old_password: null,
+      new_password: null
+    };
+  },
+  setup: function setup() {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/account/ConfirmPhone.vue?vue&type=script&lang=js":
 /*!**************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/account/ConfirmPhone.vue?vue&type=script&lang=js ***!
@@ -20146,12 +20183,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _components_account_UserPhoneEmail_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../components/account/UserPhoneEmail.vue */ "./resources/js/components/account/UserPhoneEmail.vue");
 /* harmony import */ var _components_account_UserInfo_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../components/account/UserInfo.vue */ "./resources/js/components/account/UserInfo.vue");
+/* harmony import */ var _components_account_ChangeUserPassword_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/account/ChangeUserPassword.vue */ "./resources/js/components/account/ChangeUserPassword.vue");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     UserPhoneEmail: _components_account_UserPhoneEmail_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    UserInfo: _components_account_UserInfo_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    UserInfo: _components_account_UserInfo_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    UserPassword: _components_account_ChangeUserPassword_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   }
 });
 
@@ -20658,6 +20698,96 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, 8
   /* PROPS */
   , ["settings", "breakpoints"]);
+}
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/account/ChangeUserPassword.vue?vue&type=template&id=acb6ddba":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/account/ChangeUserPassword.vue?vue&type=template&id=acb6ddba ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  "class": "change_password"
+};
+
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "title d-flex align-items-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Сменить пароль")], -1
+/* HOISTED */
+);
+
+var _hoisted_3 = {
+  "class": "change_password_div"
+};
+var _hoisted_4 = {
+  "class": "change_password_div_items"
+};
+var _hoisted_5 = {
+  "class": "change_password_div_items mb-3"
+};
+var _hoisted_6 = {
+  "class": "change_password_div_btn"
+};
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_Password = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Password");
+
+  var _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
+
+  var _component_AccordionTab = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("AccordionTab");
+
+  var _component_Accordion = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Accordion");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Accordion, {
+    activeIndex: 1
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AccordionTab, null, {
+        header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_2];
+        }),
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Password, {
+            modelValue: $data.old_password,
+            "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+              return $data.old_password = $event;
+            }),
+            feedback: false,
+            toggleMask: "",
+            placeholder: "Старый пароль"
+          }, null, 8
+          /* PROPS */
+          , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Password, {
+            modelValue: $data.new_password,
+            "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+              return $data.new_password = $event;
+            }),
+            toggleMask: "",
+            placeholder: "Новый пароль"
+          }, null, 8
+          /* PROPS */
+          , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
+            label: "Сохранить",
+            "class": "p-button-rounded"
+          })])])])];
+        }),
+        _: 1
+        /* STABLE */
+
+      })];
+    }),
+    _: 1
+    /* STABLE */
+
+  })]);
 }
 
 /***/ }),
@@ -21606,7 +21736,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_user_phone_email = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("user-phone-email");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_user_info)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_user_phone_email)])])]);
+  var _component_user_password = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("user-password");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_user_info)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_user_phone_email), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_user_password)])])]);
 }
 
 /***/ }),
@@ -21671,8 +21803,6 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" MainView ");
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Carousel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Carousel");
 
@@ -21686,7 +21816,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     images: $setup.images
   }, null, 8
   /* PROPS */
-  , ["images"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_promo_code), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_confirm_phone), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_saved_objects)]), _hoisted_8]), _hoisted_9])])])]);
+  , ["images"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_promo_code), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_confirm_phone), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_saved_objects)]), _hoisted_8])])])])]);
 }
 
 /***/ }),
@@ -22230,6 +22360,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.carousel__prev--in-active[data-v-71328726],\r\n.carousel__next--in-active[data-v-71328726] {\r\n    display: none;\n}\r\n/* .carousel {\r\n    padding: 0 20px;\r\n} */\n.carousel__track[data-v-71328726]{\r\n    box-sizing: border-box;\r\n    cursor: pointer;\r\n    display: block;\r\n    height: 110px;\r\n    margin: 0px -5px;\r\n    padding: 0px;\r\n    position: relative;\r\n    touch-action: pan-y pinch-zoom;\r\n    transform: translate3d(0px, 0px, 0px);\r\n    width: auto;\r\n    transition: all 0s ease 0s;\n}\n.carousel__slide[data-v-71328726]{\r\n    /* margin: 0 20px 0 0; */\r\n    box-sizing: border-box;\r\n    display: inline-block;\r\n    left: 0px;\r\n    list-style-type: none;\r\n    margin: auto 5px;\r\n    position: unset;\r\n    top: 0px;\r\n    transform: scale(1);\r\n    transition: transform 0.4s linear 0s;\r\n    vertical-align: top;\n}\n.slider-link[data-v-71328726]{\r\n    display: flex;\r\n    flex-shrink: 0;\r\n    justify-content: space-between;\r\n    box-shadow: 0 4px 16px 0 rgb(0 0 0 / 5%);\r\n    border: 1px solid #e4e4e4;\r\n    border-radius: 4px;\r\n    background-color: #fff;\r\n    min-height: 110px;\r\n    color: inherit;\r\n    text-decoration: inherit;\n}\n.slider-link-contet[data-v-71328726]{\r\n    font-size: 16px;\n}\n.slider-link-contet-div[data-v-71328726]{\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    -webkit-box-orient: vertical;\r\n    display: -webkit-box;\r\n    -webkit-line-clamp: 3;\r\n    text-align: left;\n}\n.slider-link-img[data-v-71328726]{\r\n    display: flex;\r\n    flex-shrink: 0;\r\n    align-items: flex-end;\r\n    max-width: 56px;\n}\n.slider-link-img img[data-v-71328726]{\r\n    width: 100%;\r\n    max-width: 100%;\n}\r\n/* ******************************************** */\n@media (min-width: 768px){\n.slider-link-contet[data-v-71328726] {\r\n        margin: 14px 14px 14px 20px;\r\n        line-height: 1.25;\n}\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/account/ChangeUserPassword.vue?vue&type=style&index=0&id=acb6ddba&lang=css":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/account/ChangeUserPassword.vue?vue&type=style&index=0&id=acb6ddba&lang=css ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.change_password{\r\n        margin-bottom: 10px;\r\n        box-shadow: 0 1px 0 0 #e4e4e4;\r\n        border: 1px solid #e4e4e4;\r\n        border-radius: 3px;\r\n        background-color: #fff;\n}\n.accordion-custom i, span {\r\n        vertical-align: middle;\n}\n.accordion-custom span {\r\n        margin: 0 .5rem;\n}\n.p-accordion p {\r\n        line-height: 1.5;\r\n        margin: 0;\n}\n.user_account_main_block-item .p-accordion-header-link{\r\n        flex-direction: row-reverse !important;\r\n        justify-content: space-between !important;\n}\n.p-accordion-header-link:hover{\r\n        text-decoration: none !important;\n}\n.change_password_div_items{\r\n        position: relative;\r\n        margin-bottom: 10px;\n}\n.change_password_div_items .p-component{\r\n        width: 100%;\n}\r\n    /* ********************************************* */\n@media (min-width: 1025px){\n.change_password_div_items {\r\n            max-width: 270px;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -44122,6 +44276,410 @@ var OverlayEventBus = (0,primevue_utils__WEBPACK_IMPORTED_MODULE_0__.EventBus)()
 
 /***/ }),
 
+/***/ "./node_modules/primevue/password/password.esm.js":
+/*!********************************************************!*\
+  !*** ./node_modules/primevue/password/password.esm.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ script)
+/* harmony export */ });
+/* harmony import */ var primevue_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! primevue/utils */ "./node_modules/primevue/utils/utils.esm.js");
+/* harmony import */ var primevue_overlayeventbus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primevue/overlayeventbus */ "./node_modules/primevue/overlayeventbus/overlayeventbus.esm.js");
+/* harmony import */ var primevue_inputtext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primevue/inputtext */ "./node_modules/primevue/inputtext/inputtext.esm.js");
+/* harmony import */ var primevue_portal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primevue/portal */ "./node_modules/primevue/portal/portal.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+
+
+
+
+var script = {
+    name: 'Password',
+    emits: ['update:modelValue'],
+    inheritAttrs: false,
+    props: {
+        modelValue: String,
+        promptLabel: {
+            type: String,
+            default: null
+        },
+        mediumRegex: {
+            type: String,
+            default: '^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})' // eslint-disable-line
+        },
+        strongRegex: {
+            type: String,
+            default: '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})' // eslint-disable-line
+        },
+        weakLabel: {
+            type: String,
+            default: null
+        },
+        mediumLabel: {
+            type: String,
+            default: null
+        },
+        strongLabel: {
+            type: String,
+            default: null
+        },
+        feedback: {
+            type: Boolean,
+            default: true
+        },
+        appendTo: {
+            type: String,
+            default: 'body'
+        },
+        toggleMask: {
+            type: Boolean,
+            default: false
+        },
+        hideIcon: {
+            type: String,
+            default: 'pi pi-eye-slash'
+        },
+        showIcon: {
+            type: String,
+            default: 'pi pi-eye'
+        },
+        inputClass: null,
+        inputStyle: null,
+        style: null,
+        class: String,
+        panelClass: String
+    },
+    data() {
+        return {
+            overlayVisible: false,
+            meter: null,
+            infoText: null,
+            focused: false,
+            unmasked: false
+        };
+    },
+    mediumCheckRegExp: null,
+    strongCheckRegExp: null,
+    resizeListener: null,
+    scrollHandler: null,
+    overlay: null,
+    mounted() {
+        this.infoText = this.promptText;
+        this.mediumCheckRegExp = new RegExp(this.mediumRegex);
+        this.strongCheckRegExp = new RegExp(this.strongRegex);
+    },
+    beforeUnmount() {
+        this.unbindResizeListener();
+        if (this.scrollHandler) {
+            this.scrollHandler.destroy();
+            this.scrollHandler = null;
+        }
+
+        if (this.overlay) {
+            primevue_utils__WEBPACK_IMPORTED_MODULE_0__.ZIndexUtils.clear(this.overlay);
+            this.overlay = null;
+        }
+    },
+    methods: {
+        onOverlayEnter(el) {
+            primevue_utils__WEBPACK_IMPORTED_MODULE_0__.ZIndexUtils.set('overlay', el, this.$primevue.config.zIndex.overlay);
+            this.alignOverlay();
+            this.bindScrollListener();
+            this.bindResizeListener();
+        },
+        onOverlayLeave() {
+            this.unbindScrollListener();
+            this.unbindResizeListener();
+            this.overlay = null;
+        },
+        onOverlayAfterLeave(el) {
+            primevue_utils__WEBPACK_IMPORTED_MODULE_0__.ZIndexUtils.clear(el);
+        },
+        alignOverlay() {
+            if (this.appendTo === 'self') {
+                primevue_utils__WEBPACK_IMPORTED_MODULE_0__.DomHandler.relativePosition(this.overlay, this.$refs.input.$el);
+            }
+            else {
+                this.overlay.style.minWidth = primevue_utils__WEBPACK_IMPORTED_MODULE_0__.DomHandler.getOuterWidth(this.$refs.input.$el) + 'px';
+                primevue_utils__WEBPACK_IMPORTED_MODULE_0__.DomHandler.absolutePosition(this.overlay, this.$refs.input.$el);
+            }
+        },
+        testStrength(str) {
+            let level = 0;
+
+            if (this.strongCheckRegExp.test(str))
+                level = 3;
+            else if (this.mediumCheckRegExp.test(str))
+                level = 2;
+            else if (str.length)
+                level = 1;
+
+            return level;
+        },
+        onInput(event)  {
+            this.$emit('update:modelValue', event.target.value);
+        },
+        onFocus() {
+            this.focused = true;
+            if (this.feedback) {
+                this.overlayVisible = true;
+            }
+        },
+        onBlur() {
+            this.focused = false;
+            if (this.feedback) {
+                this.overlayVisible = false;
+            }
+        },
+        onKeyUp(event) {
+            if (this.feedback) {
+                const value = event.target.value;
+                let label = null;
+                let meter = null;
+
+                switch (this.testStrength(value)) {
+                    case 1:
+                        label = this.weakText;
+                        meter = {
+                            strength: 'weak',
+                            width: '33.33%'
+                        };
+                        break;
+
+                    case 2:
+                        label = this.mediumText;
+                        meter = {
+                            strength: 'medium',
+                            width: '66.66%'
+                        };
+                        break;
+
+                    case 3:
+                        label = this.strongText;
+                        meter = {
+                            strength: 'strong',
+                            width: '100%'
+                        };
+                        break;
+
+                    default:
+                        label = this.promptText;
+                        meter = null;
+                        break;
+                }
+
+                this.meter = meter;
+                this.infoText = label;
+
+                if (!this.overlayVisible) {
+                    this.overlayVisible = true;
+                }
+            }
+        },
+        bindScrollListener() {
+            if (!this.scrollHandler) {
+                this.scrollHandler = new primevue_utils__WEBPACK_IMPORTED_MODULE_0__.ConnectedOverlayScrollHandler(this.$refs.input.$el, () => {
+                    if (this.overlayVisible) {
+                        this.overlayVisible = false;
+                    }
+                });
+            }
+
+            this.scrollHandler.bindScrollListener();
+        },
+        unbindScrollListener() {
+            if (this.scrollHandler) {
+                this.scrollHandler.unbindScrollListener();
+            }
+        },
+        bindResizeListener() {
+            if (!this.resizeListener) {
+                this.resizeListener = () => {
+                    if (this.overlayVisible && !primevue_utils__WEBPACK_IMPORTED_MODULE_0__.DomHandler.isTouchDevice()) {
+                        this.overlayVisible = false;
+                    }
+                };
+                window.addEventListener('resize', this.resizeListener);
+            }
+        },
+        unbindResizeListener() {
+            if (this.resizeListener) {
+                window.removeEventListener('resize', this.resizeListener);
+                this.resizeListener = null;
+            }
+        },
+        overlayRef(el) {
+            this.overlay = el;
+        },
+        onMaskToggle() {
+            this.unmasked = !this.unmasked;
+        },
+        onOverlayClick(event) {
+            primevue_overlayeventbus__WEBPACK_IMPORTED_MODULE_1__["default"].emit('overlay-click', {
+                originalEvent: event,
+                target: this.$el
+            });
+        }
+    },
+    computed: {
+        containerClass() {
+            return ['p-password p-component p-inputwrapper', this.class, {
+                'p-inputwrapper-filled': this.filled,
+                'p-inputwrapper-focus': this.focused,
+                'p-input-icon-right': this.toggleMask
+            }];
+        },
+        inputFieldClass() {
+            return ['p-password-input', this.inputClass, {
+                'p-disabled': this.$attrs.disabled
+            }];
+        },
+        panelStyleClass() {
+            return ['p-password-panel p-component', this.panelClass, {
+                'p-input-filled': this.$primevue.config.inputStyle === 'filled',
+                'p-ripple-disabled': this.$primevue.config.ripple === false
+            }];
+        },
+        toggleIconClass() {
+            return this.unmasked ? this.hideIcon : this.showIcon;
+        },
+        strengthClass() {
+            return `p-password-strength ${this.meter ? this.meter.strength : ''}`;
+        },
+        inputType() {
+            return this.unmasked ? 'text' : 'password';
+        },
+        filled() {
+            return (this.modelValue != null && this.modelValue.toString().length > 0)
+        },
+        weakText() {
+            return this.weakLabel || this.$primevue.config.locale.weak;
+        },
+        mediumText() {
+            return this.mediumLabel || this.$primevue.config.locale.medium;
+        },
+        strongText() {
+            return this.strongLabel || this.$primevue.config.locale.strong;
+        },
+        promptText() {
+            return this.promptLabel || this.$primevue.config.locale.passwordPrompt;
+        }
+    },
+    components: {
+        'PInputText': primevue_inputtext__WEBPACK_IMPORTED_MODULE_2__["default"],
+        'Portal': primevue_portal__WEBPACK_IMPORTED_MODULE_3__["default"]
+    }
+};
+
+const _hoisted_1 = { class: "p-password-meter" };
+const _hoisted_2 = { class: "p-password-info" };
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_PInputText = (0,vue__WEBPACK_IMPORTED_MODULE_4__.resolveComponent)("PInputText");
+  const _component_Portal = (0,vue__WEBPACK_IMPORTED_MODULE_4__.resolveComponent)("Portal");
+
+  return ((0,vue__WEBPACK_IMPORTED_MODULE_4__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_4__.createElementBlock)("div", {
+    class: (0,vue__WEBPACK_IMPORTED_MODULE_4__.normalizeClass)($options.containerClass),
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_4__.normalizeStyle)($props.style)
+  }, [
+    (0,vue__WEBPACK_IMPORTED_MODULE_4__.createVNode)(_component_PInputText, (0,vue__WEBPACK_IMPORTED_MODULE_4__.mergeProps)({
+      ref: "input",
+      class: $options.inputFieldClass,
+      style: $props.inputStyle,
+      type: $options.inputType,
+      value: $props.modelValue,
+      onInput: $options.onInput,
+      onFocus: $options.onFocus,
+      onBlur: $options.onBlur,
+      onKeyup: $options.onKeyUp
+    }, _ctx.$attrs), null, 16, ["class", "style", "type", "value", "onInput", "onFocus", "onBlur", "onKeyup"]),
+    ($props.toggleMask)
+      ? ((0,vue__WEBPACK_IMPORTED_MODULE_4__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_4__.createElementBlock)("i", {
+          key: 0,
+          class: (0,vue__WEBPACK_IMPORTED_MODULE_4__.normalizeClass)($options.toggleIconClass),
+          onClick: _cache[0] || (_cache[0] = (...args) => ($options.onMaskToggle && $options.onMaskToggle(...args)))
+        }, null, 2))
+      : (0,vue__WEBPACK_IMPORTED_MODULE_4__.createCommentVNode)("", true),
+    (0,vue__WEBPACK_IMPORTED_MODULE_4__.createVNode)(_component_Portal, { appendTo: $props.appendTo }, {
+      default: (0,vue__WEBPACK_IMPORTED_MODULE_4__.withCtx)(() => [
+        (0,vue__WEBPACK_IMPORTED_MODULE_4__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_4__.Transition, {
+          name: "p-connected-overlay",
+          onEnter: $options.onOverlayEnter,
+          onLeave: $options.onOverlayLeave,
+          onAfterLeave: $options.onOverlayAfterLeave
+        }, {
+          default: (0,vue__WEBPACK_IMPORTED_MODULE_4__.withCtx)(() => [
+            ($data.overlayVisible)
+              ? ((0,vue__WEBPACK_IMPORTED_MODULE_4__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_4__.createElementBlock)("div", {
+                  key: 0,
+                  ref: $options.overlayRef,
+                  class: (0,vue__WEBPACK_IMPORTED_MODULE_4__.normalizeClass)($options.panelStyleClass),
+                  onClick: _cache[1] || (_cache[1] = (...args) => ($options.onOverlayClick && $options.onOverlayClick(...args)))
+                }, [
+                  (0,vue__WEBPACK_IMPORTED_MODULE_4__.renderSlot)(_ctx.$slots, "header"),
+                  (0,vue__WEBPACK_IMPORTED_MODULE_4__.renderSlot)(_ctx.$slots, "content", {}, () => [
+                    (0,vue__WEBPACK_IMPORTED_MODULE_4__.createElementVNode)("div", _hoisted_1, [
+                      (0,vue__WEBPACK_IMPORTED_MODULE_4__.createElementVNode)("div", {
+                        class: (0,vue__WEBPACK_IMPORTED_MODULE_4__.normalizeClass)($options.strengthClass),
+                        style: (0,vue__WEBPACK_IMPORTED_MODULE_4__.normalizeStyle)({'width': $data.meter ? $data.meter.width : ''})
+                      }, null, 6)
+                    ]),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_4__.createElementVNode)("div", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_4__.toDisplayString)($data.infoText), 1)
+                  ]),
+                  (0,vue__WEBPACK_IMPORTED_MODULE_4__.renderSlot)(_ctx.$slots, "footer")
+                ], 2))
+              : (0,vue__WEBPACK_IMPORTED_MODULE_4__.createCommentVNode)("", true)
+          ]),
+          _: 3
+        }, 8, ["onEnter", "onLeave", "onAfterLeave"])
+      ]),
+      _: 3
+    }, 8, ["appendTo"])
+  ], 6))
+}
+
+function styleInject(css, ref) {
+  if ( ref === void 0 ) ref = {};
+  var insertAt = ref.insertAt;
+
+  if (!css || typeof document === 'undefined') { return; }
+
+  var head = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.type = 'text/css';
+
+  if (insertAt === 'top') {
+    if (head.firstChild) {
+      head.insertBefore(style, head.firstChild);
+    } else {
+      head.appendChild(style);
+    }
+  } else {
+    head.appendChild(style);
+  }
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var css_248z = "\n.p-password {\n    position: relative;\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n}\n.p-password-panel {\n    position: absolute;\n    top: 0;\n    left: 0;\n}\n.p-password .p-password-panel {\n    min-width: 100%;\n}\n.p-password-meter {\n    height: 10px;\n}\n.p-password-strength {\n    height: 100%;\n    width: 0;\n    -webkit-transition: width 1s ease-in-out;\n    transition: width 1s ease-in-out;\n}\n.p-fluid .p-password {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n}\n";
+styleInject(css_248z);
+
+script.render = render;
+
+
+
+
+/***/ }),
+
 /***/ "./node_modules/primevue/portal/portal.esm.js":
 /*!****************************************************!*\
   !*** ./node_modules/primevue/portal/portal.esm.js ***!
@@ -46087,6 +46645,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/account/ChangeUserPassword.vue?vue&type=style&index=0&id=acb6ddba&lang=css":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/account/ChangeUserPassword.vue?vue&type=style&index=0&id=acb6ddba&lang=css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ChangeUserPassword_vue_vue_type_style_index_0_id_acb6ddba_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ChangeUserPassword.vue?vue&type=style&index=0&id=acb6ddba&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/account/ChangeUserPassword.vue?vue&type=style&index=0&id=acb6ddba&lang=css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ChangeUserPassword_vue_vue_type_style_index_0_id_acb6ddba_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ChangeUserPassword_vue_vue_type_style_index_0_id_acb6ddba_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/account/ConfirmPhone.vue?vue&type=style&index=0&id=efeb1fca&lang=css":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/account/ConfirmPhone.vue?vue&type=style&index=0&id=efeb1fca&lang=css ***!
@@ -46782,6 +47370,37 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/components/account/ChangeUserPassword.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/account/ChangeUserPassword.vue ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ChangeUserPassword_vue_vue_type_template_id_acb6ddba__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ChangeUserPassword.vue?vue&type=template&id=acb6ddba */ "./resources/js/components/account/ChangeUserPassword.vue?vue&type=template&id=acb6ddba");
+/* harmony import */ var _ChangeUserPassword_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ChangeUserPassword.vue?vue&type=script&lang=js */ "./resources/js/components/account/ChangeUserPassword.vue?vue&type=script&lang=js");
+/* harmony import */ var _ChangeUserPassword_vue_vue_type_style_index_0_id_acb6ddba_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ChangeUserPassword.vue?vue&type=style&index=0&id=acb6ddba&lang=css */ "./resources/js/components/account/ChangeUserPassword.vue?vue&type=style&index=0&id=acb6ddba&lang=css");
+/* harmony import */ var D_OpenServer_domains_laravel_vue_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+
+
+const __exports__ = /*#__PURE__*/(0,D_OpenServer_domains_laravel_vue_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_ChangeUserPassword_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_ChangeUserPassword_vue_vue_type_template_id_acb6ddba__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/account/ChangeUserPassword.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/components/account/ConfirmPhone.vue":
 /*!**********************************************************!*\
   !*** ./resources/js/components/account/ConfirmPhone.vue ***!
@@ -47207,6 +47826,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/account/ChangeUserPassword.vue?vue&type=script&lang=js":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/account/ChangeUserPassword.vue?vue&type=script&lang=js ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ChangeUserPassword_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ChangeUserPassword_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ChangeUserPassword.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/account/ChangeUserPassword.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/components/account/ConfirmPhone.vue?vue&type=script&lang=js":
 /*!**********************************************************************************!*\
   !*** ./resources/js/components/account/ConfirmPhone.vue?vue&type=script&lang=js ***!
@@ -47443,6 +48078,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Carousel_vue_vue_type_template_id_71328726_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Carousel_vue_vue_type_template_id_71328726_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Carousel.vue?vue&type=template&id=71328726&scoped=true */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/account/Carousel.vue?vue&type=template&id=71328726&scoped=true");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/account/ChangeUserPassword.vue?vue&type=template&id=acb6ddba":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/account/ChangeUserPassword.vue?vue&type=template&id=acb6ddba ***!
+  \**********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ChangeUserPassword_vue_vue_type_template_id_acb6ddba__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ChangeUserPassword_vue_vue_type_template_id_acb6ddba__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ChangeUserPassword.vue?vue&type=template&id=acb6ddba */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/account/ChangeUserPassword.vue?vue&type=template&id=acb6ddba");
 
 
 /***/ }),
@@ -47687,6 +48338,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Carousel_vue_vue_type_style_index_0_id_71328726_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Carousel.vue?vue&type=style&index=0&id=71328726&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/account/Carousel.vue?vue&type=style&index=0&id=71328726&scoped=true&lang=css");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/account/ChangeUserPassword.vue?vue&type=style&index=0&id=acb6ddba&lang=css":
+/*!************************************************************************************************************!*\
+  !*** ./resources/js/components/account/ChangeUserPassword.vue?vue&type=style&index=0&id=acb6ddba&lang=css ***!
+  \************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ChangeUserPassword_vue_vue_type_style_index_0_id_acb6ddba_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ChangeUserPassword.vue?vue&type=style&index=0&id=acb6ddba&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/account/ChangeUserPassword.vue?vue&type=style&index=0&id=acb6ddba&lang=css");
 
 
 /***/ }),

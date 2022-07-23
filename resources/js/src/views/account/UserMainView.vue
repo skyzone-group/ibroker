@@ -16,7 +16,6 @@
                             
                         </div>
                     </div>
-                    MainView
                 </div>
             </div>
         </div>

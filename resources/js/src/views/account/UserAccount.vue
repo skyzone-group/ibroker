@@ -6,6 +6,7 @@
             </div>
             <div class="user_account_main_block-item">
                 <user-phone-email></user-phone-email>
+                <user-password></user-password>
             </div>
         </div>
     </div>
@@ -16,10 +17,12 @@
 <script>
 import UserPhoneEmail from '../../../components/account/UserPhoneEmail.vue'
 import UserInfo from '../../../components/account/UserInfo.vue'
+import UserPassword from '../../../components/account/ChangeUserPassword.vue'
 export default {
     components: {
         UserPhoneEmail,
-        UserInfo
+        UserInfo,
+        UserPassword
     },
     
 }
