@@ -42,6 +42,58 @@
                             <nav class="header_mobile_menu-nav">
                                 <ul class="m-0 p-0 list-unstyled">
                                     <li class="header_mobile_menu-nav-ul__li">
+                                        <ul class="services m-0 p-0 list-unstyled">
+                                            <li class="service_item">
+                                                <a href="#!">
+                                                    <span class="service_item-back">
+                                                        <img src="../../../public/images/icons/search.svg" alt="">
+                                                    </span>
+                                                    Новый поиск
+                                                </a>
+                                            </li>
+                                            <li class="service_item">
+                                                <a href="#!">
+                                                    <span class="service_item-back">
+                                                        <img src="../../../public/images/icons/plus-add.svg" alt="">
+                                                    </span>
+                                                    Разместить объявление
+                                                </a>
+                                            </li>
+                                            <li class="service_item">
+                                                <a href="#!">
+                                                    <span class="service_item-back">
+                                                        <img src="../../../public/images/icons/saved.svg" alt="">
+                                                    </span>
+                                                    Избранное
+                                                </a>
+                                            </li>
+                                            <li class="service_item">
+                                                <a href="#!">
+                                                    <span class="service_item-back">
+                                                        <img src="../../../public/images/icons/sapravochniy-center.svg" alt="">
+                                                    </span>
+                                                    Справочный центр
+                                                </a>
+                                            </li>
+                                            <li class="service_item">
+                                                <a href="#!">
+                                                    <span class="service_item-back">
+                                                        <img src="../../../public/images/icons/danger.svg" alt="">
+                                                    </span>
+                                                    Сообщить об ошибке
+                                                </a>
+                                            </li>
+                                            <li class="service_item">
+                                                <a href="#!">
+                                                    <span class="service_item-back">
+                                                        <img src="../../../public/images/icons/buy-rent.svg" alt="">
+                                                    </span>
+                                                    Куплю / Сниму
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="header_mobile_menu-nav-ul__li">
                                         <ul class="rubrics m-0 p-0 list-unstyled">
                                             <li v-for="item in rubricsMenu" :key="item.id" class="rubric_item">
                                                 <router-link :to="item.link">
@@ -49,6 +101,12 @@
                                                 </router-link>
                                             </li>
                                         </ul>
+                                    </li>
+                                    <li class="header_mobile_menu-nav-ul__li">
+                                        <div class="logout">
+                                            <div class="logout_icon"></div>
+                                            Выйти
+                                        </div>
                                     </li>
                                 </ul>
                             </nav>
@@ -138,6 +196,8 @@ export default {
                 {id: 1,title: "Аренда", link: "/"},
                 {id: 2,title: "Продажа", link: "/"},
                 {id: 3,title: "Новостройки", link: "/"},
+                {id: 4,title: "Коммерческая", link: "/"},
+                {id: 5,title: "Ипотека", link: "/"},
             ]
         }
     },
@@ -463,6 +523,45 @@ export default {
     
     .hamburger_block-btn i{
         font-size: 24px;
+    }
+    
+    .logout{
+        display: flex;
+        cursor: pointer;
+        padding: 14px 16px;
+        color: var(--black_100);
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 22px;
+        text-decoration: none;
+    }
+    
+    .logout_icon{
+        margin-right: 18px;
+        background-image: url('../../../public/images/icons/logout_icon.svg');
+        background-position: 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 24px;
+        height: 24px;
+    }
+    
+    .service_item a{
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 14px 16px;
+        color: var(--black_100);
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 22px;
+        text-decoration: none;
+    }
+    
+    .service_item-back{
+        margin-right: 18px;
+        width: 24px;
+        height: 24px;
     }
     // *****************************************
     @media (min-width: 640px){
