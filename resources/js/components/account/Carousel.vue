@@ -164,6 +164,12 @@ export default defineComponent({
     
 }
 
+@media (max-width: 475px){
+    .carousel__slide{
+        margin: 0 5px 0 0;
+    }
+}
+
 @media (max-width: 450px){
     .slider-link-contet {
         margin: 9px;

@@ -12,6 +12,7 @@ import UserDashboard  from '../views/account/UsersDashboard.vue'
 import MainView from '../views/account/UserMainView.vue'
 import UserAccount from '../views/account/UserAccount.vue'
 import UserFavorites from '../views/account/UserFavorites.vue'
+import UserComplaints from '../views/account/UserComplaints.vue'
 const routes = [
     {
         path: '/',
@@ -43,6 +44,13 @@ const routes = [
                         name: 'myaccount',
                         components: {
                             content: UserAccount,
+                        }
+                    },
+                    {
+                        path: 'my-complaints',
+                        name: 'mycomplaints',
+                        components: {
+                            content: UserComplaints,
                         }
                     },
                     

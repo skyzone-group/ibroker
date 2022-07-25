@@ -3,7 +3,7 @@
         <div class="home_page_div">
             <div class="filter-block">
                 <div class="filter-block-inputs">
-                    
+                    <filter-block></filter-block>
                 </div>
                 <div class="filter-block-back"></div>
                 <div class="filter-block-back__img"></div>
@@ -14,9 +14,11 @@
 
 <script>
 import NavBar from '../../components/SiteNavBar.vue'
+import FilterBlock from '../../components/index/FilterBlock.vue'
 export default {
     components: {
-        NavBar
+        NavBar,
+        FilterBlock
     },
     setup() {
         
@@ -59,5 +61,11 @@ export default {
     width: 100%;
     height: 100%;
     background: url('../../../../public/images/header_banner.jpg');
+}
+
+.filter-block-inputs{
+    position: relative;
+    z-index: 3;
+    padding: 0 16px;
 }
 </style>
