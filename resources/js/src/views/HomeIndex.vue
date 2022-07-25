@@ -1,12 +1,16 @@
 <template>
     <div class="home_page">
         <div class="home_page_div">
-            <div class="filter-block">
+            <div v-show="filterBlock" class="filter-block">
                 <div class="filter-block-inputs">
                     <filter-block></filter-block>
                 </div>
                 <div class="filter-block-back"></div>
                 <div class="filter-block-back__img"></div>
+            </div>
+            <div v-show="sectionComponents" class="section__components m-0">
+                <quick-filtr></quick-filtr>
+                <services></services>
             </div>
         </div>
     </div>
@@ -15,13 +19,39 @@
 <script>
 import NavBar from '../../components/SiteNavBar.vue'
 import FilterBlock from '../../components/index/FilterBlock.vue'
+import QuickFiltr from '../../components/index/section_component/QuickFilter.vue'
+import Services from '../../components/index/section_component/Services.vue'
 export default {
     components: {
         NavBar,
-        FilterBlock
+        FilterBlock,
+        QuickFiltr,
+        Services
+    },
+    data() {
+        return {
+            sectionComponents: false,
+            filterBlock: false,
+        }
     },
     setup() {
         
+    },
+    methods: {
+        checkScreen() {
+            this.windowWidth = window.innerWidth;
+            if(this.windowWidth <= 991){
+                this.sectionComponents = true;
+                this.filterBlock = false;
+                return;
+            }
+            this.sectionComponents = false;
+            this.filterBlock = true;
+        },
+    },
+    created() {
+        window.addEventListener('resize', this.checkScreen);
+        this.checkScreen()
     },
 }
 </script>

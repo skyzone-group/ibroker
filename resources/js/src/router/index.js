@@ -13,6 +13,11 @@ import MainView from '../views/account/UserMainView.vue'
 import UserAccount from '../views/account/UserAccount.vue'
 import UserFavorites from '../views/account/UserFavorites.vue'
 import UserComplaints from '../views/account/UserComplaints.vue'
+import UserAnnouncements from '../views/account/UserAnnouncements.vue'
+
+// Objects Pages
+import ObjectMain from '../views/objects/ObjectList.vue'
+import Objects from '../views/objects/Objects.vue'
 const routes = [
     {
         path: '/',
@@ -47,6 +52,43 @@ const routes = [
                         }
                     },
                     {
+                        path: 'user/favorites',
+                        name: 'userfavorites',
+                        components: {
+                            content: UserFavorites,
+                        }
+                    },
+                    {
+                        path: 'user/list/',
+                        name: 'userannouncement',
+                        components: {
+                            content: ObjectMain,
+                        },
+                        children: [
+                            {
+                                path: 'objects',
+                                name: 'objects',
+                                components: {
+                                    objects: Objects,
+                                },
+                            },
+                            {
+                                path: 'objects/sales',
+                                name: 'sales',
+                                components: {
+                                    objects: MainView,
+                                },
+                            },
+                            {
+                                path: 'objects/rent',
+                                name: 'rent',
+                                components: {
+                                    objects: MainView,
+                                },
+                            },
+                        ]
+                    },
+                    {
                         path: 'my-complaints',
                         name: 'mycomplaints',
                         components: {
@@ -55,13 +97,6 @@ const routes = [
                     },
                     
                 ]
-            },
-            {
-                path: 'user/favorites',
-                name: 'userfavorites',
-                components: {
-                    main: UserFavorites,
-                }
             },
         ]
     },

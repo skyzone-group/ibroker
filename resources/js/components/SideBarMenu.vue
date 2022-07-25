@@ -39,6 +39,17 @@
                     </router-link>
                 </li>
                 <li class="user_block-ul-li">
+                    <router-link :to="{ name: 'objects'}" class="user_block-ul-li-link">
+                        <div class="icon-div">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                        </div>
+                        <div class="txt">
+                            Мои объявления
+                            <svg data-name="IconArrowLabel" width="5" height="5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 5"><path fill="currentColor" fill-rule="evenodd" d="M3 1h1v1L1 5 0 4l3-3zm2 3V0H1v1h3v3h1z" opacity=".4"></path></svg>
+                        </div>
+                    </router-link>
+                </li>
+                <li class="user_block-ul-li">
                     <router-link :to="{ name: 'userfavorites'}" class="user_block-ul-li-link">
                         <div class="icon-div">
                             <svg data-name="IconLike" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path stroke-width="1.6" d="M8 13.967c5.99-4.902 7.2-6.39 7.2-8.737 0-1.89-1.53-3.424-3.42-3.43-1.33 0-2.165.522-3.18 1.67l-.6.677-.6-.677C6.386 2.322 5.55 1.8 4.22 1.8 2.33 1.805.8 3.34.8 5.23c0 2.347 1.21 3.835 7.2 8.737z"></path></svg>
