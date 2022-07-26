@@ -22492,13 +22492,7 @@ var _hoisted_1 = {
   "class": "useful_links mt-5"
 };
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "useful_links_box"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "useful_links_box_wrapper"
-}, " useful_links 222 ")], -1
-/* HOISTED */
-);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"useful_links_box\"><div class=\"container_fluid\"><h2 class=\"useful_links_box_title content_h2\">Полезные ссылки</h2><div class=\"useful_links_box_cards\"><div class=\"row\"><div class=\"col-lg-4 col-md-4 col-sm-6 col-12\"><div class=\"useful_links_box_cards_item\"><div class=\"useful_links_box_cards_item_block buy_room\"><div class=\"content_txt\"><a href=\"#!\" class=\"content_txt_title\">Продажа квартир</a><a class=\"content_txt_links\" href=\"#!\">1-комнатные<span class=\"content_txt_links_num\">18 053</span></a><a class=\"content_txt_links mt-2\" href=\"#!\">2-комнатные<span class=\"content_txt_links_num\">18 053</span></a><a class=\"content_txt_links mt-2\" href=\"#!\">3-комнатные<span class=\"content_txt_links_num\">18 053</span></a><a class=\"content_txt_links mt-2\" href=\"#!\">4-комнатные<span class=\"content_txt_links_num\">18 053</span></a><a class=\"content_txt_links mt-2\" href=\"#!\">Студии<span class=\"content_txt_links_num\">18 053</span></a></div></div></div></div><div class=\"col-lg-4 col-md-4 col-sm-6 col-12\"><div class=\"useful_links_box_cards_item\"><div class=\"useful_links_box_cards_item_block rent_room\"><div class=\"content_txt\"><a href=\"#!\" class=\"content_txt_title\">Аренда квартир</a><a class=\"content_txt_links\" href=\"#!\">1-комнатные<span class=\"content_txt_links_num\">18 053</span></a><a class=\"content_txt_links mt-2\" href=\"#!\">2-комнатные<span class=\"content_txt_links_num\">18 053</span></a><a class=\"content_txt_links mt-2\" href=\"#!\">3-комнатные<span class=\"content_txt_links_num\">18 053</span></a><a class=\"content_txt_links mt-2\" href=\"#!\">4-комнатные<span class=\"content_txt_links_num\">18 053</span></a><a class=\"content_txt_links mt-2\" href=\"#!\">Студии<span class=\"content_txt_links_num\">18 053</span></a></div></div></div></div><div class=\"col-lg-4 col-md-4 col-sm-6 col-12\"><div class=\"useful_links_box_cards_item\"><div class=\"useful_links_box_cards_item_block new_buildings\"><div class=\"content_txt\"><a href=\"#!\" class=\"content_txt_title\">Новостройки</a><a class=\"content_txt_links\" href=\"#!\">Сдача до конца года</a><a class=\"content_txt_links mt-2\" href=\"#!\">Сдача до 2023</a><a class=\"content_txt_links mt-2\" href=\"#!\">Сдача до 2024</a></div></div></div></div><div class=\"col-lg-6 col-md-6 col-sm-6 col-12\"><div class=\"useful_links_box_cards_item\"><div class=\"useful_links_box_cards_item_block country_estate\"><div class=\"content_txt\"><a href=\"#!\" class=\"content_txt_title\">Загородная недвижимость</a><a class=\"content_txt_links\" href=\"#!\">Каталог посёлков<span class=\"content_txt_links_num\">18 053</span></a><a class=\"content_txt_links mt-2\" href=\"#!\">Купить дом<span class=\"content_txt_links_num\">18 053</span></a><a class=\"content_txt_links mt-2\" href=\"#!\">Купить участок<span class=\"content_txt_links_num\">18 053</span></a></div></div></div></div><div class=\"col-lg-6 col-md-6 col-12\"><div class=\"useful_links_box_cards_item\"><div class=\"useful_links_box_cards_item_block map_search d-flex justify-content-center align-items-center flex-column text-center\"><div class=\"content_txt\"><p class=\"text-white map_search_title\">Поиск на карте</p><span class=\"text-white map_search_span\">Ищите новостройки рядом с работой, <br> парком или родственниками</span><a href=\"#!\" class=\"map_search_link\">Найти на карте</a></div></div></div></div></div></div></div></div>", 1);
 
 var _hoisted_3 = [_hoisted_2];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -24567,11 +24561,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _public_images_useful_links_buy_flat_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../public/images/useful_links/buy-flat.jpg */ "./public/images/useful_links/buy-flat.jpg");
+/* harmony import */ var _public_images_useful_links_rent_room_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../public/images/useful_links/rent-room.jpg */ "./public/images/useful_links/rent-room.jpg");
+/* harmony import */ var _public_images_useful_links_new_buildings_jpg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../public/images/useful_links/new_buildings.jpg */ "./public/images/useful_links/new_buildings.jpg");
+/* harmony import */ var _public_images_useful_links_country_estate_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../public/images/useful_links/country_estate.jpg */ "./public/images/useful_links/country_estate.jpg");
+/* harmony import */ var _public_images_useful_links_map_search_png__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../public/images/useful_links/map_search.png */ "./public/images/useful_links/map_search.png");
 // Imports
 
+
+
+
+
+
+
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_public_images_useful_links_buy_flat_jpg__WEBPACK_IMPORTED_MODULE_2__["default"]);
+var ___CSS_LOADER_URL_REPLACEMENT_1___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_public_images_useful_links_rent_room_jpg__WEBPACK_IMPORTED_MODULE_3__["default"]);
+var ___CSS_LOADER_URL_REPLACEMENT_2___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_public_images_useful_links_new_buildings_jpg__WEBPACK_IMPORTED_MODULE_4__["default"]);
+var ___CSS_LOADER_URL_REPLACEMENT_3___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_public_images_useful_links_country_estate_jpg__WEBPACK_IMPORTED_MODULE_5__["default"]);
+var ___CSS_LOADER_URL_REPLACEMENT_4___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_public_images_useful_links_map_search_png__WEBPACK_IMPORTED_MODULE_6__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.useful_links_box_wrapper{\r\n    position: relative;\r\n    z-index: 3;\r\n    padding: 0 16px;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.useful_links_box{\r\n    padding: 16px 0 46px;\n}\n.useful_links_box_wrapper{\r\n    position: relative;\r\n    z-index: 3;\r\n    padding: 0 16px;\n}\n.container_fluid{\r\n    min-width: 320px;\r\n    max-width: 1376px;\r\n    padding: 0 16px;\r\n    margin: 0 auto;\r\n    box-sizing: border-box;\n}\n.content_h2{\r\n    margin: 20px 0 16px;\r\n    overflow: hidden;\r\n    font-weight: 700;\r\n    font-size: 26px;\r\n    line-height: 33px;\r\n    text-overflow: ellipsis;\r\n    white-space: nowrap;\n}\n.useful_links_box_cards_item{\r\n    background-color: #fff;\r\n    border-radius: 5px;\r\n    box-shadow: 0 2px 8px 0 #2426290a;\r\n    height: 247px;\r\n    margin-bottom: 20px;\r\n    overflow: hidden;\r\n    position: relative;\r\n    width: 100%;\n}\n.useful_links_box_cards_item_block{\r\n    height: 100%;\r\n    padding: 32px;\r\n    position: relative;\r\n    background-position: 50% !important;\r\n    background-size: cover !important;\r\n    background-repeat: no-repeat !important;\n}\n.useful_links_box_cards_item_block::after{\r\n    content: \"\";\r\n    position: absolute;\r\n    background-image: linear-gradient(110deg,rgba(43,71,86,.7),rgba(43,71,86,.1)) !important;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 100%;\n}\n.buy_room{\r\n    background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n}\n.rent_room{\r\n    background: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\n}\n.new_buildings{\r\n    background: url(" + ___CSS_LOADER_URL_REPLACEMENT_2___ + ");\n}\n.country_estate{\r\n    background: url(" + ___CSS_LOADER_URL_REPLACEMENT_3___ + ");\n}\n.map_search{\r\n    background: url(" + ___CSS_LOADER_URL_REPLACEMENT_4___ + ");\n}\n.content_txt{\r\n    position: relative;\r\n    z-index: 1;\n}\n.content_txt a:hover{\r\n    text-decoration: none;\n}\n.content_txt_title{\r\n    color: #fff;\r\n    display: inline-block;\r\n    font-size: 18px;\r\n    font-weight: 500;\r\n    line-height: 24px;\r\n    margin-bottom: 16px;\n}\n.content_txt_links{\r\n    display: flex;\r\n    justify-content: space-between;\r\n    width: 100%;\r\n    color: #fff;\n}\n.content_txt_links_num{\r\n    color: #fff;\r\n    margin-left: 12px;\r\n    white-space: nowrap;\n}\n.map_search_title{\r\n    margin-bottom: 7px;\r\n    font-weight: 700;\r\n    font-size: 22px;\r\n    line-height: 1.27;\n}\n.map_search_span{\r\n    margin-bottom: 20px;\r\n    font-weight: 700;\r\n    font-size: 14px;\r\n    line-height: 1.27;\r\n    display: block;\n}\n.map_search_link{\r\n    display: block;\r\n    box-sizing: border-box;\r\n    margin: 0 auto;\r\n    border: 1px solid #fff;\r\n    border-radius: 14px;\r\n    padding: 0 16px;\r\n    width: 180px;\r\n    height: 28px;\r\n    color: #fff;\r\n    font-weight: 700;\r\n    line-height: 1.8;\n}\n.map_search_link:hover{\r\n    border: 1px solid #0056b3;\r\n    background: #0056b3;\r\n    color: #fff;\n}\r\n\r\n/* ************************************************************* */\n@media (max-width: 450px){\n.useful_links_box_cards_item {\r\n        height: 220px;\n}\n.useful_links_box_cards_item_block {\r\n        padding: 20px;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -25196,6 +25208,81 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/search.svg?60a995164bbfcccd6fae6380fcaf3079");
+
+/***/ }),
+
+/***/ "./public/images/useful_links/buy-flat.jpg":
+/*!*************************************************!*\
+  !*** ./public/images/useful_links/buy-flat.jpg ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/buy-flat.jpg?9946113889201f6c7f1bce3db5b4b1e0");
+
+/***/ }),
+
+/***/ "./public/images/useful_links/country_estate.jpg":
+/*!*******************************************************!*\
+  !*** ./public/images/useful_links/country_estate.jpg ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/country_estate.jpg?2c4d4cbda48b2ff15b2e0c09d4ae7bb0");
+
+/***/ }),
+
+/***/ "./public/images/useful_links/map_search.png":
+/*!***************************************************!*\
+  !*** ./public/images/useful_links/map_search.png ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/map_search.png?062da857111f94032bc3ebcd25bf107e");
+
+/***/ }),
+
+/***/ "./public/images/useful_links/new_buildings.jpg":
+/*!******************************************************!*\
+  !*** ./public/images/useful_links/new_buildings.jpg ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/new_buildings.jpg?12e9a7aeadd7f8ef821afc933d933e57");
+
+/***/ }),
+
+/***/ "./public/images/useful_links/rent-room.jpg":
+/*!**************************************************!*\
+  !*** ./public/images/useful_links/rent-room.jpg ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/rent-room.jpg?1a4580ac4de2de329c174d92d3ae4c32");
 
 /***/ }),
 
