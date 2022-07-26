@@ -13,10 +13,8 @@
  * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  */
 
-//! Menu items
-
-//! Menu settings
-
-//! Profile detailes
-
-//! Styles
+/**
+ * Vue 3 Carousel 0.1.40
+ * (c) 2022
+ * @license MIT
+ */
