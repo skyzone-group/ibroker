@@ -1,6 +1,6 @@
 <template>
     <!-- Modal -->
-    <div>
+    <div class="auth_modal_box">
         <div class="modal"  id="animation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel6" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                 <div v-show="form === 'login'" class="modal-content">
@@ -246,4 +246,18 @@ export default {
 
 <style>
 
+/* ********************************************** */
+@media (max-width: 450px){
+    .auth_modal_box .modal-content h2{
+        font-size: 24px;
+    }
+    
+    .auth_modal_box .modal-content h5{
+        font-size: 13px;
+    }
+    
+    .auth_modal_box .modal-body .form-group{
+        margin-bottom: 10px;
+    }
+}
 </style>

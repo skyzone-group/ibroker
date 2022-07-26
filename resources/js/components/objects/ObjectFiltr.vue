@@ -1,34 +1,36 @@
 <template>
     <div class="filter_panel">
         <div class="object_filtr">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="field">
-                        <label for="username1">Регион</label>
-                        <Dropdown v-model="selectedRegion" :options="regions" optionLabel="name" optionValue="id" placeholder="Выберите регио..." class="w-100" />
+            <div class="object_filtr_box">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="field">
+                            <label for="username1">Регион</label>
+                            <Dropdown v-model="selectedRegion" :options="regions" optionLabel="name" optionValue="id" placeholder="Выберите регио..." class="w-100" />
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="field">
-                        <label for="username1">Район</label>
-                        <Dropdown v-model="selectedDistrict" :options="districts" optionLabel="name" optionValue="id" placeholder="Выберите регио..." class="w-100" />
+                    <div class="col-lg-3">
+                        <div class="field">
+                            <label for="username1">Район</label>
+                            <Dropdown v-model="selectedDistrict" :options="districts" optionLabel="name" optionValue="id" placeholder="Выберите регио..." class="w-100" />
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="field">
-                        <label for="username1">Тир Недвижимость</label>
-                        <Dropdown v-model="selectedRealEstate" :options="typeEstate" optionLabel="name" optionValue="id" placeholder="Тип недви..." class="w-100" />
+                    <div class="col-lg-3">
+                        <div class="field">
+                            <label for="username1">Тир Недвижимость</label>
+                            <Dropdown v-model="selectedRealEstate" :options="typeEstate" optionLabel="name" optionValue="id" placeholder="Тип недви..." class="w-100" />
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="field">
-                        <label for="object_id">Номер объявления (ID)</label>
-                        <InputText id="object_id" v-model="objectId"  placeholder="ID" class="w-100"/>
+                    <div class="col-lg-3">
+                        <div class="field">
+                            <label for="object_id">Номер объявления (ID)</label>
+                            <InputText id="object_id" v-model="objectId"  placeholder="ID" class="w-100"/>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 mt-3">
-                    <div class="search_button d-flex justify-content-end">
-                        <Button type="button" label="Поиск" icon="pi pi-search" :loading="loading[0]" @click="load(0)" />
+                    <div class="col-12 mt-3">
+                        <div class="search_button d-flex justify-content-end">
+                            <Button type="button" label="Поиск" icon="pi pi-search" :loading="loading[0]" @click="load(0)" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -44,10 +46,10 @@
                             </div>
                         </div>
                         <span class="mr-2">1 объявление</span>
-                        <div class="dropdown-avatar avatar_log">
+                        <div class="dropdown-avatar">
                             <a class=" nav-link dropdown-user-link avatar_drop align-items-center d-flex" href="#" data-toggle="dropdown">
                                 <svg class="object_fil mr-2" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.207 1.293 4.5.586l-.707.707-3.5 3.5 1.414 1.414L3.5 4.414V15h2V4.414l1.793 1.793 1.414-1.414-3.5-3.5Zm7 13.414-.707.707-.707-.707-3.5-3.5 1.414-1.414 1.793 1.793V1h2v10.586l1.793-1.793 1.414 1.414-3.5 3.5Z" fill="currentColor"></path></svg>
-                                По дате добавления в избранное
+                                Сортировать
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="#!">
@@ -146,7 +148,7 @@ export default {
 </script>
 
 <style scoped>
-    .object_filtr{
+    .object_filtr_box{
         background-color: #fff;
         border-radius: 0.5rem;
         box-shadow: 0 0.2rem 0.4rem 0 #00000012;
@@ -221,4 +223,34 @@ export default {
         justify-content: center;
         align-items: center;
     }
+    
+    /* ********************************************************** */
+    /* @media (max-width: 767px){
+        .object_filtr{
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 10;
+            outline: 0;
+            background: #808080b3;
+        }
+        .object_filtr_box{
+            transform: translate(0,0);
+            display: flex;
+            align-items: center;
+        }
+        
+        .object_filtr_box {
+            min-height: 360px;
+        }
+        
+        .object_filtr_box  {
+            max-width: 500px;
+            margin: 4.75rem auto;
+        }
+    } */
 </style>

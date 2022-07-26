@@ -41,6 +41,23 @@
                             <button @click="showNav = !showNav" class="btn_close"></button>
                             <nav class="header_mobile_menu-nav">
                                 <ul class="m-0 p-0 list-unstyled">
+                                    <li v-if="loggedIn === false" class="header_mobile_menu-nav-ul__li">
+                                        <a @click="showNav = !showNav" data-toggle="modal" data-target="#animation" href="#!" class="logout">
+                                            <div class="enter_icon"></div>
+                                            Войти
+                                        </a>
+                                    </li>
+                                    <li  v-else class="header_mobile_menu-nav-ul__li">
+                                        <a href="#!" class="logout align-items-center">
+                                            <div class="avatar_mob mr-2">
+                                                <img src="../../../public/images/avatar.jpg" alt="">
+                                            </div>
+                                            <div class="avatar_name_id">
+                                                <p class="mb-0">Javohir Toirov</p>
+                                                <span style="font-size: 14px; color: grey;">ID 12345678</span>
+                                            </div>
+                                        </a>
+                                    </li>
                                     <li class="header_mobile_menu-nav-ul__li">
                                         <ul class="services m-0 p-0 list-unstyled">
                                             <li class="service_item">
@@ -430,7 +447,7 @@ export default {
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 9999;
+        z-index: 1000;
         visibility: hidden;
         width: 100%;
         height: 100%;
@@ -546,6 +563,16 @@ export default {
         height: 24px;
     }
     
+    .enter_icon{
+        margin-right: 18px;
+        background-image: url('../../../public/images/icons/btn-enter.svg');
+        background-position: 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 24px;
+        height: 24px;
+    }
+    
     .service_item a{
         display: flex;
         align-items: center;
@@ -575,6 +602,17 @@ export default {
         .btn-add-object,
         .avatar_log{
             display: none;
+        }
+        
+        .avatar_mob{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .avatar_mob img{
+            width: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
     }
     

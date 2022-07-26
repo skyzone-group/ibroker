@@ -34,6 +34,16 @@
                                     </span>
                                 </div>
                             </div>
+                            <div class="objects_main-row_content_geo_info">
+                                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae animi at inventore, veritatis nulla quod libero corporis porro, amet, consectetur et accusantium dolorem? Et, voluptates? Numquam eos animi facere repellendus.</span>
+                            </div>
+                        </div>
+                        <div class="objects_main-row_content_info_buttons">
+                            <div class="phone_div">
+                                <a href="#!">
+                                    +99890 359 22 84
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -130,6 +140,56 @@ export default {
     transition: color .15s;
     color: #0468ff;
     text-decoration: none;
-     font-size: 18px;
+    font-size: 18px;
+}
+
+.objects_main-row_content_info_buttons{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    line-height: 0;
+}
+
+.phone_div a{
+    background-color: var(--primary_100);
+    color: var(--white_100);
+    padding: 3px 11px;
+    height: 28px;
+    display: inline-flex;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.phone_div a:hover{
+    text-decoration: none;
+}
+
+/* ********************************************** */
+@media (max-width: 575px){
+    .objects_main-row{
+        flex-direction: column;
+    }
+    
+    .objects_main-row_checkbox{
+        margin: 0 0 25px 0;
+    }
+    
+    .objects_main-row_img{
+        flex-basis: 150px;
+        margin: 0 20px;
+        min-width: 150px;
+        height: 150px;
+    }
+    
+    .objects_main-row_content{
+        margin-top: 20px;
+    }
 }
 </style>

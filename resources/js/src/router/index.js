@@ -61,6 +61,7 @@ const routes = [
                     {
                         path: 'user/list/',
                         name: 'userannouncement',
+                        //redirect: 'user/list/objects',
                         components: {
                             content: ObjectMain,
                         },

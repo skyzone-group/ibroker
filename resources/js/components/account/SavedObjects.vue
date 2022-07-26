@@ -16,9 +16,9 @@
                 </li>
             </ul>
             <div class="content_footer">
-                <a href="#!" class="content_footer-link">
+                <router-link :to="{name: 'userfavorites'}" class="content_footer-link">
                     Все избранные объявления (1)
-                </a>
+                </router-link>
             </div>
         </div>
     </div>

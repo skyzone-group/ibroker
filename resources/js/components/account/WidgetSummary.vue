@@ -2,17 +2,17 @@
     <div class="widget_summary d-lg-none d-block mt-3">
         <ul class="mb-0 pb-0">
             <li class="widget_summary_li">
-                <a href="#!" class="widget_summary_li_link">
+                <router-link :to="{name: 'userfavorites'}" class="widget_summary_li_link">
                     <svg data-name="IconLike" class="widget_summary_li_link_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path stroke-width="1.6" d="M8 13.967c5.99-4.902 7.2-6.39 7.2-8.737 0-1.89-1.53-3.424-3.42-3.43-1.33 0-2.165.522-3.18 1.67l-.6.677-.6-.677C6.386 2.322 5.55 1.8 4.22 1.8 2.33 1.805.8 3.34.8 5.23c0 2.347 1.21 3.835 7.2 8.737z"></path></svg>
-                    Избранное
-                    <span data-name="Badge" class="widget_summary_li_link_svg-2">2</span>
-                </a>
+                        Избранное
+                        <span data-name="Badge" class="widget_summary_li_link_svg-2">2</span>
+                </router-link>
             </li>
             <li class="widget_summary_li">
-                <a href="#!" class="widget_summary_li_link">
-                    <svg data-name="IconSavedSearches" class="widget_summary_li_link_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><g fill="currentColor" stroke="none"><path d="M19.805 18.148L14.5 12.88l.327-.44.008-.01c.06-.08.118-.157.174-.236v-.007c1.054-1.496 1.455-3.306 1.236-5.08-.768-.076-1.538-.11-2.31-.107.06.332.09.674.09 1.023 0 3.232-2.662 5.862-5.936 5.862s-5.937-2.63-5.937-5.862c0-3.2 2.613-5.812 5.844-5.86C8 1.308 8.01.595 8.05 0 5.927.013 3.89.857 2.38 2.352.857 3.846-.002 5.894 0 8.03c0 2.145.846 4.16 2.382 5.678 1.526 1.51 3.59 2.353 5.736 2.345 1.3 0 2.594-.31 3.752-.9.13-.074.516-.295.826-.542l5.39 5.2c.123.12.286.19.458.19.11 0 .276-.03.436-.182l.27-.257c.205-.195.42-.4.576-.553.3-.298.155-.672-.02-.856z"></path><path d="M12.87 5.493l.63.512.63-.512C16.17 3.837 17 3.04 17 1.813 17 .813 16.172 0 15.154 0 14.36 0 13.89.4 13.5.832 13.11.4 12.64 0 11.846 0 10.828 0 10 .813 10 1.813c0 1.23.83 2.025 2.87 3.68z"></path></g></svg>
-                    Сохранённые поиски
-                </a>
+                <router-link :to="{name: 'objects'}" class="widget_summary_li_link">
+                    <svg data-name="IconHidden" xmlns="http://www.w3.org/2000/svg" class="widget_summary_li_link_svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                    Мои объявления
+                </router-link>
             </li>
             <li class="widget_summary_li">
                 <a href="#!" class="widget_summary_li_link">
@@ -50,7 +50,8 @@
     border-bottom: none;
 }
 .widget_summary_li_link{
-    display: block;
+    display: flex;
+    align-items: center;
     padding: 20px 20px 20px 50px;
     color: #121212;
     text-decoration: none;

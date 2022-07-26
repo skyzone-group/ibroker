@@ -12,6 +12,7 @@
                 <quick-filtr></quick-filtr>
                 <services></services>
             </div>
+            <useful-links></useful-links>
         </div>
     </div>
 </template>
@@ -21,12 +22,14 @@ import NavBar from '../../components/SiteNavBar.vue'
 import FilterBlock from '../../components/index/FilterBlock.vue'
 import QuickFiltr from '../../components/index/section_component/QuickFilter.vue'
 import Services from '../../components/index/section_component/Services.vue'
+import UsefulLinks from '../../components/index/UsefulLinks.vue'
 export default {
     components: {
         NavBar,
         FilterBlock,
         QuickFiltr,
-        Services
+        Services,
+        UsefulLinks
     },
     data() {
         return {
