@@ -1,6 +1,6 @@
 <template>
     <div class="object_list">
-        <div class="objects-main-div mb-4">
+        <div class="objects-main-div">
             <nav class="objects-main-div_nav">
                 <ul class="objects-main-div_nav_ul d-flex m-0 p-0">
                     <li class="objects-main-div_nav_ul_li">
