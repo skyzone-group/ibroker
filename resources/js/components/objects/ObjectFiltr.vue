@@ -1,39 +1,7 @@
 <template>
     <div class="filter_panel">
         <div class="object_filtr">
-            <div class="object_filtr_box">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="field">
-                            <label for="username1">Регион</label>
-                            <Dropdown v-model="selectedRegion" :options="regions" optionLabel="name" optionValue="id" placeholder="Выберите регио..." class="w-100" />
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="field">
-                            <label for="username1">Район</label>
-                            <Dropdown v-model="selectedDistrict" :options="districts" optionLabel="name" optionValue="id" placeholder="Выберите регио..." class="w-100" />
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="field">
-                            <label for="username1">Тир Недвижимость</label>
-                            <Dropdown v-model="selectedRealEstate" :options="typeEstate" optionLabel="name" optionValue="id" placeholder="Тип недви..." class="w-100" />
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="field">
-                            <label for="object_id">Номер объявления (ID)</label>
-                            <InputText id="object_id" v-model="objectId"  placeholder="ID" class="w-100"/>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-3">
-                        <div class="search_button d-flex justify-content-end">
-                            <Button type="button" label="Поиск" icon="pi pi-search" :loading="loading[0]" @click="load(0)" />
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <object-modal></object-modal>
         </div>
         <div class="fixed_panel">
             <div class="fixed_panel_div">
@@ -60,6 +28,12 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="filtr_block">
+                            <a data-toggle="modal" data-target="#objectModal" class="nav-link align-items-center d-flex" href="#!">
+                                <i class="feather icon-filter object_fil mr-2"></i>
+                                Фильтр
+                            </a>
+                        </div>
                     </div>
                     <div class="top_bar_btns">
                         <button v-show="printBtn">
@@ -79,82 +53,27 @@
 
 
 <script>
-import InputText from 'primevue/inputtext';
-import Dropdown from 'primevue/dropdown';
-import Button from 'primevue/button';
 import Checkbox from 'primevue/checkbox';
-
+import ObjectModal from '../objects/ObjectFiltrModal.vue'
 export default {
     components: {
-        InputText,
-        Dropdown,
-        Button,
-        Checkbox
+        Checkbox,
+        ObjectModal
     },
     setup() {
         
     },
     data() {
         return {
-            selectedRegion: null,
-            selectedDistrict: null,
-            selectedRealEstate: null,
-            objectId: null,
-            checked: false,
-            printBtn: false,
-            loading: [false, false, false],
-            regions: [
-                {name: 'Ташкент', id: 1},
-                {name: 'Ташкентская область', id: 2},
-                {name: 'Андижанская область', id: 3},
-                {name: 'Бухарская область', id: 4},
-                {name: 'Джизахская область', id: 5},
-                {name: 'Ферганская область', id: 6},
-                {name: 'Каракалпакстан', id: 7},
-                {name: 'Кашкадарьинская область', id: 8},
-                {name: 'Навоийская область', id: 9},
-                {name: 'Наманганская область', id: 10},
-            ],
-            districts: [
-                {name: 'Ташкент', id: 1},
-                {name: 'Ташкентская область', id: 2},
-                {name: 'Андижанская область', id: 3},
-                {name: 'Бухарская область', id: 4},
-                {name: 'Джизахская область', id: 5},
-                {name: 'Ферганская область', id: 6},
-                {name: 'Каракалпакстан', id: 7},
-                {name: 'Кашкадарьинская область', id: 8},
-                {name: 'Навоийская область', id: 9},
-                {name: 'Наманганская область', id: 10},
-            ],
-            typeEstate: [
-                {name: 'Квартира', id: 1},
-                {name: 'Частный дом', id: 2},
-                {name: 'Новостройки', id: 3},
-                {name: 'Дача', id: 4},
-                {name: 'Комната', id: 5},
-                {name: 'Коммерческая недвижимость', id: 6},
-                {name: 'Земельные участки', id: 7},
-            ],
+            
         }
     },
     methods: {
-        load(index) {
-            this.loading[index] = true;
-            setTimeout(() => this.loading[index] = false, 1000);
-        }
     }
 }
 </script>
 
 <style scoped>
-    .object_filtr_box{
-        background-color: #fff;
-        border-radius: 0.5rem;
-        box-shadow: 0 0.2rem 0.4rem 0 #00000012;
-        padding: 20px;
-        width: 100%;
-    }
     
     .fixed_panel{
         position: relative;

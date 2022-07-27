@@ -19,4 +19,12 @@ export default {
         color: #2c3e50;
         margin-top: 60px;
     } */
+    
+    .modal-backdrop {
+        z-index: 999 !important;
+    }
+    
+    .modal {
+        z-index: 1000 !important;
+    }
 </style>
