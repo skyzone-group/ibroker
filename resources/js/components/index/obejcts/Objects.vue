@@ -5,7 +5,9 @@
                 <div class="hot_objects_box">
                     <div class="hot_objects_box_header">
                         <div class="hot_objects_box_header-title d-flex justify-content-between">
-                            <h2>Выгодные предложения</h2>
+                            <h2 class="d-flex align-items-center">Выгодные предложения 
+                                <img src="images/hot_icon.svg" alt="">
+                            </h2>
                             <a href="#!">
                                 <span>
                                     Искать
@@ -36,33 +38,51 @@ export default{
         const _cards = [
             { 
                 id: 1, 
-                text: "Ипотечный калькулятор",
-                url: "https://storage-cdn.cian.site/assiscrd/images/239-1613580565.png" 
+                text: "2-комн. квартира, 5/7 этаж, 70 м²",
+                url: "https://storage-cdn.cian.site/assiscrd/images/239-1613580565.png",
+                price: "46 500 y.e",
+                monthly_price: "652 y.e / м²",
+                object_id: "12345678" 
             },
             { 
                 id: 2,
-                text: "Ипотека или копить на вкладе?", 
-                url: "https://storage-cdn.cian.site/assiscrd/images/235-1609257911.png" 
+                text: "3-комн. квартира, 5/7 этаж, 70 м²", 
+                url: "https://storage-cdn.cian.site/assiscrd/images/235-1609257911.png",
+                price: "46 500 y.e",
+                monthly_price: "652 y.e / м²",
+                object_id: "12345678" 
             },
             { 
                 id: 3,
-                text: "Бесплатно оцените квартиру", 
-                url: "https://storage-cdn.cian.site/assiscrd/images/159-1575470418.png" 
+                text: "2-комн. квартира, 5/7 этаж, 70 м²", 
+                url: "https://storage-cdn.cian.site/assiscrd/images/159-1575470418.png",
+                price: "46 500 y.e",
+                monthly_price: "652 y.e / м²",
+                object_id: "12345678"
             },
             { 
                 id: 4,
-                text: "Снять квартиру без посредника", 
-                url: "https://storage-cdn.cian.site/assiscrd/images/21-1573816224.png" 
+                text: "4-комн. квартира, 5/7 этаж, 70 м²", 
+                url: "https://storage-cdn.cian.site/assiscrd/images/21-1573816224.png",
+                price: "46 500 y.e",
+                monthly_price: "652 y.e / м²",
+                object_id: "12345678" 
             },
             { 
                 id: 5,
-                text: "Снять квартиру без посредника", 
-                url: "https://storage-cdn.cian.site/assiscrd/images/21-1573816224.png" 
+                text: "2-комн. квартира, 5/7 этаж, 70 м²", 
+                url: "https://storage-cdn.cian.site/assiscrd/images/21-1573816224.png",
+                price: "46 500 y.e",
+                monthly_price: "652 y.e / м²",
+                object_id: "12345678" 
             },
             { 
                 id: 6,
-                text: "Снять квартиру без посредника", 
-                url: "https://storage-cdn.cian.site/assiscrd/images/21-1573816224.png" 
+                text: "2-комн. квартира, 5/7 этаж, 70 м²", 
+                url: "https://storage-cdn.cian.site/assiscrd/images/21-1573816224.png",
+                price: "46 500 y.e",
+                monthly_price: "652 y.e / м²",
+                object_id: "12345678" 
             },
         ];
         const cards = ref(_cards);
