@@ -2,7 +2,7 @@
     <div class="objects_page">
         <div class="objects_main">
             <div class="objects_main-row">
-                <div class="objects_main-row_checkbox">
+                <div class="objects_main-row_checkbox d-lg-block d-md-block d-sm-block d-none">
                     <div class="top_bar_total_checkBox">
                         <div class="field-checkbox">
                             <Checkbox id="binary" v-model="checked" :binary="true" />
@@ -38,11 +38,17 @@
                                 <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae animi at inventore, veritatis nulla quod libero corporis porro, amet, consectetur et accusantium dolorem? Et, voluptates? Numquam eos animi facere repellendus.</span>
                             </div>
                         </div>
-                        <div class="objects_main-row_content_info_buttons">
+                        <div class="objects_main-row_content_info_buttons mt-lg-0 mt-md-0 mt-sm-4 mt-4">
                             <div class="phone_div">
-                                <a href="#!">
-                                    +99890 359 22 84
-                                </a>
+                                <div class="small_buttons d-lg-none d-md-none d-sm-none d-inline-block">
+                                    <small-button v-tooltip.bottom="'Печатать'">
+                                        <i class="feather icon-printer"></i>
+                                    </small-button>
+                                    <small-button v-tooltip.bottom="'Удалить'">
+                                        <i class="feather icon-trash"></i>
+                                    </small-button>
+                                </div>
+                                <contact-button></contact-button>
                             </div>
                         </div>
                     </div>
@@ -54,9 +60,13 @@
 
 <script>
 import Checkbox from 'primevue/checkbox';
+import ContactButton from '../../../components/UI/ContactButton.vue'
+import SmallButton from '../../../components/UI/SmallButton.vue'
 export default {
     components: {
-        Checkbox
+        Checkbox,
+        ContactButton,
+        SmallButton
     },
     setup() {
         
@@ -146,9 +156,7 @@ export default {
 .objects_main-row_content_info_buttons{
     display: flex;
     flex-flow: row nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    line-height: 0;
+    justify-content: flex-end;
 }
 
 .phone_div a{

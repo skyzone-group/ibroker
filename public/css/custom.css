@@ -14,6 +14,7 @@
     --primary_100: #0468ff;
     --secondary_button_10: rgba(4,104,255,.1);
     --superblack_40: rgba(0,0,0,.4);
+    --form-button-color: #53b374;
 }
 
 .main-container{
@@ -40,5 +41,10 @@
 
 a:hover{
     text-decoration: none;
+}
+
+.title{
+    line-height: 1.1;
+    font-weight: 600;
 }
 /* /////////////////////////////////////////////////////////////////////////////////////// */

@@ -37,7 +37,6 @@ export default {
     flex-direction: column;
 }
 .favorites-frontend_box_block_title{
-    margin-bottom: 1.25rem;
     font-size: 1.875rem;
     font-weight: 500;
     color: #000;

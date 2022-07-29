@@ -18,6 +18,9 @@ import UserAnnouncements from '../views/account/UserAnnouncements.vue'
 // Objects Pages
 import ObjectMain from '../views/objects/ObjectList.vue'
 import Objects from '../views/objects/Objects.vue'
+
+// New Object Pages
+import NewObjectMain from '../views/add_new_object/NewObjectMain.vue'
 const routes = [
     {
         path: '/',
@@ -96,6 +99,13 @@ const routes = [
                             content: UserComplaints,
                         }
                     },
+                    {
+                        path: '/razmestit-obyavlenie/',
+                        name: 'newObject',
+                        components: {
+                            content: NewObjectMain
+                        }
+                    }
                     
                 ]
             },

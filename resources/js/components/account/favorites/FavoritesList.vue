@@ -64,10 +64,13 @@
                 <div class="listing__footer">
                     <div class="row justify-content-end">
                         <div class="col col-auto align-self-end">
-                            <button role="button" title="Позвонить автору" class="btn btn-primary --icon-left">
-                                <i class="feather icon-phone"></i>
-                                Контакты
-                            </button>
+                            <small-button v-tooltip.bottom="'Отправить сообщение автору'">
+                                <i class="feather icon-mail"></i>
+                            </small-button>
+                            <small-button v-tooltip.bottom="'Удалить'">
+                                <i class="feather icon-trash"></i>
+                            </small-button>
+                            <contact-button></contact-button>
                         </div>
                     </div>
                 </div>
@@ -78,7 +81,13 @@
 
 
 <script>
+import ContactButton from '../../UI/ContactButton.vue'
+import SmallButton from '../../UI/SmallButton.vue'
 export default {
+    components: {
+        ContactButton,
+        SmallButton
+    },
     setup() {
         
     },
@@ -273,7 +282,29 @@ export default {
     color: #999;
 }
 
-/* ******************************************* */
 
+
+/* ******************************************* */
+@media (max-width: 575px){
+    .favorites-frontend_box_block_objects_item{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .listing__preview{
+        position: relative;
+        margin-right: 0;
+        flex: 0 0 200px;
+        width: 100%;
+        max-width: 100%;
+    }
+    .listing__preview .img-fluid {
+        width: 100%;
+    }
+    
+
+    
+}
 
 </style>

@@ -154,9 +154,9 @@
                         </div>
                     </div>
                     <div class="btn-add-object">
-                        <a href="#!" class="btn-add">
+                        <router-link :to="{name: 'newObject'}" class="btn-add">
                             <span class="_25d45facb5--text--rH6sj">+ Разместить объявление</span>
-                        </a>
+                        </router-link>
                     </div>
                     
                     <div v-if="loggedIn === false" class="avatar_log">
