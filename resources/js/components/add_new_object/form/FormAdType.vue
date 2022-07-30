@@ -10,24 +10,75 @@
                         <div>
                             <span class="ad_type_item_content_span">Тип сделки</span>
                             <div class="single_button_select">
-                                <div class="form__field d-flex">
-                                    <form-button
-                                    form-text="Продажа"
-                                    :active-plan="activePlan"
-                                    @onUpdatePlan="updateActivePlan"
-                                    v-model="activePlan"
-                                    ></form-button>
-                                    <form-button
-                                    form-text="Аренда"
-                                    :active-plan="activePlan"
-                                    @onUpdatePlan="updateActivePlan"
-                                    v-model="activePlan"
-                                    ></form-button>
+                                <div class="single_button_select_box d-flex">
+                                    <label for="type__sell" class="single_button_select_box_label" :class="{'active' : this.typeDeal == 'Продажа'}">
+                                        <input v-model="typeDeal" id="type__sell" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="Продажа">
+                                        <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeDeal == 'Продажа'}">Продажа</span>
+                                    </label>
+                                    <label for="type__rent" class="single_button_select_box_label" :class="{'active' : this.typeDeal == 'Аренда'}">
+                                        <input v-model="typeDeal" id="type__rent" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="Аренда">
+                                        <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeDeal == 'Аренда'}">Аренда</span>
+                                    </label>
                                 </div>
-                                <div>Тип сделки: {{ activePlan }}</div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="ad_type_item" style="margin-bottom: 20px;">
+                    <div class="ad_type_item_content">
+                        <div>
+                            <span class="ad_type_item_content_span">Вид недвижимости</span>
+                            <div class="single_button_select">
+                                <div class="single_button_select_box d-flex">
+                                    <label for="type__residential" class="single_button_select_box_label" :class="{'active' : this.typeProperty == 'Жилая'}">
+                                        <input v-model="typeProperty" id="type__residential" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="Жилая">
+                                        <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeProperty == 'Жилая'}">Жилая</span>
+                                    </label>
+                                    <label for="type__commercial" class="single_button_select_box_label"
+                                    :class="{'active' : this.typeProperty == 'Коммерческая'}">
+                                        <input v-model="typeProperty" id="type__commercial" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="Коммерческая">
+                                        <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeProperty == 'Коммерческая'}">Коммерческая</span>
+                                    </label>
+                                    <label for="type__garage" class="single_button_select_box_label" 
+                                    :class="{'active' : this.typeProperty == 'Гараж'}">
+                                        <input v-model="typeProperty" id="type__garage" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="Гараж">
+                                        <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeProperty == 'Гараж'}">Гараж</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="radio-inputs">
+                    <div class="radio-inputs_group">
+                        <div class="radio-inputs_group_item">
+                            <div class="radio-inputs_column">
+                                <div class="field-radiobutton">
+                                    <RadioButton id="flat" name="flat" value="flat" v-model="offerType" />
+                                    <label for="flat">Квартира</label>
+                                </div>
+                                <div class="field-radiobutton">
+                                    <RadioButton id="room" name="room" value="room" v-model="offerType" />
+                                    <label for="room">Комната</label>
+                                </div>
+                                <div class="field-radiobutton">
+                                    <RadioButton id="house" name="house" value="house" v-model="offerType" />
+                                    <label for="house">Дом</label>
+                                </div>
+                            </div>
+                            <div class="radio-inputs_column">
+                                <div class="field-radiobutton">
+                                    <RadioButton id="house_part" name="house_part" value="house_part" v-model="offerType" />
+                                    <label for="house_part">Часть дома</label>
+                                </div>
+                                <div class="field-radiobutton">
+                                    <RadioButton id="lot" name="lot" value="lot" v-model="offerType" />
+                                    <label for="lot">Участок</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{offerType}}
                 </div>
             </div>
         </div>
@@ -39,17 +90,18 @@ import RadioButton from 'primevue/radiobutton';
 import FormButton from '../../UI/FormButton.vue'
 export default {
     components: {
-        FormButton
+        FormButton,
+        RadioButton
     },
     data() {
         return {
-            activePlan: "",
+            typeDeal: '',
+            typeProperty: '',
+            offerType: null,
         }
     },
     methods: {
-        updateActivePlan(plan){
-            this.activePlan = plan
-        }
+        
     },
     mounted() {
         
@@ -123,5 +175,68 @@ export default {
     border-color: var(--primary_100);;
     background: rgba(21,34,66,.05);
     color: red;
+}
+
+.radio-inputs{
+    max-width: 30rem;
+}
+
+.radio-inputs_group_item{
+    display: flex;
+    flex-direction: row;
+    line-height: 20px;
+}
+
+.radio-inputs_column{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.radio-inputs_column .field-radiobutton:not(:first-child) {
+    margin-top: 16px;
+}
+
+.radio-inputs_column .field-radiobutton label{
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: 20px;
+    padding-left: 8px;
+    font-size: 14px;
+    text-decoration: none;
+    text-indent: 0;
+    text-shadow: none;
+    text-transform: none;
+    margin-top: 2px;
+    vertical-align: top;
+}
+
+.radio-inputs_column .field-radiobutton .p-radiobutton .p-radiobutton-box.p-highlight {
+    border-color: var(--form-button-color);
+    background: var(--white_100);
+}
+
+.radio-inputs_column .field-radiobutton .p-radiobutton .p-radiobutton-box:not(.p-disabled):not(.p-highlight):hover {
+    border-color: var(--form-button-color);
+}
+
+.radio-inputs_column .field-radiobutton .p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover {
+    border-color: var(--white_100);
+    background: var(--white_100);
+    color: #ffffff;
+}
+
+.radio-inputs_column .field-radiobutton .p-radiobutton .p-radiobutton-box:not(.p-disabled).p-focus{
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.1rem #3aaf53;
+}
+
+.radio-inputs_column .field-radiobutton .p-radiobutton .p-radiobutton-box .p-radiobutton-icon {
+    width: 12px;
+    height: 12px;
+    transition-duration: 0.2s;
+    background-color: #53b374;
 }
 </style>

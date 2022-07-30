@@ -1,21 +1,14 @@
 <template>
-    <div class="form__field_btn btn" @click="updateActivePlan" :class="{'active' : this.activePlan == this.formText}" @keydown.space="updateActivePlan">
-        {{ this.formText }}             
+    <div class="form__field_btn btn active">
+        <slot></slot>
     </div>                 
 </template>
 
 
 <script>
 export default {
-    model: {
-        prop: 'activePlan',
-        event: 'onUpdatePlan'
-    },
-    props: ['formText', 'activePlan'],
     methods: {
-        updateActivePlan(){
-            this.$emit('onUpdatePlan', this.formText)
-        }
+        
     },
 }
 </script>

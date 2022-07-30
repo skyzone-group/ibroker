@@ -14,6 +14,12 @@
                                     <div class="form-card">
                                         <ad-type></ad-type>
                                     </div>
+                                    <div class="form-card">
+                                        <address-map></address-map>
+                                    </div>
+                                    <div class="form-card">
+                                        <upload-image></upload-image>
+                                    </div>
                                 </form>
                             </div>
                             <div class="col-lg-3">
@@ -32,16 +38,21 @@
 import FormIndicator from '../../../components/add_new_object/StepFormIndicator.vue'
 // Form
 import AdType from '../../../components/add_new_object/form/FormAdType.vue'
+import AddressMap from '../../../components/add_new_object/form/FormAdress.vue'
+import UploadImage from '../../../components/add_new_object/form/FormImages.vue'
+
 export default {
     components: {
         FormIndicator,
-        AdType
+        AdType,
+        AddressMap,
+        UploadImage
     }
 }
 </script>
 
 
-<style scoped>
+<style>
 .new_object_frontend{
     display: flex;
     overflow: hidden;
@@ -74,7 +85,91 @@ export default {
     box-shadow: 0 0.2rem 0.4rem 0 #00000012;
     padding: 3.2rem;
     width: 100%;
+    margin-bottom: 20px;
+}
+
+.single_button_select_box_label{
+    height: 40px;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #d3d4d4;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #242629;
+    cursor: pointer;
+    display: flex;
+    font: 500 14px/20px;
+    justify-content: center;
+    letter-spacing: normal;
+    margin: 0;
+    max-width: 100%;
+    min-width: 0;
+    outline: none;
+    padding: 0 16px;
+    position: relative;
+    text-decoration: none;
+    text-indent: 0;
+    text-shadow: none;
+    text-transform: none;
+}
+
+.single_button_select_box_label_inpt{
+    box-shadow: none;
+    box-sizing: border-box;
+    height: 0;
+    opacity: 0;
+    outline: none;
+    position: absolute;
+    width: 0;
+    z-index: -1;
+}
+
+.single_button_select_box_label_span{
+    color: #242629;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: normal;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    text-decoration: none;
+    text-indent: 0;
+    text-overflow: ellipsis;
+    text-shadow: none;
+    text-transform: none;
+    user-select: none;
+    white-space: nowrap;
 }
 
 
+
+.single_button_select_box_label:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.single_button_select_box_label:not(:last-child) {
+    border-right: 0;
+}
+
+.single_button_select_box_label:last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+.single_button_select_box_label.active{
+    background-color: var(--form-button-color);
+    border-bottom-color: var(--form-button-color);
+    border-top-color: var(--form-button-color);
+    color: #fff;
+}
+.single_button_select_box_label_span.active_span{
+    color: #fff;
+}
+
+.single_button_select_box_label.active:first-child {
+    border-left-color: var(--form-button-color);
+}
+.single_button_select_box_label.active:last-child {
+    border-left-color: var(--form-button-color);
+}
 </style>
