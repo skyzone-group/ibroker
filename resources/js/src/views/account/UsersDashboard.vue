@@ -28,7 +28,7 @@
 import SideBar from '../../../components/SideBarMenu.vue'
 export default {
     components: {
-        SideBar,
+        SideBar
     }
 }
 </script>

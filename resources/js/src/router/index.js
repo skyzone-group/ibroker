@@ -99,15 +99,22 @@ const routes = [
                             content: UserComplaints,
                         }
                     },
-                    {
-                        path: '/razmestit-obyavlenie/',
-                        name: 'newObject',
-                        components: {
-                            content: NewObjectMain
-                        }
-                    }
+                    // {
+                    //     path: '/razmestit-obyavlenie/',
+                    //     name: 'newObject',
+                    //     components: {
+                    //         main: NewObjectMain
+                    //     }
+                    // }
                     
                 ]
+            },
+            {
+                path: '/razmestit-obyavlenie/',
+                name: 'newObject',
+                components: {
+                    main: NewObjectMain,
+                },
             },
         ]
     },

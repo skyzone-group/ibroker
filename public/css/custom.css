@@ -15,6 +15,7 @@
     --secondary_button_10: rgba(4,104,255,.1);
     --superblack_40: rgba(0,0,0,.4);
     --form-button-color: #53b374;
+    --dc-color-grey-200: #d3d4d4;
 }
 
 .main-container{
@@ -48,3 +49,7 @@ a:hover{
     font-weight: 600;
 }
 /* /////////////////////////////////////////////////////////////////////////////////////// */
+
+.input-medium-6, .dc-input__input-container-6-1-2{
+    height: 40px;
+}

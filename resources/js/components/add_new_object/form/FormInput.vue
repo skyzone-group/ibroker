@@ -1,22 +1,5 @@
 <template>
-    <div class="address_map">
-        <div class="header_title">
-            <div class="header_title_content d-flex flex-column">
-                <h4 class="header_title_content_txt mb-0">Адрес</h4>
-                <span class="header_title_content_txt_sub">Укажите адрес или передвиньте метку на карте</span>
-            </div>
-            <div id="address" class="postion-relative">
-                <div class="address_block">
-                    <div class="address_block_div">
-                        <div class="address_block_div_item">
-                            <input type="text" placeholder="Укажите адрес">
-                            <i class="pi pi-spin pi-spinner" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <input type="text" >
 </template>
 
 <script>
