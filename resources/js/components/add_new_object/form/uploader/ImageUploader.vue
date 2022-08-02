@@ -86,7 +86,7 @@ export default {
 .uploader{
     width: 100%;
     border: 2px dashed #93989d;
-    padding: 35px;
+    padding: 16px 13px;
     font-size: 20px;
     border-radius: 5px;
     text-align: center;
@@ -148,15 +148,20 @@ input{
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .img-wrapper{
-    width: 48%;
-    height: 165px;
+    display: table-cell;
+    vertical-align: middle;
+    box-sizing: border-box;
+    width: 150px;
+    height: 110px;
+    overflow: hidden;
+    text-align: center;
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 1.2rem;
+    margin: 8px;
     position: relative;
     user-select: none;
     /* margin-left: 15px; */

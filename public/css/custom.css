@@ -26,6 +26,14 @@
     box-sizing: border-box;
 }
 
+.container_medium{
+    min-width: 320px;
+    max-width: 1110px;
+    padding: 0 16px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
 .header__nav-container{
     display: flex;
     margin: 0 auto;

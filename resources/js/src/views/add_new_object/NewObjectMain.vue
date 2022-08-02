@@ -1,6 +1,6 @@
 <template>
-    <div class="new_object_frontend">
-        <div class="new_object_main_div container_fluid" style="background-color: #f2f4f6;">
+    <div class="new_object_frontend" style="background-color: #f2f4f6;">
+        <div class="new_object_main_div container_medium">
             <div class="new_object_main_div_block">
                 <header class="block_header d-flex align-items-center">
                     <b class="block_title title">Добавление объявления</b>
@@ -79,298 +79,519 @@
                                                 <div class="header_title_content">
                                                     <h4 class="header_title_content_txt">Параметры</h4>
                                                 </div>
-                                                <!-- Number Of Rooms -->
-                                                <div class="options_main__items">
-                                                    <div class="options_main__item d-flex align-items-end">
-                                                        <div id="rooms" class="options_main__item_first">
-                                                            <div class="options_main__item_first_content">
-                                                                <span class="options_main__item_first_content_title">Количество комнат</span>
-                                                            </div>
-                                                            <div class="options_main__item_first_btns">
-                                                                <label for="room1" class="option_btn" :class="{'active' : this.NumberOfRooms == '1'}">
-                                                                    <input v-model="NumberOfRooms" id="room1" type="radio" tabindex="0" value="1">
-                                                                    1
-                                                                </label>
-                                                                <label for="room2" class="option_btn" :class="{'active' : this.NumberOfRooms == '2'}">
-                                                                    <input v-model="NumberOfRooms" id="room2" type="radio" tabindex="0" value="2">
-                                                                    2
-                                                                </label>
-                                                                <label for="room3" class="option_btn" :class="{'active' : this.NumberOfRooms == '3'}">
-                                                                    <input v-model="NumberOfRooms" id="room3" type="radio" tabindex="0" value="3">
-                                                                    3
-                                                                </label>
-                                                                <label for="room4" class="option_btn" :class="{'active' : this.NumberOfRooms == '4'}">
-                                                                    <input v-model="NumberOfRooms" id="room4" type="radio" tabindex="0" value="4">
-                                                                    4
-                                                                </label>
-                                                                <label for="room5" class="option_btn" :class="{'active' : this.NumberOfRooms == '5'}">
-                                                                    <input v-model="NumberOfRooms" id="room5" type="radio" tabindex="0" value="5">
-                                                                    5+
-                                                                </label>
-                                                                <label for="roomStudio" class="option_btn" :class="{'active' : this.NumberOfRooms == 'studio'}">
-                                                                    <input v-model="NumberOfRooms" id="roomStudio" type="radio" tabindex="0" value="studio">
-                                                                    студия
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="options_main__item_second option_class_one mb-0 option_class_second">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="field-checkbox d-flex align-items-center">
-                                                                    <Checkbox id="apartments" name="apartment" value="Apartments" v-model="apartments" />
-                                                                    <label for="apartments">Апартаменты</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Number Of Rooms -->
-                                                
-                                                <!-- Area options -->
-                                                <div class="options_main__items mt-4 d-flex">
-                                                    <!-- Общая площадь -->
-                                                    <div class="options_main__items_inputs d-flex flex-column">
-                                                        <span class="inputs_block_title">Общая площадь</span>
-                                                        <div class="options_main__items_inputs_block d-flex flex-column">
-                                                            <div class="input-medium-6 dc-input-6-1-2">
-                                                                <div class="dc-input__input-container-6-1-2 input_div">
-                                                                    <input id="space" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" v-model.number="totalArea">
-                                                                </div>
-                                                                <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Общая площадь -->
-                                                    
-                                                    <!-- Площадь кухни-->
-                                                    <div class="options_main__items_inputs d-flex flex-column">
-                                                        <span class="inputs_block_title">Площадь кухни</span>
-                                                        <div class="options_main__items_inputs_block d-flex flex-column">
-                                                            <div class="input-medium-6 dc-input-6-1-2">
-                                                                <div class="dc-input__input-container-6-1-2 input_div">
-                                                                    <input id="kitchen_area" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" v-model.number="kitchenArea">
-                                                                </div>
-                                                                <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Площадь кухни-->
-                                                    
-                                                    <!-- Жилая площадь -->
-                                                    <div class="options_main__items_inputs d-flex flex-column">
-                                                        <span class="inputs_block_title">Жилая площадь</span>
-                                                        <div class="options_main__items_inputs_block d-flex flex-column">
-                                                            <div class="input-medium-6 dc-input-6-1-2">
-                                                                <div class="dc-input__input-container-6-1-2 input_div">
-                                                                    <input id="living_space" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" v-model.number="livingSpace">
-                                                                </div>
-                                                                <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Жилая площадь -->
-                                                </div>
-                                                <!-- Area options -->
-                                                
-                                                <!-- Hight options -->
-                                                <div class="options_main__items mt-4 d-flex">
-                                                    <!-- Этаж -->
-                                                    <div class="options_main__items_inputs d-flex flex-column">
-                                                        <span class="inputs_block_title">Этаж</span>
-                                                        <div class="options_main__items_inputs_block d-flex flex-column">
-                                                            <div class="input-medium-6 dc-input-6-1-2">
-                                                                <div class="dc-input__input-container-6-1-2 input_div">
-                                                                    <input id="floor" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" v-model.number="floor">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Этаж -->
-                                                    
-                                                    <!-- Этажей в доме-->
-                                                    <div class="options_main__items_inputs d-flex flex-column">
-                                                        <span class="inputs_block_title">Этажей в доме</span>
-                                                        <div class="options_main__items_inputs_block d-flex flex-column">
-                                                            <div class="input-medium-6 dc-input-6-1-2">
-                                                                <div class="dc-input__input-container-6-1-2 input_div">
-                                                                    <input id="floor_house" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" v-model.number="floorHouse">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Этажей в доме-->
-                                                    
-                                                    <!-- Высота потолков -->
-                                                    <div class="options_main__items_inputs d-flex flex-column">
-                                                        <span class="inputs_block_title">Высота потолков</span>
-                                                        <div class="options_main__items_inputs_block d-flex flex-column">
-                                                            <div class="input-medium-6 dc-input-6-1-2">
-                                                                <div class="dc-input__input-container-6-1-2 input_div">
-                                                                    <input id="ceilingheight" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" v-model.number="ceilingHeight">
-                                                                </div>
-                                                                <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Высота потолков -->
-                                                </div>
-                                                <!-- Hight options -->
-                                                <div>
-                                                    <!-- Bathroom -->
-                                                    <div class="options_main__items mt-4">
+                                                <div class="options_div">
+                                                    <!-- Number Of Rooms -->
+                                                    <div class="options_main__items">
                                                         <div class="options_main__item d-flex align-items-end">
                                                             <div id="rooms" class="options_main__item_first">
                                                                 <div class="options_main__item_first_content">
                                                                     <span class="options_main__item_first_content_title">Количество комнат</span>
                                                                 </div>
                                                                 <div class="options_main__item_first_btns">
-                                                                    <label for="combined" class="option_btn" :class="{'active' : this.BathroomType == 'combined'}">
-                                                                        <input v-model="BathroomType" id="combined" type="radio" tabindex="0" value="combined">
-                                                                        Совмещенный
-                                                                    </label>
-                                                                    <label for="separated" class="option_btn" :class="{'active' : this.BathroomType == 'separated'}">
-                                                                        <input v-model="BathroomType" id="separated" type="radio" tabindex="0" value="separated">
-                                                                        Раздельный
-                                                                    </label>
-                                                                    <label for="moreOne" class="option_btn" :class="{'active' : this.BathroomType == 'moreOne'}">
-                                                                        <input v-model="BathroomType" id="moreOne" type="radio" tabindex="0" value="moreOne">
-                                                                        Более одного
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Bathroom -->
-                                                    
-                                                    <!-- Балкон/Лоджия -->
-                                                    <div class="options_main__items mt-4">
-                                                        <div class="options_main__item d-flex align-items-end">
-                                                            <div id="rooms" class="options_main__item_first">
-                                                                <div class="options_main__item_first_content">
-                                                                    <span class="options_main__item_first_content_title">Балкон/Лоджия</span>
-                                                                </div>
-                                                                <div class="options_main__item_first_btns">
-                                                                    <label for="balcon1" class="option_btn" :class="{'active' : this.NumberBalcons == '1'}">
-                                                                        <input v-model="NumberBalcons" id="balcon1" type="radio" tabindex="0" value="1">
+                                                                    <label for="room1" class="option_btn" :class="{'active' : this.NumberOfRooms == '1'}">
+                                                                        <input v-model="NumberOfRooms" id="room1" type="radio" tabindex="0" value="1">
                                                                         1
                                                                     </label>
-                                                                    <label for="balcon2" class="option_btn" :class="{'active' : this.NumberBalcons == '2'}">
-                                                                        <input v-model="NumberBalcons" id="balcon2" type="radio" tabindex="0" value="2">
+                                                                    <label for="room2" class="option_btn" :class="{'active' : this.NumberOfRooms == '2'}">
+                                                                        <input v-model="NumberOfRooms" id="room2" type="radio" tabindex="0" value="2">
                                                                         2
                                                                     </label>
-                                                                    <label for="balcon3" class="option_btn" :class="{'active' : this.NumberBalcons == '3'}">
-                                                                        <input v-model="NumberBalcons" id="balcon3" type="radio" tabindex="0" value="3">
-                                                                        3+
+                                                                    <label for="room3" class="option_btn" :class="{'active' : this.NumberOfRooms == '3'}">
+                                                                        <input v-model="NumberOfRooms" id="room3" type="radio" tabindex="0" value="3">
+                                                                        3
                                                                     </label>
-                                                                    <label for="nobalcons" class="option_btn" :class="{'active' : this.NumberBalcons == 'nobalcons'}">
-                                                                        <input v-model="NumberBalcons" id="nobalcons" type="radio" tabindex="0" value="nobalcons">
-                                                                        Нет
+                                                                    <label for="room4" class="option_btn" :class="{'active' : this.NumberOfRooms == '4'}">
+                                                                        <input v-model="NumberOfRooms" id="room4" type="radio" tabindex="0" value="4">
+                                                                        4
                                                                     </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Балкон/Лоджия -->
-                                                    
-                                                    <!-- Ремонт -->
-                                                    <div class="options_main__items mt-4">
-                                                        <div class="options_main__item d-flex align-items-end">
-                                                            <div id="rooms" class="options_main__item_first">
-                                                                <div class="options_main__item_first_content">
-                                                                    <span class="options_main__item_first_content_title">Ремонт</span>
-                                                                </div>
-                                                                <div class="options_main__item_first_btns">
-                                                                    <label for="condition1" class="option_btn" :class="{'active' : this.HouseCondition == 'cosmetic'}">
-                                                                        <input v-model="HouseCondition" id="condition1" type="radio" tabindex="0" value="cosmetic">
-                                                                        Косметический
+                                                                    <label for="room5" class="option_btn" :class="{'active' : this.NumberOfRooms == '5'}">
+                                                                        <input v-model="NumberOfRooms" id="room5" type="radio" tabindex="0" value="5">
+                                                                        5+
                                                                     </label>
-                                                                    <label for="condition2" class="option_btn" :class="{'active' : this.HouseCondition == 'euro'}">
-                                                                        <input v-model="HouseCondition" id="condition2" type="radio" tabindex="0" value="euro">
-                                                                        Евро
-                                                                    </label>
-                                                                    <label for="condition3" class="option_btn" :class="{'active' : this.HouseCondition == 'designer'}">
-                                                                        <input v-model="HouseCondition" id="condition3" type="radio" tabindex="0" value="designer">
-                                                                        Дизайнерский
-                                                                    </label>
-                                                                    <label for="condition4" class="option_btn" :class="{'active' : this.HouseCondition == 'withoutrepair'}">
-                                                                        <input v-model="HouseCondition" id="condition4" type="radio" tabindex="0" value="withoutrepair">
-                                                                        Без ремонта
+                                                                    <label for="roomStudio" class="option_btn" :class="{'active' : this.NumberOfRooms == 'studio'}">
+                                                                        <input v-model="NumberOfRooms" id="roomStudio" type="radio" tabindex="0" value="studio">
+                                                                        студия
                                                                     </label>
                                                                 </div>
                                                             </div>
                                                             <div class="options_main__item_second option_class_one mb-0 option_class_second">
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="field-checkbox d-flex align-items-center">
-                                                                        <Checkbox id="redevelopment" name="redevelopment" value="redevelopment" v-model="redevelopment" />
-                                                                        <label for="redevelopment">Перепланировка</label>
+                                                                        <Checkbox id="apartments" name="apartment" value="Apartments" v-model="apartments" />
+                                                                        <label for="apartments">Апартаменты</label>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- Ремонт -->
+                                                    <!-- Number Of Rooms -->
                                                     
-                                                    <!-- Вид из окон -->
-                                                    <div class="options_main__items mt-4">
-                                                        <div id="view" class="window_view">
-                                                            <div class="options_main__item_first_content">
-                                                                <span class="options_main__item_first_content_title">Вид из окон</span>
-                                                            </div>
-                                                            <div class="window_checbox">
-                                                                <!-- type 1 -->
-                                                                <div class="window_checbox_item">
-                                                                    <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                        <div class="d-flex align-items-center">
-                                                                            <div class="field-checkbox d-flex align-items-center">
-                                                                                <Checkbox id="type_window_1" name="type_window[]" value="yard" v-model="TypeWindow" />
-                                                                                <label for="type_window_1">Двор</label>
-                                                                            </div>
-                                                                        </div>
+                                                    <!-- Area options -->
+                                                    <div class="options_main__items mt-4 d-flex">
+                                                        <!-- Общая площадь -->
+                                                        <div class="options_main__items_inputs d-flex flex-column">
+                                                            <span class="inputs_block_title">Общая площадь</span>
+                                                            <div class="options_main__items_inputs_block d-flex flex-column">
+                                                                <div class="input-medium-6 dc-input-6-1-2">
+                                                                    <div class="dc-input__input-container-6-1-2 input_div">
+                                                                        <input id="space" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" v-model.number="totalArea">
                                                                     </div>
+                                                                    <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
                                                                 </div>
-                                                                <!-- type 1 -->
-                                                                
-                                                                <!-- type 2 -->
-                                                                <div class="window_checbox_item">
-                                                                    <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                        <div class="d-flex align-items-center">
-                                                                            <div class="field-checkbox d-flex align-items-center">
-                                                                                <Checkbox id="type_window_2" name="type_window[]" value="water" v-model="TypeWindow" />
-                                                                                <label for="type_window_2">Водоем</label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- type 2 -->
-                                                                
-                                                                <!-- type 3 -->
-                                                                <div class="window_checbox_item">
-                                                                    <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                        <div class="d-flex align-items-center">
-                                                                            <div class="field-checkbox d-flex align-items-center">
-                                                                                <Checkbox id="type_window_3" name="type_window[]" value="street" v-model="TypeWindow" />
-                                                                                <label for="type_window_3">Улица</label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- type 3 -->
-                                                                
-                                                                <!-- type 4 -->
-                                                                <div class="window_checbox_item">
-                                                                    <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                        <div class="d-flex align-items-center">
-                                                                            <div class="field-checkbox d-flex align-items-center">
-                                                                                <Checkbox id="type_window_4" name="type_window[]" value="park" v-model="TypeWindow" />
-                                                                                <label for="type_window_4">Парк</label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- type 4 -->
                                                             </div>
                                                         </div>
+                                                        <!-- Общая площадь -->
+                                                        
+                                                        <!-- Площадь кухни-->
+                                                        <div class="options_main__items_inputs d-flex flex-column">
+                                                            <span class="inputs_block_title">Площадь кухни</span>
+                                                            <div class="options_main__items_inputs_block d-flex flex-column">
+                                                                <div class="input-medium-6 dc-input-6-1-2">
+                                                                    <div class="dc-input__input-container-6-1-2 input_div">
+                                                                        <input id="kitchen_area" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" v-model.number="kitchenArea">
+                                                                    </div>
+                                                                    <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Площадь кухни-->
+                                                        
+                                                        <!-- Жилая площадь -->
+                                                        <div class="options_main__items_inputs d-flex flex-column">
+                                                            <span class="inputs_block_title">Жилая площадь</span>
+                                                            <div class="options_main__items_inputs_block d-flex flex-column">
+                                                                <div class="input-medium-6 dc-input-6-1-2">
+                                                                    <div class="dc-input__input-container-6-1-2 input_div">
+                                                                        <input id="living_space" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" v-model.number="livingSpace">
+                                                                    </div>
+                                                                    <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Жилая площадь -->
                                                     </div>
-                                                    <!-- Вид из окон -->
+                                                    <!-- Area options -->
+                                                    
+                                                    <!-- Hight options -->
+                                                    <div class="options_main__items mt-4 d-flex">
+                                                        <!-- Этаж -->
+                                                        <div class="options_main__items_inputs d-flex flex-column">
+                                                            <span class="inputs_block_title">Этаж</span>
+                                                            <div class="options_main__items_inputs_block d-flex flex-column">
+                                                                <div class="input-medium-6 dc-input-6-1-2">
+                                                                    <div class="dc-input__input-container-6-1-2 input_div">
+                                                                        <input id="floor" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" v-model.number="floor">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Этаж -->
+                                                        
+                                                        <!-- Этажей в доме-->
+                                                        <div class="options_main__items_inputs d-flex flex-column">
+                                                            <span class="inputs_block_title">Этажей в доме</span>
+                                                            <div class="options_main__items_inputs_block d-flex flex-column">
+                                                                <div class="input-medium-6 dc-input-6-1-2">
+                                                                    <div class="dc-input__input-container-6-1-2 input_div">
+                                                                        <input id="floor_house" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" v-model.number="floorHouse">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Этажей в доме-->
+                                                        
+                                                        <!-- Высота потолков -->
+                                                        <div class="options_main__items_inputs d-flex flex-column">
+                                                            <span class="inputs_block_title">Высота потолков</span>
+                                                            <div class="options_main__items_inputs_block d-flex flex-column">
+                                                                <div class="input-medium-6 dc-input-6-1-2">
+                                                                    <div class="dc-input__input-container-6-1-2 input_div">
+                                                                        <input id="ceilingheight" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" v-model.number="ceilingHeight">
+                                                                    </div>
+                                                                    <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Высота потолков -->
+                                                    </div>
+                                                    <!-- Hight options -->
+                                                    <div>
+                                                        <!-- Bathroom -->
+                                                        <div class="options_main__items mt-4">
+                                                            <div class="options_main__item d-flex align-items-end">
+                                                                <div id="rooms" class="options_main__item_first">
+                                                                    <div class="options_main__item_first_content">
+                                                                        <span class="options_main__item_first_content_title">Санузел</span>
+                                                                    </div>
+                                                                    <div class="options_main__item_first_btns">
+                                                                        <label for="combined" class="option_btn" :class="{'active' : this.BathroomType == 'combined'}">
+                                                                            <input v-model="BathroomType" id="combined" type="radio" tabindex="0" value="combined">
+                                                                            Совмещенный
+                                                                        </label>
+                                                                        <label for="separated" class="option_btn" :class="{'active' : this.BathroomType == 'separated'}">
+                                                                            <input v-model="BathroomType" id="separated" type="radio" tabindex="0" value="separated">
+                                                                            Раздельный
+                                                                        </label>
+                                                                        <label for="moreOne" class="option_btn" :class="{'active' : this.BathroomType == 'moreOne'}">
+                                                                            <input v-model="BathroomType" id="moreOne" type="radio" tabindex="0" value="moreOne">
+                                                                            Более одного
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Bathroom -->
+                                                        
+                                                        <!-- Балкон/Лоджия -->
+                                                        <div class="options_main__items mt-4">
+                                                            <div class="options_main__item d-flex align-items-end">
+                                                                <div id="rooms" class="options_main__item_first">
+                                                                    <div class="options_main__item_first_content">
+                                                                        <span class="options_main__item_first_content_title">Балкон/Лоджия</span>
+                                                                    </div>
+                                                                    <div class="options_main__item_first_btns">
+                                                                        <label for="balcon1" class="option_btn" :class="{'active' : this.NumberBalcons == '1'}">
+                                                                            <input v-model="NumberBalcons" id="balcon1" type="radio" tabindex="0" value="1">
+                                                                            1
+                                                                        </label>
+                                                                        <label for="balcon2" class="option_btn" :class="{'active' : this.NumberBalcons == '2'}">
+                                                                            <input v-model="NumberBalcons" id="balcon2" type="radio" tabindex="0" value="2">
+                                                                            2
+                                                                        </label>
+                                                                        <label for="balcon3" class="option_btn" :class="{'active' : this.NumberBalcons == '3'}">
+                                                                            <input v-model="NumberBalcons" id="balcon3" type="radio" tabindex="0" value="3">
+                                                                            3+
+                                                                        </label>
+                                                                        <label for="nobalcons" class="option_btn" :class="{'active' : this.NumberBalcons == 'nobalcons'}">
+                                                                            <input v-model="NumberBalcons" id="nobalcons" type="radio" tabindex="0" value="nobalcons">
+                                                                            Нет
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Балкон/Лоджия -->
+                                                        
+                                                        <!-- Ремонт -->
+                                                        <div class="options_main__items mt-4">
+                                                            <div class="options_main__item d-flex align-items-end">
+                                                                <div id="rooms" class="options_main__item_first">
+                                                                    <div class="options_main__item_first_content">
+                                                                        <span class="options_main__item_first_content_title">Ремонт</span>
+                                                                    </div>
+                                                                    <div class="options_main__item_first_btns">
+                                                                        <label for="condition1" class="option_btn" :class="{'active' : this.HouseCondition == 'cosmetic'}">
+                                                                            <input v-model="HouseCondition" id="condition1" type="radio" tabindex="0" value="cosmetic">
+                                                                            Косметический
+                                                                        </label>
+                                                                        <label for="condition2" class="option_btn" :class="{'active' : this.HouseCondition == 'euro'}">
+                                                                            <input v-model="HouseCondition" id="condition2" type="radio" tabindex="0" value="euro">
+                                                                            Евро
+                                                                        </label>
+                                                                        <label for="condition3" class="option_btn" :class="{'active' : this.HouseCondition == 'designer'}">
+                                                                            <input v-model="HouseCondition" id="condition3" type="radio" tabindex="0" value="designer">
+                                                                            Дизайнерский
+                                                                        </label>
+                                                                        <label for="condition4" class="option_btn" :class="{'active' : this.HouseCondition == 'withoutrepair'}">
+                                                                            <input v-model="HouseCondition" id="condition4" type="radio" tabindex="0" value="withoutrepair">
+                                                                            Без ремонта
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="options_main__item_second option_class_one mb-0 option_class_second">
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="field-checkbox d-flex align-items-center">
+                                                                            <Checkbox id="redevelopment" name="redevelopment" value="redevelopment" v-model="redevelopment" />
+                                                                            <label for="redevelopment">Перепланировка</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Ремонт -->
+                                                        
+                                                        <!-- Вид из окон -->
+                                                        <div class="options_main__items mt-4">
+                                                            <div id="view" class="window_view">
+                                                                <div class="options_main__item_first_content">
+                                                                    <span class="options_main__item_first_content_title">Вид из окон</span>
+                                                                </div>
+                                                                <div class="window_checbox">
+                                                                    <!-- type 1 -->
+                                                                    <div class="window_checbox_item">
+                                                                        <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
+                                                                            <div class="d-flex align-items-center">
+                                                                                <div class="field-checkbox d-flex align-items-center">
+                                                                                    <Checkbox id="type_window_1" name="type_window[]" value="yard" v-model="TypeWindow" />
+                                                                                    <label for="type_window_1">Двор</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- type 1 -->
+                                                                    
+                                                                    <!-- type 2 -->
+                                                                    <div class="window_checbox_item">
+                                                                        <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
+                                                                            <div class="d-flex align-items-center">
+                                                                                <div class="field-checkbox d-flex align-items-center">
+                                                                                    <Checkbox id="type_window_2" name="type_window[]" value="water" v-model="TypeWindow" />
+                                                                                    <label for="type_window_2">Водоем</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- type 2 -->
+                                                                    
+                                                                    <!-- type 3 -->
+                                                                    <div class="window_checbox_item">
+                                                                        <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
+                                                                            <div class="d-flex align-items-center">
+                                                                                <div class="field-checkbox d-flex align-items-center">
+                                                                                    <Checkbox id="type_window_3" name="type_window[]" value="street" v-model="TypeWindow" />
+                                                                                    <label for="type_window_3">Улица</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- type 3 -->
+                                                                    
+                                                                    <!-- type 4 -->
+                                                                    <div class="window_checbox_item">
+                                                                        <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
+                                                                            <div class="d-flex align-items-center">
+                                                                                <div class="field-checkbox d-flex align-items-center">
+                                                                                    <Checkbox id="type_window_4" name="type_window[]" value="park" v-model="TypeWindow" />
+                                                                                    <label for="type_window_4">Парк</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- type 4 -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Вид из окон -->
+                                                        
+                                                        <!-- Год постройки -->
+                                                        <div class="options_main__items mt-4 d-flex">
+                                                            <div class="options_main__items_inputs d-flex flex-column">
+                                                                <span class="inputs_block_title">Год постройки</span>
+                                                                <div class="options_main__items_inputs_block d-flex flex-column">
+                                                                    <div class="input-medium-6 dc-input-6-1-2">
+                                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                                            <InputMask class="dc-input__input-6-1-2" mask="9999" v-model="yearofBuilding" placeholder="2022" />
+                                                                        </div>
+                                                                        <div class="dc-input__input-icon-right dc-input__input-icon-right-font">г</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Год постройки -->
+                                                        
+                                                        <!-- Тип дома -->
+                                                        <div class="options_main__items mt-4">
+                                                            <div class="options_main__item d-flex align-items-end">
+                                                                <div id="rooms" class="options_main__item_first">
+                                                                    <div class="options_main__item_first_content">
+                                                                        <span class="options_main__item_first_content_title">Тип дома</span>
+                                                                    </div>
+                                                                    <div class="options_main__item_first_btns">
+                                                                        <label for="house_type1" class="option_btn" :class="{'active' : this.HouseType == 'brick'}">
+                                                                            <input v-model="HouseType" id="house_type1" type="radio" tabindex="0" value="brick">
+                                                                            Кирпичный
+                                                                        </label>
+                                                                        <label for="house_type2" class="option_btn" :class="{'active' : this.HouseType == 'monolithic'}">
+                                                                            <input v-model="HouseType" id="house_type2" type="radio" tabindex="0" value="monolithic">
+                                                                            Монолитный
+                                                                        </label>
+                                                                        <label for="house_type3" class="option_btn" :class="{'active' : this.HouseType == 'wood'}">
+                                                                            <input v-model="HouseType" id="house_type3" type="radio" tabindex="0" value="wood">
+                                                                            Деревянный
+                                                                        </label>
+                                                                        <label for="house_type4" class="option_btn" :class="{'active' : this.HouseType == 'panel'}">
+                                                                            <input v-model="HouseType" id="house_type4" type="radio" tabindex="0" value="panel">
+                                                                            Панельный
+                                                                        </label>
+                                                                        <label for="house_type5" class="option_btn" :class="{'active' : this.HouseType == 'blocky'}">
+                                                                            <input v-model="HouseType" id="house_type5" type="radio" tabindex="0" value="blocky">
+                                                                            Блочный
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Тип дома -->
+                                                        
+                                                        <!-- Дополнительно -->
+                                                        <div id="additional_options" class="mt-5">
+                                                            <h2 class="header_title_content_txt">Дополнительно</h2>
+                                                            <div class="additional_options_main">
+                                                                <div class="row">
+                                                                    <!-- Лифт -->
+                                                                    <div class="col col-5">
+                                                                        <div class="additional_options_main_item">
+                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="field-checkbox d-flex align-items-center">
+                                                                                        <Checkbox id="add_option_1" name="options[]" value="elevator" v-model="AdditionalOptions" />
+                                                                                        <label for="add_option_1">Лифт</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- Кондиционер -->
+                                                                    <div class="col col-5">
+                                                                        <div class="additional_options_main_item">
+                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="field-checkbox d-flex align-items-center">
+                                                                                        <Checkbox id="add_option_2" name="options[]" value="conditioner" v-model="AdditionalOptions" />
+                                                                                        <label for="add_option_2">Кондиционер</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- Интернет -->
+                                                                    <div class="col col-5">
+                                                                        <div class="additional_options_main_item">
+                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="field-checkbox d-flex align-items-center">
+                                                                                        <Checkbox id="add_option_3" name="options[]" value="internet" v-model="AdditionalOptions" />
+                                                                                        <label for="add_option_3">Интернет</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- Стиральная машина -->
+                                                                    <div class="col col-5">
+                                                                        <div class="additional_options_main_item">
+                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="field-checkbox d-flex align-items-center">
+                                                                                        <Checkbox id="add_option_4" name="options[]" value="washing_machine" v-model="AdditionalOptions" />
+                                                                                        <label for="add_option_4">Стиральная машина</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- Бассейн -->
+                                                                    <div class="col col-5">
+                                                                        <div class="additional_options_main_item">
+                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="field-checkbox d-flex align-items-center">
+                                                                                        <Checkbox id="add_option_5" name="options[]" value="swimming_pool" v-model="AdditionalOptions" />
+                                                                                        <label for="add_option_5">Бассейн</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- Сауна -->
+                                                                    <div class="col col-5">
+                                                                        <div class="additional_options_main_item">
+                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="field-checkbox d-flex align-items-center">
+                                                                                        <Checkbox id="add_option_6" name="options[]" value="sauna" v-model="AdditionalOptions" />
+                                                                                        <label for="add_option_6">Сауна</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- Мебель -->
+                                                                    <div class="col col-5">
+                                                                        <div class="additional_options_main_item">
+                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="field-checkbox d-flex align-items-center">
+                                                                                        <Checkbox id="add_option_7" name="options[]" value="furniture" v-model="AdditionalOptions" />
+                                                                                        <label for="add_option_7">Мебель</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- Микроволновая печь -->
+                                                                    <div class="col col-5">
+                                                                        <div class="additional_options_main_item">
+                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="field-checkbox d-flex align-items-center">
+                                                                                        <Checkbox id="add_option_8" name="options[]" value="microwave" v-model="AdditionalOptions" />
+                                                                                        <label for="add_option_8">Микроволновая печь</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- Холодильник -->
+                                                                    <div class="col col-5">
+                                                                        <div class="additional_options_main_item">
+                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="field-checkbox d-flex align-items-center">
+                                                                                        <Checkbox id="add_option_9" name="options[]" value="fridge" v-model="AdditionalOptions" />
+                                                                                        <label for="add_option_9">Холодильник</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- Телефонная линия -->
+                                                                    <div class="col col-5">
+                                                                        <div class="additional_options_main_item">
+                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="field-checkbox d-flex align-items-center">
+                                                                                        <Checkbox id="add_option_10" name="options[]" value="telephone" v-model="AdditionalOptions" />
+                                                                                        <label for="add_option_10">Телефонная линия</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- Охрана -->
+                                                                    <div class="col col-5">
+                                                                        <div class="additional_options_main_item">
+                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="field-checkbox d-flex align-items-center">
+                                                                                        <Checkbox id="add_option_11" name="options[]" value="security" v-model="AdditionalOptions" />
+                                                                                        <label for="add_option_11">Охрана</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- Телевизор -->
+                                                                    <div class="col col-5">
+                                                                        <div class="additional_options_main_item">
+                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="field-checkbox d-flex align-items-center">
+                                                                                        <Checkbox id="add_option_12" name="options[]" value="television" v-model="AdditionalOptions" />
+                                                                                        <label for="add_option_12">Телевизор</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <li v-for="item in options" :key="item.id">
+                                                            <span>{{ item.name_uz }}</span>
+                                                        </li>
+                                                        <!-- Дополнительно -->
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -379,7 +600,9 @@
                                 </form>
                             </div>
                             <div class="col-lg-3">
-                                <form-indicator></form-indicator>
+                                <div class="form_inficator_box">
+                                    <form-indicator></form-indicator>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -393,6 +616,7 @@
 <script>
 import FormIndicator from '../../../components/add_new_object/StepFormIndicator.vue'
 import Checkbox from 'primevue/checkbox';
+import InputMask from 'primevue/inputmask';
 
 // Form
 import AdType from '../../../components/add_new_object/form/FormAdType.vue'
@@ -406,7 +630,8 @@ export default {
         FormInput,
         UploadImage,
         FormButton,
-        Checkbox
+        Checkbox,
+        InputMask
     },
     data() {
         return {
@@ -422,8 +647,21 @@ export default {
             NumberBalcons: null,
             HouseCondition: null,
             redevelopment: null,
-            TypeWindow: null
+            TypeWindow: null,
+            yearofBuilding: '',
+            HouseType: null,
+            AdditionalOptions: null,
+            options: []
         }
+    },
+    methods: {
+        additonalOptions(){
+            axios.get('./addiotonal/options')
+            .then(response => this.options = response.data);
+        }
+    },
+    created() {
+        this.additonalOptions();
     },
 }
 </script>
@@ -437,6 +675,9 @@ export default {
     flex-direction: column;
 }
 
+.new_object_main_div {
+    margin: 3.2rem auto 0;
+}    
 .block_header{
     margin-bottom: 1.875rem;
     padding-bottom: 1.25rem;
@@ -662,7 +903,7 @@ export default {
 .options_main__item_second .p-checkbox{
     appearance: none;
     background-color: #fff;
-    border: 0.1rem solid #c9cbcd;
+    border: 1px solid #c9cbcd;
     border-radius: 0.5rem;
     color: #242629;
     height: 2rem;
@@ -748,19 +989,19 @@ margin-left: 2.4rem;
 }
 
 .dc-input__input-6-1-2 {
-    background-color: initial;
-    border: 0;
-    border-radius: 5px;
-    box-shadow: none;
-    box-sizing: border-box;
-    color: var(--dc-color-afro,#242629);
-    font-size: 16px;
-    height: calc(100% - 2px);
-    margin: 1px 0;
-    outline: none;
-    padding: 11px 12px;
-    text-overflow: ellipsis;
-    width: 100%;
+    background-color: initial !important;
+    border: 0 !important;
+    border-radius: 5px !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+    color: var(--dc-color-afro,#242629) !important;
+    font-size: 16px !important;
+    height: calc(100% - 2px) !important;
+    margin: 1px 0 !important;
+    outline: none !important;
+    padding: 11px 12px !important;
+    text-overflow: ellipsis !important;
+    width: 100% !important;
 }
 .dc-input__input-6-1-2 {
     padding-right: 0;
@@ -814,6 +1055,7 @@ margin-left: 2.4rem;
 .window_checbox{
     grid-row-gap: 1.6rem;
     display: grid;
-    grid-template-columns: repeat(3,22rem);
+    grid-template-columns: repeat(4,13rem);
 }
+
 </style>
