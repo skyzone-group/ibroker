@@ -13,11 +13,17 @@ import 'primeicons/primeicons.css' //icons
 
 // PrimeVue
 import Tooltip from 'primevue/tooltip';
+import VueScrollTo from 'vue-scrollto'
 
 
 const app = createApp(App)
 app.use(router)
 app.use(PrimeVue)
+app.use(VueScrollTo, {
+    container: "body",
+    duration: 1000,
+    easing: "linear",
+})
 app.directive('tooltip', Tooltip)
 app.mount('#app')
 

@@ -110,7 +110,7 @@ const routes = [
                 ]
             },
             {
-                path: '/razmestit-obyavlenie/',
+                path: 'razmestit-obyavlenie',
                 name: 'newObject',
                 components: {
                     main: NewObjectMain,
