@@ -15,6 +15,11 @@ import 'primeicons/primeicons.css' //icons
 import Tooltip from 'primevue/tooltip';
 import VueScrollTo from 'vue-scrollto'
 
+// Image Galleria
+import 'viewerjs/dist/viewer.css'
+import VueViewer from 'v-viewer'
+import VueAgile from 'vue-agile'
+
 
 const app = createApp(App)
 app.use(router)
@@ -25,6 +30,8 @@ app.use(VueScrollTo, {
     easing: "linear",
 })
 app.directive('tooltip', Tooltip)
+app.use(VueViewer)
+app.use(VueAgile)
 app.mount('#app')
 
 

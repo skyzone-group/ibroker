@@ -21,6 +21,9 @@ import Objects from '../views/objects/Objects.vue'
 
 // New Object Pages
 import NewObjectMain from '../views/add_new_object/NewObjectMain.vue'
+
+// Object Single Page Details
+import ObjectSinglePage from '../views/ObjectSinglePage.vue'
 const routes = [
     {
         path: '/',
@@ -116,6 +119,14 @@ const routes = [
                     main: NewObjectMain,
                 },
             },
+            {
+                path: 'object',
+                name: 'objectsinglepage',
+                components: {
+                    main: ObjectSinglePage,
+                },
+            }
+            
         ]
     },
 ]

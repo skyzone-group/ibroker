@@ -4,7 +4,7 @@
             <template #slides>
                 <Slide v-for="(card) in cards" :key="card.id">
                     <div class="objects_carousel_item">
-                        <a :href="card.object_id" class="text-dark">
+                        <a target="_blank" href="/object" class="text-dark">
                             <div class="objects_carousel_item_box">
                                 <div class="objects_carousel_item_box_header_top">
                                     <picture class="h-auto">

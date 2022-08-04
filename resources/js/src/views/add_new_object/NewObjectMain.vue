@@ -10,7 +10,7 @@
                     <div class="form">
                         <div class="row">
                             <div class="col-lg-9 col-md-9">
-                                <form id="listingEditForm" method="POST" :model="form">
+                                <form @submit.prevent="saveData()" id="listingEditForm" method="POST" :model="form">
                                     <!-- Тип объявления -->
                                     <div class="form-card" id="section-one">
                                         <ad-type></ad-type>
@@ -134,7 +134,7 @@
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="space" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" v-model.number="form.totalArea">
+                                                                        <input id="space" class="dc-input__input-6-1-2" maxlength="24" name="total_area" placeholder="" tabindex="0" v-model.number="form.totalArea" />
                                                                     </div>
                                                                     <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
                                                                 </div>
@@ -428,162 +428,24 @@
                                                             <h2 class="header_title_content_txt">Дополнительно</h2>
                                                             <div class="additional_options_main">
                                                                 <div class="row">
-                                                                    <!-- Лифт -->
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                                    <div v-for="item in addoptions" :key="item.id" class="col-lg-6 col-md-6 col-sm-6 col-12">
                                                                         <div class="additional_options_main_item adddtional_types_media">
                                                                             <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
                                                                                 <div class="adddtional_main_block">
                                                                                     <div class="field-checkbox d-flex align-items-center">
-                                                                                        <Checkbox id="add_option_1" name="options[]" value="elevator" v-model="form.additionalOptions" />
-                                                                                        <label for="add_option_1">Лифт</label>
+                                                                                        <Checkbox :id="`add_option_${item.id}`" name="options[]" :value="item.value" v-model="form.additionalOptions" />
+                                                                                        <label :for="`add_option_${item.id}`">{{item.text}}</label>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <!-- Кондиционер -->
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                        <div class="additional_options_main_item adddtional_types_media">
-                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                                <div class="adddtional_main_block">
-                                                                                    <div class="field-checkbox d-flex align-items-center">
-                                                                                        <Checkbox id="add_option_2" name="options[]" value="conditioner" v-model="form.additionalOptions" />
-                                                                                        <label for="add_option_2">Кондиционер</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                    <!-- <div class="col-12 mt-3">
+                                                                        <div class="additional_options_main_button d-flex w-100">
+                                                                            <button type="button" class="option_btn active">Выбрать все</button>
+                                                                            <button type="button" class="option_btn active">Выбрать все</button>
                                                                         </div>
-                                                                    </div>
-                                                                    <!-- Интернет -->
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                        <div class="additional_options_main_item adddtional_types_media">
-                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                                <div class="adddtional_main_block">
-                                                                                    <div class="field-checkbox d-flex align-items-center">
-                                                                                        <Checkbox id="add_option_3" name="options[]" value="internet" v-model="form.additionalOptions" />
-                                                                                        <label for="add_option_3">Интернет</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- Стиральная машина -->
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                        <div class="additional_options_main_item adddtional_types_media">
-                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                                <div class="adddtional_main_block">
-                                                                                    <div class="field-checkbox d-flex align-items-center">
-                                                                                        <Checkbox id="add_option_4" name="options[]" value="washing_machine" v-model="form.additionalOptions" />
-                                                                                        <label for="add_option_4">Стиральная машина</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- Бассейн -->
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                        <div class="additional_options_main_item adddtional_types_media">
-                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                                <div class="adddtional_main_block">
-                                                                                    <div class="field-checkbox d-flex align-items-center">
-                                                                                        <Checkbox id="add_option_5" name="options[]" value="swimming_pool" v-model="form.additionalOptions" />
-                                                                                        <label for="add_option_5">Бассейн</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- Сауна -->
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                        <div class="additional_options_main_item adddtional_types_media">
-                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                                <div class="adddtional_main_block">
-                                                                                    <div class="field-checkbox d-flex align-items-center">
-                                                                                        <Checkbox id="add_option_6" name="options[]" value="sauna" v-model="form.additionalOptions" />
-                                                                                        <label for="add_option_6">Сауна</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- Мебель -->
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                        <div class="additional_options_main_item adddtional_types_media">
-                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                                <div class="adddtional_main_block">
-                                                                                    <div class="field-checkbox d-flex align-items-center">
-                                                                                        <Checkbox id="add_option_7" name="options[]" value="furniture" v-model="form.additionalOptions" />
-                                                                                        <label for="add_option_7">Мебель</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- Микроволновая печь -->
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                        <div class="additional_options_main_item adddtional_types_media">
-                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                                <div class="adddtional_main_block">
-                                                                                    <div class="field-checkbox d-flex align-items-center">
-                                                                                        <Checkbox id="add_option_8" name="options[]" value="microwave" v-model="form.additionalOptions" />
-                                                                                        <label for="add_option_8">Микроволновая печь</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- Холодильник -->
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                        <div class="additional_options_main_item adddtional_types_media">
-                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                                <div class="adddtional_main_block">
-                                                                                    <div class="field-checkbox d-flex align-items-center">
-                                                                                        <Checkbox id="add_option_9" name="options[]" value="fridge" v-model="form.additionalOptions" />
-                                                                                        <label for="add_option_9">Холодильник</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- Телефонная линия -->
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                        <div class="additional_options_main_item adddtional_types_media">
-                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                                <div class="adddtional_main_block">
-                                                                                    <div class="field-checkbox d-flex align-items-center">
-                                                                                        <Checkbox id="add_option_10" name="options[]" value="telephone" v-model="form.additionalOptions" />
-                                                                                        <label for="add_option_10">Телефонная линия</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- Охрана -->
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                        <div class="additional_options_main_item adddtional_types_media">
-                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                                <div class="adddtional_main_block">
-                                                                                    <div class="field-checkbox d-flex align-items-center">
-                                                                                        <Checkbox id="add_option_11" name="options[]" value="security" v-model="form.additionalOptions" />
-                                                                                        <label for="add_option_11">Охрана</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- Телевизор -->
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                        <div class="additional_options_main_item adddtional_types_media">
-                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                                <div class="adddtional_main_block">
-                                                                                    <div class="field-checkbox d-flex align-items-center">
-                                                                                        <Checkbox id="add_option_12" name="options[]" value="television" v-model="form.additionalOptions" />
-                                                                                        <label for="add_option_12">Телевизор</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                                    </div> -->
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -743,11 +605,11 @@
                                         </div>
                                     </div>
                                     <!-- online display -->
-                                </form>
+                                </Form>
                             </div>
                             <div class="col-lg-3 col-md-3 position-relative d-lg-block d-md-block d-none">
                                 <form-indicator></form-indicator>
-                            </div>
+                            </div>      
                         </div>
                     </div>
                 </div>
@@ -770,6 +632,8 @@ import FormInput from '../../../components/add_new_object/form/FormInput.vue'
 import UploadImage from '../../../components/add_new_object/form/FormImages.vue'
 import FormButton from '../../../components/UI/FormButton.vue'
 
+
+// Media Styles
 import  '../../../../../public/css/media-one.css'
 
 export default {
@@ -782,43 +646,54 @@ export default {
         Checkbox,
         InputMask,
         InputNumber,
-        Textarea
+        Textarea,
     },
     data() {
         return {
             form: {
-                address: null,
-                youtube_video: null,
-                numberOfRooms: null,
-                apartments:  null,
-                totalArea: null,
-                kitchenArea: null,
-                livingSpace: null,
-                floor: null,
-                floorHouse: null,
-                ceilingHeight: null,
-                bathroomType: null,
-                numberBalcons: null,
-                houseCondition: null,
-                redevelopment: null,
-                typeWindow: null,
-                yearofBuilding: null,
-                houseType: null,
+                address: "",
+                youtube_video: "",
+                numberOfRooms: "",
+                apartments:  "",
+                totalArea: "",
+                kitchenArea: "",
+                livingSpace: "",
+                floor: "",
+                floorHouse: "",
+                ceilingHeight: "",
+                bathroomType: "",
+                numberBalcons: "",
+                houseCondition: "",
+                redevelopment: "",
+                typeWindow: "",
+                yearofBuilding: "",
+                houseType: "",
                 additionalOptions: [],
                 infrastructure: [],
-                priceHouse: null,
-                priceCheckbox: null,
-                description: null,
-                showOnline: null
+                priceHouse: "",
+                priceCheckbox: "",
+                description: "",
+                showOnline: ""
             },
-            options: []
+            options: [],
+            addoptions: [
+                {id: 1,text: "Лифт",value: "elevator"},
+                {id: 2,text: "Кондиционер",value: "conditioner"},
+                {id: 3,text: "Интернет",value: "internet"},
+                {id: 4,text: "Стиральная машина",value: "washing_machine"},
+                {id: 5,text: "Бассейн",value: "swimming_pool"},
+                {id: 6,text: "Сауна",value: "sauna"},
+            ],
         }
     },
     methods: {
         additonalOptions(){
             axios.get('/addiotonal/options')
             .then(response => this.options = response.data);
-        }
+        },
+        saveData(){
+            console.log("Submitted");
+        },
     },
     created() {
         this.additonalOptions();
