@@ -76,7 +76,6 @@
                                     <div class="main_block__gallery">
                                         <div id="gallery-widget" class="dc-gallery__root--b20e7">
                                             <galleria></galleria>
-                                            <test-image></test-image>
                                         </div>
                                     </div>
                                     <div class="main_block__mainDetails">
@@ -280,7 +279,7 @@
                         </div>
                     </div>
                     <!-- sidebar -->
-                    <div class="product-page__sidebar">
+                    <div v-if="!Sidebar" class="product-page__sidebar">
                         <div class="product-page__sticky">
                             <aside class="product-page__sidebar_autor autor_box_style">
                                 <div class="product-page__sidebar_autor_top autor_box_style-2">
@@ -319,6 +318,14 @@
                     </div>
                 </div>
             </div>
+            <div v-if="mobileContant" class="object_single_page_main_object_phone">
+                <div class="object_single_page_main_object_phone_box">
+                    <button v-if="!mobileContantPhone" @click="this.mobileContantPhone = true" class="button-root-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3 button-root--type-button-reset-8-1-3 button-root--fluid-8-1-3" type="button" data-e2e-id="sticky-footer-show-phone"><span class="button-root__text-8-1-3">Показать телефон</span></button>
+                    <a v-if="mobileContantPhone == true" href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3 button-root--type-button-reset-8-1-3 button-root-8-1-3">
+                        <span class="button-root__text-8-1-3">+99890 359-22-84</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -327,17 +334,36 @@
 <script>
 import Galleria from '../../components/galleria/Galleria.vue' 
 import TestImage from '../../components/galleria/TestImage.vue' 
-
+import ImageTest from '../../components/galleria/ImageTest.vue' 
 export default {
     components: {
-        Galleria,
-        TestImage
+        Galleria
     },
     data() {
         return {
             showPhone: false,
-            showPhoneSecond: false
+            showPhoneSecond: false,
+            Sidebar: false,
+            mobileContant: false,
+            mobileContantPhone: false
         }
+    },
+    methods: {
+        checkScreen() {
+            this.windowWidth = window.innerWidth;
+            if(this.windowWidth <= 1024){
+                this.Sidebar = true;
+                this.mobileContant = true;
+                return;
+            }
+            this.Sidebar = false;
+            this.mobileContant = false;
+            return;
+        },
+    },
+    created() {
+        window.addEventListener('resize', this.checkScreen);
+        this.checkScreen()
     },
 }
 </script>

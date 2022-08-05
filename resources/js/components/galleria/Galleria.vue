@@ -1,147 +1,187 @@
 <template>
-    <div>
-        <!-- directive -->
-        <!-- <div class="images" v-viewer>
-            <img v-for="src in images" :key="src" :src="src">
-        </div> -->
-        <!-- component -->
-        <viewer :images="images">
-            <div class="galleria-previews">
-                <div v-for="src in images" :key="src" class="galleria-previews_item">
-                    <div class="gallery__item__media-wrapperr">
-                        <div class="picture-picture--filling-container">
-                            <picture class="picture-picture-content-0-8-1">
-                                <img :src="src" style="object-position: 50% 50%;">
-                            </picture>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </viewer>
-        <!-- api -->
-        <button type="button" @click="show">Click to show</button>
+    <div id="mainCarousel" class="carousel w-10/12 max-w-5xl mx-auto">
+        <div class="carousel__slide" data-src="https://lipsum.app/id/1/900x600" data-fancybox="gallery">
+            <img src="https://lipsum.app/id/1/600x400" />
+        </div>
+        <div class="carousel__slide" data-src="https://lipsum.app/id/2/900x600" data-fancybox="gallery">
+            <img src="https://lipsum.app/id/2/600x400" />
+        </div>
+        <div class="carousel__slide" data-src="https://lipsum.app/id/3/900x600" data-fancybox="gallery">
+            <img src="https://lipsum.app/id/3/600x400" />
+        </div>
+        <div class="carousel__slide" data-src="https://lipsum.app/id/4/900x600" data-fancybox="gallery">
+            <img src="https://lipsum.app/id/4/600x400" />
+        </div>
+        <div class="carousel__slide" data-src="https://lipsum.app/id/5/900x600" data-fancybox="gallery">
+            <img data-lazy-src="https://lipsum.app/id/5/600x400" />
+        </div>
+        <div class="carousel__slide" data-src="https://lipsum.app/id/6/900x600" data-fancybox="gallery">
+            <img src="https://lipsum.app/id/6/600x400" />
+        </div>
+        <div class="carousel__slide" data-src="https://lipsum.app/id/7/900x600" data-fancybox="gallery">
+            <img src="https://lipsum.app/id/7/600x400" />
+        </div>
+    </div>
+
+    <div id="thumbCarousel" class="carousel mx-auto">
+        <div class="carousel__slide">
+            <img class="panzoom__content" src="https://lipsum.app/id/1/100x100" />
+        </div>
+        <div class="carousel__slide">
+            <img class="panzoom__content" src="https://lipsum.app/id/2/100x100" />
+        </div>
+        <div class="carousel__slide">
+            <img class="panzoom__content" src="https://lipsum.app/id/3/100x100" />
+        </div>
+        <div class="carousel__slide">
+            <img class="panzoom__content" src="https://lipsum.app/id/4/100x100" />
+        </div>
+        <div class="carousel__slide">
+            <img class="panzoom__content" src="https://lipsum.app/id/5/100x100" />
+        </div>
+        <div class="carousel__slide">
+            <img class="panzoom__content" src="https://lipsum.app/id/6/100x100" />
+        </div>
+        <div class="carousel__slide">
+            <img class="panzoom__content" src="https://lipsum.app/id/7/100x100" />
+        </div>
     </div>
 </template>
+
 <script>
-    import { defineComponent } from 'vue'
-export default defineComponent({
-    data() {
-        return {
-            images: [
-            "https://picsum.photos/200/200",
-            "https://picsum.photos/300/200",
-            "https://picsum.photos/250/200",
-            "https://picsum.photos/200/200",
-            "https://picsum.photos/300/200",
-            "https://picsum.photos/250/200"
-            ]
-        };
-    },
-    methods: {
-        show() {
-            this.$viewerApi({
-                images: this.images,
-            })
-        },
-    },
-})
+export default {
+    data () {
+		return {
+			
+		}
+	},
+	
+    mounted () {
+		
+	}
+}
 </script>
 
 <style>
-.galleria-previews{
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 8px;
-}
+/* max-w-xl  */
+    #mainCarousel {
+        height: 360px;
+        width: 100% !important;
+        margin: 0 0 10px 0;
+        --carousel-button-color: #170724;
+        --carousel-button-bg: #fff;
+        --carousel-button-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%),
+            0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
+        --carousel-button-svg-width: 20px;
+        --carousel-button-svg-height: 20px;
+        --carousel-button-svg-stroke-width: 2.5;
+    }
 
-.galleria-previews_item{
-    background-color: initial;
-    cursor: pointer;
-    height: 65px;
-    overflow: visible;
-    width: 100%;
-    position: relative;
-    user-select: none;
-    box-sizing: initial;
-    display: inline-block;
-    outline: none;
-    background-size: cover;
-    border-radius: 5px;
-    min-height: 62px;
-}
+    #mainCarousel .carousel__slide {
+        width: 100%;
+        padding: 0;
+        background: #EDEEEE !important;
+    }
 
+    #mainCarousel .carousel__button.is-prev {
+        left: -1.5rem;
+    }
 
-.galleria-previews_item:not(:last-child) {
-    margin-right: 8px;
-}
+    #mainCarousel .carousel__button.is-next {
+        right: -1.5rem;
+    }
 
-.galleria-previews_item:before{
-    border: 2px solid #0000;
-    border-radius: 6px;
-    bottom: -2px;
-    content: "";
-    left: -2px;
-    position: absolute;
-    right: -2px;
-    top: -2px;
-    transition: border-color .2s;
-}
+    #mainCarousel .carousel__button:focus {
+        outline: none;
+        box-shadow: 0 0 0 4px #A78BFA;
+    }
 
-.gallery__item__media-wrapperr{
-    border-radius: 5px;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: top .2s,left .2s,right .2s,bottom .2s,border-radius .2s;
-}
+    #thumbCarousel .carousel__slide {
+        opacity: 0.5;
+        padding: 0;
+        margin: 0.25rem;
+        width: 104px !important;
+        height: 64px;
+    }
 
-.gallery__item__media-wrapperr:after {
-    align-items: center;
-    background-color: #24262900;
-    border-radius: 5px;
-    bottom: 0;
-    color: var(--dc-color-white,#fff);
-    content: attr(data-title);
-    display: flex;
-    font: 500 14px/20px SeroPro,sans-serif;
-    justify-content: center;
-    left: 0;
-    letter-spacing: normal;
-    margin: 0;
-    padding: 0;
-    pointer-events: none;
-    position: absolute;
-    right: 0;
-    text-decoration: none;
-    text-indent: 0;
-    text-shadow: none;
-    text-transform: none;
-    top: 0;
-    transition: background-color .3s ease-in-out;
-}
+    #thumbCarousel .carousel__slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 4px;
+    }
 
-
-.picture-picture--filling-container{
-    height: 100%;
-    position: relative;
-    width: 100%;
-    display: block;
-}
-
-.picture-picture-content-0-8-1{
-    height: 100%;
-    width: 100%;
-}
-
-.picture-picture-content-0-8-1 img{
-    object-fit: cover;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-}
+    #thumbCarousel .carousel__slide.is-nav-selected {
+        opacity: 1;
+    }
+    
+    
+    /* ************************************* MEDIA **************************************** */
+    @media only screen and (max-width: 575px){
+        #mainCarousel {
+            min-height: 220px;
+            height: 100%;
+        }
+        
+        #mainCarousel .carousel__slide {
+            padding: 0 7px !important;
+        }
+        
+        .carousel__button{
+            width: 30px !important;
+            height: 30px !important;
+        }
+        
+        .carousel__nav{
+            display: none !important;
+        }
+        
+        .h1_style{
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 21px;
+        }
+    }
+    @media only screen and (max-width: 475px){
+        #thumbCarousel .carousel__slide {
+            width: 80px !important;
+            height: 46px !important;
+        }
+        
+        .offerMap_style {
+            margin: 0 -15px;
+        }
+        
+        .main_block__column{
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        
+        .main_block__price{
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+        
+        .main_block__price_box{
+            align-items: flex-start;
+        }
+        
+        .main_block__location{
+            display: none;
+        }
+        
+        .main_block__mainDetails_ul_li {
+            padding-right: 16px;
+        }
+        
+        .main_block__mainDetails_ul_li .number_area{
+            font-size: 14px;
+            line-height: 20px;
+        }
+        
+        .main_block__features_block ul,
+        .product-page__section_ul {
+            column-count: 1;
+        }
+    }
 </style>

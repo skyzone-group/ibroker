@@ -1,13 +1,84 @@
 <template>
     <div>
-        <agile class="main" ref="main" :options="options1" :as-nav-for="asNavFor1">
-            <div class="slide" v-for="(slide, index) in slides" :key="index" :class="`slide--${index}`">
-                <img :src="slide" />
-            </div>
-        </agile>
-        <agile class="thumbnails" ref="thumbnails" :options="options2" :as-nav-for="asNavFor2">
-            <div class="slide slide--thumbniail" v-for="(slide, index) in slides" :key="index" :class="`slide--${index}`" @click="$refs.thumbnails.goTo(index)"><img :src="slide" /></div><template slot="prevButton"><i class="fas fa-chevron-left"></i></template><template slot="nextButton"><i class="fas fa-chevron-right"></i></template>
-        </agile>
+		<div id="mainCarousel" class="carousel w-10/12 max-w-5xl mx-auto">
+  <div
+    class="carousel__slide"
+    data-src="https://lipsum.app/id/1/900x600"
+    data-fancybox="gallery"
+    data-caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lobortis ultricies ipsum, a maximus ligula dignissim in. Sed consectetur tellus egestas, consequat dolor at, tempus augue. Morbi quis ipsum quis velit."
+  >
+    <img src="https://lipsum.app/id/1/600x400" />
+  </div>
+  <div
+    class="carousel__slide"
+    data-src="https://lipsum.app/id/2/900x600"
+    data-fancybox="gallery"
+    data-caption="Ut semper, justo eget vehicula vestibulum, enim enim suscipit lectus, et sagittis nibh risus vel metus. Quisque eu ornare ante, et gravida mauris"
+  >
+    <img src="https://lipsum.app/id/2/600x400" />
+  </div>
+  <div
+    class="carousel__slide"
+    data-src="https://lipsum.app/id/3/900x600"
+    data-fancybox="gallery"
+    data-caption="Hello 🖐"
+  >
+    <img src="https://lipsum.app/id/3/600x400" />
+  </div>
+  <div
+    class="carousel__slide"
+    data-src="https://lipsum.app/id/4/900x600"
+    data-fancybox="gallery"
+    data-caption="Another caption"
+  >
+    <img src="https://lipsum.app/id/4/600x400" />
+  </div>
+  <div
+    class="carousel__slide"
+    data-src="https://lipsum.app/id/5/900x600"
+    data-fancybox="gallery"
+  >
+    <img data-lazy-src="https://lipsum.app/id/5/600x400" />
+  </div>
+  <div
+    class="carousel__slide"
+    data-src="https://lipsum.app/id/6/900x600"
+    data-fancybox="gallery"
+  >
+    <img src="https://lipsum.app/id/6/600x400" />
+  </div>
+  <div
+    class="carousel__slide"
+    data-src="https://lipsum.app/id/7/900x600"
+    data-fancybox="gallery"
+  >
+    <img src="https://lipsum.app/id/7/600x400" />
+  </div>
+</div>
+
+<div id="thumbCarousel" class="carousel max-w-xl mx-auto">
+  <div class="carousel__slide">
+    <img class="panzoom__content" src="https://lipsum.app/id/1/100x100" />
+  </div>
+  <div class="carousel__slide">
+    <img class="panzoom__content" src="https://lipsum.app/id/2/100x100" />
+  </div>
+  <div class="carousel__slide">
+    <img class="panzoom__content" src="https://lipsum.app/id/3/100x100" />
+  </div>
+  <div class="carousel__slide">
+    <img class="panzoom__content" src="https://lipsum.app/id/4/100x100" />
+  </div>
+  <div class="carousel__slide">
+    <img class="panzoom__content" src="https://lipsum.app/id/5/100x100" />
+  </div>
+  <div class="carousel__slide">
+    <img class="panzoom__content" src="https://lipsum.app/id/6/100x100" />
+  </div>
+  <div class="carousel__slide">
+    <img class="panzoom__content" src="https://lipsum.app/id/7/100x100" />
+  </div>
+</div>
     </div>
 </template>
 
@@ -15,142 +86,65 @@
 export default {
     data () {
 		return {
-			asNavFor1: [],
-			asNavFor2: [],
-			options1: {
-				dots: false,
-				fade: true,
-				navButtons: false
-			},
 			
-			options2: {
-				autoplay: true,
-				centerMode: true,
-				dots: false,
-				navButtons: false,
-				slidesToShow: 3,
-				responsive: [
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 5
-                    }
-                },
-                
-                {
-                    breakpoint: 1000,
-                    settings: {
-                        navButtons: true,
-                        slidesToShow: 5
-                    }
-                },
-                {
-                    breakpoint: 1200,
-                    settings: {
-                        navButtons: true,
-                        slidesToShow: 5
-                    }
-                }
-            ]
-				
-			},
-			
-			slides: [
-					'https://images.unsplash.com/photo-1453831362806-3d5577f014a4?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ',
-					'https://images.unsplash.com/photo-1496412705862-e0088f16f791?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ',
-					'https://images.unsplash.com/photo-1506354666786-959d6d497f1a?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ',
-					'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ',
-					'https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ',
-					'https://images.unsplash.com/photo-1472926373053-51b220987527?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ',
-					'https://images.unsplash.com/photo-1497534547324-0ebb3f052e88?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'
-			]
 		}
 	},
 	
     mounted () {
-		this.asNavFor1.push(this.$refs.thumbnails)
-		this.asNavFor2.push(this.$refs.main)
+		
 	}
 }
 </script>
 
-<style lang="sass">
-// Global
+<style>
+#mainCarousel {
+  width: 600px;
+  margin: 0 auto 1rem auto;
 
-.main
-	margin-bottom: 30px
+  --carousel-button-color: #170724;
+  --carousel-button-bg: #fff;
+  --carousel-button-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%),
+    0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
 
-.thumbnails
-	margin: 0 -5px
-	width: calc(100% + 10px)
+  --carousel-button-svg-width: 20px;
+  --carousel-button-svg-height: 20px;
+  --carousel-button-svg-stroke-width: 2.5;
+}
 
-// Basic VueAgile styles
-.agile
-	&__nav-button
-		background: transparent
-		border: none
-		color: #ccc
-		cursor: pointer
-		font-size: 24px
-		transition-duration: .3s
-	
-		.thumbnails &
-			position: absolute
-			top: 50%
-			transform: translateY(-50%)
+#mainCarousel .carousel__slide {
+  width: 100%;
+  padding: 0;
+}
 
-			&--prev
-				left: -45px
-	
-			&--next
-				right: -45px
+#mainCarousel .carousel__button.is-prev {
+  left: -1.5rem;
+}
 
-		&:hover
-			color: #888
+#mainCarousel .carousel__button.is-next {
+  right: -1.5rem;
+}
 
-	&__dot
-		margin: 0 10px
+#mainCarousel .carousel__button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px #A78BFA;
+}
 
-		button 
-			background-color: #eee
-			border: none
-			border-radius: 50%
-			cursor: pointer
-			display: block
-			height: 10px
-			font-size: 0
-			line-height: 0
-			margin: 0
-			padding: 0
-			transition-duration: .3s
-			width: 10px
+#thumbCarousel .carousel__slide {
+  opacity: 0.5;
+  padding: 0;
+  margin: 0.25rem;
+  width: 96px;
+  height: 64px;
+}
 
-		&--current,
-		&:hover
-			button
-				background-color: #888
+#thumbCarousel .carousel__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
 
-// Slides styles	
-.slide
-	align-items: center
-	box-sizing: border-box
-	color: #fff
-	display: flex
-	height: 450px
-	justify-content: center
-
-	&--thumbniail
-		cursor: pointer
-		height: 100px
-		padding: 0 5px
-		transition: opacity .3s
-
-		&:hover
-			opacity: .75
-
-	img
-		height: 100%
-		object-fit: cover
-		object-position: center
-		width: 100%
+#thumbCarousel .carousel__slide.is-nav-selected {
+  opacity: 1;
+}
 </style>

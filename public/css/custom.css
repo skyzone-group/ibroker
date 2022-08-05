@@ -539,3 +539,66 @@ a:hover{
     justify-content: center;
     align-items: center;
 }
+
+.object_single_page_main_object_phone{
+    background: #fff;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+}
+
+.object_single_page_main_object_phone_box{
+    display: flex;
+    flex: 1 1 50%;
+    justify-content: center;
+    padding: 16px 8px 16px 16px;
+}
+/************************************* Object Single Page styles end *********************************** */
+/* ****************************** MEDIA ******************************************* */
+/************************************* Object Single Page styles *********************************** */
+@media only screen and (max-width: 1023px){
+    /************* Object Single Page styles ********************** */
+    .object_single_page_main_object_phone {
+        box-shadow: 0 -4px 10px 0 #00000012;
+        display: flex;
+        justify-content: space-around;
+        z-index: 1;
+    }
+}
+
+@media (max-width: 991px){
+    /************* Object Single Page styles ********************** */
+    .object_single_page_main_box {
+        padding: 30px 0 !important;
+    }
+    /************* Object Single Page styles ********************** */
+}
+
+@media only screen and (max-width: 767px){
+    /************* Object Single Page styles ********************** */
+    .main_block__mainDetails ul {
+        overflow-x: auto;
+    }
+    
+    .main_block__mainDetails_ul_li {
+        padding-right: 35px;
+    }
+    /************* Object Single Page styles ********************** */
+}
+
+@media only screen and (max-width: 575px){
+    /************* Object Single Page styles ********************** */
+    .object_single_page_frontend .container_fluid{
+        padding: 0 !important;
+    }
+    
+    .object_single_page_frontend .main_block__gallery{
+        order: -3 !important;
+    }
+    
+    .product-page__section {
+        padding: 20px !important;
+    }
+    /************* Object Single Page styles ********************** */
+}
