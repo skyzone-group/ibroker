@@ -247,6 +247,10 @@ export default {
 <style>
 
 /* ********************************************** */
+.modal-content {
+    background-color: #fff !important;
+}
+
 @media (max-width: 450px){
     .auth_modal_box .modal-content h2{
         font-size: 24px;

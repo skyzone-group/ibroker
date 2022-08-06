@@ -185,7 +185,132 @@ a:hover{
     transition: color .15s;
     white-space: nowrap;
 }
+/*********************/
+.button-root--primary-outline-8-1-3 .button-root__icon-8-1-3 {
+    color: #a7a8a9;
+}
 
+.button-root__icon--left-8-1-3 {
+    order: -1;
+    margin-right: 8px;
+}
+
+.button-root__icon-8-1-3 {
+    display: block;
+    width: 16px;
+    height: 16px;
+    transition: .15s;
+}
+
+.product-page__content_top_buttons_item_btn{
+    margin-left: 8px;
+    position: relative;
+}
+
+.product-page__content_top_buttons_item_btn .dropdown-menu{
+    padding: 24px 16px !important;
+    border-color: #fff;
+    transition: opacity .2s ease-in;
+    position: absolute !important;
+    top: 8px !important;
+    width: 280px !important;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 6px 20px #2426291a;
+}
+
+/* .product-page__content_top_buttons_item_btn .dropdown-menu:after{
+    left: 50%;
+    transform: translateX(-4px);
+    border-left-color: #0000 !important;
+    border-right-color: #0000 !important;
+    border-width: 4px;
+    border-top: none;
+    top: -4px;
+    border-color: inherit;
+    border-style: solid;
+    content: "";
+    position: absolute;
+} */
+
+.product-page__content_top_buttons_item_btn .dropdown-menu .hint-title-0-9-4 {
+    color: #242629;
+    display: flex;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+    letter-spacing: normal;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    text-indent: 0;
+    text-shadow: none;
+    text-transform: none;
+}
+
+.product-page__content_top_buttons_item_btn .dropdown-menu .hint-title-content-0-9-4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.product-page__content_top_buttons_item_btn .dropdown-menu .hint-title-content-0-9-4 .title {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.hint-footer-0-9-4, .hint-head-0-9-4+.hint-content-0-9-4 {
+    margin-top: 12px;
+}
+
+.share__content_div{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.share__content_div_socials{
+    margin-bottom: 12px;
+}
+
+.share__content_div_socials_links{
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    color: #4b545b;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 0;
+    overflow: hidden;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.socials_ok, .socials_ok:hover{
+    color: #ed812b !important;
+}
+.socials_wk, .socials_wk:hover{
+    color: #597da3 !important;
+}
+.socials_ws, .socials_ws:hover{
+    color: #43d854 !important;
+}
+.socials_vb, .socials_vb:hover{
+    color: #7360f2 !important;
+}
+
+.icon--32-4-0-1 {
+    height: 32px !important;
+    line-height: 32px !important;
+    min-height: 32px !important;
+    min-width: 32px !important;
+    width: 32px !important;
+    cursor: pointer !important;
+}
+
+.share__content_div_socials_links+.share__content_div_socials_links {
+    margin-left: 12px;
+}
+/*********************/
 .button-root--primary-8-1-3:active {
     background: var(--form-button-color) !important;
     color: #fff !important;
@@ -584,6 +709,18 @@ a:hover{
     .main_block__mainDetails_ul_li {
         padding-right: 35px;
     }
+    
+    .product-page__content_top_buttons_item:first-child{
+        margin-right: auto;
+    }
+    
+    .product-page__content_top_buttons_item:nth-child(2){
+        flex-direction: row-reverse;
+    }
+    
+    .offerMap_style{
+        margin: 0 -16px !important;
+    }
     /************* Object Single Page styles ********************** */
 }
 
@@ -599,6 +736,27 @@ a:hover{
     
     .product-page__section {
         padding: 20px !important;
+    }
+    
+    .product-page_btn_style{
+        margin-top: -16px !important;
+        padding: 8px 16px !important;
+    }
+    /************* Object Single Page styles ********************** */
+}
+
+@media only screen and (max-width: 475px){
+    /************* Object Single Page styles ********************** */
+    .product-page__content_top_buttons_item_btn .object_single_page_btn_style span:nth-child(2){
+        display: none !important;
+    }
+    
+    .product-page__content_top_buttons_item_btn .object_single_page_btn_style .button-root__icon--left-8-1-3{
+        margin-right: 0 !important;
+    }
+    
+    .product-page__content_top_buttons_item_btn .show>.dropdown-menu{
+        transform: translate3d(-177px, 40px, 0px) !important; 
     }
     /************* Object Single Page styles ********************** */
 }
