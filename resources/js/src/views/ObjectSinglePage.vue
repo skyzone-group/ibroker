@@ -13,8 +13,14 @@
                             <div class="product-page__content_top_buttons_item d-flex">
                                 <div class="product-page__content_top_buttons_item_btn">
                                     <div class="position-relative">
-                                        <button type="button" id="favorites-add" class="object_single_page_btn_style">
-                                            <span class="button-root__icon-8-1-3 button-root__icon--left-8-1-3"><span class=""><div class="icon-4-0-1"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path clip-rule="evenodd" d="M1 7C.5 3.5 2.7 2 4.8 2 6.82 2 8 4 8 4s1.17-2 3.2-2c2.1 0 4.3 1.5 3.8 5s-5.83 7-7 7-6.5-3.5-7-7z"></path></svg></div></span></span>
+                                        <button @click="savedFavorites = !savedFavorites" type="button" id="favorites-add" class="object_single_page_btn_style">
+                                            <span class="button-root__icon-8-1-3 button-root__icon--left-8-1-3">
+                                                <span class="">
+                                                    <div class="icon-4-0-1" :class="iconSaved">
+                                                        <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path clip-rule="evenodd" d="M1 7C.5 3.5 2.7 2 4.8 2 6.82 2 8 4 8 4s1.17-2 3.2-2c2.1 0 4.3 1.5 3.8 5s-5.83 7-7 7-6.5-3.5-7-7z"></path></svg>
+                                                    </div>
+                                                </span>
+                                            </span>
                                             <span class="button-root__text-8-1-3">Сохранить</span>
                                         </button>
                                     </div>
@@ -62,9 +68,11 @@
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                        <button type="button" class="object_single_page_btn_style w-100">
-                                                            <span class="button-root__text-8-1-3">Скопировать ссылку</span>
-                                                        </button>
+                                                        <copy-to-clipboard v-slot="props">
+                                                            <button @click="props.copy(`http://ibroker.skybox.uz${route.path}`)" :disabled="props.status === 'copied'" type="button" class="object_single_page_btn_style w-100" :class="{'button-disabled' : props.status === 'copied'}">
+                                                                <span class="button-root__text-8-1-3">{{props.status === 'copied' ? 'Ссылка скопирована' : 'Скопировать ссылку'}}</span>
+                                                            </button>
+                                                        </copy-to-clipboard>
                                                     </div>
                                                 </div>
                                             </div>
@@ -73,14 +81,21 @@
                                 </div>
                                 <div class="product-page__content_top_buttons_item_btn">
                                     <div class="position-relative">
-                                        <button type="button" id="object-print" class="object_single_page_btn_style">
+                                        <button @click="print" type="button" id="object-print" class="object_single_page_btn_style">
                                             <span class="button-root__icon-8-1-3 button-root__icon--left-8-1-3 m-0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path fill="#93989D" d="M13 14v2H3v-2H1.994A1.992 1.992 0 0 1 0 12V6c0-1.105.895-2 1.994-2h12.012C15.107 4 16 4.887 16 6v6c0 1.105-.895 2-1.994 2H13zM3 0h10v3H3V0zm2 11.5c0 .268.22.5.491.5h5.018a.5.5 0 0 0 0-1H5.491a.5.5 0 0 0-.491.5zm0 2c0 .268.22.5.491.5h5.018a.5.5 0 0 0 0-1H5.491a.5.5 0 0 0-.491.5z"></path></svg></span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="product-page__content_top_buttons_item_btn">
+                                    <div class="position-relative">
+                                        <button v-tooltip.bottom="'Комментарии'"  type="button" id="object-print" class="object_single_page_btn_style">
+                                            <span class="button-root__icon-8-1-3 button-root__icon--left-8-1-3 m-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" id="IconChangeColor" height="16px" width="16px"><path fill="#93989D" fill-rule="evenodd" d="M2 6a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7.667a1 1 0 0 0-.6.2L3.6 21.8A1 1 0 0 1 2 21V6zm5 0a1 1 0 0 0 0 2h10a1 1 0 1 0 0-2H7zm0 4a1 1 0 1 0 0 2h10a1 1 0 1 0 0-2H7zm0 4a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2H7z" clip-rule="evenodd" id="mainIconPathAttribute" filter="url(#shadow)"></path><filter id="shadow"><feDropShadow id="shadowValue" stdDeviation=".5" dx="0" dy="0" flood-color="black"></feDropShadow></filter><filter id="shadow"><feDropShadow id="shadowValue" stdDeviation=".5" dx="0" dy="0" flood-color="black"></feDropShadow></filter></svg></span>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="product-page__content_mainBox">
+                        <div class="product-page__content_mainBox" id="printMe">
                             <div class="product-page__content_flex d-flex flex-column">
                                 <div class="product-page__section product-page__section--header">
                                     <div class="main_block__column">
@@ -403,15 +418,17 @@
 
 
 <script>
-import Galleria from '../../components/galleria/Galleria.vue' 
-import TestImage from '../../components/galleria/TestImage.vue' 
-import ImageTest from '../../components/galleria/ImageTest.vue' 
+import Galleria from '../../components/galleria/Galleria.vue'
 
+import { useRoute, useRouter } from 'vue-router'
+import { onMounted } from 'vue'
 
+import CopyToClipboard from '../../components/CopyToClipboard.vue'
 
 export default {
     components: {
-        Galleria
+        Galleria,
+        CopyToClipboard
     },
     data() {
         return {
@@ -419,7 +436,8 @@ export default {
             showPhoneSecond: false,
             Sidebar: false,
             mobileContant: false,
-            mobileContantPhone: false
+            mobileContantPhone: false,
+            savedFavorites: false
         }
     },
     methods: {
@@ -434,11 +452,30 @@ export default {
             this.mobileContant = false;
             return;
         },
+        print() {
+            this.$htmlToPaper("printMe");
+        },
     },
     created() {
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen()
     },
+    setup() {
+        const route = useRoute()
+        const router = useRouter()
+
+        onMounted(async () => {
+        await router.isReady()
+        console.log('route.path', route.path)
+        })
+
+        return { route }
+    },
+    computed: {
+        iconSaved(){
+            return this.savedFavorites ? 'icon-saved' : '';
+        }
+    }
 }
 </script>
 
