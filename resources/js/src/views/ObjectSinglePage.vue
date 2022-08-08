@@ -86,9 +86,10 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="product-page__content_top_buttons_item_btn">
+                                <div v-if="Sidebar == true" class="product-page__content_top_buttons_item_btn">
                                     <div class="position-relative">
-                                        <button v-tooltip.bottom="'Комментарии'"  type="button" id="object-print" class="object_single_page_btn_style">
+                                        <button data-toggle="modal" data-target="#commentsModal" v-tooltip.bottom="'Комментарии'"  type="button" id="object-print"
+                                        class="object_single_page_btn_style">
                                             <span class="button-root__icon-8-1-3 button-root__icon--left-8-1-3 m-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" id="IconChangeColor" height="16px" width="16px"><path fill="#93989D" fill-rule="evenodd" d="M2 6a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7.667a1 1 0 0 0-.6.2L3.6 21.8A1 1 0 0 1 2 21V6zm5 0a1 1 0 0 0 0 2h10a1 1 0 1 0 0-2H7zm0 4a1 1 0 1 0 0 2h10a1 1 0 1 0 0-2H7zm0 4a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2H7z" clip-rule="evenodd" id="mainIconPathAttribute" filter="url(#shadow)"></path><filter id="shadow"><feDropShadow id="shadowValue" stdDeviation=".5" dx="0" dy="0" flood-color="black"></feDropShadow></filter><filter id="shadow"><feDropShadow id="shadowValue" stdDeviation=".5" dx="0" dy="0" flood-color="black"></feDropShadow></filter></svg></span>
                                         </button>
                                     </div>
@@ -400,16 +401,95 @@
                                     </div>
                                 </div>
                             </aside>
+                            <div class="product-page__sticky__comments">
+                                <div class="product-page__sticky__comments_box">
+                                    <div class="product-page__sticky__comments_header">
+                                        <b class="product-page__sticky__comments_header_title title">Напишите автору</b>
+                                    </div>
+                                    <div class="product-page__sticky__comments_body">
+                                        <form method="POST" class="product-page__sticky_form">
+                                            <div class="form-group">
+                                                <div class="md-form position-relative">
+                                                    <span class="p-float-label">
+                                                        <Textarea id="textarea" v-model="value10" cols="5" rows="10" class="md-form__control w-100" name="message" />
+                                                        <label for="textarea" class="md-form__label active">Ваше сообщение*</label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="w-100 product-page__sticky_submit_btn">
+                                                Отправить сообщение автору
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
+            <!-- Fixed author phone -->
             <div v-if="mobileContant" class="object_single_page_main_object_phone">
                 <div class="object_single_page_main_object_phone_box">
                     <button v-if="!mobileContantPhone" @click="this.mobileContantPhone = true" class="button-root-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3 button-root--type-button-reset-8-1-3 button-root--fluid-8-1-3" type="button" data-e2e-id="sticky-footer-show-phone"><span class="button-root__text-8-1-3">Показать телефон</span></button>
                     <a v-if="mobileContantPhone == true" href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3 button-root--type-button-reset-8-1-3 button-root-8-1-3">
                         <span class="button-root__text-8-1-3">+99890 359-22-84</span>
                     </a>
+                </div>
+            </div>
+            
+            <!-- Textarea model mobile -->
+            <div v-if="messageModal" class="comments_modal_box">
+                <!-- Modal -->
+                <div class="modal fade" id="commentsModal" tabindex="-1" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title product-page__sticky__comments_header_title title" id="exampleModalLabel">Напишите автору</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="modal-body-form">
+                                    <form :model="formComment">
+                                        <div class="modal-body-form_item">
+                                            <span class="p-float-label p-input-icon-right w-100">
+                                                <i class="pi pi-plus" />
+                                                <InputText id="comments-form-name" type="text" name="name" v-model="formComment.name" class="w-100" />
+                                                <label for="comments-form-name">Ваше имя*</label>
+                                            </span>
+                                        </div>
+                                        <div class="modal-body-form_item">
+                                            <span class="p-float-label p-input-icon-right w-100">
+                                                <i class="pi pi-plus" />
+                                                <InputText id="comments-form-email" type="email" name="email" v-model="formComment.email" class="w-100" />
+                                                <label for="comments-form-email">Ваш email*</label>
+                                            </span>
+                                        </div>
+                                        <div class="modal-body-form_item">
+                                            <span class="p-float-label p-input-icon-right w-100">
+                                                <i class="pi pi-plus" />
+                                                <InputText id="comments-form-phone" type="tel" name="phone" v-model="formComment.phone" class="w-100" />
+                                                <label for="comments-form-phone">Ваш телефон*</label>
+                                            </span>
+                                        </div>
+                                        <div class="modal-body-form_item">
+                                            <span class="p-float-label p-input-icon-right w-100">
+                                                <i class="pi pi-plus" />
+                                                <Textarea id="comments-form-message" v-model="formComment.message" rows="4" />
+                                                <label for="comments-form-message textarea-label">Ваше сообщение*</label>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                <button type="button" class="btn btn-primary">Отправить</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -422,13 +502,15 @@ import Galleria from '../../components/galleria/Galleria.vue'
 
 import { useRoute, useRouter } from 'vue-router'
 import { onMounted } from 'vue'
+import InputText from 'primevue/inputtext';
 
 import CopyToClipboard from '../../components/CopyToClipboard.vue'
 
 export default {
     components: {
         Galleria,
-        CopyToClipboard
+        CopyToClipboard,
+        InputText
     },
     data() {
         return {
@@ -437,7 +519,14 @@ export default {
             Sidebar: false,
             mobileContant: false,
             mobileContantPhone: false,
-            savedFavorites: false
+            savedFavorites: false,
+            messageModal: false,
+            formComment: {
+                name: null,
+                email: null,
+                phone: null,
+                message: null
+            }
         }
     },
     methods: {
@@ -446,10 +535,12 @@ export default {
             if(this.windowWidth <= 1024){
                 this.Sidebar = true;
                 this.mobileContant = true;
+                this.messageModal = true;
                 return;
             }
             this.Sidebar = false;
             this.mobileContant = false;
+            this.messageModal = false;
             return;
         },
         print() {
@@ -612,5 +703,9 @@ export default {
 
 .autor_full_name a:hover{
     color: #53b374;
+}
+
+.comments_modal_box .modal-body {
+    padding: 2rem 0 0 0!important;
 }
 </style>

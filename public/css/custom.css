@@ -689,9 +689,116 @@ a:hover{
     justify-content: center;
     padding: 16px 8px 16px 16px;
 }
+
+.product-page__sticky__comments{
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px 0 #00000012;
+    margin-top: 20px;
+    padding: 32px;
+    width: 380px;
+    /* margin-bottom: 1.875rem; */
+}
+
+.product-page__sticky__comments_header_title{
+    font-size: 1.25rem;
+    color: #000;
+}
+
+textarea.md-form__control {
+    min-height: 108px!important;
+    overflow: hidden;
+}
+
+.md-form__control {
+    display: block;
+    width: 100%;
+    padding: 1.4375rem 1rem 0.4375rem;
+    font-size: .875rem;
+    line-height: 1.3;
+    color: #000;
+    background-color: #fff;
+    background-image: none;
+    background-clip: padding-box;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.125rem;
+    margin-top: 1.5rem;
+}
+
+.md-form__control:focus {
+    color: #464a4c;
+    background-color: #fff;
+    border-color: var(--form-button-color);
+    outline: 0;
+}
+
+.product-page__sticky_submit_btn{
+    background-color: var(--primary_100);
+    color: var(--white_100);
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    white-space: nowrap;
+    align-items: center;
+    line-height: 1.5rem;
+    padding: 0.5rem 1.25rem;
+    font-size: .875rem;
+}
+
+.modal-body-form_item{
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid #dedede;
+    margin: 0px 0 24px 0;
+}
+
+.modal-body-form_item input,
+.modal-body-form_item textarea{
+    display: block;
+    width: 100%;
+    line-height: 1.5;
+    padding: 0 0 4px 12px;
+    border: 0;
+    font-size: 16px;
+    color: #343a40;
+}
+
+.modal-body-form_item textarea:focus {
+    border-color: unset !important;
+    outline: 0;
+}
+
+.modal-body-form_item .p-float-label label{
+    font-size: 16px;
+    top: 6px;
+    color: #000;
+}
+.modal-body-form_item .p-float-label .textarea-label{
+    top: -7px !important;
+}
+
+.modal-body-form_item .p-input-icon-right>i{
+    font-size: 16px;
+    top: 6px;
+}
+
+.modal-body-form_item .p-inputtext:enabled:focus{
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: unset !important;
+    border-color: unset !important;
+}
 /************************************* Object Single Page styles end *********************************** */
 /* ****************************** MEDIA ******************************************* */
 /************************************* Object Single Page styles *********************************** */
+@media only screen and (max-width: 1247px){
+    /* .product-page__sticky__comments {
+        width: 306px;
+    } */
+}
+
 @media only screen and (max-width: 1023px){
     /************* Object Single Page styles ********************** */
     .object_single_page_main_object_phone {
@@ -734,6 +841,14 @@ a:hover{
     /************* Object Single Page styles ********************** */
 }
 
+@media (min-width: 640px){
+    .p-sidebar-left {
+        max-width: 320px !important;
+        width: 100% !important;
+    }
+    
+}
+
 @media only screen and (max-width: 575px){
     /************* Object Single Page styles ********************** */
     .object_single_page_frontend .container_fluid{
@@ -752,7 +867,13 @@ a:hover{
         margin-top: -16px !important;
         padding: 8px 16px !important;
     }
+    
+    .comments_modal_box .modal-content{
+        width: 80% !important;
+        margin: 0 auto !important;
+    }
     /************* Object Single Page styles ********************** */
+    
 }
 
 @media only screen and (max-width: 475px){
@@ -767,6 +888,15 @@ a:hover{
     
     .product-page__content_top_buttons_item_btn .show>.dropdown-menu{
         transform: translate3d(-177px, 40px, 0px) !important; 
+    }
+    /************* Object Single Page styles ********************** */
+}
+
+@media only screen and (max-width: 450px){
+    /************* Object Single Page styles ********************** */
+    .comments_modal_box .modal-content{
+        width: 90% !important;
+        margin: 0 auto !important;
     }
     /************* Object Single Page styles ********************** */
 }
