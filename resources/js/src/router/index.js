@@ -5,7 +5,7 @@ import Main from '../../src/layouts/Main.vue'
 
 // Web Pages
 import IndexPage from '../../src/views/HomeIndex.vue'
-
+import CommercialPage from '../../src/views/Commercial.vue'
 
 // User Account Pages
 import UserDashboard  from '../views/account/UsersDashboard.vue'
@@ -36,6 +36,13 @@ const routes = [
                 components: {
                     main: IndexPage,
                 },
+            },
+            {
+                path: '/commercial',
+                name: 'siteCommercial',
+                components: {
+                    main: CommercialPage,
+                }
             },
             {
                 path: '/account/',

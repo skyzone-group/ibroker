@@ -3,7 +3,14 @@
         <div class="home_page_div">
             <div v-show="filterBlock" class="filter-block">
                 <div class="filter-block-inputs">
-                    <filter-block></filter-block>
+                    <div class="filter-block-inputs_content">
+                        <div class="filter-block-inputs_content-top">
+                            <div class="filter-block-inputs_content-top-txt">
+                                <h1 class="title">Недвижимость в Ташкенте</h1>
+                                <filter-block></filter-block>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="filter-block-back"></div>
                 <div class="filter-block-back__img"></div>

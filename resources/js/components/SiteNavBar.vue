@@ -10,9 +10,9 @@
                 </div>
                 <!-- hamburger menu icon -->
                 
-                <a href="#!" class="nabvar__block-logo">
+                <router-link :to="{name: 'siteIndex'}" class="nabvar__block-logo">
                     LOGO
-                </a>
+                </router-link>
                 <!-- Menu View start -->
                     <nav v-if="!mobileView">
                         <ul class="mb-0 navbar-ul">
@@ -26,7 +26,7 @@
                                 <router-link to="/test">Новостройки</router-link>
                             </li>
                             <li class="navbar-ul-li">
-                                <router-link to="/tdwdwest">Коммерческая</router-link>
+                                <a  href="/commercial">Коммерческая</a>
                             </li>
                             <li class="navbar-ul-li">
                                 <router-link to="/dwdw">Ипотека</router-link>
@@ -69,7 +69,7 @@
                                             </a>
                                         </li>
                                         <li class="service_item">
-                                            <a href="#!">
+                                            <a href="razmestit-obyavlenie">
                                                 <span class="service_item-back">
                                                     <img src="../../../public/images/icons/plus-add.svg" alt="">
                                                 </span>
@@ -77,7 +77,7 @@
                                             </a>
                                         </li>
                                         <li class="service_item">
-                                            <a href="#!">
+                                            <a href="user/favorites">
                                                 <span class="service_item-back">
                                                     <img src="../../../public/images/icons/saved.svg" alt="">
                                                 </span>
@@ -217,7 +217,7 @@ export default {
                 {id: 1,title: "Аренда", link: "/"},
                 {id: 2,title: "Продажа", link: "/"},
                 {id: 3,title: "Новостройки", link: "/"},
-                {id: 4,title: "Коммерческая", link: "/"},
+                {id: 4,title: "Коммерческая", link: "/commercial"},
                 {id: 5,title: "Ипотека", link: "/"},
             ]
         }
