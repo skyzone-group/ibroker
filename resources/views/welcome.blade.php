@@ -8,7 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-        
+
         <!-- Styles -->
         <link rel="stylesheet" href="{{asset('css/bootstrap.min.css.map')}}">
         <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
@@ -17,13 +17,14 @@
     <body class="antialiased">
         <div id="app" style="height: 100%">
         </div>
-        
-        
+
+
         <!-- Bootstrap scripts -->
         <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
         <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('plugins/bootstrap_my/myScripts.js')}}" type="text/javascript"></script>
         <!-- Bootstrap scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
+
     </body>
 </html>

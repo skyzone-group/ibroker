@@ -24,5 +24,10 @@ export default {
             this.loggedIn = status;
         }
     },
+    mounted() {
+        this.loggedIn = localStorage.getItem('token') ? true : false;
+        localStorage.clear();
+
+    },
 }
 </script>
