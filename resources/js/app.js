@@ -15,13 +15,10 @@ import 'primeicons/primeicons.css' //icons
 import Tooltip from 'primevue/tooltip';
 import VueScrollTo from 'vue-scrollto'
 
-import 'viewerjs/dist/viewer.css'
-import VueViewer from 'v-viewer'
-import VueAgile from 'vue-agile'
 
 
 import VueHtmlToPaper from "../../public/js/vue-print/VueHtmlToPaper.js";
-
+import VueCountdown from '@chenfengyuan/vue-countdown';
 
 const options = {
     name: '_blank',
@@ -51,10 +48,9 @@ app.use(VueScrollTo, {
     duration: 1000,
     easing: "linear",
 })
+app.component(VueCountdown.name, VueCountdown);
 app.directive('tooltip', Tooltip)
-app.use(VueViewer)
 app.use(VueHtmlToPaper, options)
-app.use(VueAgile)
 app.mount('#app')
 
 

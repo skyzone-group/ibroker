@@ -3,16 +3,19 @@
         <nav-bar :loggedIn="loggedIn"></nav-bar>
         <router-view class="main-view" name="main"></router-view>
         <auth-modal @loggedIn="authStatus" :loggedIn="loggedIn"></auth-modal>
+        <footer></footer>
     </div>
 </template>
 
 <script>
 import NavBar from '../../components/SiteNavBar.vue'
 import AuthModal from '../auth/AuthModal.vue'
+import Footer from '../../components/SiteFooter.vue'
 export default {
     components: {
         NavBar,
-        AuthModal
+        AuthModal,
+        Footer
     },
     data() {
         return {
