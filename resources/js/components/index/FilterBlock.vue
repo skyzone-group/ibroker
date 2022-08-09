@@ -1,44 +1,37 @@
 <template>
-    <div class="filter-block-inputs_content">
-        <div class="filter-block-inputs_content-top">
-            <div class="filter-block-inputs_content-top-txt">
-                <h1 class="title">Недвижимость в Ташкенте</h1>
-                <TabView ref="tabview1">
-                    <TabPanel header="Купить">
-                        <filtr-buy></filtr-buy>
-                    </TabPanel>
-                    <TabPanel header="Снять">
-                        <p>Снять</p>
-                    </TabPanel>
-                    <TabPanel header="Посуточно">
-                        <p>Посуточно</p>
-                    </TabPanel>
-                    <TabPanel header="Оценить">
-                        <p>Оценить</p>
-                    </TabPanel>
-                    <TabPanel header="Ипотека">
-                        <p>Ипотека</p>
-                    </TabPanel>
-                    <TabPanel header="Подбор риелтора">
-                        <p>Подбор риелтора</p>
-                    </TabPanel>
-                </TabView>
-                <div class="filter-block-inputs_content-top-txt_btns">
-                    <span class="filter_search_btns">
-                        <span class="filter_search_btn">
-                            <a href="#!" class="filter_search_btn-link map-link">
-                                Показать на карте
-                            </a>
-                        </span>
-                        <span class="filter_search_btn">
-                            <a href="#!" class="filter_search_btn-link">
-                                Найти
-                            </a>
-                        </span>
-                    </span>
-                </div>
-            </div>
-        </div>
+    <TabView ref="tabview1">
+        <TabPanel header="Купить">
+            <filtr-buy></filtr-buy>
+        </TabPanel>
+        <TabPanel header="Снять">
+            <p>Снять</p>
+        </TabPanel>
+        <TabPanel header="Посуточно">
+            <p>Посуточно</p>
+        </TabPanel>
+        <TabPanel header="Оценить">
+            <p>Оценить</p>
+        </TabPanel>
+        <TabPanel header="Ипотека">
+            <p>Ипотека</p>
+        </TabPanel>
+        <TabPanel header="Подбор риелтора">
+            <p>Подбор риелтора</p>
+        </TabPanel>
+    </TabView>
+    <div class="filter-block-inputs_content-top-txt_btns">
+        <span class="filter_search_btns">
+            <span class="filter_search_btn">
+                <a href="#!" class="filter_search_btn-link map-link">
+                    Показать на карте
+                </a>
+            </span>
+            <span class="filter_search_btn">
+                <a href="#!" class="filter_search_btn-link">
+                    Найти
+                </a>
+            </span>
+        </span>
     </div>
 </template>
 

@@ -1,0 +1,122 @@
+/* Media styles for Add New Object page */
+
+
+@media only screen and (max-width: 767px){
+    .form-card{
+        padding: 1.6rem !important;
+    }
+    
+    .address_block_div{
+        flex-direction: column;
+    }
+
+    .youtube_block_div_button {
+        width: 100%;
+        margin-top: 20px;
+    }
+    
+    .youtube_block_div_btn{
+        width: 100%;
+    }
+    
+    .options_main__items{
+        border-top: 0.1rem solid #dbddde;
+        margin-top: 1.6rem !important;
+        padding-top: 1.6rem;
+        flex-direction: column;
+    }
+    
+    .options_main__items_inputs{
+        display: flex !important;
+        align-items: flex-start !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+    }
+    
+    .options_main__items_inputs_media{
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    
+    .options_main__items_inputs+.options_main__items_inputs {
+        border-top: 0.1rem solid #dbddde;
+        margin-left: 0 !important;
+        margin-top: 1.6rem;
+        padding-top: 1.6rem;
+    }
+    
+    .options_main__items_inputs_block {
+        max-width: 13rem !important;
+    }
+}
+
+@media only screen and (max-width: 575px){
+    .single_button_select_box_label{
+        width: 50%;
+    }
+    
+    .option_btn {
+        font-size: 16px !important;
+        height: 2.7rem !important;
+        min-width: 2.7rem !important;
+    }
+    
+    .option_class_second{
+        display: block !important;
+        margin-left: 0 !important;
+        margin-top: 1.6rem !important;
+    }
+    
+    .window_checbox{
+        display: block !important;
+    }
+    
+    .window_checbox_item,
+    .infrastructure_media,
+    .adddtional_types_media{
+        margin-bottom: 3.5rem;
+        position: relative;
+    }
+    
+    
+    .window_checbox_item .field-checkbox,
+    .infrastructure_main_block .field-checkbox,
+    .adddtional_main_block .field-checkbox{
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+    
+    .window_checbox_item .option_class_second, 
+    .infrastructure_main .option_class_second,
+    .additional_options_main .option_class_second{
+        margin-top: 0 !important;
+        height: auto !important;
+    }
+    
+    .window_checbox_item .option_class_second:after,
+    .infrastructure_main .option_class_second:after,
+    .additional_options_main .option_class_second:after {
+        background-color: #dbddde;
+        bottom: -1.7rem;
+        content: "";
+        height: 0.1rem;
+        position: absolute;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 475px){
+    .img-wrapper{
+        width: 165px !important;
+        height: 115px !important;
+    }
+    
+    .header_title__desc {
+        margin: 1.4rem 0;
+        min-height: 3.2rem;
+        padding: 10px;
+    }
+    .file-input{
+        height: 50px;
+    }
+}

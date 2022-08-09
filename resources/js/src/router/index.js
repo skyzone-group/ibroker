@@ -5,7 +5,7 @@ import Main from '../../src/layouts/Main.vue'
 
 // Web Pages
 import IndexPage from '../../src/views/HomeIndex.vue'
-
+import CommercialPage from '../../src/views/Commercial.vue'
 
 // User Account Pages
 import UserDashboard  from '../views/account/UsersDashboard.vue'
@@ -21,6 +21,9 @@ import Objects from '../views/objects/Objects.vue'
 
 // New Object Pages
 import NewObjectMain from '../views/add_new_object/NewObjectMain.vue'
+
+// Object Single Page Details
+import ObjectSinglePage from '../views/ObjectSinglePage.vue'
 const routes = [
     {
         path: '/',
@@ -33,6 +36,13 @@ const routes = [
                 components: {
                     main: IndexPage,
                 },
+            },
+            {
+                path: '/commercial',
+                name: 'siteCommercial',
+                components: {
+                    main: CommercialPage,
+                }
             },
             {
                 path: '/account/',
@@ -110,12 +120,20 @@ const routes = [
                 ]
             },
             {
-                path: '/razmestit-obyavlenie/',
+                path: 'razmestit-obyavlenie',
                 name: 'newObject',
                 components: {
                     main: NewObjectMain,
                 },
             },
+            {
+                path: 'object',
+                name: 'objectsinglepage',
+                components: {
+                    main: ObjectSinglePage,
+                },
+            }
+            
         ]
     },
 ]

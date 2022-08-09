@@ -4,15 +4,15 @@
             <div class="header__nav-container">
                 <!-- hamburger menu icon -->
                 <div id="navigation-icon" v-if="mobileView" class="hamburger_block d-flex align-items-center">
-                    <button @click="showNav = !showNav" class="hamburger_block-btn">
+                    <button @click="visibleLeft = true" class="hamburger_block-btn">
                         <i class="feather icon-menu"></i>
                     </button>
                 </div>
                 <!-- hamburger menu icon -->
                 
-                <a href="#!" class="nabvar__block-logo">
+                <router-link :to="{name: 'siteIndex'}" class="nabvar__block-logo">
                     LOGO
-                </a>
+                </router-link>
                 <!-- Menu View start -->
                     <nav v-if="!mobileView">
                         <ul class="mb-0 navbar-ul">
@@ -26,7 +26,7 @@
                                 <router-link to="/test">Новостройки</router-link>
                             </li>
                             <li class="navbar-ul-li">
-                                <router-link to="/tdwdwest">Коммерческая</router-link>
+                                <a  href="/commercial">Коммерческая</a>
                             </li>
                             <li class="navbar-ul-li">
                                 <router-link to="/dwdw">Ипотека</router-link>
@@ -36,99 +36,100 @@
                 <!-- Menu View end -->
                 
                 <!-- Mobile menu start -->
-                    <div  class="header_mobile_menu" :class="{'header_mobile_menu-active' : showNav}">
-                        <div class="header_mobile_menu_wrapper" :class="{'header_mobile_menu_wrapper-active' : showNav}">
-                            <button @click="showNav = !showNav" class="btn_close"></button>
-                            <nav class="header_mobile_menu-nav">
-                                <ul class="m-0 p-0 list-unstyled">
-                                    <li v-if="loggedIn === false" class="header_mobile_menu-nav-ul__li">
-                                        <a @click="showNav = !showNav" data-toggle="modal" data-target="#animation" href="#!" class="logout">
-                                            <div class="enter_icon"></div>
-                                            Войти
-                                        </a>
-                                    </li>
-                                    <li  v-else class="header_mobile_menu-nav-ul__li">
-                                        <a href="#!" class="logout align-items-center">
-                                            <div class="avatar_mob mr-2">
-                                                <img src="../../../public/images/avatar.jpg" alt="">
-                                            </div>
-                                            <div class="avatar_name_id">
-                                                <p class="mb-0">Javohir Toirov</p>
-                                                <span style="font-size: 14px; color: grey;">ID 12345678</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="header_mobile_menu-nav-ul__li">
-                                        <ul class="services m-0 p-0 list-unstyled">
-                                            <li class="service_item">
-                                                <a href="#!">
-                                                    <span class="service_item-back">
-                                                        <img src="../../../public/images/icons/search.svg" alt="">
-                                                    </span>
-                                                    Новый поиск
-                                                </a>
-                                            </li>
-                                            <li class="service_item">
-                                                <a href="#!">
-                                                    <span class="service_item-back">
-                                                        <img src="../../../public/images/icons/plus-add.svg" alt="">
-                                                    </span>
-                                                    Разместить объявление
-                                                </a>
-                                            </li>
-                                            <li class="service_item">
-                                                <a href="#!">
-                                                    <span class="service_item-back">
-                                                        <img src="../../../public/images/icons/saved.svg" alt="">
-                                                    </span>
-                                                    Избранное
-                                                </a>
-                                            </li>
-                                            <li class="service_item">
-                                                <a href="#!">
-                                                    <span class="service_item-back">
-                                                        <img src="../../../public/images/icons/sapravochniy-center.svg" alt="">
-                                                    </span>
-                                                    Справочный центр
-                                                </a>
-                                            </li>
-                                            <li class="service_item">
-                                                <a href="#!">
-                                                    <span class="service_item-back">
-                                                        <img src="../../../public/images/icons/danger.svg" alt="">
-                                                    </span>
-                                                    Сообщить об ошибке
-                                                </a>
-                                            </li>
-                                            <li class="service_item">
-                                                <a href="#!">
-                                                    <span class="service_item-back">
-                                                        <img src="../../../public/images/icons/buy-rent.svg" alt="">
-                                                    </span>
-                                                    Куплю / Сниму
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="header_mobile_menu-nav-ul__li">
-                                        <ul class="rubrics m-0 p-0 list-unstyled">
-                                            <li v-for="item in rubricsMenu" :key="item.id" class="rubric_item">
-                                                <router-link :to="item.link">
-                                                    {{ item.title }}
-                                                </router-link>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="header_mobile_menu-nav-ul__li">
-                                        <div class="logout">
-                                            <div class="logout_icon"></div>
-                                            Выйти
+                <div v-if="mobileView" class="side-bar_menu">
+                    <Sidebar v-model:visible="visibleLeft" :baseZIndex="10000">
+                        <button @click="visibleLeft = !visibleLeft" class="btn_close"></button>
+                        <nav class="header_mobile_menu-nav">
+                            <ul class="m-0 p-0 list-unstyled">
+                                <li v-if="loggedIn === false" class="header_mobile_menu-nav-ul__li">
+                                    <a @click="showNav = !showNav" data-toggle="modal" data-target="#animation" href="#!" class="logout">
+                                        <div class="enter_icon"></div>
+                                        Войти
+                                    </a>
+                                </li>
+                                <li  v-else class="header_mobile_menu-nav-ul__li">
+                                    <a href="#!" class="logout align-items-center">
+                                        <div class="avatar_mob mr-2">
+                                            <img src="../../../public/images/avatar.jpg" alt="">
                                         </div>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+                                        <div class="avatar_name_id">
+                                            <p class="mb-0">Javohir Toirov</p>
+                                            <span style="font-size: 14px; color: grey;">ID 12345678</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="header_mobile_menu-nav-ul__li">
+                                    <ul class="services m-0 p-0 list-unstyled">
+                                        <li class="service_item">
+                                            <a href="#!">
+                                                <span class="service_item-back">
+                                                    <img src="../../../public/images/icons/search.svg" alt="">
+                                                </span>
+                                                Новый поиск
+                                            </a>
+                                        </li>
+                                        <li class="service_item">
+                                            <a href="razmestit-obyavlenie">
+                                                <span class="service_item-back">
+                                                    <img src="../../../public/images/icons/plus-add.svg" alt="">
+                                                </span>
+                                                Разместить объявление
+                                            </a>
+                                        </li>
+                                        <li class="service_item">
+                                            <a href="user/favorites">
+                                                <span class="service_item-back">
+                                                    <img src="../../../public/images/icons/saved.svg" alt="">
+                                                </span>
+                                                Избранное
+                                            </a>
+                                        </li>
+                                        <li class="service_item">
+                                            <a href="#!">
+                                                <span class="service_item-back">
+                                                    <img src="../../../public/images/icons/sapravochniy-center.svg" alt="">
+                                                </span>
+                                                Справочный центр
+                                            </a>
+                                        </li>
+                                        <li class="service_item">
+                                            <a href="#!">
+                                                <span class="service_item-back">
+                                                    <img src="../../../public/images/icons/danger.svg" alt="">
+                                                </span>
+                                                Сообщить об ошибке
+                                            </a>
+                                        </li>
+                                        <li class="service_item">
+                                            <a href="#!">
+                                                <span class="service_item-back">
+                                                    <img src="../../../public/images/icons/buy-rent.svg" alt="">
+                                                </span>
+                                                Куплю / Сниму
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="header_mobile_menu-nav-ul__li">
+                                    <ul class="rubrics m-0 p-0 list-unstyled">
+                                        <li v-for="item in rubricsMenu" :key="item.id" class="rubric_item">
+                                            <router-link :to="item.link">
+                                                {{ item.title }}
+                                            </router-link>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="header_mobile_menu-nav-ul__li">
+                                    <div class="logout">
+                                        <div class="logout_icon"></div>
+                                        Выйти
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                    </Sidebar>
+                </div>
+                
                 <!-- Mobile menu end -->
                 <div class="header-right-block">
                     <div class="btn-icons">
@@ -200,20 +201,23 @@
 
 <script>
 import Button from 'primevue/button';
+import Sidebar from 'primevue/sidebar';
 
 export default {
     components: {
+        Sidebar
     },
     data() {
         return {
             mobileView: false,
             mobileNav: false,
             showNav: false,
+            visibleLeft: false,
             rubricsMenu: [
                 {id: 1,title: "Аренда", link: "/"},
                 {id: 2,title: "Продажа", link: "/"},
                 {id: 3,title: "Новостройки", link: "/"},
-                {id: 4,title: "Коммерческая", link: "/"},
+                {id: 4,title: "Коммерческая", link: "/commercial"},
                 {id: 5,title: "Ипотека", link: "/"},
             ]
         }
@@ -443,49 +447,6 @@ export default {
         }
     }
     
-    .header_mobile_menu{
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1000;
-        visibility: hidden;
-        width: 100%;
-        height: 100%;
-        transition: 1s tranform cubic-bezier(0,.12,.14,1);
-    }
-    
-    .header_mobile_menu-active{
-        visibility: visible;
-    }
-    
-    .header_mobile_menu::before{
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        opacity: 1;
-        transition: opacity .3s ease-in-out;
-        cursor: pointer;
-        background-color: rgba(24,41,48,.8);
-        width: 100%;
-        height: 100%;
-        content: "";
-    }
-    
-    .header_mobile_menu_wrapper{
-        display: flex;
-        position: relative;
-        flex-direction: column;
-        transform: translateX(-100%);
-        transition: transform .3s ease-in-out,-webkit-transform .3s ease-in-out,-moz-transform .3s ease-in-out,-o-transform .3s ease-in-out;
-        cursor: auto;
-        background: #fff;
-        height: 100%;
-    }
-    .header_mobile_menu_wrapper-active{
-        transform: translateX(0);
-        transition: transform .3s ease-in-out,-webkit-transform .3s ease-in-out,-moz-transform .3s ease-in-out,-o-transform .3s ease-in-out;
-    }
     .btn_close{
         display: flex;
         flex: 0 0 auto;
@@ -503,7 +464,6 @@ export default {
     .header_mobile_menu-nav{
         position: relative !important;
         height: 100% !important;
-        overflow-y: auto !important;
         display: block !important;
     }
     
@@ -590,13 +550,19 @@ export default {
         width: 24px;
         height: 24px;
     }
-    // *****************************************
-    @media (min-width: 640px){
-        .header_mobile_menu_wrapper {
-            max-width: 320px;
-        }
-        
+    
+    .p-sidebar .p-sidebar-header{
+        display: none !important;
     }
+    
+    .p-sidebar .p-sidebar-content {
+        padding: 0 !important;
+    }
+    
+    .p-sidebar-left {
+        width: 100% !important;
+    }
+    // *****************************************
     @media (max-width: 660px){
         
         .btn-add-object,

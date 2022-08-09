@@ -13,9 +13,32 @@ import 'primeicons/primeicons.css' //icons
 
 // PrimeVue
 import Tooltip from 'primevue/tooltip';
+import VueScrollTo from 'vue-scrollto'
 
-//Global variables
+import 'viewerjs/dist/viewer.css'
+import VueViewer from 'v-viewer'
+import VueAgile from 'vue-agile'
 
+
+import VueHtmlToPaper from "../../public/js/vue-print/VueHtmlToPaper.js";
+
+
+const options = {
+    name: '_blank',
+    specs: [
+        'fullscreen=yes',
+        'titlebar=yes',
+        'scrollbars=yes'
+    ],
+    styles: [
+        'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
+        'https://unpkg.com/kidlat-css/css/kidlat.css',
+        "public/css/custom.css"
+    ],
+    timeout: 1000, // default timeout before the print window appears
+    autoClose: true, // if false, the window will not close after printing
+    windowTitle: window.document.title, // override the window title
+}
 
 const app = createApp(App)
 
@@ -23,7 +46,15 @@ const app = createApp(App)
 
 app.use(router)
 app.use(PrimeVue)
+app.use(VueScrollTo, {
+    container: "body",
+    duration: 1000,
+    easing: "linear",
+})
 app.directive('tooltip', Tooltip)
+app.use(VueViewer)
+app.use(VueHtmlToPaper, options)
+app.use(VueAgile)
 app.mount('#app')
 
 
