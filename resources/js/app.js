@@ -18,7 +18,7 @@ import VueScrollTo from 'vue-scrollto'
 
 
 import VueHtmlToPaper from "../../public/js/vue-print/VueHtmlToPaper.js";
-
+import VueCountdown from '@chenfengyuan/vue-countdown';
 
 const options = {
     name: '_blank',
@@ -48,6 +48,7 @@ app.use(VueScrollTo, {
     duration: 1000,
     easing: "linear",
 })
+app.component(VueCountdown.name, VueCountdown);
 app.directive('tooltip', Tooltip)
 app.use(VueHtmlToPaper, options)
 app.mount('#app')
