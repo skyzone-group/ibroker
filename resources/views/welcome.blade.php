@@ -8,7 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-        
+
         <!-- Styles -->
         <link rel="stylesheet" href="{{asset('css/bootstrap.min.css.map')}}">
         <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
@@ -26,8 +26,8 @@
     <body class="antialiased">
         <div id="app" style="height: 100%">
         </div>
-        
-        
+
+
         <!-- Bootstrap scripts -->
         <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -40,6 +40,10 @@
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <!-- Bootstrap scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
+<<<<<<< HEAD
+
+=======
         <script src="{{ asset('js/custom.js') }}"></script>
+>>>>>>> 39cd826d4c707f74d952daf40c4ee5d97b980633
     </body>
 </html>

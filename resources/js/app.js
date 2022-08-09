@@ -7,7 +7,7 @@ import PrimeVue from 'primevue/config';
 
 // PrimeVue css
 import 'primevue/resources/themes/saga-blue/theme.css' //theme
-import 'primevue/resources/primevue.min.css' 
+import 'primevue/resources/primevue.min.css'
 import 'primeicons/primeicons.css' //icons
 // PrimeVue css
 
@@ -16,7 +16,7 @@ import Tooltip from 'primevue/tooltip';
 import VueScrollTo from 'vue-scrollto'
 
 
-// Print
+
 import VueHtmlToPaper from "../../public/js/vue-print/VueHtmlToPaper.js";
 
 
@@ -38,6 +38,9 @@ const options = {
 }
 
 const app = createApp(App)
+
+//app.config.globalProperties.$IsLoggedIn = localStorage.getItem('token') ? true : false;
+
 app.use(router)
 app.use(PrimeVue)
 app.use(VueScrollTo, {

@@ -3,7 +3,7 @@
     <div class="auth_modal_box">
         <div class="modal"  id="animation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel6" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                <div v-show="form === 'login'" class="modal-content">
+                <div v-show="formData.form === 'login'" class="modal-content">
                     <div class="modal-header text-center">
                         <div class="w-100">
                             <h2 class="modal-title text-text-bold-600 text-center mt-1 mb-1" id="cal-modal">
@@ -26,8 +26,8 @@
                                             <div class="form-group">
                                                 <label for="contact-info-icon">Mobile</label>
                                                 <div class="position-relative has-icon-left">
-                                                    <input type="number" v-model="phone" id="contact-info-icon"
-                                                        class="form-control" name="phone" placeholder="+998 XX XXX-XX-XX" />
+                                                    <input type="number" v-model="formData.phone" id="contact-info-icon"
+                                                           class="form-control" name="phone" placeholder="+998 XX XXX-XX-XX" />
                                                     <div class="form-control-position">
                                                         <i class="feather icon-smartphone"></i>
                                                     </div>
@@ -38,8 +38,8 @@
                                             <div class="form-group">
                                                 <label for="password-icon">Password</label>
                                                 <div class="position-relative has-icon-left">
-                                                    <input type="password" v-model="password" id="password-icon"
-                                                        class="form-control" name="contact-icon" placeholder="Ваш пароль" />
+                                                    <input type="password" v-model="formData.password" id="password-icon"
+                                                           class="form-control" name="contact-icon" placeholder="Ваш пароль" />
                                                     <div class="form-control-position">
                                                         <i class="feather icon-lock"></i>
                                                     </div>
@@ -52,12 +52,12 @@
                                             </button>
                                         </div>
                                         <div class="col-12">
-                                            <button @click="form = 'register'" type="button"
-                                                class="block btn btn-flat-secondary text-dark">
+                                            <button @click="formData.form = 'register'" type="button"
+                                                    class="block btn btn-flat-secondary text-dark">
                                                 Зарегистрироваться
                                             </button>
-                                            <button @click="form = 'forget'" type="button"
-                                                class="block btn btn-flat-secondary text-dark">
+                                            <button @click="formData.form = 'forget'" type="button"
+                                                    class="block btn btn-flat-secondary text-dark">
                                                 Забыли пароль?
                                             </button>
                                         </div>
@@ -67,7 +67,7 @@
                         </div>
                     </form>
                 </div>
-                <div v-show="form === 'register'" class="modal-content">
+                <div v-show="formData.form === 'register'" class="modal-content">
                     <div class="modal-header text-center">
                         <div class="w-100">
                             <h2 class="modal-title text-text-bold-600 text-center mt-1 mb-1" id="cal-modal">
@@ -87,8 +87,8 @@
                                             <div class="form-group">
                                                 <label for="contact-info-icon">Mobile</label>
                                                 <div class="position-relative has-icon-left">
-                                                    <input type="number" v-model="phone" id="contact-info-icon"
-                                                        class="form-control" name="phone" placeholder="+998 XX XXX-XX-XX" />
+                                                    <input type="number" v-model="formData.phone" id="contact-info-icon"
+                                                           class="form-control" name="phone" placeholder="+998 XX XXX-XX-XX" />
                                                     <div class="form-control-position">
                                                         <i class="feather icon-smartphone"></i>
                                                     </div>
@@ -99,8 +99,8 @@
                                             <div class="form-group">
                                                 <label for="password-icon">Password</label>
                                                 <div class="position-relative has-icon-left">
-                                                    <input type="password" v-model="password" id="password-icon"
-                                                        class="form-control" name="contact-icon" placeholder="Ваш пароль" />
+                                                    <input type="password" v-model="formData.password" id="password-icon"
+                                                           class="form-control" name="contact-icon" placeholder="Ваш пароль" />
                                                     <div class="form-control-position">
                                                         <i class="feather icon-lock"></i>
                                                     </div>
@@ -111,9 +111,9 @@
                                             <div class="form-group">
                                                 <label for="password-icon">Confirm-password</label>
                                                 <div class="position-relative has-icon-left">
-                                                    <input type="password" v-model="confirm_password" id="password-icon"
-                                                        class="form-control" name="contact-icon"
-                                                        placeholder="Повторите пароль" />
+                                                    <input type="password" v-model="formData.password_confirmation" id="password-icon"
+                                                           class="form-control" name="contact-icon"
+                                                           placeholder="Повторите пароль" />
                                                     <div class="form-control-position">
                                                         <i class="feather icon-lock"></i>
                                                     </div>
@@ -126,12 +126,12 @@
                                             </button>
                                         </div>
                                         <div class="col-12">
-                                            <button @click="form = 'login'" type="button"
-                                                class="block btn btn-flat-secondary text-dark">
+                                            <button @click="formData.form = 'login'" type="button"
+                                                    class="block btn btn-flat-secondary text-dark">
                                                 Уже зарегистрирован
                                             </button>
-                                            <button @click="form = 'forget'" type="button"
-                                                class="block btn btn-flat-secondary text-dark">
+                                            <button @click="formData.form = 'forget'" type="button"
+                                                    class="block btn btn-flat-secondary text-dark">
                                                 Забыли пароль?
                                             </button>
                                         </div>
@@ -141,7 +141,7 @@
                         </div>
                     </form>
                 </div>
-                <div v-show="form === 'forget'" class="modal-content">
+                <div v-show="formData.form === 'forget'" class="modal-content">
                     <div class="modal-header text-center">
                         <div class="w-100">
                             <h2 class="modal-title text-text-bold-600 text-center mt-1 mb-1" id="cal-modal">
@@ -161,8 +161,8 @@
                                             <div class="form-group">
                                                 <label for="contact-info-icon">Mobile</label>
                                                 <div class="position-relative has-icon-left">
-                                                    <input type="number" v-model="phone" id="contact-info-icon"
-                                                        class="form-control" name="phone" placeholder="+998 XX XXX-XX-XX" />
+                                                    <input type="number" v-model="formData.phone" id="contact-info-icon"
+                                                           class="form-control" name="phone" placeholder="+998 XX XXX-XX-XX" />
                                                     <div class="form-control-position">
                                                         <i class="feather icon-smartphone"></i>
                                                     </div>
@@ -175,12 +175,12 @@
                                             </button>
                                         </div>
                                         <div class="col-12">
-                                            <button type="button" @click="form = 'register'"
-                                                class="block btn btn-flat-secondary text-dark">
+                                            <button type="button" @click="formData.form = 'register'"
+                                                    class="block btn btn-flat-secondary text-dark">
                                                 Зарегистрироваться
                                             </button>
-                                            <button type="button" @click="form = 'login'"
-                                                class="block btn btn-flat-secondary text-dark">
+                                            <button type="button" @click="formData.form = 'login'"
+                                                    class="block btn btn-flat-secondary text-dark">
                                                 Уже зарегистрирован
                                             </button>
                                         </div>
@@ -213,32 +213,35 @@ export default {
     },
     data() {
         return {
-            phone: "",
-            password: "",
-            confirm_password: "",
-            form: "login",
+            formData: {
+                phone: "",
+                password: "",
+                password_confirmation: "",
+                form: "login"
+            },
         };
     },
     methods: {
         handleSubmit() {
-            console.log(this.phone + this.password);
-            this.$emit("loggedIn", true);
-            this.toggleDialog();
+            axios.get('/sanctum/csrf-cookie').then(response => {
+                axios.post('/api/' + this.formData.form, this.formData).then(response => {
+                    if (response.data.status) {
+                        this.$emit("loggedIn", true);
+                        localStorage.setItem('token', response.data.result.access_token);
+                        $("#animation").modal('hide');
+                        console.log( localStorage.getItem('token'))
+                    }
+                    else {
+                        if(this.formData.form == 'login'){
+                            alert('Login or Password is incorrect!');
+                        }
+                        else if(this.formData.form == 'register') {
+                            alert(response.data.error.message);
+                        }
+                    }
+                })
+            });
         },
-        
-        toggleDialog() {
-            this.showMessage = !this.showMessage;
-            
-            if(!this.showMessage) {
-                this.resetForm();
-            }
-        },
-        resetForm() {
-            this.phone = '';
-            this.password = '';
-            this.confirm_password = '';
-            this.form = "login"
-        }
     },
     props: ["loggedIn"],
 };
@@ -255,11 +258,11 @@ export default {
     .auth_modal_box .modal-content h2{
         font-size: 24px;
     }
-    
+
     .auth_modal_box .modal-content h5{
         font-size: 13px;
     }
-    
+
     .auth_modal_box .modal-body .form-group{
         margin-bottom: 10px;
     }
