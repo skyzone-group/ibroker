@@ -224,7 +224,7 @@
                                             </button>
                                         </div>
                                         <div class="col-12">
-                                            <button v-if="formData.form === 'code' ? counting = true : counting = false" type="button" class="block btn btn-primary mr-1 mb-1 mt-2 w-100" :disabled="counting" @click="startCountdown">
+                                            <button v-if="formData.form === 'code' ? counting = true : counting = false"  type="button" class="block btn btn-primary mr-1 mb-1 mt-2 w-100" :disabled="counting" @click="startCountdown">
                                                 <vue-countdown v-if="counting" :time="60000" @end="onCountdownEnd" v-slot="{ totalSeconds }">Отправить код еще раз {{ totalSeconds }} seconds later</vue-countdown>
                                                 <span v-else>Отправить код еще раз</span>
                                             </button>
