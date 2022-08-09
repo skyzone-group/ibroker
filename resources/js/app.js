@@ -15,9 +15,6 @@ import 'primeicons/primeicons.css' //icons
 import Tooltip from 'primevue/tooltip';
 import VueScrollTo from 'vue-scrollto'
 
-import 'viewerjs/dist/viewer.css'
-import VueViewer from 'v-viewer'
-import VueAgile from 'vue-agile'
 
 // Print
 import VueHtmlToPaper from "../../public/js/vue-print/VueHtmlToPaper.js";
@@ -49,9 +46,7 @@ app.use(VueScrollTo, {
     easing: "linear",
 })
 app.directive('tooltip', Tooltip)
-app.use(VueViewer)
 app.use(VueHtmlToPaper, options)
-app.use(VueAgile)
 app.mount('#app')
 
 
