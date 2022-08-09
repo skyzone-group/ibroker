@@ -40,10 +40,6 @@
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <!-- Bootstrap scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
-<<<<<<< HEAD
-
-=======
         <script src="{{ asset('js/custom.js') }}"></script>
->>>>>>> 39cd826d4c707f74d952daf40c4ee5d97b980633
     </body>
 </html>
