@@ -331,7 +331,7 @@
                                 </div>
                                 <div class="subscription__author product-page__section" id="author">
                                     <div class="subscription__author_block">
-                                        <a href="#!" class="subscription__author_block_avatar d-flex align-items-center justify-content-center subscription__author_block_avatar_without_img">JT</a>
+                                        <a href="/agent" target="_blank" class="subscription__author_block_avatar d-flex align-items-center justify-content-center subscription__author_block_avatar_without_img">JT</a>
                                         <div class="subscription__author_block_title">Агентство недвижимости</div>
                                         <div class="subscription__author_block_name d-flex align-items-center mb-1">
                                             <h4 class="subscription__author_name">Ashtons International Realty</h4>
@@ -383,7 +383,7 @@
                                             <div style="background-color: rgb(156, 198, 196);width: 60px;height: 60px;border-radius: 5px;" class="autor_bottom_top_style">TJ</div>
                                             <div class="product-page__sidebar_autor_bottom_content" style="flex: 1;">
                                                 <div class="autor_full_name">
-                                                    <a href="#!">Javohir Toirov</a>
+                                                    <a href="/agent" target="_blank">Javohir Toirov</a>
                                                 </div>
                                                 <div class="autor_enter_date" style="color: #4b545b99;">
                                                     На iBroker 1 год 1 мес.

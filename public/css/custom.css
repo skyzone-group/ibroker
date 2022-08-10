@@ -519,6 +519,471 @@ a:hover{
     margin-bottom: 8px;
 }
 /* *********************************** Home Page end ******************************************/
+/* ******************************************************************************************* */
+/* ************************************* Agent Info Page start ************************************/
+.agentinfo_page_div_block{
+    margin-top: 30px;
+    width: 100%;
+    position: relative;
+    padding-bottom: 60px;
+}
+
+.shell_agent_container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.shell_agent_sidebar {
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 7%);
+    margin-bottom: 20px;
+}
+
+.agentCard_wrap {
+    background-color: #fff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+.agentCard_profileContainer {
+    height: 124px;
+    width: 128px;
+}
+
+.agentCard_verificationBadge {
+    position: absolute;
+    top: 0;
+    height: 124px;
+    width: 100%;
+    background: #00B4DB;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #0083B0, #00B4DB);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #0083B0, #00B4DB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 8px 8px 0 0;
+}
+
+.ppr-container-6-0-1 {
+    position: relative;
+}
+
+.ppr-target-6-0-1{
+    display: inherit;
+}
+
+.agentCard_profilePicWrap {
+    width: 148px;
+    height: 168px;
+    position: relative;
+    margin: 24px auto 8px;
+}
+
+.agentCard_profilePic {
+    border-radius: 50%;
+    width: 124px;
+    height: 124px;
+    background-size: cover;
+    position: absolute;
+    top: 22px;
+    right: 12px;
+}
+
+.agentCard_ratingWrap {
+    display: flex;
+    flex-direction: column;
+    margin: 92px auto 0;
+}
+
+.agentCard_ratingContainter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ppr-container--inline-6-0-1 {
+    display: inline-flex;
+}
+
+.agentCard_ratingTooltipContent {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.agentCard_starsWrap {
+    display: flex;
+    height: 40px;
+    justify-content: center;
+}
+
+.agentCard_ratingStats {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 8px 0 0;
+}
+
+.agentCard_starRaiting {
+    display: flex;
+    align-items: center;
+}
+
+.agentCard_ratingText {
+    display: block;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 40px;
+    color: #53b374;
+    margin-right: 8px;
+}
+
+.agentCard_star {
+    position: relative;
+    width: 24px;
+    height: 23px;
+    margin-right: 8px;
+}
+
+.agentCard_star:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 23px;
+    background-image: url('../images/filled-star.svg');
+    background-size: cover;
+    background-position: 0;
+}
+
+.agentCard_star:last-child {
+    margin: 0;
+}
+
+.agentCard_ratingLink {
+    margin-top: 8px;
+    flex: 1 0 100%;
+}
+
+.agentCard_ratingWrap a {
+    text-align: center;
+}
+
+.link-link--small-4-0-2 {
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.link-link-4-0-2 {
+    /* border-bottom: 1px solid rgba(83,179,116,.4); */
+    box-shadow: none;
+    box-sizing: border-box;
+    /* color: #53b374; */
+    font-size: 14px;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: 20px;
+    outline: none;
+    text-decoration: none;
+    text-indent: 0;
+    text-shadow: none;
+    text-transform: none;
+}
+
+.agentCard_personalData {
+    padding: 16px 16px 28px;
+}
+
+.agentCard_personalDataContent {
+    padding-top: 20px;
+    margin-bottom: 16px;
+    border-top: 1px solid #e5e5e5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.agentCard_agentName {
+    font-size: 24px;
+    color: #000;
+    font-weight: 500;
+    line-height: 32px;
+    text-align: center;
+    margin: 0;
+}
+
+.agentCard_registrationDate {
+    font-size: 12px;
+    line-height: 16px;
+    display: block;
+    margin-top: 4px;
+    color: #737476;
+}
+
+.agentCard_buttons {
+    display: none;
+}
+
+.telephony_button {
+    width: 100%;
+    margin-top: 16px;
+}
+
+.button-root__icon--left-8-1-3 {
+    margin-right: 8px;
+    order: -1;
+}
+
+.button-root__icon-8-1-3 {
+    color: #fff;
+    display: block;
+    height: 16px;
+    transition: .15s;
+    width: 16px;
+}
+
+.shell_agent_main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.aboutAgent_wrap {
+    background: #fff;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 7%);
+    border-radius: 5px;
+    padding: 24px 16px;
+}
+
+.aboutAgent_aboutMyselfTitle {
+    font-size: 18px;
+    color: #000;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0;
+}
+.aboutAgent_aboutMyselfText {
+    margin: 16px 0 0;
+    color: #000;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.aboutAgent_certificatesContainer {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.reviews_wrap {
+    background: #fff;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 7%);
+    border-radius: 5px;
+    padding: 24px 16px;
+    position: relative;
+    margin-top: 20px;
+}
+
+.reviews_title {
+    margin: 0;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.reviews_button {
+    display: none;
+}
+
+.button-root--secondary-8-1-3 {
+    background-color: #53b374 !important;
+    border-color: transparent;
+    transition: border-color .5s;
+}
+
+.button-root--secondary-8-1-3:active {
+    border-color: #355944 !important;
+}
+.button-root--secondary-8-1-3:hover {
+    background-color: #4a9765 !important;
+}
+
+.button-root--medium-8-1-3 {
+    height: 40px;
+    padding: 0 16px;
+}
+
+.button-root--type-button-reset-8-1-3 {
+    -webkit-appearance: button;
+    box-shadow: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    outline: none;
+}
+
+.reviews_mobileButton {
+    margin-top: 8px;
+    display: block;
+}
+
+.reviews_reviewsBlock {
+    margin-top: 16px;
+}
+
+.reviews_gradeBoard {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 24px;
+}
+
+.reviews_generalGradeInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+.reviews_generalGradeTitle {
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+    color: #000;
+    line-height: 20px;
+}
+
+.reviews_generalGradeMetrics {
+    display: flex;
+    align-items: center;
+    margin: 8px 0 0;
+}
+
+.reviews_generalGradeAverage {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-weight: 500;
+    font-size: 24px;
+    color: #000;
+    line-height: 32px;
+}
+
+.reviews_star {
+    width: 16px;
+    height: 16px;
+    margin: 0 0 0 4px;
+    padding: 1px;
+}
+
+.reviews_generalGradeTotal {
+    margin: 0 0 0 8px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #a7a8a9;
+}
+
+.reviews_reviewsListBlock {
+    margin-top: 12px;
+}
+
+.reviews_reviewTitleAuthor {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    display: block;
+    margin: 0;
+}
+
+.reviews_reviewTitleAuthorDescription {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 4px;
+}
+
+.reviews_reviewTitleDate {
+    margin-top: 4px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #93989d;
+    opacity: .9;
+}
+
+.reviews_reviewTitleRatingWrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 4px;
+}
+
+.reviews_reviewTitleRating {
+    display: block;
+    font-size: 14px;
+    line-height: 20px;
+    position: relative;
+}
+
+.reviews_reviewBlockText {
+    margin-top: 8px;
+    margin-bottom: 4px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.reviews_reviewBlockGrayText {
+    color: #93989d;
+    opacity: .9;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.dealHistory_wrapper {
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 7%);
+    padding: 20px 16px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.dealHistory_headerText {
+    font-size: 18px;
+    line-height: 24px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    color: #000;
+    font-weight: 500;
+}
+
+.dealHistory_dealsCount {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+.dealHistory_region {
+    font-size: 12px;
+    line-height: 16px;
+    color: #a7a8a9;
+}
+
+.dealHistory_statistics {
+    margin-top: 16px;
+}
+/* ************************************* Agent Info Page end ************************************/
 /************************************* Object Single Page styles *********************************** */
 .button-root--fluid-8-1-3{
     justify-content: center;
@@ -1318,6 +1783,107 @@ textarea.md-form__control {
 /* ************************************ Commercial page end ***************************************/
 /* ****************************** MEDIA ******************************************* */
 /************************************* Object Single Page styles *********************************** */
+@media (min-width: 1280px){
+    /* ************************************* Agent Info Page end ************************************/
+    .shell_agent_container {
+        flex-direction: row !important;
+    }
+    
+    .shell_agent_sidebar {
+        max-width: 420px !important;
+        margin-bottom: 0 !important;
+        margin-right: 20px !important;
+        height: -moz-fit-content !important;
+        height: fit-content !important;
+    }
+    
+    .agentCard_wrap {
+        flex-direction: column !important;
+    }
+    
+    .agentCard_verificationBadge {
+        height: 124px !important;
+        width: 100% !important;
+        border-radius: 8px 8px 0 0 !important;
+    }
+    
+    .agentCard_profilePicWrap {
+        margin: 24px auto !important;
+        width: 148px !important;
+        height: 168px !important;
+    }
+    
+    .agentCard_profilePic {
+        width: 124px !important;
+        height: 124px !important;
+    }
+    
+    .agentCard_tabletColumn {
+        display: block !important;
+        margin: 0 !important;
+        width: unset !important;
+        padding: 0 !important;
+    }
+    
+    .agentCard_ratingWrap {
+        flex-direction: column !important;
+        align-items: normal !important;
+        margin: 92px auto 0 !important;
+    }
+    
+    .agentCard_ratingContainter {
+        align-items: center !important;
+    }
+    
+    .agentCard_ratingTooltipContent {
+        flex-direction: column !important;
+    }
+    
+    .agentCard_ratingStats {
+        margin: 4px 0 0 !important;
+    }
+    
+    .agentCard_ratingLink {
+        margin-top: 8px !important;
+    }
+    
+    .agentCard_ratingLink {
+        margin-top: 4px !important;
+    }
+    
+    .agentCard_personalData {
+        padding: 16px 32px 24px !important;
+        width: unset !important;
+    }
+    
+    .agentCard_personalDataContent {
+        border-top: 1px solid #e5e5e5 !important;
+        padding-top: 24px !important;
+        align-items: center !important;
+    }
+    
+    .agentCard_agentName {
+        text-align: center !important;
+    }
+    
+    .agentCard_buttons {
+        display: block !important;
+    }
+    
+    .reviews_button {
+        display: block !important;
+        position: absolute !important;
+        top: 24px !important;
+        right: 32px !important;
+    }
+    
+    .reviews_mobileButton {
+        display: none !important;
+        margin-top: 16px !important;
+    }
+    /* ************************************* Agent Info Page end ************************************/
+}
+
 @media only screen and (max-width: 1247px){
     /* .product-page__sticky__comments {
         width: 306px;
@@ -1410,6 +1976,128 @@ textarea.md-form__control {
         bottom: 20%!important;
     } */
     /* ********** Commercial page end *****************************/
+}
+
+@media (min-width: 768px){
+    /* ************************************* Agent Info Page end ************************************/
+    /* .agentCard_wrap {
+        flex-direction: column !important;
+    }
+    
+    .agentCard_verificationBadge {
+        width: 128px;
+        height: 100%;
+        border-radius: 8px 0 0 8px;
+    }
+    
+    .agentCard_profilePicWrap {
+        margin-left: 62px;
+        margin-right: 0;
+        margin-top: 74px;
+        width: 132px;
+        height: 148px;
+    }
+    
+    .agentCard_profilePic {
+        width: 108px;
+        height: 108px;
+    }
+    
+    .agentCard_tabletColumn {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 120px;
+        width: 100%;
+        padding-top: 24px;
+        padding-right: 32px;
+    }
+    
+    .agentCard_ratingWrap {
+        flex-direction: row;
+        align-items: center;
+        margin: 0;
+    }
+    
+    .agentCard_ratingContainter {
+        align-items: flex-start;
+    }
+    
+    .agentCard_ratingTooltipContent {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .agentCard_ratingStats {
+        margin: 0 0 0 8px;
+    }
+    
+    .agentCard_personalData {
+        padding: 16px 0;
+        width: 100%;
+    }
+    
+    .agentCard_personalDataContent {
+        align-items: flex-start;
+        padding-top: 16px;
+    }
+    .agentCard_agentName {
+        text-align: left;
+    }    
+    
+    .aboutAgent_wrap {
+        padding: 24px 32px;
+    }
+    
+    
+    .reviews_mobileButton {
+        display: none;
+        margin-top: 16px;
+    } */
+    
+    .reviews_reviewsBlock {
+        margin-top: 32px;
+    }
+    
+    .reviews_gradeBoard {
+        flex-direction: row;
+    }
+    
+    .reviews_wrap {
+        padding: 24px 32px;
+    }
+    
+    .aboutAgent_wrap {
+        padding: 24px 32px;
+    }
+    
+    .reviews_reviewsListBlock {
+        margin-top: 24px;
+    }
+    
+    .reviews_reviewTitleAuthorDescription {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    
+    .reviews_reviewTitleDate {
+        margin-left: 12px;
+    }
+    
+    .dealHistory_wrapper {
+        padding: 24px 32px;
+    }
+    
+    .dealHistory_headerText {
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .dealHistory_dealsCount {
+        margin-left: 4px;
+    }
+    /* ************************************* Agent Info Page end ************************************/
 }
 
 @media only screen and (max-width: 736px){

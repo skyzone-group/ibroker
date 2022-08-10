@@ -6,6 +6,8 @@ import Main from '../../src/layouts/Main.vue'
 // Web Pages
 import IndexPage from '../../src/views/HomeIndex.vue'
 import CommercialPage from '../../src/views/Commercial.vue'
+import AgentInfo from '../../src/views/AgentInfoPage.vue'
+
 
 // User Account Pages
 import UserDashboard  from '../views/account/UsersDashboard.vue'
@@ -131,6 +133,13 @@ const routes = [
                 name: 'objectsinglepage',
                 components: {
                     main: ObjectSinglePage,
+                },
+            },
+            {
+                path: '/agent',
+                name: 'agentInfo',
+                components: {
+                    main: AgentInfo,
                 },
             }
             
