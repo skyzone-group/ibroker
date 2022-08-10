@@ -2,20 +2,20 @@
     <div>
         <nav-bar :loggedIn="loggedIn"></nav-bar>
         <router-view class="main-view" name="main"></router-view>
+        <footer-nav></footer-nav>
         <auth-modal @loggedIn="authStatus" :loggedIn="loggedIn"></auth-modal>
-        <footer></footer>
     </div>
 </template>
 
 <script>
 import NavBar from '../../components/SiteNavBar.vue'
 import AuthModal from '../auth/AuthModal.vue'
-import Footer from '../../components/SiteFooter.vue'
+import FooterNav from '../../components/SiteFooter.vue'
 export default {
     components: {
         NavBar,
         AuthModal,
-        Footer
+        FooterNav
     },
     data() {
         return {

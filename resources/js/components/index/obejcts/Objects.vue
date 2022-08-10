@@ -39,7 +39,7 @@ export default{
             { 
                 id: 1, 
                 text: "2-комн. квартира, 5/7 этаж, 70 м²",
-                url: "https://storage-cdn.cian.site/assiscrd/images/239-1613580565.png",
+                url: "images/luxury-house-4.jpg",
                 price: "46 500 y.e",
                 monthly_price: "652 y.e / м²",
                 object_id: "12345678" 
@@ -47,7 +47,7 @@ export default{
             { 
                 id: 2,
                 text: "3-комн. квартира, 5/7 этаж, 70 м²", 
-                url: "https://storage-cdn.cian.site/assiscrd/images/235-1609257911.png",
+                url: "images/luxury-house-6.jpg",
                 price: "46 500 y.e",
                 monthly_price: "652 y.e / м²",
                 object_id: "12345678" 
@@ -55,7 +55,7 @@ export default{
             { 
                 id: 3,
                 text: "2-комн. квартира, 5/7 этаж, 70 м²", 
-                url: "https://storage-cdn.cian.site/assiscrd/images/159-1575470418.png",
+                url: "images/luxury-house.jpg",
                 price: "46 500 y.e",
                 monthly_price: "652 y.e / м²",
                 object_id: "12345678"
@@ -63,7 +63,7 @@ export default{
             { 
                 id: 4,
                 text: "4-комн. квартира, 5/7 этаж, 70 м²", 
-                url: "https://storage-cdn.cian.site/assiscrd/images/21-1573816224.png",
+                url: "images/luxury-house-6.jpg",
                 price: "46 500 y.e",
                 monthly_price: "652 y.e / м²",
                 object_id: "12345678" 
@@ -71,7 +71,7 @@ export default{
             { 
                 id: 5,
                 text: "2-комн. квартира, 5/7 этаж, 70 м²", 
-                url: "https://storage-cdn.cian.site/assiscrd/images/21-1573816224.png",
+                url: "images/luxury-house-5.jpg",
                 price: "46 500 y.e",
                 monthly_price: "652 y.e / м²",
                 object_id: "12345678" 
@@ -79,7 +79,7 @@ export default{
             { 
                 id: 6,
                 text: "2-комн. квартира, 5/7 этаж, 70 м²", 
-                url: "https://storage-cdn.cian.site/assiscrd/images/21-1573816224.png",
+                url: "images/luxury-house-3.jpg",
                 price: "46 500 y.e",
                 monthly_price: "652 y.e / м²",
                 object_id: "12345678" 
