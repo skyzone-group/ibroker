@@ -1103,6 +1103,18 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="useful_card_main_box_item">
+                            <p class="useful_card_main_box_item_title">Квартиры в районах</p>
+                            <div class="useful_card_main_box_item_metro">
+                                <div class="useful_card_main_box_item_links mt-1">
+                                    <div v-for="region in regions" :key="region.id" class="useful_card_main_box_item_links-item">
+                                        <a href="#!" class="useful_card_main_box_item_links-item-link">
+                                            <span class="link-link-4-0-2 link-link--medium-4-0-2 link--ellipsis">{{ region.name }}</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1138,7 +1150,19 @@ export default {
             filterBlock: false,
             active1: 0,
             active2: 0,
-            showMore: false
+            showMore: false,
+            regions: [
+                {id: 1, name: "Юнусобадский"},
+                {id: 2, name: "Чиланзарский"},
+                {id: 3, name: "Алмазарский"},
+                {id: 4, name: "Бектемирский"},
+                {id: 5, name: "Мирабадский"},
+                {id: 6, name: "Мирзо-Улугбекский"},
+                {id: 7, name: "Сергелийский"},
+                {id: 8, name: "Учтепинский"},
+                {id: 9, name: "Шайхантахурский"},
+                {id: 10, name: "Яшнабадский"}
+            ],
         }
     },
     setup() {
