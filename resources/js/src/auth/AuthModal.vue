@@ -46,9 +46,10 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <button type="submit" class="block btn btn-primary mr-1 mb-1">
+                                        <!-- <button type="submit" class="block btn btn-primary mr-1 mb-1" :class="{'button-disabled' : (formData.phone.length == 0) || formData.password.length == 0}" :disabled="(formData.phone.length == 0) || formData.password.length == 0">
                                             Продолжить
-                                        </button>
+                                        </button> -->
+                                        <Button type="submit" class="block btn btn-primary mr-1 mb-1" :loading="loading[2]" @click="load(2)" label="Продолжить" :class="{'button-disabled' : (formData.phone.length == 0) || formData.password.length == 0}" :disabled="(formData.phone.length == 0) || formData.password.length == 0" />
                                     </div>
                                     <div class="col-12">
                                         <button @click="formData.form = 'send-code'" type="button"
@@ -250,10 +251,10 @@
         </div>
     </div>
     <!-- Basic Modals end -->
-    <div v-if="loading" class="spinner_main">
-        <div class="spinner_div">
-            <ProgressSpinner style="width:60px;height:60px" strokeWidth="3" animationDuration=".5s" />
-        </div>
+    
+    <div>
+        
+
     </div>
 </template>
 
@@ -269,13 +270,11 @@ import '../../../../public/app-assets/css/components.min.css'
 
 // Icons
 import '../../../../public/app-assets/fonts/feather/iconfont.css'
-import ProgressSpinner from 'primevue/progressspinner';
 
 
 export default {
     components: {
         Button,
-        ProgressSpinner
     },
     data() {
         return {
@@ -289,7 +288,7 @@ export default {
             counting: false,
             code: false,
             exampleCode: '',
-            loading: false
+            loading: [false, false, false]
         };
     },
     methods: {
@@ -299,7 +298,6 @@ export default {
                 axios.post('/api/' + this.formData.form, this.formData).then(response => {
                     // checking response status true or false
                     if (response.data.status) {
-                        this.loading = true;
                         if(this.formData.form === 'send-code'){
                             this.formData.form = 'register';
                             this.counting = true;
@@ -326,11 +324,6 @@ export default {
                     }
                 })
             })
-            .finally(() => (
-                setTimeout(() => {
-                    this.loading = false
-                }, 1500)
-            ));
         },
         startCountdown: function () {
             this.counting = true;
@@ -345,6 +338,11 @@ export default {
         onCountdownEnd: function () {
             this.counting = false;
         },
+        
+        load(index) {
+            this.loading[index] = true;
+            setTimeout(() => this.loading[index] = false, 1000);
+        }
     },
     mounted() {
 

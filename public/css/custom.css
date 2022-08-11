@@ -1077,6 +1077,14 @@ a:hover{
     cursor: not-allowed !important;
 }
 
+.p-disabled, .p-disabled * {
+    cursor: not-allowed !important;
+}
+
+.p-button.p-disabled:hover{
+    cursor: not-allowed !important;
+}
+
 .icon-saved{
     color: #ff6a59 !important;
 }
