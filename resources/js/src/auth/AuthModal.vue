@@ -250,6 +250,11 @@
         </div>
     </div>
     <!-- Basic Modals end -->
+    <div v-if="loading" class="spinner_main">
+        <div class="spinner_div">
+            <ProgressSpinner style="width:60px;height:60px" strokeWidth="3" animationDuration=".5s" />
+        </div>
+    </div>
 </template>
 
 <script>
@@ -264,9 +269,13 @@ import '../../../../public/app-assets/css/components.min.css'
 
 // Icons
 import '../../../../public/app-assets/fonts/feather/iconfont.css'
+import ProgressSpinner from 'primevue/progressspinner';
+
+
 export default {
     components: {
-        Button
+        Button,
+        ProgressSpinner
     },
     data() {
         return {
@@ -279,15 +288,18 @@ export default {
             },
             counting: false,
             code: false,
-            exampleCode: ''
+            exampleCode: '',
+            loading: false
         };
     },
     methods: {
         handleSubmit() {
-            axios.get('/sanctum/csrf-cookie').then(response => {
+            axios.get('/sanctum/csrf-cookie')
+            .then(response => {
                 axios.post('/api/' + this.formData.form, this.formData).then(response => {
                     // checking response status true or false
                     if (response.data.status) {
+                        this.loading = true;
                         if(this.formData.form === 'send-code'){
                             this.formData.form = 'register';
                             this.counting = true;
@@ -313,7 +325,12 @@ export default {
                         }
                     }
                 })
-            });
+            })
+            .finally(() => (
+                setTimeout(() => {
+                    this.loading = false
+                }, 1500)
+            ));
         },
         startCountdown: function () {
             this.counting = true;
@@ -417,6 +434,19 @@ export default {
     background-position: 50% !important;
     background-size: 24px !important;
     background-repeat: no-repeat !important;
+}
+
+.spinner_main{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #00000069;
 }
 /* **************************  Meida ********************************************** */
 @media (max-width: 575px){

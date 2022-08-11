@@ -1,9 +1,9 @@
 <template>
     <div>
         <nav-bar :loggedIn="loggedIn"></nav-bar>
+        <auth-modal @loggedIn="authStatus" :loggedIn="loggedIn"></auth-modal>
         <router-view class="main-view" name="main"></router-view>
         <footer-nav></footer-nav>
-        <auth-modal @loggedIn="authStatus" :loggedIn="loggedIn"></auth-modal>
     </div>
 </template>
 

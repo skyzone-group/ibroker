@@ -41,27 +41,10 @@
                         <button @click="visibleLeft = !visibleLeft" class="btn_close"></button>
                         <nav class="header_mobile_menu-nav">
                             <ul class="m-0 p-0 list-unstyled">
-                                <li v-if="loggedIn === false" class="header_mobile_menu-nav-ul__li">
-                                    <a @click="showNav = !showNav" data-toggle="modal" data-target="#animation" href="#!" class="logout">
-                                        <div class="enter_icon"></div>
-                                        Войти
-                                    </a>
-                                </li>
-                                <li  v-else class="header_mobile_menu-nav-ul__li">
-                                    <a href="#!" class="logout align-items-center">
-                                        <div class="avatar_mob mr-2">
-                                            <img src="../../../public/images/avatar.jpg" alt="">
-                                        </div>
-                                        <div class="avatar_name_id">
-                                            <p class="mb-0">Javohir Toirov</p>
-                                            <span style="font-size: 14px; color: grey;">ID 12345678</span>
-                                        </div>
-                                    </a>
-                                </li>
                                 <li class="header_mobile_menu-nav-ul__li">
                                     <ul class="services m-0 p-0 list-unstyled">
                                         <li class="service_item">
-                                            <a href="#!">
+                                            <a @click="visibleLeft = false" href="#!">
                                                 <span class="service_item-back">
                                                     <img src="../../../public/images/icons/search.svg" alt="">
                                                 </span>
@@ -113,7 +96,7 @@
                                 <li class="header_mobile_menu-nav-ul__li">
                                     <ul class="rubrics m-0 p-0 list-unstyled">
                                         <li v-for="item in rubricsMenu" :key="item.id" class="rubric_item">
-                                            <router-link :to="item.link">
+                                            <router-link @click="visibleLeft = false" :to="item.link">
                                                 {{ item.title }}
                                             </router-link>
                                         </li>
