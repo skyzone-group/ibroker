@@ -31,6 +31,9 @@
                                                     <i class="feather icon-smartphone"></i>
                                                 </div>
                                             </div>
+                                            <div class="alert alert-danger" v-show="errors && errors.phone">
+                                                {{ errors[0] }}
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -248,11 +251,6 @@
         </div>
     </div>
     <!-- Basic Modals end -->
-    
-    <div>
-        
-
-    </div>
 </template>
 
 <script>
@@ -285,7 +283,8 @@ export default {
             counting: false,
             code: false,
             exampleCode: '',
-            loading: [false, false, false]
+            loading: [false, false, false],
+            errors: {}
         };
     },
     methods: {
