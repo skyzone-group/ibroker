@@ -46,9 +46,6 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <!-- <button type="submit" class="block btn btn-primary mr-1 mb-1" :class="{'button-disabled' : (formData.phone.length == 0) || formData.password.length == 0}" :disabled="(formData.phone.length == 0) || formData.password.length == 0">
-                                            Продолжить
-                                        </button> -->
                                         <Button type="submit" class="block btn btn-primary mr-1 mb-1" :loading="loading[2]" @click="load(2)" label="Продолжить" :class="{'button-disabled' : (formData.phone.length == 0) || formData.password.length == 0}" :disabled="(formData.phone.length == 0) || formData.password.length == 0" />
                                     </div>
                                     <div class="col-12">
@@ -448,10 +445,10 @@ export default {
 }
 /* **************************  Meida ********************************************** */
 @media (max-width: 575px){
-    .auth_modal_block{
+    /* .auth_modal_block{
         width: 100%;
         height: 100vh;
-    }
+    } */
     
     .auth_modal_block .modal{
         padding: 0;

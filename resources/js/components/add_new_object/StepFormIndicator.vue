@@ -1,5 +1,5 @@
 <template>
-    <div class="form_inficator_box position-fixed">
+    <div class="form_inficator_box">
         <div class="step_form">
             <h3 class="step_form_title">Обязательно для заполнения</h3>
             <nav class="d-flex flex-column">
@@ -96,8 +96,6 @@ export default {
     box-shadow: 0 0.2rem 0.4rem 0 #00000012;
     margin-bottom: 1.6rem;
     padding: 1.6rem;
-    position: sticky;
-    top: 1.6rem;
 }
 
 .step_form_title{

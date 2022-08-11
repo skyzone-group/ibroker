@@ -8,8 +8,8 @@
                 </header>
                 <div class="block__body">
                     <div class="form">
-                        <div class="row">
-                            <div class="col-lg-9 col-md-9">
+                        <div class="block__body_main">
+                            <div class="block__body_side-bar_content">
                                 <form @submit.prevent="saveData()" id="listingEditForm" method="POST" :model="form">
                                     <!-- Тип объявления -->
                                     <div class="form-card" id="section-one">
@@ -607,7 +607,7 @@
                                     <!-- online display -->
                                 </Form>
                             </div>
-                            <div class="col-lg-3 col-md-3 position-relative d-lg-block d-md-block d-none">
+                            <div class="block__body_side-bar  d-lg-block d-md-block d-none">
                                 <form-indicator></form-indicator>
                             </div>      
                         </div>
@@ -704,7 +704,7 @@ export default {
 <style>
 .new_object_frontend{
     display: flex;
-    overflow: hidden;
+    overflow: unset;
     flex: 1 1;
     flex-direction: column;
 }
@@ -1142,5 +1142,30 @@ margin-left: 2.4rem;
     border-color: var(--form-button-color);
     background-color: var(--form-button-color);
     color: #fff;
+}
+
+.block__body_main{
+    display: flex;
+    margin: 0 auto;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.block__body_side-bar_content{
+    flex: 1;
+    min-width: 0;
+}
+
+.block__body_side-bar{
+    flex: none;
+    margin-left: 20px;
+    /* padding-top: 50px; */
+    width: 300px;
+}
+
+.block__body_side-bar .form_inficator_box{
+    position: sticky;
+    top: 20px;
+    width: 100%;
 }
 </style>
