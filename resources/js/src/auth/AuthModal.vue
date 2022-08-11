@@ -52,11 +52,11 @@
                                             </button>
                                         </div>
                                         <div class="col-12">
-                                            <button @click="formData.form = 'register'" type="button"
+                                            <button @click="formData.form = 'send-code'" type="button"
                                                     class="block btn btn-flat-secondary text-dark">
                                                 Зарегистрироваться
                                             </button>
-                                            <button @click="formData.form = 'forget'" type="button"
+                                            <button @click="formData.form = 'reset-password-request'" type="button"
                                                     class="block btn btn-flat-secondary text-dark">
                                                 Забыли пароль?
                                             </button>
@@ -67,7 +67,7 @@
                         </div>
                     </form>
                 </div>
-                <div v-show="formData.form === 'register'" class="modal-content">
+                <div v-show="formData.form === 'send-code'" class="modal-content">
                     <div class="modal-header text-center">
                         <div class="w-100">
                             <h2 class="modal-title text-text-bold-600 text-center mt-1 mb-1" id="cal-modal">
@@ -121,7 +121,11 @@
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <button @click="formData.form = 'code'"  type="button" class="block btn btn-primary mr-1 mb-1">
+                                            <button
+                                                type="submit"
+                                                :disabled="(formData.password_confirmation !== formData.password) || formData.password.length == 0"
+                                                class="block btn btn-primary mr-1 mb-1"
+                                            >
                                                 Отправить
                                             </button>
                                         </div>
@@ -130,7 +134,7 @@
                                                     class="block btn btn-flat-secondary text-dark">
                                                 Уже зарегистрирован
                                             </button>
-                                            <button @click="formData.form = 'forget'" type="button"
+                                            <button @click="formData.form = 'reset-password-request'" type="button"
                                                     class="block btn btn-flat-secondary text-dark">
                                                 Забыли пароль?
                                             </button>
@@ -141,7 +145,7 @@
                         </div>
                     </form>
                 </div>
-                <div v-show="formData.form === 'forget'" class="modal-content">
+                <div v-show="formData.form === 'reset-password-request'" class="modal-content">
                     <div class="modal-header text-center">
                         <div class="w-100">
                             <h2 class="modal-title text-text-bold-600 text-center mt-1 mb-1" id="cal-modal">
@@ -175,7 +179,7 @@
                                             </button>
                                         </div>
                                         <div class="col-12">
-                                            <button type="button" @click="formData.form = 'register'"
+                                            <button type="button" @click="formData.form = 'send-code'"
                                                     class="block btn btn-flat-secondary text-dark">
                                                 Зарегистрироваться
                                             </button>
@@ -190,7 +194,7 @@
                         </div>
                     </form>
                 </div>
-                <div v-show="formData.form === 'code'" class="modal-content">
+                <div v-show="formData.form === 'register' || formData.form === 'reset-password'" class="modal-content">
                     <div class="modal-header text-center">
                         <div class="w-100">
                             <h2 class="modal-title text-text-bold-600 text-center mt-1 mb-1" id="cal-modal">
@@ -208,7 +212,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="contact-info-icon">Код подтверждения</label>
+                                                <label for="contact-info-icon">Код подтверждения <span style="color: red" v-if="formData.form === 'register' || formData.form === 'reset-password'">[ Your code is {{ this.exampleCode }} ]</span></label>
                                                 <div class="position-relative has-icon-left">
                                                     <input type="number" v-model="formData.code" id="contact-info-icon"
                                                         class="form-control" name="verif-code" placeholder="1234" />
@@ -224,7 +228,7 @@
                                             </button>
                                         </div>
                                         <div class="col-12">
-                                            <button v-if="formData.form === 'code' ? counting = true : counting = false"  type="button" class="block btn btn-primary mr-1 mb-1 mt-2 w-100" :disabled="counting" @click="startCountdown">
+                                            <button v-if="formData.form === 'register' || formData.form === 'reset-password'"  type="button" class="block btn btn-primary mr-1 mb-1 mt-2 w-100" :disabled="counting" @click="startCountdown">
                                                 <vue-countdown v-if="counting" :time="60000" @end="onCountdownEnd" v-slot="{ totalSeconds }">Отправить код еще раз {{ totalSeconds }} seconds later</vue-countdown>
                                                 <span v-else>Отправить код еще раз</span>
                                             </button>
@@ -267,24 +271,37 @@ export default {
                 form: "login"
             },
             counting: false,
-            code: false
+            code: false,
+            exampleCode: ''
         };
     },
     methods: {
         handleSubmit() {
             axios.get('/sanctum/csrf-cookie').then(response => {
                 axios.post('/api/' + this.formData.form, this.formData).then(response => {
+                    // checking response status true or false
                     if (response.data.status) {
-                        this.$emit("loggedIn", true);
-                        localStorage.setItem('token', response.data.result.access_token);
-                        $("#animation").modal('hide');
-                        console.log( localStorage.getItem('token'))
+                        if(this.formData.form === 'send-code'){
+                            this.formData.form = 'register';
+                            this.counting = true;
+                            this.exampleCode = response.data.result.code;
+                        }
+                        else if(this.formData.form === 'register' || this.formData.form === 'login' || this.formData.form === 'reset-password'){
+                            this.counting = true;
+                            this.$emit("loggedIn", true);
+                            localStorage.setItem('token', response.data.result.access_token);
+                            $("#animation").modal('hide');
+                        }
+                        else if(this.formData.form === 'reset-password-request'){
+                            this.formData.form = 'reset-password';
+                            this.exampleCode = response.data.result.code;
+                        }
                     }
                     else {
-                        if(this.formData.form == 'login'){
+                        if(this.formData.form === 'login'){
                             alert('Login or Password is incorrect!');
                         }
-                        else if(this.formData.form == 'register') {
+                        else {
                             alert(response.data.error.message);
                         }
                     }
@@ -293,13 +310,20 @@ export default {
         },
         startCountdown: function () {
             this.counting = true;
+            axios.get('/sanctum/csrf-cookie').then(response => {
+                axios.get('/api/resend-code').then(response => {
+                    if (response.data.status) {
+                        this.exampleCode = response.data.result.code;
+                    }
+                })
+            });
         },
         onCountdownEnd: function () {
             this.counting = false;
         },
     },
     mounted() {
-        
+
     },
     props: ["loggedIn"],
 };
