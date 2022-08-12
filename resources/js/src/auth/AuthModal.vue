@@ -22,6 +22,11 @@
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-12">
+                                        <div v-show="FormValidate" class="alert alert-danger">
+                                            <span class="error-msg-password" id="password_error"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
                                         <div class="form-group">
                                             <label for="contact-info-icon">Mobile</label>
                                             <div class="position-relative has-icon-left">
@@ -30,9 +35,6 @@
                                                 <div class="form-control-position">
                                                     <i class="feather icon-smartphone"></i>
                                                 </div>
-                                            </div>
-                                            <div class="alert alert-danger" v-show="errors && errors.phone">
-                                                {{ errors[0] }}
                                             </div>
                                         </div>
                                     </div>
@@ -96,6 +98,11 @@
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-12">
+                                        <div v-show="FormValidate" class="alert alert-danger">
+                                            <span class="error-msg-password" id="password_error"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
                                         <div class="form-group">
                                             <label for="contact-info-icon">Mobile</label>
                                             <div class="position-relative has-icon-left">
@@ -130,17 +137,19 @@
                                                     <i class="feather icon-lock"></i>
                                                 </div>
                                             </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <button
+                                        <!-- <button
                                             type="submit"
                                             :disabled="(formData.password_confirmation !== formData.password) || formData.password.length == 0"
                                             class="block btn btn-primary mr-1 mb-1"
                                             :class="{'button-disabled' : (formData.password_confirmation !== formData.password) || formData.password.length == 0}"
                                         >
                                             Отправить
-                                        </button>
+                                        </button> -->
+                                        <Button type="submit" class="block btn btn-primary mr-1 mb-1" :loading="loading[2]" @click="load(2)" label="Отправить" :class="{'button-disabled' : (formData.password_confirmation !== formData.password) || formData.password.length == 0}" :disabled="(formData.password_confirmation !== formData.password) || formData.password.length == 0" />
                                     </div>
                                     <div class="col-12">
                                         <button @click="formData.form = 'login'" type="button"
@@ -185,9 +194,10 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <button type="submit" class="block btn btn-primary mr-1 mb-1">
+                                        <!-- <button type="submit" class="block btn btn-primary mr-1 mb-1">
                                             Отправить
-                                        </button>
+                                        </button> -->
+                                        <Button type="submit" class="block btn btn-primary mr-1 mb-1" :loading="loading[2]" @click="load(2)" label="Отправить" :class="{'button-disabled' : formData.phone.length == 0}" :disabled="formData.phone.length == 0" />
                                     </div>
                                     <div class="col-12">
                                         <button type="button" @click="formData.form = 'send-code'"
@@ -232,9 +242,10 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <button type="submit" class="block btn btn-primary mr-1 mb-1">
+                                        <!-- <button type="submit" class="block btn btn-primary mr-1 mb-1">
                                             Отправить
-                                        </button>
+                                        </button> -->
+                                        <Button type="submit" class="block btn btn-primary mr-1 mb-1" :loading="loading[2]" @click="load(2)" label="Отправить" :class="{'button-disabled' : formData.code.length == 0}" :disabled="formData.code.length == 0" />
                                     </div>
                                     <div class="col-12">
                                         <button v-if="formData.form === 'register' || formData.form === 'reset-password'"  type="button" class="block btn btn-primary mr-1 mb-1 mt-2 w-100" :disabled="counting" @click="startCountdown">
@@ -284,7 +295,8 @@ export default {
             code: false,
             exampleCode: '',
             loading: [false, false, false],
-            errors: {}
+            errors: {},
+            FormValidate: false
         };
     },
     methods: {
@@ -312,11 +324,18 @@ export default {
                     }
                     else {
                         if(this.formData.form === 'login'){
-                            alert('Login or Password is incorrect!');
+                            // alert('Login or Password is incorrect!');
+                            $(".error-msg-password").each(function() {
+                                $(this).text('Login or Password is incorrect!');
+                            });
                         }
-                        else {
-                            alert(response.data.error.message);
+                        else{
+                            var password_error = response.data.error.message;
+                            $(".error-msg-password").each(function() {
+                                $(this).text(password_error);
+                            });
                         }
+                        this.FormValidate = true;
                     }
                 })
             })
@@ -441,6 +460,11 @@ export default {
     justify-content: center;
     align-items: center;
     background: #00000069;
+}
+
+.error-msg-password{
+    color: red;
+    font-size: 12px;
 }
 /* **************************  Meida ********************************************** */
 @media (max-width: 575px){

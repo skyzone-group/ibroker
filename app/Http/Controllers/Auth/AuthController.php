@@ -59,7 +59,7 @@ class AuthController extends ResponseController
     {
         $data = session()->get('user');
         // checking verification code
-        if ($data['code'] != $request->code)   return self::errorResponse('Verification code is incorrect');
+        if (!$data || $data['code'] != $request->code )   return self::errorResponse('Verification code is incorrect');
 
         $user = User::create([
             'phone'      => $data['phone'],
