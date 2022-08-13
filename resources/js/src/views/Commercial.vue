@@ -1,7 +1,7 @@
 <template>
     <div class="commercial_page">
         <div class="commercial_page_div">
-            <div v-show="filterBlock" class="filter-block">
+            <div  class="filter-block">
                 <div class="filter-block-inputs">
                     <div class="filter-block-inputs_content">
                         <div class="filter-block-inputs_content-top">
@@ -246,14 +246,11 @@
                                                     <a href="#!" class="text-left"><i class="feather icon-map-pin"></i> Юсуфа Хос Ходжиба (улица), Яккасарайский район </a>
                                                 </div>
                                                 <div class="objects_carousel_item_box_content_show_contant mt-3">
-                                                    <button v-if="showPhone == false" @click="this.showPhone = true"  type="button" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 d-flex align-items-center">
+                                                    <a href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 d-flex align-items-center">
                                                         <i class="feather icon-phone mr-2"></i>
                                                         <span class="button-root__text-8-1-3">
-                                                            Показать телефон
+                                                            Позвонить
                                                         </span>
-                                                    </button>
-                                                    <a v-if="showPhone == true" href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3">
-                                                        <span class="button-root__text-8-1-3">+99890 359-22-84</span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -303,14 +300,11 @@
                                                     <a href="#!" class="text-left"><i class="feather icon-map-pin"></i> Юсуфа Хос Ходжиба (улица), Яккасарайский район </a>
                                                 </div>
                                                 <div class="objects_carousel_item_box_content_show_contant mt-3">
-                                                    <button v-if="showPhone == false" @click="this.showPhone = true"  type="button" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 d-flex align-items-center">
+                                                    <a href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 d-flex align-items-center">
                                                         <i class="feather icon-phone mr-2"></i>
                                                         <span class="button-root__text-8-1-3">
-                                                            Показать телефон
+                                                            Позвонить
                                                         </span>
-                                                    </button>
-                                                    <a v-if="showPhone == true" href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3">
-                                                        <span class="button-root__text-8-1-3">+99890 359-22-84</span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -360,14 +354,11 @@
                                                     <a href="#!" class="text-left"><i class="feather icon-map-pin"></i> Юсуфа Хос Ходжиба (улица), Яккасарайский район </a>
                                                 </div>
                                                 <div class="objects_carousel_item_box_content_show_contant mt-3">
-                                                    <button v-if="showPhone == false" @click="this.showPhone = true"  type="button" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 d-flex align-items-center">
+                                                    <a href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 d-flex align-items-center">
                                                         <i class="feather icon-phone mr-2"></i>
                                                         <span class="button-root__text-8-1-3">
-                                                            Показать телефон
+                                                            Позвонить
                                                         </span>
-                                                    </button>
-                                                    <a v-if="showPhone == true" href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3">
-                                                        <span class="button-root__text-8-1-3">+99890 359-22-84</span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -417,14 +408,11 @@
                                                     <a href="#!" class="text-left"><i class="feather icon-map-pin"></i> Юсуфа Хос Ходжиба (улица), Яккасарайский район </a>
                                                 </div>
                                                 <div class="objects_carousel_item_box_content_show_contant mt-3">
-                                                    <button v-if="showPhone == false" @click="this.showPhone = true"  type="button" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 d-flex align-items-center">
+                                                    <a href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 d-flex align-items-center">
                                                         <i class="feather icon-phone mr-2"></i>
                                                         <span class="button-root__text-8-1-3">
-                                                            Показать телефон
+                                                            Позвонить
                                                         </span>
-                                                    </button>
-                                                    <a v-if="showPhone == true" href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3">
-                                                        <span class="button-root__text-8-1-3">+99890 359-22-84</span>
                                                     </a>
                                                 </div>
                                             </div>

@@ -983,6 +983,75 @@ a:hover{
 .dealHistory_statistics {
     margin-top: 16px;
 }
+
+.shell_agent_objects{
+    margin-top: 60px;
+}
+
+.shell_agent_objects_block_ul_li{
+    display: inline-block;
+}
+
+.shell_agent_objects_block_ul_li_link{
+    position: relative;
+    font-size: 14px;
+    line-height: 15px;
+    background: #fff;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    padding: 11px 15px;
+    margin-right: 10px;
+    color: #000;
+    font-weight: 700;
+    transition: .3s all ease;
+}
+
+.shell_agent_objects_block_ul_li_link:hover{
+    background: var(--form-button-color);
+    border-color: var(--form-button-color);
+    color: #fff;
+}
+.shell_agent_objects_block_ul_li_link-active{
+    background: var(--form-button-color);
+    border-color: var(--form-button-color);
+    color: #fff;
+}
+
+.shell_agent_objects .p-tabview-nav-content{
+    display: none;
+}
+
+.shell_agent_objects .p-tabview .p-tabview-panels{
+    background: transparent;
+}
+
+.objects_lists_item_box_content{
+    position: relative;
+}
+
+.objects_lists_item_box_btn_saved{
+    position: absolute;
+    padding: 7px;
+    right: 15px;
+    top: 15px;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    border-radius: 999em;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid rgba(28,28,28,.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color .3s,background-color .3s;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
 /* ************************************* Agent Info Page end ************************************/
 /************************************* Object Single Page styles *********************************** */
 .button-root--fluid-8-1-3{
@@ -1784,9 +1853,10 @@ textarea.md-form__control {
     min-width: 40px;
     color: rgba(255,255,255,0.8);
     font-size: 12px;
-    left: 0;
-    bottom: 22px;
+    left: 15px;
+    bottom: 15px;
     z-index: 15;
+    width: 40px;
 }
 /* ************************************ Commercial page end ***************************************/
 /* ****************************** MEDIA ******************************************* */
@@ -1984,6 +2054,11 @@ textarea.md-form__control {
         bottom: 20%!important;
     } */
     /* ********** Commercial page end *****************************/
+    /* ***************************** Agent Info Page ******************** */
+    .agentCard_ratingWrap {
+        margin: 76px auto 0;
+    }
+    /* ***************************** Agent Info Page ******************** */
 }
 
 @media (min-width: 768px){
@@ -2182,6 +2257,17 @@ textarea.md-form__control {
         margin-bottom: 20px;
     }
     /* ********** Commercial page end *****************************/
+    /* ////////// Agent Info Page ////////////////////////////////// */
+    .agentinfo_page_div_block{
+        margin: 32px -16px 0;
+        overflow: hidden;
+        width: unset;
+    }
+    
+    .shell_agent_objects_block{
+        padding: 0 20px;
+    }
+    /* ////////// Agent Info Page ////////////////////////////////// */
 }
 
 @media only screen and (max-width: 475px){
@@ -2230,6 +2316,22 @@ textarea.md-form__control {
         width: 100%;
     }
     /* ********** Commercial page end *****************************/
+    /* ////////// Agent Info Page ////////////////////////////////// */
+    .shell_agent_objects_block {
+        padding: 0 10px;
+    }
+    
+    .shell_agent_objects_block_ul{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: normal;
+        align-items: flex-start;
+        white-space: nowrap;
+        overflow: auto;
+        padding: 10px 0 20px 0 !important;
+    }
+    /* ////////// Agent Info Page ////////////////////////////////// */
 }
 
 @media only screen and (max-width: 414px){

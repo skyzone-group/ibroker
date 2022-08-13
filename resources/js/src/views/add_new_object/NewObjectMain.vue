@@ -1168,4 +1168,10 @@ margin-left: 2.4rem;
     top: 20px;
     width: 100%;
 }
+
+@media (max-width: 575px){
+    .new_object_frontend {
+        overflow: hidden !important;
+    }
+}
 </style>

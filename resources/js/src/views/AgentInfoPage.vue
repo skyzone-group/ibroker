@@ -127,6 +127,216 @@
                             </div>
                         </div>
                     </div>
+                    <div class="shell_agent_objects">
+                        <div class="shell_agent_objects_block">
+                            <div class="shell_agent_objects_block_buttons mb-5">
+                                <ul class="shell_agent_objects_block_ul p-0 m-0 list-style-none">
+                                    <li class="shell_agent_objects_block_ul_li">
+                                        <a @click="active3 = 0" href="#!" class="shell_agent_objects_block_ul_li_link" :class="{'shell_agent_objects_block_ul_li_link-active' : active3 === 0}">Продажа (28)</a>
+                                    </li>
+                                    <li class="shell_agent_objects_block_ul_li">
+                                        <a @click="active3 = 1" href="#!" class="shell_agent_objects_block_ul_li_link" :class="{'shell_agent_objects_block_ul_li_link-active' : active3 === 1}">Аренда (2)</a>
+                                    </li>
+                                    <li class="shell_agent_objects_block_ul_li">
+                                        <a @click="active3 = 2" href="#!" class="shell_agent_objects_block_ul_li_link mr-0" :class="{'shell_agent_objects_block_ul_li_link-active' : active3 === 2}">Новостройки (4)</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="shell_agent_objects_block_content">
+                                <TabView ref="tabview4" v-model:activeIndex="active3">
+                                    <TabPanel>
+                                        <div class="shell_agent_objects_block_content_item">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="commercial_page_div_objects_lists_item">
+                                                        <div class="objects_lists_item_box">
+                                                            <div class="objects_lists_item_box_header">
+                                                                <div class="objects_lists_item_box_header_carousel w-100">
+                                                                    <swiper 
+                                                                    :pagination="{
+                                                                        type: 'fraction',
+                                                                    }"
+                                                                    :navigation="true" 
+                                                                    :modules="modules" class="mySwiper"
+                                                                    >
+                                                                        <swiper-slide>
+                                                                            <a href="#!" target="_blank" class="text-dark">
+                                                                                <picture class="h-auto w-100">
+                                                                                    <source class="w-100" srcset="images/architecture.jpg" type="image/jpg" style="object-fit: cover;">
+                                                                                    <img src="images/architecture.jpg" class="w-100" alt="" style="object-fit: cover;">
+                                                                                </picture>
+                                                                            </a>
+                                                                        </swiper-slide>
+                                                                        <swiper-slide>
+                                                                            <a href="#!" target="_blank" class="text-dark">
+                                                                                <picture class="h-auto w-100">
+                                                                                    <source class="w-100" srcset="images/buy_office.jpg" type="image/jpg" style="object-fit: cover;">
+                                                                                    <img src="images/buy_office.jpg" class="w-100" alt="" style="object-fit: cover;">
+                                                                                </picture>
+                                                                            </a>
+                                                                        </swiper-slide>
+                                                                    </swiper>
+                                                                </div>
+                                                            </div>
+                                                            <div class="objects_lists_item_box_content">
+                                                                <div class="objects_carousel_item_box_content_price d-flex justify-content-start text-left flex-column">
+                                                                    <p class="total_price">46 500 y.e</p>
+                                                                    <span>652 y.e / м²</span>
+                                                                </div>
+                                                                <div class="objects_carousel_item_box_content_title">
+                                                                    <h4><a href="#!">2-комн. квартира, 5/7 этаж, 70 м²</a></h4>
+                                                                </div>
+                                                                <div class="objects_carousel_item_box_content_location text-left">
+                                                                    <a href="#!" class="text-left"><i class="feather icon-map-pin"></i> Юсуфа Хос Ходжиба (улица), Яккасарайский район </a>
+                                                                </div>
+                                                                <div class="objects_carousel_item_box_content_show_contant mt-3">
+                                                                    <a href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 d-flex align-items-center">
+                                                                        <i class="feather icon-phone mr-2"></i>
+                                                                        <span class="button-root__text-8-1-3">
+                                                                            Позвонить
+                                                                        </span>
+                                                                    </a>
+                                                                </div>
+                                                                <button class="objects_lists_item_box_btn_saved">
+                                                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" class="_DEYS" style="color: rgb(132, 132, 132);"><path d="M10.72 19.84c-2.58-2.33-4.7-4.26-6.18-6.07-1.48-1.8-2.29-3.46-2.29-5.27A5.2 5.2 0 017.5 3.25c1.57 0 3.08.69 4.12 1.8.2.21.55.21.76 0a5.74 5.74 0 014.12-1.8 5.2 5.2 0 015.25 5.25c0 1.8-.81 3.47-2.29 5.27-1.47 1.8-3.58 3.73-6.15 6.06l-.03.02-.77.7a.75.75 0 01-1.01 0l-.78-.7z"></path></svg>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <div class="shell_agent_objects_block_content_item">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="commercial_page_div_objects_lists_item">
+                                                        <div class="objects_lists_item_box">
+                                                            <div class="objects_lists_item_box_header">
+                                                                <div class="objects_lists_item_box_header_carousel w-100">
+                                                                    <swiper 
+                                                                    :pagination="{
+                                                                        type: 'fraction',
+                                                                    }"
+                                                                    :navigation="true" 
+                                                                    :modules="modules" class="mySwiper"
+                                                                    >
+                                                                        <swiper-slide>
+                                                                            <a href="#!" target="_blank" class="text-dark">
+                                                                                <picture class="h-auto w-100">
+                                                                                    <source class="w-100" srcset="images/country_estate.jpg" type="image/jpg" style="object-fit: cover;">
+                                                                                    <img src="images/country_estate.jpg" class="w-100" alt="" style="object-fit: cover;">
+                                                                                </picture>
+                                                                            </a>
+                                                                        </swiper-slide>
+                                                                        <swiper-slide>
+                                                                            <a href="#!" target="_blank" class="text-dark">
+                                                                                <picture class="h-auto w-100">
+                                                                                    <source class="w-100" srcset="images/buy_office.jpg" type="image/jpg" style="object-fit: cover;">
+                                                                                    <img src="images/buy_office.jpg" class="w-100" alt="" style="object-fit: cover;">
+                                                                                </picture>
+                                                                            </a>
+                                                                        </swiper-slide>
+                                                                    </swiper>
+                                                                </div>
+                                                            </div>
+                                                            <div class="objects_lists_item_box_content">
+                                                                <div class="objects_carousel_item_box_content_price d-flex justify-content-start text-left flex-column">
+                                                                    <p class="total_price">120 500 y.e</p>
+                                                                    <span>652 y.e / м²</span>
+                                                                </div>
+                                                                <div class="objects_carousel_item_box_content_title">
+                                                                    <h4><a href="#!">4-комн. квартира, 5/7 этаж, 70 м²</a></h4>
+                                                                </div>
+                                                                <div class="objects_carousel_item_box_content_location text-left">
+                                                                    <a href="#!" class="text-left"><i class="feather icon-map-pin"></i> Юсуфа Хос Ходжиба (улица), Яккасарайский район </a>
+                                                                </div>
+                                                                <div class="objects_carousel_item_box_content_show_contant mt-3">
+                                                                    <a href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 d-flex align-items-center">
+                                                                        <i class="feather icon-phone mr-2"></i>
+                                                                        <span class="button-root__text-8-1-3">
+                                                                            Позвонить
+                                                                        </span>
+                                                                    </a>
+                                                                </div>
+                                                                <button class="objects_lists_item_box_btn_saved">
+                                                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" class="_DEYS" style="color: rgb(132, 132, 132);"><path d="M10.72 19.84c-2.58-2.33-4.7-4.26-6.18-6.07-1.48-1.8-2.29-3.46-2.29-5.27A5.2 5.2 0 017.5 3.25c1.57 0 3.08.69 4.12 1.8.2.21.55.21.76 0a5.74 5.74 0 014.12-1.8 5.2 5.2 0 015.25 5.25c0 1.8-.81 3.47-2.29 5.27-1.47 1.8-3.58 3.73-6.15 6.06l-.03.02-.77.7a.75.75 0 01-1.01 0l-.78-.7z"></path></svg>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <div class="shell_agent_objects_block_content_item">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="commercial_page_div_objects_lists_item">
+                                                        <div class="objects_lists_item_box">
+                                                            <div class="objects_lists_item_box_header">
+                                                                <div class="objects_lists_item_box_header_carousel w-100">
+                                                                    <swiper 
+                                                                    :pagination="{
+                                                                        type: 'fraction',
+                                                                    }"
+                                                                    :navigation="true" 
+                                                                    :modules="modules" class="mySwiper"
+                                                                    >
+                                                                        <swiper-slide>
+                                                                            <a href="#!" target="_blank" class="text-dark">
+                                                                                <picture class="h-auto w-100">
+                                                                                    <source class="w-100" srcset="images/new_buildings.jpg" type="image/jpg" style="object-fit: cover;">
+                                                                                    <img src="images/new_buildings.jpg" class="w-100" alt="" style="object-fit: cover;">
+                                                                                </picture>
+                                                                            </a>
+                                                                        </swiper-slide>
+                                                                        <swiper-slide>
+                                                                            <a href="#!" target="_blank" class="text-dark">
+                                                                                <picture class="h-auto w-100">
+                                                                                    <source class="w-100" srcset="images/buy_office.jpg" type="image/jpg" style="object-fit: cover;">
+                                                                                    <img src="images/buy_office.jpg" class="w-100" alt="" style="object-fit: cover;">
+                                                                                </picture>
+                                                                            </a>
+                                                                        </swiper-slide>
+                                                                    </swiper>
+                                                                </div>
+                                                            </div>
+                                                            <div class="objects_lists_item_box_content">
+                                                                <div class="objects_carousel_item_box_content_price d-flex justify-content-start text-left flex-column">
+                                                                    <p class="total_price">95 500 y.e</p>
+                                                                    <span>652 y.e / м²</span>
+                                                                </div>
+                                                                <div class="objects_carousel_item_box_content_title">
+                                                                    <h4><a href="#!">3-комн. квартира, 5/7 этаж, 70 м²</a></h4>
+                                                                </div>
+                                                                <div class="objects_carousel_item_box_content_location text-left">
+                                                                    <a href="#!" class="text-left"><i class="feather icon-map-pin"></i> Юсуфа Хос Ходжиба (улица), Яккасарайский район </a>
+                                                                </div>
+                                                                <div class="objects_carousel_item_box_content_show_contant mt-3">
+                                                                    <a href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 d-flex align-items-center">
+                                                                        <i class="feather icon-phone mr-2"></i>
+                                                                        <span class="button-root__text-8-1-3">
+                                                                            Позвонить
+                                                                        </span>
+                                                                    </a>
+                                                                </div>
+                                                                <button class="objects_lists_item_box_btn_saved">
+                                                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" class="_DEYS" style="color: rgb(132, 132, 132);"><path d="M10.72 19.84c-2.58-2.33-4.7-4.26-6.18-6.07-1.48-1.8-2.29-3.46-2.29-5.27A5.2 5.2 0 017.5 3.25c1.57 0 3.08.69 4.12 1.8.2.21.55.21.76 0a5.74 5.74 0 014.12-1.8 5.2 5.2 0 015.25 5.25c0 1.8-.81 3.47-2.29 5.27-1.47 1.8-3.58 3.73-6.15 6.06l-.03.02-.77.7a.75.75 0 01-1.01 0l-.78-.7z"></path></svg>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </TabPanel>
+                                </TabView>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -135,10 +345,27 @@
 
 <script>
 import Chart from 'primevue/chart';
+import TabView from 'primevue/tabview';
+import TabPanel from 'primevue/tabpanel';
+
+
+
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from "swiper/vue";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+// import required modules
+import { Pagination, Navigation } from "swiper";
 
 export default {
     components: {
-        Chart
+        Chart,
+        TabView,
+        TabPanel,
+        Swiper,
+        SwiperSlide,
     },
     data() {
         return {
@@ -150,9 +377,15 @@ export default {
 						backgroundColor: '#42A5F5',
 						data: [65, 59, 80, 81, 56, 55, 40]
 					},
-				]
-			}
+				],
+			},
+            active3: 0,
         }
+    },
+    setup() {
+        return {
+            modules: [Pagination, Navigation],
+        };
     },
 }
 </script>
