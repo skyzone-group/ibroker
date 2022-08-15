@@ -18,18 +18,163 @@
                         <ul class="mb-0 navbar-ul">
                             <li class="navbar-ul-li">
                                 <router-link to="/rent">Аренда</router-link>
+                                <div class="sub-menu">
+                                    <div class="sub-menu-item">
+                                        <ul>
+                                            <li>
+                                                <a href="#">Квартира</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Комнаты</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Дома и коттеджи</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Посуточная аренда</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="sub-menu-item">
+                                        <ul>
+                                            <li>
+                                                <a href="#">
+                                                    <span>Как снять или сдать квартиру</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span>Как купить или продать квартиру на вторичном рынке</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </li>
                             <li class="navbar-ul-li">
                                 <router-link to="/sell">Продажа</router-link>
+                                <div class="sub-menu">
+                                    <div class="sub-menu-item">
+                                        <ul>
+                                            <li>
+                                                <a href="#">Квартира</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Квартиры в новостройках</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Квартиры во вторичке</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Комнаты и доли</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Дома и коттеджи</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Участки</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Продать</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="sub-menu-item">
+                                        <ul>
+                                            <li>
+                                                <a href="#">
+                                                    <span>Как купить или продать квартиру на вторичном рынке</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span>Всё, что важно знать при покупке новостройки</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </li>
                             <li class="navbar-ul-li">
                                 <router-link to="/test">Новостройки</router-link>
+                                <div class="sub-menu">
+                                    <div class="sub-menu-item">
+                                        <ul>
+                                            <li>
+                                                <a href="#">Квартира</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Каталог жилых комплексов</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Каталог коттеджных поселков</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Каталог акций и скидок</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="sub-menu-item">
+                                        <ul>
+                                            <li>
+                                                <a href="#">
+                                                    <span>Как купить или продать квартиру на вторичном рынке</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span>Всё, что важно знать при покупке новостройки</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </li>
                             <li class="navbar-ul-li">
                                 <a  href="/commercial">Коммерческая</a>
                             </li>
                             <li class="navbar-ul-li">
                                 <router-link to="/dwdw">Ипотека</router-link>
+                            </li>
+                            <li class="navbar-ul-li">
+                                <router-link to="/dwdw">Еще</router-link>
+                                <div class="sub-menu">
+                                    <div class="sub-menu-item">
+                                        <ul>
+                                            <li>
+                                                <a href="#">Застройщики</a>
+                                            </li>
+                                            <li>
+                                                <a href="/partners/agents">Компании</a>
+                                            </li>
+                                            <li>
+                                                <a href="/partners/realtors">Риэлторы</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Избранные</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">О Нас</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="sub-menu-item">
+                                        <ul>
+                                            <li>
+                                                <a href="#">Помощь</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Условия пользования сайтом</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Добавить объявление</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Блог</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
                     </nav>
@@ -304,6 +449,7 @@ export default {
                     display: flex;
                     
                     li{
+                        transition: .4s all ease;
                         
                         a{
                             display: flex;
@@ -317,6 +463,62 @@ export default {
                             font-size: 16px;
                             line-height: 20px;
                             text-decoration: none;
+                        }
+                        
+                        .sub-menu {
+                            display: none;
+                            
+                            .sub-menu-item{
+                                padding-left: 1.2rem;
+                                
+                                ul{
+                                    margin-bottom: 0;
+                                    padding-left: 0;
+                                    font-weight: normal;
+                                    color: #000;
+                                    
+                                    li{
+                                        margin-bottom: 0;
+                                        padding-left: 0;
+                                        text-transform: capitalize;
+                                        font-size: 20px;
+                                        
+                                        &:not(:last-child){
+                                            margin: 0 0 20px 0;
+                                        }
+                                        
+                                        a{
+                                            transition: .3s all ease;
+                                            
+                                            &:hover{
+                                                color: var(--primary_100);
+                                            }
+                                            
+                                            span{
+                                                font-weight: normal;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            @media screen and (min-width: 992px){
+                                position: absolute;
+                                left: 0;
+                                width: 100%;
+                                top: 100%;
+                                background: #fff;
+                                height: 350px;
+                            }
+                        }
+                        
+                        @media screen and (min-width: 992px){
+                            &:hover .sub-menu {
+                                display: grid!important;
+                                grid-template-columns: repeat(4, 1fr);
+                                padding: 40px 5rem;
+                                z-index: 10;
+                            }
                         }
                     }
                 }

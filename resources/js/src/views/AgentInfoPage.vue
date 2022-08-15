@@ -190,10 +190,16 @@
                                                                     <a href="#!" class="text-left"><i class="feather icon-map-pin"></i> Юсуфа Хос Ходжиба (улица), Яккасарайский район </a>
                                                                 </div>
                                                                 <div class="objects_carousel_item_box_content_show_contant mt-3">
-                                                                    <a href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 d-flex align-items-center">
+                                                                    <button @click="showNum(1)" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 align-items-center" id="showNum_1" style="display: flex;">
                                                                         <i class="feather icon-phone mr-2"></i>
                                                                         <span class="button-root__text-8-1-3">
                                                                             Позвонить
+                                                                        </span>
+                                                                    </button>
+                                                                    <a href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 align-items-center" style="display: none;" id="hidenum_1">
+                                                                        <i class="feather icon-phone mr-2"></i>
+                                                                        <span class="button-root__text-8-1-3">
+                                                                            +99890 359-22-84
                                                                         </span>
                                                                     </a>
                                                                 </div>
@@ -386,6 +392,14 @@ export default {
         return {
             modules: [Pagination, Navigation],
         };
+    },
+    methods: {
+        showNum(index){
+            var hideNum = document.getElementById("hidenum_" + index);
+            var showNum = document.getElementById("showNum_" + index);
+            hideNum.style.display = "flex";
+            showNum.style.display = "none";
+        }
     },
 }
 </script>
