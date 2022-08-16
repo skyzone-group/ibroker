@@ -6,6 +6,7 @@ import Main from '../../src/layouts/Main.vue'
 // Web Pages
 import IndexPage from '../../src/views/HomeIndex.vue'
 import CommercialPage from '../../src/views/Commercial.vue'
+import RentPage from '../../src/views/Rent.vue'
 import AgentInfo from '../../src/views/AgentInfoPage.vue'
 import PartnersInfo from '../../src/views/PartnersPage.vue'
 
@@ -50,6 +51,13 @@ const routes = [
                 name: 'siteCommercial',
                 components: {
                     main: CommercialPage,
+                }
+            },
+            {
+                path: 'snyat/',
+                name: 'siteRent',
+                components: {
+                    main: RentPage,
                 }
             },
             {

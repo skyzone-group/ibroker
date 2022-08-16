@@ -9,7 +9,7 @@
             <div class="user__details">
                 <div class="user__header">
                     <div class="user__title title">
-                        <a href="https://uybor.uz/ru/user/view/134207">
+                        <a href="/agent">
                             Javohir Toirov
                         </a>
                     </div>

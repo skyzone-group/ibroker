@@ -1858,6 +1858,17 @@ textarea.md-form__control {
     z-index: 15;
     width: 40px;
 }
+
+
+/* .side-bar-overlay{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9;
+    background: rgba(0,0,0,.4);
+    width: 100%;
+} */
 /* ************************************ Commercial page end ***************************************/
 /* ****************************** MEDIA ******************************************* */
 /************************************* Object Single Page styles *********************************** */

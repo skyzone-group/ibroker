@@ -2,84 +2,84 @@
     <div class="favorites_modal_box">
         <!-- Modal -->
         <div class="modal fade" id="favoritesModal" tabindex="-1" aria-labelledby="exampleModalLabel"  aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Фильтр</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="modal-body-form">
-                        <form>
-                            <div class="modal-body-form-row">
-                                <div class="row">
-                                    <div class="col-lg-12 mb-3">
-                                        <div class="field">
-                                            <span class="favorites_modal_box_title">Тип сделки</span>
-                                            <div class="favorites_modal_box_btns d-flex flex-wrap mt-2">
-                                                <span class="favorites_modal_box_btns_item mr-3">
-                                                    <label for="deal_type_rent">
-                                                        <input type="checkbox" id="deal_type_rent">
-                                                        <span>
-                                                            Аренда
-                                                        </span>
-                                                    </label>
-                                                </span>
-                                                <span class="favorites_modal_box_btns_item mr-3">
-                                                    <label for="deal_type_sell">
-                                                        <input type="checkbox" id="deal_type_sell">
-                                                        <span>
-                                                            Продажа
-                                                        </span>
-                                                    </label>
-                                                </span>
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Фильтр</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-body-form">
+                            <form>
+                                <div class="modal-body-form-row">
+                                    <div class="row">
+                                        <div class="col-lg-12 mb-3">
+                                            <div class="field">
+                                                <span class="favorites_modal_box_title">Тип сделки</span>
+                                                <div class="favorites_modal_box_btns d-flex flex-wrap mt-2">
+                                                    <span class="favorites_modal_box_btns_item mr-3">
+                                                        <label for="deal_type_rent">
+                                                            <input type="checkbox" id="deal_type_rent">
+                                                            <span>
+                                                                Аренда
+                                                            </span>
+                                                        </label>
+                                                    </span>
+                                                    <span class="favorites_modal_box_btns_item mr-3">
+                                                        <label for="deal_type_sell">
+                                                            <input type="checkbox" id="deal_type_sell">
+                                                            <span>
+                                                                Продажа
+                                                            </span>
+                                                        </label>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="field">
-                                            <span class="favorites_modal_box_title">Вид недвижимости</span>
-                                            <div class="favorites_modal_box_btns d-flex flex-wrap mt-2">
-                                                <span class="favorites_modal_box_btns_item mr-3">
-                                                    <label for="estate_type_residential">
-                                                        <input type="checkbox" id="estate_type_residential">
-                                                        <span>
-                                                            Жилая
-                                                        </span>
-                                                    </label>
-                                                </span>
-                                                <span class="favorites_modal_box_btns_item mr-3">
-                                                    <label for="estate_type_2">
-                                                        <input type="checkbox" id="estate_type_2">
-                                                        <span>
-                                                            Загородная
-                                                        </span>
-                                                    </label>
-                                                </span>
-                                                <span class="favorites_modal_box_btns_item mr-3">
-                                                    <label for="estate_type_3">
-                                                        <input type="checkbox" id="estate_type_3">
-                                                        <span>
-                                                            Коммерческая
-                                                        </span>
-                                                    </label>
-                                                </span>
+                                        <div class="col-lg-12">
+                                            <div class="field">
+                                                <span class="favorites_modal_box_title">Вид недвижимости</span>
+                                                <div class="favorites_modal_box_btns d-flex flex-wrap mt-2">
+                                                    <span class="favorites_modal_box_btns_item mr-3">
+                                                        <label for="estate_type_residential">
+                                                            <input type="checkbox" id="estate_type_residential">
+                                                            <span>
+                                                                Жилая
+                                                            </span>
+                                                        </label>
+                                                    </span>
+                                                    <span class="favorites_modal_box_btns_item mr-3">
+                                                        <label for="estate_type_2">
+                                                            <input type="checkbox" id="estate_type_2">
+                                                            <span>
+                                                                Загородная
+                                                            </span>
+                                                        </label>
+                                                    </span>
+                                                    <span class="favorites_modal_box_btns_item mr-3">
+                                                        <label for="estate_type_3">
+                                                            <input type="checkbox" id="estate_type_3">
+                                                            <span>
+                                                                Коммерческая
+                                                            </span>
+                                                        </label>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        <button type="button" class="btn btn-primary"> <i class="feather icon-search mr-1"></i> Поиск</button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                    <button type="button" class="btn btn-primary"> <i class="feather icon-search mr-1"></i> Поиск</button>
-                </div>
             </div>
-        </div>
         </div>
     </div>
 </template>

@@ -15,9 +15,9 @@
                 </router-link>
                 <!-- Menu View start -->
                     <nav v-if="!mobileView">
-                        <ul class="mb-0 navbar-ul">
+                        <ul class="mb-0 navbar-ul descktop-menu">
                             <li class="navbar-ul-li">
-                                <router-link to="/rent">Аренда</router-link>
+                                <router-link :to="{name: 'siteRent'}">Аренда</router-link>
                                 <div class="sub-menu">
                                     <div class="sub-menu-item">
                                         <ul>
@@ -131,7 +131,7 @@
                                 </div>
                             </li>
                             <li class="navbar-ul-li">
-                                <a  href="/commercial">Коммерческая</a>
+                                <router-link :to="{name: 'siteCommercial'}">Коммерческая</router-link>
                             </li>
                             <li class="navbar-ul-li">
                                 <router-link to="/dwdw">Ипотека</router-link>
@@ -178,6 +178,8 @@
                             </li>
                         </ul>
                     </nav>
+                    
+                    
                 <!-- Menu View end -->
                 
                 <!-- Mobile menu start -->
@@ -353,6 +355,7 @@
             </div>
         </div>
     </header>
+        <div class="side-bar-overlay"></div>
 </template>
 
 
@@ -420,6 +423,8 @@ export default {
         .nabvar{
             border-bottom: 1px solid var(--gray10_100);
             background: var(--white_100);
+            z-index: 10;
+            position: relative;
             
             .nabvar__block-logo{
                 // background-size: 100%;
@@ -501,6 +506,17 @@ export default {
                                     }
                                 }
                             }
+                            
+                            // &:after{
+                            //     content: "";
+                            //     position: absolute;
+                            //     display: block;
+                            //     /* background: #000; */
+                            //     top: 100%;
+                            //     width: 100%;
+                            //     height: 100vh;
+                            //     background-color: rgba(0, 0, 0, 0.4);
+                            // }
                             
                             @media screen and (min-width: 992px){
                                 position: absolute;
@@ -807,6 +823,16 @@ export default {
     
     .p-sidebar-left {
         width: 100% !important;
+    }
+    
+    .descktop-menu .navbar-ul-li a.router-link-active:after{
+        background: var(--primary_100);
+        width: calc(100% - 16px);
+        height: 4px;
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: -1px;
     }
     // *****************************************
     @media (max-width: 660px){

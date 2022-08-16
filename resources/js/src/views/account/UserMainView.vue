@@ -137,7 +137,9 @@ export default {
     .summary_main-div-item-blocks:nth-child(2){
         overflow: hidden;
     }
-    
+    .summary_main-div-cards .carousel__slide{
+        padding: 0 !important;
+    }
     
     /* ***************************************************** */
     @media (max-width: 767px){
