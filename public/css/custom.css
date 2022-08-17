@@ -1771,8 +1771,13 @@ textarea.md-form__control {
     background-color: #e5e5e5;
     display: flex;
     flex-direction: column;
-    height: auto;
+    height: 200px;
     position: relative;
+}
+
+.objects_lists_item_box_header_carousel,
+.objects_lists_item_box_header .swiper{
+    height: 200px !important;
 }
 
 .objects_lists_item_box_content{

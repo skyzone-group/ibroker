@@ -15,6 +15,25 @@
                 <div class="filter-block-back"></div>
                 <div class="filter-block-back__img commercial__img rent__img"></div>
             </div>
+            
+            <div class="rent-page-useful-links my-5">
+                <div class="rent-page-useful-links-box">
+                    <div class="container_fluid">
+                        <h2 class="useful_links_box_title content_h2">Полезные ссылки</h2>
+                        <div class="useful_links_box_cards">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="useful_links_box_cards_item">
+                                        <div class="useful_links_box_cards_item_block buy_room">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>

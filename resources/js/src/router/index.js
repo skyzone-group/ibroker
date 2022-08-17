@@ -9,7 +9,7 @@ import CommercialPage from '../../src/views/Commercial.vue'
 import RentPage from '../../src/views/Rent.vue'
 import AgentInfo from '../../src/views/AgentInfoPage.vue'
 import PartnersInfo from '../../src/views/PartnersPage.vue'
-
+import AgentSingle from '../../src/views/AgentSingle.vue'
 
 // User Account Pages
 import UserDashboard  from '../views/account/UsersDashboard.vue'
@@ -155,6 +155,13 @@ const routes = [
                 name: 'agentInfo',
                 components: {
                     main: AgentInfo,
+                },
+            },
+            {
+                path: '/agent-single',
+                name: 'agentSingle',
+                components: {
+                    main: AgentSingle,
                 },
             },
             {

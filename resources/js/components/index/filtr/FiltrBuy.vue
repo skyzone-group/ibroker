@@ -1,7 +1,6 @@
 <template>
     <div class="filtr_block w-100">
         Buy
-        
     </div>
 </template>
 
@@ -13,6 +12,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>

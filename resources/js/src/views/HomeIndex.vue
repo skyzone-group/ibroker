@@ -7,7 +7,11 @@
                         <div class="filter-block-inputs_content-top">
                             <div class="filter-block-inputs_content-top-txt">
                                 <h1 class="title">Недвижимость в Ташкенте</h1>
-                                <filter-block></filter-block>
+                                <div class="filtr_block-container">
+                                    <div class="filtr_block-wrapper">
+                                        <filter-block></filter-block>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1229,4 +1233,20 @@ export default {
     z-index: 3;
     padding: 0 16px;
 }
+
+/* .filtr_block-container{
+    display: flex;
+    position: relative;
+    margin: 0 auto;
+    box-shadow: 0 10px 20px 0 rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    background-color: #fff;
+    max-width: 1109px;
+    height: 60px;
+}
+
+.filtr_block-wrapper{
+    width: 100%;
+    display: flex;
+} */
 </style>
