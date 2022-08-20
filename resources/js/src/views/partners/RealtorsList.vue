@@ -9,7 +9,7 @@
             <div class="user__details">
                 <div class="user__header">
                     <div class="user__title title">
-                        <a href="/agent">
+                        <a href="/agent-single">
                             Javohir Toirov
                         </a>
                     </div>

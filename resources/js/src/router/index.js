@@ -151,7 +151,7 @@ const routes = [
                 },
             },
             {
-                path: '/agent',
+                path: '/agent-info',
                 name: 'agentInfo',
                 components: {
                     main: AgentInfo,
