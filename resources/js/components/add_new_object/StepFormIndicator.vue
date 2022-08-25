@@ -2,89 +2,100 @@
     <div class="form_inficator_box">
         <div class="step_form">
             <h3 class="step_form_title">Обязательно для заполнения</h3>
-            <nav class="d-flex flex-column">
-                <div class="steps_item">
-                    <button v-scroll-to="'#section-one'" class="steps_item_btn steps_item_btn_icon_left" role="button">
-                        <div class="link_icon">
-                            <div class="icon_div">
-                                <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+            <VScrollActive offset="40" :hash="false" @update="handleNavbarChange">
+                <nav class="d-flex flex-column">
+                    <div class="steps_item">
+                        <button data-scroll-active="section-one" class="steps_item_btn steps_item_btn_icon_left" role="button">
+                            <div class="link_icon">
+                                <div class="icon_div">
+                                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+                                </div>
                             </div>
-                        </div>
-                        <span class="link_txt">
-                            <span>Тип объявления</span>
-                        </span>
-                    </button>
-                </div>
-                <div class="steps_item">
-                    <button v-scroll-to="'#section-two'" class="steps_item_btn steps_item_btn_icon_left" role="button">
-                        <div class="link_icon">
-                            <div class="icon_div">
-                                <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+                            <span class="link_txt">
+                                <span>Тип объявления</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="steps_item">
+                        <button data-scroll-active="section-two" class="steps_item_btn steps_item_btn_icon_left" role="button">
+                            <div class="link_icon">
+                                <div class="icon_div">
+                                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+                                </div>
                             </div>
-                        </div>
-                        <span class="link_txt">
-                            <span>Адрес</span>
-                        </span>
-                    </button>
-                </div>
-                <div class="steps_item">
-                    <button v-scroll-to="'#section-three'" class="steps_item_btn steps_item_btn_icon_left" role="button">
-                        <div class="link_icon">
-                            <div class="icon_div">
-                                <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+                            <span class="link_txt">
+                                <span>Адрес</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="steps_item">
+                        <button data-scroll-active="section-three" class="steps_item_btn steps_item_btn_icon_left" role="button">
+                            <div class="link_icon">
+                                <div class="icon_div">
+                                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+                                </div>
                             </div>
-                        </div>
-                        <span class="link_txt">
-                            <span>Фотографии</span>
-                        </span>
-                    </button>
-                </div>
-                <div class="steps_item">
-                    <button v-scroll-to="'#section-four'" class="steps_item_btn steps_item_btn_icon_left" role="button">
-                        <div class="link_icon">
-                            <div class="icon_div">
-                                <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+                            <span class="link_txt">
+                                <span>Фотографии</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="steps_item">
+                        <button data-scroll-active="section-four" class="steps_item_btn steps_item_btn_icon_left" role="button">
+                            <div class="link_icon">
+                                <div class="icon_div">
+                                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+                                </div>
                             </div>
-                        </div>
-                        <span class="link_txt">
-                            <span>Параметры</span>
-                        </span>
-                    </button>
-                </div>
-                <div class="steps_item">
-                    <button v-scroll-to="'#section-five'" class="steps_item_btn steps_item_btn_icon_left" role="button">
-                        <div class="link_icon">
-                            <div class="icon_div">
-                                <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+                            <span class="link_txt">
+                                <span>Параметры</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="steps_item">
+                        <button data-scroll-active="section-five" class="steps_item_btn steps_item_btn_icon_left" role="button">
+                            <div class="link_icon">
+                                <div class="icon_div">
+                                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+                                </div>
                             </div>
-                        </div>
-                        <span class="link_txt">
-                            <span>Цена</span>
-                        </span>
-                    </button>
-                </div>
-                <div class="steps_item">
-                    <button v-scroll-to="'#section-six'" class="steps_item_btn steps_item_btn_icon_left" role="button">
-                        <div class="link_icon">
-                            <div class="icon_div">
-                                <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+                            <span class="link_txt">
+                                <span>Цена</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="steps_item">
+                        <button data-scroll-active="section-six" class="steps_item_btn steps_item_btn_icon_left" role="button">
+                            <div class="link_icon">
+                                <div class="icon_div">
+                                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+                                </div>
                             </div>
-                        </div>
-                        <span class="link_txt">
-                            <span>Описание</span>
-                        </span>
-                    </button>
-                </div>
-            </nav>
+                            <span class="link_txt">
+                                <span>Описание</span>
+                            </span>
+                        </button>
+                    </div>
+                </nav>
+            </VScrollActive>
         </div>
     </div>
 </template>
 
 <script>
+import VScrollActive from '../VScrollActive.vue';
 export default {
+    components: {
+        VScrollActive
+    },
     setup() {
         
     },
+    methods: {
+        handleNavbarChange(id) {
+            
+        }
+    }
 }
 </script>
 
@@ -163,6 +174,16 @@ export default {
     text-overflow: ellipsis;
     white-space: nowrap;
     border-bottom-color: rgba(36,38,41,.12);
+    border-bottom-width: 2px;
     color: #242629;
+}
+
+.steps_item_btn.active .link_txt{
+    color: var(--form-button-color) !important;
+    border-color: var(--form-button-color);
+}
+
+.steps_item_btn.active .icon_div{
+    color: var(--form-button-color) !important;
 }
 </style>

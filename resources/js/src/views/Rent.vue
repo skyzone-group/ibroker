@@ -25,7 +25,18 @@
                                 <div class="col-lg-8">
                                     <div class="useful_links_box_cards_item">
                                         <div class="useful_links_box_cards_item_block buy_room">
-                                            
+                                            <div class="content_txt">
+                                                <a href="#!" class="content_txt_title">Продажа квартир</a>
+                                                <a class="content_txt_links" href="#!">
+                                                    1-комнатные<span class="content_txt_links_num">18 053</span>
+                                                </a>
+                                                <a class="content_txt_links mt-2" href="#!">
+                                                    2-комнатные<span class="content_txt_links_num">18 053</span>
+                                                </a>
+                                                <a class="content_txt_links mt-2" href="#!">
+                                                    3-комнатные<span class="content_txt_links_num">18 053</span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +54,7 @@ import NavBar from '../../components/SiteNavBar.vue'
 import FilterBlock from '../../components/index/FilterBlock.vue'
 export default {
     components: {
-        FilterBlock
+        FilterBlock,
     },
     data() {
         return {
@@ -78,5 +89,9 @@ export default {
     background-position: 50% 100% !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
+}
+
+.rent-page-useful-links-box .content_txt_links{
+    display: block;
 }
 </style>

@@ -21,18 +21,24 @@
         <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css">
         <link type="text/css" rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
         
-        
     </head>
     <body class="antialiased">
         <div id="app" style="height: 100%">
         </div>
 
 
+        
+        <!-- jsDelivr :: Sortable :: Latest (https://www.jsdelivr.com/package/npm/sortablejs) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+        <script src="{{ asset('js/options.js') }}"></script>
+        <!-- *****************************************-->
+        
         <!-- Bootstrap scripts -->
         <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.1/jquery-migrate.min.js"></script>
-        
         <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
         <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('plugins/bootstrap_my/myScripts.js')}}" type="text/javascript"></script>

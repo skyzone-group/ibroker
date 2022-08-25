@@ -16,27 +16,46 @@
                 <input type="file" id="file" @change="onInputChange" multiple>
             </div>
         </div>
-        <div class="images-preview" v-show="images.length">
-            <div class="img-wrapper" v-for="(image, index ) in images" :key="index">
-                <img :src="image" :alt="`Image Uploader ${index}`">
-                <!-- <div class="details">
-                    <span class="name" v-text="files[index].name"></span>
-                    <span class="size" v-text="files[index].size"></span>
-                </div> -->
-            </div>
+    </div>
+    <div class="images-preview" v-show="images.length" id="imgList">
+        <div class="img-wrapper" v-for="(image, index ) in images" :key="index" >
+            <img :src="image" :alt="`Image Uploader ${index}`">
+            <!-- <div class="details">
+                <span class="name" v-text="files[index].name"></span>
+                <span class="size" v-text="files[index].size"></span>
+            </div> -->
         </div>
     </div>
+    <!-- <draggable 
+    v-model="images" 
+    group="people" 
+    @start="drag=true" 
+    @end="drag=false" 
+    item-key="id">
+        <template #item="{images, index}">
+            <div>
+                <img :src="images" :alt="`Image Uploader ${index}`">
+            </div>
+        </template>
+    </draggable> -->
 </template>
 
 
 <script>
+    import draggable from 'vuedraggable'
+    import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
 export default {
+    components: {
+        
+    },
     data() {
         return {
             isDragging: false,
             dragCount: 0,
             files: [],
-            images: []
+            images: [],
+            drag: false,
+
         }
     },
     methods: {
@@ -68,9 +87,20 @@ export default {
                 console.log(`${file.name} is not an image`);
                 return;
             }
-            
+            //console.log(this.images);
             this.files.push(file);
-            
+            // var sortable = Sortable.create(file);
+            var text = document.querySelector(".images-preview");
+            Sortable.create(text, {
+                items: '.img-wrapper',
+                cursor: 'move',
+                opacity: 0.5,
+                distance: 20,
+                tolerance: 'pointer',
+                animation: 150,
+                easing: "cubic-bezier(1, 0, 0, 1)",
+                ghostClass: "sortable-ghost",
+            });
             const img = new Image(),
                 reader = new FileReader();
                 

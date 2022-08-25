@@ -19,7 +19,6 @@ import VueScrollTo from 'vue-scrollto'
 
 import VueHtmlToPaper from "../../public/js/vue-print/VueHtmlToPaper.js";
 import VueCountdown from '@chenfengyuan/vue-countdown';
-
 const options = {
     name: '_blank',
     specs: [
@@ -36,11 +35,11 @@ const options = {
     autoClose: true, // if false, the window will not close after printing
     windowTitle: window.document.title, // override the window title
 }
+import DropZone from 'dropzone-vue';
+import 'dropzone-vue/dist/dropzone-vue.common.css';
 
 const app = createApp(App)
-
 //app.config.globalProperties.$IsLoggedIn = localStorage.getItem('token') ? true : false;
-
 app.use(router)
 app.use(PrimeVue)
 app.use(VueScrollTo, {
@@ -51,6 +50,7 @@ app.use(VueScrollTo, {
 app.component(VueCountdown.name, VueCountdown);
 app.directive('tooltip', Tooltip)
 app.use(VueHtmlToPaper, options)
+app.use(DropZone)
 app.mount('#app')
 
 

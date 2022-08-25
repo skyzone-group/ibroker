@@ -1,19 +1,180 @@
 <template>
     <div class="new_object_frontend" style="background-color: #f2f4f6;">
-        <div class="new_object_main_div container_medium">
+        <div class="new_object_main_div container_medium_new">
             <div class="new_object_main_div_block">
-                <header class="block_header d-flex align-items-center">
+                <!-- <header class="block_header d-flex align-items-center">
                     <b class="block_title title">Добавление объявления</b>
                     <span class="text-secondary">Вы можете бесплатно добавить до 2 объявлений в месяц</span>
-                </header>
+                </header> -->
                 <div class="block__body">
                     <div class="form">
                         <div class="block__body_main">
                             <div class="block__body_side-bar_content">
-                                <form @submit.prevent="saveData()" id="listingEditForm" method="POST" :model="form">
+                                <form @submit.prevent="saveData()" id="file-dropzone" action="/upload" method="POST" :model="form">
                                     <!-- Тип объявления -->
                                     <div class="form-card" id="section-one">
-                                        <ad-type></ad-type>
+                                        <div class="ad_type">
+                                            <div class="header_title">
+                                                <div class="header_title_content">
+                                                    <h4 class="header_title_content_txt">Тип объявления</h4>
+                                                </div>
+                                                <div>
+                                                    <div class="ad_type_item" style="margin-bottom: 20px;">
+                                                        <div class="ad_type_item_content">
+                                                            <div>
+                                                                <span class="ad_type_item_content_span">Тип аккаунта</span>
+                                                                <div class="single_button_select">
+                                                                    <div class="single_button_select_box d-flex">
+                                                                        <label for="type__account_owner" class="single_button_select_box_label" :class="{'active' : this.typeAccount == 'owner'}">
+                                                                            <input v-model="typeAccount" id="type__account_owner" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="owner">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeAccount == 'owner'}">Собственник</span>
+                                                                        </label>
+                                                                        <label for="type__account_agent" class="single_button_select_box_label" :class="{'active' : this.typeAccount == 'agent'}">
+                                                                            <input v-model="typeAccount" id="type__account_agent" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="agent">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeAccount == 'agent'}">Агент</span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ad_type_item" style="margin-bottom: 20px;">
+                                                        <div class="ad_type_item_content">
+                                                            <div>
+                                                                <span class="ad_type_item_content_span">Тип сделки</span>
+                                                                <div class="single_button_select">
+                                                                    <div class="single_button_select_box d-flex">
+                                                                        <label for="type__sell" class="single_button_select_box_label" :class="{'active' : this.typeDeal == 'Продажа'}">
+                                                                            <input v-model="typeDeal" id="type__sell" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="Продажа">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeDeal == 'Продажа'}">Продажа</span>
+                                                                        </label>
+                                                                        <label for="type__rent" class="single_button_select_box_label" :class="{'active' : this.typeDeal == 'Аренда'}">
+                                                                            <input v-model="typeDeal" id="type__rent" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="Аренда">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeDeal == 'Аренда'}">Аренда</span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div v-if="typeDeal === 'Аренда'" class="ad_type_item" style="margin-bottom: 20px;">
+                                                        <div class="ad_type_item_content">
+                                                            <div>
+                                                                <span class="ad_type_item_content_span">Тип аренды</span>
+                                                                <div class="single_button_select">
+                                                                    <div class="single_button_select_box d-flex">
+                                                                        <label for="type__rent_daily" class="single_button_select_box_label" :class="{'active' : this.typeRent == 'daily'}">
+                                                                            <input v-model="typeRent" id="type__rent_daily" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="daily">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeRent == 'daily'}">Посуточно</span>
+                                                                        </label>
+                                                                        <label for="type__rent_long_term" class="single_button_select_box_label" :class="{'active' : this.typeRent == 'long-terim'}">
+                                                                            <input v-model="typeRent" id="type__rent_long_term" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="long-terim">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeRent == 'long-terim'}">Долгосрочный</span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ad_type_item" style="margin-bottom: 20px;">
+                                                        <div class="ad_type_item_content">
+                                                            <div>
+                                                                <span class="ad_type_item_content_span">Вид недвижимости</span>
+                                                                <div class="single_button_select">
+                                                                    <div v-if="!MobileTypeEstate" class="single_button_select_box d-flex">
+                                                                        <label for="type__residential" class="single_button_select_box_label" :class="{'active' : this.typeProperty == 'apartment'}">
+                                                                            <input v-model="typeProperty" id="type__residential" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="apartment">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeProperty == 'apartment'}">Квартира</span>
+                                                                        </label>
+                                                                        <label for="type__house" class="single_button_select_box_label" :class="{'active' : this.typeProperty == 'house'}">
+                                                                            <input v-model="typeProperty" id="type__house" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="house">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeProperty == 'house'}">Дом</span>
+                                                                        </label>
+                                                                        <label  for="type__commercial" class="single_button_select_box_label"
+                                                                        :class="{'active' : this.typeProperty == 'Коммерческая'}">
+                                                                            <input v-model="typeProperty" id="type__commercial" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="Коммерческая">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeProperty == 'Коммерческая'}">Коммерческая</span>
+                                                                        </label>
+                                                                        <label for="type__dacha" class="single_button_select_box_label" 
+                                                                        :class="{'active' : this.typeProperty == 'dacha'}">
+                                                                            <input v-model="typeProperty" id="type__dacha" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="dacha">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeProperty == 'dacha'}">Дача</span>
+                                                                        </label>
+                                                                        <label for="type__earth" class="single_button_select_box_label" 
+                                                                        :class="{'active' : this.typeProperty == 'earth'}">
+                                                                            <input v-model="typeProperty" id="type__earth" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="earth">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeProperty == 'earth'}">Земля</span>
+                                                                        </label>
+                                                                    </div>
+                                                                    <div v-if="MobileTypeEstate" class="mobile_button_select">
+                                                                        <div class="w-100">
+                                                                            <button data-toggle="modal" data-target="#typeHouseModal" class="d-flex align-items-center justify-content-between w-100 mobile-filter-views-house-item-btn" type="button">
+                                                                                <span>{{ typeProperty != '' ? typeProperty : 'Тип недвижимости' }}</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <!-- Modal -->
+                                                                        <div class="mobile-filter-views-house-modal">
+                                                                            <div class="modal" id="typeHouseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+                                                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                                                                    <div  class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h5 class="modal-title text-center" id="exampleModalLabel">Тип недвижимости</h5>
+                                                                                        </div>
+                                                                                        <div class="modal-body p-0">
+                                                                                            <div class="modal-body-form">
+                                                                                                <form>
+                                                                                                    <div class="FiltersFormFieldPanel__controls">
+                                                                                                        <div class="mt-4">
+                                                                                                            <div class="d-flex flex-column">
+                                                                                                                <div v-for="item in typeOfProperty" :key="item.id" @click="typeProperty = item.value" class="mobile-filter-views-house-modal-item flex-row-reverse">
+                                                                                                                    <RadioButton :inputId="`type_commer_${item.id}`" name="type-commercial" :value="item.value" v-model="typeProperty" />
+                                                                                                                    <label :for="`type_commer_${item.id}`" class="Tumbler__title" style="font-size: 18px; font-weight: 500;"> {{ item.text }}</label>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="FiltersFormFieldPanel__actions">
+                                                                                                        <button @click="typeProperty = ''"  data-dismiss="modal" aria-label="Close" class="Button Button_js_inited Button_size_l Button_theme_islands Button_type_button FiltersFormFieldPanel__cancel" type="button"><span class="Button__text">Отменить</span></button>
+                                                                                                        <button data-dismiss="modal" aria-label="Close" class="Button Button_js_inited Button_size_l Button_theme_realty Button_type_button Button_theme_islands Button_view_yellow FiltersFormFieldPanel__save" type="button"><span class="Button__text d-block">Выбирать</span></button>
+                                                                                                    </div>
+                                                                                                </form>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Modal -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="radio-inputs">
+                                                        <div class="radio-inputs_group">
+                                                            <!-- <transition name="component-fade" mode="out-in">
+                                                            </transition> -->
+                                                            <div v-if="typeProperty == 'Коммерческая'" class="additional_options_main">
+                                                                <div class="row">
+                                                                    <div v-for="item in commercialTypes" :key="item.id" class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                                        <div class="additional_options_main_item adddtional_types_media">
+                                                                            <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
+                                                                                <div class="adddtional_main_block">
+                                                                                    <div class="field-checkbox d-flex align-items-center">
+                                                                                        <Checkbox :id="`add_option_${item.id}`" name="options[]" :value="item.value" v-model="form.commercialOptions" />
+                                                                                        <label :for="`add_option_${item.id}`">{{item.text}}</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- Тип объявления -->
                                     
@@ -23,13 +184,30 @@
                                             <div class="header_title">
                                                 <div class="header_title_content d-flex flex-column">
                                                     <h4 class="header_title_content_txt mb-0">Адрес</h4>
-                                                    <span class="header_title_content_txt_sub">Укажите адрес или передвиньте метку на карте</span>
+                                                    <!-- <span class="header_title_content_txt_sub">Укажите адрес или передвиньте метку на карте</span> -->
                                                 </div>
                                                 <div id="address" class="postion-relative">
                                                     <div class="address_block">
                                                         <div class="address_block_div">
-                                                            <div class="address_block_div_item">
-                                                                <form-input placeholder="Укажите адрес" v-model="form.address"/>
+                                                            <div class="row">
+                                                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                                                    <div class="address_block_div-drop mb-lg-0 mb-3">
+                                                                        <label>Регион</label>
+                                                                        <Dropdown v-model="selectedRegion" :options="regions" optionLabel="name" optionValue="code" placeholder="Выбирать регион"  class="w-100"/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                                                    <div class="address_block_div-drop mb-lg-0 mb-3">
+                                                                        <label>Район</label>
+                                                                        <Dropdown v-model="selectedDistrict" :options="districts" optionLabel="name" optionValue="code" placeholder="Выбирать район"  class="w-100"/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4 col-12">
+                                                                    <div class="address_block_div-drop">
+                                                                        <label>Улица</label>
+                                                                        <Dropdown v-model="selectedStreet" :options="streets" optionLabel="name" optionValue="code" placeholder="Выбирать улица"  class="w-100"/>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -45,6 +223,21 @@
                                     </div>
                                     <!-- Image upload -->
                                     
+                                    <!-- Image upload -->
+                                    <div class="form-card" id="section-three">
+                                        <div id="upload_img">
+                                        <div class="header_title">
+                                            <div class="header_title_content d-flex flex-column">
+                                                <h4 class="header_title_content_txt mb-0">Фотографии 2</h4>
+                                            </div>
+                                            <div>
+                                                <upload-box></upload-box>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!-- Image upload -->
+                                    
                                     <!-- You tube video -->
                                     <div class="form-card">
                                         <div class="address_map">
@@ -57,10 +250,10 @@
                                                     <div class="address_block">
                                                         <div class="address_block_div d-flex align-items-center">
                                                             <div class="address_block_div_item w-100">
-                                                                <form-input v-model="form.youtube_video" placeholder="Ссылка на видео с YouTube"/>
+                                                                <input id="youtebe-link" class="dc-input__input-6-1-2" name="total_area" type="text" placeholder="Ссылка на видео с YouTube" tabindex="0" v-model="form.youtube_video" />
                                                             </div>
                                                             <div class="youtube_block_div_button ml-lg-2 ml-md-2 ml-0">
-                                                                <button class="youtube_block_div_btn">
+                                                                <button class="youtube_block_div_btn" :class="{'button-disabled' : form.youtube_video.length <= 0}"  :disabled="form.youtube_video.length <= 0">
                                                                     <span class="youtube_block_div-span">Добавить</span>
                                                                 </button>
                                                             </div>
@@ -80,81 +273,33 @@
                                                     <h4 class="header_title_content_txt">Параметры</h4>
                                                 </div>
                                                 <div class="options_div">
-                                                    <!-- Number Of Rooms -->
-                                                    <div class="options_main__items">
-                                                        <div class="options_main__item  d-flex align-items-lg-end align-items-md-end align-items-start flex-lg-row flex-md-row flex-column">
-                                                            <div id="rooms" class="options_main__item_first">
-                                                                <div class="options_main__item_first_content">
-                                                                    <span class="options_main__item_first_content_title">Количество комнат</span>
-                                                                </div>
-                                                                <div class="options_main__item_first_btns">
-                                                                    <label for="room1" class="option_btn" :class="{'active' : this.form.numberOfRooms == '1'}">
-                                                                        <input v-model="form.numberOfRooms" id="room1" type="radio" tabindex="0" value="1">
-                                                                        1
-                                                                    </label>
-                                                                    <label for="room2" class="option_btn" :class="{'active' : this.form.numberOfRooms == '2'}">
-                                                                        <input v-model="form.numberOfRooms" id="room2" type="radio" tabindex="0" value="2">
-                                                                        2
-                                                                    </label>
-                                                                    <label for="room3" class="option_btn" :class="{'active' : this.form.numberOfRooms == '3'}">
-                                                                        <input v-model="form.numberOfRooms" id="room3" type="radio" tabindex="0" value="3">
-                                                                        3
-                                                                    </label>
-                                                                    <label for="room4" class="option_btn" :class="{'active' : this.form.numberOfRooms == '4'}">
-                                                                        <input v-model="form.numberOfRooms" id="room4" type="radio" tabindex="0" value="4">
-                                                                        4
-                                                                    </label>
-                                                                    <label for="room5" class="option_btn" :class="{'active' : this.form.numberOfRooms == '5'}">
-                                                                        <input v-model="form.numberOfRooms" id="room5" type="radio" tabindex="0" value="5">
-                                                                        5+
-                                                                    </label>
-                                                                    <label for="roomStudio" class="option_btn" :class="{'active' : this.form.numberOfRooms == 'studio'}">
-                                                                        <input v-model="form.numberOfRooms" id="roomStudio" type="radio" tabindex="0" value="studio">
-                                                                        студия
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="options_main__item_second option_class_one mb-0 option_class_second">
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="field-checkbox d-flex align-items-center">
-                                                                        <Checkbox id="apartments" name="apartment" value="Apartments" v-model="form.apartments" />
-                                                                        <label for="apartments">Апартаменты</label>
+                                                    <!-- Area options -->
+                                                    <div class="options_main__items mt-4 d-flex">
+                                                        <!-- Количество комнат-->
+                                                        <div class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
+                                                            <span class="inputs_block_title">Количество комнат</span>
+                                                            <div class="options_main__items_inputs_block d-flex flex-column">
+                                                                <div class="input-medium-6 dc-input-6-1-2">
+                                                                    <div class="dc-input__input-container-6-1-2 input_div">
+                                                                        <input id="kitchen_area" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.numberOfRooms">
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <!-- Number Of Rooms -->
-                                                    
-                                                    <!-- Area options -->
-                                                    <div class="options_main__items mt-4 d-flex">
+                                                        <!-- Количество комнат-->
                                                         <!-- Общая площадь -->
                                                         <div class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
                                                             <span class="inputs_block_title">Общая площадь</span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="space" class="dc-input__input-6-1-2" maxlength="24" name="total_area" placeholder="" tabindex="0" v-model.number="form.totalArea" />
+                                                                        <input id="space" class="dc-input__input-6-1-2" maxlength="24" name="total_area" type="number" placeholder="" tabindex="0" v-model.number="form.totalArea" />
                                                                     </div>
                                                                     <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <!-- Общая площадь -->
-                                                        
-                                                        <!-- Площадь кухни-->
-                                                        <div class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
-                                                            <span class="inputs_block_title">Площадь кухни</span>
-                                                            <div class="options_main__items_inputs_block d-flex flex-column">
-                                                                <div class="input-medium-6 dc-input-6-1-2">
-                                                                    <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="kitchen_area" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" v-model.number="form.kitchenArea">
-                                                                    </div>
-                                                                    <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Площадь кухни-->
                                                         
                                                         <!-- Жилая площадь -->
                                                         <div class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
@@ -162,7 +307,7 @@
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="living_space" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" v-model.number="form.livingSpace">
+                                                                        <input id="living_space" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.livingSpace">
                                                                     </div>
                                                                     <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
                                                                 </div>
@@ -180,7 +325,7 @@
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="floor" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" v-model.number="form.floor">
+                                                                        <input id="floor" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.floor">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -193,7 +338,7 @@
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="floor_house" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" v-model.number="form.floorHouse">
+                                                                        <input id="floor_house" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.floorHouse">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -206,7 +351,7 @@
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="ceilingheight" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" v-model.number="form.ceilingHeight">
+                                                                        <input id="ceilingheight" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.ceilingHeight">
                                                                     </div>
                                                                     <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
                                                                 </div>
@@ -310,69 +455,6 @@
                                                         </div>
                                                         <!-- Ремонт -->
                                                         
-                                                        <!-- Вид из окон -->
-                                                        <div class="options_main__items mt-4">
-                                                            <div id="view" class="window_view">
-                                                                <div class="options_main__item_first_content">
-                                                                    <span class="options_main__item_first_content_title">Вид из окон</span>
-                                                                </div>
-                                                                <div class="window_checbox">
-                                                                    <!-- type 1 -->
-                                                                    <div class="window_checbox_item">
-                                                                        <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                            <div class="">
-                                                                                <div class="field-checkbox d-flex align-items-center">
-                                                                                    <Checkbox id="type_window_1" name="type_window[]" value="yard" v-model="form.typeWindow" />
-                                                                                    <label for="type_window_1">Двор</label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- type 1 -->
-                                                                    
-                                                                    <!-- type 2 -->
-                                                                    <div class="window_checbox_item">
-                                                                        <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                            <div class="">
-                                                                                <div class="field-checkbox d-flex align-items-center">
-                                                                                    <Checkbox id="type_window_2" name="type_window[]" value="water" v-model="form.typeWindow" />
-                                                                                    <label for="type_window_2">Водоем</label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- type 2 -->
-                                                                    
-                                                                    <!-- type 3 -->
-                                                                    <div class="window_checbox_item">
-                                                                        <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                            <div class="">
-                                                                                <div class="field-checkbox d-flex align-items-center">
-                                                                                    <Checkbox id="type_window_3" name="type_window[]" value="street" v-model="form.typeWindow" />
-                                                                                    <label for="type_window_3">Улица</label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- type 3 -->
-                                                                    
-                                                                    <!-- type 4 -->
-                                                                    <div class="window_checbox_item">
-                                                                        <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                            <div class="">
-                                                                                <div class="field-checkbox d-flex align-items-center">
-                                                                                    <Checkbox id="type_window_4" name="type_window[]" value="park" v-model="form.typeWindow" />
-                                                                                    <label for="type_window_4">Парк</label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- type 4 -->
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Вид из окон -->
-                                                        
                                                         <!-- Год постройки -->
                                                         <div class="options_main__items mt-4 d-flex">
                                                             <div class="options_main__items_inputs options_main__items_inputs_media  d-flex flex-column">
@@ -450,68 +532,6 @@
                                                             </div>
                                                         </div>
                                                         <!-- Дополнительно -->
-                                                        
-                                                        <!-- Инфраструктура -->
-                                                        <div class="options_main__items  mt-4">
-                                                            <div class="infrastructure_main">
-                                                                <div id="rooms" class="options_main__item_first">
-                                                                    <div class="options_main__item_first_content">
-                                                                        <span class="options_main__item_first_content_title">Инфраструктура</span>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                            <div class="additional_options_main_item infrastructure_media">
-                                                                                <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                                    <div class="infrastructure_main_block">
-                                                                                        <div class="field-checkbox d-flex align-items-center">
-                                                                                            <Checkbox id="infrastrucure_option_1" name="options[]" value="school" v-model="form.infrastructure" />
-                                                                                            <label for="infrastrucure_option_1">Школа</label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                            <div class="additional_options_main_item infrastructure_media">
-                                                                                <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                                    <div class="infrastructure_main_block">
-                                                                                        <div class="field-checkbox d-flex align-items-center">
-                                                                                            <Checkbox id="infrastrucure_option_2" name="options[]" value="kindergarten" v-model="form.infrastructure" />
-                                                                                            <label for="infrastrucure_option_2">Детский сад</label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                            <div class="additional_options_main_item infrastructure_media">
-                                                                                <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                                    <div class="infrastructure_main_block">
-                                                                                        <div class="field-checkbox d-flex align-items-center">
-                                                                                            <Checkbox id="infrastrucure_option_3" name="options[]" value="shopping-center" v-model="form.infrastructure" />
-                                                                                            <label for="infrastrucure_option_3">Торговый центр</label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                            <div class="additional_options_main_item infrastructure_media">
-                                                                                <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                                                                    <div class="infrastructure_main_block">
-                                                                                        <div class="field-checkbox d-flex align-items-center">
-                                                                                            <Checkbox id="infrastrucure_option_4" name="options[]" value="park" v-model="form.infrastructure" />
-                                                                                            <label for="infrastrucure_option_4">Парк</label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Инфраструктура -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -625,28 +645,28 @@ import Checkbox from 'primevue/checkbox';
 import InputMask from 'primevue/inputmask';
 import InputNumber from 'primevue/inputnumber';
 import Textarea from 'primevue/textarea';
-
+import Dropdown from 'primevue/dropdown';
+import UploadBox from '../../../components/Upload.vue'
 // Form
-import AdType from '../../../components/add_new_object/form/FormAdType.vue'
 import FormInput from '../../../components/add_new_object/form/FormInput.vue'
 import UploadImage from '../../../components/add_new_object/form/FormImages.vue'
 import FormButton from '../../../components/UI/FormButton.vue'
-
-
+import RadioButton from 'primevue/radiobutton';
 // Media Styles
 import  '../../../../../public/css/media-one.css'
 
 export default {
     components: {
         FormIndicator,
-        AdType,
-        FormInput,
         UploadImage,
+        UploadBox,
         FormButton,
         Checkbox,
         InputMask,
         InputNumber,
         Textarea,
+        RadioButton,
+        Dropdown,
     },
     data() {
         return {
@@ -665,11 +685,10 @@ export default {
                 numberBalcons: "",
                 houseCondition: "",
                 redevelopment: "",
-                typeWindow: "",
                 yearofBuilding: "",
                 houseType: "",
                 additionalOptions: [],
-                infrastructure: [],
+                commercialOptions: [],
                 priceHouse: "",
                 priceCheckbox: "",
                 description: "",
@@ -684,6 +703,54 @@ export default {
                 {id: 5,text: "Бассейн",value: "swimming_pool"},
                 {id: 6,text: "Сауна",value: "sauna"},
             ],
+            commercialTypes: [
+                {id: 1, text: "Офис", value: "office"},
+                {id: 2, text: "Салон", value: "salon"},
+                {id: 3, text: "Склад", value: "stock"},
+                {id: 4, text: "Часть здания", value: "part-building"},
+                {id: 5, text: "Общепит", value: "public-catering"},
+                {id: 6, text: "Магазин/Бутик", value: "shop-boutique"},
+                {id: 7, text: "Здание", value: "building"},
+                {id: 8, text: "Под производство", value: "production"},
+                {id: 9, text: "Другая", value: "other"},
+            ],
+            typeOfProperty: [
+                {id: 1, text: "Квартира", value: "Квартира"},  
+                {id: 2, text: "Дом", value: "Дом"},   
+                {id: 3, text: "Коммерческая", value: "Коммерческая"},   
+                {id: 4, text: "Дача", value: "Дача"},   
+                {id: 5, text: "Земля", value: "Земля"},   
+            ],  
+            typeDeal: '',
+            typeAccount: '',
+            typeRent: '',
+            typeProperty: '',
+            offerType: null,
+            MobileTypeEstate: false,
+            selectedRegion: null,
+            selectedDistrict: null,
+            selectedStreet: null,
+            regions: [
+                {name: 'Tashkent', code: 'NY'},
+                {name: 'Ташкентская область', code: 'RM'},
+                {name: 'Андижанская область', code: 'LDN'},
+                {name: 'Бухарская область', code: 'IST'},
+                {name: 'Джизахская область', code: 'PRS'}
+            ],
+            districts: [
+                {name: 'Аккурган', code: 'NY'},
+                {name: 'Алмалык', code: 'RM'},
+                {name: 'Ангрен', code: 'LDN'},
+                {name: 'Газалкент', code: 'IST'},
+                {name: 'Дустабад', code: 'PRS'}
+            ],
+            streets: [
+                {name: 'Абай (махалля)', code: 'NY'},
+                {name: 'Ахангаран (улица)', code: 'RM'},
+                {name: 'Ангрен', code: 'LDN'},
+                {name: 'Базарная (улица)', code: 'IST'},
+                {name: 'Бектемир (махалля)', code: 'PRS'}
+            ]
         }
     },
     methods: {
@@ -694,9 +761,20 @@ export default {
         saveData(){
             console.log("Submitted");
         },
+        checkScreen() {
+            this.windowWidth = window.innerWidth;
+            if(this.windowWidth <= 575){
+                this.MobileTypeEstate = true;
+                return;
+            }
+            this.MobileTypeEstate = false;
+            return;
+        }
     },
     created() {
         this.additonalOptions();
+        window.addEventListener('resize', this.checkScreen);
+        this.checkScreen()
     },
 }
 </script>
@@ -709,9 +787,17 @@ export default {
     flex-direction: column;
 }
 
-.new_object_main_div {
+.container_medium_new{
+    min-width: 320px;
+    max-width: 1320px;
+    padding: 0 16px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    width: 100%;
+}
+/* .new_object_main_div {
     margin: 3.2rem auto 0;
-}    
+}     */
 .block_header{
     margin-bottom: 1.875rem;
     padding-bottom: 1.25rem;
@@ -740,6 +826,144 @@ export default {
     margin-bottom: 20px;
 }
 
+/* ******************************************************* */
+.header_title{
+    display: flex;
+    flex-direction: column;
+    /* margin-bottom: 2.4rem; */
+}
+
+.header_title_content{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_title_content_txt{
+    font-size: 23px;
+    font-weight: 500;
+    line-height: 3.2rem;
+    margin-right: 0.8rem;
+}
+
+.ad_type_item_content{
+    padding-bottom: 0.4rem;
+}
+
+.ad_type_item_content_span{
+    color: #737476;
+    display: block;
+    font: normal 14px/20px;
+    letter-spacing: normal;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    text-decoration: none;
+    text-indent: 0;
+    text-shadow: none;
+    text-transform: none;
+}
+
+.single_button_select{
+    border-radius: 5px;
+    box-shadow: none;
+    box-sizing: border-box;
+    max-width: 100%;
+    outline: none;
+    overflow-x: auto;
+    touch-action: pan-x;
+}
+
+.form__field{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0.25rem;
+}
+
+.form__field_labael{
+    color: #444;
+    background-color: #fff;
+    border-color: #e0e0e0;
+    transition: all .2s ease-in-out;
+}
+
+.form__field_labael input:checked+label{
+    z-index: 1;
+    border-color: var(--primary_100);;
+    background: rgba(21,34,66,.05);
+    color: red;
+}
+
+/* .radio-inputs{
+    max-width: 30rem;
+} */
+
+.radio-inputs_group_item{
+    display: flex;
+    flex-direction: row;
+    line-height: 20px;
+}
+
+.radio-inputs_column{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.radio-inputs_column .field-radiobutton:not(:first-child) {
+    margin-top: 16px;
+}
+
+.radio-inputs_column .field-radiobutton label{
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: 20px;
+    padding-left: 8px;
+    font-size: 14px;
+    text-decoration: none;
+    text-indent: 0;
+    text-shadow: none;
+    text-transform: none;
+    margin-top: 2px;
+    vertical-align: top;
+}
+
+.radio-inputs_column .field-radiobutton .p-radiobutton .p-radiobutton-box.p-highlight {
+    border-color: var(--form-button-color);
+    background: var(--white_100);
+}
+
+.radio-inputs_column .field-radiobutton .p-radiobutton .p-radiobutton-box:not(.p-disabled):not(.p-highlight):hover {
+    border-color: var(--form-button-color);
+}
+
+.radio-inputs_column .field-radiobutton .p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover {
+    border-color: var(--white_100);
+    background: var(--white_100);
+    color: #ffffff;
+}
+
+.radio-inputs_column .field-radiobutton .p-radiobutton .p-radiobutton-box:not(.p-disabled).p-focus{
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.1rem #3aaf53;
+}
+
+.radio-inputs_column .field-radiobutton .p-radiobutton .p-radiobutton-box .p-radiobutton-icon {
+    width: 12px;
+    height: 12px;
+    transition-duration: 0.2s;
+    background-color: #53b374;
+}
+
+.component-fade-enter-active, .component-fade-leave-active {
+    transition: opacity .3s ease;
+}
+.component-fade-enter, .component-fade-leave-to{
+    opacity: 0;
+}
+/* ******************************************************* */
 .single_button_select_box_label{
     height: 40px;
     align-items: center;
@@ -940,11 +1164,11 @@ export default {
     border: 1px solid #c9cbcd;
     border-radius: 0.5rem;
     color: #242629;
-    height: 2rem;
+    height: 25px;
     margin: 0 0.8rem 0 0;
     outline: none;
     transition: border-color .2s ease 0s;
-    width: 2rem;
+    width: 25px;
     will-change: border-color;
 }
 
@@ -973,7 +1197,7 @@ export default {
     color: #464646;
     margin-bottom: 0;
     padding-left: 0.2rem;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
 }
 
@@ -1169,9 +1393,57 @@ margin-left: 2.4rem;
     width: 100%;
 }
 
+.address_block_div  .p-dropdown{
+    height: 40px !important;
+    align-items: center;
+    border: 0.1rem solid #c9cbcd !important;
+    border-radius: 0.5rem !important;
+}
+
+.address_block_div .p-dropdown:not(.p-disabled):hover,
+.address_block_div .p-dropdown:not(.p-disabled).p-focus{
+    border-color: var(--form-button-color) !important;
+}
+
+.address_block_div .p-dropdown-items-wrapper {
+    max-height: 200px !important;
+}
+
+.address_block_div  .p-dropdown-panel{
+    border: 0 none;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%) !important;
+    min-width: unset !important;
+}
+/* *********************************************** Media *********************** */
 @media (max-width: 575px){
     .new_object_frontend {
         overflow: hidden !important;
+    }
+    
+    .block__body {
+        padding: 0;
+        margin: 0 -16px;
+    }
+    
+    .mobile-filter-views-house-modal .FiltersFormFieldPanel__controls .p-radiobutton,
+    .mobile-filter-views-house-modal .FiltersFormFieldPanel__controls .p-radiobutton .p-radiobutton-box {
+        width: 30px !important;
+        height: 30px !important;
+    }
+    
+    .mobile-filter-views-house-modal .FiltersFormFieldPanel__controls .p-radiobutton .p-radiobutton-box .p-radiobutton-icon{
+        width: 20px !important;
+        height: 20px !important;
+    }
+    
+    .p-radiobutton .p-radiobutton-box.p-highlight {
+        border-color: #2196F3;
+        background: #fff !important;
+    }
+    
+    .p-radiobutton .p-radiobutton-box.p-highlight  .p-radiobutton-icon{
+        background: #2196F3 !important;
     }
 }
 </style>

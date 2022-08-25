@@ -2,14 +2,14 @@ import {createRouter, createWebHistory} from 'vue-router'
 
 // Main Views
 import Main from '../../src/layouts/Main.vue'
-
+import Admin from '../../src/layouts/Admin.vue'
 // Web Pages
 import IndexPage from '../../src/views/HomeIndex.vue'
 import CommercialPage from '../../src/views/Commercial.vue'
 import RentPage from '../../src/views/Rent.vue'
-import AgentInfo from '../../src/views/AgentInfoPage.vue'
 import PartnersInfo from '../../src/views/PartnersPage.vue'
-import AgentSingle from '../../src/views/AgentSingle.vue'
+import RieltorHome from '../../src/views/RieltorHome.vue'
+import RieltorInfo from '../../src/views/RieltorInfo.vue'
 
 // User Account Pages
 import UserDashboard  from '../views/account/UsersDashboard.vue'
@@ -24,6 +24,7 @@ import UserAnnouncements from '../views/account/UserAnnouncements.vue'
 import Agents from '../views/partners/AgentsList.vue'
 import Realtors from '../views/partners/RealtorsList.vue'
 import Zastroyshiki from '../views/partners/DeveloperList.vue'
+
 // Objects Pages
 import ObjectMain from '../views/objects/ObjectList.vue'
 import Objects from '../views/objects/Objects.vue'
@@ -54,114 +55,38 @@ const routes = [
                 }
             },
             {
-                path: 'snyat/',
+                path: '/snyat',
                 name: 'siteRent',
                 components: {
                     main: RentPage,
                 }
             },
             {
-                path: '/account/',
-                redirect: '/index',
-                components: {
-                    main: UserDashboard,
-                },
-                children: [
-                    {
-                        path: 'summary',
-                        name: 'summary',
-                        components: {
-                            content: MainView,
-                        }
-                    },
-                    {
-                        path: 'profile',
-                        name: 'myaccount',
-                        components: {
-                            content: UserAccount,
-                        }
-                    },
-                    {
-                        path: 'user/favorites',
-                        name: 'userfavorites',
-                        components: {
-                            content: UserFavorites,
-                        }
-                    },
-                    {
-                        path: 'user/list/',
-                        name: 'userannouncement',
-                        //redirect: 'user/list/objects',
-                        components: {
-                            content: ObjectMain,
-                        },
-                        children: [
-                            {
-                                path: 'objects',
-                                name: 'objects',
-                                components: {
-                                    objects: Objects,
-                                },
-                            },
-                            {
-                                path: 'objects/sales',
-                                name: 'sales',
-                                components: {
-                                    objects: MainView,
-                                },
-                            },
-                            {
-                                path: 'objects/rent',
-                                name: 'rent',
-                                components: {
-                                    objects: MainView,
-                                },
-                            },
-                        ]
-                    },
-                    {
-                        path: 'my-complaints',
-                        name: 'mycomplaints',
-                        components: {
-                            content: UserComplaints,
-                        }
-                    },
-                    // {
-                    //     path: '/razmestit-obyavlenie/',
-                    //     name: 'newObject',
-                    //     components: {
-                    //         main: NewObjectMain
-                    //     }
-                    // }
-                    
-                ]
-            },
-            {
-                path: 'razmestit-obyavlenie',
+                path: '/razmestit-obyavlenie',
                 name: 'newObject',
                 components: {
                     main: NewObjectMain,
                 },
             },
             {
-                path: 'object',
+                path: '/object',
                 name: 'objectsinglepage',
                 components: {
                     main: ObjectSinglePage,
                 },
             },
             {
-                path: '/agent-info',
-                name: 'agentInfo',
-                components: {
-                    main: AgentInfo,
-                },
-            },
-            {
                 path: '/agent-single',
                 name: 'agentSingle',
                 components: {
-                    main: AgentSingle,
+                    main: RieltorHome,
+                },
+            },
+            {
+                path: '/agent-info',
+                name: 'agentInfo',
+                components: {
+                    main: RieltorInfo,
                 },
             },
             {
@@ -197,6 +122,72 @@ const routes = [
             
         ]
     },
+    {
+        path: '/account/',
+        name: 'siteAdmin',
+        component: Admin,
+        children: [
+            {
+                path: 'summary',
+                name: 'summary',
+                components: {
+                    content: MainView,
+                }
+            },
+            {
+                path: 'profile',
+                name: 'myaccount',
+                components: {
+                    content: UserAccount,
+                }
+            },
+            {
+                path: 'user/favorites',
+                name: 'userfavorites',
+                components: {
+                    content: UserFavorites,
+                }
+            },
+            {
+                path: 'user/list/',
+                name: 'userannouncement',
+                //redirect: 'user/list/objects',
+                components: {
+                    content: ObjectMain,
+                },
+                children: [
+                    {
+                        path: 'objects',
+                        name: 'objects',
+                        components: {
+                            objects: Objects,
+                        },
+                    },
+                    {
+                        path: 'objects/sales',
+                        name: 'sales',
+                        components: {
+                            objects: MainView,
+                        },
+                    },
+                    {
+                        path: 'objects/rent',
+                        name: 'rent',
+                        components: {
+                            objects: MainView,
+                        },
+                    },
+                ]
+            },
+            {
+                path: 'my-complaints',
+                name: 'mycomplaints',
+                components: {
+                    content: UserComplaints,
+                }
+            },
+        ]
+    }
 ]
 
 const router = createRouter({

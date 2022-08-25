@@ -7,7 +7,7 @@
             <p class="mb-0">Javohir Toirov</p>
             <div class="widget_profile-content_id_btn mt-1 d-flex justify-content-between">
                 <span>ID 12345678</span>
-                <router-link :to="{ name: 'myaccount'}">
+                <router-link :to="{ name: 'myaccount'}" class="d-flex align-items-center">
                     Профиль
                     <svg data-name="IconArrowRight" class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 9.999"><path fill="currentColor" d="M.28 1.627L3.68 5 .28 8.37c-.37.37-.375.97-.006 1.342l.007.007c.38.37.986.37 1.36 0l4.08-4.05c.373-.368.376-.968.008-1.34l-.008-.01L1.64.28C1.265-.094.66-.094.28.28c-.37.37-.374.97-.004 1.343.002 0 .004.003.005.004z"></path></svg>
                 </router-link>
@@ -71,6 +71,6 @@
 .widget_profile-content_id_btn .svg{
     margin-left: 5px;
     width: 6px;
-    height: 10px;
+    height: 100%;
 }
 </style>

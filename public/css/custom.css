@@ -1875,8 +1875,264 @@ textarea.md-form__control {
     width: 100%;
 } */
 /* ************************************ Commercial page end ***************************************/
+/* ********************************************************************************************* */
+/* ******************************** Agent Single Page ***************************************** */
+.property-box-2{
+    position: relative;
+    margin-bottom: 30px;
+    overflow: hidden;
+    box-shadow: 0 0 5px rgb(0 0 0 / 10%);
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.yyyyyy {
+    height: 230px;
+    background-color: #4e646e;
+    overflow: hidden;
+}
+.yyyyyy .swiper{
+    height: 100% !important;
+}
+
+.property-box-2 .swiper-button-next, .swiper-button-prev{
+    position: absolute;
+    top: 50%;
+    width: 30px !important;
+    height: 30px !important;
+    margin-top: calc(0px - (var(--swiper-navigation-size)/ 2));
+    z-index: 10;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--swiper-navigation-color,var(--swiper-theme-color));
+}
+
+.property-box-2 .swiper-button-next:after, .swiper-button-prev:after {
+    font-family: swiper-icons;
+    font-size: 20px !important;
+    text-transform: none!important;
+    letter-spacing: 0;
+    font-variant: initial;
+    line-height: 1;
+    font-weight: 700;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hdg {
+    padding: 10px 20px 1px 20px;
+}
+
+.property-box-2 .detail .title {
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.property-box-2 .detail .title a {
+    color: #ff214f;
+}
+
+.property-box-2 .detail .title a:hover {
+    color: #343a40;
+}
+
+.property-box-2 .detail .title p{
+    font-size: 16px;
+    line-height: 25px;
+    font-weight: 400;
+}
+
+.property-box-2 .detail .location {
+    margin: 0;
+}
+
+.property-box-2 .detail .location a {
+    font-size: 14px;
+    color: #5f5e5e;
+    font-weight: 500;
+}
+
+.property-box-2 .detail .location i {
+    margin-right: 5px;
+}
+
+.property-box-2 .facilities-list {
+    background: #f7f7f7;
+    padding: 9px 20px;
+}
+
+.clearfix::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+.facilities-list a h5{
+    color: #353535;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.buttons-left-panel{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.buttons-left-panel .button--WWB73{
+    /* margin-top: auto; */
+    height: 100%;
+}
+
+.buttons-left-panel .button--WWB73:not(:first-child) {
+    margin-left: 8px;
+}
+
+.btn-container{
+    width: 155px;
+    /* height: 28px; */
+}
+
+.button_component-primary{
+    background-color: var(--primary_100);
+}
+
+._3ea6fa5da8--button--GlIFI{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+._3ea6fa5da8--button--GlIFI._3ea6fa5da8--simplified-button--BYaqf {
+    cursor: pointer;
+    padding: 3px 16px;
+    color: #fff;
+    font-weight: 700;
+}
+
+.button_component{
+    border-radius: 42px;
+}
+
+._3ea6fa5da8--simplified-phone--xK9FU {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+._3ea6fa5da8--like-container--UxcUH {
+    position: relative;
+}
+
+._3ea6fa5da8--like-button--ZUZsf{
+    /* height: 28px; */
+    font-size: 14px !important;
+    white-space: nowrap;
+}
+
+._3ea6fa5da8--button--AQsMD{
+    position: relative;
+    padding-left: 35px;
+    font-size: 13px;
+}
+
+._3ea6fa5da8--light--nOps1 {
+    background-color: rgba(43,135,219,.1);
+    color: #2b87db;
+}
+
+._3ea6fa5da8--main--bn3jO{
+    transition: background .1s,color .1s;
+    cursor: pointer;
+    margin: 0;
+    outline: 0;
+    border: none;
+    border-radius: 14px;
+    padding: 3px 16px;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+._3ea6fa5da8--icon--GdoXI {
+    fill: none;
+    margin-right: 10px;
+}
+
+.actions-mobile-main{
+    border-radius: 0;
+    background-color: transparent;
+    position: sticky;
+    bottom: 20px;
+    z-index: 5;
+    margin: 20px auto;
+    padding: 0 16px;
+    width: 100%;
+    display: flex;
+}
+
+.actions-mobile-main-item{
+    flex-grow: 1;
+    margin-right: 8px;
+}
+
+.actions-mobile-main-item:last-of-type {
+    margin-right: 0;
+}
+
+.actions-btn-content{
+    background-color: var(--form-button-color);
+    color: var(--white_100);
+    display: inline-flex;
+    text-decoration: none;
+    padding: 8px 15px;
+    height: 40px;
+    position: relative;
+    justify-content: center;
+    border-radius: 4px;
+    white-space: nowrap;
+    align-items: center;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid transparent;
+}
+
+.actions-btn-content-svg{
+    display: inline-block;
+    color: var(--white_100);
+    transition: 0.3s ease-out;
+}
+
+.actions-btn-content-txt{
+    margin-left: 8px;
+    font-size: 16px;
+    line-height: 22px;
+    font-style: normal;
+    font-weight: 700;
+    color: var(--white_100);
+}
+
+/* ******************************** Agent Single Page ***************************************** */
 /* ****************************** MEDIA ******************************************* */
 /************************************* Object Single Page styles *********************************** */
+@media (max-width: 1900px){
+    .paddingDesk {
+        padding: 2px 20px 5px 20px;
+    }
+}
+
 @media (min-width: 1280px){
     /* ************************************* Agent Info Page end ************************************/
     .shell_agent_container {
@@ -1982,6 +2238,17 @@ textarea.md-form__control {
     /* .product-page__sticky__comments {
         width: 306px;
     } */
+}
+
+
+@media (max-width: 1200px){
+    .property-box-2 .facilities-list {
+        padding: 0px 20px;
+    }
+    
+    .paddingDesk {
+        padding: 3px 15px 3px 20px;
+    }
 }
 
 @media only screen and (max-width: 1023px){
@@ -2284,6 +2551,9 @@ textarea.md-form__control {
         padding: 0 20px;
     }
     /* ////////// Agent Info Page ////////////////////////////////// */
+    .property-box-2 .detail {
+        padding-bottom: 15px;
+    }
 }
 
 @media only screen and (max-width: 475px){

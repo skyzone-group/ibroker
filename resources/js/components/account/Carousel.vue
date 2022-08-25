@@ -164,6 +164,13 @@ export default defineComponent({
     
 }
 
+
+@media (max-width: 575px){
+    .carousel__slide:first-child{
+        margin: 0 5px 0 0 !important;
+    }
+}
+
 @media (max-width: 475px){
     .carousel__slide{
         margin: 0 5px 0 0;

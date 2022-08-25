@@ -355,7 +355,7 @@
             </div>
         </div>
     </header>
-        <div class="side-bar-overlay"></div>
+    <div class="side-bar-overlay"></div>
 </template>
 
 

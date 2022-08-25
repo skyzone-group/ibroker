@@ -1,4 +1,5 @@
 <template>
+    <nav-bar></nav-bar>
     <div class="ual-container-wrapper">
         <div class="ual-container">
             <div class="ual-sidebar">
@@ -26,9 +27,11 @@
 
 <script>
 import SideBar from '../../../components/SideBarMenu.vue'
+import NavBar from '../../../components/SiteNavBar.vue'
 export default {
     components: {
-        SideBar
+        SideBar,
+        NavBar
     }
 }
 </script>
