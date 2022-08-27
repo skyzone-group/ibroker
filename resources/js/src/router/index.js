@@ -10,6 +10,7 @@ import RentPage from '../../src/views/Rent.vue'
 import PartnersInfo from '../../src/views/PartnersPage.vue'
 import RieltorHome from '../../src/views/RieltorHome.vue'
 import RieltorInfo from '../../src/views/RieltorInfo.vue'
+import Edit from '../../src/views/edit.vue'
 
 // User Account Pages
 import UserDashboard  from '../views/account/UsersDashboard.vue'
@@ -18,7 +19,7 @@ import UserAccount from '../views/account/UserAccount.vue'
 import UserFavorites from '../views/account/UserFavorites.vue'
 import UserComplaints from '../views/account/UserComplaints.vue'
 import UserAnnouncements from '../views/account/UserAnnouncements.vue'
-
+import TestUpload from '../../components/TestUpload.vue'
 
 // Partners Page
 import Agents from '../views/partners/AgentsList.vue'
@@ -45,6 +46,12 @@ const routes = [
                 path: '/index',
                 components: {
                     main: IndexPage,
+                },
+            },
+            {
+                path: '/edit',
+                components: {
+                    main: Edit,
                 },
             },
             {

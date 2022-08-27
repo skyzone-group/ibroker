@@ -10,7 +10,7 @@
                     <div class="form">
                         <div class="block__body_main">
                             <div class="block__body_side-bar_content">
-                                <form @submit.prevent="saveData()" id="file-dropzone" action="/upload" method="POST" :model="form">
+                                <form @submit.prevent="saveData()" id="file-dropzone" method="POST" :model="form">
                                     <!-- Тип объявления -->
                                     <div class="form-card" id="section-one">
                                         <div class="ad_type">
@@ -226,15 +226,26 @@
                                     <!-- Image upload -->
                                     <div class="form-card" id="section-three">
                                         <div id="upload_img">
-                                        <div class="header_title">
-                                            <div class="header_title_content d-flex flex-column">
-                                                <h4 class="header_title_content_txt mb-0">Фотографии 2</h4>
-                                            </div>
-                                            <div>
-                                                <upload-box></upload-box>
+                                            <div class="header_title">
+                                                <div class="header_title_content d-flex flex-column">
+                                                    <h4 class="header_title_content_txt mb-0">Фотографии 2</h4>
+                                                </div>
+                                                <div>
+                                                    <upload-box></upload-box>
+                                                    <div class="test-upload">
+                                                        <div>
+                                                            <div class="form-group">
+                                                                <label for="file">Upload photos</label>
+                                                                <input id="file" type="file" name="photo" class="form-control" @change="uploadPhoto">
+                                                            </div>
+                                                            <div v-if="imageprevi">
+                                                                <img :src="imageprevi" alt="" style="max-height: 100px;" class="figure-img img-fluid rounded">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
                                     </div>
                                     <!-- Image upload -->
                                     
@@ -650,6 +661,7 @@ import UploadBox from '../../../components/Upload.vue'
 // Form
 import FormInput from '../../../components/add_new_object/form/FormInput.vue'
 import UploadImage from '../../../components/add_new_object/form/FormImages.vue'
+import TestUpload from '../../../components/TestUpload.vue'
 import FormButton from '../../../components/UI/FormButton.vue'
 import RadioButton from 'primevue/radiobutton';
 // Media Styles
@@ -750,7 +762,9 @@ export default {
                 {name: 'Ангрен', code: 'LDN'},
                 {name: 'Базарная (улица)', code: 'IST'},
                 {name: 'Бектемир (махалля)', code: 'PRS'}
-            ]
+            ],
+            image: null,
+            imageprevi: null,
         }
     },
     methods: {
@@ -769,7 +783,30 @@ export default {
             }
             this.MobileTypeEstate = false;
             return;
-        }
+        },
+        uploadPhoto(e){
+            this.image = e.target.files[0];
+            let reader = new FileReader();
+            reader.readAsDataURL(this.image);
+            reader.onload = e => {
+                this.imageprevi = e.target.result;
+            };
+            this.profileUpload();
+        },
+        profileUpload(){  // insert new file or image by this code
+            let formm = new FormData();
+            formm.append('image', this.image);
+            axios.get('/sanctum/csrf-cookie')
+            .then(response => {
+                axios.post('/api/formsubmit', this.formm)
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(response => {
+                    console.log(response);
+                })
+            })
+        },
     },
     created() {
         this.additonalOptions();

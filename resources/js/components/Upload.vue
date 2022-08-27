@@ -3,8 +3,7 @@
         <div class="form__img-stock --large vuedraggable vuedraggable__item img_warpper_box">
             <div v-show="images.length" class="form__img-preview form__img-preview-back position-relative" v-for="(image, index ) in images" :key="index">
                 <div class="form__img-preview-overflow">
-                    <img :src="image" :alt="`Image Uploader ${index}`" id="prev-img" class="form__img-src" width="100" height="100">
-                    <span>Image - {{index}}</span>
+                    <img :src="image" :alt="`Image Uploader ${index}`" id="prev-img" class="form__img-src" width="100" height="100" :style="{transform: `rotate(${deg}deg) !important`}">
                 </div>
                 <div class="rotate-icon top-left-icon" :class="{'active' : index == 0}" @click="moveUp(index)">
                     <i class="feather icon-star"></i>
@@ -12,7 +11,7 @@
                 <div class="rotate-icon top-icon" @click="removeImage(index)">
                     <i class="feather icon-x"></i>
                 </div>
-                <div class="rotate-icon" @click="rotateImage(index)">
+                <div class="rotate-icon"  @click="rotateImage(index)">
                     <i class="feather icon-rotate-cw"></i>
                 </div>
                 <div class="backdrop-img"></div>
@@ -29,7 +28,7 @@
             <label for="media">Выберите фото</label>
         </div>
         <div class="d-none">
-            <input @change="onInputChange" multiple="multiple" type="file" id="media">
+            <input @change="onInputChange" multiple="multiple" type="file" name="images" id="media">
         </div>
         
     </div>
@@ -51,6 +50,7 @@ export default ({
         return {
             files: [],
             images: [],
+            deg: 0,
         }
     },
     methods: {
@@ -98,9 +98,10 @@ export default ({
             
             const img = new Image(),
                 reader = new FileReader();
-                
+            
             reader.onload = (e) => this.images.push(e.target.result);
             reader.readAsDataURL(file);
+            this.submit();
         },
         removeImage(i){
             this.images.splice(i, 1);
@@ -110,7 +111,7 @@ export default ({
             }
         },
         rotateImage(i){
-            console.log(i);
+            this.deg += 90;
         },
         moveUp(index) {
             
@@ -122,6 +123,17 @@ export default ({
             }
             return;
         },
+        
+        submit(){
+            let payload = new FormData();
+            for(let i=0; i<this.images.length; i++){
+                payload.append('image[]', this.images[i])
+            }
+            console.log(payload);
+            axios.post('/api/formsubmit',payload).then(res=>{
+                console.log("Response", res.data)
+            }).catch(err=>console.log(err))
+        }
     },
     created() {
         window.addEventListener('resize', this.checkScreen);
