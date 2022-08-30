@@ -796,16 +796,17 @@ export default {
         profileUpload(){  // insert new file or image by this code
             let formm = new FormData();
             formm.append('image', this.image);
-            axios.get('/sanctum/csrf-cookie')
-            .then(response => {
-                axios.post('/api/formsubmit', this.formm)
-                .then(response => {
-                    console.log(response);
-                })
-                .catch(response => {
-                    console.log(response);
-                })
+            axios.post('/api/upload_image', formm, {
+                headers: {
+                'Content-Type': 'multipart/form-data'
+                }
             })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log("889");
+            });
         },
     },
     created() {

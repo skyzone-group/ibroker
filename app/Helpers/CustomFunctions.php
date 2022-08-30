@@ -11,4 +11,9 @@
         return round(microtime(true) * 1000);
     }
 
+    function public_file_path():string
+    {
+        return public_path()."/files/";
+    }
+
 ?>

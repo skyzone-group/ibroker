@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Blade\ImageUploadController;
+use App\Http\Controllers\Blade\TempImagesController;
 use App\Models\ImageUpload;
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/reset-password-request', [AuthController::class, 'resetPasswordRequest']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
-Route::post('/formsubmit', [ImageUploadController::class, 'multipleupload']);
+Route::post('/upload_image', [TempImagesController::class, 'uploadImage']);
 # Protected routes
 
 
