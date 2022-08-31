@@ -95,12 +95,12 @@
                                                                             <input v-model="typeProperty" id="type__commercial" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="Коммерческая">
                                                                             <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeProperty == 'Коммерческая'}">Коммерческая</span>
                                                                         </label>
-                                                                        <label for="type__dacha" class="single_button_select_box_label" 
+                                                                        <label for="type__dacha" class="single_button_select_box_label"
                                                                         :class="{'active' : this.typeProperty == 'dacha'}">
                                                                             <input v-model="typeProperty" id="type__dacha" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="dacha">
                                                                             <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeProperty == 'dacha'}">Дача</span>
                                                                         </label>
-                                                                        <label for="type__earth" class="single_button_select_box_label" 
+                                                                        <label for="type__earth" class="single_button_select_box_label"
                                                                         :class="{'active' : this.typeProperty == 'earth'}">
                                                                             <input v-model="typeProperty" id="type__earth" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="earth">
                                                                             <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeProperty == 'earth'}">Земля</span>
@@ -177,7 +177,7 @@
                                         </div>
                                     </div>
                                     <!-- Тип объявления -->
-                                    
+
                                     <!-- Address -->
                                     <div class="form-card" id="section-two">
                                         <div class="address_map">
@@ -216,13 +216,13 @@
                                         </div>
                                     </div>
                                     <!-- Address -->
-                                    
+
                                     <!-- Image upload -->
                                     <div class="form-card" id="section-three">
                                         <upload-image></upload-image>
                                     </div>
                                     <!-- Image upload -->
-                                    
+
                                     <!-- Image upload -->
                                     <div class="form-card" id="section-three">
                                         <div id="upload_img">
@@ -231,7 +231,7 @@
                                                     <h4 class="header_title_content_txt mb-0">Фотографии 2</h4>
                                                 </div>
                                                 <div>
-                                                    <upload-box></upload-box>
+                                                        <upload-box></upload-box>
                                                     <div class="test-upload">
                                                         <div>
                                                             <div class="form-group">
@@ -248,7 +248,7 @@
                                         </div>
                                     </div>
                                     <!-- Image upload -->
-                                    
+
                                     <!-- You tube video -->
                                     <div class="form-card">
                                         <div class="address_map">
@@ -275,7 +275,7 @@
                                         </div>
                                     </div>
                                     <!-- You tube video -->
-                                    
+
                                     <!-- Options -->
                                     <div class="form-card" id="section-four">
                                         <div class="options_main">
@@ -311,7 +311,7 @@
                                                             </div>
                                                         </div>
                                                         <!-- Общая площадь -->
-                                                        
+
                                                         <!-- Жилая площадь -->
                                                         <div class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
                                                             <span class="inputs_block_title">Жилая площадь</span>
@@ -327,7 +327,7 @@
                                                         <!-- Жилая площадь -->
                                                     </div>
                                                     <!-- Area options -->
-                                                    
+
                                                     <!-- Hight options -->
                                                     <div class="options_main__items options_main__items_inputs_media mt-4 d-flex">
                                                         <!-- Этаж -->
@@ -342,7 +342,7 @@
                                                             </div>
                                                         </div>
                                                         <!-- Этаж -->
-                                                        
+
                                                         <!-- Этажей в доме-->
                                                         <div class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
                                                             <span class="inputs_block_title">Этажей в доме</span>
@@ -355,7 +355,7 @@
                                                             </div>
                                                         </div>
                                                         <!-- Этажей в доме-->
-                                                        
+
                                                         <!-- Высота потолков -->
                                                         <div class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
                                                             <span class="inputs_block_title">Высота потолков</span>
@@ -397,7 +397,7 @@
                                                             </div>
                                                         </div>
                                                         <!-- Bathroom -->
-                                                        
+
                                                         <!-- Балкон/Лоджия -->
                                                         <div class="options_main__items mt-4">
                                                             <div class="options_main__item d-flex align-items-end">
@@ -427,7 +427,7 @@
                                                             </div>
                                                         </div>
                                                         <!-- Балкон/Лоджия -->
-                                                        
+
                                                         <!-- Ремонт -->
                                                         <div class="options_main__items mt-4">
                                                             <div class="options_main__item d-flex align-items-lg-end align-items-md-end align-items-start flex-lg-row flex-md-row flex-column">
@@ -465,7 +465,7 @@
                                                             </div>
                                                         </div>
                                                         <!-- Ремонт -->
-                                                        
+
                                                         <!-- Год постройки -->
                                                         <div class="options_main__items mt-4 d-flex">
                                                             <div class="options_main__items_inputs options_main__items_inputs_media  d-flex flex-column">
@@ -481,7 +481,7 @@
                                                             </div>
                                                         </div>
                                                         <!-- Год постройки -->
-                                                        
+
                                                         <!-- Тип дома -->
                                                         <div class="options_main__items mt-4">
                                                             <div class="options_main__item d-flex align-items-end">
@@ -515,7 +515,7 @@
                                                             </div>
                                                         </div>
                                                         <!-- Тип дома -->
-                                                        
+
                                                         <!-- Дополнительно -->
                                                         <div id="additional_options" class="mt-5">
                                                             <h2 class="header_title_content_txt">Дополнительно</h2>
@@ -549,7 +549,7 @@
                                         </div>
                                     </div>
                                     <!-- Options -->
-                                    
+
                                     <!-- Price -->
                                     <div class="form-card" id="section-five">
                                         <div class="price_box_main">
@@ -585,7 +585,7 @@
                                         </div>
                                     </div>
                                     <!-- Price -->
-                                    
+
                                     <!-- description -->
                                     <div class="form-card" id="section-six">
                                         <div class="description_box_main">
@@ -600,7 +600,7 @@
                                         </div>
                                     </div>
                                     <!-- description -->
-                                    
+
                                     <!-- online display -->
                                     <div class="form-card">
                                         <div class="show_house_box_main">
@@ -640,7 +640,7 @@
                             </div>
                             <div class="block__body_side-bar  d-lg-block d-md-block d-none">
                                 <form-indicator></form-indicator>
-                            </div>      
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -727,12 +727,12 @@ export default {
                 {id: 9, text: "Другая", value: "other"},
             ],
             typeOfProperty: [
-                {id: 1, text: "Квартира", value: "Квартира"},  
-                {id: 2, text: "Дом", value: "Дом"},   
-                {id: 3, text: "Коммерческая", value: "Коммерческая"},   
-                {id: 4, text: "Дача", value: "Дача"},   
-                {id: 5, text: "Земля", value: "Земля"},   
-            ],  
+                {id: 1, text: "Квартира", value: "Квартира"},
+                {id: 2, text: "Дом", value: "Дом"},
+                {id: 3, text: "Коммерческая", value: "Коммерческая"},
+                {id: 4, text: "Дача", value: "Дача"},
+                {id: 5, text: "Земля", value: "Земля"},
+            ],
             typeDeal: '',
             typeAccount: '',
             typeRent: '',
@@ -785,6 +785,7 @@ export default {
             return;
         },
         uploadPhoto(e){
+            console.log('ok');
             this.image = e.target.files[0];
             let reader = new FileReader();
             reader.readAsDataURL(this.image);
@@ -1458,28 +1459,28 @@ margin-left: 2.4rem;
     .new_object_frontend {
         overflow: hidden !important;
     }
-    
+
     .block__body {
         padding: 0;
         margin: 0 -16px;
     }
-    
+
     .mobile-filter-views-house-modal .FiltersFormFieldPanel__controls .p-radiobutton,
     .mobile-filter-views-house-modal .FiltersFormFieldPanel__controls .p-radiobutton .p-radiobutton-box {
         width: 30px !important;
         height: 30px !important;
     }
-    
+
     .mobile-filter-views-house-modal .FiltersFormFieldPanel__controls .p-radiobutton .p-radiobutton-box .p-radiobutton-icon{
         width: 20px !important;
         height: 20px !important;
     }
-    
+
     .p-radiobutton .p-radiobutton-box.p-highlight {
         border-color: #2196F3;
         background: #fff !important;
     }
-    
+
     .p-radiobutton .p-radiobutton-box.p-highlight  .p-radiobutton-icon{
         background: #2196F3 !important;
     }
