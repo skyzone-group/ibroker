@@ -804,20 +804,19 @@ export default {
         profileUpload(){  // insert new file or image by this code
             let formm = new FormData();
             for(let i = 0; i < this.imageprevi.length; i ++){
-                //formm.append('image[]', this.imageprevi[i]);
-                console.log(this.imageprevi[i]);
-                axios.post('/api/upload_image', this.imageprevi[i], {
-                    headers: {
-                    'Content-Type': 'multipart/form-data'
-                    }
-                })
-                .then(response => {
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+                formm.append('image[]', this.imageprevi[i]);
             }
+            axios.post('/api/upload_image', formm, {
+                headers: {
+                'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         },
     },
     created() {
