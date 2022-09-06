@@ -236,7 +236,7 @@
                                                         <div>
                                                             <div class="form-group">
                                                                 <label for="file">Upload photos</label>
-                                                                <input id="file" type="file" name="photo" class="form-control" @change="uploadPhoto" multiple="multiple">
+                                                                <input id="file" type="file" name="photo" class="form-control" @change="onInputChange" multiple="multiple">
                                                             </div>
                                                             <div v-show="images.length" v-for="(image, index ) in images" :key="index">
                                                                 <img :src="image" alt="" style="max-height: 100px;" class="figure-img img-fluid rounded">
@@ -766,6 +766,7 @@ export default {
             images: [],
             files: [],
             imageprevi: [],
+            imagedata: {}
         }
     },
     methods: {
@@ -785,26 +786,47 @@ export default {
             this.MobileTypeEstate = false;
             return;
         },
+        onInputChange(e){
+            const selectedImages = e.target.files;
+            Array.from(selectedImages).forEach(file => this.addImage(file))
+        },
+        addImage(file){
+            if(!file.type.match('image.*')){
+                console.log(`${file.name} is not an image`);
+                return;
+            }
+            this.files.push(file);
+            
+            const img = new Image(),
+                reader = new FileReader();
+            
+            reader.onload = (e) => this.images.push(e.target.result);
+            reader.readAsDataURL(file);
+            this.profileUpload();
+        },
         uploadPhoto(e){
             console.log('ok');
             let selectedImages = e.target.files;
             if(!selectedImages.length){
                 return false;
             }
+            
             for(let i = 0; i < selectedImages.length; i ++){
                 this.imageprevi.push(selectedImages[i]);
             }
             // console.log(this.imageprevi);
-            // let reader = new FileReader();
-            // reader.readAsDataURL(selectedImages);
-            // reader.onload = (e) => this.images.push(e.target.files);
+            let reader = new FileReader();
+            reader.readAsDataURL(selectedImages[i]);
+            reader.onload = (e) => this.images.push(selectedImages[i]);
+            
             // console.log(this.images);
             this.profileUpload();
         },
         profileUpload(){  // insert new file or image by this code
             let formm = new FormData();
-            for(let i = 0; i < this.imageprevi.length; i ++){
-                formm.append('image[]', this.imageprevi[i]);
+            //console.log(this.files);
+            for(let i = 0; i < this.files.length; i ++){
+                formm.append('image[]', this.files[i]);
             }
             axios.post('/api/upload_image', formm, {
                 headers: {
@@ -812,6 +834,8 @@ export default {
                 }
             })
             .then(response => {
+                this.imagedata = response.data;
+                console.log(this.imagedata);
                 console.log(response);
             })
             .catch(function (error) {

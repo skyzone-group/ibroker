@@ -20,16 +20,13 @@ class TempImagesController extends ResponseController
             $image = TempImages::create([
                 'name' => $name
             ]);
+            
+            $image_id = $image->id;
         }
-        
-
         //1024 * 1024 * 10 = 10485760 => 10MB max file size
         // if($file->getSize() > 10 * 1024 * 1024) return self::errorResponse('Max file size is 10mb');
-
-      
-
         return self::successResponse([
-            'image_id'   => $image->id,
+            'image_id'   => $image_id,
         ]);
     }
 
