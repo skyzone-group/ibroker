@@ -236,10 +236,10 @@
                                                         <div>
                                                             <div class="form-group">
                                                                 <label for="file">Upload photos</label>
-                                                                <input id="file" type="file" name="photo" class="form-control" @change="uploadPhoto">
+                                                                <input id="file" type="file" name="photo" class="form-control" @change="uploadPhoto" multiple="multiple">
                                                             </div>
-                                                            <div v-if="imageprevi">
-                                                                <img :src="imageprevi" alt="" style="max-height: 100px;" class="figure-img img-fluid rounded">
+                                                            <div v-show="images.length" v-for="(image, index ) in images" :key="index">
+                                                                <img :src="image" alt="" style="max-height: 100px;" class="figure-img img-fluid rounded">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -763,8 +763,9 @@ export default {
                 {name: 'Базарная (улица)', code: 'IST'},
                 {name: 'Бектемир (махалля)', code: 'PRS'}
             ],
-            image: null,
-            imageprevi: null,
+            images: [],
+            files: [],
+            imageprevi: [],
         }
     },
     methods: {
@@ -786,28 +787,37 @@ export default {
         },
         uploadPhoto(e){
             console.log('ok');
-            this.image = e.target.files[0];
-            let reader = new FileReader();
-            reader.readAsDataURL(this.image);
-            reader.onload = e => {
-                this.imageprevi = e.target.result;
-            };
+            let selectedImages = e.target.files;
+            if(!selectedImages.length){
+                return false;
+            }
+            for(let i = 0; i < selectedImages.length; i ++){
+                this.imageprevi.push(selectedImages[i]);
+            }
+            // console.log(this.imageprevi);
+            // let reader = new FileReader();
+            // reader.readAsDataURL(selectedImages);
+            // reader.onload = (e) => this.images.push(e.target.files);
+            // console.log(this.images);
             this.profileUpload();
         },
         profileUpload(){  // insert new file or image by this code
             let formm = new FormData();
-            formm.append('image', this.image);
-            axios.post('/api/upload_image', formm, {
-                headers: {
-                'Content-Type': 'multipart/form-data'
-                }
-            })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log("889");
-            });
+            for(let i = 0; i < this.imageprevi.length; i ++){
+                //formm.append('image[]', this.imageprevi[i]);
+                console.log(this.imageprevi[i]);
+                axios.post('/api/upload_image', this.imageprevi[i], {
+                    headers: {
+                    'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            }
         },
     },
     created() {
