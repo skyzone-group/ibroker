@@ -1,9 +1,10 @@
 <template>
     <div class="blade">
+        {{this.images}}
         <div class="form__img-stock --large vuedraggable vuedraggable__item img_warpper_box">
             <div v-show="images.length" class="form__img-preview form__img-preview-back position-relative" v-for="(image, index ) in images" :key="index">
                 <div class="form__img-preview-overflow">
-                    <img :src="image" :alt="`Image Uploader ${index}`" id="prev-img" class="form__img-src" width="100" height="100" :style="{transform: `rotate(${deg}deg) !important`}">
+                    <img :src="image.img" :alt="`Image Uploader ${index}`" id="prev-img" class="form__img-src" width="100" height="100" :style="{transform: `rotate(${deg}deg) !important`}">
                 </div>
                 <div class="rotate-icon top-left-icon" :class="{'active' : index == 0}" @click="moveUp(index)">
                     <i class="feather icon-star"></i>
@@ -15,6 +16,7 @@
                     <i class="feather icon-rotate-cw"></i>
                 </div>
                 <div class="backdrop-img"></div>
+               
             </div>
             <div class="form__img-item form__img-item-big vuedraggable__item d-lg-block d-md-block d-none">
                 <label for="media" class="form__img-preview">
@@ -58,14 +60,30 @@ export default ({
             const files = e.target.files;
             Array.from(files).forEach(file => this.addImage(file))
         },
-        addImage(file){
+        async addImage(file){
             if(!file.type.match('image.*')){
                 console.log(`${file.name} is not an image`);
                 return;
             }
-            const test = document.querySelector(".form__img-item");
-            //console.log(this.images);
             this.files.push(file);
+
+            //Upload image to server
+            let formm = new FormData();
+            formm.append('image', file);
+            let imageId = 0;
+            await axios.post('/api/upload_image', formm, {
+                headers: {
+                'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(response => {
+                imageId = response.data.result.image_id;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+            //end of image upload
+
             var imgBox = document.querySelector(".img_warpper_box");
             Sortable.create(imgBox, {
                 items: file,
@@ -77,31 +95,19 @@ export default ({
                 easing: "cubic-bezier(1, 0, 0, 1)",
                 ghostClass: "sortable-ghost",
                 bubbleScroll: true,
-                // onStart: function (evt) {
-                //     evt.oldIndex;
-                // },
-                // onEnd: (evt) => {
-                //     // let newIndex;
-                //     let arrayImage = this.images;
-                //     console.log('previousElementSibling', evt.item.previousElementSibling);
-                //     console.log('nextElementSiblingElementSibling', evt.item.nextElementSiblingElementSibling);
-                //     console.log('oldIndex', evt.oldIndex);
-                //     console.log('newIndex', evt.newIndex);
-                //     let neighborIndex;
-                //     arrayImage.splice(arrayImage.indexOf(evt.item.id), 1); // stergem pe ala pe care l-am tras de sus
-                //     if (evt.oldIndex < evt.newIndex) neighborIndex = arrayImage.indexOf(evt.item.previousElementSibling.id) + 1;
-                //     else neighborIndex = arrayImage.indexOf(evt.item.nextElementSibling.id);
-                //     arrayImage.splice(neighborIndex, 0, evt.item.id); // il adaugam dupa vecin
-                //     console.log(arrayImage);
-                // }
             });
             
-            const img = new Image(),
-                reader = new FileReader();
+            const img   = new Image(),
+            reader      = new FileReader();
             
-            reader.onload = (e) => this.images.push(e.target.result);
+            reader.onload = (e) => this.images.push(
+                    {
+                        img: e.target.result,
+                        img_id: imageId
+                    }
+            );
             reader.readAsDataURL(file);
-            this.submit();
+            //this.submit();
         },
         removeImage(i){
             this.images.splice(i, 1);

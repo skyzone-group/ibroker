@@ -217,11 +217,6 @@
                                     </div>
                                     <!-- Address -->
 
-                                    <!-- Image upload -->
-                                    <div class="form-card" id="section-three">
-                                        <upload-image></upload-image>
-                                    </div>
-                                    <!-- Image upload -->
 
                                     <!-- Image upload -->
                                     <div class="form-card" id="section-three">
@@ -797,6 +792,7 @@ export default {
         profileUpload(){  // insert new file or image by this code
             let formm = new FormData();
             formm.append('image', this.image);
+            console.log(formm);
             axios.post('/api/upload_image', formm, {
                 headers: {
                 'Content-Type': 'multipart/form-data'
