@@ -11,19 +11,22 @@ class TempImagesController extends ResponseController
     //Uploading Image
     public function uploadImage(Request $request)
     {
-        $file = $request->image;
-
+        //dd('ok');
+        $files = $request->image;
+        
+        foreach ($files as $file) {
+            $name = getCurrentMicrotime().'.'.$file->extension();
+            $file->move(public_file_path(), $name);
+            $image = TempImages::create([
+                'name' => $name
+            ]);
+            
+            $image_id = $image->id;
+        }
         //1024 * 1024 * 10 = 10485760 => 10MB max file size
-        if($file->getSize() > 10 * 1024 * 1024) return self::errorResponse('Max file size is 10mb');
-
-        $name = getCurrentMicrotime().'.'.$file->extension();
-        $file->move(public_file_path(), $name);
-        $image = TempImages::create([
-            'name' => $name
-        ]);
-
+        // if($file->getSize() > 10 * 1024 * 1024) return self::errorResponse('Max file size is 10mb');
         return self::successResponse([
-            'image_id'   => $image->id,
+            'image_id'   => $image_id,
         ]);
     }
 

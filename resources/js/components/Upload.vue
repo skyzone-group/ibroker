@@ -57,8 +57,8 @@ export default ({
     },
     methods: {
         onInputChange(e){
-            const files = e.target.files;
-            Array.from(files).forEach(file => this.addImage(file))
+            const filess = e.target.files;
+            Array.from(filess).forEach(file => this.addImage(file))
         },
         async addImage(file){
             if(!file.type.match('image.*')){
