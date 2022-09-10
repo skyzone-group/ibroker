@@ -1,10 +1,9 @@
 <template>
     <div class="blade">
-        {{this.images}}
         <div class="form__img-stock --large vuedraggable vuedraggable__item img_warpper_box">
             <div v-show="images.length" class="form__img-preview form__img-preview-back position-relative" v-for="(image, index ) in images" :key="index">
                 <div class="form__img-preview-overflow">
-                    <img :src="image.img" :alt="`Image Uploader ${index}`" id="prev-img" class="form__img-src" width="100" height="100" :style="{transform: `rotate(${deg}deg) !important`}">
+                    <img :src="image.img" :alt="`Image Uploader ${index}`" id="prev-img" class="form__img-src" width="100" height="100" :style="{transform: `rotate(${image.degree}deg) !important`}">
                 </div>
                 <div class="rotate-icon top-left-icon" :class="{'active' : index == 0}" @click="moveUp(index)">
                     <i class="feather icon-star"></i>
@@ -12,7 +11,7 @@
                 <div class="rotate-icon top-icon" @click="removeImage(index)">
                     <i class="feather icon-x"></i>
                 </div>
-                <div class="rotate-icon"  @click="rotateImage(index)">
+                <div class="rotate-icon"  @click="rotateImage(image)">
                     <i class="feather icon-rotate-cw"></i>
                 </div>
                 <div class="backdrop-img"></div>
@@ -50,13 +49,12 @@ export default ({
     },
     data() {
         return {
-            files: [],
             images: [],
-            deg: 0,
+            imageCount: 0
         }
     },
     methods: {
-        onInputChange(e){
+        async onInputChange(e){
             const filess = e.target.files;
             Array.from(filess).forEach(file => this.addImage(file))
         },
@@ -65,25 +63,7 @@ export default ({
                 console.log(`${file.name} is not an image`);
                 return;
             }
-            this.files.push(file);
-
-            //Upload image to server
-            let formm = new FormData();
-            formm.append('image', file);
-            let imageId = 0;
-            await axios.post('/api/upload_image', formm, {
-                headers: {
-                'Content-Type': 'multipart/form-data'
-                }
-            })
-            .then(response => {
-                imageId = response.data.result.image_id;
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-            //end of image upload
-
+            
             var imgBox = document.querySelector(".img_warpper_box");
             Sortable.create(imgBox, {
                 items: file,
@@ -96,28 +76,31 @@ export default ({
                 ghostClass: "sortable-ghost",
                 bubbleScroll: true,
             });
-            
             const img   = new Image(),
             reader      = new FileReader();
             
             reader.onload = (e) => this.images.push(
                     {
                         img: e.target.result,
-                        img_id: imageId
+                        img_id: this.imageCount,
+                        degree: 0
                     }
             );
+            console.log(this.imageCount);
             reader.readAsDataURL(file);
-            //this.submit();
+            this.imageCount += 1;
+            this.updateImagesBox();
         },
         removeImage(i){
             this.images.splice(i, 1);
-            
+            this.updateImagesBox();
             if(!this.images.length){
                 this.$refs.im.value = '';
             }
         },
         rotateImage(i){
-            this.deg += 90;
+            this.updateImagesBox();
+            i.degree = (i.degree + 90) % 360;
         },
         moveUp(index) {
             
@@ -130,15 +113,8 @@ export default ({
             return;
         },
         
-        submit(){
-            let payload = new FormData();
-            for(let i=0; i<this.images.length; i++){
-                payload.append('image[]', this.images[i])
-            }
-            console.log(payload);
-            axios.post('/api/formsubmit',payload).then(res=>{
-                console.log("Response", res.data)
-            }).catch(err=>console.log(err))
+        updateImagesBox(){
+            this.$emit('updateImagesBox', this.images);
         }
     },
     created() {

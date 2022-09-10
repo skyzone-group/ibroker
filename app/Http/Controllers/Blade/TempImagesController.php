@@ -30,25 +30,10 @@ class TempImagesController extends ResponseController
     //Rotating Image
     public function rotateImage(Request $request)
     {
-        /*
-        //get image
         $image = TempImages::whereId($request->image_id)->first();
-        $path = public_file_path() . $image->name;
-        $source = imagecreatefrompng($path);
-        $rotate = imagerotate($source, 270, 0);
-        //get file extension
-        $fileType   = substr($image->name, strrpos($image->name, '.') + 1);
-        $newFileName = getCurrentMicrotime() . '.' . $fileType;
-        //and save it on your server...
-        $res = imagepng($rotate,public_file_path() . $newFileName);
-        if($res) {
-            TempImages::whereId($request->image_id)->update(['name' => $newFileName]);
-            unlink(public_file_path()  . $image->name);
-            return self::successResponse('Successfully rotated');
-        }
-        */
 
-        $image = TempImages::whereId($request->image_id)->first();
+        if(!$image) return self::errorResponse('Image not found'); 
+
         $path = public_file_path() . $image->name;
         $fileType   = substr($image->name, strrpos($image->name, '.') + 1);
         $newFileName = getCurrentMicrotime() . '.' . $fileType;

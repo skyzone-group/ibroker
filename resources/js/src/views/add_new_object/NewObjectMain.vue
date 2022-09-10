@@ -224,20 +224,12 @@
                                             <div class="header_title">
                                                 <div class="header_title_content d-flex flex-column">
                                                     <h4 class="header_title_content_txt mb-0">Фотографии 2</h4>
+                                                    <pre>
+                                                        {{this.form.images}}
+                                                    </pre>
                                                 </div>
                                                 <div>
-                                                        <upload-box></upload-box>
-                                                    <div class="test-upload">
-                                                        <div>
-                                                            <div class="form-group">
-                                                                <label for="file">Upload photos</label>
-                                                                <input id="file" type="file" name="photo" class="form-control" @change="uploadPhoto">
-                                                            </div>
-                                                            <div v-if="imageprevi">
-                                                                <img :src="imageprevi" alt="" style="max-height: 100px;" class="figure-img img-fluid rounded">
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                        <upload-box @updateImagesBox="updateImagesBox"></upload-box>
                                                 </div>
                                             </div>
                                         </div>
@@ -699,7 +691,8 @@ export default {
                 priceHouse: "",
                 priceCheckbox: "",
                 description: "",
-                showOnline: ""
+                showOnline: "",
+                images: []
             },
             options: [],
             addoptions: [
@@ -805,6 +798,9 @@ export default {
                 console.log("889");
             });
         },
+        updateImagesBox(data){
+            this.form.images = data;
+        }
     },
     created() {
         this.additonalOptions();
