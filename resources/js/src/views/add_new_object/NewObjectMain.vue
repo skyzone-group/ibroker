@@ -224,13 +224,13 @@
                                             <div class="header_title">
                                                 <div class="header_title_content d-flex flex-column">
                                                     <h4 class="header_title_content_txt mb-0">Фотографии 2</h4>
-                                                    <pre>
-                                                        {{this.form.images}}
-                                                    </pre>
                                                 </div>
                                                 <div>
                                                         <upload-box @updateImagesBox="updateImagesBox"></upload-box>
                                                 </div>
+                                                <pre>
+                                                    {{this.form.images}}
+                                                </pre>
                                             </div>
                                         </div>
                                     </div>
