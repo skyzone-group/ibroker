@@ -11,22 +11,19 @@ class TempImagesController extends ResponseController
     //Uploading Image
     public function uploadImage(Request $request)
     {
-        //dd('ok');
-        $files = $request->image;
-        
-        foreach ($files as $file) {
-            $name = getCurrentMicrotime().'.'.$file->extension();
-            $file->move(public_file_path(), $name);
-            $image = TempImages::create([
-                'name' => $name
-            ]);
-            
-            $image_id = $image->id;
-        }
+        $file = $request->image;
+
         //1024 * 1024 * 10 = 10485760 => 10MB max file size
-        // if($file->getSize() > 10 * 1024 * 1024) return self::errorResponse('Max file size is 10mb');
+        if($file->getSize() > 10 * 1024 * 1024) return self::errorResponse('Max file size is 10mb');
+
+        $name = getCurrentMicrotime().'.'.$file->extension();
+        $file->move(public_file_path(), $name);
+        $image = TempImages::create([
+            'name' => $name
+        ]);
+
         return self::successResponse([
-            'image_id'   => $image_id,
+            'image_id'   => $image->id,
         ]);
     }
 
@@ -38,14 +35,12 @@ class TempImagesController extends ResponseController
         $image = TempImages::whereId($request->image_id)->first();
         $path = public_file_path() . $image->name;
         $source = imagecreatefrompng($path);
-
         $rotate = imagerotate($source, 270, 0);
         //get file extension
         $fileType   = substr($image->name, strrpos($image->name, '.') + 1);
         $newFileName = getCurrentMicrotime() . '.' . $fileType;
         //and save it on your server...
         $res = imagepng($rotate,public_file_path() . $newFileName);
-
         if($res) {
             TempImages::whereId($request->image_id)->update(['name' => $newFileName]);
             unlink(public_file_path()  . $image->name);
