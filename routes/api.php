@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Blade\TempImagesController;
+use App\Http\Controllers\Blade\AddressController;
 use App\Models\ImageUpload;
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,8 @@ Route::post('/reset-password-request', [AuthController::class, 'resetPasswordReq
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
 Route::post('/upload_image', [TempImagesController::class, 'uploadImage']);
 Route::post('/rotate_image', [TempImagesController::class, 'rotateImage']);
+
+Route::get('/allRegions', [AddressController::class, 'allRegions']);
 # Protected routes
 
 Route::get('photo', 'App\Http\Controllers\Blade\ImageUploadController@index');

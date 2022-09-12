@@ -730,13 +730,7 @@ export default {
             selectedRegion: null,
             selectedDistrict: null,
             selectedStreet: null,
-            regions: [
-                {name: 'Tashkent', code: 'NY'},
-                {name: 'Ташкентская область', code: 'RM'},
-                {name: 'Андижанская область', code: 'LDN'},
-                {name: 'Бухарская область', code: 'IST'},
-                {name: 'Джизахская область', code: 'PRS'}
-            ],
+            regions: [],
             districts: [
                 {name: 'Аккурган', code: 'NY'},
                 {name: 'Алмалык', code: 'RM'},
@@ -800,10 +794,17 @@ export default {
         },
         updateImagesBox(data){
             this.form.images = data;
+        },
+        getRegions(){
+            // axios.get('/allRegions')
+            // .then(response => {
+            //     console.log(response);
+            // });
         }
     },
     created() {
         this.additonalOptions();
+        this.getRegions();
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen()
     },
