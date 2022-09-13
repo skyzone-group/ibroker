@@ -31,7 +31,6 @@
         <div class="d-none">
             <input @change="onInputChange" multiple="multiple" type="file" name="images" id="media">
         </div>
-        
     </div>
 </template>
 
@@ -45,12 +44,13 @@ import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 export default ({
     name: 'Upload',
     components: {
-        
+        draggable
     },
     data() {
         return {
             images: [],
-            imageCount: 0
+            imageCount: 0,
+            drag: false,
         }
     },
     methods: {
@@ -64,7 +64,25 @@ export default ({
                 return;
             }
             
+            
+            const img   = new Image(),
+            reader      = new FileReader();
+            
+            reader.onload = (e) => this.images.push(
+                {
+                    img: e.target.result,
+                    img_id: this.imageCount,
+                    degree: 0
+                }
+            );
+            console.log(this.imageCount);
+            reader.readAsDataURL(file);
+            this.imageCount += 1;
+            this.updateImagesBox();
+            
+            
             var imgBox = document.querySelector(".img_warpper_box");
+            
             Sortable.create(imgBox, {
                 items: file,
                 cursor: 'move',
@@ -75,21 +93,28 @@ export default ({
                 easing: "cubic-bezier(1, 0, 0, 1)",
                 ghostClass: "sortable-ghost",
                 bubbleScroll: true,
+                onEnd: (evt) => {
+                    // let newIndex;
+                    console.log('previousElementSibling', evt.item.previousElementSibling);
+                    console.log('nextElementSiblingElementSibling', evt.item.nextElementSiblingElementSibling);
+                    console.log('oldIndex', evt.oldIndex);
+                    console.log('newIndex', evt.newIndex);
+                    let neighborIndex;
+                    this.images.splice(this.images.indexOf(evt.item.id), 1); // stergem pe ala pe care l-am tras de sus
+                    if (evt.oldIndex < evt.newIndex) neighborIndex = this.images.indexOf(evt.item.previousElementSibling.id) + 1;
+                    else neighborIndex = this.images.indexOf(evt.item.nextElementSibling.id);
+                    this.images.splice(neighborIndex, 0, evt.item.id); // il adaugam dupa vecin
+                    console.log(this.images);
+                },
+                // onUpdate: function (evt) {
+                //     if (evt.oldIndex < evt.newIndex) neighborIndex  = this.images.indexOf(evt.item.previousElementSibling?.id || this.images[0]);
+                //     else neighborIndex = this.images.indexOf(evt.item.nextElementSibling?.id);
+                //     console.log("neighborIndex",neighborIndex);
+                //     console.log('newIndex', evt.newIndex);
+                // }
             });
-            const img   = new Image(),
-            reader      = new FileReader();
             
-            reader.onload = (e) => this.images.push(
-                    {
-                        img: e.target.result,
-                        img_id: this.imageCount,
-                        degree: 0
-                    }
-            );
-            console.log(this.imageCount);
-            reader.readAsDataURL(file);
-            this.imageCount += 1;
-            this.updateImagesBox();
+            
         },
         removeImage(i){
             this.images.splice(i, 1);
@@ -103,7 +128,6 @@ export default ({
             i.degree = (i.degree + 90) % 360;
         },
         moveUp(index) {
-            
         },
         checkScreen() {
             this.windowWidth = window.innerWidth;
@@ -112,10 +136,9 @@ export default ({
             }
             return;
         },
-        
         updateImagesBox(){
             this.$emit('updateImagesBox', this.images);
-        }
+        },
     },
     created() {
         window.addEventListener('resize', this.checkScreen);
