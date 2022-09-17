@@ -1,30 +1,43 @@
 <template>
     <div class="blade">
-        <div class="form__img-stock --large vuedraggable vuedraggable__item img_warpper_box">
-            <div v-show="images.length" class="form__img-preview form__img-preview-back position-relative" v-for="(image, index ) in images" :key="index">
-                <div class="form__img-preview-overflow">
-                    <img :src="image.img" :alt="`Image Uploader ${index}`" id="prev-img" class="form__img-src" width="100" height="100" :style="{transform: `rotate(${image.degree}deg) !important`}">
+        <draggable 
+            v-model="images" 
+            group="people" 
+            @start="drag=true" 
+            @end="drag=false"
+            ghost-class="ghost"
+            :delay="200"
+            :delay-on-touch-only="true"
+            :component-data="getComponentData()" 
+            item-key="img_id"
+            class="form__img-stock --large vuedraggable vuedraggable__item img_warpper_box w-100">
+            <template #item="{element, index}">
+                <div class="form__img-preview form__img-preview-back position-relative">
+                    <div class="form__img-preview-overflow">
+                        <img :src="element.img"  id="prev-img" class="form__img-src" width="100" height="100" :style="{transform: `rotate(${element.degree}deg) !important`}">
+                    </div>
+                    <div class="rotate-icon top-left-icon" :class="{'active' : index == 0}" @click="moveUp(index)">
+                        <i class="feather icon-star"></i>
+                    </div>
+                    <div class="rotate-icon top-icon" @click="removeImage(index)">
+                        <i class="feather icon-x"></i>
+                    </div>
+                    <div class="rotate-icon"  @click="rotateImage(element)">
+                        <i class="feather icon-rotate-cw"></i>
+                    </div>
+                    <div class="backdrop-img"></div>
                 </div>
-                <div class="rotate-icon top-left-icon" :class="{'active' : index == 0}" @click="moveUp(index)">
-                    <i class="feather icon-star"></i>
+            </template>
+            <template #footer>
+                <div class="form__img-item form__img-item-big vuedraggable__item d-lg-block d-md-block d-none">
+                    <label for="media" class="form__img-preview">
+                        <span class="form__img-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg"  width="30px" height="30px" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16" id="IconChangeColor"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" id="mainIconPathAttribute"></path></svg>
+                        </span>
+                    </label>
                 </div>
-                <div class="rotate-icon top-icon" @click="removeImage(index)">
-                    <i class="feather icon-x"></i>
-                </div>
-                <div class="rotate-icon"  @click="rotateImage(image)">
-                    <i class="feather icon-rotate-cw"></i>
-                </div>
-                <div class="backdrop-img"></div>
-               
-            </div>
-            <div class="form__img-item form__img-item-big vuedraggable__item d-lg-block d-md-block d-none">
-                <label for="media" class="form__img-preview">
-                    <span class="form__img-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg"  width="30px" height="30px" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16" id="IconChangeColor"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" id="mainIconPathAttribute"></path></svg>
-                    </span>
-                </label>
-            </div>
-        </div>
+            </template>
+        </draggable> 
         <div class="mobile-file-input w-100 d-lg-none d-md-none d-block">
             <label for="media">Выберите фото</label>
         </div>
@@ -93,25 +106,6 @@ export default ({
                 easing: "cubic-bezier(1, 0, 0, 1)",
                 ghostClass: "sortable-ghost",
                 bubbleScroll: true,
-                onEnd: (evt) => {
-                    // let newIndex;
-                    console.log('previousElementSibling', evt.item.previousElementSibling);
-                    console.log('nextElementSiblingElementSibling', evt.item.nextElementSiblingElementSibling);
-                    console.log('oldIndex', evt.oldIndex);
-                    console.log('newIndex', evt.newIndex);
-                    let neighborIndex;
-                    this.images.splice(this.images.indexOf(evt.item.id), 1); // stergem pe ala pe care l-am tras de sus
-                    if (evt.oldIndex < evt.newIndex) neighborIndex = this.images.indexOf(evt.item.previousElementSibling.id) + 1;
-                    else neighborIndex = this.images.indexOf(evt.item.nextElementSibling.id);
-                    this.images.splice(neighborIndex, 0, evt.item.id); // il adaugam dupa vecin
-                    console.log(this.images);
-                },
-                // onUpdate: function (evt) {
-                //     if (evt.oldIndex < evt.newIndex) neighborIndex  = this.images.indexOf(evt.item.previousElementSibling?.id || this.images[0]);
-                //     else neighborIndex = this.images.indexOf(evt.item.nextElementSibling?.id);
-                //     console.log("neighborIndex",neighborIndex);
-                //     console.log('newIndex', evt.newIndex);
-                // }
             });
             
             
@@ -139,6 +133,30 @@ export default ({
         updateImagesBox(){
             this.$emit('updateImagesBox', this.images);
         },
+        onEnd(evt){
+            // let newIndex;
+            // console.log('previousElementSibling', evt.item.previousElementSibling);
+            // console.log('nextElementSiblingElementSibling', evt.item.nextElementSiblingElementSibling);
+            // console.log('oldIndex', evt.oldIndex);
+            // console.log('newIndex', evt.newIndex);
+            let neighborIndex;
+            if (evt.oldIndex < evt.newIndex) neighborIndex  = this.images.indexOf(evt.item.previousElementSibling?.id || this.images[0]);
+            else neighborIndex = this.images.indexOf(evt.item.nextElementSibling?.id);
+            console.log("neighborIndex",neighborIndex);
+            // this.images.splice(neighborIndex, 0, evt.item.id);
+            this.updateImagesBox();
+            console.log(this.images);
+        },
+        handleChange() {
+            console.log(this.images);
+        },
+        getComponentData() {
+            return {
+                onEnd: this.onEnd,
+                onChange: this.handleChange,
+                wrap: true,
+            };
+        }
     },
     created() {
         window.addEventListener('resize', this.checkScreen);
@@ -165,9 +183,9 @@ export default ({
     margin-bottom: 0.75rem; */
 }
 
-.vuedraggable__item {
+/* .vuedraggable__item {
     cursor: move;
-}
+} */
 
 .form__img-preview {
     width: 100%;
