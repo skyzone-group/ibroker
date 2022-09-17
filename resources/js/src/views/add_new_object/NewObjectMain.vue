@@ -44,20 +44,20 @@
                                                                 <span class="ad_type_item_content_span">Тип сделки</span>
                                                                 <div class="single_button_select">
                                                                     <div class="single_button_select_box d-flex">
-                                                                        <label for="type__sell" class="single_button_select_box_label" :class="{'active' : this.typeDeal == 'Продажа'}">
-                                                                            <input v-model="typeDeal" id="type__sell" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="Продажа">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeDeal == 'Продажа'}">Продажа</span>
+                                                                        <label for="type__sell" class="single_button_select_box_label" :class="{'active' : this.deal_type == 'buy'}">
+                                                                            <input v-model="deal_type" id="type__sell" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="buy">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.deal_type == 'buy'}">Продажа</span>
                                                                         </label>
-                                                                        <label for="type__rent" class="single_button_select_box_label" :class="{'active' : this.typeDeal == 'Аренда'}">
-                                                                            <input v-model="typeDeal" id="type__rent" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="Аренда">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeDeal == 'Аренда'}">Аренда</span>
+                                                                        <label for="type__rent" class="single_button_select_box_label" :class="{'active' : this.deal_type == 'rent'}">
+                                                                            <input v-model="deal_type" id="type__rent" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="rent">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.deal_type == 'rent'}">Аренда</span>
                                                                         </label>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div v-if="typeDeal === 'Аренда'" class="ad_type_item" style="margin-bottom: 20px;">
+                                                    <div v-if="deal_type === 'rent'" class="ad_type_item" style="margin-bottom: 20px;">
                                                         <div class="ad_type_item_content">
                                                             <div>
                                                                 <span class="ad_type_item_content_span">Тип аренды</span>
@@ -82,34 +82,36 @@
                                                                 <span class="ad_type_item_content_span">Вид недвижимости</span>
                                                                 <div class="single_button_select">
                                                                     <div v-if="!MobileTypeEstate" class="single_button_select_box d-flex">
-                                                                        <label for="type__residential" class="single_button_select_box_label" :class="{'active' : this.typeProperty == 'apartment'}">
-                                                                            <input v-model="typeProperty" id="type__residential" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="apartment">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeProperty == 'apartment'}">Квартира</span>
+                                                                        <label for="type__residential" class="single_button_select_box_label" 
+                                                                        :class="{'active' : this.type == 'flat'}">
+                                                                            <input v-model="type" id="type__residential" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="flat">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.type == 'flat'}">Квартира</span>
                                                                         </label>
-                                                                        <label for="type__house" class="single_button_select_box_label" :class="{'active' : this.typeProperty == 'house'}">
-                                                                            <input v-model="typeProperty" id="type__house" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="house">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeProperty == 'house'}">Дом</span>
+                                                                        <label for="type__house" class="single_button_select_box_label" 
+                                                                        :class="{'active' : this.type == 'home'}">
+                                                                            <input v-model="type" id="type__house" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="home">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.type == 'home'}">Дом</span>
                                                                         </label>
                                                                         <label  for="type__commercial" class="single_button_select_box_label"
-                                                                        :class="{'active' : this.typeProperty == 'Коммерческая'}">
-                                                                            <input v-model="typeProperty" id="type__commercial" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="Коммерческая">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeProperty == 'Коммерческая'}">Коммерческая</span>
+                                                                        :class="{'active' : this.type == 'office'}">
+                                                                            <input v-model="type" id="type__commercial" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="office">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.type == 'office'}">Коммерческая</span>
                                                                         </label>
                                                                         <label for="type__dacha" class="single_button_select_box_label"
-                                                                        :class="{'active' : this.typeProperty == 'dacha'}">
-                                                                            <input v-model="typeProperty" id="type__dacha" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="dacha">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeProperty == 'dacha'}">Дача</span>
+                                                                        :class="{'active' : this.type == 'villa'}">
+                                                                            <input v-model="type" id="type__dacha" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="villa">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.type == 'villa'}">Дача</span>
                                                                         </label>
                                                                         <label for="type__earth" class="single_button_select_box_label"
-                                                                        :class="{'active' : this.typeProperty == 'earth'}">
-                                                                            <input v-model="typeProperty" id="type__earth" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="earth">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeProperty == 'earth'}">Земля</span>
+                                                                        :class="{'active' : this.type == 'land'}">
+                                                                            <input v-model="type" id="type__earth" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="land">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.type == 'land'}">Земля</span>
                                                                         </label>
                                                                     </div>
                                                                     <div v-if="MobileTypeEstate" class="mobile_button_select">
                                                                         <div class="w-100">
                                                                             <button data-toggle="modal" data-target="#typeHouseModal" class="d-flex align-items-center justify-content-between w-100 mobile-filter-views-house-item-btn" type="button">
-                                                                                <span>{{ typeProperty != '' ? typeProperty : 'Тип недвижимости' }}</span>
+                                                                                <span>{{ type != '' ? type : 'Тип недвижимости' }}</span>
                                                                             </button>
                                                                         </div>
                                                                         <!-- Modal -->
@@ -126,15 +128,15 @@
                                                                                                     <div class="FiltersFormFieldPanel__controls">
                                                                                                         <div class="mt-4">
                                                                                                             <div class="d-flex flex-column">
-                                                                                                                <div v-for="item in typeOfProperty" :key="item.id" @click="typeProperty = item.value" class="mobile-filter-views-house-modal-item flex-row-reverse">
-                                                                                                                    <RadioButton :inputId="`type_commer_${item.id}`" name="type-commercial" :value="item.value" v-model="typeProperty" />
+                                                                                                                <div v-for="item in typeOfProperty" :key="item.id" @click="type = item.value" class="mobile-filter-views-house-modal-item flex-row-reverse">
+                                                                                                                    <RadioButton :inputId="`type_commer_${item.id}`" name="type-commercial" :value="item.value" v-model="type" />
                                                                                                                     <label :for="`type_commer_${item.id}`" class="Tumbler__title" style="font-size: 18px; font-weight: 500;"> {{ item.text }}</label>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                     <div class="FiltersFormFieldPanel__actions">
-                                                                                                        <button @click="typeProperty = ''"  data-dismiss="modal" aria-label="Close" class="Button Button_js_inited Button_size_l Button_theme_islands Button_type_button FiltersFormFieldPanel__cancel" type="button"><span class="Button__text">Отменить</span></button>
+                                                                                                        <button @click="type = ''"  data-dismiss="modal" aria-label="Close" class="Button Button_js_inited Button_size_l Button_theme_islands Button_type_button FiltersFormFieldPanel__cancel" type="button"><span class="Button__text">Отменить</span></button>
                                                                                                         <button data-dismiss="modal" aria-label="Close" class="Button Button_js_inited Button_size_l Button_theme_realty Button_type_button Button_theme_islands Button_view_yellow FiltersFormFieldPanel__save" type="button"><span class="Button__text d-block">Выбирать</span></button>
                                                                                                     </div>
                                                                                                 </form>
@@ -154,7 +156,7 @@
                                                         <div class="radio-inputs_group">
                                                             <!-- <transition name="component-fade" mode="out-in">
                                                             </transition> -->
-                                                            <div v-if="typeProperty == 'Коммерческая'" class="additional_options_main">
+                                                            <div v-if="type == 'office'" class="additional_options_main">
                                                                 <div class="row">
                                                                     <div v-for="item in commercialTypes" :key="item.id" class="col-lg-6 col-md-6 col-sm-6 col-12">
                                                                         <div class="additional_options_main_item adddtional_types_media">
@@ -193,19 +195,19 @@
                                                                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                                                                     <div class="address_block_div-drop mb-lg-0 mb-3">
                                                                         <label>Регион</label>
-                                                                        <Dropdown v-model="selectedRegion" :options="regions" optionLabel="name" optionValue="code" placeholder="Выбирать регион"  class="w-100"/>
+                                                                        <Dropdown @change="getDistricts()" v-model="region_id" :options="regions" optionLabel="name_uz" optionValue="id" placeholder="Выбирать регион"  class="w-100"/>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                                                                     <div class="address_block_div-drop mb-lg-0 mb-3">
                                                                         <label>Район</label>
-                                                                        <Dropdown v-model="selectedDistrict" :options="districts" optionLabel="name" optionValue="code" placeholder="Выбирать район"  class="w-100"/>
+                                                                        <Dropdown @change="getQuarters()" v-model="district_id" :options="districts" optionLabel="name_uz" optionValue="id" placeholder="Выбирать район"  class="w-100"/>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-lg-4 col-12">
                                                                     <div class="address_block_div-drop">
                                                                         <label>Улица</label>
-                                                                        <Dropdown v-model="selectedStreet" :options="streets" optionLabel="name" optionValue="code" placeholder="Выбирать улица"  class="w-100"/>
+                                                                        <Dropdown v-model="quarter_id" :options="quarters" optionLabel="name_uz" optionValue="id" placeholder="Выбирать улица"  class="w-100"/>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -274,34 +276,34 @@
                                                     <!-- Area options -->
                                                     <div class="options_main__items mt-4 d-flex">
                                                         <!-- Количество комнат-->
-                                                        <div class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
+                                                        <div v-if="type != 'land'" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
                                                             <span class="inputs_block_title">Количество комнат</span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="kitchen_area" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.numberOfRooms">
+                                                                        <input id="kitchen_area" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.room_count">
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <!-- Количество комнат-->
-                                                        <!-- Общая площадь -->
-                                                        <div class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
-                                                            <span class="inputs_block_title">Общая площадь</span>
-                                                            <div class="options_main__items_inputs_block d-flex flex-column">
-                                                                <div class="input-medium-6 dc-input-6-1-2">
-                                                                    <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="space" class="dc-input__input-6-1-2" maxlength="24" name="total_area" type="number" placeholder="" tabindex="0" v-model.number="form.totalArea" />
+                                                            <!-- Общая площадь -->
+                                                            <div v-if="type != 'land'" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
+                                                                <span class="inputs_block_title">Общая площадь</span>
+                                                                <div class="options_main__items_inputs_block d-flex flex-column">
+                                                                    <div class="input-medium-6 dc-input-6-1-2">
+                                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                                            <input id="space" class="dc-input__input-6-1-2" maxlength="24" name="total_area" type="number" placeholder="" tabindex="0" v-model.number="form.total_area" />
+                                                                        </div>
+                                                                        <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
                                                                     </div>
-                                                                    <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <!-- Общая площадь -->
+                                                            <!-- Общая площадь -->
 
                                                         <!-- Жилая площадь -->
-                                                        <div class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
-                                                            <span class="inputs_block_title">Жилая площадь</span>
+                                                        <div v-if="type != 'land'" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
+                                                            <span class="inputs_block_title">Жилая площадь | DOP</span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
@@ -318,7 +320,7 @@
                                                     <!-- Hight options -->
                                                     <div class="options_main__items options_main__items_inputs_media mt-4 d-flex">
                                                         <!-- Этаж -->
-                                                        <div class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
+                                                        <div v-if="type == 'flat'" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
                                                             <span class="inputs_block_title">Этаж</span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2">
@@ -330,9 +332,9 @@
                                                         </div>
                                                         <!-- Этаж -->
 
-                                                        <!-- Этажей в доме-->
-                                                        <div class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
-                                                            <span class="inputs_block_title">Этажей в доме</span>
+                                                        <!-- Этажность -->
+                                                        <div v-if="type != 'land'" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
+                                                            <span class="inputs_block_title">Этажность</span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
@@ -341,26 +343,26 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- Этажей в доме-->
+                                                        <!-- Этажность -->
 
-                                                        <!-- Высота потолков -->
-                                                        <div class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
-                                                            <span class="inputs_block_title">Высота потолков</span>
+                                                        <!-- Площадь участка -->
+                                                        <div v-if="type != 'flat'" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
+                                                            <span class="inputs_block_title">Площадь участка</span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="ceilingheight" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.ceilingHeight">
+                                                                        <input id="space" class="dc-input__input-6-1-2" maxlength="24" name="total_area" type="number" placeholder="" tabindex="0" v-model.number="form.land_area" />
                                                                     </div>
                                                                     <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- Высота потолков -->
+                                                        <!-- Площадь участка -->
                                                     </div>
                                                     <!-- Hight options -->
                                                     <div>
                                                         <!-- Bathroom -->
-                                                        <div class="options_main__items mt-4">
+                                                        <div  v-if="type == 'flat'"  class="options_main__items mt-4">
                                                             <div class="options_main__item d-flex align-items-end">
                                                                 <div id="rooms" class="options_main__item_first">
                                                                     <div class="options_main__item_first_content">
@@ -386,7 +388,7 @@
                                                         <!-- Bathroom -->
 
                                                         <!-- Балкон/Лоджия -->
-                                                        <div class="options_main__items mt-4">
+                                                        <div  v-if="type == 'flat'" class="options_main__items mt-4">
                                                             <div class="options_main__item d-flex align-items-end">
                                                                 <div id="rooms" class="options_main__item_first">
                                                                     <div class="options_main__item_first_content">
@@ -416,7 +418,7 @@
                                                         <!-- Балкон/Лоджия -->
 
                                                         <!-- Ремонт -->
-                                                        <div class="options_main__items mt-4">
+                                                        <div v-if="type != 'land'" class="options_main__items mt-4">
                                                             <div class="options_main__item d-flex align-items-lg-end align-items-md-end align-items-start flex-lg-row flex-md-row flex-column">
                                                                 <div id="rooms" class="options_main__item_first">
                                                                     <div class="options_main__item_first_content">
@@ -454,7 +456,7 @@
                                                         <!-- Ремонт -->
 
                                                         <!-- Год постройки -->
-                                                        <div class="options_main__items mt-4 d-flex">
+                                                        <div v-if="type != 'land'" class="options_main__items mt-4 d-flex">
                                                             <div class="options_main__items_inputs options_main__items_inputs_media  d-flex flex-column">
                                                                 <span class="inputs_block_title">Год постройки</span>
                                                                 <div class="options_main__items_inputs_block d-flex flex-column">
@@ -470,7 +472,7 @@
                                                         <!-- Год постройки -->
 
                                                         <!-- Тип дома -->
-                                                        <div class="options_main__items mt-4">
+                                                        <div v-if="type != 'land'" class="options_main__items mt-4">
                                                             <div class="options_main__item d-flex align-items-end">
                                                                 <div id="rooms" class="options_main__item_first">
                                                                     <div class="options_main__item_first_content">
@@ -672,13 +674,15 @@ export default {
             form: {
                 address: "",
                 youtube_video: "",
-                numberOfRooms: "",
                 apartments:  "",
-                totalArea: "",
+                // totalArea: "",
                 kitchenArea: "",
                 livingSpace: "",
                 floor: "",
-                floorHouse: "",
+                floor_count: "",
+                room_count: "",
+                total_area: "",
+                // floorHouse: "",
                 ceilingHeight: "",
                 bathroomType: "",
                 numberBalcons: "",
@@ -721,30 +725,18 @@ export default {
                 {id: 4, text: "Дача", value: "Дача"},
                 {id: 5, text: "Земля", value: "Земля"},
             ],
-            typeDeal: '',
+            deal_type: '',
             typeAccount: '',
             typeRent: '',
-            typeProperty: '',
+            type: '',
             offerType: null,
             MobileTypeEstate: false,
-            selectedRegion: null,
-            selectedDistrict: null,
-            selectedStreet: null,
+            region_id: null,
+            district_id: null,
+            quarter_id: null,
             regions: [],
-            districts: [
-                {name: 'Аккурган', code: 'NY'},
-                {name: 'Алмалык', code: 'RM'},
-                {name: 'Ангрен', code: 'LDN'},
-                {name: 'Газалкент', code: 'IST'},
-                {name: 'Дустабад', code: 'PRS'}
-            ],
-            streets: [
-                {name: 'Абай (махалля)', code: 'NY'},
-                {name: 'Ахангаран (улица)', code: 'RM'},
-                {name: 'Ангрен', code: 'LDN'},
-                {name: 'Базарная (улица)', code: 'IST'},
-                {name: 'Бектемир (махалля)', code: 'PRS'}
-            ],
+            districts: [],
+            quarters: [],
             image: null,
             imageprevi: null,
         }
@@ -796,15 +788,31 @@ export default {
             this.form.images = data;
         },
         getRegions(){
-            // axios.get('/allRegions')
-            // .then(response => {
-            //     console.log(response);
-            // });
+            axios.get('/api/allRegions')
+            .then(response => {
+                this.regions = response.data.result
+            });
+        },
+        getDistricts(){
+            let region_id = this.region_id;
+            axios.get('/api/districts/' + region_id)
+            .then(response => {
+                this.districts = response.data.result
+                this.quarters = []
+            });
+        },
+        getQuarters(){
+            let district_id = this.district_id;
+            axios.get('/api/quarters/' + district_id)
+            .then(response => {
+                this.quarters = response.data.result
+            });
         }
     },
     created() {
         this.additonalOptions();
         this.getRegions();
+        
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen()
     },

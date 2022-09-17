@@ -17,7 +17,7 @@ class CreateQuartersTable extends Migration
             $table->id();
             $table->string('name_uz')->nullable();
             $table->string('name_ru')->nullable();
-            $table->integer('quarter_id');
+            $table->integer('district_id');
             $table->timestamps();
         });
     }

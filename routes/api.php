@@ -29,6 +29,9 @@ Route::post('/upload_image', [TempImagesController::class, 'uploadImage']);
 Route::post('/rotate_image', [TempImagesController::class, 'rotateImage']);
 
 Route::get('/allRegions', [AddressController::class, 'allRegions']);
+Route::get('/districts/{region_id}', [AddressController::class, 'districts']);
+Route::get('/quarters/{quarter_id}', [AddressController::class, 'quarters']);
+
 # Protected routes
 
 Route::get('photo', 'App\Http\Controllers\Blade\ImageUploadController@index');
