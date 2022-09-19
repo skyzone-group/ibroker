@@ -25,13 +25,13 @@
                                                                 <span class="ad_type_item_content_span">Тип аккаунта</span>
                                                                 <div class="single_button_select">
                                                                     <div class="single_button_select_box d-flex">
-                                                                        <label for="type__account_owner" class="single_button_select_box_label" :class="{'active' : this.typeAccount == 'owner'}">
-                                                                            <input v-model="typeAccount" id="type__account_owner" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="owner">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeAccount == 'owner'}">Собственник</span>
+                                                                        <label for="type__account_owner" class="single_button_select_box_label" :class="{'active' : this.account_type == 'owner'}">
+                                                                            <input v-model="account_type" id="type__account_owner" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="owner">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.account_type == 'owner'}">Собственник</span>
                                                                         </label>
-                                                                        <label for="type__account_agent" class="single_button_select_box_label" :class="{'active' : this.typeAccount == 'agent'}">
-                                                                            <input v-model="typeAccount" id="type__account_agent" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="agent">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeAccount == 'agent'}">Агент</span>
+                                                                        <label for="type__account_agent" class="single_button_select_box_label" :class="{'active' : this.account_type == 'agent'}">
+                                                                            <input v-model="account_type" id="type__account_agent" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="agent">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.account_type == 'agent'}">Агент</span>
                                                                         </label>
                                                                     </div>
                                                                 </div>
@@ -63,13 +63,13 @@
                                                                 <span class="ad_type_item_content_span">Тип аренды</span>
                                                                 <div class="single_button_select">
                                                                     <div class="single_button_select_box d-flex">
-                                                                        <label for="type__rent_daily" class="single_button_select_box_label" :class="{'active' : this.typeRent == 'daily'}">
-                                                                            <input v-model="typeRent" id="type__rent_daily" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="daily">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeRent == 'daily'}">Посуточно</span>
+                                                                        <label for="type__rent_daily" class="single_button_select_box_label" :class="{'active' : this.rent_type == 'daily'}">
+                                                                            <input v-model="rent_type" id="type__rent_daily" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="daily">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.rent_type == 'daily'}">Посуточно</span>
                                                                         </label>
-                                                                        <label for="type__rent_long_term" class="single_button_select_box_label" :class="{'active' : this.typeRent == 'long-terim'}">
-                                                                            <input v-model="typeRent" id="type__rent_long_term" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="long-terim">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.typeRent == 'long-terim'}">Долгосрочный</span>
+                                                                        <label for="type__rent_long_term" class="single_button_select_box_label" :class="{'active' : this.rent_type == 'long-terim'}">
+                                                                            <input v-model="rent_type" id="type__rent_long_term" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="long-terim">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.rent_type == 'long-terim'}">Долгосрочный</span>
                                                                         </label>
                                                                     </div>
                                                                 </div>
@@ -169,6 +169,25 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div v-if="type === 'flat'" class="ad_type_item" style="margin-bottom: 20px;">
+                                                        <div class="ad_type_item_content">
+                                                            <div>
+                                                                <span class="ad_type_item_content_span">Тип недвижимости</span>
+                                                                <div class="single_button_select">
+                                                                    <div class="single_button_select_box d-flex">
+                                                                        <label for="type__rent_daily" class="single_button_select_box_label" :class="{'active' : this.object_time_type == 'old'}">
+                                                                            <input v-model="object_time_type" id="type__rent_daily" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="old">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.object_time_type == 'old'}">Вторичка</span>
+                                                                        </label>
+                                                                        <label for="type__rent_long_term" class="single_button_select_box_label" :class="{'active' : this.object_time_type == 'new'}">
+                                                                            <input v-model="object_time_type" id="type__rent_long_term" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="new">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.object_time_type == 'new'}">Новостройка</span>
+                                                                        </label>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -443,14 +462,6 @@
                                                                         </label>
                                                                     </div>
                                                                 </div>
-                                                                <div class="options_main__item_second option_class_one mb-0 option_class_second">
-                                                                    <div class="d-flex align-items-center">
-                                                                        <div class="field-checkbox d-flex align-items-center">
-                                                                            <Checkbox id="redevelopment" name="redevelopment" value="redevelopment" v-model="form.redevelopment" />
-                                                                            <label for="redevelopment">Перепланировка</label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                         <!-- Ремонт -->
@@ -675,14 +686,12 @@ export default {
                 address: "",
                 youtube_video: "",
                 apartments:  "",
-                // totalArea: "",
                 kitchenArea: "",
                 livingSpace: "",
                 floor: "",
                 floor_count: "",
                 room_count: "",
                 total_area: "",
-                // floorHouse: "",
                 ceilingHeight: "",
                 bathroomType: "",
                 numberBalcons: "",
@@ -726,8 +735,9 @@ export default {
                 {id: 5, text: "Земля", value: "Земля"},
             ],
             deal_type: '',
-            typeAccount: '',
-            typeRent: '',
+            account_type: '',
+            rent_type: '',
+            object_time_type: '',
             type: '',
             offerType: null,
             MobileTypeEstate: false,
