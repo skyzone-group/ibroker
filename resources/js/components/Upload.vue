@@ -122,6 +122,9 @@ export default ({
             i.degree = (i.degree + 90) % 360;
         },
         moveUp(index) {
+            let changingImage = this.images[index];
+            this.images.splice(index, 1);
+            this.images.unshift(changingImage);
         },
         checkScreen() {
             this.windowWidth = window.innerWidth;
