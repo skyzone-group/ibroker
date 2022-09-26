@@ -83,9 +83,9 @@
                                                                 <div class="single_button_select">
                                                                     <div v-if="!MobileTypeEstate" class="single_button_select_box d-flex">
                                                                         <label for="type__residential" class="single_button_select_box_label" 
-                                                                        :class="{'active' : this.type == 'flat'}">
-                                                                            <input v-model="type" id="type__residential" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="flat">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.type == 'flat'}">Квартира</span>
+                                                                        :class="{'active' : this.type == 'Квартира'}">
+                                                                            <input v-model="type" id="type__residential" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="Квартира">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.type == 'Квартира'}">Квартира</span>
                                                                         </label>
                                                                         <label for="type__house" class="single_button_select_box_label" 
                                                                         :class="{'active' : this.type == 'home'}">
@@ -93,9 +93,9 @@
                                                                             <span class="single_button_select_box_label_span" :class="{'active_span' : this.type == 'home'}">Дом</span>
                                                                         </label>
                                                                         <label  for="type__commercial" class="single_button_select_box_label"
-                                                                        :class="{'active' : this.type == 'office'}">
-                                                                            <input v-model="type" id="type__commercial" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="office">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.type == 'office'}">Коммерческая</span>
+                                                                        :class="{'active' : this.type == 'Коммерческая'}">
+                                                                            <input v-model="type" id="type__commercial" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="Коммерческая">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.type == 'Коммерческая'}">Коммерческая</span>
                                                                         </label>
                                                                         <label for="type__dacha" class="single_button_select_box_label"
                                                                         :class="{'active' : this.type == 'villa'}">
@@ -156,7 +156,7 @@
                                                         <div class="radio-inputs_group">
                                                             <!-- <transition name="component-fade" mode="out-in">
                                                             </transition> -->
-                                                            <div v-if="type == 'office'" class="additional_options_main">
+                                                            <div v-if="type == 'Коммерческая'" class="additional_options_main">
                                                                 <div class="row">
                                                                     <div v-for="item in commercialTypes" :key="item.id" class="col-lg-6 col-md-6 col-sm-6 col-12">
                                                                         <div class="additional_options_main_item adddtional_types_media">
@@ -174,19 +174,19 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div v-if="type === 'flat'" class="ad_type_item" style="margin-bottom: 20px;">
+                                                    <div v-if="type === 'Квартира'" class="ad_type_item" style="margin-bottom: 20px;">
                                                         <div class="ad_type_item_content">
                                                             <div>
                                                                 <span class="ad_type_item_content_span">Тип недвижимости</span>
                                                                 <div class="single_button_select">
                                                                     <div class="single_button_select_box d-flex">
-                                                                        <label for="type__rent_daily" class="single_button_select_box_label" :class="{'active' : this.object_time_type == 'old'}">
-                                                                            <input v-model="object_time_type" id="type__rent_daily" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="old">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.object_time_type == 'old'}">Вторичка</span>
+                                                                        <label for="type__rent_daily" class="single_button_select_box_label" :class="{'active' : this.object_time_type == 'resale'}">
+                                                                            <input v-model="object_time_type" id="type__rent_daily" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="resale">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.object_time_type == 'resale'}">Вторичка</span>
                                                                         </label>
-                                                                        <label for="type__rent_long_term" class="single_button_select_box_label" :class="{'active' : this.object_time_type == 'new'}">
-                                                                            <input v-model="object_time_type" id="type__rent_long_term" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="new">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.object_time_type == 'new'}">Новостройка</span>
+                                                                        <label for="type__rent_long_term" class="single_button_select_box_label" :class="{'active' : this.object_time_type == 'new_build'}">
+                                                                            <input v-model="object_time_type" id="type__rent_long_term" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="new_build">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.object_time_type == 'new_build'}">Новостройка</span>
                                                                         </label>
                                                                     </div>
                                                                 </div>
@@ -244,7 +244,7 @@
                                         <div id="upload_img">
                                             <div class="header_title">
                                                 <div class="header_title_content d-flex flex-column">
-                                                    <h4 class="header_title_content_txt mb-0">Фотографии 2</h4>
+                                                    <h4 class="header_title_content_txt mb-0">Фотографии</h4>
                                                 </div>
                                                 <div>
                                                         <upload-box @updateImagesBox="updateImagesBox"></upload-box>
@@ -629,13 +629,30 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-buttons w-100 d-flex align-items-center mt-3 justify-content-lg-end justify-content-md-end justify-content-center">
+                                            <!-- <div class="form-buttons w-100 d-flex align-items-center mt-3 justify-content-lg-end justify-content-md-end justify-content-center">
                                                 <button type="button" class="form-buttons_btn">Сохранить черновик</button>
                                                 <button type="submit" class="form-buttons_btn">Разместить объявление</button>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <!-- online display -->
+                                    
+                                    <!-- contacts -->
+                                    <div class="form-card" id="section-seven">
+                                        <div class="contacts_box_main">
+                                            <div class="header_title mb-0">
+                                                <div class="header_title_content d-flex flex-column">
+                                                    <h4 class="header_title_content_txt mb-0">Контакты</h4>
+                                                    <span class="header_title_content_txt_sub">Войдите или зарегистрируйтесь, чтобы добавить контакты и опубликовать объявление. Введённые данные сохранятся.</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-buttons w-100 d-flex align-items-center mt-3 justify-content-lg-end justify-content-md-end justify-content-center">
+                                                <button v-if="loggedIn === false" type="button" class="form-buttons_btn" data-toggle="modal" data-target="#animation">Войти или зарегистрироваться</button>
+                                                <button v-else type="submit" class="form-buttons_btn">Разместить объявление</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- contacts -->
                                 </Form>
                             </div>
                             <div class="block__body_side-bar  d-lg-block d-md-block d-none">
@@ -749,6 +766,12 @@ export default {
             quarters: [],
             image: null,
             imageprevi: null,
+            // loggedIn: false,
+        }
+    },
+    props: {
+        loggedIn: {
+            type: Boolean,
         }
     },
     methods: {
@@ -920,7 +943,7 @@ export default {
     box-sizing: border-box;
     max-width: 100%;
     outline: none;
-    overflow-x: auto;
+    /* overflow-x: auto; */
     touch-action: pan-x;
 }
 
@@ -1409,14 +1432,16 @@ margin-left: 2.4rem;
     line-height: 26px;
     user-select: none;
     text-decoration: none;
-}
-
-.form-buttons_btn:nth-child(2){
-    margin-left: 10px;
     border-color: var(--form-button-color);
     background-color: var(--form-button-color);
     color: #fff;
 }
+
+/* .form-buttons_btn:nth-child(2){
+    margin-left: 10px;
+   
+    color: #fff;
+} */
 
 .block__body_main{
     display: flex;
