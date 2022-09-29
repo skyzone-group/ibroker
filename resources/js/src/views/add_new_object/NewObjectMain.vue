@@ -265,18 +265,31 @@
                                                     <h4 class="header_title_content_txt mb-0">Видео с YouTube</h4>
                                                     <span class="header_title_content_txt_sub">Добавьте видео вашей недвижимости. Объявления с видео привлекают больше внимания и получают больше звонков</span>
                                                 </div>
-                                                <div id="address" class="postion-relative">
+                                                <div v-if="!youtube_thumbnail_downloader" id="address" class="postion-relative">
                                                     <div class="address_block">
                                                         <div class="address_block_div d-flex align-items-center">
                                                             <div class="address_block_div_item w-100">
-                                                                <input id="youtebe-link" class="dc-input__input-6-1-2" name="total_area" type="text" placeholder="Ссылка на видео с YouTube" tabindex="0" v-model="form.youtube_video" />
+                                                                <input id="youtebe-link" class="dc-input__input-6-1-2" name="total_area" autocomplete="false" type="text" placeholder="Ссылка на видео с YouTube" tabindex="0" v-model="form.youtube_url" />
                                                             </div>
-                                                            <div class="youtube_block_div_button ml-lg-2 ml-md-2 ml-0">
-                                                                <button class="youtube_block_div_btn" :class="{'button-disabled' : form.youtube_video.length <= 0}"  :disabled="form.youtube_video.length <= 0">
+                                                            <!-- <div class="youtube_block_div_button ml-lg-2 ml-md-2 ml-0">
+                                                                <button class="youtube_block_div_btn" :class="{'button-disabled' : form.youtube_url.length <= 0}"  :disabled="form.youtube_url.length <= 0">
                                                                     <span class="youtube_block_div-span">Добавить</span>
                                                                 </button>
-                                                            </div>
+                                                            </div> -->
                                                         </div>
+                                                    </div>
+                                                </div>
+                                                <div v-if="youtube_thumbnail_downloader" class="youtube_thumbnail d-flex">
+                                                    <a :href="form.youtube_url" target="_blank" rel="noopener noreferrer" id="youtube__video" class="youtube__video-thumb">
+                                                        <picture class="youtube__video-thumb-box">
+                                                            <img alt="фото" :src="thumbnailpreview" class="youtube__video-thumb-img">
+                                                        </picture>
+                                                        <div class="back-hover"></div>
+                                                    </a>
+                                                    <div class="youtube_thumbnail-link">
+                                                        <p class="youtube-link d-lg-block d-md-block d-sm-block d-none">{{ form.youtube_url }}</p>
+                                                        <p class="youtube-link d-lg-none d-md-none d-sm-none d-block" style="color: #242629;font-weight: 500;">Видео добавлено</p>
+                                                        <button @click="form.youtube_url = ''" class="youtube__delete_button" type="button" id="youtube__delete_button"><span class="button-root__text-8-2-0">Удалить</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -701,7 +714,8 @@ export default {
         return {
             form: {
                 address: "",
-                youtube_video: "",
+                youtube_url: "",
+                thumbnailpreview: "",
                 apartments:  "",
                 kitchenArea: "",
                 livingSpace: "",
@@ -849,6 +863,31 @@ export default {
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen()
     },
+    computed:{
+        youtube_thumbnail_downloader(){
+            var vm = this;
+            if(vm.form.youtube_url){
+                var regExp = /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/,
+                    match = vm.form.youtube_url.match(regExp),
+                    vidurl = '',
+                    thumbnailpreview = '';
+                if (match &&  match[1].length == 11) 
+                {
+                    vidurl = match[1];
+                    thumbnailpreview = 'http://img.youtube.com/vi/'+vidurl+'/mqdefault.jpg';
+                } 
+                else 
+                {
+                    alert("The URL you have entered maybe incorrect. Please Enter a correct URL.");
+                    return false
+                }
+                vm.thumbnailpreview = thumbnailpreview;
+                return true
+            }else{
+                return false
+            }
+        }
+    }
 }
 </script>
 
@@ -1489,6 +1528,104 @@ margin-left: 2.4rem;
     border-radius: 6px !important;
     box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%) !important;
     min-width: unset !important;
+}
+
+/* ********************************************************************************* */
+.youtube__video-thumb{
+    height: 9.2rem;
+    position: relative;
+    width: 11.4rem;
+}
+
+.youtube__video-thumb-box{
+    border-radius: 0.5rem;
+    height: 9.2rem;
+    width: 11.4rem;
+    display: block;
+}
+
+.youtube__video-thumb-img{
+    object-fit: cover;
+    border-radius: 0.5rem;
+    height: 9.2rem;
+    width: 11.4rem;
+}
+
+.back-hover{
+    background-color: #24262966;
+    border-radius: 0.5rem;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity .2s;
+    z-index: 1;
+}
+
+.back-hover:hover{
+    opacity: 1;
+}
+
+.youtube_thumbnail-link{
+    margin-left: 1.6rem;
+    min-width: 0;
+}
+
+.youtube-link{
+    color: #737476;
+    line-height: 2rem;
+    margin-bottom: 1.2rem;
+    margin-top: 0.4rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.youtube__delete_button{
+    background-color: #fff;
+    border-color: #d3d4d4 !important;
+    transition: border-color .5s;
+    height: 40px;
+    padding: 0 16px;
+    -webkit-appearance: button;
+    box-shadow: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    align-items: center;
+}
+
+.youtube__delete_button:hover{
+    border-color: transparent !important;
+    background-color: #e5e5e5 !important;
+}
+
+.button-root__text-8-2-0 {
+    color: #242629;
+    font-size: 14px;
+    font-stretch: normal;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: normal;
+    overflow: hidden;
+    text-decoration: none;
+    text-indent: 0;
+    text-overflow: ellipsis;
+    text-shadow: none;
+    text-transform: none;
+    transition: color .15s;
+    white-space: nowrap;
 }
 /* *********************************************** Media *********************** */
 @media (max-width: 575px){
