@@ -655,13 +655,16 @@
                                         <div class="contacts_box_main">
                                             <div class="header_title mb-0">
                                                 <div class="header_title_content d-flex flex-column">
-                                                    <h4 class="header_title_content_txt mb-0">Контакты</h4>
-                                                    <span class="header_title_content_txt_sub">Войдите или зарегистрируйтесь, чтобы добавить контакты и опубликовать объявление. Введённые данные сохранятся.</span>
+                                                    <div class="protec-auth-box">
+                                                        <img src="images/icons/protection.png" class="protec-auth-box-img" alt="protection" width="40" height="40">
+                                                        <h4 class="header_title_content_txt mb-0">Чтобы опубликовать объявление, пройдите идентификацию</h4>
+                                                    </div>
+                                                    <span class="header_title_content_txt_sub">Так мы боремся с мошенниками. Нам важно, чтобы все звонки доставались честным людям.</span>
                                                 </div>
                                             </div>
                                             <div class="form-buttons w-100 d-flex align-items-center mt-3 justify-content-lg-end justify-content-md-end justify-content-center">
-                                                <button v-if="loggedIn === false" type="button" class="form-buttons_btn" data-toggle="modal" data-target="#animation">Войти или зарегистрироваться</button>
-                                                <button v-else type="submit" class="form-buttons_btn">Разместить объявление</button>
+                                                <button type="button" class="form-buttons_btn" data-toggle="modal" data-target="#animation">Пройти идентификацию</button>
+                                                <button type="submit" class="form-buttons_btn ml-3" :class="{'button-disabled' : loggedIn === false}" :disabled="loggedIn === false">Сохранить</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1626,6 +1629,14 @@ margin-left: 2.4rem;
     text-transform: none;
     transition: color .15s;
     white-space: nowrap;
+}
+
+.protec-auth-box-img{
+    margin-bottom: 16px;
+}
+
+.protec-auth-box .header_title_content_txt{
+    font-size: 20px !important;
 }
 /* *********************************************** Media *********************** */
 @media (max-width: 575px){
