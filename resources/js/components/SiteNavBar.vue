@@ -524,6 +524,7 @@ export default {
                                 width: 100%;
                                 top: 100%;
                                 background: #fff;
+                                box-shadow: 1px 6px 6px 0 #ccc;
                                 height: 350px;
                             }
                         }

@@ -83,9 +83,9 @@
                                                                 <div class="single_button_select">
                                                                     <div v-if="!MobileTypeEstate" class="single_button_select_box d-flex">
                                                                         <label for="type__residential" class="single_button_select_box_label" 
-                                                                        :class="{'active' : this.type == 'flat'}">
-                                                                            <input v-model="type" id="type__residential" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="flat">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.type == 'flat'}">Квартира</span>
+                                                                        :class="{'active' : this.type == 'Квартира'}">
+                                                                            <input v-model="type" id="type__residential" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="Квартира">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.type == 'Квартира'}">Квартира</span>
                                                                         </label>
                                                                         <label for="type__house" class="single_button_select_box_label" 
                                                                         :class="{'active' : this.type == 'home'}">
@@ -93,9 +93,9 @@
                                                                             <span class="single_button_select_box_label_span" :class="{'active_span' : this.type == 'home'}">Дом</span>
                                                                         </label>
                                                                         <label  for="type__commercial" class="single_button_select_box_label"
-                                                                        :class="{'active' : this.type == 'office'}">
-                                                                            <input v-model="type" id="type__commercial" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="office">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.type == 'office'}">Коммерческая</span>
+                                                                        :class="{'active' : this.type == 'Коммерческая'}">
+                                                                            <input v-model="type" id="type__commercial" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="Коммерческая">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.type == 'Коммерческая'}">Коммерческая</span>
                                                                         </label>
                                                                         <label for="type__dacha" class="single_button_select_box_label"
                                                                         :class="{'active' : this.type == 'villa'}">
@@ -156,7 +156,7 @@
                                                         <div class="radio-inputs_group">
                                                             <!-- <transition name="component-fade" mode="out-in">
                                                             </transition> -->
-                                                            <div v-if="type == 'office'" class="additional_options_main">
+                                                            <div v-if="type == 'Коммерческая'" class="additional_options_main">
                                                                 <div class="row">
                                                                     <div v-for="item in commercialTypes" :key="item.id" class="col-lg-6 col-md-6 col-sm-6 col-12">
                                                                         <div class="additional_options_main_item adddtional_types_media">
@@ -174,19 +174,19 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div v-if="type === 'flat'" class="ad_type_item" style="margin-bottom: 20px;">
+                                                    <div v-if="type === 'Квартира'" class="ad_type_item" style="margin-bottom: 20px;">
                                                         <div class="ad_type_item_content">
                                                             <div>
                                                                 <span class="ad_type_item_content_span">Тип недвижимости</span>
                                                                 <div class="single_button_select">
                                                                     <div class="single_button_select_box d-flex">
-                                                                        <label for="type__rent_daily" class="single_button_select_box_label" :class="{'active' : this.object_time_type == 'old'}">
-                                                                            <input v-model="object_time_type" id="type__rent_daily" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="old">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.object_time_type == 'old'}">Вторичка</span>
+                                                                        <label for="type__rent_daily" class="single_button_select_box_label" :class="{'active' : this.object_time_type == 'resale'}">
+                                                                            <input v-model="object_time_type" id="type__rent_daily" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="resale">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.object_time_type == 'resale'}">Вторичка</span>
                                                                         </label>
-                                                                        <label for="type__rent_long_term" class="single_button_select_box_label" :class="{'active' : this.object_time_type == 'new'}">
-                                                                            <input v-model="object_time_type" id="type__rent_long_term" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="new">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.object_time_type == 'new'}">Новостройка</span>
+                                                                        <label for="type__rent_long_term" class="single_button_select_box_label" :class="{'active' : this.object_time_type == 'new_build'}">
+                                                                            <input v-model="object_time_type" id="type__rent_long_term" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="new_build">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.object_time_type == 'new_build'}">Новостройка</span>
                                                                         </label>
                                                                     </div>
                                                                 </div>
@@ -244,7 +244,7 @@
                                         <div id="upload_img">
                                             <div class="header_title">
                                                 <div class="header_title_content d-flex flex-column">
-                                                    <h4 class="header_title_content_txt mb-0">Фотографии 2</h4>
+                                                    <h4 class="header_title_content_txt mb-0">Фотографии</h4>
                                                 </div>
                                                 <div>
                                                         <upload-box @updateImagesBox="updateImagesBox"></upload-box>
@@ -265,18 +265,32 @@
                                                     <h4 class="header_title_content_txt mb-0">Видео с YouTube</h4>
                                                     <span class="header_title_content_txt_sub">Добавьте видео вашей недвижимости. Объявления с видео привлекают больше внимания и получают больше звонков</span>
                                                 </div>
-                                                <div id="address" class="postion-relative">
-                                                    <div class="address_block">
+                                                <div v-if="!youtube_thumbnail_downloader" id="address" class="postion-relative">
+                                                    <div class="address_block flex-column">
                                                         <div class="address_block_div d-flex align-items-center">
-                                                            <div class="address_block_div_item w-100">
-                                                                <input id="youtebe-link" class="dc-input__input-6-1-2" name="total_area" type="text" placeholder="Ссылка на видео с YouTube" tabindex="0" v-model="form.youtube_video" />
+                                                            <div class="address_block_div_item w-100" :class="{'error-border-color' : this.errorURL == true}">
+                                                                <input id="youtebe-link" class="dc-input__input-6-1-2" name="total_area" autocomplete="false" type="text" placeholder="Ссылка на видео с YouTube" tabindex="0" v-model="form.youtube_url" />
                                                             </div>
-                                                            <div class="youtube_block_div_button ml-lg-2 ml-md-2 ml-0">
-                                                                <button class="youtube_block_div_btn" :class="{'button-disabled' : form.youtube_video.length <= 0}"  :disabled="form.youtube_video.length <= 0">
+                                                            <!-- <div class="youtube_block_div_button ml-lg-2 ml-md-2 ml-0">
+                                                                <button class="youtube_block_div_btn" :class="{'button-disabled' : form.youtube_url.length <= 0}"  :disabled="form.youtube_url.length <= 0">
                                                                     <span class="youtube_block_div-span">Добавить</span>
                                                                 </button>
-                                                            </div>
+                                                            </div> -->
                                                         </div>
+                                                        <span v-show="errorURL" class="error-msg-password mt-1">Введенный URL-адрес может быть неверным. Пожалуйста, введите правильный URL.</span>
+                                                    </div>
+                                                </div>
+                                                <div v-if="youtube_thumbnail_downloader" class="youtube_thumbnail d-flex">
+                                                    <a :href="form.youtube_url" target="_blank" rel="noopener noreferrer" id="youtube__video" class="youtube__video-thumb">
+                                                        <picture class="youtube__video-thumb-box">
+                                                            <img alt="фото" :src="thumbnailpreview" class="youtube__video-thumb-img">
+                                                        </picture>
+                                                        <div class="back-hover"></div>
+                                                    </a>
+                                                    <div class="youtube_thumbnail-link">
+                                                        <p class="youtube-link d-lg-block d-md-block d-sm-block d-none">{{ form.youtube_url }}</p>
+                                                        <p class="youtube-link d-lg-none d-md-none d-sm-none d-block" style="color: #242629;font-weight: 500;">Видео добавлено</p>
+                                                        <button @click="form.youtube_url = ''" class="youtube__delete_button" type="button" id="youtube__delete_button"><span class="button-root__text-8-2-0">Удалить</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -629,13 +643,33 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-buttons w-100 d-flex align-items-center mt-3 justify-content-lg-end justify-content-md-end justify-content-center">
+                                            <!-- <div class="form-buttons w-100 d-flex align-items-center mt-3 justify-content-lg-end justify-content-md-end justify-content-center">
                                                 <button type="button" class="form-buttons_btn">Сохранить черновик</button>
                                                 <button type="submit" class="form-buttons_btn">Разместить объявление</button>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <!-- online display -->
+                                    
+                                    <!-- contacts -->
+                                    <div class="form-card" id="section-seven">
+                                        <div class="contacts_box_main">
+                                            <div class="header_title mb-0">
+                                                <div class="header_title_content d-flex flex-column">
+                                                    <div class="protec-auth-box">
+                                                        <img src="images/icons/protection.png" class="protec-auth-box-img" alt="protection" width="40" height="40">
+                                                        <h4 class="header_title_content_txt mb-0">Чтобы опубликовать объявление, пройдите идентификацию</h4>
+                                                    </div>
+                                                    <span class="header_title_content_txt_sub">Так мы боремся с мошенниками. Нам важно, чтобы все звонки доставались честным людям.</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-buttons w-100 d-flex align-items-center mt-3 justify-content-lg-end justify-content-md-end justify-content-center">
+                                                <button type="button" class="form-buttons_btn" data-toggle="modal" data-target="#animation">Пройти идентификацию</button>
+                                                <button type="submit" class="form-buttons_btn ml-3" :class="{'button-disabled' : loggedIn === false}" :disabled="loggedIn === false">Сохранить</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- contacts -->
                                 </Form>
                             </div>
                             <div class="block__body_side-bar  d-lg-block d-md-block d-none">
@@ -684,7 +718,8 @@ export default {
         return {
             form: {
                 address: "",
-                youtube_video: "",
+                youtube_url: "",
+                thumbnailpreview: "",
                 apartments:  "",
                 kitchenArea: "",
                 livingSpace: "",
@@ -749,6 +784,13 @@ export default {
             quarters: [],
             image: null,
             imageprevi: null,
+            // loggedIn: false,
+            errorURL: false,
+        }
+    },
+    props: {
+        loggedIn: {
+            type: Boolean,
         }
     },
     methods: {
@@ -757,7 +799,7 @@ export default {
             .then(response => this.options = response.data);
         },
         saveData(){
-            console.log("Submitted");
+            console.log('Submitted');
         },
         checkScreen() {
             this.windowWidth = window.innerWidth;
@@ -826,6 +868,33 @@ export default {
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen()
     },
+    computed:{
+        youtube_thumbnail_downloader(){
+            var vm = this;
+            if(vm.form.youtube_url){
+                var regExp = /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/,
+                    match = vm.form.youtube_url.match(regExp),
+                    vidurl = '',
+                    thumbnailpreview = '';
+                if (match &&  match[1].length == 11) 
+                {
+                    vidurl = match[1];
+                    thumbnailpreview = 'http://img.youtube.com/vi/'+vidurl+'/mqdefault.jpg';
+                } 
+                else 
+                {
+                    alert("The URL you have entered maybe incorrect. Please Enter a correct URL.");
+                    this.errorURL = true;
+                    return false
+                }
+                vm.thumbnailpreview = thumbnailpreview;
+                return true
+            }else{
+                this.errorURL = false;
+                return false
+            }
+        }
+    }
 }
 </script>
 
@@ -920,7 +989,7 @@ export default {
     box-sizing: border-box;
     max-width: 100%;
     outline: none;
-    overflow-x: auto;
+    /* overflow-x: auto; */
     touch-action: pan-x;
 }
 
@@ -1409,14 +1478,16 @@ margin-left: 2.4rem;
     line-height: 26px;
     user-select: none;
     text-decoration: none;
-}
-
-.form-buttons_btn:nth-child(2){
-    margin-left: 10px;
     border-color: var(--form-button-color);
     background-color: var(--form-button-color);
     color: #fff;
 }
+
+/* .form-buttons_btn:nth-child(2){
+    margin-left: 10px;
+   
+    color: #fff;
+} */
 
 .block__body_main{
     display: flex;
@@ -1464,6 +1535,112 @@ margin-left: 2.4rem;
     border-radius: 6px !important;
     box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%) !important;
     min-width: unset !important;
+}
+
+/* ********************************************************************************* */
+.youtube__video-thumb{
+    height: 9.2rem;
+    position: relative;
+    width: 11.4rem;
+}
+
+.youtube__video-thumb-box{
+    border-radius: 0.5rem;
+    height: 9.2rem;
+    width: 11.4rem;
+    display: block;
+}
+
+.youtube__video-thumb-img{
+    object-fit: cover;
+    border-radius: 0.5rem;
+    height: 9.2rem;
+    width: 11.4rem;
+}
+
+.back-hover{
+    background-color: #24262966;
+    border-radius: 0.5rem;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity .2s;
+    z-index: 1;
+}
+
+.back-hover:hover{
+    opacity: 1;
+}
+
+.youtube_thumbnail-link{
+    margin-left: 1.6rem;
+    min-width: 0;
+}
+
+.youtube-link{
+    color: #737476;
+    line-height: 2rem;
+    margin-bottom: 1.2rem;
+    margin-top: 0.4rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.youtube__delete_button{
+    background-color: #fff;
+    border-color: #d3d4d4 !important;
+    transition: border-color .5s;
+    height: 40px;
+    padding: 0 16px;
+    -webkit-appearance: button;
+    box-shadow: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    align-items: center;
+}
+
+.youtube__delete_button:hover{
+    border-color: transparent !important;
+    background-color: #e5e5e5 !important;
+}
+
+.button-root__text-8-2-0 {
+    color: #242629;
+    font-size: 14px;
+    font-stretch: normal;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: normal;
+    overflow: hidden;
+    text-decoration: none;
+    text-indent: 0;
+    text-overflow: ellipsis;
+    text-shadow: none;
+    text-transform: none;
+    transition: color .15s;
+    white-space: nowrap;
+}
+
+.protec-auth-box-img{
+    margin-bottom: 16px;
+}
+
+.protec-auth-box .header_title_content_txt{
+    font-size: 20px !important;
 }
 /* *********************************************** Media *********************** */
 @media (max-width: 575px){

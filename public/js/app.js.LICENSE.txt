@@ -26,3 +26,16 @@
  * (c) 2022
  * @license MIT
  */
+
+/**
+ * dropzone-vue 0.1.11
+ * (c) 2021
+ * @license MIT
+ */
+
+/**!
+ * Sortable 1.14.0
+ * @author	RubaXa   <trash@rubaxa.org>
+ * @author	owenm    <owen23355@gmail.com>
+ * @license MIT
+ */

@@ -2,7 +2,7 @@
     <div>
         <nav-bar :loggedIn="loggedIn"></nav-bar>
         <auth-modal @loggedIn="authStatus" :loggedIn="loggedIn"></auth-modal>
-        <router-view class="main-view" name="main"></router-view>
+        <router-view class="main-view" name="main" :loggedIn="loggedIn"></router-view>
         <footer-nav></footer-nav>
     </div>
 </template>
@@ -30,7 +30,6 @@ export default {
     mounted() {
         this.loggedIn = localStorage.getItem('token') ? true : false;
         localStorage.clear();
-
     },
 }
 </script>

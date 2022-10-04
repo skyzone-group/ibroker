@@ -76,6 +76,18 @@
                             </span>
                         </button>
                     </div>
+                    <div class="steps_item">
+                        <button data-scroll-active="section-seven" class="steps_item_btn steps_item_btn_icon_left" role="button">
+                            <div class="link_icon">
+                                <div class="icon_div">
+                                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+                                </div>
+                            </div>
+                            <span class="link_txt">
+                                <span>Контакты</span>
+                            </span>
+                        </button>
+                    </div>
                 </nav>
             </VScrollActive>
         </div>

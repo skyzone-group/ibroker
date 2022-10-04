@@ -139,7 +139,7 @@ const routes = [
                 name: 'summary',
                 components: {
                     content: MainView,
-                }
+                },
             },
             {
                 path: 'profile',
@@ -198,7 +198,13 @@ const routes = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL), routes,
+    history: createWebHistory(process.env.BASE_URL), 
+    routes,
+    scrollBehavior (to, from, savedPosition) {
+        return savedPosition || new Promise((resolve)=>{
+            setTimeout(() => resolve({top: 0}), 300);
+        })
+    }
 })
 
 export default router
