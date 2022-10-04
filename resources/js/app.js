@@ -38,6 +38,11 @@ const options = {
 import DropZone from 'dropzone-vue';
 import 'dropzone-vue/dist/dropzone-vue.common.css';
 
+
+import VueEasyLightbox from 'vue-easy-lightbox'
+// you need to import css yourself
+import 'vue-easy-lightbox/external-css/vue-easy-lightbox.css'
+
 const app = createApp(App)
 //app.config.globalProperties.$IsLoggedIn = localStorage.getItem('token') ? true : false;
 app.use(router)
@@ -51,6 +56,7 @@ app.component(VueCountdown.name, VueCountdown);
 app.directive('tooltip', Tooltip)
 app.use(VueHtmlToPaper, options)
 app.use(DropZone)
+app.use(VueEasyLightbox)
 app.mount('#app')
 
 

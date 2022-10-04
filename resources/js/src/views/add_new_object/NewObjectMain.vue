@@ -266,9 +266,9 @@
                                                     <span class="header_title_content_txt_sub">Добавьте видео вашей недвижимости. Объявления с видео привлекают больше внимания и получают больше звонков</span>
                                                 </div>
                                                 <div v-if="!youtube_thumbnail_downloader" id="address" class="postion-relative">
-                                                    <div class="address_block">
+                                                    <div class="address_block flex-column">
                                                         <div class="address_block_div d-flex align-items-center">
-                                                            <div class="address_block_div_item w-100">
+                                                            <div class="address_block_div_item w-100" :class="{'error-border-color' : this.errorURL == true}">
                                                                 <input id="youtebe-link" class="dc-input__input-6-1-2" name="total_area" autocomplete="false" type="text" placeholder="Ссылка на видео с YouTube" tabindex="0" v-model="form.youtube_url" />
                                                             </div>
                                                             <!-- <div class="youtube_block_div_button ml-lg-2 ml-md-2 ml-0">
@@ -277,6 +277,7 @@
                                                                 </button>
                                                             </div> -->
                                                         </div>
+                                                        <span v-show="errorURL" class="error-msg-password mt-1">Введенный URL-адрес может быть неверным. Пожалуйста, введите правильный URL.</span>
                                                     </div>
                                                 </div>
                                                 <div v-if="youtube_thumbnail_downloader" class="youtube_thumbnail d-flex">
@@ -784,6 +785,7 @@ export default {
             image: null,
             imageprevi: null,
             // loggedIn: false,
+            errorURL: false,
         }
     },
     props: {
@@ -797,7 +799,7 @@ export default {
             .then(response => this.options = response.data);
         },
         saveData(){
-            console.log("Submitted");
+            console.log('Submitted');
         },
         checkScreen() {
             this.windowWidth = window.innerWidth;
@@ -882,11 +884,13 @@ export default {
                 else 
                 {
                     alert("The URL you have entered maybe incorrect. Please Enter a correct URL.");
+                    this.errorURL = true;
                     return false
                 }
                 vm.thumbnailpreview = thumbnailpreview;
                 return true
             }else{
+                this.errorURL = false;
                 return false
             }
         }

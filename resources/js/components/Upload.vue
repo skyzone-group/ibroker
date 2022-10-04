@@ -13,7 +13,7 @@
             :delay="200"
             :delay-on-touch-only="true"
             :component-data="getComponentData()" 
-            item-key="img_id"
+            item-key="index"
             class="form__img-stock --large vuedraggable vuedraggable__item img_warpper_box w-100">
             <template #item="{element, index}">
                 <div class="form__img-preview form__img-preview-back position-relative">
@@ -29,7 +29,7 @@
                     <div class="rotate-icon"  @click="rotateImage(element)">
                         <i class="feather icon-rotate-cw"></i>
                     </div>
-                    <div class="backdrop-img"></div>
+                    <div class="backdrop-img" @click="showImg(index)"></div>
                 </div>
             </template>
             <template #footer>
@@ -62,6 +62,10 @@
         <div class="d-none">
             <input @change="onInputChange" multiple="multiple" type="file" name="images" id="media">
         </div>
+        <!-- <div v-for="(src, index) in imgs" :key="index" class="pic" @click="() => showImg(index)">
+          <img :src="src" />
+        </div> -->
+        <vue-easy-lightbox v-if="images" :visible="visibleRef" :images="images" :index="index" @hide="handleHide"></vue-easy-lightbox>
     </div>
 </template>
 
@@ -70,12 +74,11 @@ import draggable from 'vuedraggable'
 import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
 import CoolLightBox from 'vue-cool-lightbox'
 import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
-
-
+import { ref } from 'vue'
 export default ({
     name: 'Upload',
     components: {
-        draggable
+        draggable,
     },
     data() {
         return {
@@ -84,6 +87,22 @@ export default ({
             drag: false,
             mainImage: false,
             mobileImgView: false,
+            visibleRef: false,
+            index: 0,
+            imgs: [
+                { 
+                    src: 'https://via.placeholder.com/450.png/', 
+                    title: 'this is title' 
+                },
+                { 
+                    src: 'https://via.placeholder.com/300.png/', 
+                    title: 'this is title' 
+                },
+                { 
+                    src: 'https://via.placeholder.com/150.png/', 
+                    title: 'this is title' 
+                }
+            ]
         }
     },
     methods: {
@@ -198,12 +217,47 @@ export default ({
                 onChange: this.handleChange,
                 wrap: true,
             };
+        },
+        showImg(index) {
+            console.log(index)
+            this.index = index
+            this.visibleRef = true
+        },
+        handleHide() {
+            this.visibleRef = false
         }
     },
     created() {
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen()
     },
+    // setup() {
+    //     const visibleRef = ref(false)
+    //     const indexRef = ref(0)
+    //     const imgs = [
+    //         'https://via.placeholder.com/450.png/',
+    //         'https://via.placeholder.com/300.png/',
+    //         'https://via.placeholder.com/150.png/',
+    //         { src: 'https://via.placeholder.com/450.png/', title: 'this is title' }
+    //     ]
+        
+        
+        
+    //     const showImg = (index) => {
+    //         console.log(index);
+    //         indexRef.value = index
+    //         visibleRef.value = true
+    //     }
+    //     const onHide = () => visibleRef.value = false
+        
+    //     return {
+    //         visibleRef,
+    //         indexRef,
+    //         imgs,
+    //         showImg,
+    //         onHide
+    //     }
+    // }
 });
 </script>
 
