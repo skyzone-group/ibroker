@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Blade\TempImagesController;
 use App\Http\Controllers\Blade\AddressController;
+use App\Http\Controllers\Blade\RegistrationObjectController;
+use App\Http\Controllers\Blade\ObjectTypesController;
 use App\Models\ImageUpload;
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +34,13 @@ Route::get('/allRegions', [AddressController::class, 'allRegions']);
 Route::get('/districts/{region_id}', [AddressController::class, 'districts']);
 Route::get('/quarters/{quarter_id}', [AddressController::class, 'quarters']);
 
-# Protected routes
+// Object properties
+Route::get('/objectTypes', [ObjectTypesController::class, 'objectTypes']);
+Route::get('/objectProperty', [ObjectTypesController::class, 'objectProperty']);
+Route::get('/additional/{object_id}', [ObjectTypesController::class, 'additionalFields']);
 
+Route::post('/add/object', [RegistrationObjectController::class, 'registr']);
+# Protected routes
 Route::get('photo', 'App\Http\Controllers\Blade\ImageUploadController@index');
 Route::post('st', 'App\Http\Controllers\Blade\ImageUploadController@store');
 Route::get('show/{id}', function ($id) {

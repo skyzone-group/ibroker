@@ -15,6 +15,8 @@ class CreateAdditionalFieldValuesTable extends Migration
     {
         Schema::create('additional_field_values', function (Blueprint $table) {
             $table->id();
+            $table->integer('additional_field_id');
+            $table->integer('object_id');
             $table->timestamps();
         });
     }
