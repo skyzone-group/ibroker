@@ -204,7 +204,10 @@
                                         <div class="address_map">
                                             <div class="header_title">
                                                 <div class="header_title_content d-flex flex-column">
-                                                    <h4 class="header_title_content_txt mb-0">Адрес</h4>
+                                                    <h4 class="header_title_content_txt mb-0">
+                                                        Адрес
+                                                        <div class="required_inputs"></div>
+                                                    </h4>
                                                     <!-- <span class="header_title_content_txt_sub">Укажите адрес или передвиньте метку на карте</span> -->
                                                 </div>
                                                 <div id="address" class="postion-relative">
@@ -244,7 +247,10 @@
                                         <div id="upload_img">
                                             <div class="header_title">
                                                 <div class="header_title_content d-flex flex-column">
-                                                    <h4 class="header_title_content_txt mb-0">Фотографии</h4>
+                                                    <h4 class="header_title_content_txt mb-3">
+                                                        Фотографии
+                                                        <div class="required_inputs"></div>
+                                                    </h4>
                                                 </div>
                                                 <div>
                                                         <upload-box @updateImagesBox="updateImagesBox"></upload-box>
@@ -301,16 +307,19 @@
                                     <!-- Options -->
                                     <div class="form-card" id="section-four">
                                         <div class="options_main">
-                                            <div class="header_title">
+                                            <div class="header_title position-relative">
                                                 <div class="header_title_content">
                                                     <h4 class="header_title_content_txt">Параметры</h4>
                                                 </div>
-                                                <div class="options_div">
+                                                <div class="options_div mb-5">
                                                     <!-- Area options -->
-                                                    <div class="options_main__items mt-4 d-flex">
+                                                    <div class="options_main__items d-flex">
                                                         <!-- Количество комнат-->
                                                         <div v-if="this.form.object_id != 5" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
-                                                            <span class="inputs_block_title">Количество комнат</span>
+                                                            <span class="inputs_block_title">
+                                                                Количество комнат
+                                                                <div v-show="this.form.object_id != 3" class="required_inputs"></div>
+                                                            </span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
@@ -320,41 +329,30 @@
                                                             </div>
                                                         </div>
                                                         <!-- Количество комнат-->
-                                                            <!-- Общая площадь -->
-                                                            <div v-if="this.form.object_id != 5" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
-                                                                <span class="inputs_block_title">Общая площадь</span>
-                                                                <div class="options_main__items_inputs_block d-flex flex-column">
-                                                                    <div class="input-medium-6 dc-input-6-1-2">
-                                                                        <div class="dc-input__input-container-6-1-2 input_div">
-                                                                            <input id="space" class="dc-input__input-6-1-2" maxlength="24" name="total_area" type="number" placeholder="" tabindex="0" v-model.number="form.total_area" />
-                                                                        </div>
-                                                                        <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- Общая площадь -->
-
-                                                        <!-- Жилая площадь -->
+                                                        
+                                                        <!-- Общая площадь -->
                                                         <div v-if="this.form.object_id != 5" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
-                                                            <span class="inputs_block_title">Жилая площадь | DOP</span>
+                                                            <span class="inputs_block_title">
+                                                                Общая площадь
+                                                                <div class="required_inputs"></div>
+                                                            </span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="living_space" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.livingSpace">
+                                                                        <input id="space" class="dc-input__input-6-1-2" maxlength="24" name="total_area" type="number" placeholder="" tabindex="0" v-model.number="form.total_area" />
                                                                     </div>
                                                                     <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- Жилая площадь -->
-                                                    </div>
-                                                    <!-- Area options -->
+                                                        <!-- Общая площадь -->
 
-                                                    <!-- Hight options -->
-                                                    <div class="options_main__items options_main__items_inputs_media mt-4 d-flex">
                                                         <!-- Этаж -->
                                                         <div v-if="this.form.object_id == 1" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
-                                                            <span class="inputs_block_title">Этаж</span>
+                                                            <span class="inputs_block_title">
+                                                                Этаж
+                                                                <div class="required_inputs"></div>
+                                                            </span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
@@ -364,10 +362,16 @@
                                                             </div>
                                                         </div>
                                                         <!-- Этаж -->
-
+                                                    </div>
+                                                    <!-- Area options -->
+                                                    
+                                                    <div class="options_main__items mt-4 d-flex">
                                                         <!-- Этажность -->
                                                         <div v-if="this.form.object_id != 5" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
-                                                            <span class="inputs_block_title">Этажность</span>
+                                                            <span class="inputs_block_title">
+                                                                Этажность
+                                                                <div v-show="this.form.object_id != 3" class="required_inputs"></div>
+                                                            </span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
@@ -377,10 +381,13 @@
                                                             </div>
                                                         </div>
                                                         <!-- Этажность -->
-
+                                                        
                                                         <!-- Площадь участка -->
                                                         <div v-if="this.form.object_id != 1" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
-                                                            <span class="inputs_block_title">Площадь участка</span>
+                                                            <span class="inputs_block_title">
+                                                                Площадь участка
+                                                                <div v-show="this.form.object_id != 3" class="required_inputs"></div>
+                                                            </span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
@@ -392,10 +399,42 @@
                                                         </div>
                                                         <!-- Площадь участка -->
                                                     </div>
+                                                    
                                                     <!-- Hight options -->
-                                                    <div>
+                                                    <div class="options_main__items options_main__items_inputs_media mt-4 d-flex">
+                                                        <!-- Жилая площадь -->
+                                                        <div v-if="this.form.object_id == 1 || this.form.object_id == 2" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
+                                                            <span class="inputs_block_title">Жилая площадь | DOP</span>
+                                                            <div class="options_main__items_inputs_block d-flex flex-column">
+                                                                <div class="input-medium-6 dc-input-6-1-2">
+                                                                    <div class="dc-input__input-container-6-1-2 input_div">
+                                                                        <input id="living_space" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.livingSpace">
+                                                                    </div>
+                                                                    <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Жилая площадь -->
+                                                        
+                                                        <!-- Полезная площадь  -->
+                                                        <div v-if="this.form.object_id == 3" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
+                                                            <span class="inputs_block_title">Полезная площадь | DOP</span>
+                                                            <div class="options_main__items_inputs_block d-flex flex-column">
+                                                                <div class="input-medium-6 dc-input-6-1-2">
+                                                                    <div class="dc-input__input-container-6-1-2 input_div">
+                                                                        <input id="done_area" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.done_area">
+                                                                    </div>
+                                                                    <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Полезная площадь  -->
+                                                    </div>
+                                                    <!-- Hight options -->
+                                                    
+                                                    <div v-if="showMoreOptions">
                                                         <!-- Bathroom -->
-                                                        <div  v-if="this.form.object_id == 1"  class="options_main__items mt-4">
+                                                        <!-- <div  v-if="this.form.object_id == 1"  class="options_main__items mt-4">
                                                             <div class="options_main__item d-flex align-items-end">
                                                                 <div id="rooms" class="options_main__item_first">
                                                                     <div class="options_main__item_first_content">
@@ -417,11 +456,11 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                         <!-- Bathroom -->
 
                                                         <!-- Балкон/Лоджия -->
-                                                        <div  v-if="this.form.object_id == 1"  class="options_main__items mt-4">
+                                                        <!-- <div  v-if="this.form.object_id == 1"  class="options_main__items mt-4">
                                                             <div class="options_main__item d-flex align-items-end">
                                                                 <div id="rooms" class="options_main__item_first">
                                                                     <div class="options_main__item_first_content">
@@ -447,7 +486,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                         <!-- Балкон/Лоджия -->
 
                                                         <!-- Ремонт -->
@@ -559,6 +598,20 @@
                                                         <!-- Дополнительно -->
                                                     </div>
                                                 </div>
+                                                <div  v-if="!showMoreOptions" class="show-all-parametres" :class="{'height-6' : this.form.object_id == 5}">
+                                                    <div class="show-all-parametres_box">
+                                                        <button @click="this.showMoreOptions = true" class="button-root-primary" type="button" data-e2e-id="expand-params">
+                                                            <span class="button-root__icon-8-2-0 button-root__icon--left-8-2-0">
+                                                                <div class="icon-4-1-1">
+                                                                    <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                                                        <path d="M9 2a1 1 0 10-2 0v5H2a1 1 0 000 2h5v5a1 1 0 102 0V9h5a1 1 0 100-2H9V2z" fill="currentColor"></path>
+                                                                    </svg>
+                                                                </div>
+                                                            </span>
+                                                            <span class="button-root__text-8-2-2">Все параметры</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -569,7 +622,10 @@
                                         <div class="price_box_main">
                                             <div class="header_title mb-0">
                                                 <div class="header_title_content d-flex flex-column">
-                                                    <h4 class="header_title_content_txt mb-4">Цена и условия продажи</h4>
+                                                    <h4 class="header_title_content_txt mb-4">
+                                                        Цена и условия продажи
+                                                        <div class="required_inputs"></div>
+                                                    </h4>
                                                 </div>
                                                 <div class="price_box_main_input d-flex flex-column">
                                                     <div class="d-flex flex-column">
@@ -605,7 +661,10 @@
                                         <div class="description_box_main">
                                             <div class="header_title mb-0">
                                                 <div class="header_title_content d-flex flex-column">
-                                                    <h4 class="header_title_content_txt mb-4">Описание</h4>
+                                                    <h4 class="header_title_content_txt mb-4">
+                                                        Описание
+                                                        <div class="required_inputs"></div>
+                                                    </h4>
                                                 </div>
                                                 <div class="description_box_main_text_area">
                                                     <Textarea v-model="form.description" rows="5" cols="100" class="w-100" placeholder="Расскажите о недвижимости, собственниках, соседях, транспортной доступности и инфраструктуре" />
@@ -616,7 +675,7 @@
                                     <!-- description -->
 
                                     <!-- online display -->
-                                    <div class="form-card">
+                                    <!-- <div class="form-card">
                                         <div class="show_house_box_main">
                                             <div class="header_title mb-0">
                                                 <div class="header_title_content d-flex flex-column">
@@ -643,12 +702,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- <div class="form-buttons w-100 d-flex align-items-center mt-3 justify-content-lg-end justify-content-md-end justify-content-center">
-                                                <button type="button" class="form-buttons_btn">Сохранить черновик</button>
-                                                <button type="submit" class="form-buttons_btn">Разместить объявление</button>
-                                            </div> -->
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <!-- online display -->
                                     
                                     <!-- contacts -->
@@ -658,7 +713,10 @@
                                                 <div class="header_title_content d-flex flex-column">
                                                     <div class="protec-auth-box">
                                                         <img src="images/icons/protection.png" class="protec-auth-box-img" alt="protection" width="40" height="40">
-                                                        <h4 class="header_title_content_txt mb-0">Чтобы опубликовать объявление, пройдите идентификацию</h4>
+                                                        <h4 class="header_title_content_txt mb-0">
+                                                            Чтобы опубликовать объявление, пройдите идентификацию
+                                                            <div class="required_inputs"></div>
+                                                        </h4>
                                                     </div>
                                                     <span class="header_title_content_txt_sub">Так мы боремся с мошенниками. Нам важно, чтобы все звонки доставались честным людям.</span>
                                                 </div>
@@ -733,6 +791,7 @@ export default {
                 floor_count: "",
                 room_count: "",
                 total_area: "",
+                done_area: "",
                 ceilingHeight: "",
                 bathroomType: "",
                 numberBalcons: "",
@@ -787,6 +846,7 @@ export default {
             imageprevi: null,
             // loggedIn: false,
             errorURL: false,
+            showMoreOptions: false,
             thumbnailpreview: "",
         }
     },
@@ -995,6 +1055,9 @@ export default {
     font-weight: 500;
     line-height: 3.2rem;
     margin-right: 0.8rem;
+    align-items: center;
+    display: flex;
+    margin-bottom: 0.8rem;
 }
 
 .ad_type_item_content{

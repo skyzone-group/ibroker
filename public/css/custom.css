@@ -60,6 +60,14 @@ a:hover{
 }
 
 
+.required_inputs{
+    background: #ff6a59;
+    height: 8px;
+    margin-left: 0.8rem;
+    width: 8px;
+    border-radius: 50%;
+}
+
 .title{
     line-height: 1.1;
     font-weight: 600;
@@ -2131,6 +2139,79 @@ textarea.md-form__control {
 }
 
 /* ******************************** Agent Single Page ***************************************** */
+/* ********************************************************************************************** */
+/* ********************* Add new Object page ****************************************** */
+.show-all-parametres{
+    align-items: flex-end;
+    background-image: linear-gradient(180deg,#fff0 0,#fff 4.5rem,#fff);
+    bottom: -3rem;
+    display: flex;
+    left: -3rem;
+    padding: 20px 48px 30px 48px;
+    position: absolute;
+    right: -3rem;
+    z-index: 1;
+    height: 120px;
+}
+
+.show-all-parametres.height-6{
+    height: 6rem;
+}
+
+.button-root-primary{
+    background-color: #242629;
+    border-color: transparent;
+    transition: background-color .5s;
+    transition: border-color .5s;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    padding: 0 16px;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    text-align: center;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    color: #fff !important;
+}
+
+.button-root-primary:hover{
+    background-color: #53b374 !important;
+    border-color: transparent;
+}
+
+.button-root__text-8-2-2 {
+    font-size: 14px;
+    font-stretch: normal;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: normal;
+    overflow: hidden;
+    text-decoration: none;
+    text-indent: 0;
+    text-overflow: ellipsis;
+    text-shadow: none;
+    text-transform: none;
+    transition: color .15s;
+    white-space: nowrap;
+}
+
+.button-root__icon--left-8-2-0 {
+    margin-right: 8px;
+    order: -1;
+}
+
+.button-root__icon-8-2-0 {
+    color: #fff;
+    display: block;
+    height: 16px;
+    transition: .15s;
+    width: 16px;
+}
 /* ****************************** MEDIA ******************************************* */
 /************************************* Object Single Page styles *********************************** */
 @media (max-width: 1900px){
