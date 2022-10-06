@@ -16,7 +16,12 @@
     --secondary_button_10: rgba(4,104,255,.1);
     --superblack_40: rgba(0,0,0,.4);
     --form-button-color: #53b374;
+    --form-button-invalid-color: #f44336;
     --dc-color-grey-200: #d3d4d4;
+}
+
+.p-invalid{
+    border-color: var(--form-button-invalid-color) !important;
 }
 
 .main-container{
@@ -2211,6 +2216,103 @@ textarea.md-form__control {
     height: 16px;
     transition: .15s;
     width: 16px;
+}
+
+/* ************************************************************************************ */
+/* ***************************** Form Step indicator ***************************** */
+.step_form{
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.2rem 0.4rem 0 #00000012;
+    margin-bottom: 1.6rem;
+    padding: 1.6rem;
+}
+
+.step_form_title{
+    margin-bottom: 1.6rem;
+    font-size: 20px;
+}
+
+.steps_item{
+    height: 2rem;
+    margin-top: 15px;
+}
+
+.steps_item_btn{
+    -webkit-appearance: none;
+    background-color: initial;
+    border: none;
+    box-shadow: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    font-family: SeroPro,sans-serif;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: normal;
+    margin: 0;
+    outline: none;
+    padding: 0;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    text-indent: 0;
+    text-shadow: none;
+    text-transform: none;
+}
+
+.steps_item_btn_icon_left{
+    padding-left: 24px;
+}
+
+.link_icon{
+    font-size: medium;
+    color: #242629;
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 0;
+}
+
+.icon_div{
+    display: inline-block;
+    height: 16px;
+    line-height: 16px;
+    min-height: 16px;
+    min-width: 16px;
+    overflow: hidden;
+    width: 16px;
+    color: #d3d4d4;
+}
+.link_txt{
+    height: 19px;
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-bottom-color: rgba(36,38,41,.12);
+    border-bottom-width: 2px;
+    color: #242629;
+}
+
+.steps_item_btn.active .link_txt{
+    color: var(--form-button-color) !important;
+    border-color: var(--form-button-color);
+}
+
+.steps_item_btn.active .icon_div{
+    color: var(--form-button-color) !important;
+}
+
+.steps_item_btn.input-invalid .link_txt{
+    color: var(--form-button-invalid-color) !important;
+    border-color: var(--form-button-invalid-color);
+}
+
+.steps_item_btn.input-invalid .icon_div{
+    color: var(--form-button-invalid-color) !important;
 }
 /* ****************************** MEDIA ******************************************* */
 /************************************* Object Single Page styles *********************************** */

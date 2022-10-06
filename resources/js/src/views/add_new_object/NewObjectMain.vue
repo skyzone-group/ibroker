@@ -10,7 +10,7 @@
                     <div class="form">
                         <div class="block__body_main">
                             <div class="block__body_side-bar_content">
-                                <form @submit.prevent="saveData()" id="file-dropzone" method="POST" :model="form">
+                                <form @submit.prevent="saveData(!v$.$invalid)" id="file-dropzone" method="POST" :model="form">
                                     <!-- Тип объявления -->
                                     <div class="form-card" id="section-one">
                                         <div class="ad_type">
@@ -217,19 +217,23 @@
                                                                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                                                                     <div class="address_block_div-drop mb-lg-0 mb-3">
                                                                         <label>Регион</label>
-                                                                        <Dropdown @change="getDistricts()" v-model="form.region_id" :options="regions" optionLabel="name_uz" optionValue="id" placeholder="Выбирать регион"  class="w-100"/>
+                                                                        <Dropdown @change="getDistricts()" v-model="v$.form.region_id.$model" :options="regions" optionLabel="name_uz" optionValue="id" placeholder="Выбирать регион"  class="w-100" :class="{'p-invalid':v$.form.region_id.$invalid && submitted}" name="region_id" />
+                                                                        <small v-if="(v$.form.region_id.$invalid && submitted) || v$.form.region_id.$pending.$response" class="p-error">{{v$.form.region_id.required.$message.replace('Value', 'Регион')}}</small>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                                                                     <div class="address_block_div-drop mb-lg-0 mb-3">
                                                                         <label>Район</label>
-                                                                        <Dropdown @change="getQuarters()" v-model="form.district_id" :options="districts" optionLabel="name_uz" optionValue="id" placeholder="Выбирать район"  class="w-100"/>
+                                                                        <Dropdown @change="getQuarters()" v-model="v$.form.district_id.$model" :options="districts" optionLabel="name_uz" optionValue="id" placeholder="Выбирать район"  class="w-100" :class="{'p-invalid':v$.form.district_id.$invalid && submitted}" name="district_id" />
+                                                                        <small v-if="(v$.form.district_id.$invalid && submitted) || v$.form.district_id.$pending.$response" class="p-error">{{v$.form.district_id.required.$message.replace('Value', 'Район')}}</small>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-lg-4 col-12">
                                                                     <div class="address_block_div-drop">
                                                                         <label>Улица</label>
-                                                                        <Dropdown v-model="form.quarter_id" :options="quarters" optionLabel="name_uz" optionValue="id" placeholder="Выбирать улица"  class="w-100"/>
+                                                                        <Dropdown v-model="v$.form.quarter_id.$model" :options="quarters" optionLabel="name_uz" optionValue="id" placeholder="Выбирать улица"  class="w-100" 
+                                                                        :class="{'p-invalid':v$.form.quarter_id.$invalid && submitted}" name="quarter_id" />
+                                                                        <small v-if="(v$.form.quarter_id.$invalid && submitted) || v$.form.quarter_id.$pending.$response" class="p-error">{{v$.form.quarter_id.required.$message.replace('Value', 'Улица')}}</small>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -253,7 +257,7 @@
                                                     </h4>
                                                 </div>
                                                 <div>
-                                                        <upload-box @updateImagesBox="updateImagesBox"></upload-box>
+                                                    <upload-box @updateImagesBox="updateImagesBox"></upload-box>
                                                 </div>
                                                 <pre>
                                                     {{this.form.images}}
@@ -321,9 +325,10 @@
                                                                 <div v-show="this.form.object_id != 3" class="required_inputs"></div>
                                                             </span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
-                                                                <div class="input-medium-6 dc-input-6-1-2">
+                                                                <div class="input-medium-6 dc-input-6-1-2" :class="{'p-invalid':(this.form.object_id != 3 ? v$.form.room_count.$invalid && submitted : '')}">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="kitchen_area" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.room_count">
+                                                                        <input id="room_count" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="v$.form.room_count.$model" name="room_count">
+                                                                        <small v-if="(this.form.object_id != 3 ? ((v$.form.room_count.$invalid && submitted) || v$.form.room_count.$pending.$response) : '')" class="p-error">{{v$.form.room_count.required.$message.replace('Value', 'Количество комнат')}}</small>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -337,9 +342,10 @@
                                                                 <div class="required_inputs"></div>
                                                             </span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
-                                                                <div class="input-medium-6 dc-input-6-1-2">
+                                                                <div class="input-medium-6 dc-input-6-1-2" :class="{'p-invalid':v$.form.total_area.$invalid && submitted}">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="space" class="dc-input__input-6-1-2" maxlength="24" name="total_area" type="number" placeholder="" tabindex="0" v-model.number="form.total_area" />
+                                                                        <input id="space" class="dc-input__input-6-1-2" maxlength="24" name="total_area" type="number" placeholder="" tabindex="0" v-model.number="v$.form.total_area.$model" />
+                                                                        <small v-if="(v$.form.total_area.$invalid && submitted) || v$.form.total_area.$pending.$response" class="p-error">{{v$.form.total_area.required.$message.replace('Value', 'Количество комнат')}}</small>
                                                                     </div>
                                                                     <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
                                                                 </div>
@@ -354,9 +360,10 @@
                                                                 <div class="required_inputs"></div>
                                                             </span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
-                                                                <div class="input-medium-6 dc-input-6-1-2">
+                                                                <div class="input-medium-6 dc-input-6-1-2" :class="{'p-invalid':v$.form.floor.$invalid && submitted}">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="floor" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.floor">
+                                                                        <input id="floor" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="v$.form.floor.$model">
+                                                                        <small v-if="(v$.form.floor.$invalid && submitted) || v$.form.floor.$pending.$response" class="p-error">{{v$.form.floor.required.$message.replace('Value', 'Количество комнат')}}</small>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -373,9 +380,10 @@
                                                                 <div v-show="this.form.object_id != 3" class="required_inputs"></div>
                                                             </span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
-                                                                <div class="input-medium-6 dc-input-6-1-2">
+                                                                <div class="input-medium-6 dc-input-6-1-2" :class="{'p-invalid':v$.form.floorHouse.$invalid && submitted}">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="floor_house" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.floorHouse">
+                                                                        <input id="floor_house" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="v$.form.floorHouse.$model">
+                                                                        <small v-if="(v$.form.floorHouse.$invalid && submitted) || v$.form.floorHouse.$pending.$response" class="p-error">{{v$.form.floorHouse.required.$message.replace('Value', 'Количество комнат')}}</small>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -389,9 +397,10 @@
                                                                 <div v-show="this.form.object_id != 3" class="required_inputs"></div>
                                                             </span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
-                                                                <div class="input-medium-6 dc-input-6-1-2">
+                                                                <div class="input-medium-6 dc-input-6-1-2" :class="{'p-invalid':(this.form.object_id != 1 ? v$.form.land_area.$invalid && submitted : '')}">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="space" class="dc-input__input-6-1-2" maxlength="24" name="total_area" type="number" placeholder="" tabindex="0" v-model.number="form.land_area" />
+                                                                        <input id="space" class="dc-input__input-6-1-2" maxlength="24" name="total_area" type="number" placeholder="" tabindex="0" v-model.number="v$.form.land_area.$model" />
+                                                                        <small v-if="(this.form.object_id != 1 ? ((v$.form.land_area.$invalid && submitted) || v$.form.land_area.$pending.$response) : '')" class="p-error">{{v$.form.land_area.required.$message.replace('Value', 'Количество комнат')}}</small>
                                                                     </div>
                                                                     <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
                                                                 </div>
@@ -731,7 +740,99 @@
                                 </Form>
                             </div>
                             <div class="block__body_side-bar  d-lg-block d-md-block d-none">
-                                <form-indicator></form-indicator>
+                                <div class="form_inficator_box">
+                                    <div class="step_form">
+                                        <h3 class="step_form_title">Обязательно для заполнения</h3>
+                                        <VScrollActive offset="40" :hash="false" @update="handleNavbarChange">
+                                            <nav class="d-flex flex-column">
+                                                <div class="steps_item">
+                                                    <button data-scroll-active="section-one" class="steps_item_btn steps_item_btn_icon_left" role="button">
+                                                        <div class="link_icon">
+                                                            <div class="icon_div">
+                                                                <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+                                                            </div>
+                                                        </div>
+                                                        <span class="link_txt">
+                                                            <span>Тип объявления</span>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                                <div class="steps_item">
+                                                    <button data-scroll-active="section-two" class="steps_item_btn steps_item_btn_icon_left" :class="{'input-invalid': (v$.form.region_id.$invalid || v$.form.district_id.$invalid || v$.form.quarter_id.$invalid) && submitted}" role="button">
+                                                        <div class="link_icon">
+                                                            <div class="icon_div">
+                                                                <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+                                                            </div>
+                                                        </div>
+                                                        <span class="link_txt">
+                                                            <span>Адрес</span>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                                <div class="steps_item">
+                                                    <button data-scroll-active="section-three" class="steps_item_btn steps_item_btn_icon_left" role="button">
+                                                        <div class="link_icon">
+                                                            <div class="icon_div">
+                                                                <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+                                                            </div>
+                                                        </div>
+                                                        <span class="link_txt">
+                                                            <span>Фотографии</span>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                                <div class="steps_item">
+                                                    <button data-scroll-active="section-four" class="steps_item_btn steps_item_btn_icon_left" :class="{'input-invalid': ((this.form.object_id == 1 ? v$.form.floor.$invalid : '') || (this.form.object_id != 5 ? v$.form.total_area.$invalid : '') || (this.form.object_id != 1 ? v$.form.land_area.$invalid : '')) && submitted}" role="button">
+                                                        <div class="link_icon">
+                                                            <div class="icon_div">
+                                                                <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+                                                            </div>
+                                                        </div>
+                                                        <span class="link_txt">
+                                                            <span>Параметры</span>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                                <div class="steps_item">
+                                                    <button data-scroll-active="section-five" class="steps_item_btn steps_item_btn_icon_left" role="button">
+                                                        <div class="link_icon">
+                                                            <div class="icon_div">
+                                                                <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+                                                            </div>
+                                                        </div>
+                                                        <span class="link_txt">
+                                                            <span>Цена</span>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                                <div class="steps_item">
+                                                    <button data-scroll-active="section-six" class="steps_item_btn steps_item_btn_icon_left" role="button">
+                                                        <div class="link_icon">
+                                                            <div class="icon_div">
+                                                                <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+                                                            </div>
+                                                        </div>
+                                                        <span class="link_txt">
+                                                            <span>Описание</span>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                                <div class="steps_item">
+                                                    <button data-scroll-active="section-seven" class="steps_item_btn steps_item_btn_icon_left" role="button">
+                                                        <div class="link_icon">
+                                                            <div class="icon_div">
+                                                                <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
+                                                            </div>
+                                                        </div>
+                                                        <span class="link_txt">
+                                                            <span>Контакты</span>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </nav>
+                                        </VScrollActive>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -750,6 +851,9 @@ import InputNumber from 'primevue/inputnumber';
 import Textarea from 'primevue/textarea';
 import Dropdown from 'primevue/dropdown';
 import UploadBox from '../../../components/Upload.vue'
+// Validation
+import { required } from "@vuelidate/validators";
+import { useVuelidate } from "@vuelidate/core";
 // Form
 import FormInput from '../../../components/add_new_object/form/FormInput.vue'
 import UploadImage from '../../../components/add_new_object/form/FormImages.vue'
@@ -758,8 +862,10 @@ import FormButton from '../../../components/UI/FormButton.vue'
 import RadioButton from 'primevue/radiobutton';
 // Media Styles
 import  '../../../../../public/css/media-one.css'
+import VScrollActive from '../../../components/VScrollActive.vue';
 
 export default {
+    setup: () => ({ v$: useVuelidate() }),
     components: {
         FormIndicator,
         UploadImage,
@@ -771,6 +877,7 @@ export default {
         Textarea,
         RadioButton,
         Dropdown,
+        VScrollActive
     },
     data() {
         return {
@@ -846,8 +953,46 @@ export default {
             imageprevi: null,
             // loggedIn: false,
             errorURL: false,
+            success: false,
+            error: false,
             showMoreOptions: false,
+            submitted: false,
             thumbnailpreview: "",
+        }
+    },
+    validations() {
+        return {
+            form: {
+                region_id: {
+                    required
+                },
+                district_id: {
+                    required
+                },
+                quarter_id: {
+                    required
+                },
+                room_count: {
+                    async isUnique () {
+                        if (this.form.object_id == 1) return true
+                    }
+                },
+                total_area: {
+                    required
+                },
+                floor: {
+                    async isUnique () {
+                        if (this.form.object_id == 1) return true
+                    }
+                },
+                floorHouse: {
+                    required
+                },
+                land_area: {
+                    required
+                }
+            }
+            
         }
     },
     props: {
@@ -860,15 +1005,27 @@ export default {
             axios.get('/addiotonal/options')
             .then(response => this.options = response.data);
         },
-        saveData(){
+        saveData(isFormValid){
             // let region_id = this.region_id;
             // console.log(`Submitted + ${region_id}`);
+            this.submitted = true;
+            if (!isFormValid) {
+                return;
+            }
             axios.post('/api/add/object',  this.form).then(response => {
+                // this.onSuccess(response.data.message);
                 console.log(response);
             })
             .catch(function (error) {
+                // this.onFailure(error.response.data.message);
                 console.log("889");
             });
+        },
+        onSuccess(message){
+            this.success = true;
+        },
+        onFailure(message){
+            this.error = true;
         },
         checkScreen() {
             this.windowWidth = window.innerWidth;
@@ -949,6 +1106,9 @@ export default {
             .then(response => {
                 this.additionalFields = response.data.result
             });
+        },
+        handleNavbarChange(id) {
+            
         }
     },
     created() {
@@ -1612,7 +1772,7 @@ margin-left: 2.4rem;
 .address_block_div  .p-dropdown{
     height: 40px !important;
     align-items: center;
-    border: 0.1rem solid #c9cbcd !important;
+    border: 0.1rem solid #c9cbcd;
     border-radius: 0.5rem !important;
 }
 

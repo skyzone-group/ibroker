@@ -60,7 +60,7 @@
             </div>
         </div>
         <div class="d-none">
-            <input @change="onInputChange" multiple="multiple" type="file" name="images" id="media">
+            <input @change="onInputChange" multiple="multiple" type="file" name="images[]" id="media">
         </div>
         <!-- <div v-for="(src, index) in imgs" :key="index" class="pic" @click="() => showImg(index)">
           <img :src="src" />
