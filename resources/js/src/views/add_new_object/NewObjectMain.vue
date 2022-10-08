@@ -6,7 +6,13 @@
                     <b class="block_title title">Добавление объявления</b>
                     <span class="text-secondary">Вы можете бесплатно добавить до 2 объявлений в месяц</span>
                 </header> -->
-                <div class="block__body">
+                <div class="block__body position-relative">
+                    <!-- loader start -->
+                    <div v-if="isLoaded" class="loader_box w-100 h-100 d-flex justify-content-center align-items-center">
+                        <ProgressSpinner style="width:50px;height:50px" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"/>
+                    </div>
+                    <!-- loader end -->
+                    
                     <div class="form">
                         <div class="block__body_main">
                             <div class="block__body_side-bar_content">
@@ -217,7 +223,7 @@
                                                                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                                                                     <div class="address_block_div-drop mb-lg-0 mb-3">
                                                                         <label>Регион</label>
-                                                                        <Dropdown @change="getDistricts()" v-model="v$.form.region_id.$model" :options="regions" optionLabel="name_uz" optionValue="id" placeholder="Выбирать регион"  class="w-100" :class="{'p-invalid':v$.form.region_id.$invalid && submitted}" name="region_id" />
+                                                                        <Dropdown @change="getDistricts()" v-model="v$.form.region_id.$model" :options="regions" optionLabel="name_uz" optionValue="id" placeholder="Выбирать регион"  class="w-100" :class="{'p-invalid':v$.form.region_id.$invalid && submitted}" name="region_id"/>
                                                                         <small v-if="(v$.form.region_id.$invalid && submitted) || v$.form.region_id.$pending.$response" class="p-error">{{v$.form.region_id.required.$message.replace('Value', 'Регион')}}</small>
                                                                     </div>
                                                                 </div>
@@ -255,6 +261,10 @@
                                                         Фотографии
                                                         <div class="required_inputs"></div>
                                                     </h4>
+                                                    <div class="image-desc">
+                                                        <h5 class="image-desc-title">Покупателей привлекают качественные фотографии</h5>
+                                                        Добавьте от 3 фото. Покажите комнаты, кухню, санузел, вид из окна, подъезд, фасад здания, парковку.
+                                                    </div>
                                                 </div>
                                                 <div>
                                                     <upload-box @updateImagesBox="updateImagesBox"></upload-box>
@@ -327,7 +337,7 @@
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2" :class="{'p-invalid':(this.form.object_id != 3 ? v$.form.room_count.$invalid && submitted : '')}">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="room_count" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="v$.form.room_count.$model" name="room_count">
+                                                                        <input id="room_count" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="v$.form.room_count.$model" name="room_count"  >
                                                                         <small v-if="(this.form.object_id != 3 ? ((v$.form.room_count.$invalid && submitted) || v$.form.room_count.$pending.$response) : '')" class="p-error">{{v$.form.room_count.required.$message.replace('Value', 'Количество комнат')}}</small>
                                                                     </div>
                                                                 </div>
@@ -640,9 +650,10 @@
                                                     <div class="d-flex flex-column">
                                                         <div class="price_box_main_input_flex d-flex align-items-center">
                                                             <div class="price_box_main_input_flex_input">
-                                                                <div class="input-medium-6 dc-input-6-1-2 w-100">
+                                                                <div class="input-medium-6 dc-input-6-1-2 w-100" :class="{'p-invalid': v$.form.priceHouse.$invalid && submitted }">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="priceHouse" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" type="number" v-model.number="form.priceHouse">
+                                                                        <input id="priceHouse" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" type="number" v-model.number="v$.form.priceHouse.$model">
+                                                                        <small v-if="(v$.form.priceHouse.$invalid && submitted) || v$.form.priceHouse.$pending.$response" class="p-error">{{v$.form.priceHouse.required.$message.replace('Value', 'Name')}}</small>
                                                                     </div>
                                                                     <div class="dc-input__input-icon-right dc-input__input-icon-right-font">$</div>
                                                                 </div>
@@ -676,7 +687,8 @@
                                                     </h4>
                                                 </div>
                                                 <div class="description_box_main_text_area">
-                                                    <Textarea v-model="form.description" rows="5" cols="100" class="w-100" placeholder="Расскажите о недвижимости, собственниках, соседях, транспортной доступности и инфраструктуре" />
+                                                    <Textarea v-model="v$.form.description.$model" rows="5" cols="100" class="w-100" placeholder="Расскажите о недвижимости, собственниках, соседях, транспортной доступности и инфраструктуре" :class="{'p-invalid': v$.form.description.$invalid && submitted }" />
+                                                    <small v-if="(v$.form.description.$invalid && submitted) || v$.form.description.$pending.$response" class="p-error">{{v$.form.description.required.$message.replace('Value', 'Описание')}}</small>
                                                 </div>
                                             </div>
                                         </div>
@@ -782,7 +794,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="steps_item">
-                                                    <button data-scroll-active="section-four" class="steps_item_btn steps_item_btn_icon_left" :class="{'input-invalid': ((this.form.object_id == 1 ? v$.form.floor.$invalid : '') || (this.form.object_id != 5 ? v$.form.total_area.$invalid : '') || (this.form.object_id != 1 ? v$.form.land_area.$invalid : '')) && submitted}" role="button">
+                                                    <button data-scroll-active="section-four" class="steps_item_btn steps_item_btn_icon_left" :class="{'input-invalid': ((this.form.object_id == 1 ? (v$.form.floor.$invalid || v$.form.floorHouse.$invalid) : '') || (this.form.object_id == 2 ? (v$.form.room_count.$invalid || v$.form.total_area.$invalid || v$.form.floorHouse.$invalid || v$.form.land_area.$invalid) : '') || (this.form.object_id != 5 ? v$.form.total_area.$invalid : '') || (this.form.object_id != 1 ? v$.form.land_area.$invalid : '')) && submitted}" role="button">
                                                         <div class="link_icon">
                                                             <div class="icon_div">
                                                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
@@ -794,7 +806,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="steps_item">
-                                                    <button data-scroll-active="section-five" class="steps_item_btn steps_item_btn_icon_left" role="button">
+                                                    <button data-scroll-active="section-five" class="steps_item_btn steps_item_btn_icon_left" role="button" :class="{'input-invalid' : v$.form.priceHouse.$invalid && submitted }">
                                                         <div class="link_icon">
                                                             <div class="icon_div">
                                                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
@@ -806,7 +818,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="steps_item">
-                                                    <button data-scroll-active="section-six" class="steps_item_btn steps_item_btn_icon_left" role="button">
+                                                    <button data-scroll-active="section-six" class="steps_item_btn steps_item_btn_icon_left" role="button" :class="{'input-invalid' : v$.form.description.$invalid && submitted }">
                                                         <div class="link_icon">
                                                             <div class="icon_div">
                                                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
@@ -852,8 +864,9 @@ import Textarea from 'primevue/textarea';
 import Dropdown from 'primevue/dropdown';
 import UploadBox from '../../../components/Upload.vue'
 // Validation
-import { required } from "@vuelidate/validators";
+import { required, requiredIf } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
+
 // Form
 import FormInput from '../../../components/add_new_object/form/FormInput.vue'
 import UploadImage from '../../../components/add_new_object/form/FormImages.vue'
@@ -863,6 +876,8 @@ import RadioButton from 'primevue/radiobutton';
 // Media Styles
 import  '../../../../../public/css/media-one.css'
 import VScrollActive from '../../../components/VScrollActive.vue';
+// Loader
+import ProgressSpinner from 'primevue/progressspinner';
 
 export default {
     setup: () => ({ v$: useVuelidate() }),
@@ -877,7 +892,8 @@ export default {
         Textarea,
         RadioButton,
         Dropdown,
-        VScrollActive
+        VScrollActive,
+        ProgressSpinner
     },
     data() {
         return {
@@ -958,47 +974,86 @@ export default {
             showMoreOptions: false,
             submitted: false,
             thumbnailpreview: "",
+            isLoaded: false
         }
     },
     validations() {
         return {
             form: {
-                region_id: {
-                    required
-                },
-                district_id: {
-                    required
-                },
-                quarter_id: {
-                    required
-                },
+                region_id: { required },
+                district_id: { required },
+                quarter_id: { required },
                 room_count: {
-                    async isUnique () {
-                        if (this.form.object_id == 1) return true
-                    }
+                    required: requiredIf(function (room_count) {
+                        if(this.form.object_id == 1 || this.form.object_id == 2 || this.form.object_id == 4){
+                            return true
+                        }
+                    }),
                 },
                 total_area: {
-                    required
+                    required: requiredIf(function (total_area) {
+                        if(this.form.object_id != 5){
+                            return true
+                        }
+                    }),
                 },
                 floor: {
-                    async isUnique () {
-                        if (this.form.object_id == 1) return true
-                    }
+                    required: requiredIf(function (floor) {
+                        if(this.form.object_id == 1){
+                            return true
+                        }
+                    }),
                 },
                 floorHouse: {
-                    required
+                    required: requiredIf(function (floorHouse) {
+                        if(this.form.object_id == 1 || this.form.object_id == 2 || this.form.object_id == 4){
+                            return true
+                        }
+                    }),
                 },
                 land_area: {
-                    required
-                }
+                    required: requiredIf(function (land_area) {
+                        if(this.form.object_id == 2 || this.form.object_id == 4 || this.form.object_id == 5){
+                            return true
+                        }
+                    }),
+                },
+                priceHouse: { required },
+                description: { required }
             }
-            
         }
     },
     props: {
         loggedIn: {
             type: Boolean,
         }
+    },
+    computed:{
+        youtube_thumbnail_downloader(){
+            var vm = this;
+            if(vm.form.youtube_url){
+                var regExp = /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/,
+                    match = vm.form.youtube_url.match(regExp),
+                    vidurl = '',
+                    thumbnailpreview = '';
+                if (match &&  match[1].length == 11) 
+                {
+                    vidurl = match[1];
+                    thumbnailpreview = 'http://img.youtube.com/vi/'+vidurl+'/mqdefault.jpg';
+                } 
+                else 
+                {
+                    alert("The URL you have entered maybe incorrect. Please Enter a correct URL.");
+                    this.errorURL = true;
+                    return false
+                }
+                vm.thumbnailpreview = thumbnailpreview;
+                return true
+            }else{
+                this.errorURL = false;
+                return false
+            }
+        },
     },
     methods: {
         additonalOptions(){
@@ -1015,9 +1070,11 @@ export default {
             axios.post('/api/add/object',  this.form).then(response => {
                 // this.onSuccess(response.data.message);
                 console.log(response);
+                alert("ok");
             })
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);
+                alert("bad");
                 console.log("889");
             });
         },
@@ -1109,41 +1166,56 @@ export default {
         },
         handleNavbarChange(id) {
             
+        },
+        validateRoomCount() {
+            if (this.form.object_id == 1 || this.form.object_id == 2 || this.form.object_id == 4) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        validateTotalArea(){
+            if (this.form.object_id != 5) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        validateFloor(){
+            if (this.form.object_id == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        validateFloorHouse(){
+            if (this.form.object_id == 1 || this.form.object_id == 2 || this.form.object_id == 4) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        validateLandArea(){
+            if (this.form.object_id == 2 || this.form.object_id == 4 || this.form.object_id == 5) {
+                return true;
+            } else {
+                return false;
+            }
         }
     },
-    created() {
+    async created() {
         this.additonalOptions();
         this.getRegions();
         this.getObjectTypes();
         this.getObjectTypesProperty();
         
         window.addEventListener('resize', this.checkScreen);
-        this.checkScreen()
+        this.checkScreen();
     },
-    computed:{
-        youtube_thumbnail_downloader(){
-            var vm = this;
-            if(vm.form.youtube_url){
-                var regExp = /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/,
-                    match = vm.form.youtube_url.match(regExp),
-                    vidurl = '',
-                    thumbnailpreview = '';
-                if (match &&  match[1].length == 11) 
-                {
-                    vidurl = match[1];
-                    thumbnailpreview = 'http://img.youtube.com/vi/'+vidurl+'/mqdefault.jpg';
-                } 
-                else 
-                {
-                    alert("The URL you have entered maybe incorrect. Please Enter a correct URL.");
-                    this.errorURL = true;
-                    return false
-                }
-                vm.thumbnailpreview = thumbnailpreview;
-                return true
-            }else{
-                this.errorURL = false;
-                return false
+    mounted() {
+        document.onreadystatechange = () => {
+            if(document.readyState == "complete"){
+                this.isLoaded = true;
             }
         }
     }

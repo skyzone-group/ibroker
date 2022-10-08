@@ -315,6 +315,9 @@
                         <router-link :to="{name: 'newObject'}" class="btn-add">
                             <span class="_25d45facb5--text--rH6sj">+ Разместить объявление</span>
                         </router-link>
+                        <!-- <a href="/razmestit-obyavlenie" class="btn-add">
+                            <span class="_25d45facb5--text--rH6sj">+ Разместить объявление</span>
+                        </a> -->
                     </div>
                     
                     <div v-if="DeskTopLogin">
@@ -411,7 +414,7 @@ export default {
     created() {
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen()
-    },
+    }
 }
 </script>
 

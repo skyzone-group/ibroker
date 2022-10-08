@@ -29,7 +29,6 @@ import Zastroyshiki from '../views/partners/DeveloperList.vue'
 // Objects Pages
 import ObjectMain from '../views/objects/ObjectList.vue'
 import Objects from '../views/objects/Objects.vue'
-
 // New Object Pages
 import NewObjectMain from '../views/add_new_object/NewObjectMain.vue'
 // Object Single Page Details
@@ -72,6 +71,9 @@ const routes = [
                 name: 'newObject',
                 components: {
                     main: NewObjectMain,
+                },
+                meta: {
+                    reload: true,
                 },
             },
             {
@@ -203,7 +205,7 @@ const router = createRouter({
         return savedPosition || new Promise((resolve)=>{
             setTimeout(() => resolve({top: 0}), 300);
         })
-    }
+    },
 })
 
 export default router

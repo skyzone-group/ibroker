@@ -2218,6 +2218,46 @@ textarea.md-form__control {
     width: 16px;
 }
 
+.image-desc{
+    background: #ddf0e3;
+    border-radius: 0.5rem;
+    line-height: 2rem;
+    margin-bottom: 2.4rem;
+    min-height: 7.2rem;
+    padding: 1.6rem;
+}
+
+.image-desc-title{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.loader_box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    /* background: red; */
+}
+
+@keyframes p-progress-spinner-color {
+    100%,
+    0% {
+        stroke: #d62d20;
+    }
+    40% {
+        stroke: #0057e7;
+    }
+    66% {
+        stroke: #008744;
+    }
+    80%,
+    90% {
+        stroke: #ffa700;
+    }
+}
 /* ************************************************************************************ */
 /* ***************************** Form Step indicator ***************************** */
 .step_form{

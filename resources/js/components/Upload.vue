@@ -89,20 +89,20 @@ export default ({
             mobileImgView: false,
             visibleRef: false,
             index: 0,
-            imgs: [
-                { 
-                    src: 'https://via.placeholder.com/450.png/', 
-                    title: 'this is title' 
-                },
-                { 
-                    src: 'https://via.placeholder.com/300.png/', 
-                    title: 'this is title' 
-                },
-                { 
-                    src: 'https://via.placeholder.com/150.png/', 
-                    title: 'this is title' 
-                }
-            ]
+            // imgs: [
+            //     { 
+            //         src: 'https://via.placeholder.com/450.png/', 
+            //         title: 'this is title' 
+            //     },
+            //     { 
+            //         src: 'https://via.placeholder.com/300.png/', 
+            //         title: 'this is title' 
+            //     },
+            //     { 
+            //         src: 'https://via.placeholder.com/150.png/', 
+            //         title: 'this is title' 
+            //     }
+            // ]
         }
     },
     methods: {
