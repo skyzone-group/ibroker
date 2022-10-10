@@ -2337,12 +2337,14 @@ textarea.md-form__control {
     color: #242629;
 }
 
-.steps_item_btn.active .link_txt{
+.steps_item_btn.active .link_txt,
+.steps_item_btn.succes-input .link_txt{
     color: var(--form-button-color) !important;
     border-color: var(--form-button-color);
 }
 
-.steps_item_btn.active .icon_div{
+.steps_item_btn.active .icon_div,
+.steps_item_btn.succes-input .icon_div{
     color: var(--form-button-color) !important;
 }
 

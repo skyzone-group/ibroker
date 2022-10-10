@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Blade\TempImagesController;
 use App\Http\Controllers\Blade\AddressController;
-use App\Http\Controllers\Blade\RegistrationObjectController;
+use App\Http\Controllers\Blade\CreateObjectController;
 use App\Http\Controllers\Blade\ObjectTypesController;
 use App\Models\ImageUpload;
 /*
@@ -39,7 +39,8 @@ Route::get('/objectTypes', [ObjectTypesController::class, 'objectTypes']);
 Route::get('/objectProperty', [ObjectTypesController::class, 'objectProperty']);
 Route::get('/additional/{object_id}', [ObjectTypesController::class, 'additionalFields']);
 
-Route::post('/add/object', [RegistrationObjectController::class, 'registr']);
+// Create Object
+Route::post('/create/object', [CreateObjectController::class, 'createObject']);
 # Protected routes
 Route::get('photo', 'App\Http\Controllers\Blade\ImageUploadController@index');
 Route::post('st', 'App\Http\Controllers\Blade\ImageUploadController@store');
