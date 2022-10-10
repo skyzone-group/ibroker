@@ -348,7 +348,7 @@
                                     Разместить объявление
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a  class="dropdown-item" href="#!">
+                                <a @click.prevent="logout" class="dropdown-item" href="#!">
                                     Exit
                                 </a>
                             </div>
@@ -410,6 +410,16 @@ export default {
             this.DeskTopLogin = true;
             return;
         },
+        logout(){
+            axios.post('/api/logout').then(response => {
+                localStorage.removeItem('token');
+                this.$router.push({ name: 'siteIndex' })
+                console.log("ok");
+            })
+            .catch(function (error) {
+                console.log('error');
+            });
+        }
     },
     created() {
         window.addEventListener('resize', this.checkScreen);
