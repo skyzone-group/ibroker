@@ -1058,24 +1058,25 @@ export default {
             axios.get('/addiotonal/options')
             .then(response => this.options = response.data);
         },
-        saveData(isFormValid){
+        saveData(){
             // let region_id = this.region_id;
             // console.log(`Submitted + ${region_id}`);
             this.submitted = true;
-            if (!isFormValid) {
-                return;
-            }
+            // if (!isFormValid) {
+            //     return;
+            // }
             const user_token = localStorage.getItem('token');
             console.log(user_token);
-            axios.post('/api/create/object',  this.form).then(response => {
+            
+            axios.post('/api/object/create',  this.form).then(response => {
                 // this.onSuccess(response.data.message);
                 console.log(response);
                 alert("ok");
             })
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);
-                alert("bad");
-                console.log("889");
+                alert(error);
+                console.log(error);
             });
         },
         onSuccess(message){

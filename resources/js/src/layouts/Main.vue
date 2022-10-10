@@ -29,7 +29,7 @@ export default {
     },
     mounted() {
         this.loggedIn = localStorage.getItem('token') ? true : false;
-        localStorage.clear();
+        //localStorage.clear();
     },
 }
 </script>
