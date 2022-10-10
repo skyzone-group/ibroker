@@ -12,6 +12,6 @@ class ObjectController extends ResponseController
 {
     public function createObject(Request $request)
     {
-        return "ok";
+        return $request->all();
     }
 }

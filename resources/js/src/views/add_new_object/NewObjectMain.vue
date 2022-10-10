@@ -1065,10 +1065,14 @@ export default {
             // if (!isFormValid) {
             //     return;
             // }
-            const user_token = localStorage.getItem('token');
-            console.log(user_token);
+            const token = localStorage.getItem('token');
+            console.log(token);
             
-            axios.post('/api/object/create',  this.form).then(response => {
+            axios.post('/api/object/create',  this.form, {
+                headers: {
+                    'Authorization': `Bearer ${token}`, 
+                }
+            }).then(response => {
                 // this.onSuccess(response.data.message);
                 console.log(response);
                 alert("ok");

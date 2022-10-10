@@ -411,13 +411,19 @@ export default {
             return;
         },
         logout(){
-            axios.post('/api/logout').then(response => {
+            const token = localStorage.getItem('token');
+            console.log(token);
+            axios.post('/api/logout', {},{
+                headers: {
+                    'Authorization': `Bearer ${token}`, 
+                }
+            }).then(response => {
                 localStorage.removeItem('token');
                 this.$router.push({ name: 'siteIndex' })
                 console.log("ok");
             })
             .catch(function (error) {
-                console.log('error');
+                console.log('error' + ' - ');
             });
         }
     },
