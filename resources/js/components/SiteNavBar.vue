@@ -419,7 +419,8 @@ export default {
                 }
             }).then(response => {
                 localStorage.removeItem('token');
-                this.$router.push({ name: 'siteIndex' })
+                this.$router.push({ name: 'siteIndex' });
+                this.$router
                 console.log("ok");
             })
             .catch(function (error) {
