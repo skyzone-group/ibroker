@@ -30,10 +30,10 @@ class ObjectController extends ResponseController
         
         $imageData = base64_decode($imageBase64);
 
-        $filePath = "images/". $fileName;
+        $filePath = "file/". $fileName;
         file_put_contents($filePath, $imageData);
 
-        if(!file_exists("images/".$fileName)){
+        if(!file_exists("file/".$fileName)){
             return self::errorResponse('Image not uploaded'); 
         }
         #end of uploading image
