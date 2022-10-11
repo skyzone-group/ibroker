@@ -25,5 +25,6 @@ class Objects extends Model
         'price',
         'region_id',
         'district_id',
+        'quarter_id',
     ];
 }

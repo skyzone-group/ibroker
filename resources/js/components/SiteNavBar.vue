@@ -419,8 +419,9 @@ export default {
                 }
             }).then(response => {
                 localStorage.removeItem('token');
-                this.$router.push({ name: 'siteIndex' });
-                this.$router
+                this.$router.go({ name: 'siteIndex' });
+                window.location.reload();
+                window.location.href = '/index';
                 console.log("ok");
             })
             .catch(function (error) {
