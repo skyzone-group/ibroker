@@ -412,16 +412,13 @@ export default {
         },
         logout(){
             const token = localStorage.getItem('token');
-            console.log(token);
             axios.post('/api/logout', {},{
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 }
             }).then(response => {
                 localStorage.removeItem('token');
-                this.$router.push({ name: 'siteIndex' });
-                this.$router
-                console.log("ok");
+                window.location.href = '/index';
             })
             .catch(function (error) {
                 console.log('error' + ' - ');
