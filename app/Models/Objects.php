@@ -14,17 +14,24 @@ class Objects extends Model
     protected $fillable = [
         'user_id',
         'object_type_id',
+        'rent_type',
         'access_type',
         'object_time_type',
         'room_count',
         'floor',
         'floor_count',
         'total_area',
+        'land_area',
+        'done_area',
+        'living_area',
         'build_year',
+        'object_condition',
+        'object_material_type',
         'comment',
         'price',
         'region_id',
         'district_id',
         'quarter_id',
+        'youtube_url'
     ];
 }

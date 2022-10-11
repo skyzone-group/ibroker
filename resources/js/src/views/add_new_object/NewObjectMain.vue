@@ -407,7 +407,7 @@
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="living_space" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.livingSpace">
+                                                                        <input id="living_space" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.living_area">
                                                                     </div>
                                                                     <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
                                                                 </div>
@@ -496,20 +496,20 @@
                                                                         <span class="options_main__item_first_content_title">Ремонт</span>
                                                                     </div>
                                                                     <div class="options_main__item_first_btns">
-                                                                        <label for="condition1" class="option_btn" :class="{'active' : this.form.houseCondition == 'cosmetic'}">
-                                                                            <input v-model="form.houseCondition" id="condition1" type="radio" tabindex="0" value="cosmetic">
+                                                                        <label for="condition1" class="option_btn" :class="{'active' : this.form.object_condition == '0'}">
+                                                                            <input v-model="form.object_condition" id="condition1" type="radio" tabindex="0" value="0">
                                                                             Косметический
                                                                         </label>
-                                                                        <label for="condition2" class="option_btn" :class="{'active' : this.form.houseCondition == 'euro'}">
-                                                                            <input v-model="form.houseCondition" id="condition2" type="radio" tabindex="0" value="euro">
+                                                                        <label for="condition2" class="option_btn" :class="{'active' : this.form.object_condition == '1'}">
+                                                                            <input v-model="form.object_condition" id="condition2" type="radio" tabindex="0" value="1">
                                                                             Евро
                                                                         </label>
-                                                                        <label for="condition3" class="option_btn" :class="{'active' : this.form.houseCondition == 'designer'}">
-                                                                            <input v-model="form.houseCondition" id="condition3" type="radio" tabindex="0" value="designer">
+                                                                        <label for="condition3" class="option_btn" :class="{'active' : this.form.object_condition == '2'}">
+                                                                            <input v-model="form.object_condition" id="condition3" type="radio" tabindex="0" value="2">
                                                                             Дизайнерский
                                                                         </label>
-                                                                        <label for="condition4" class="option_btn" :class="{'active' : this.form.houseCondition == 'withoutrepair'}">
-                                                                            <input v-model="form.houseCondition" id="condition4" type="radio" tabindex="0" value="withoutrepair">
+                                                                        <label for="condition4" class="option_btn" :class="{'active' : this.form.object_condition == '3'}">
+                                                                            <input v-model="form.object_condition" id="condition4" type="radio" tabindex="0" value="3">
                                                                             Без ремонта
                                                                         </label>
                                                                     </div>
@@ -525,7 +525,7 @@
                                                                 <div class="options_main__items_inputs_block d-flex flex-column">
                                                                     <div class="input-medium-6 dc-input-6-1-2">
                                                                         <div class="dc-input__input-container-6-1-2 input_div">
-                                                                            <InputMask class="dc-input__input-6-1-2" mask="9999" v-model="form.yearofBuilding" placeholder="2022" />
+                                                                            <InputMask class="dc-input__input-6-1-2" mask="9999" v-model="form.build_year" placeholder="2022" />
                                                                         </div>
                                                                         <div class="dc-input__input-icon-right dc-input__input-icon-right-font">г</div>
                                                                     </div>
@@ -542,24 +542,24 @@
                                                                         <span class="options_main__item_first_content_title">Тип дома</span>
                                                                     </div>
                                                                     <div class="options_main__item_first_btns">
-                                                                        <label for="house_type1" class="option_btn" :class="{'active' : this.form.houseType == 'brick'}">
-                                                                            <input v-model="form.houseType" id="house_type1" type="radio" tabindex="0" value="brick">
+                                                                        <label for="house_type1" class="option_btn" :class="{'active' : this.form.object_material_type == '0'}">
+                                                                            <input v-model="form.object_material_type" id="house_type1" type="radio" tabindex="0" value="0">
                                                                             Кирпичный
                                                                         </label>
-                                                                        <label for="house_type2" class="option_btn" :class="{'active' : this.form.houseType == 'monolithic'}">
-                                                                            <input v-model="form.houseType" id="house_type2" type="radio" tabindex="0" value="monolithic">
+                                                                        <label for="house_type2" class="option_btn" :class="{'active' : this.form.object_material_type == '1'}">
+                                                                            <input v-model="form.object_material_type" id="house_type2" type="radio" tabindex="0" value="1">
                                                                             Монолитный
                                                                         </label>
-                                                                        <label for="house_type3" class="option_btn" :class="{'active' : this.form.houseType == 'wood'}">
-                                                                            <input v-model="form.houseType" id="house_type3" type="radio" tabindex="0" value="wood">
+                                                                        <label for="house_type3" class="option_btn" :class="{'active' : this.form.object_material_type == '2'}">
+                                                                            <input v-model="form.object_material_type" id="house_type3" type="radio" tabindex="0" value="2">
                                                                             Деревянный
                                                                         </label>
-                                                                        <label for="house_type4" class="option_btn" :class="{'active' : this.form.houseType == 'panel'}">
-                                                                            <input v-model="form.houseType" id="house_type4" type="radio" tabindex="0" value="panel">
+                                                                        <label for="house_type4" class="option_btn" :class="{'active' : this.form.object_material_type == '3'}">
+                                                                            <input v-model="form.object_material_type" id="house_type4" type="radio" tabindex="0" value="3">
                                                                             Панельный
                                                                         </label>
-                                                                        <label for="house_type5" class="option_btn" :class="{'active' : this.form.houseType == 'blocky'}">
-                                                                            <input v-model="form.houseType" id="house_type5" type="radio" tabindex="0" value="blocky">
+                                                                        <label for="house_type5" class="option_btn" :class="{'active' : this.form.object_material_type == '4'}">
+                                                                            <input v-model="form.object_material_type" id="house_type5" type="radio" tabindex="0" value="4">
                                                                             Блочный
                                                                         </label>
                                                                     </div>
@@ -893,7 +893,7 @@ export default {
                 youtube_url: "",
                 apartments:  "",
                 kitchenArea: "",
-                livingSpace: "",
+                living_area: "",
                 floor: "",
                 floor_count: '',
                 room_count: "",
@@ -902,10 +902,9 @@ export default {
                 land_area: "",
                 bathroomType: "",
                 numberBalcons: "",
-                houseCondition: "",
-                redevelopment: "",
-                yearofBuilding: "",
-                houseType: "",
+                object_condition: "",
+                build_year: "",
+                object_material_type: "",
                 additional_field_id: [],
                 object_types_property_id: [],
                 price: "",
@@ -1070,7 +1069,8 @@ export default {
                 // this.onSuccess(response.data.message);
                 console.log(response);
                 // alert("ok");
-                //this.showSuccess();
+                this.showSuccess();
+                // window.location.reload();
                 //window.location.href = '/account/summary';
             })
             .catch(function (error) {
