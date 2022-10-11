@@ -1070,8 +1070,8 @@ export default {
                 // this.onSuccess(response.data.message);
                 console.log(response);
                 // alert("ok");
-                this.showSuccess();
-                window.location.href = '/account/summary';
+                //this.showSuccess();
+                //window.location.href = '/account/summary';
             })
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);

@@ -14,7 +14,7 @@
         "install": "^0.13.0",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
-        "node-sass": "^7.0.1",
+        "node-sass": "^7.0.3",
         "npm": "^8.15.0",
         "postcss": "^8.1.14",
         "sass-loader": "^13.0.2",
