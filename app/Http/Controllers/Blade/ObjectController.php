@@ -17,27 +17,6 @@ class ObjectController extends ResponseController
     {
 
         $user_id = auth('sanctum')->user()->id;
-
-        #Uploading image to server
-        $images = $request->get('images');
-        $imageBase64 = $images[0]['img'];
-        
-        $time = getCurrentMicrotime();
-        $fileName = $time.'.jpg';
-
-        list($type, $imageBase64) = explode(';', $imageBase64);
-        list(, $imageBase64)      = explode(',', $imageBase64);
-        
-        $imageData = base64_decode($imageBase64);
-
-        $filePath = "file/". $fileName;
-        file_put_contents($filePath, $imageData);
-
-        if(!file_exists("file/".$fileName)){
-            return self::errorResponse('Image not uploaded'); 
-        }
-        #end of uploading image
-        
         $data = Objects::create([
             'user_id'          => $user_id,
             'object_type_id'   => $request->get('object_type_id'),
@@ -56,6 +35,35 @@ class ObjectController extends ResponseController
         
         $object = Objects::orderBy('id', 'DESC')->first();
         $objectId = $object->id;
+        
+
+        #Uploading image to server
+        $imagesData = [];
+        $images = $request->get('images');
+        
+        for($i = 0; $i < sizeof($images); $i++){
+
+            $imageBase64 = $images[$i]['img'];
+            
+            $time = getCurrentMicrotime();
+            $fileName = $time.'.jpg';
+
+            list($type, $imageBase64) = explode(';', $imageBase64);
+            list(, $imageBase64)      = explode(',', $imageBase64);
+            
+            $image_data = base64_decode($imageBase64);
+
+            $filePath = "file/". $fileName;
+            file_put_contents($filePath, $image_data);
+
+            $imagesData[] = [
+                'object_id'                => $objectId ?? 0,
+                'name'                     => $images[$i]['img'],
+                'created_at'               => now(),
+                'updated_at'               => now(),
+            ];
+        }
+        #end of uploading image
         
         // Additional Field Property Values
         $addtionalItems = sizeof($request->additional_field_id);
@@ -86,6 +94,7 @@ class ObjectController extends ResponseController
         $object->save();
         AdditionalFieldValues::insert($data);
         ObjectTypesPropertyValues::insert($values);
+        ImagesTable::insert($imagesData);
         return $request->all();
     }
 }
