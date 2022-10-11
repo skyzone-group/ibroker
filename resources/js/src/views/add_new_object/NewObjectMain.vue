@@ -88,36 +88,16 @@
                                                                 <span class="ad_type_item_content_span">Вид недвижимости</span>
                                                                 <div class="single_button_select">
                                                                     <div v-if="!MobileTypeEstate" class="single_button_select_box d-flex">
-                                                                        <label v-for="types in objectTypes" :key="types.id" :for="`type__${types.id}`" class="single_button_select_box_label" 
-                                                                        :class="{'active' : this.form.object_id == types.id}">
-                                                                            <input @change="getAdditionalFields()" v-model="form.object_id" :id="`type__${types.id}`" type="radio" class="single_button_select_box_label_inpt" tabindex="0" :value="types.id">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.object_id == types.id}">{{types.name_ru}}</span>
+                                                                        <label @click="resetInputs" v-for="types in objectTypes" :key="types.id" :for="`type__${types.id}`" class="single_button_select_box_label" 
+                                                                        :class="{'active' : this.form.object_type_id == types.id}">
+                                                                            <input @change="getAdditionalFields()" v-model="form.object_type_id" :id="`type__${types.id}`" type="radio" class="single_button_select_box_label_inpt" tabindex="0" :value="types.id">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.object_type_id == types.id}">{{types.name_ru}}</span>
                                                                         </label>
-                                                                        <!-- <label for="type__house" class="single_button_select_box_label" 
-                                                                        :class="{'active' : this.type == 'home'}">
-                                                                            <input v-model="type" id="type__house" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="home">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.type == 'home'}">Дом</span>
-                                                                        </label>
-                                                                        <label  for="type__commercial" class="single_button_select_box_label"
-                                                                        :class="{'active' : this.type == 'Коммерческая'}">
-                                                                            <input v-model="type" id="type__commercial" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="Коммерческая">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.type == 'Коммерческая'}">Коммерческая</span>
-                                                                        </label>
-                                                                        <label for="type__dacha" class="single_button_select_box_label"
-                                                                        :class="{'active' : this.type == 'villa'}">
-                                                                            <input v-model="type" id="type__dacha" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="villa">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.type == 'villa'}">Дача</span>
-                                                                        </label>
-                                                                        <label for="type__earth" class="single_button_select_box_label"
-                                                                        :class="{'active' : this.type == 'land'}">
-                                                                            <input v-model="type" id="type__earth" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="land">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.type == 'land'}">Земля</span>
-                                                                        </label> -->
                                                                     </div>
                                                                     <div v-if="MobileTypeEstate" class="mobile_button_select">
                                                                         <div class="w-100">
                                                                             <button data-toggle="modal" data-target="#typeHouseModal" class="d-flex align-items-center justify-content-between w-100 mobile-filter-views-house-item-btn" type="button">
-                                                                                <span>{{ this.form.object_id  != null ? this.form.object_id  : 'Тип недвижимости' }}</span>
+                                                                                <span>{{ this.form.object_type_id  != null ? this.form.object_type_id  : 'Тип недвижимости' }}</span>
                                                                             </button>
                                                                         </div>
                                                                         <!-- Modal -->
@@ -134,15 +114,15 @@
                                                                                                     <div class="FiltersFormFieldPanel__controls">
                                                                                                         <div class="mt-4">
                                                                                                             <div class="d-flex flex-column">
-                                                                                                                <div v-for="item in objectTypes" :key="item.id" @click="this.form.object_id = item.id" class="mobile-filter-views-house-modal-item flex-row-reverse">
-                                                                                                                    <RadioButton :inputId="`type_commer_${item.id}`" name="type-commercial" :value="item.id" v-model="form.object_id" />
+                                                                                                                <div v-for="item in objectTypes" :key="item.id" @click="this.form.object_type_id = item.id" class="mobile-filter-views-house-modal-item flex-row-reverse">
+                                                                                                                    <RadioButton :inputId="`type_commer_${item.id}`" name="type-commercial" :value="item.id" v-model="form.object_type_id" />
                                                                                                                     <label :for="`type_commer_${item.id}`" class="Tumbler__title" style="font-size: 18px; font-weight: 500;"> {{ item.name_ru }}</label>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                     <div class="FiltersFormFieldPanel__actions">
-                                                                                                        <button @click="this.form.object_id = ''"  data-dismiss="modal" aria-label="Close" class="Button Button_js_inited Button_size_l Button_theme_islands Button_type_button FiltersFormFieldPanel__cancel" type="button"><span class="Button__text">Отменить</span></button>
+                                                                                                        <button @click="this.form.object_type_id = ''"  data-dismiss="modal" aria-label="Close" class="Button Button_js_inited Button_size_l Button_theme_islands Button_type_button FiltersFormFieldPanel__cancel" type="button"><span class="Button__text">Отменить</span></button>
                                                                                                         <button @click="getAdditionalFields()" data-dismiss="modal" aria-label="Close" class="Button Button_js_inited Button_size_l Button_theme_realty Button_type_button Button_theme_islands Button_view_yellow FiltersFormFieldPanel__save" type="button"><span class="Button__text d-block">Выбирать</span></button>
                                                                                                     </div>
                                                                                                 </form>
@@ -162,7 +142,7 @@
                                                         <div class="radio-inputs_group">
                                                             <!-- <transition name="component-fade" mode="out-in">
                                                             </transition> -->
-                                                            <div v-if="this.form.object_id === 3" class="additional_options_main">
+                                                            <div v-if="this.form.object_type_id === 3" class="additional_options_main">
                                                                 <div class="row">
                                                                     <div v-for="item in objectProperty" :key="item.id" class="col-lg-6 col-md-6 col-sm-6 col-12">
                                                                         <div class="additional_options_main_item adddtional_types_media">
@@ -180,19 +160,19 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div v-if="this.form.object_id === 1" class="ad_type_item" style="margin-bottom: 20px;">
+                                                    <div v-if="this.form.object_type_id === 1" class="ad_type_item" style="margin-bottom: 20px;">
                                                         <div class="ad_type_item_content">
                                                             <div>
                                                                 <span class="ad_type_item_content_span">Тип недвижимости</span>
                                                                 <div class="single_button_select">
                                                                     <div class="single_button_select_box d-flex">
-                                                                        <label for="condition_house_1" class="single_button_select_box_label" :class="{'active' : this.form.object_time_type == 'resale'}">
-                                                                            <input v-model="form.object_time_type" id="condition_house_1" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="resale">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.object_time_type == 'resale'}">Вторичка</span>
+                                                                        <label for="condition_house_1" class="single_button_select_box_label" :class="{'active' : this.form.object_time_type == '0'}">
+                                                                            <input v-model="form.object_time_type" id="condition_house_1" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="0">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.object_time_type == '0'}">Вторичка</span>
                                                                         </label>
-                                                                        <label for="condition_house_2" class="single_button_select_box_label" :class="{'active' : this.form.object_time_type == 'new_build'}">
-                                                                            <input v-model="form.object_time_type" id="condition_house_2" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="new_build">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.object_time_type == 'new_build'}">Новостройка</span>
+                                                                        <label for="condition_house_2" class="single_button_select_box_label" :class="{'active' : this.form.object_time_type == '1'}">
+                                                                            <input v-model="form.object_time_type" id="condition_house_2" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="1">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.object_time_type == '1'}">Новостройка</span>
                                                                         </label>
                                                                     </div>
                                                                 </div>
@@ -329,16 +309,16 @@
                                                     <!-- Area options -->
                                                     <div class="options_main__items d-flex">
                                                         <!-- Количество комнат-->
-                                                        <div v-if="this.form.object_id != 5" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
+                                                        <div v-if="this.form.object_type_id != 5" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
                                                             <span class="inputs_block_title">
                                                                 Количество комнат
-                                                                <div v-show="this.form.object_id != 3" class="required_inputs"></div>
+                                                                <div v-show="this.form.object_type_id != 3" class="required_inputs"></div>
                                                             </span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
-                                                                <div class="input-medium-6 dc-input-6-1-2" :class="{'p-invalid':(this.form.object_id != 3 ? v$.form.room_count.$invalid && submitted : '')}">
+                                                                <div class="input-medium-6 dc-input-6-1-2" :class="{'p-invalid':(this.form.object_type_id != 3 ? v$.form.room_count.$invalid && submitted : '')}">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
                                                                         <input id="room_count" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="v$.form.room_count.$model" name="room_count"  >
-                                                                        <small v-if="(this.form.object_id != 3 ? ((v$.form.room_count.$invalid && submitted) || v$.form.room_count.$pending.$response) : '')" class="p-error">{{v$.form.room_count.required.$message.replace('Value', 'Количество комнат')}}</small>
+                                                                        <small v-if="(this.form.object_type_id != 3 ? ((v$.form.room_count.$invalid && submitted) || v$.form.room_count.$pending.$response) : '')" class="p-error">{{v$.form.room_count.required.$message.replace('Value', 'Количество комнат')}}</small>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -346,7 +326,7 @@
                                                         <!-- Количество комнат-->
                                                         
                                                         <!-- Общая площадь -->
-                                                        <div v-if="this.form.object_id != 5" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
+                                                        <div v-if="this.form.object_type_id != 5" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
                                                             <span class="inputs_block_title">
                                                                 Общая площадь
                                                                 <div class="required_inputs"></div>
@@ -364,7 +344,7 @@
                                                         <!-- Общая площадь -->
 
                                                         <!-- Этаж -->
-                                                        <div v-if="this.form.object_id == 1" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
+                                                        <div v-if="this.form.object_type_id == 1" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
                                                             <span class="inputs_block_title">
                                                                 Этаж
                                                                 <div class="required_inputs"></div>
@@ -384,16 +364,16 @@
                                                     
                                                     <div class="options_main__items mt-4 d-flex">
                                                         <!-- Этажность -->
-                                                        <div v-if="this.form.object_id != 5" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
+                                                        <div v-if="this.form.object_type_id != 5" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
                                                             <span class="inputs_block_title">
                                                                 Этажность
-                                                                <div v-show="this.form.object_id != 3" class="required_inputs"></div>
+                                                                <div v-show="this.form.object_type_id != 3" class="required_inputs"></div>
                                                             </span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
-                                                                <div class="input-medium-6 dc-input-6-1-2" :class="{'p-invalid':v$.form.floorHouse.$invalid && submitted}">
+                                                                <div class="input-medium-6 dc-input-6-1-2" :class="{'p-invalid':v$.form.floor_count.$invalid && submitted}">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="floor_house" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="v$.form.floorHouse.$model">
-                                                                        <small v-if="(v$.form.floorHouse.$invalid && submitted) || v$.form.floorHouse.$pending.$response" class="p-error">{{v$.form.floorHouse.required.$message.replace('Value', 'Количество комнат')}}</small>
+                                                                        <input id="floor_house" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="v$.form.floor_count.$model">
+                                                                        <small v-if="(v$.form.floor_count.$invalid && submitted) || v$.form.floor_count.$pending.$response" class="p-error">{{v$.form.floor_count.required.$message.replace('Value', 'Количество комнат')}}</small>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -401,16 +381,16 @@
                                                         <!-- Этажность -->
                                                         
                                                         <!-- Площадь участка -->
-                                                        <div v-if="this.form.object_id != 1" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
+                                                        <div v-if="this.form.object_type_id != 1" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
                                                             <span class="inputs_block_title">
                                                                 Площадь участка
-                                                                <div v-show="this.form.object_id != 3" class="required_inputs"></div>
+                                                                <div v-show="this.form.object_type_id != 3" class="required_inputs"></div>
                                                             </span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
-                                                                <div class="input-medium-6 dc-input-6-1-2" :class="{'p-invalid':(this.form.object_id != 1 ? v$.form.land_area.$invalid && submitted : '')}">
+                                                                <div class="input-medium-6 dc-input-6-1-2" :class="{'p-invalid':(this.form.object_type_id != 1 ? v$.form.land_area.$invalid && submitted : '')}">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
                                                                         <input id="space" class="dc-input__input-6-1-2" maxlength="24" name="total_area" type="number" placeholder="" tabindex="0" v-model.number="v$.form.land_area.$model" />
-                                                                        <small v-if="(this.form.object_id != 1 ? ((v$.form.land_area.$invalid && submitted) || v$.form.land_area.$pending.$response) : '')" class="p-error">{{v$.form.land_area.required.$message.replace('Value', 'Количество комнат')}}</small>
+                                                                        <small v-if="(this.form.object_type_id != 1 ? ((v$.form.land_area.$invalid && submitted) || v$.form.land_area.$pending.$response) : '')" class="p-error">{{v$.form.land_area.required.$message.replace('Value', 'Количество комнат')}}</small>
                                                                     </div>
                                                                     <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
                                                                 </div>
@@ -422,7 +402,7 @@
                                                     <!-- Hight options -->
                                                     <div class="options_main__items options_main__items_inputs_media mt-4 d-flex">
                                                         <!-- Жилая площадь -->
-                                                        <div v-if="this.form.object_id == 1 || this.form.object_id == 2" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
+                                                        <div v-if="this.form.object_type_id == 1 || this.form.object_type_id == 2" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
                                                             <span class="inputs_block_title">Жилая площадь | DOP</span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2">
@@ -436,7 +416,7 @@
                                                         <!-- Жилая площадь -->
                                                         
                                                         <!-- Полезная площадь  -->
-                                                        <div v-if="this.form.object_id == 3" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
+                                                        <div v-if="this.form.object_type_id == 3" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
                                                             <span class="inputs_block_title">Полезная площадь | DOP</span>
                                                             <div class="options_main__items_inputs_block d-flex flex-column">
                                                                 <div class="input-medium-6 dc-input-6-1-2">
@@ -509,7 +489,7 @@
                                                         <!-- Балкон/Лоджия -->
 
                                                         <!-- Ремонт -->
-                                                        <div v-if="this.form.object_id != 5" class="options_main__items mt-4">
+                                                        <div v-if="this.form.object_type_id != 5" class="options_main__items mt-4">
                                                             <div class="options_main__item d-flex align-items-lg-end align-items-md-end align-items-start flex-lg-row flex-md-row flex-column">
                                                                 <div id="rooms" class="options_main__item_first">
                                                                     <div class="options_main__item_first_content">
@@ -539,7 +519,7 @@
                                                         <!-- Ремонт -->
 
                                                         <!-- Год постройки -->
-                                                        <div v-if="this.form.object_id != 5" class="options_main__items mt-4 d-flex">
+                                                        <div v-if="this.form.object_type_id != 5" class="options_main__items mt-4 d-flex">
                                                             <div class="options_main__items_inputs options_main__items_inputs_media  d-flex flex-column">
                                                                 <span class="inputs_block_title">Год постройки</span>
                                                                 <div class="options_main__items_inputs_block d-flex flex-column">
@@ -555,7 +535,7 @@
                                                         <!-- Год постройки -->
 
                                                         <!-- Тип дома -->
-                                                        <div v-if="this.form.object_id != 5" class="options_main__items mt-4">
+                                                        <div v-if="this.form.object_type_id != 5" class="options_main__items mt-4">
                                                             <div class="options_main__item d-flex align-items-end">
                                                                 <div id="rooms" class="options_main__item_first">
                                                                     <div class="options_main__item_first_content">
@@ -617,7 +597,7 @@
                                                         <!-- Дополнительно -->
                                                     </div>
                                                 </div>
-                                                <div  v-if="!showMoreOptions" class="show-all-parametres" :class="{'height-6' : this.form.object_id == 5}">
+                                                <div  v-if="!showMoreOptions" class="show-all-parametres" :class="{'height-6' : this.form.object_type_id == 5}">
                                                     <div class="show-all-parametres_box">
                                                         <button @click="this.showMoreOptions = true" class="button-root-primary" type="button" data-e2e-id="expand-params">
                                                             <span class="button-root__icon-8-2-0 button-root__icon--left-8-2-0">
@@ -650,10 +630,10 @@
                                                     <div class="d-flex flex-column">
                                                         <div class="price_box_main_input_flex d-flex align-items-center">
                                                             <div class="price_box_main_input_flex_input">
-                                                                <div class="input-medium-6 dc-input-6-1-2 w-100" :class="{'p-invalid': v$.form.priceHouse.$invalid && submitted }">
+                                                                <div class="input-medium-6 dc-input-6-1-2 w-100" :class="{'p-invalid': v$.form.price.$invalid && submitted }">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="priceHouse" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" type="number" v-model.number="v$.form.priceHouse.$model">
-                                                                        <small v-if="(v$.form.priceHouse.$invalid && submitted) || v$.form.priceHouse.$pending.$response" class="p-error">{{v$.form.priceHouse.required.$message.replace('Value', 'Name')}}</small>
+                                                                        <input id="price" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" type="number" v-model.number="v$.form.price.$model">
+                                                                        <small v-if="(v$.form.price.$invalid && submitted) || v$.form.price.$pending.$response" class="p-error">{{v$.form.price.required.$message.replace('Value', 'Name')}}</small>
                                                                     </div>
                                                                     <div class="dc-input__input-icon-right dc-input__input-icon-right-font">$</div>
                                                                 </div>
@@ -687,8 +667,8 @@
                                                     </h4>
                                                 </div>
                                                 <div class="description_box_main_text_area">
-                                                    <Textarea v-model="v$.form.description.$model" rows="5" cols="100" class="w-100" placeholder="Расскажите о недвижимости, собственниках, соседях, транспортной доступности и инфраструктуре" :class="{'p-invalid': v$.form.description.$invalid && submitted }" />
-                                                    <small v-if="(v$.form.description.$invalid && submitted) || v$.form.description.$pending.$response" class="p-error">{{v$.form.description.required.$message.replace('Value', 'Описание')}}</small>
+                                                    <Textarea v-model="v$.form.comment.$model" rows="5" cols="100" class="w-100" placeholder="Расскажите о недвижимости, собственниках, соседях, транспортной доступности и инфраструктуре" :class="{'p-invalid': v$.form.comment.$invalid && submitted }" />
+                                                    <small v-if="(v$.form.comment.$invalid && submitted) || v$.form.comment.$pending.$response" class="p-error">{{v$.form.comment.required.$message.replace('Value', 'Описание')}}</small>
                                                 </div>
                                             </div>
                                         </div>
@@ -794,7 +774,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="steps_item">
-                                                    <button data-scroll-active="section-four" class="steps_item_btn steps_item_btn_icon_left" :class="{'input-invalid': ((this.form.object_id == 1 ? (v$.form.floor.$invalid || v$.form.floorHouse.$invalid || v$.form.room_count.$invalid) : '') || (this.form.object_id == 2 ? (v$.form.room_count.$invalid || v$.form.total_area.$invalid || v$.form.floorHouse.$invalid || v$.form.land_area.$invalid) : '') || (this.form.object_id != 5 ? v$.form.total_area.$invalid : '') || (this.form.object_id != 1 ? v$.form.land_area.$invalid : '')) && submitted}" role="button">
+                                                    <button data-scroll-active="section-four" class="steps_item_btn steps_item_btn_icon_left" :class="{'input-invalid': ((this.form.object_type_id == 1 ? (v$.form.floor.$invalid || v$.form.floor_count.$invalid || v$.form.room_count.$invalid) : '') || (this.form.object_type_id == 2 ? (v$.form.room_count.$invalid || v$.form.total_area.$invalid || v$.form.floor_count.$invalid || v$.form.land_area.$invalid) : '') || (this.form.object_type_id != 5 ? v$.form.total_area.$invalid : '') || (this.form.object_type_id != 1 ? v$.form.land_area.$invalid : '')) && submitted}" role="button">
                                                         <div class="link_icon">
                                                             <div class="icon_div">
                                                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
@@ -806,7 +786,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="steps_item">
-                                                    <button data-scroll-active="section-five" class="steps_item_btn steps_item_btn_icon_left" role="button" :class="{'input-invalid' : v$.form.priceHouse.$invalid && submitted }">
+                                                    <button data-scroll-active="section-five" class="steps_item_btn steps_item_btn_icon_left" role="button" :class="{'input-invalid' : v$.form.price.$invalid && submitted }">
                                                         <div class="link_icon">
                                                             <div class="icon_div">
                                                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
@@ -818,7 +798,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="steps_item">
-                                                    <button data-scroll-active="section-six" class="steps_item_btn steps_item_btn_icon_left" role="button" :class="{'input-invalid' : v$.form.description.$invalid && submitted }">
+                                                    <button data-scroll-active="section-six" class="steps_item_btn steps_item_btn_icon_left" role="button" :class="{'input-invalid' : v$.form.comment.$invalid && submitted }">
                                                         <div class="link_icon">
                                                             <div class="icon_div">
                                                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
@@ -900,7 +880,7 @@ export default {
                 account_type: '',
                 deal_type: '',
                 rent_type: '',
-                object_id : null,
+                object_type_id : null,
                 object_time_type: '',
                 region_id: null,
                 district_id: null,
@@ -910,10 +890,11 @@ export default {
                 kitchenArea: "",
                 livingSpace: "",
                 floor: "",
+                floor_count: '',
                 room_count: "",
                 total_area: "",
                 done_area: "",
-                ceilingHeight: "",
+                land_area: "",
                 bathroomType: "",
                 numberBalcons: "",
                 houseCondition: "",
@@ -922,9 +903,9 @@ export default {
                 houseType: "",
                 additional_field_id: [],
                 commercialOptions: [],
-                priceHouse: "",
+                price: "",
                 priceCheckbox: "",
-                description: "",
+                comment: "",
                 showOnline: "",
                 images: []
             },
@@ -983,41 +964,41 @@ export default {
                 quarter_id: { required },
                 room_count: {
                     required: requiredIf(function (room_count) {
-                        if(this.form.object_id == 1 || this.form.object_id == 2 || this.form.object_id == 4){
+                        if(this.form.object_type_id == 1 || this.form.object_type_id == 2 || this.form.object_type_id == 4){
                             return true
                         }
                     }),
                 },
                 total_area: {
                     required: requiredIf(function (total_area) {
-                        if(this.form.object_id != 5){
+                        if(this.form.object_type_id != 5){
                             return true
                         }
                     }),
                 },
                 floor: {
                     required: requiredIf(function (floor) {
-                        if(this.form.object_id == 1){
+                        if(this.form.object_type_id == 1){
                             return true
                         }
                     }),
                 },
-                floorHouse: {
-                    required: requiredIf(function (floorHouse) {
-                        if(this.form.object_id == 1 || this.form.object_id == 2 || this.form.object_id == 4){
+                floor_count: {
+                    required: requiredIf(function (floor_count) {
+                        if(this.form.object_type_id == 1 || this.form.object_type_id == 2 || this.form.object_type_id == 4){
                             return true
                         }
                     }),
                 },
                 land_area: {
                     required: requiredIf(function (land_area) {
-                        if(this.form.object_id == 2 || this.form.object_id == 4 || this.form.object_id == 5){
+                        if(this.form.object_type_id == 2 || this.form.object_type_id == 4 || this.form.object_type_id == 5){
                             return true
                         }
                     }),
                 },
-                priceHouse: { required },
-                description: { required }
+                price: { required },
+                comment: { required }
             }
         }
     },
@@ -1076,6 +1057,7 @@ export default {
                 // this.onSuccess(response.data.message);
                 console.log(response);
                 alert("ok");
+                this.$router.go({ name: 'siteIndex' });
             })
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);
@@ -1163,7 +1145,7 @@ export default {
             
         },
         getAdditionalFields(){
-            let object_id = this.form.object_id;
+            let object_id = this.form.object_type_id;
             axios.get('/api/additional/' + object_id)
             .then(response => {
                 this.additionalFields = response.data.result
@@ -1172,40 +1154,13 @@ export default {
         handleNavbarChange(id) {
             
         },
-        validateRoomCount() {
-            if (this.form.object_id == 1 || this.form.object_id == 2 || this.form.object_id == 4) {
-                return true;
-            } else {
-                return false;
-            }
-        },
-        validateTotalArea(){
-            if (this.form.object_id != 5) {
-                return true;
-            } else {
-                return false;
-            }
-        },
-        validateFloor(){
-            if (this.form.object_id == 1) {
-                return true;
-            } else {
-                return false;
-            }
-        },
-        validateFloorHouse(){
-            if (this.form.object_id == 1 || this.form.object_id == 2 || this.form.object_id == 4) {
-                return true;
-            } else {
-                return false;
-            }
-        },
-        validateLandArea(){
-            if (this.form.object_id == 2 || this.form.object_id == 4 || this.form.object_id == 5) {
-                return true;
-            } else {
-                return false;
-            }
+        resetInputs(){
+            this.form.room_count = "";
+            this.form.total_area = "";
+            this.form.floor = "";
+            this.form.floor_count = "";
+            this.form.land_area = "";
+            this.form.done_area = ""
         }
     },
     async created() {

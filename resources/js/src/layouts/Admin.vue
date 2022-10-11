@@ -10,7 +10,7 @@
                 <div class="ual-content h-100">
                     <div class="ual-wrapper">
                         <div class="frontend-user-area" style="flex: 1 0 auto;">
-                            <router-view name="content"></router-view>
+                            <router-view name="content" :loggedIn="loggedIn"></router-view>
                         </div>
                         <div class="ual-footer-desktop">
                             <div>© 2021 ЦИАН ГРУПП</div>
@@ -50,7 +50,7 @@ export default {
     },
     mounted() {
         this.loggedIn = localStorage.getItem('token') ? true : false;
-        localStorage.clear();
+        // localStorage.clear();
 
     },
 }
