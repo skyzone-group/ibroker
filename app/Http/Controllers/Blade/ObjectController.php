@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use App\Models\Objects;
+use App\Models\AdditionalFieldValues;
+use App\Models\ObjectTypesPropertyValues;
 use Session;
 
 class ObjectController extends ResponseController
@@ -31,9 +33,38 @@ class ObjectController extends ResponseController
             'quarter_id'       => $request->get('quarter_id'),
         ]);
         
-        // $data = Objects::insert([
-            
-        // ]);
+        $object = Objects::orderBy('id', 'DESC')->first();
+        $objectId = $object->id;
+        
+        // Additional Field Property Values
+        $addtionalItems = sizeof($request->additional_field_id);
+        $data = [];
+        for($i = 0; $i < $addtionalItems; $i ++)
+        {
+            $data[] = [
+                'additional_field_id'      => $request->additional_field_id[$i] ?? 0,
+                'object_id'                => $objectId ?? 0,
+                'created_at'               => now(),
+                'updated_at'               => now(),
+            ];
+        }
+        
+        // Object Types Property Values
+        $objectPropertyValues = sizeof($request->object_types_property_id);
+        $values = [];
+        for($i = 0; $i < $objectPropertyValues; $i ++)
+        {
+            $values[] = [
+                'object_types_property_id' => $request->object_types_property_id[$i] ?? 0,
+                'object_id'                => $objectId ?? 0,
+                'created_at'               => now(),
+                'updated_at'               => now(),
+            ];
+        }
+        
+        $object->save();
+        AdditionalFieldValues::insert($data);
+        ObjectTypesPropertyValues::insert($values);
         return $request->all();
     }
 }

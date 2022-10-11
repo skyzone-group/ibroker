@@ -12,7 +12,8 @@ import 'primeicons/primeicons.css' //icons
 // PrimeVue css
 
 // PrimeVue
-import Tooltip from 'primevue/tooltip';
+import Tooltip from 'primevue/tooltip'
+import ToastService from 'primevue/toastservice';
 import VueScrollTo from 'vue-scrollto'
 
 
@@ -58,6 +59,7 @@ app.directive('tooltip', Tooltip)
 app.use(VueHtmlToPaper, options)
 app.use(DropZone)
 app.use(VueEasyLightbox)
+app.use(ToastService)
 app.mount('#app')
 
 

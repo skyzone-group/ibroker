@@ -149,7 +149,7 @@
                                                                             <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
                                                                                 <div class="adddtional_main_block">
                                                                                     <div class="field-checkbox d-flex align-items-center">
-                                                                                        <Checkbox :id="`add_option_${item.id}`" name="options[]" :value="item.id" v-model="form.commercialOptions" />
+                                                                                        <Checkbox :id="`add_option_${item.id}`" name="options[]" :value="item.id" v-model="form.object_types_property_id"   @change="$v.form.object_types_property_id.$touch()" :class="{'p-invalid': v$.form.object_types_property_id.$invalid && submitted}" />
                                                                                         <label :for="`add_option_${item.id}`">{{item.name_ru}}</label>
                                                                                     </div>
                                                                                 </div>
@@ -726,6 +726,9 @@
                                                 <button type="button" class="form-buttons_btn" data-toggle="modal" data-target="#animation">Пройти идентификацию</button>
                                                 <button type="submit" class="form-buttons_btn ml-3" :class="{'button-disabled' : loggedIn === false}" :disabled="loggedIn === false">Сохранить</button>
                                             </div>
+                                            <div class="created-object">
+                                                <Toast />
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- contacts -->
@@ -842,9 +845,10 @@ import InputMask from 'primevue/inputmask';
 import InputNumber from 'primevue/inputnumber';
 import Textarea from 'primevue/textarea';
 import Dropdown from 'primevue/dropdown';
+import Toast from 'primevue/toast';
 import UploadBox from '../../../components/Upload.vue'
 // Validation
-import { required, requiredIf } from "@vuelidate/validators";
+import { required, requiredIf, helpers  } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 // Form
 import FormInput from '../../../components/add_new_object/form/FormInput.vue'
@@ -871,6 +875,7 @@ export default {
         Textarea,
         RadioButton,
         Dropdown,
+        Toast,
         VScrollActive,
         ProgressSpinner
     },
@@ -902,7 +907,7 @@ export default {
                 yearofBuilding: "",
                 houseType: "",
                 additional_field_id: [],
-                commercialOptions: [],
+                object_types_property_id: [],
                 price: "",
                 priceCheckbox: "",
                 comment: "",
@@ -953,7 +958,8 @@ export default {
             showMoreOptions: false,
             submitted: false,
             thumbnailpreview: "",
-            isLoaded: false
+            isLoaded: false,
+            messages: [],
         }
     },
     validations() {
@@ -965,6 +971,13 @@ export default {
                 room_count: {
                     required: requiredIf(function (room_count) {
                         if(this.form.object_type_id == 1 || this.form.object_type_id == 2 || this.form.object_type_id == 4){
+                            return true
+                        }
+                    }),
+                },
+                object_types_property_id: {
+                    required: requiredIf(function (object_types_property_id) {
+                        if(this.form.object_type_id == 3){
                             return true
                         }
                     }),
@@ -1056,8 +1069,9 @@ export default {
             }).then(response => {
                 // this.onSuccess(response.data.message);
                 console.log(response);
-                alert("ok");
-                this.$router.go({ name: 'siteIndex' });
+                // alert("ok");
+                this.showSuccess();
+                window.location.href = '/account/summary';
             })
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);
@@ -1161,6 +1175,12 @@ export default {
             this.form.floor_count = "";
             this.form.land_area = "";
             this.form.done_area = ""
+        },
+        showSuccess() {
+            this.$toast.add({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
+        },
+        showError() {
+            this.$toast.add({severity:'error', summary: 'Error Message', detail:'Message Content', life: 3000});
         }
     },
     async created() {
