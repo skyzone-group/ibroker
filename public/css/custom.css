@@ -6,6 +6,17 @@
     list-style: none;
 }
 
+
+@font-face {
+    font-family: 'Lato';
+    src: url(../fonts/font/Lato-Regular.ttf);
+}
+
+
+body {
+    font-family: 'Lato', sans-serif !important;
+}
+
 :root{
     --white_100: #fff;
     --black_100: #152242;
