@@ -21,6 +21,7 @@ class ObjectController extends ResponseController
         $data = Objects::create([
             'user_id'              => $user_id,
             'object_type_id'       => $request->get('object_type_id'),
+            'object_deals'         => $request->get('object_deals'),
             'object_time_type'     => $request->get('object_time_type') ?? 0,
             'rent_type'            => $request->get('rent_type') ?? 0,
             'room_count'           => $request->get('room_count') ?? 0,

@@ -50,20 +50,20 @@
                                                                 <span class="ad_type_item_content_span">Тип сделки</span>
                                                                 <div class="single_button_select">
                                                                     <div class="single_button_select_box d-flex">
-                                                                        <label for="type__sell" class="single_button_select_box_label" :class="{'active' : this.form.deal_type == 'buy'}">
-                                                                            <input v-model="form.deal_type" id="type__sell" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="buy">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.deal_type == 'buy'}">Продажа</span>
+                                                                        <label for="type__sell" class="single_button_select_box_label" :class="{'active' : this.form.object_deals == 'buy'}">
+                                                                            <input v-model="form.object_deals" id="type__sell" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="buy">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.object_deals == 'buy'}">Продажа</span>
                                                                         </label>
-                                                                        <label for="type__rent" class="single_button_select_box_label" :class="{'active' : this.form.deal_type == 'rent'}">
-                                                                            <input v-model="form.deal_type" id="type__rent" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="rent">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.deal_type == 'rent'}">Аренда</span>
+                                                                        <label for="type__rent" class="single_button_select_box_label" :class="{'active' : this.form.object_deals == 'rent'}">
+                                                                            <input v-model="form.object_deals" id="type__rent" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="rent">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.object_deals == 'rent'}">Аренда</span>
                                                                         </label>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div v-if="form.deal_type === 'rent'" class="ad_type_item" style="margin-bottom: 20px;">
+                                                    <div v-if="form.object_deals === 'rent'" class="ad_type_item" style="margin-bottom: 20px;">
                                                         <div class="ad_type_item_content">
                                                             <div>
                                                                 <span class="ad_type_item_content_span">Тип аренды</span>
@@ -743,7 +743,7 @@
                                         <VScrollActive offset="40" :hash="false" @update="handleNavbarChange">
                                             <nav class="d-flex flex-column">
                                                 <div class="steps_item">
-                                                    <button data-scroll-active="section-one" class="steps_item_btn steps_item_btn_icon_left" :class="{'succes-input' : (form.object_type_id != '' && form.object_time_type != '' && form.account_type != '')}" role="button">
+                                                    <button data-scroll-active="section-one" class="steps_item_btn steps_item_btn_icon_left" :class="{'succes-input' : (form.object_type_id != '' && form.account_type != '')}" role="button">
                                                         <div class="link_icon">
                                                             <div class="icon_div">
                                                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
@@ -884,7 +884,7 @@ export default {
         return {
             form: {
                 account_type: '',
-                deal_type: '',
+                object_deals: '',
                 rent_type: '',
                 object_type_id : null,
                 object_time_type: '',

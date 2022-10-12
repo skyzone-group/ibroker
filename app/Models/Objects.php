@@ -14,6 +14,7 @@ class Objects extends Model
     protected $fillable = [
         'user_id',
         'object_type_id',
+        'object_deals',
         'rent_type',
         'access_type',
         'object_time_type',
