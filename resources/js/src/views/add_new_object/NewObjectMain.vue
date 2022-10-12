@@ -850,7 +850,7 @@ import Dropdown from 'primevue/dropdown';
 import Toast from 'primevue/toast';
 import UploadBox from '../../../components/Upload.vue'
 // Validation
-import { required, requiredIf, helpers  } from "@vuelidate/validators";
+import { required, requiredIf } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 // Form
 import FormInput from '../../../components/add_new_object/form/FormInput.vue'
@@ -1052,13 +1052,13 @@ export default {
             axios.get('/addiotonal/options')
             .then(response => this.options = response.data);
         },
-        saveData(){
+        saveData(isFormValid){
             // let region_id = this.region_id;
             // console.log(`Submitted + ${region_id}`);
             this.submitted = true;
-            // if (!isFormValid) {
-            //     return;
-            // }
+            if (!isFormValid) {
+                return;
+            }
             const token = localStorage.getItem('token');
             console.log(token);
             
