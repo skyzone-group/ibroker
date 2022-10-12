@@ -329,7 +329,7 @@
                         
                         <div v-else class="dropdown-avatar avatar_log">
                             <a class="dropdown-toggle nav-link dropdown-user-link avatar_drop" href="#" data-toggle="dropdown">
-                                <img class="round" src="../../../public/images/avatar.jpg" width="100%" alt="avatar">
+                                <img class="round" src="../../../public/images/avatar-dafault.png" width="100" alt="avatar">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <div class="avatar-inform">

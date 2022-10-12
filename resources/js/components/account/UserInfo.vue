@@ -1,25 +1,11 @@
 <template>
     <div>
         <div class="user_account_main_block-item-card">
-            <div class="user_account_main_block-item-card-header">
-                <div class="avatar">
-                    <img src="../../../../public/images/avatar.jpg" alt="user_avatar" class="img-full">
-                </div>
-                <div class="user_info">
-                    <p class="mb-0 user_info-p">Javohir Toirov</p>
-                    <span class="user_info_span">2022 год</span>
-                </div>
-            </div>
+            
             <div class="user_account_main_block-item-card_bottom">
                 <div class="user_account_main_block-item-card_bottom_info">
                     <form class="profile_form">
-                        <div class="profile_form_btns">
-                            <input type="file" id="primary__avatar"  class="d-none" name="user_image" accept="image/png, image/jpeg, image/pjpeg">
-                            <label  class="avatar__button p-button p-component mr-2 p-button-rounded" for="primary__avatar">
-                                Сменить Аватар
-                            </label>
-                            <Button label="Удалить фото" class="p-button-outlined p-button-danger p-button-rounded" />
-                        </div>
+                        <user-avatar @updateImagesBox="updateImagesBox"></user-avatar>
                         <div class="field mt-3">
                             <label for="username1">Имя</label>
                             <InputText id="username1" v-model="first_name" type="username" class="w-100"/>
@@ -46,11 +32,13 @@
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import Calendar from 'primevue/calendar';
+import UserAvatar from '../account/UserAvatar.vue'
 export default {
     components: {
         Button,
         InputText,
         Calendar,
+        UserAvatar,
     },
     created() {
         let today = new Date();
@@ -73,6 +61,9 @@ export default {
     },
     data() {
         return {
+            form: {
+                image: null,
+            },
             first_name: "Javohir",
             last_name: "Toirov",
             databirth: null,
@@ -88,13 +79,18 @@ export default {
 			]
         }
     },
+    methods: {
+        updateImagesBox(data){
+            this.form.image = data;
+        },
+    },
     setup() {
         
     },
 }
 </script>
 
-<style scoped>
+<style>
 .user_account_main_block-item-card{
     box-shadow: 0 1px 0 0 #e4e4e4;
     border: 1px solid #e4e4e4;
@@ -105,7 +101,9 @@ export default {
 .user_account_main_block-item-card-header{
     display: flex;
     position: relative;
-    padding: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e4e4e4;
+    margin-bottom: 15px;
 }
 .user_account_main_block-item-card-header .avatar{
     display: flex;
@@ -151,8 +149,8 @@ export default {
 }
 
 .user_account_main_block-item-card_bottom_info{
-    display: flex;
-    flex: 1 1;
+    display: block;
+    flex: 1;
     max-width: 100%;
 }
 
@@ -169,7 +167,7 @@ export default {
 /* *************************************************************** */
 @media (min-width: 1025px){
     .profile_form {
-        width: 300px;
+        width: 100%;
     }
     
 }

@@ -2156,7 +2156,7 @@ textarea.md-form__control {
     position: absolute;
     right: -3rem;
     z-index: 1;
-    height: 120px;
+    /* height: 120px; */
 }
 
 .show-all-parametres.height-6{

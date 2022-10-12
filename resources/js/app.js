@@ -44,7 +44,6 @@ import VueEasyLightbox from 'vue-easy-lightbox'
 // you need to import css yourself
 import 'vue-easy-lightbox/external-css/vue-easy-lightbox.css'
 
-
 const app = createApp(App)
 //app.config.globalProperties.$IsLoggedIn = localStorage.getItem('token') ? true : false;
 app.use(router)

@@ -29,6 +29,7 @@ class Objects extends Model
         'object_material_type',
         'comment',
         'price',
+        'negotiable',
         'region_id',
         'district_id',
         'quarter_id',

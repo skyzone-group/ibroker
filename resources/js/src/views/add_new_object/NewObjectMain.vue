@@ -399,39 +399,41 @@
                                                         <!-- Площадь участка -->
                                                     </div>
                                                     
-                                                    <!-- Hight options -->
-                                                    <div class="options_main__items options_main__items_inputs_media mt-4 d-flex">
-                                                        <!-- Жилая площадь -->
-                                                        <div v-if="this.form.object_type_id == 1 || this.form.object_type_id == 2" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
-                                                            <span class="inputs_block_title">Жилая площадь | DOP</span>
-                                                            <div class="options_main__items_inputs_block d-flex flex-column">
-                                                                <div class="input-medium-6 dc-input-6-1-2">
-                                                                    <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="living_space" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.living_area">
-                                                                    </div>
-                                                                    <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Жилая площадь -->
-                                                        
-                                                        <!-- Полезная площадь  -->
-                                                        <div v-if="this.form.object_type_id == 3" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
-                                                            <span class="inputs_block_title">Полезная площадь | DOP</span>
-                                                            <div class="options_main__items_inputs_block d-flex flex-column">
-                                                                <div class="input-medium-6 dc-input-6-1-2">
-                                                                    <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="done_area" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.done_area">
-                                                                    </div>
-                                                                    <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Полезная площадь  -->
-                                                    </div>
-                                                    <!-- Hight options -->
                                                     
                                                     <div v-if="showMoreOptions">
+                                                        
+                                                        <!-- Hight options -->
+                                                        <div class="options_main__items options_main__items_inputs_media mt-4 d-flex">
+                                                            <!-- Жилая площадь -->
+                                                            <div v-if="this.form.object_type_id == 1 || this.form.object_type_id == 2" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
+                                                                <span class="inputs_block_title">Жилая площадь | DOP</span>
+                                                                <div class="options_main__items_inputs_block d-flex flex-column">
+                                                                    <div class="input-medium-6 dc-input-6-1-2">
+                                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                                            <input id="living_space" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.living_area">
+                                                                        </div>
+                                                                        <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Жилая площадь -->
+                                                            
+                                                            <!-- Полезная площадь  -->
+                                                            <div v-if="this.form.object_type_id == 3" class="options_main__items_inputs options_main__items_inputs_media d-flex flex-column">
+                                                                <span class="inputs_block_title">Полезная площадь | DOP</span>
+                                                                <div class="options_main__items_inputs_block d-flex flex-column">
+                                                                    <div class="input-medium-6 dc-input-6-1-2">
+                                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                                            <input id="done_area" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model.number="form.done_area">
+                                                                        </div>
+                                                                        <div class="dc-input__input-icon-right dc-input__input-icon-right-font">м²</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Полезная площадь  -->
+                                                        </div>
+                                                        <!-- Hight options -->
+                                                        
                                                         <!-- Bathroom -->
                                                         <!-- <div  v-if="this.form.object_id == 1"  class="options_main__items mt-4">
                                                             <div class="options_main__item d-flex align-items-end">
@@ -597,7 +599,7 @@
                                                         <!-- Дополнительно -->
                                                     </div>
                                                 </div>
-                                                <div  v-if="!showMoreOptions" class="show-all-parametres" :class="{'height-6' : this.form.object_type_id == 5}">
+                                                <div  v-if="!showMoreOptions" class="show-all-parametres">
                                                     <div class="show-all-parametres_box">
                                                         <button @click="this.showMoreOptions = true" class="button-root-primary" type="button" data-e2e-id="expand-params">
                                                             <span class="button-root__icon-8-2-0 button-root__icon--left-8-2-0">
@@ -645,8 +647,8 @@
                                                     <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
                                                         <div class="d-flex align-items-center">
                                                             <div class="field-checkbox d-flex align-items-center">
-                                                                <Checkbox id="price_checkbox" name="price_check" value="yes" v-model="form.priceCheckbox" />
-                                                                <label for="infrastrucure_option_1">Торг уместен</label>
+                                                                <Checkbox id="price_checkbox" name="negotiable" value="1" v-model="form.negotiable" />
+                                                                <label for="price_checkbox">Торг уместен</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -765,7 +767,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="steps_item">
-                                                    <button data-scroll-active="section-three" class="steps_item_btn steps_item_btn_icon_left" role="button">
+                                                    <button data-scroll-active="section-three" class="steps_item_btn steps_item_btn_icon_left" role="button" :class="{'succes-input' : form.images.length}">
                                                         <div class="link_icon">
                                                             <div class="icon_div">
                                                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
@@ -789,7 +791,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="steps_item">
-                                                    <button data-scroll-active="section-five" class="steps_item_btn steps_item_btn_icon_left" role="button" :class="{'input-invalid' : v$.form.price.$invalid && submitted }">
+                                                    <button data-scroll-active="section-five" class="steps_item_btn steps_item_btn_icon_left" role="button" :class="(v$.form.price.$invalid) && submitted ? 'input-invalid' : (!v$.form.price.$invalid) ? 'succes-input' : ''">
                                                         <div class="link_icon">
                                                             <div class="icon_div">
                                                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
@@ -801,7 +803,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="steps_item">
-                                                    <button data-scroll-active="section-six" class="steps_item_btn steps_item_btn_icon_left" role="button" :class="{'input-invalid' : v$.form.comment.$invalid && submitted }">
+                                                    <button data-scroll-active="section-six" class="steps_item_btn steps_item_btn_icon_left" role="button" :class="(v$.form.comment.$invalid) && submitted ? 'input-invalid' : (!v$.form.comment.$invalid) ? 'succes-input' : ''">
                                                         <div class="link_icon">
                                                             <div class="icon_div">
                                                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
@@ -813,7 +815,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="steps_item">
-                                                    <button data-scroll-active="section-seven" class="steps_item_btn steps_item_btn_icon_left" role="button">
+                                                    <button data-scroll-active="section-seven" class="steps_item_btn steps_item_btn_icon_left" role="button" :class="{'succes-input' : loggedIn === true}">
                                                         <div class="link_icon">
                                                             <div class="icon_div">
                                                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.8-8.3a1 1 0 00-1.42-1.4L7.2 8.46a.28.28 0 01-.4 0l-1.1-1.1A1 1 0 004.3 8.8l2.08 2.09c.34.34.9.34 1.24 0L11.8 6.7z"></path></svg>
@@ -861,7 +863,6 @@ import  '../../../../../public/css/media-one.css'
 import VScrollActive from '../../../components/VScrollActive.vue';
 // Loader
 import ProgressSpinner from 'primevue/progressspinner';
-
 export default {
     setup: () => ({ v$: useVuelidate() }),
     components: {
@@ -877,7 +878,7 @@ export default {
         Dropdown,
         Toast,
         VScrollActive,
-        ProgressSpinner
+        ProgressSpinner,
     },
     data() {
         return {
@@ -908,7 +909,7 @@ export default {
                 additional_field_id: [],
                 object_types_property_id: [],
                 price: "",
-                priceCheckbox: "",
+                negotiable: "",
                 comment: "",
                 showOnline: "",
                 images: []

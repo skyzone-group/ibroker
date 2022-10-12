@@ -35,6 +35,7 @@ class ObjectController extends ResponseController
             'object_material_type' => $request->get('object_material_type') ?? 0,
             'comment'              => $request->get('comment'),
             'price'                => $request->get('price'),
+            'negotiable'           => $request->negotiable[0] ?? 0,
             'region_id'            => $request->get('region_id'),
             'district_id'          => $request->get('district_id'),
             'quarter_id'           => $request->get('quarter_id'),
