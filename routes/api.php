@@ -7,6 +7,7 @@ use App\Http\Controllers\Blade\TempImagesController;
 use App\Http\Controllers\Blade\AddressController;
 use App\Http\Controllers\Blade\ObjectController;
 use App\Http\Controllers\Blade\ObjectTypesController;
+use App\Http\Controllers\Blade\UserController;
 use App\Models\ImageUpload;
 /*
 |--------------------------------------------------------------------------
@@ -60,8 +61,10 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/logout', [AuthController::class, 'logout']);
     // Create Object
     Route::post('/object/create', [ObjectController::class, 'createObject']);
-
-
+    
+    // User Info
+    Route::post('/user/info', [UserController::class, 'updateUserInfo']);
+    Route::get('/user', [UserController::class, 'userInfo']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

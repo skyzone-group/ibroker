@@ -4,7 +4,6 @@
             <div class="avatar">
                 <img :src="src" alt="user_avatar" class="img-full">
             </div>
-            <!-- ../../../../public/images/avatar.jpg -->
             <div class="user_info">
                 <p class="mb-0 user_info-p">Javohir Toirov</p>
                 <span class="user_info_span">2022 год</span>
@@ -15,7 +14,7 @@
             <label  class="avatar__button p-button p-component mr-2 p-button-rounded" for="primary__avatar">
                 Сменить Аватар
             </label>
-            <Button label="Удалить фото" class="p-button-outlined p-button-danger p-button-rounded" />
+            <Button label="Удалить фото" class="p-button-outlined p-button-danger p-button-rounded ml-2" />
         </div>
     </div>
 </template>
@@ -27,9 +26,12 @@ export default {
     components: {
         Button
     },
+    props: {
+        defaultSrc: String,
+    },
     data() {
         return {
-            src: null,
+            src: this.defaultSrc,
             file: null
         }
     },
@@ -40,8 +42,11 @@ export default {
             reader.readAsDataURL(this.file);
             reader.onload = (e) => {
                 this.src = e.target.result;
+                console.log(this.src);
             };
             this.updateImagesBox();
+            console.log(this.file);
+            
         },
         updateImagesBox(){
             this.$emit('updateImagesBox', this.file);

@@ -132,21 +132,6 @@ export default ({
             this.imageCount += 1;
             this.updateImagesBox();
             
-            
-            // var imgBox = document.querySelector(".img_warpper_box");
-            
-            // Sortable.create(imgBox, {
-            //     items: file,
-            //     cursor: 'move',
-            //     opacity: 0.5,
-            //     distance: 20,
-            //     tolerance: 'pointer',
-            //     animation: 150,
-            //     easing: "cubic-bezier(1, 0, 0, 1)",
-            //     ghostClass: "sortable-ghost",
-            //     bubbleScroll: true,
-            // });
-            
             this.profileUpload();
         },
         profileUpload(){  // insert new file or image by this code
