@@ -28,9 +28,6 @@
                                     </pre>
                                 </form>
                             </div>
-                            <div class="user-info-succes-box">
-                                <Toast />
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -63,14 +60,22 @@
                             </form>
                         </div>
                         <div class="widget_email">
-                            <div class="widget_email-div">
-                                <div class="widget_email-div_txt">
-                                    Электронная почта 
-                                    <svg data-name="IconCheck" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 10"><path fill="currentColor" fill-rule="evenodd" d="M5.44 9.5h-.01a1.03 1.03 0 0 1-.727-.31L.293 4.68a1.03 1.03 0 0 1 1.473-1.44l3.686 3.77L12.247.297a1.03 1.03 0 1 1 1.447 1.464L6.164 9.2c-.194.19-.454.298-.725.298"></path></svg>
+                            <form name="EmailForm"  @submit.prevent="saveEmail()" method="POST" :model="formEmail">
+                                <div class="widget_email-div">
+                                    <div class="widget_email-div_txt">
+                                        Электронная почта 
+                                        <!-- <svg data-name="IconCheck" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 10"><path fill="currentColor" fill-rule="evenodd" d="M5.44 9.5h-.01a1.03 1.03 0 0 1-.727-.31L.293 4.68a1.03 1.03 0 0 1 1.473-1.44l3.686 3.77L12.247.297a1.03 1.03 0 1 1 1.447 1.464L6.164 9.2c-.194.19-.454.298-.725.298"></path></svg> -->
+                                    </div>
+                                    <div class="email-div_block_input mb-3">
+                                        <label class="email-div_block_input_label">
+                                            <InputText type="email" v-model="formEmail.email" class="w-100"  required/>
+                                        </label>
+                                    </div>
+                                    <!-- <p class="widget_email-div__email">toirov1427@gmail.com</p> -->
+                                    <button type="submit" class="phone-form-btn">Сохранить электронную почту</button>
+                                    <!-- <a href="#!" class="phone-form-btn">Сменить электронную почту</a> -->
                                 </div>
-                                <p class="widget_email-div__email">toirov1427@gmail.com</p>
-                                <a href="#!" class="phone-form-btn">Сменить электронную почту</a>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -98,6 +103,9 @@
                         </AccordionTab>
                     </Accordion>
                 </div>
+            </div>
+            <div class="user-info-succes-box">
+                <Toast />
             </div>
         </div>
     </div>
@@ -135,6 +143,9 @@ export default {
                 first_name: "",
                 last_name: "",
             },
+            formEmail: {
+                email: "",
+            },
             phone: "+99890 359-22-84",
             databirth: null,
             responsiveOptions: [
@@ -159,6 +170,26 @@ export default {
             console.log(token);
             console.log(this.form.image);
             axios.post('/api/user/info',  this.form, {
+                headers: {
+                    'Authorization': `Bearer ${token}`, 
+                }
+            }).then(response => {
+                console.log(response);
+                // alert("ok");
+                this.showSuccess();
+                window.location.reload();
+                //window.location.href = '/account/summary';
+            })
+            .catch(function (error) {
+                // this.onFailure(error.response.data.message);
+                alert(error);
+                console.log(error);
+            });
+        },
+        saveEmail(){
+            const token = localStorage.getItem('token');
+            console.log(token);
+            axios.post('/api/user/info',  this.formEmail, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 }
@@ -362,7 +393,7 @@ export default {
 }
 
 /* ******************* */
-.phone-div_block_input_label{
+.phone-div_block_input_labelm , .email-div_block_input_label{
     display: block;
     position: relative;
 }
@@ -457,7 +488,7 @@ export default {
         font-size: 12px;
     }
     
-    .phone-div_block_input_label{
+    .phone-div_block_input_label, .email-div_block_input_label{
         width: 201px;
     }
     

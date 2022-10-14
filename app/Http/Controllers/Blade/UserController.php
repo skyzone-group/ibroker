@@ -23,28 +23,35 @@ class UserController extends ResponseController
     {
         $user_id = auth('sanctum')->user()->id;
         
-        $image = $request->get('image');
-        $imageBase64 = $image[0];
+        // Image upload
+        // $image = $request->get('image');
+        // $imageBase64 = $image[0];
         
-        $time = getCurrentMicrotime();
-        $fileName = $time.'.jpg';
+        // $time = getCurrentMicrotime();
+        // $fileName = $time.'.jpg';
 
-        list($type, $imageBase64) = explode(';', $imageBase64);
-        list(, $imageBase64)      = explode(',', $imageBase64);
+        // list($type, $imageBase64) = explode(';', $imageBase64);
+        // list(, $imageBase64)      = explode(',', $imageBase64);
         
-        $image_data = base64_decode($imageBase64);
+        // $image_data = base64_decode($imageBase64);
 
-        $filePath = "file/". $fileName;
-        file_put_contents($filePath, $image_data);
+        // $filePath = "file/". $fileName;
+        // file_put_contents($filePath, $image_data);
 
-        if(!file_exists("file/".$fileName)){
-            return self::errorResponse('Image not uploaded');
+        // if(!file_exists("file/".$fileName)){
+        //     return self::errorResponse('Image not uploaded');
+        // }
+        // Image upload
+        
+        $user = User::where('id', '=', $user_id)->first();
+        // $user->image = $image[0];
+        if($request->email){
+            $user->email = $request->email;
         }
-        
-        $product = User::where('id', '=', $user_id)->first();
-        $product->image = $image[0];
-        $product->name = $request->first_name.' '.$request->last_name;
-        $product->save();
+        else if($request->first_name || $request->last_name){
+            $user->name = $request->first_name.' '.$request->last_name ?? 0;
+        }
+        $user->save();
         return $request->all();
     }
 

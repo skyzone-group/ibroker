@@ -43,7 +43,7 @@ export default {
             reader.onload = (e) => {
                 this.src = e.target.result;
                 console.log(this.src);
-            };
+            }; 
             this.updateImagesBox();
             console.log(this.file);
             
