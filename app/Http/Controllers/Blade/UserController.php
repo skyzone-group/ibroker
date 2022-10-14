@@ -64,7 +64,7 @@ class UserController extends ResponseController
     public function update(Request $request)
     {
         $user_id = auth('sanctum')->user()->id;
-     
+        
         $user = User::where('id', '=', $user_id)->first();
         if($request->get('firstname')) $user->firstname  = $request->get('firstname');
         if($request->get('lastname')) $user->lastname    = $request->get('lastname');

@@ -7,14 +7,35 @@
                         <div class="user_account_main_block-item-card_bottom">
                             <div class="user_account_main_block-item-card_bottom_info">
                                 <form @submit.prevent="saveData()" class="profile_form" method="POST" :model="form">
-                                    <user-avatar @updateImagesBox="updateImagesBox" :defaultSrc="defaultImage"></user-avatar>
+                                    <!-- Avatar -->
+                                    <div class="profile_form_avatar">
+                                        <div class="user_account_main_block-item-card-header">
+                                            <div class="avatar">
+                                                <img :src="src" alt="user_avatar" class="img-full">
+                                            </div>
+                                            <div class="user_info">
+                                                <p class="mb-0 user_info-p">{{ user.firstname && user.firstname ? (`${user.firstname} ${user.lastname}`) : `User ${user.id}`}}</p>
+                                                <span class="user_info_span">{{ getFormattedDate(user.created_at) }} год</span>
+                                            </div>
+                                        </div>
+                                        <div class="profile_form_btns">
+                                            <input type="file" id="primary__avatar"  class="d-none" name="user_image" accept="image/png, image/jpeg, image/pjpeg"  @change="onInputChange"> 
+                                            <label  class="avatar__button p-button p-component mr-2 p-button-rounded" for="primary__avatar">
+                                                Сменить Аватар
+                                            </label>
+                                            <Button label="Удалить фото" class="p-button-outlined p-button-danger p-button-rounded ml-2" />
+                                        </div>
+                                    </div>
+                                    <!-- Avatar -->
                                     <div class="field mt-3">
                                         <label for="username1">Имя</label>
-                                        <InputText id="username1" v-model.trim="form.first_name" type="username" class="w-100"/>
+                                        <InputText v-if="!changeFullname && user.firstname" id="username1" type="text" class="w-100" :value="user.firstname" :disabled="user.firstname"/>
+                                        <InputText v-if="changeFullname || !user.firstname" id="username1" v-model="form.firstname" type="text" class="w-100" required/>
                                     </div>
                                     <div class="field mt-3">
                                         <label for="username1">Фамилия</label>
-                                        <InputText id="username1" v-model.trim="form.last_name" type="username" class="w-100"/>
+                                        <InputText v-if="!changeFullname && user.lastname" id="lastname" type="text" class="w-100" :value="user.lastname" :disabled="user.lastname"/>
+                                        <InputText v-if="changeFullname || !user.lastname" id="lastname" v-model="form.lastname" type="text" class="w-100" required/>
                                     </div>
                                     <!-- <div class="field mt-3">
                                         <label for="dateformat">Дата рождения</label>
@@ -22,6 +43,7 @@
                                     </div> -->
                                     <div class="btn-save mt-3">
                                         <Button label="Сохранить" type="submit" class="p-button-rounded" />
+                                        <Button label="Изменить" @click="changeFullname = true" type="button" class="p-button-rounded p-button-danger ml-2" :disabled="!user.firstname || !user.lastname" />
                                     </div>
                                     <pre>
                                         {{this.form.image}}
@@ -36,44 +58,48 @@
                 <div>
                     <div class="widget_phone_email">
                         <div class="widget_phone">
-                            <form class="phone-form position-relative">
+                            <form @submit.prevent="saveData()"  method="POST" :model="form" class="phone-form position-relative">
                                 <div class="phone-div">
                                     <div class="phone-div_block">
                                         <div class="phone-div_block_content">
                                             <label class="phone-div_block_content_label">
                                                 <span class="phone-div_block_content_label_span">
                                                     Номер телефона
-                                                    <span class="phone-div_block_content_label_span_notification span_warning">Не подтверждён</span>
+                                                    <span class="phone-div_block_content_label_span_notification span_warning" :class="changeNumber === true ? 'span_warning' : user.phone ? 'span_success' : ''">
+                                                        {{ changeNumber === true ? 'Не подтверждён' : user.phone ? 'Номер подтверждён' : '' }}
+                                                    </span>
                                                 </span>
                                             </label>
                                         </div>
                                         <div class="phone-div_block_input mt-3">
                                             <label class="phone-div_block_input_label">
-                                                <InputText type="text" v-model="phone" class="w-100" />
+                                                <InputText v-if="!changeNumber" type="text" class="w-100" :value="`+${user.phone}`" :disabled="user.phone" />
+                                                <InputText v-if="changeNumber" type="text" v-model="form.phone" class="w-100" placeholder="998901234567" />
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                                 <div>
-                                    <a href="#!" class="phone-form-btn">Подтвердить номер телефона</a>
+                                    <button v-if="!changeNumber" class="phone-form-btn" type="button" @click="changeNumber = true">Изменить номер телефона</button>
+                                    <button v-if="changeNumber" type="submit" class="phone-form-btn">Сохранить номер телефона</button>
                                 </div>
                             </form>
                         </div>
                         <div class="widget_email">
-                            <form name="EmailForm"  @submit.prevent="saveEmail()" method="POST" :model="formEmail">
+                            <form name="EmailForm"  @submit.prevent="saveData()" method="POST" :model="form">
                                 <div class="widget_email-div">
-                                    <div class="widget_email-div_txt">
-                                        Электронная почта 
-                                        <!-- <svg data-name="IconCheck" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 10"><path fill="currentColor" fill-rule="evenodd" d="M5.44 9.5h-.01a1.03 1.03 0 0 1-.727-.31L.293 4.68a1.03 1.03 0 0 1 1.473-1.44l3.686 3.77L12.247.297a1.03 1.03 0 1 1 1.447 1.464L6.164 9.2c-.194.19-.454.298-.725.298"></path></svg> -->
+                                    <div class="widget_email-div_txt d-flex align-items-center">
+                                        Электронная почта
+                                        <svg v-if="!changeEmail && user.email" class="ml-2" data-name="IconCheck" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 10"><path fill="currentColor" fill-rule="evenodd" d="M5.44 9.5h-.01a1.03 1.03 0 0 1-.727-.31L.293 4.68a1.03 1.03 0 0 1 1.473-1.44l3.686 3.77L12.247.297a1.03 1.03 0 1 1 1.447 1.464L6.164 9.2c-.194.19-.454.298-.725.298"></path></svg>
                                     </div>
                                     <div class="email-div_block_input mb-3">
                                         <label class="email-div_block_input_label">
-                                            <InputText type="email" v-model="formEmail.email" class="w-100"  required/>
+                                            <InputText v-if="changeEmail || !user.email" type="email" v-model="form.email" class="w-100"  required/>
                                         </label>
                                     </div>
-                                    <!-- <p class="widget_email-div__email">toirov1427@gmail.com</p> -->
-                                    <button type="submit" class="phone-form-btn">Сохранить электронную почту</button>
-                                    <!-- <a href="#!" class="phone-form-btn">Сменить электронную почту</a> -->
+                                    <p v-if="!changeEmail" class="widget_email-div__email">{{user.email}}</p>
+                                    <button v-if="!changeEmail && user.email" type="button" @click="changeEmail = true" class="phone-form-btn">Изменить электронную почту</button>
+                                    <button v-if="changeEmail || !user.email" type="submit" class="phone-form-btn">Сохранить электронную почту</button>
                                 </div>
                             </form>
                         </div>
@@ -88,15 +114,15 @@
                                 </div>
                             </template>
                             <div class="change_password_div">
-                                <form>
+                                <form @submit.prevent="saveData()" method="POST" :model="form">
                                     <div class="change_password_div_items">
-                                        <Password v-model="old_password" :feedback="false" toggleMask placeholder="Старый пароль"></Password>
+                                        <Password v-model="form.password" :feedback="false" toggleMask placeholder="Старый пароль"></Password>
                                     </div>
                                     <div class="change_password_div_items mb-3">
-                                        <Password v-model="new_password" toggleMask placeholder="Новый пароль"></Password>
+                                        <Password v-model="form.new_password" toggleMask placeholder="Новый пароль"></Password>
                                     </div>
                                     <div class="change_password_div_btn">
-                                        <Button label="Сохранить" class="p-button-rounded" />
+                                        <Button type="submit" label="Сохранить" class="p-button-rounded" />
                                     </div>
                                 </form>
                             </div>
@@ -125,13 +151,15 @@ import UserAvatar from '../../../components/account/UserAvatar.vue'
 
 import defaultImage from "../../../../../public/images/avatar-dafault.png"
 
+// Moment
+import moment from 'moment'
+
 export default {
     components: {
         Button,
         InputText,
         Calendar,
         Toast,
-        UserAvatar,
         Accordion,
         AccordionTab,
         Password
@@ -140,56 +168,40 @@ export default {
         return {
             form: {
                 image: [],
-                first_name: "",
-                last_name: "",
-            },
-            formEmail: {
+                firstname: "",
+                lastname: "",
+                phone: '',
                 email: "",
+                password: "",
+                new_password: "",
             },
-            phone: "+99890 359-22-84",
             databirth: null,
-            responsiveOptions: [
-                {
-					breakpoint: '1400px',
-					numMonths: 2
-				},
-				{
-					breakpoint: '1200px',
-					numMonths: 1
-				}
-			],
-            defaultImage: defaultImage,
             user: [],
-            old_password: null,
-            new_password: null
+            changeNumber: false,
+            changeEmail: false,
+            src: defaultImage,
+            file: null,
+            changeFullname: false,
         }
     },
     methods: {
+        async onInputChange(e){
+            this.file = e.target.files[0];
+            let reader = new FileReader();
+            reader.readAsDataURL(this.file);
+            reader.onload = (e) => {
+                this.src = e.target.result;
+                console.log(this.src);
+            }; 
+            this.updateImagesBox();
+            console.log(this.file);
+            
+        },
         saveData(){
             const token = localStorage.getItem('token');
             console.log(token);
             console.log(this.form.image);
-            axios.post('/api/user/info',  this.form, {
-                headers: {
-                    'Authorization': `Bearer ${token}`, 
-                }
-            }).then(response => {
-                console.log(response);
-                // alert("ok");
-                this.showSuccess();
-                window.location.reload();
-                //window.location.href = '/account/summary';
-            })
-            .catch(function (error) {
-                // this.onFailure(error.response.data.message);
-                alert(error);
-                console.log(error);
-            });
-        },
-        saveEmail(){
-            const token = localStorage.getItem('token');
-            console.log(token);
-            axios.post('/api/user/info',  this.formEmail, {
+            axios.post('/api/user/update',  this.form, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 }
@@ -223,6 +235,9 @@ export default {
             .then(response => {
                 this.user = response.data.result
             });
+        },
+        getFormattedDate(date) {
+            return moment(date).format("YYYY")
         }
     },
     async created() {
@@ -387,10 +402,11 @@ export default {
     line-height: 16px;
 }
 
+
 .span_success{
     margin-left: 8px;
     border-radius: 3px;
-    background-color: #49ff43;
+    background-color: #28C76F !important;
     padding: 2px 6px;
     color: #fff;
     font-weight: 700;
