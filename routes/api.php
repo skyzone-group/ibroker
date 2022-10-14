@@ -66,9 +66,9 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/user/info', [UserController::class, 'updateUserInfo']);
     Route::get('/user', [UserController::class, 'userInfo']);
     Route::get('/getme', [UserController::class, 'getMe']);
-    Route::get('/update/user', [UserController::class, 'update']);
+    Route::post('/user/update', [UserController::class, 'update']);
 });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });

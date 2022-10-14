@@ -6,7 +6,7 @@ use App\Http\Controllers\ResponseController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends ResponseController
 {
@@ -64,14 +64,22 @@ class UserController extends ResponseController
     public function update(Request $request)
     {
         $user_id = auth('sanctum')->user()->id;
-
+     
         $user = User::where('id', '=', $user_id)->first();
         if($request->get('firstname')) $user->firstname  = $request->get('firstname');
         if($request->get('lastname')) $user->lastname    = $request->get('lastname');
         if($request->get('email')) $user->email          = $request->get('email');
         if($request->get('phone')) $user->phone          = $request->get('phone');
+        if($request->get('password') && $request->get('new_password'))
+        {
+            if(!Hash::check($request->password, $user->password))
+                return self::errorResponse('Password is incorrect');
+            
+            $user->password = Hash::make($request->new_password);
+        }
         $user->save();
         
         return self::successResponse($user);
     }
+    
 }
