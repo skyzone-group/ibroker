@@ -213,7 +213,13 @@ export default {
             this.$toast.add({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
         },
         getUserInfo(){
-            axios.get('/api/user')
+            const token = localStorage.getItem('token');
+            console.log(token);
+            axios.get('/api/getme', {
+                headers: {
+                    'Authorization': `Bearer ${token}`, 
+                }
+            })
             .then(response => {
                 this.user = response.data.result
             });
