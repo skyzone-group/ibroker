@@ -65,6 +65,8 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     // User Info
     Route::post('/user/info', [UserController::class, 'updateUserInfo']);
     Route::get('/user', [UserController::class, 'userInfo']);
+    Route::get('/getme', [UserController::class, 'getMe']);
+    Route::get('/update/user', [UserController::class, 'update']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

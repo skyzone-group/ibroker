@@ -19,7 +19,6 @@ class UserController extends ResponseController
         return self::successResponse($user);
     }
     
-    
     public function updateUserInfo(Request $request)
     {
         $user_id = auth('sanctum')->user()->id;
@@ -47,5 +46,25 @@ class UserController extends ResponseController
         $product->name = $request->first_name.' '.$request->last_name;
         $product->save();
         return $request->all();
+    }
+
+    public function getMe()
+    {
+        $user = auth('sanctum')->user();
+        return self::successResponse($user);
+    }
+
+    public function update(Request $request)
+    {
+        $user_id = auth('sanctum')->user()->id;
+
+        $user = User::where('id', '=', $user_id)->first();
+        if($request->get('firstname')) $user->firstname  = $request->get('firstname');
+        if($request->get('lastname')) $user->lastname    = $request->get('lastname');
+        if($request->get('email')) $user->email          = $request->get('email');
+        if($request->get('phone')) $user->phone          = $request->get('phone');
+        $user->save();
+        
+        return self::successResponse($user);
     }
 }
