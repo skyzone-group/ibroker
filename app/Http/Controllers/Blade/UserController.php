@@ -64,7 +64,6 @@ class UserController extends ResponseController
         if($request->get('firstname')) $user->firstname  = $request->get('firstname');
         if($request->get('lastname')) $user->lastname    = $request->get('lastname');
         if($request->get('email')) $user->email          = $request->get('email');
-        // if($request->get('phone')) $user->phone          = $request->get('phone');
         if($request->get('password') && $request->get('new_password'))
         {
             if(!Hash::check($request->password, $user->password))
@@ -77,7 +76,6 @@ class UserController extends ResponseController
             $data = session()->get('user');
             // checking verification code
             if (!$data || $data['code'] != $request->code )   return self::errorResponse('Verification code is incorrect');
-            
             $user->phone = $data['phone'];
         }
         if($request->get('image'))
@@ -88,6 +86,10 @@ class UserController extends ResponseController
                 return self::errorResponse('Image not uploaded');
             }
             $user->image = $fileName;
+        }
+        if($request->get('delete_image') && $request->get('delete_image') === true)
+        {
+            $user->image = null;
         }
         $user->save();
         
