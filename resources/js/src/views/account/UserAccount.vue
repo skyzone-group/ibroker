@@ -12,6 +12,7 @@
                                         <div class="user_account_main_block-item-card-header">
                                             <div class="avatar">
                                                 <img :src="src" alt="user_avatar" class="img-full">
+                                                <img :src="user.image" alt="user_avatar" class="img-full">
                                             </div>
                                             <div class="user_info">
                                                 <p class="mb-0 user_info-p">{{ user.firstname && user.firstname ? (`${user.firstname} ${user.lastname}`) : `User ${user.id}`}}</p>
@@ -45,9 +46,6 @@
                                         <Button label="Сохранить" type="submit" class="p-button-rounded" />
                                         <Button label="Изменить" @click="changeFullname = true" type="button" class="p-button-rounded p-button-danger ml-2" :disabled="!user.firstname || !user.lastname" />
                                     </div>
-                                    <!-- <pre>
-                                        {{this.src}}
-                                    </pre> -->
                                 </form>
                             </div>
                         </div>
