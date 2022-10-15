@@ -45,9 +45,9 @@
                                         <Button label="Сохранить" type="submit" class="p-button-rounded" />
                                         <Button label="Изменить" @click="changeFullname = true" type="button" class="p-button-rounded p-button-danger ml-2" :disabled="!user.firstname || !user.lastname" />
                                     </div>
-                                    <pre>
-                                        {{this.form.image}}
-                                    </pre>
+                                    <!-- <pre>
+                                        {{this.src}}
+                                    </pre> -->
                                 </form>
                             </div>
                         </div>
@@ -167,7 +167,7 @@ export default {
     data() {
         return {
             form: {
-                image: [],
+                image: "",
                 firstname: "",
                 lastname: "",
                 phone: '',
@@ -192,15 +192,36 @@ export default {
             reader.onload = (e) => {
                 this.src = e.target.result;
                 console.log(this.src);
+                this.profileUpload(e.target.result);
             }; 
-            this.updateImagesBox();
-            console.log(this.file);
             
+            
+        },
+        profileUpload(file){  // insert new file or image by this code
+            // token
+            const token = localStorage.getItem('token');
+            // image
+            let formm = new FormData();
+            if(this.src == file){
+                formm.append('image', this.src);
+                axios.post('/api/user/info', formm, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`, 
+                    }
+                })
+                .then(response => {
+                    console.log(response);
+                    alert("ok");
+                })
+                .catch(function (error) {
+                    console.log("889");
+                    alert("bad");
+                });
+            }
         },
         saveData(){
             const token = localStorage.getItem('token');
             console.log(token);
-            console.log(this.form.image);
             axios.post('/api/user/update',  this.form, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
