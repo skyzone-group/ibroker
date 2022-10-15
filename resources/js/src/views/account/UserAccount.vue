@@ -58,32 +58,48 @@
                 <div>
                     <div class="widget_phone_email">
                         <div class="widget_phone">
-                            <form @submit.prevent="saveData()"  method="POST" :model="form" class="phone-form position-relative">
-                                <div class="phone-div">
-                                    <div class="phone-div_block">
-                                        <div class="phone-div_block_content">
-                                            <label class="phone-div_block_content_label">
-                                                <span class="phone-div_block_content_label_span">
-                                                    Номер телефона
-                                                    <span class="phone-div_block_content_label_span_notification span_warning" :class="changeNumber === true ? 'span_warning' : user.phone ? 'span_success' : ''">
-                                                        {{ changeNumber === true ? 'Не подтверждён' : user.phone ? 'Номер подтверждён' : '' }}
-                                                    </span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                        <div class="phone-div_block_input mt-3">
-                                            <label class="phone-div_block_input_label">
-                                                <InputText v-if="!changeNumber" type="text" class="w-100" :value="`+${user.phone}`" :disabled="user.phone" />
-                                                <InputText v-if="changeNumber" type="text" v-model="form.phone" class="w-100" placeholder="998901234567" />
-                                            </label>
-                                        </div>
+                            <div class="phone-div">
+                                <div class="phone-div_block">
+                                    <div class="phone-div_block_content">
+                                        <label class="phone-div_block_content_label">
+                                            <span class="phone-div_block_content_label_span">
+                                                Номер телефона
+                                                <!-- <span class="phone-div_block_content_label_span_notification span_warning" :class="changeNumber === true ? 'span_warning' : user.phone ? 'span_success' : ''">
+                                                    {{ changeNumber === true ? 'Не подтверждён' : user.phone ? 'Номер подтверждён' : '' }}
+                                                </span> -->
+                                            </span>
+                                            <div v-show="FormPhone" class="alert alert-danger mb-0">
+                                                <span class="error-msg-phone" id="phone_error"></span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="phone-div_block_input mt-3">
+                                        <label v-if="!changeNumber" class="phone-div_block_input_label">
+                                            <InputText type="text" class="w-100" :value="`+${user.phone}`" :disabled="user.phone" />
+                                            <button  class="phone-form-btn mt-2" type="button" @click="changeNumber = true">Изменить номер телефона</button>
+                                        </label>
+                                        <label v-if="!sendVerifCode && changeNumber" class="phone-div_block_input_label">
+                                            <form @submit.prevent="getVerifCode()" method="POST">
+                                                <InputText type="text" v-model="phone" class="w-100" placeholder="998901234567" />
+                                                <div class="d-flex mt-2">
+                                                    <button type="submit" class="phone-form-btn">Отправить код</button>
+                                                    <button type="button" @click="changeNumber = false" class="phone-form-btn ml-4" style="color: #D32F2F;">Отмена</button>
+                                                    {{ exampleCode }}
+                                                </div>
+                                            </form>
+                                        </label>
+                                        <label v-if="sendVerifCode" class="phone-div_block_input_label">
+                                            <form @submit.prevent="saveData()" method="POST" :model="form">
+                                                <span style="color: red">[ Your code is {{ this.exampleCode }} ]</span>
+                                                <InputText type="text" v-model="form.code" class="w-100" />
+                                                <div class="d-flex mt-2">
+                                                    <button type="submit" class="phone-form-btn">Отправить</button>
+                                                </div>
+                                            </form>
+                                        </label>
                                     </div>
                                 </div>
-                                <div>
-                                    <button v-if="!changeNumber" class="phone-form-btn" type="button" @click="changeNumber = true">Изменить номер телефона</button>
-                                    <button v-if="changeNumber" type="submit" class="phone-form-btn">Сохранить номер телефона</button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                         <div class="widget_email">
                             <form name="EmailForm"  @submit.prevent="saveData()" method="POST" :model="form">
@@ -114,12 +130,15 @@
                                 </div>
                             </template>
                             <div class="change_password_div">
+                                <div v-show="FormValidate" class="alert alert-danger">
+                                    <span class="error-msg-password" id="password_error"></span>
+                                </div>
                                 <form @submit.prevent="saveData()" method="POST" :model="form">
                                     <div class="change_password_div_items">
-                                        <Password v-model="form.password" :feedback="false" toggleMask placeholder="Старый пароль"></Password>
+                                        <Password v-model="form.password" :feedback="false" toggleMask placeholder="Старый пароль" required></Password>
                                     </div>
                                     <div class="change_password_div_items mb-3">
-                                        <Password v-model="form.new_password" toggleMask placeholder="Новый пароль"></Password>
+                                        <Password v-model="form.new_password" toggleMask placeholder="Новый пароль" required></Password>
                                     </div>
                                     <div class="change_password_div_btn">
                                         <Button type="submit" label="Сохранить" class="p-button-rounded" />
@@ -170,18 +189,23 @@ export default {
                 image: "",
                 firstname: "",
                 lastname: "",
-                phone: '',
+                code: '',
                 email: "",
                 password: "",
                 new_password: "",
             },
+            phone: "",
+            exampleCode: "",
             databirth: null,
             user: [],
             changeNumber: false,
             changeEmail: false,
+            sendVerifCode: false,
             src: defaultImage,
             file: null,
             changeFullname: false,
+            FormValidate: false,
+            FormPhone: false,
         }
     },
     methods: {
@@ -228,14 +252,55 @@ export default {
                 }
             }).then(response => {
                 console.log(response);
-                // alert("ok");
-                this.showSuccess();
-                window.location.reload();
+                if (response.data.status) {
+                    this.showSuccess();
+                    window.location.reload();
+                }
+                else{
+                    var password_error = response.data.error.message;
+                    $(".error-msg-password").each(function() {
+                        $(this).text(password_error);
+                    });
+                    this.FormValidate = true;
+                }
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+        },
+        getVerifCode(){
+            const token = localStorage.getItem('token');
+            console.log(token);
+            
+            let formm = new FormData();
+            formm.append('phone', this.phone);
+            
+            axios.post('/api/user-phone/update',  formm, {
+                headers: {
+                    'Authorization': `Bearer ${token}`, 
+                }
+            }).then(response => {
+                console.log(response);
+                if (response.data.status) {
+                    this.exampleCode = response.data.result.code;
+                    this.sendVerifCode = true;
+                }
+                else if(response.data.error){
+                    $(".error-msg-phone").each(function() {
+                        $(this).text('Телефон уже занят!');
+                    });
+                    this.FormPhone = true;
+                }
+                else{
+                    this.FormPhone = false;
+                }
+                
                 //window.location.href = '/account/summary';
             })
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);
                 alert(error);
+                this.sendVerifCode = false;
                 console.log(error);
             });
         },
@@ -397,9 +462,9 @@ export default {
     padding: 15px;
 }
 
-.phone-div{
+/* .phone-div{
     margin-bottom: 10px;
-}
+} */
 
 .phone-div_block_content_label{
     display: inline-block;
@@ -523,16 +588,16 @@ export default {
         width: 100%;
     }
     
-    .phone-div {
+    /* .phone-div {
         margin-bottom: 7px;
-    }
+    } */
 
     .phone-div_block_content_label_span{
         font-size: 12px;
     }
     
     .phone-div_block_input_label, .email-div_block_input_label{
-        width: 201px;
+        width: 70%;
     }
     
     .phone-form-btn{

@@ -93,7 +93,7 @@ class UserController extends ResponseController
     public function changeNumber(Request $request)
     {
          // Void validator function
-         $validate = $this->validate($request->all(), [
+        $validate = $this->validate($request->all(), [
             'phone'     => 'required|integer|unique:users',
         ]);
 
