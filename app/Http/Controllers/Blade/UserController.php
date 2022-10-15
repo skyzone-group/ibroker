@@ -69,7 +69,7 @@ class UserController extends ResponseController
         if($request->get('firstname')) $user->firstname  = $request->get('firstname');
         if($request->get('lastname')) $user->lastname    = $request->get('lastname');
         if($request->get('email')) $user->email          = $request->get('email');
-        if($request->get('phone')) $user->phone          = $request->get('phone');
+        // if($request->get('phone')) $user->phone          = $request->get('phone');
         if($request->get('password') && $request->get('new_password'))
         {
             if(!Hash::check($request->password, $user->password))
@@ -77,9 +77,40 @@ class UserController extends ResponseController
             
             $user->password = Hash::make($request->new_password);
         }
+        if($request->get('code'))
+        {
+            $data = session()->get('user');
+            // checking verification code
+            if (!$data || $data['code'] != $request->code )   return self::errorResponse('Verification code is incorrect');
+            
+            $user->phone = $data['phone'];
+        }
         $user->save();
         
         return self::successResponse($user);
     }
     
+    public function changeNumber(Request $request)
+    {
+         // Void validator function
+         $validate = $this->validate($request->all(), [
+            'phone'     => 'required|integer|unique:users',
+        ]);
+
+        if ($validate !== true) return $validate;
+
+        $code = generateNumber(4);
+
+        session()->put([
+            'user' => [
+                'phone'     => $request->phone,
+                'code'      => $code,
+            ]
+        ]);
+
+        return self::successResponse([
+            'message'   => 'Verification code sent successfully',
+            'code'      => $code,
+        ]);
+    }
 }
