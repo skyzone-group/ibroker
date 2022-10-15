@@ -52,23 +52,10 @@ class ObjectController extends ResponseController
         $images = $request->get('images');
         
         for($i = 0; $i < sizeof($images); $i++){
-
-            $imageBase64 = $images[$i]['img'];
-            
-            $time = getCurrentMicrotime();
-            $fileName = $time.'.jpg';
-
-            list($type, $imageBase64) = explode(';', $imageBase64);
-            list(, $imageBase64)      = explode(',', $imageBase64);
-            
-            $image_data = base64_decode($imageBase64);
-
-            $filePath = "file/". $fileName;
-            file_put_contents($filePath, $image_data);
-
+            $fileName = uploadBase64Image($images[$i]['img']);
             $imagesData[] = [
                 'object_id'                => $objectId ?? 0,
-                'name'                     => $images[$i]['img'],
+                'name'                     => $fileName,
                 'created_at'               => now(),
                 'updated_at'               => now(),
             ];
