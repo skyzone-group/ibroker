@@ -226,7 +226,7 @@ export default {
             let formm = new FormData();
             if(this.src == file){
                 formm.append('image', this.src);
-                axios.post('/api/user/info', formm, {
+                axios.post('/api/user/update', formm, {
                     headers: {
                         'Authorization': `Bearer ${token}`, 
                     }
