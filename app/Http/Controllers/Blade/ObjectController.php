@@ -107,4 +107,9 @@ class ObjectController extends ResponseController
         ImagesTable::insert($imagesData);
         return $request->all();
     }
+
+    public function userObjects(Request $request)
+    {
+        
+    }
 }

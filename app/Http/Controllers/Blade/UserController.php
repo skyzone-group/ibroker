@@ -87,7 +87,7 @@ class UserController extends ResponseController
             }
             $user->image = $fileName;
         }
-        if($request->get('delete_image') && $request->get('delete_image') === true)
+        if($request->get('delete_image') && $request->get('delete_image') == true)
         {
             $user->image = null;
         }
