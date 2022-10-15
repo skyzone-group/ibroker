@@ -213,7 +213,7 @@ export default {
             reader.readAsDataURL(this.file);
             reader.onload = (e) => {
                 this.src = e.target.result;
-                console.log(this.src);
+                // console.log(this.src);
                 this.profileUpload(e.target.result);
             }; 
             
@@ -223,10 +223,11 @@ export default {
             // token
             const token = localStorage.getItem('token');
             // image
-            let formm = new FormData();
+            
             if(this.src == file){
+                let formm = new FormData();
                 formm.append('image', this.src);
-                axios.post('/api/user/info', formm, {
+                axios.post('/api/user/update', formm, {
                     headers: {
                         'Authorization': `Bearer ${token}`, 
                     }
