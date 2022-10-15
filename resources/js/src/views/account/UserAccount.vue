@@ -1,6 +1,6 @@
 <template>
     <div class="user_account_main">
-        <div class="user_account_main_block">
+        <div  v-if="!isLoaded" class="user_account_main_block">
             <div class="user_account_main_block-item">
                 <div>
                     <div class="user_account_main_block-item-card">
@@ -161,6 +161,9 @@
                 </div>
             </div>
         </div>
+        <div v-if="isLoaded">
+            <ProgressSpinner />
+        </div>
     </div>
 </template>
 
@@ -177,6 +180,8 @@ import Password from 'primevue/password';
 import Dialog from 'primevue/dialog';
 import defaultImage from "../../../../../public/images/avatar-dafault.png"
 
+import ProgressSpinner from 'primevue/progressspinner';
+
 // Moment
 import moment from 'moment'
 
@@ -189,7 +194,8 @@ export default {
         Accordion,
         AccordionTab,
         Password,
-        Dialog
+        Dialog,
+        ProgressSpinner
     },
     data() {
         return {
@@ -216,6 +222,7 @@ export default {
             FormValidate: false,
             FormPhone: false,
             displayBasic: false,
+            isLoaded: false
         }
     },
     methods: {
@@ -251,7 +258,7 @@ export default {
                 });
             }
         },
-        saveData(){
+        saveData(){ // save user informations
             const token = localStorage.getItem('token');
             console.log(token);
             axios.post('/api/user/update',  this.form, {
@@ -276,7 +283,7 @@ export default {
                 alert(error);
             });
         },
-        getVerifCode(){
+        getVerifCode(){ // get verification code
             const token = localStorage.getItem('token');
             console.log(token);
             
@@ -312,10 +319,7 @@ export default {
                 console.log(error);
             });
         },
-        updateImagesBox(data){
-            this.form.image = data;
-        },
-        deleteImage(){
+        deleteImage(){ // delete inserted image
             const token = localStorage.getItem('token');
             this.delete_image = true;
             let formm = new FormData();
@@ -326,8 +330,7 @@ export default {
                 }
             })
             .then(response => {
-                console.log(response);
-                alert("ok");
+                window.location.reload();
                 this.displayBasic = false;
             })
             .catch(function (error) {
@@ -335,32 +338,38 @@ export default {
                 alert("bad");
             });
         },
-        showSuccess() {
+        showSuccess() { // success message
             this.$toast.add({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
         },
-        getUserInfo(){
+        getUserInfo(){ // get user informations on database
             const token = localStorage.getItem('token');
             console.log(token);
+            this.isLoaded = true ;
             axios.get('/api/getme', {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 }
             })
             .then(response => {
-                this.user = response.data.result
+                this.user = response.data.result;
+                this.isLoaded = false ;
             });
         },
-        getFormattedDate(date) {
+        getFormattedDate(date) { // get only year from timestempt
             return moment(date).format("YYYY")
         },
-        openBasic() {
+        openBasic() { // open imaga delete model
             this.displayBasic = true;
         },
-        closeBasic() {
+        closeBasic() { // close imaga delete model
             this.displayBasic = false;
         }
     },
-    async created() {
+    mounted(){
+        // 
+        this.getUserInfo();
+    },
+    created() {
         let today = new Date();
         let month = today.getMonth();
         let year = today.getFullYear();
@@ -379,9 +388,7 @@ export default {
         invalidDate.setDate(today.getDate() - 1);
         this.invalidDates = [today,invalidDate];
         
-        // 
-        this.getUserInfo();
-    },
+    }
 }
 </script>
 
