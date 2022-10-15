@@ -2367,6 +2367,19 @@ textarea.md-form__control {
 .steps_item_btn.input-invalid .icon_div{
     color: var(--form-button-invalid-color) !important;
 }
+/* *************************************************************************************** */
+/* -********************************** User Account ************************************** */
+.p-dialog-mask{
+    background: rgba(24,41,48,.8) !important;
+}
+.p-dialog .p-dialog-header .p-dialog-title{
+    display: block;
+    color: #000 important;
+    font-weight: 600 !important;
+    font-size: 22px !important;
+    line-height: 28px !important;
+    text-align: left !important;
+}
 /* ****************************** MEDIA ******************************************* */
 /************************************* Object Single Page styles *********************************** */
 @media (max-width: 1900px){

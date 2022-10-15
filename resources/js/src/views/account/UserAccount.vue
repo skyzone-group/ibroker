@@ -11,8 +11,8 @@
                                     <div class="profile_form_avatar">
                                         <div class="user_account_main_block-item-card-header">
                                             <div class="avatar">
-                                                <img :src="src" alt="user_avatar" class="img-full">
-                                                <img :src="user.image" alt="user_avatar" class="img-full">
+                                                <img v-if="!user.image" :src="src" alt="user_avatar" class="img-full">
+                                                <img v-if="user.image" :src="`/file/${user.image}`" alt="user_avatar" class="img-full">
                                             </div>
                                             <div class="user_info">
                                                 <p class="mb-0 user_info-p">{{ user.firstname && user.firstname ? (`${user.firstname} ${user.lastname}`) : `User ${user.id}`}}</p>
@@ -22,9 +22,9 @@
                                         <div class="profile_form_btns">
                                             <input type="file" id="primary__avatar"  class="d-none" name="user_image" accept="image/png, image/jpeg, image/pjpeg"  @change="onInputChange"> 
                                             <label  class="avatar__button p-button p-component mr-2 p-button-rounded" for="primary__avatar">
-                                                Сменить Аватар
+                                                {{ user.image ? 'Обновить фото' : 'Сменить Аватар' }}
                                             </label>
-                                            <Button label="Удалить фото" class="p-button-outlined p-button-danger p-button-rounded ml-2" />
+                                            <Button @click="openBasic" label="Удалить фото" class="p-button-outlined p-button-danger p-button-rounded ml-2" />
                                         </div>
                                     </div>
                                     <!-- Avatar -->
@@ -78,7 +78,7 @@
                                         </label>
                                         <label v-if="!sendVerifCode && changeNumber" class="phone-div_block_input_label">
                                             <form @submit.prevent="getVerifCode()" method="POST">
-                                                <InputText type="text" v-model="phone" class="w-100" placeholder="998901234567" />
+                                                <InputText type="text" v-model="phone" class="w-100" placeholder="998901234567" required/>
                                                 <div class="d-flex mt-2">
                                                     <button type="submit" class="phone-form-btn">Отправить код</button>
                                                     <button type="button" @click="changeNumber = false" class="phone-form-btn ml-4" style="color: #D32F2F;">Отмена</button>
@@ -149,6 +149,16 @@
             </div>
             <div class="user-info-succes-box">
                 <Toast />
+                <div class="profile_form-avatar-delete">
+                    <form v-if="displayBasic" @submit.prevent="deleteImage()" class="profile_form" method="POST">
+                        <Dialog header="Удалить фото профиля?" v-model:visible="displayBasic" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '40vw'}">
+                            <template #footer>
+                                <Button label="No" icon="pi pi-times" @click="closeBasic" class="p-button-text"/>
+                                <Button label="Yes" type="submit" @click="deleteImage" icon="pi pi-check" class="p-button-danger"  autofocus />
+                            </template>
+                        </Dialog>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -164,8 +174,7 @@ import Toast from 'primevue/toast';
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
 import Password from 'primevue/password';
-import UserAvatar from '../../../components/account/UserAvatar.vue'
-
+import Dialog from 'primevue/dialog';
 import defaultImage from "../../../../../public/images/avatar-dafault.png"
 
 // Moment
@@ -179,7 +188,8 @@ export default {
         Toast,
         Accordion,
         AccordionTab,
-        Password
+        Password,
+        Dialog
     },
     data() {
         return {
@@ -201,9 +211,11 @@ export default {
             sendVerifCode: false,
             src: defaultImage,
             file: null,
+            delete_image: false,
             changeFullname: false,
             FormValidate: false,
             FormPhone: false,
+            displayBasic: false,
         }
     },
     methods: {
@@ -216,14 +228,11 @@ export default {
                 // console.log(this.src);
                 this.profileUpload(e.target.result);
             }; 
-            
-            
         },
         profileUpload(file){  // insert new file or image by this code
             // token
             const token = localStorage.getItem('token');
             // image
-            
             if(this.src == file){
                 let formm = new FormData();
                 formm.append('image', this.src);
@@ -306,6 +315,26 @@ export default {
         updateImagesBox(data){
             this.form.image = data;
         },
+        deleteImage(){
+            const token = localStorage.getItem('token');
+            this.delete_image = true;
+            let formm = new FormData();
+            formm.append('delete_image', this.delete_image);
+            axios.post('/api/user/update', formm, {
+                headers: {
+                    'Authorization': `Bearer ${token}`, 
+                }
+            })
+            .then(response => {
+                console.log(response);
+                alert("ok");
+                this.displayBasic = false;
+            })
+            .catch(function (error) {
+                console.log("889");
+                alert("bad");
+            });
+        },
         showSuccess() {
             this.$toast.add({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
         },
@@ -323,6 +352,12 @@ export default {
         },
         getFormattedDate(date) {
             return moment(date).format("YYYY")
+        },
+        openBasic() {
+            this.displayBasic = true;
+        },
+        closeBasic() {
+            this.displayBasic = false;
         }
     },
     async created() {

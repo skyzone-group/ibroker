@@ -32,7 +32,7 @@ class UserController extends ResponseController
         
         list($type, $imageBase64) = explode(';', $imageBase64);
         list(, $imageBase64)      = explode(',', $imageBase64);
-       
+        
         $image_data = base64_decode($imageBase64);
 
         $filePath = "file/". $fileName;
