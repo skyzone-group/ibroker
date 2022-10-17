@@ -383,7 +383,7 @@ export default {
                 {id: 3,title: "Новостройки", link: "/"},
                 {id: 4,title: "Коммерческая", link: "/commercial"},
                 {id: 5,title: "Ипотека", link: "/"},
-            ]
+            ],
         }
     },
     props: {
@@ -424,7 +424,7 @@ export default {
             .catch(function (error) {
                 console.log('error');
             });
-        }
+        },
     },
     created() {
         window.addEventListener('resize', this.checkScreen);

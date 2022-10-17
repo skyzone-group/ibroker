@@ -170,6 +170,17 @@ a:hover{
 .input-medium-6, .dc-input__input-container-6-1-2{
     height: 40px;
 }
+
+/* ************************************************************************************************ */
+/* ******************************************** loader start ******************************** */
+.loader-main-box{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* ******************************************** loader end ******************************** */
 /* *********************************** Home Page start ******************************************/
 .popular_links_block_main_content_item{
     background-color: #fff;

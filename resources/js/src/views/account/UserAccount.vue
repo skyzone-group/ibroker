@@ -1,5 +1,8 @@
 <template>
     <div class="user_account_main">
+        <div v-if="isLoaded" class="loader-main-box">
+            <ProgressSpinner style="width:60px; height:60px" strokeWidth="5" fill="var(--surface-ground)" animationDuration=".5s" />
+        </div>
         <div  v-if="!isLoaded" class="user_account_main_block">
             <div class="user_account_main_block-item">
                 <div>
@@ -160,9 +163,6 @@
                     </form>
                 </div>
             </div>
-        </div>
-        <div v-if="isLoaded">
-            <ProgressSpinner />
         </div>
     </div>
 </template>
@@ -388,7 +388,7 @@ export default {
         invalidDate.setDate(today.getDate() - 1);
         this.invalidDates = [today,invalidDate];
         
-    }
+    },
 }
 </script>
 
