@@ -36,4 +36,10 @@ class Objects extends Model
         'quarter_id',
         'youtube_url'
     ];
+    
+    
+    public function object_type()
+    {
+        return $this->hasOne(ObjectType::class, 'id', 'object_type_id');
+    }
 }

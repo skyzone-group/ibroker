@@ -26,7 +26,7 @@ class ObjectController extends ResponseController
             'rent_type'            => $request->get('rent_type') ?? 0,
             'room_count'           => $request->get('room_count') ?? 0,
             'floor'                => $request->get('floor') ?? 0,
-            'floor'                => $request->get('floor_count') ?? 0,
+            'floor_count'          => $request->get('floor_count') ?? 0,
             'total_area'           => $request->get('total_area') ?? 0,
             'land_area'            => $request->get('land_area') ?? 0,
             'done_area'            => $request->get('done_area') ?? 0,
@@ -104,7 +104,7 @@ class ObjectController extends ResponseController
         //             ->get()
         //             ->all();
 
-        $query = Objects::query();
+        $query = Objects::query()->with('object_type');
         $query = $query->where('user_id', '=', $user_id);
         $results = $query->get()->all();
 
