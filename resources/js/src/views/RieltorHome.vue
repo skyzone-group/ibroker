@@ -1862,13 +1862,13 @@ export default {
     color: #000;
 }
 
-.p-dropdown:not(.p-disabled):hover {
+/* .p-dropdown:not(.p-disabled):hover {
     border-color: transparent !important;
-}
+} */
 
 .p-dropdown:not(.p-disabled).p-focus{
     box-shadow: unset !important;
-    border-color: transparent !important;
+    /* border-color: transparent !important; */
 }
 
 .p-dropdown-panel,

@@ -9,8 +9,7 @@
                     <div class="checkbox-box">
                         <div class="top_bar_total_checkBox">
                             <div class="field-checkbox">
-                                <Checkbox id="binary" v-model="checked" :binary="true" />
-                                <!-- <label for="binary">{{checked}}</label> -->
+                                <Checkbox :id="`object_check_${object.id}`" v-model="checked"/>
                             </div>
                         </div>
                     </div>
