@@ -13,7 +13,7 @@ class AdditionalFieldValues extends Model
     protected $table = 'additional_field_values';
     
     protected $fillable = [
-        'additional_field_id',
+        'additional_id',
         'object_id',
     ];
     

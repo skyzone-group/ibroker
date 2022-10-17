@@ -68,7 +68,7 @@ class ObjectController extends ResponseController
         for($i = 0; $i < $addtionalItems; $i ++)
         {
             $data[] = [
-                'additional_field_id'      => $request->additional_field_id[$i] ?? 0,
+                'additional_id'            => $request->additional_field_id[$i] ?? 0,
                 'object_id'                => $objectId ?? 0,
                 'created_at'               => now(),
                 'updated_at'               => now(),
@@ -99,13 +99,17 @@ class ObjectController extends ResponseController
     {
         $user_id = auth('sanctum')->user()->id;
 
-        // $objects = Objects::Where('user_id', '=', $user_id)
-        //             ->orderBy('id', 'DESC')
-        //             ->get()
-        //             ->all();
+        $query = Objects::query();
+        $query = $query->where('user_id', '=', $user_id)
+                ->with([
+                    'images',
+                    'object_type',
+                    'region',
+                    'district',
+                    'quarter',
+                    'additional'
+                ]);
 
-        $query = Objects::query()->with('object_type');
-        $query = $query->where('user_id', '=', $user_id);
         $results = $query->get()->all();
 
         // $results = json_encode($results);
