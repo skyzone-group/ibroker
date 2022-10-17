@@ -8,6 +8,7 @@ use App\Models\ImagesTable;
 use App\Models\Regions;
 use App\Models\Districts;
 use App\Models\Quarters;
+use App\Models\AdditionalFieldValues;
 
 class Objects extends Model
 {
@@ -65,5 +66,10 @@ class Objects extends Model
     public function quarter()
     {
         return $this->hasOne(Quarters::class,'id','quarter_id');
+    }
+
+    public function additional()
+    {
+        return $this->hasMany(AdditionalFieldValues::class,'additional_id','id');
     }
 }

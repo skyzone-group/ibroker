@@ -68,7 +68,7 @@ class ObjectController extends ResponseController
         for($i = 0; $i < $addtionalItems; $i ++)
         {
             $data[] = [
-                'additional_field_id'      => $request->additional_field_id[$i] ?? 0,
+                'additional_id'            => $request->additional_field_id[$i] ?? 0,
                 'object_id'                => $objectId ?? 0,
                 'created_at'               => now(),
                 'updated_at'               => now(),
@@ -106,7 +106,8 @@ class ObjectController extends ResponseController
                     'object_type',
                     'region',
                     'district',
-                    'quarter'
+                    'quarter',
+                    'additional'
                 ]);
 
         $results = $query->get()->all();
