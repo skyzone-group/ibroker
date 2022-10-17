@@ -99,13 +99,16 @@ class ObjectController extends ResponseController
     {
         $user_id = auth('sanctum')->user()->id;
 
-        // $objects = Objects::Where('user_id', '=', $user_id)
-        //             ->orderBy('id', 'DESC')
-        //             ->get()
-        //             ->all();
+        $query = Objects::query();
+        $query = $query->where('user_id', '=', $user_id)
+                ->with([
+                    'images',
+                    'object_type',
+                    'region',
+                    'district',
+                    'quarter'
+                ]);
 
-        $query = Objects::query()->with('object_type');
-        $query = $query->where('user_id', '=', $user_id);
         $results = $query->get()->all();
 
         // $results = json_encode($results);

@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ImagesTable;
+use App\Models\Regions;
+use App\Models\Districts;
+use App\Models\Quarters;
 
 class Objects extends Model
 {
@@ -41,5 +45,25 @@ class Objects extends Model
     public function object_type()
     {
         return $this->hasOne(ObjectType::class, 'id', 'object_type_id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ImagesTable::class,'object_id','id');
+    }
+
+    public function region()
+    {
+        return $this->hasOne(Regions::class,'id','region_id');
+    }
+
+    public function district()
+    {
+        return $this->hasOne(Districts::class,'id','district_id');
+    }
+
+    public function quarter()
+    {
+        return $this->hasOne(Quarters::class,'id','quarter_id');
     }
 }
