@@ -97,6 +97,22 @@ class ObjectController extends ResponseController
 
     public function userObjects(Request $request)
     {
-        
+        $user_id = auth('sanctum')->user()->id;
+
+        // $objects = Objects::Where('user_id', '=', $user_id)
+        //             ->orderBy('id', 'DESC')
+        //             ->get()
+        //             ->all();
+
+        $query = Objects::query();
+        $query = $query->where('user_id', '=', $user_id);
+        $results = $query->get()->all();
+
+        // $results = json_encode($results);
+        // $results = json_decode($results);
+        $data['count'] = 4;
+        $data['objects'] = $results;
+
+        return self::successResponse($data);
     }
 }
