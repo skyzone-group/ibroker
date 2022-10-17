@@ -129,7 +129,7 @@ export default {
             const token = localStorage.getItem('token');
             console.log(token);
             
-            axios.post('/api/userObjects',  this.form, {
+            axios.get('/api/userObjects',  this.form, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 }
