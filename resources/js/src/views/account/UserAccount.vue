@@ -1,7 +1,7 @@
 <template>
     <div class="user_account_main">
         <div v-if="isLoaded" class="loader-main-box">
-            <ProgressSpinner style="width:60px; height:60px" strokeWidth="5" fill="var(--surface-ground)" animationDuration=".5s" />
+            <ProgressSpinner style="width:80px; height:80px" strokeWidth="3" fill="var(--surface-ground)" animationDuration="1s" />
         </div>
         <div  v-if="!isLoaded" class="user_account_main_block">
             <div class="user_account_main_block-item">

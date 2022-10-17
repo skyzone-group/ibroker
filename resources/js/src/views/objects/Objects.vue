@@ -1,8 +1,8 @@
 <template>
     <div class="objects_page">
         <div class="objects_main">
-            <div class="objects_main-row">
-                <div class="objects_main-row_checkbox d-lg-block d-md-block d-sm-block d-none">
+            <div class="objects_main-box">
+                <div class="checkbox-box">
                     <div class="top_bar_total_checkBox">
                         <div class="field-checkbox">
                             <Checkbox id="binary" v-model="checked" :binary="true" />
@@ -10,45 +10,50 @@
                         </div>
                     </div>
                 </div>
-                <div class="objects_main-row_img">
-                    <div class="objects_main-row_img_block">
-                        <a href="#!" target="_blank">
-                            <img src="https://supercashforhouses.com/wp-content/uploads/2018/08/supercashforhouses.jpg" alt="">
-                        </a>
-                    </div>
-                </div>
-                <div class="objects_main-row_content">
-                    <div class="objects_main-row_content_info">
-                        <div>
-                            <div class="objects_main-row_content_info_title">
-                                <div class="objects_main-row_content_info_title_box" style="flex: 1 1;">
-                                    <span class="title_span">
-                                        <a href="#!" class="title_span_link">
-                                            3-комн. апарт., 111 м², 62/77 этаж
-                                        </a>
-                                    </span>
-                                </div>
-                                <div class="objects_main-row_content_info_title_box" style="flex: 1 1;">
-                                    <span class="title_span">
-                                        150 000 000 ₽
-                                    </span>
-                                </div>
+                <div class="objects_main-content w-100">
+                    <div class="objects_main-content-item">
+                        <div class="item-header d-flex">
+                            <div class="objects_main-row_img">
+                                <a href="#!" target="_blank" class="objects_main-row_img-link">
+                                    <img src="https://supercashforhouses.com/wp-content/uploads/2018/08/supercashforhouses.jpg" alt="">
+                                </a>
                             </div>
-                            <div class="objects_main-row_content_geo_info">
-                                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae animi at inventore, veritatis nulla quod libero corporis porro, amet, consectetur et accusantium dolorem? Et, voluptates? Numquam eos animi facere repellendus.</span>
+                            <div class="objects_main-row-content">
+                                <div class="objects_main-row-content-header">
+                                    <h5 class="item-title"><a href="#!">3-комн. апарт., 111 м², 62/77 этаж</a></h5>
+                                    <div class="objects_main-row-content-price-box d-flex">
+                                        <h6 class="item-title eu5v0x0">65 000 000 сум</h6>
+                                    </div>
+                                </div>
+                                <div class="objects_main-row-content-info">
+                                    <div class="objects_main-row-content-info-first-box">
+                                        <ul class="item-categories">
+                                            <li>Продажа</li>
+                                            <li>Квартира</li>
+                                            <li>Новостройка</li>
+                                        </ul>
+                                        <div class="item-contents">
+                                            <svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="css-1tq7vpq"><path d="M12 2c4.963 0 9 4.037 9 9 0 4.701-5.034 9.195-7.328 11h-3.344C8.035 20.195 3 15.701 3 11c0-4.963 4.037-9 9-9zm0 2c-3.86 0-7 3.14-7 7 0 3.75 4.614 7.981 6.995 9.764C13.749 19.434 19 15.108 19 11c0-3.86-3.14-7-7-7zm0 3c2.206 0 4 1.794 4 4 0 2.205-1.794 4-4 4-2.205 0-4-1.795-4-4 0-2.206 1.795-4 4-4zm0 2c-1.103 0-2 .897-2 2s.897 2 2 2 2-.897 2-2-.897-2-2-2z" fill="currentColor" fill-rule="evenodd"></path></svg>
+                                            <p class="css-1u68p4l-Text eu5v0x0">Chilonzor tumani, Toshkent</p>
+                                        </div>
+                                        <div class="item-contents">
+                                            <svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="css-1tq7vpq"><path d="M8.006 2v1h8.007V2h2.002v1h2.984L22 4v17l-1 1H3l-1-1V4l1-1h3.004V2h2.002zm11.992 8H4.002v10h15.996V10zM7.505 12a1.5 1.5 0 1 1 .001 3 1.5 1.5 0 0 1 0-3.001zM6.004 5H4.002v3h15.996V5h-1.983v1l-1.001 1-1.001-1V5H8.006v1L7.005 7 6.004 6V5z" fill="currentColor" fill-rule="evenodd"></path></svg>
+                                            <p class="css-18xoq17-Text eu5v0x0"><span data-cy="ad-duration-dates">2022-10-16 - 2022-11-07</span></p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="objects_main-row_content_info_buttons mt-lg-0 mt-md-0 mt-sm-4 mt-4">
-                            <div class="phone_div">
-                                <div class="small_buttons d-lg-none d-md-none d-sm-none d-inline-block">
-                                    <small-button v-tooltip.bottom="'Печатать'">
-                                        <i class="feather icon-printer"></i>
-                                    </small-button>
-                                    <small-button v-tooltip.bottom="'Удалить'">
-                                        <i class="feather icon-trash"></i>
-                                    </small-button>
-                                </div>
-                                <contact-button></contact-button>
+                        <div class="item-bottom-info">
+                            <div class="item-bottom-left">
+                                <span>ID: 44052757</span>
+                            </div>
+                            <div class="item-bottom-right">
+                                <ul class="item-bottom-right-actions">
+                                    <li class="item-bottom-right-actions-list">
+                                        <a href="#!" type="button" class="item-bottom-right-edit">Tahrirlash</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -62,18 +67,20 @@
 import Checkbox from 'primevue/checkbox';
 import ContactButton from '../../../components/UI/ContactButton.vue'
 import SmallButton from '../../../components/UI/SmallButton.vue'
+import Button from 'primevue/button';
 export default {
     components: {
         Checkbox,
         ContactButton,
-        SmallButton
+        SmallButton,
+        Button
     },
     setup() {
         
     },
     data() {
         return {
-            checked: false
+            checked: false,
         }
     },
 }
@@ -81,12 +88,29 @@ export default {
 
 <style scoped>
 .objects_main{
-    border-bottom: 1px solid #f1f2f4;
-    background-color: #fff;
-    padding: 15px;
-    margin: 20px 0 0 0;
+    margin-top: 16px;
 }
 
+.objects_main-box{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.checkbox-box{
+    margin-right: 16px;
+    display: block;
+}
+
+.objects_main-content-item{
+    position: relative;
+    width: 100%;
+    padding: 16px;
+    background: rgb(255, 255, 255);
+    border-radius: 4px;
+}
 .objects_main-row{
     display: flex;
     flex-flow: row nowrap;
@@ -98,87 +122,165 @@ export default {
 
 .objects_main-row_img{
     position: relative;
-    flex-basis: 216px;
-    margin-right: 16px;
-    min-width: 216px;
-    height: 151px;
-    border-radius: 4px;
 }
 
-.objects_main-row_img_block{
+
+.objects_main-row_img-link{
     position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.objects_main-row_img_block a img{
     display: block;
-    width: 100%;
-    height: 100%;
+}
+
+.objects_main-row_img-link img{
+    width: 216px;
+    height: 152px;
     object-fit: cover;
-    border-radius: 4px;
 }
 
-.objects_main-row_content{
+.objects_main-row-content{
     display: flex;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    -webkit-box-pack: justify;
+    /* justify-content: space-between; */
+    padding-left: 0px;
+    margin-left: 28px;
+    border-bottom: 1px solid rgb(216, 223, 224);
+}
+
+.objects_main-row-content-header{
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    margin: 6px 0px 16px;
+}
+
+.item-title{
+    font-size: 20px;
+    line-height: 22px;
+    font-weight: 700;
+    color: rgb(0, 47, 52);
+    margin: 0px;
+}
+
+.item-title a {
+    color: rgb(0, 47, 52);
+}
+
+.item-title a:not(:hover) {
+    text-decoration: none;
+}
+
+.item-contents{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 14px;
+}
+
+.objects_main-row-content-info{
+    /* display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    align-items: flex-end; */
+    padding-bottom: 16px;
+}
+
+.item-categories{
+    padding: 0px;
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    margin: 0px;
+    font-size: 14px;
+    color: rgb(64, 99, 103);
+}
+
+.item-categories li{
+    white-space: nowrap;
+}
+
+.item-categories li:not(:first-of-type)::before {
+    content: "•";
+    margin: 0px 8px;
+}
+
+.css-1tq7vpq {
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+    color: rgb(0, 47, 52);
+}
+
+
+.css-1u68p4l-Text {
+    font-size: 14px;
+    line-height: 18px;
+    color: rgb(64, 99, 103);
+    margin: 0px;
+}
+
+.item-bottom-info{
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.item-bottom-left{
+    flex-shrink: 0;
+    width: 216px;
+    font-size: 12px;
+    color: rgb(64, 99, 103);
+}
+
+.item-bottom-right{
+    display: flex;
+    -webkit-box-pack: justify;
     justify-content: space-between;
     width: 100%;
 }
 
-.objects_main-row_content_info{
+.item-bottom-right-actions{
+    margin: 0px 0px 0px auto;
+    padding: 0px;
     display: flex;
-    flex: 1 1;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.objects_main-row_content_info_title{
-    display: flex;
-    margin-bottom: 12px;
-}
-
-.title_span{
-    font-weight: 700;
-    font-style: normal;
-    font-stretch: normal;
-    font-family: Lato,sans-serif;
-    letter-spacing: normal;
-    text-align: left;
-}
-
-.title_span_link{
-    transition: color .15s;
-    color: #0468ff;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-.objects_main-row_content_info_buttons{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-end;
-}
-
-.phone_div a{
-    background-color: var(--primary_100);
-    color: var(--white_100);
-    padding: 3px 11px;
-    height: 28px;
-    display: inline-flex;
-    position: relative;
-    cursor: pointer;
-    outline: none;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    white-space: nowrap;
-    justify-content: center;
+    list-style: none;
+    -webkit-box-align: center;
     align-items: center;
 }
 
-.phone_div a:hover{
-    text-decoration: none;
+.item-bottom-right-actions-list{
+    display: inline-flex;
 }
 
+.item-bottom-right-edit{
+    -webkit-box-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin: 0px;
+    min-height: 40px;
+    position: relative;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    background-color: transparent;
+    border: 2px solid rgb(0, 47, 52);
+    border-radius: 4px;
+    color: rgb(0, 47, 52);
+    padding: 6px 22px;
+}
+
+.item-bottom-right-edit:not(:disabled):hover {
+    border-width: 5px;
+    padding: 3px 19px;
+}
 /* ********************************************** */
 @media (max-width: 575px){
     .objects_main-row{
