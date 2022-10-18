@@ -110,7 +110,7 @@ class ObjectController extends ResponseController
                     'additional'
                 ]);
 
-        $results = $query->get()->all();
+        $results = $query->orderBy('id', 'DESC')->paginate($request->total);
 
         // $results = json_encode($results);
         // $results = json_decode($results);

@@ -18,12 +18,18 @@
                             <div class="item-header d-flex">
                                 <div class="objects_main-row_img">
                                     <a href="#!" target="_blank" class="objects_main-row_img-link">
-                                        <img src="https://supercashforhouses.com/wp-content/uploads/2018/08/supercashforhouses.jpg" alt="">
+                                        <img :src="`/file/${object.images[0].name}`" alt="">
                                     </a>
                                 </div>
                                 <div class="objects_main-row-content">
                                     <div class="objects_main-row-content-header">
-                                        <h5 class="item-title"><a href="#!">{{ object.room_count ? `${object.room_count}-комн.` : '' }} {{ object.object_type.name_ru }}, {{object.total_area ? `${object.total_area} м²` : ''}}, {{ object.floor ? object.floor : '' }} {{ object.floor_count ? `/${object.floor_count} этаж` : ''}}</a></h5>
+                                        <h5 class="item-title">
+                                            <a href="#!" v-if="object.object_type_id === 1">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor }} / {{ object.floor_count }} этаж</a>
+                                            <a href="#!" v-if="object.object_type_id === 2">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }}</a>
+                                            <a href="#!" v-if="object.object_type_id === 3">{{ object.object_type.name_ru }}, {{object.total_area }} м²</a>
+                                            <a href="#!" v-if="object.object_type_id === 4">{{ object.object_type.name_ru }}, {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }} м²</a>
+                                            <a href="#!" v-if="object.object_type_id === 5">{{ object.object_type.name_ru }}, {{ object.land_area }} м²</a>
+                                        </h5>
                                         <div class="objects_main-row-content-price-box d-flex">
                                             <h6 class="item-title eu5v0x0">{{ object.price }}$</h6>
                                         </div>
@@ -33,11 +39,11 @@
                                             <ul class="item-categories">
                                                 <li>{{ object.object_deals === 'buy' ? 'Продажа' : 'Аренда' }}</li>
                                                 <li>{{ object.object_type.name_ru }}</li>
-                                                <li>Новостройка</li>
+                                                <li v-if="object.object_type_id === 1">{{ object.object_time_type === 0 ? 'Вторичка' : 'Новостройка'}}</li>
                                             </ul>
                                             <div class="item-contents">
                                                 <svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="css-1tq7vpq"><path d="M12 2c4.963 0 9 4.037 9 9 0 4.701-5.034 9.195-7.328 11h-3.344C8.035 20.195 3 15.701 3 11c0-4.963 4.037-9 9-9zm0 2c-3.86 0-7 3.14-7 7 0 3.75 4.614 7.981 6.995 9.764C13.749 19.434 19 15.108 19 11c0-3.86-3.14-7-7-7zm0 3c2.206 0 4 1.794 4 4 0 2.205-1.794 4-4 4-2.205 0-4-1.795-4-4 0-2.206 1.795-4 4-4zm0 2c-1.103 0-2 .897-2 2s.897 2 2 2 2-.897 2-2-.897-2-2-2z" fill="currentColor" fill-rule="evenodd"></path></svg>
-                                                <p class="css-1u68p4l-Text eu5v0x0">Chilonzor tumani, Toshkent</p>
+                                                <p class="css-1u68p4l-Text eu5v0x0">{{object.quarter.name_ru}}, {{object.district.name_ru}}, {{object.region.name_ru}}</p>
                                             </div>
                                             <div class="item-contents">
                                                 <svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="css-1tq7vpq"><path d="M8.006 2v1h8.007V2h2.002v1h2.984L22 4v17l-1 1H3l-1-1V4l1-1h3.004V2h2.002zm11.992 8H4.002v10h15.996V10zM7.505 12a1.5 1.5 0 1 1 .001 3 1.5 1.5 0 0 1 0-3.001zM6.004 5H4.002v3h15.996V5h-1.983v1l-1.001 1-1.001-1V5H8.006v1L7.005 7 6.004 6V5z" fill="currentColor" fill-rule="evenodd"></path></svg>
@@ -49,7 +55,7 @@
                             </div>
                             <div class="item-bottom-info">
                                 <div class="item-bottom-left">
-                                    <span>ID: 44052757</span>
+                                    <span>ID: {{ object.id }}</span>
                                 </div>
                                 <div class="item-bottom-right">
                                     <ul class="item-bottom-right-actions">
@@ -63,6 +69,8 @@
                     </div>
                 </div>
             </div>
+            <Pagination :data="objects" @pagination-change-page="getUserObjects" />
+            <Paginator v-if="pageInfo" :currentPage="pageInfo.current_page"  @page="getUserObjects" :rows="parseInt(pageInfo.per_page)" :totalRecords="pageInfo.total"></Paginator>
         </div>
     </div>
 </template>
@@ -72,6 +80,8 @@ import Checkbox from 'primevue/checkbox';
 import ContactButton from '../../../components/UI/ContactButton.vue'
 import SmallButton from '../../../components/UI/SmallButton.vue'
 import Button from 'primevue/button';
+import Paginator from 'primevue/paginator';
+
 // Moment
 import moment from 'moment'
 export default {
@@ -79,7 +89,8 @@ export default {
         Checkbox,
         ContactButton,
         SmallButton,
-        Button
+        Button,
+        Paginator
     },
     setup() {
         
@@ -87,20 +98,26 @@ export default {
     data() {
         return {
             checked: false,
-            objects: []
+            objects: [],
+            totalRecords: 120,
+            total: 1,
+            pageInfo: null
         }
     },
     methods: {
-        getUserObjects(){ // get user informations on database
+        getUserObjects(page = 1){ // get user informations on database
+            console.log(page);
             const token = localStorage.getItem('token');
             console.log(token);
-            axios.get('/api/userObjects', {
+            axios.get(`/api/userObjects?page=${page}&total=${this.total}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 }
             })
             .then(response => {
-                this.objects = response.data.result.objects;
+                this.objects = response.data.result.objects.data;
+                this.pageInfo = response.data.result.objects;
+                console.log(this.pageInfo);
             });
         },
         getFormattedDate(date) { // get only year from timestempt
