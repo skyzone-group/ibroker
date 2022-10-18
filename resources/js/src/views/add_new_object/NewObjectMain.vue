@@ -1072,7 +1072,7 @@ export default {
                 // alert("ok");
                 this.showSuccess();
                 // window.location.reload();
-                //window.location.href = '/account/summary';
+                window.location.href = '/account/user/list/objects';
             })
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);

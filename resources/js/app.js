@@ -43,8 +43,6 @@ import 'dropzone-vue/dist/dropzone-vue.common.css';
 import VueEasyLightbox from 'vue-easy-lightbox'
 // you need to import css yourself
 import 'vue-easy-lightbox/external-css/vue-easy-lightbox.css'
-import LaravelVuePagination from 'laravel-vue-pagination';
-
 
 
 const app = createApp(App)
@@ -57,7 +55,6 @@ app.use(VueScrollTo, {
     easing: "linear",
 })
 app.component(VueCountdown.name, VueCountdown);
-app.component('Pagination', LaravelVuePagination)
 app.directive('tooltip', Tooltip)
 app.use(VueHtmlToPaper, options)
 app.use(DropZone)

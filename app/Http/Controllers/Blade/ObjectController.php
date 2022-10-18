@@ -111,11 +111,12 @@ class ObjectController extends ResponseController
                 ]);
 
         $results = $query->orderBy('id', 'DESC')->paginate($request->total);
-
+        $total = $query->count();
         // $results = json_encode($results);
         // $results = json_decode($results);
         $data['count'] = 4;
         $data['objects'] = $results;
+        $data['total'] = $total;
 
         return self::successResponse($data);
     }

@@ -1,9 +1,9 @@
 <template>
-    <div class="objects_page">
-        <div v-if="objects.length == ''">
-            <h5>Empty</h5>
+    <div class="objects_page h-100">
+        <div v-if="isLoaded" class="loader-main-box">
+            <ProgressSpinner style="width:80px; height:80px" strokeWidth="3" fill="var(--surface-ground)" animationDuration="1s" />
         </div>
-        <div v-if="objects">
+        <div v-if="!isLoaded">
             <div class="objects_main"  v-for="object in objects" :key="object.id">
                 <div class="objects_main-box">
                     <div class="checkbox-box">
@@ -69,9 +69,8 @@
                     </div>
                 </div>
             </div>
-            <Pagination :data="objects" @pagination-change-page="getUserObjects" />
-            <Paginator v-if="pageInfo" :currentPage="pageInfo.current_page"  @page="getUserObjects" :rows="parseInt(pageInfo.per_page)" :totalRecords="pageInfo.total"></Paginator>
         </div>
+        <Paginator v-if="pageInfo" :CurrentPageReport="pageInfo.current_page"  @page="getUserObjects($event.page)" :rows="parseInt(pageInfo.per_page)" :totalRecords="pageInfo.total"></Paginator>
     </div>
 </template>
 
@@ -81,7 +80,7 @@ import ContactButton from '../../../components/UI/ContactButton.vue'
 import SmallButton from '../../../components/UI/SmallButton.vue'
 import Button from 'primevue/button';
 import Paginator from 'primevue/paginator';
-
+import ProgressSpinner from 'primevue/progressspinner';
 // Moment
 import moment from 'moment'
 export default {
@@ -90,7 +89,8 @@ export default {
         ContactButton,
         SmallButton,
         Button,
-        Paginator
+        Paginator,
+        ProgressSpinner
     },
     setup() {
         
@@ -100,16 +100,19 @@ export default {
             checked: false,
             objects: [],
             totalRecords: 120,
-            total: 1,
-            pageInfo: null
+            total: 2,
+            pageInfo: null,
+            totalObject: null,
+            isLoaded: false,
         }
     },
     methods: {
-        getUserObjects(page = 1){ // get user informations on database
+        getUserObjects(page){ // get user informations on database
             console.log(page);
             const token = localStorage.getItem('token');
             console.log(token);
-            axios.get(`/api/userObjects?page=${page}&total=${this.total}`, {
+            this.isLoaded = true ;
+            axios.get(`/api/userObjects?page=${page+=1}&total=${this.total}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 }
@@ -117,7 +120,8 @@ export default {
             .then(response => {
                 this.objects = response.data.result.objects.data;
                 this.pageInfo = response.data.result.objects;
-                console.log(this.pageInfo);
+                this.totalObject = response.data.result.total;
+                this.isLoaded = false;
             });
         },
         getFormattedDate(date) { // get only year from timestempt
