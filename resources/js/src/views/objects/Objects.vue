@@ -60,7 +60,7 @@
                                 <div class="item-bottom-right">
                                     <ul class="item-bottom-right-actions">
                                         <li class="item-bottom-right-actions-list">
-                                            <a href="#!" type="button" class="item-bottom-right-edit">Tahrirlash</a>
+                                            <a href="#!" type="button" class="item-bottom-right-edit">Изменить</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -70,7 +70,11 @@
                 </div>
             </div>
         </div>
-        <Paginator v-if="pageInfo" :CurrentPageReport="pageInfo.current_page"  @page="getUserObjects($event.page)" :rows="parseInt(pageInfo.per_page)" :totalRecords="pageInfo.total"></Paginator>
+        <Paginator v-if="pageInfo" :CurrentPageReport="pageInfo.current_page"  @page="getUserObjects($event.page)" :rows="parseInt(pageInfo.per_page)" :totalRecords="pageInfo.total">
+            <template #start>
+                <p style="font-weight: 600; color: rgb(0, 47, 52);">Jami e'lonlar: {{totalObject}}</p>
+            </template>
+        </Paginator>
     </div>
 </template>
 
