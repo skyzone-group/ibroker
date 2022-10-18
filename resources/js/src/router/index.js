@@ -29,8 +29,12 @@ import Zastroyshiki from '../views/partners/DeveloperList.vue'
 // Objects Pages
 import ObjectMain from '../views/objects/ObjectList.vue'
 import Objects from '../views/objects/Objects.vue'
+
 // New Object Pages
 import NewObjectMain from '../views/add_new_object/NewObjectMain.vue'
+//  Edit Object
+import EditObject from '../views/edit_object/EditObject.vue'
+
 // Object Single Page Details
 import ObjectSinglePage from '../views/ObjectSinglePage.vue'
 const routes = [
@@ -71,6 +75,16 @@ const routes = [
                 name: 'newObject',
                 components: {
                     main: NewObjectMain,
+                },
+                meta: {
+                    reload: true,
+                },
+            },
+            {
+                path: '/adding/object/edit/:id',
+                name: 'editObject',
+                components: {
+                    main: EditObject,
                 },
                 meta: {
                     reload: true,

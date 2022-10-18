@@ -120,4 +120,24 @@ class ObjectController extends ResponseController
 
         return self::successResponse($data);
     }
+    
+    public function editObject($object_id){
+        $user_id = auth('sanctum')->user()->id;
+
+        $query = Objects::query();
+        $query = $query->where(['user_id' => $user_id, 'id' => $object_id])
+                ->with([
+                    'images',
+                    'object_type',
+                    'region',
+                    'district',
+                    'quarter',
+                    'additional'
+                ]);
+                
+        $results = $query->get()->first();
+        // $results = json_encode($results);
+        $data['objects'] = $results;
+        return self::successResponse($data);
+    }
 }

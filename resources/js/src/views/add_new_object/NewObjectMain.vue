@@ -249,9 +249,6 @@
                                                 <div>
                                                     <upload-box @updateImagesBox="updateImagesBox"></upload-box>
                                                 </div>
-                                                <pre>
-                                                    {{this.form.images}}
-                                                </pre>
                                             </div>
                                         </div>
                                     </div>
@@ -1079,12 +1076,6 @@ export default {
                 alert(error);
                 console.log(error);
             });
-        },
-        onSuccess(message){
-            this.success = true;
-        },
-        onFailure(message){
-            this.error = true;
         },
         checkScreen() {
             this.windowWidth = window.innerWidth;

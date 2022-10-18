@@ -69,6 +69,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/user/update', [UserController::class, 'update']);
     Route::post('/user-phone/update', [UserController::class, 'changeNumber']);
     Route::get('/userObjects', [ObjectController::class, 'userObjects']);
+    Route::get('/object/edit/{object_id}', [ObjectController::class, 'editObject']);
 
 });
 
