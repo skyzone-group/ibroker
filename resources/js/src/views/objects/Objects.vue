@@ -38,6 +38,7 @@
                                         <div class="objects_main-row-content-info-first-box">
                                             <ul class="item-categories">
                                                 <li>{{ object.object_deals === 'buy' ? 'Продажа' : 'Аренда' }}</li>
+                                                <li v-if="object.rent_type != 0">{{ object.rent_type === 'daily' ? 'Посуточно' : 'Долгосрочный' }}</li>
                                                 <li>{{ object.object_type.name_ru }}</li>
                                                 <li v-if="object.object_type_id === 1">{{ object.object_time_type === 0 ? 'Вторичка' : 'Новостройка'}}</li>
                                             </ul>

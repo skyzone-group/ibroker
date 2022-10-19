@@ -42,7 +42,7 @@
                 </div>
             </template>
         </draggable>
-        <div v-if="mobileImgView" class="mobile-img-view form__img-stock --large img_warpper_boxx w-100">
+        <!-- <div v-if="mobileImgView" class="mobile-img-view form__img-stock --large img_warpper_boxx w-100">
             <div v-for="(item, index) in images" :key="index" class="mobile-img-view_item form__img-preview form__img-preview-back position-relative">
                 <div class="form__img-preview-overflow">
                     <img :src="item.img"  id="prev-img" class="form__img-src" width="100" height="100" :style="{transform: `rotate(${item.degree}deg) !important`}">
@@ -54,6 +54,26 @@
                     <i class="feather icon-x"></i>
                 </div>
                 <div class="rotate-icon"  @click="rotateImage(item)">
+                    <i class="feather icon-rotate-cw"></i>
+                </div>
+                <div class="backdrop-img"></div>
+            </div>
+        </div> -->
+        <pre>
+            {{imagesArray}}
+        </pre>
+        <div class="mobile-img-view form__img-stock --large img_warpper_boxx w-100">
+            <div v-for="item in imagesArray" :key="item.id" class="mobile-img-view_item form__img-preview form__img-preview-back position-relative">
+                <div class="form__img-preview-overflow">
+                    <img :src="`/file/${item.name}`"  id="prev-img" class="form__img-src" width="100" height="100">
+                </div>
+                <div class="rotate-icon top-left-icon">
+                    <i class="feather icon-star"></i>
+                </div>
+                <div class="rotate-icon top-icon">
+                    <i class="feather icon-x"></i>
+                </div>
+                <div class="rotate-icon">
                     <i class="feather icon-rotate-cw"></i>
                 </div>
                 <div class="backdrop-img"></div>
@@ -79,6 +99,11 @@ export default ({
     name: 'Upload',
     components: {
         draggable,
+    },
+    props: {
+        imagesArray: {
+            type: Array,
+        }
     },
     data() {
         return {
@@ -115,7 +140,6 @@ export default ({
                 console.log(`${file.name} is not an image`);
                 return;
             }
-            
             
             const img   = new Image(),
             reader      = new FileReader();
@@ -210,12 +234,17 @@ export default ({
         },
         handleHide() {
             this.visibleRef = false
-        }
+        },
     },
     created() {
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen()
     },
+    computed: {
+        accounts() {
+            return (this.images = this.imagesArray);
+        },
+    }
     // setup() {
     //     const visibleRef = ref(false)
     //     const indexRef = ref(0)
