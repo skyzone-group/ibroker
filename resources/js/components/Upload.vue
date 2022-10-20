@@ -42,6 +42,9 @@
                 </div>
             </template>
         </draggable>
+        <pre>
+            {{this.images}}
+        </pre>
         <div class="d-none">
             <input @change="onInputChange" multiple="multiple" type="file" name="images[]" id="media">
         </div>
@@ -110,7 +113,8 @@ export default ({
                 {
                     img: e.target.result,
                     img_id: this.imageCount,
-                    degree: 0
+                    degree: 0,
+                    deleted: 0,
                 }
             );
             console.log(this.imageCount);
@@ -197,6 +201,7 @@ export default ({
         handleHide() {
             this.visibleRef = false
         },
+        
     },
     created() {
         window.addEventListener('resize', this.checkScreen);
