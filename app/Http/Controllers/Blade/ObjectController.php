@@ -123,7 +123,6 @@ class ObjectController extends ResponseController
     
     public function editObject($object_id){
         $user_id = auth('sanctum')->user()->id;
-
         $query = Objects::query();
         $query = $query->where(['user_id' => $user_id, 'id' => $object_id])
                 ->with([

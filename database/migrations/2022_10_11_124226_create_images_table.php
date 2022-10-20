@@ -17,6 +17,8 @@ class CreateImagesTable extends Migration
             $table->id();
             $table->integer('object_id');
             $table->text('name')->nullable();
+            $table->integer('degree')->default(0);
+            $table->tinyInteger('deleted')->default(0);
             $table->timestamps();
         });
     }
