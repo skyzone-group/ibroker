@@ -568,7 +568,7 @@
                                                         <!-- Тип дома -->
 
                                                         <!-- Дополнительно -->
-                                                        <div id="additional_options" class="mt-5">
+                                                        <div v-if="additionalFields.length != ''"  id="additional_options" class="mt-5">
                                                             <h2 class="header_title_content_txt">Дополнительно</h2>
                                                             <div class="additional_options_main">
                                                                 <div class="row">
@@ -712,7 +712,7 @@
                                             <div class="header_title mb-0">
                                                 <div class="header_title_content d-flex flex-column">
                                                     <div class="protec-auth-box">
-                                                        <img src="images/icons/protection.png" class="protec-auth-box-img" alt="protection" width="40" height="40">
+                                                        <img src="/images/icons/protection.png" class="protec-auth-box-img" alt="protection" width="40" height="40">
                                                         <h4 class="header_title_content_txt mb-0">
                                                             Чтобы опубликовать объявление, пройдите идентификацию
                                                             <div class="required_inputs"></div>

@@ -574,7 +574,7 @@
                                                         <!-- Тип дома -->
 
                                                         <!-- Дополнительно -->
-                                                        <div id="additional_options" class="mt-5">
+                                                        <div v-if="additionalFields.length != ''" id="additional_options" class="mt-5">
                                                             <h2 class="header_title_content_txt">Дополнительно</h2>
                                                             <div class="additional_options_main">
                                                                 <div class="row">
@@ -1160,7 +1160,14 @@ export default {
         },
         showError() {
             this.$toast.add({severity:'error', summary: 'Error Message', detail:'Message Content', life: 3000});
-        }
+        },
+        addFruit() {
+            this.form.images.forEach((a) => {
+                a.push({
+                    deleted: 0
+                })
+            });
+        },
     },
     async created() {
         this.getValues();
