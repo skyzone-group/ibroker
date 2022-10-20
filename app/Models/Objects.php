@@ -54,7 +54,7 @@ class Objects extends Model
     
     public function images()
     {
-        return $this->hasMany(ImagesTable::class,'object_id','id');
+        return $this->hasMany(ImagesTable::class,'object_id','id')->where('deleted','=', 0);
     }
 
     public function region()

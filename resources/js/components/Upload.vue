@@ -16,14 +16,14 @@
             item-key="index"
             class="form__img-stock --large vuedraggable vuedraggable__item img_warpper_box w-100">
             <template #item="{element, index}">
-                <div class="form__img-preview form__img-preview-back position-relative">
+                <div v-if="element.deleted == 0" class="form__img-preview form__img-preview-back position-relative">
                     <div class="form__img-preview-overflow">
                         <img :src="element.img ? element.img : `/file/${element.name}`"  id="prev-img" class="form__img-src" width="100" height="100" :style="{transform: `rotate(${element.degree}deg) !important`}">
                     </div>
                     <div class="rotate-icon top-left-icon" :class="{'active' : mainImage == true}" @click="moveUp(index)">
                         <i class="feather icon-star"></i>
                     </div>
-                    <div class="rotate-icon top-icon" @click="removeImage(index)">
+                    <div class="rotate-icon top-icon" @click="element.deleted = 1">
                         <i class="feather icon-x"></i>
                     </div>
                     <div class="rotate-icon"  @click="rotateImage(element)">
@@ -51,7 +51,7 @@
         <!-- <div v-for="(src, index) in imgs" :key="index" class="pic" @click="() => showImg(index)">
             <img :src="src" />
         </div> -->
-        <vue-easy-lightbox v-if="images" :visible="visibleRef" :images="images" :index="index" @hide="handleHide"></vue-easy-lightbox>
+        <!-- <vue-easy-lightbox v-if="images" :visible="visibleRef" :images="images" :index="index" @hide="handleHide"></vue-easy-lightbox> -->
     </div>
 </template>
 
@@ -141,7 +141,7 @@ export default ({
             });
         },
         removeImage(i){
-            this.images.splice(i, 1);
+            i.deleted = 1;
             this.updateImagesBox();
             if(!this.images.length){
                 this.$refs.im.value = '';
