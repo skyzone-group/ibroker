@@ -133,7 +133,10 @@ class ObjectController extends ResponseController
                     'district',
                     'quarter',
                     'additional'
-                ]);
+                ])
+                ->with(['object_types_property_values' => function($query){
+                    $query->with('object_type_property');
+                }]);
                 
         $results = $query->get()->first();
         // $results = json_encode($results);

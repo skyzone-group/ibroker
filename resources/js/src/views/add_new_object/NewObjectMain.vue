@@ -247,7 +247,7 @@
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <upload-box @updateImagesBox="updateImagesBox"></upload-box>
+                                                    <upload-box @updateImagesBox="updateImagesBox" :images="form.images"></upload-box>
                                                 </div>
                                             </div>
                                         </div>
@@ -723,7 +723,7 @@
                                             </div>
                                             <div class="form-buttons w-100 d-flex align-items-center mt-3 justify-content-lg-end justify-content-md-end justify-content-center">
                                                 <button type="button" class="form-buttons_btn" data-toggle="modal" data-target="#animation" :class="{'button-disabled' : loggedIn === true}" :disabled="loggedIn === true">Пройти идентификацию</button>
-                                                <button type="submit" class="form-buttons_btn ml-3" :class="{'button-disabled' : loggedIn === false}" :disabled="loggedIn === false">Сохранить</button>
+                                                <button type="submit" class="form-buttons_btn ml-3" :class="{'button-disabled' : loggedIn === false}" :disabled="loggedIn === false">Опубликовать объявлению</button>
                                             </div>
                                             <div class="created-object">
                                                 <Toast />

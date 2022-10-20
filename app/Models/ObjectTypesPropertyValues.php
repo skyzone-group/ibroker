@@ -15,4 +15,9 @@ class ObjectTypesPropertyValues extends Model
         'object_types_property_id',
         'object_id',
     ];
+    
+    public function object_type_property()
+    {
+        return $this->hasOne(ObjectTypeProperty::class, 'id', 'object_types_property_id');
+    }
 }

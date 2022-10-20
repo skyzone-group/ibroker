@@ -61,7 +61,7 @@
                                 <div class="item-bottom-right">
                                     <ul class="item-bottom-right-actions">
                                         <li class="item-bottom-right-actions-list">
-                                            <a :href="`/adding/object/edit/${object.id}`" type="button" class="item-bottom-right-edit">Изменить</a>
+                                            <a :href="`/adding/object/edit/${object.id}`" type="button" class="item-bottom-right-edit">Редактировать</a>
                                         </li>
                                     </ul>
                                 </div>

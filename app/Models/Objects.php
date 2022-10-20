@@ -48,6 +48,10 @@ class Objects extends Model
         return $this->hasOne(ObjectType::class, 'id', 'object_type_id');
     }
 
+    public function object_types_property_values(){
+        return $this->hasOne(ObjectTypesPropertyValues::class, 'object_id', 'id');
+    }
+    
     public function images()
     {
         return $this->hasMany(ImagesTable::class,'object_id','id');
