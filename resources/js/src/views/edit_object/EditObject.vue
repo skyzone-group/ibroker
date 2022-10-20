@@ -252,9 +252,6 @@
                                                 <div>
                                                     <upload-box @updateImagesBox="updateImagesBox" :images="form.images"></upload-box>
                                                 </div>
-                                                <pre>
-                                                    {{form.images}}
-                                                </pre>
                                             </div>
                                         </div>
                                     </div>
