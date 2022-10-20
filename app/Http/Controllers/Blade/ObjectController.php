@@ -52,7 +52,7 @@ class ObjectController extends ResponseController
         $images = $request->get('images');
         
         for($i = 0; $i < sizeof($images); $i++){
-            if($images[$i]['deleted'] != 0){
+            if($images[$i]['deleted'] == 0){
                 $fileName = uploadBase64Image($images[$i]['img']);
                 $imagesData[] = [
                     'object_id'                => $objectId ?? 0,
