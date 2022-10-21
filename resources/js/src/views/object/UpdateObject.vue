@@ -1064,9 +1064,9 @@ export default {
         updateImagesBox(data){
             this.form.images = data;
         },
-        getValues(){
+        async getValues(){
             const token = localStorage.getItem('token');
-            axios.get('/api/object/edit/' + this.$route.params.id, {
+            await axios.get('/api/object/edit/' + this.$route.params.id, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 }
@@ -1153,7 +1153,7 @@ export default {
         }
     },
     async created() {
-        this.getValues();
+        await this.getValues();
         this.getRegions();
         this.getObjectTypes();
         this.getObjectTypesProperty();
