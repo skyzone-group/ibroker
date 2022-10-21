@@ -31,9 +31,9 @@ import ObjectMain from '../views/objects/ObjectList.vue'
 import Objects from '../views/objects/Objects.vue'
 
 // New Object Pages
-import NewObjectMain from '../views/add_new_object/NewObjectMain.vue'
+import NewObjectMain from '../views/object/AddObject.vue'
 //  Edit Object
-import EditObject from '../views/edit_object/EditObject.vue'
+import EditObject from '../views/object/UpdateObject.vue'
 
 // Object Single Page Details
 import ObjectSinglePage from '../views/ObjectSinglePage.vue'
