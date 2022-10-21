@@ -16,6 +16,7 @@ class CreateObjectsTable extends Migration
         Schema::create('objects', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->integer('user_type');
             $table->integer('object_type_id');// int(11) NOT NULL,
             $table->string('object_deals');// varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
             $table->integer('access_type')->nullable();// int(11) DEFAULT NULL,
