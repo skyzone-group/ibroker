@@ -34,13 +34,13 @@
                                                                 <span class="ad_type_item_content_span">Тип аккаунта</span>
                                                                 <div class="single_button_select">
                                                                     <div class="single_button_select_box d-flex">
-                                                                        <label for="type__account_owner" class="single_button_select_box_label" :class="{'active' : this.form.account_type == 'owner'}">
-                                                                            <input v-model="form.account_type" id="type__account_owner" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="owner">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.account_type == 'owner'}">Собственник</span>
+                                                                        <label for="type__account_owner" class="single_button_select_box_label" :class="{'active' : this.form.user_type == '0'}">
+                                                                            <input v-model="form.user_type" id="type__account_0" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="0">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.user_type == '0'}">Собственник</span>
                                                                         </label>
-                                                                        <label for="type__account_agent" class="single_button_select_box_label" :class="{'active' : this.form.account_type == 'agent'}">
-                                                                            <input v-model="form.account_type" id="type__account_agent" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="agent">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.account_type == 'agent'}">Агент</span>
+                                                                        <label for="type__account_agent" class="single_button_select_box_label" :class="{'active' : this.form.user_type == '1'}">
+                                                                            <input v-model="form.user_type" id="type__account_1" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="1">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.user_type == '1'}">Агент</span>
                                                                         </label>
                                                                     </div>
                                                                 </div>
@@ -152,7 +152,7 @@
                                                                             <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
                                                                                 <div class="adddtional_main_block">
                                                                                     <div class="field-checkbox d-flex align-items-center">
-                                                                                        <Checkbox :id="`add_option_${item.id}`" name="options[]" :value="item.id" v-model="form.object_types_property_id"   @change="$v.form.object_types_property_id.$touch()" :class="{'p-invalid': v$.form.object_types_property_id.$invalid && submitted}" />
+                                                                                        <Checkbox :id="`add_option_${item.id}`" name="options[]" :value="item.id" v-model="form.object_types_property_id"   @change="$v.form.object_types_property_id.$touch()" :class="{'p-invalid': v$.form.object_types_property_id.$invalid && submitted}" :checked="true" />
                                                                                         <label :for="`add_option_${item.id}`">{{item.name_ru}}</label>
                                                                                     </div>
                                                                                 </div>
@@ -570,7 +570,7 @@
                                                         <!-- Тип дома -->
 
                                                         <!-- Дополнительно -->
-                                                        <div v-if="additionalFields.length != ''" id="additional_options" class="mt-5">
+                                                        <div id="additional_options" class="mt-5">
                                                             <h2 class="header_title_content_txt">Дополнительно</h2>
                                                             <div class="additional_options_main">
                                                                 <div class="row">
@@ -882,7 +882,7 @@ export default {
     data() {
         return {
             form: {
-                account_type: '',
+                user_type: '',
                 object_deals: '',
                 rent_type: '',
                 object_type_id : null,
@@ -923,7 +923,6 @@ export default {
             objectProperty: [],
             additionalFields: [],
             image: null,
-            imageprevi: null,
             // loggedIn: false,
             errorURL: false,
             success: false,
@@ -933,6 +932,10 @@ export default {
             thumbnailpreview: "",
             isLoaded: false,
             messages: [],
+            checked_object_types_property: [],
+            checked_additional_values: [],
+            checked_property: [],
+            checked_additional: []
         }
     },
     validations() {
@@ -1058,32 +1061,6 @@ export default {
             this.MobileTypeEstate = false;
             return;
         },
-        uploadPhoto(e){
-            console.log('ok');
-            this.image = e.target.files[0];
-            let reader = new FileReader();
-            reader.readAsDataURL(this.image);
-            reader.onload = e => {
-                this.imageprevi = e.target.result;
-            };
-            this.profileUpload();
-        },
-        profileUpload(){  // insert new file or image by this code
-            let formm = new FormData();
-            formm.append('image', this.image);
-            console.log(formm);
-            axios.post('/api/upload_image', formm, {
-                headers: {
-                'Content-Type': 'multipart/form-data'
-                }
-            })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log("889");
-            });
-        },
         updateImagesBox(data){
             this.form.images = data;
         },
@@ -1096,6 +1073,11 @@ export default {
             })
             .then(response => {
                 this.form = response.data.result.objects;
+                this.checked_object_types_property = response.data.result.objects.object_types_property_values;
+                this.checked_additional_values = response.data.result.objects.additional;
+                this.checkedObjectTypesProperty();
+                this.checkedAdditionalValues();
+                // console.log(this.checked_object_types_property);
             });
         },
         getRegions(){
@@ -1157,30 +1139,29 @@ export default {
         showError() {
             this.$toast.add({severity:'error', summary: 'Error Message', detail:'Message Content', life: 3000});
         },
-        addFruit() {
-            this.form.images.forEach((a) => {
-                a.push({
-                    deleted: 0
-                })
+        checkedObjectTypesProperty(){
+            this.checked_object_types_property.forEach((property_id) => {
+                this.checked_property.push(property_id.object_types_property_id);
             });
+            this.form.object_types_property_id = this.checked_property;
         },
+        checkedAdditionalValues(){
+            this.checked_additional_values.forEach((additional_id) => {
+                this.checked_additional.push(additional_id.additional_id);
+            });
+            this.form.additional_field_id = this.checked_additional;
+        }
     },
     async created() {
         this.getValues();
         this.getRegions();
         this.getObjectTypes();
         this.getObjectTypesProperty();
+        this.getAdditionalFields();
         
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen();
     },
-    mounted() {
-        // document.onreadystatechange = () => {
-        //     if(document.readyState == "complete"){
-        //         this.isLoaded = true;
-        //     }
-        // }
-    }
 }
 </script>
 

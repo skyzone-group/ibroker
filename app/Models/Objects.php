@@ -18,6 +18,7 @@ class Objects extends Model
     
     protected $fillable = [
         'user_id',
+        'user_type',
         'object_type_id',
         'object_deals',
         'rent_type',
@@ -49,7 +50,7 @@ class Objects extends Model
     }
 
     public function object_types_property_values(){
-        return $this->hasOne(ObjectTypesPropertyValues::class, 'object_id', 'id');
+        return $this->hasMany(ObjectTypesPropertyValues::class, 'object_id', 'id');
     }
     
     public function images()
@@ -74,6 +75,6 @@ class Objects extends Model
 
     public function additional()
     {
-        return $this->hasMany(AdditionalFieldValues::class,'additional_id','id');
+        return $this->hasMany(AdditionalFieldValues::class,'object_id','id');
     }
 }

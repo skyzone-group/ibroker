@@ -31,13 +31,13 @@
                                                                 <span class="ad_type_item_content_span">Тип аккаунта</span>
                                                                 <div class="single_button_select">
                                                                     <div class="single_button_select_box d-flex">
-                                                                        <label for="type__account_owner" class="single_button_select_box_label" :class="{'active' : this.form.account_type == 'owner'}">
-                                                                            <input v-model="form.account_type" id="type__account_owner" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="owner">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.account_type == 'owner'}">Собственник</span>
+                                                                        <label for="type__account_owner" class="single_button_select_box_label" :class="{'active' : this.form.user_type == '0'}">
+                                                                            <input v-model="form.user_type" id="type__account_owner" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="0">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.user_type == '0'}">Собственник</span>
                                                                         </label>
-                                                                        <label for="type__account_agent" class="single_button_select_box_label" :class="{'active' : this.form.account_type == 'agent'}">
-                                                                            <input v-model="form.account_type" id="type__account_agent" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="agent">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.account_type == 'agent'}">Агент</span>
+                                                                        <label for="type__account_agent" class="single_button_select_box_label" :class="{'active' : this.form.user_type == '1'}">
+                                                                            <input v-model="form.user_type" id="type__account_agent" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="1">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.user_type == '1'}">Агент</span>
                                                                         </label>
                                                                     </div>
                                                                 </div>
@@ -880,7 +880,7 @@ export default {
     data() {
         return {
             form: {
-                account_type: '',
+                user_type: '',
                 object_deals: '',
                 rent_type: '',
                 object_type_id : null,

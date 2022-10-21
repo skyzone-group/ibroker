@@ -20,6 +20,7 @@ class ObjectController extends ResponseController
         $user_id = auth('sanctum')->user()->id;
         $data = Objects::create([
             'user_id'              => $user_id,
+            'user_type'            => $request->get('user_type'),
             'object_type_id'       => $request->get('object_type_id'),
             'object_deals'         => $request->get('object_deals'),
             'object_time_type'     => $request->get('object_time_type') ?? 0,
@@ -130,14 +131,12 @@ class ObjectController extends ResponseController
                 ->with([
                     'images',
                     'object_type',
+                    'object_types_property_values',
                     'region',
                     'district',
                     'quarter',
                     'additional'
-                ])
-                ->with(['object_types_property_values' => function($query){
-                    $query->with('object_type_property');
-                }]);
+                ]);
                 
         $results = $query->get()->first();
         // $results = json_encode($results);
