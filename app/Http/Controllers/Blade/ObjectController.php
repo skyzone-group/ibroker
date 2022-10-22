@@ -145,6 +145,6 @@ class ObjectController extends ResponseController
     }
 
     public function update(Request $request, $id){
-
+        return $request->all();
     }
 }

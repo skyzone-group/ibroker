@@ -1033,8 +1033,8 @@ export default {
             }
             const token = localStorage.getItem('token');
             console.log(token);
-            
-            axios.post('/api/object/create',  this.form, {
+            const object_id = this.$route.params.id;
+            axios.post('/api/object/update/' + object_id, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 }
@@ -1044,7 +1044,7 @@ export default {
                 // alert("ok");
                 this.showSuccess();
                 // window.location.reload();
-                window.location.href = '/account/user/list/objects';
+                // window.location.href = '/account/user/list/objects';
             })
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);
