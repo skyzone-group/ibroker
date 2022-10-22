@@ -145,6 +145,73 @@ class ObjectController extends ResponseController
     }
 
     public function update(Request $request, $id){
+        $user_id = auth('sanctum')->user()->id;
+        $query = Objects::query();
+        $query = $query->find($id);
+        $objectId = $query->id;
+        
+        $query->user_id               = $user_id;
+        $query->user_type             = $request->get('user_type');
+        $query->object_type_id        = $request->get('object_type_id');
+        $query->object_deals          = $request->get('object_deals');
+        $query->object_time_type      = $request->get('object_time_type') ?? 0;
+        $query->rent_type             = $request->get('rent_type') ?? 0;
+        $query->room_count            = $request->get('room_count') ?? 0;
+        $query->floor                 = $request->get('floor') ?? 0;
+        $query->floor_count           = $request->get('floor_count') ?? 0;
+        $query->total_area            = $request->get('total_area') ?? 0;
+        $query->land_area             = $request->get('land_area') ?? 0;
+        $query->done_area             = $request->get('done_area') ?? 0;
+        $query->living_area           = $request->get('living_area') ?? 0;
+        $query->build_year            = $request->get('build_year') ?? 0;
+        $query->object_condition      = $request->get('object_condition') ?? 0;
+        $query->object_material_type  = $request->get('object_material_type') ?? 0;
+        $query->comment               = $request->get('comment');
+        $query->price                 = $request->get('price');
+        $query->negotiable            = $request->get('negotiable') ?? 0;
+        $query->region_id             = $request->get('region_id');
+        $query->district_id           = $request->get('district_id');
+        $query->quarter_id            = $request->get('quarter_id');
+        $query->youtube_url           = $request->get('youtube_url') ?? 0;
+        $query->save();
+        
+        
+        // Additional Field Property Values
+        $additionalValues = AdditionalFieldValues::where('object_id', '=', $id);
+        $additionalValues->delete();
+        $addtionalItems = 0;
+        if(isset($request->additional_field_id)) $addtionalItems = sizeof($request->additional_field_id);
+        $data = [];
+        for($i = 0; $i < $addtionalItems; $i ++)
+        {
+            $data[] = [
+                'additional_id'            => $request->additional_field_id[$i] ?? 0,
+                'object_id'                => $objectId ?? 0,
+                'created_at'               => now(),
+                'updated_at'               => now(),
+            ];
+        }
+        
+        if(isset($request->additional_field_id)) AdditionalFieldValues::insert($data);
+        
+        // Object Types Property Values
+        $objectTypePropertyValues = ObjectTypesPropertyValues::where('object_id', '=', $id);
+        $objectTypePropertyValues->delete();
+        $objectPropertyValues = 0;
+        if(isset($request->object_types_property_id)) $objectPropertyValues = sizeof($request->object_types_property_id);
+        $values = [];
+        for($i = 0; $i < $objectPropertyValues; $i ++)
+        {
+            $values[] = [
+                'object_types_property_id' => $request->object_types_property_id[$i] ?? 0,
+                'object_id'                => $objectId ?? 0,
+                'created_at'               => now(),
+                'updated_at'               => now(),
+            ];
+        }
+        
+        if(isset($request->object_types_property_id)) ObjectTypesPropertyValues::insert($values);
+        
         return $request->all();
     }
 }

@@ -35,11 +35,11 @@
                                                                 <div class="single_button_select">
                                                                     <div class="single_button_select_box d-flex">
                                                                         <label for="type__account_owner" class="single_button_select_box_label" :class="{'active' : this.form.user_type == '0'}">
-                                                                            <input v-model="form.user_type" id="type__account_0" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="0">
+                                                                            <input v-model="form.user_type" id="type__account_owner" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="0">
                                                                             <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.user_type == '0'}">Собственник</span>
                                                                         </label>
                                                                         <label for="type__account_agent" class="single_button_select_box_label" :class="{'active' : this.form.user_type == '1'}">
-                                                                            <input v-model="form.user_type" id="type__account_1" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="1">
+                                                                            <input v-model="form.user_type" id="type__account_agent" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="1">
                                                                             <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.user_type == '1'}">Агент</span>
                                                                         </label>
                                                                     </div>
@@ -1044,7 +1044,7 @@ export default {
                 // alert("ok");
                 this.showSuccess();
                 // window.location.reload();
-                // window.location.href = '/account/user/list/objects';
+                window.location.href = '/account/user/list/objects';
             })
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);
