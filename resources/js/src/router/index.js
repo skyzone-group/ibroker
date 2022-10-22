@@ -33,6 +33,8 @@ import ObjectMain from '../views/account/UserObjects.vue'
 import NewObjectMain from '../views/object/AddObject.vue'
 //  Edit Object
 import EditObject from '../views/object/UpdateObject.vue'
+//  Show Object
+import ShowObject from '../views/object/ShowObject.vue'
 
 // Object Single Page Details
 import ObjectSinglePage from '../views/ObjectSinglePage.vue'
@@ -84,6 +86,16 @@ const routes = [
                 name: 'editObject',
                 components: {
                     main: EditObject,
+                },
+                meta: {
+                    reload: true,
+                },
+            },
+            {
+                path: '/show/object/:type_deal/:type/:id',
+                name: 'showObject',
+                components: {
+                    main: ShowObject,
                 },
                 meta: {
                     reload: true,

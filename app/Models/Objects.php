@@ -53,6 +53,10 @@ class Objects extends Model
         return $this->hasMany(ObjectTypesPropertyValues::class, 'object_id', 'id');
     }
     
+    public function user(){
+        return $this->hasMany(User::class, 'id', 'user_id');
+    }
+    
     public function images()
     {
         return $this->hasMany(ImagesTable::class,'object_id','id')->where('deleted','=', 0);

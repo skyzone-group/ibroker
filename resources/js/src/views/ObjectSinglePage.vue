@@ -570,7 +570,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .object_single_page_main_box{
     display: flex;
     margin: 0 auto;

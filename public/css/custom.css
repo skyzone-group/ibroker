@@ -2398,6 +2398,24 @@ textarea.md-form__control {
     justify-content: center;
     align-items: center;
 }
+.listing__photos{
+    position: absolute;
+    bottom: 0;
+    line-height: 1.5;
+    padding: 0.1875rem 0.625rem;
+    font-size: .75rem;
+    display: block;
+    left: 0;
+    font-weight: 700;
+    color: #fff;
+    background: rgba(0,0,0,.8);
+}
+
+.listing__photos .icon {
+    font-size: 1.0625rem;
+    margin-right: 0.125rem;
+    color: #fff;
+}
 /* ****************************** MEDIA ******************************************* */
 /************************************* Object Single Page styles *********************************** */
 @media (max-width: 1900px){

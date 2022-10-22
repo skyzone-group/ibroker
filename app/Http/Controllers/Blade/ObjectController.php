@@ -214,4 +214,30 @@ class ObjectController extends ResponseController
         
         return $request->all();
     }
+    
+    public function showObject($id){
+        $user_id = auth('sanctum')->user()->id;
+
+        $query = Objects::query();
+        $query = $query->where(['user_id' => $user_id, 'id' => $id])
+                ->with([
+                    'user',
+                    'images',
+                    'object_type',
+                    'region',
+                    'district',
+                    'quarter',
+                    'additional'
+                ])
+                ->with(['object_types_property_values' => function($query){
+                    $query->with('object_type_property');
+                }]);
+
+        $results = $query->orderBy('id', 'DESC')->get()->first();
+        // $results = json_encode($results);
+        // $results = json_decode($results);
+        $data['object'] = $results;
+
+        return self::successResponse($data);
+    }
 }

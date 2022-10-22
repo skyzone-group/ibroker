@@ -99,7 +99,11 @@
                                 <div class="item-header d-flex">
                                     <div class="objects_main-row_img">
                                         <a href="#!" target="_blank" class="objects_main-row_img-link">
-                                            <img :src="`/file/${object.images[0].name}`" alt="">
+                                            <span title="Количество фотографий" class="listing__photos">
+                                                <i class="feather icon-camera icon"></i>
+                                                {{object.images.length}}
+                                            </span>
+                                            <img :src="`/file/${object.images[0].name}`" :alt="object.images[0].name">
                                         </a>
                                     </div>
                                     <div class="objects_main-row-content">
@@ -141,6 +145,9 @@
                                     </div>
                                     <div class="item-bottom-right">
                                         <ul class="item-bottom-right-actions">
+                                            <li class="item-bottom-right-actions-list mr-2">
+                                                <a :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" type="button" class="item-bottom-right-edit">Просмотреть</a>
+                                            </li>
                                             <li class="item-bottom-right-actions-list">
                                                 <a :href="`/adding/object/edit/${object.id}`" type="button" class="item-bottom-right-edit">Редактировать</a>
                                             </li>
@@ -189,7 +196,8 @@ export default {
             totalObject: null,
             isLoaded: false,
             select_all: false,
-            selected: []
+            selected: [],
+            imageCount: false,
         }
     },
     methods: {
@@ -544,15 +552,16 @@ export default {
     font-size: 14px;
     line-height: 20px;
     background-color: transparent;
-    border: 2px solid rgb(0, 47, 52);
+    border: 2px solid var(--primary_100);
     border-radius: 4px;
-    color: rgb(0, 47, 52);
+    color: #000;
     padding: 6px 22px;
+    transition: .5s easy;
 }
 
 .item-bottom-right-edit:not(:disabled):hover {
-    border-width: 5px;
-    padding: 3px 19px;
+    background: var(--primary_100);
+    color: #fff;
 }
 /* ********************************************** */
 /* ********************************************************** */
