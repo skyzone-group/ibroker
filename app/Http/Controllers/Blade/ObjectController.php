@@ -143,4 +143,8 @@ class ObjectController extends ResponseController
         $data['objects'] = $results;
         return self::successResponse($data);
     }
+
+    public function update(Request $request, $id){
+
+    }
 }

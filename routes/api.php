@@ -70,7 +70,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/user-phone/update', [UserController::class, 'changeNumber']);
     Route::get('/userObjects', [ObjectController::class, 'userObjects']);
     Route::get('/object/edit/{object_id}', [ObjectController::class, 'editObject']);
-
+    Route::post('/object/update/{object_id}', [ObjectController::class, 'updateObject']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
