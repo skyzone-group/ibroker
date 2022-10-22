@@ -1034,7 +1034,7 @@ export default {
             const token = localStorage.getItem('token');
             console.log(token);
             const object_id = this.$route.params.id;
-            axios.post('/api/object/update/' + object_id, {
+            axios.post('/api/object/update/' + object_id,  this.form, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 }
@@ -1049,6 +1049,7 @@ export default {
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);
                 alert(error);
+                console.log(token);
                 console.log(error);
             });
         },
