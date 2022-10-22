@@ -2391,6 +2391,13 @@ textarea.md-form__control {
     line-height: 28px !important;
     text-align: left !important;
 }
+
+.empty_box{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* ****************************** MEDIA ******************************************* */
 /************************************* Object Single Page styles *********************************** */
 @media (max-width: 1900px){

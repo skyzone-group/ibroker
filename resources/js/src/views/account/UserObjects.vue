@@ -36,7 +36,7 @@
                                         <!-- <label for="binary">{{checked}}</label> -->
                                     </div>
                                 </div>
-                                <span class="mr-2 d-lg-block d-md-block d-sm-block d-none">1 объявление</span>
+                                <span class="mr-2 d-lg-block d-md-block d-sm-block d-none">{{totalObject}} объявление</span>
                                 <div class="dropdown-avatar">
                                     <a class=" nav-link dropdown-user-link avatar_drop align-items-center d-flex" href="#" data-toggle="dropdown">
                                         <svg class="object_fil mr-2" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.207 1.293 4.5.586l-.707.707-3.5 3.5 1.414 1.414L3.5 4.414V15h2V4.414l1.793 1.793 1.414-1.414-3.5-3.5Zm7 13.414-.707.707-.707-.707-3.5-3.5 1.414-1.414 1.793 1.793V1h2v10.586l1.793-1.793 1.414 1.414-3.5 3.5Z" fill="currentColor"></path></svg>
@@ -76,6 +76,13 @@
         <div class="objects_page h-100">
             <div v-if="isLoaded" class="loader-main-box">
                 <ProgressSpinner style="width:80px; height:80px" strokeWidth="3" fill="var(--surface-ground)" animationDuration="1s" />
+            </div>
+            <div v-else-if="objects.length === 0">
+                <div class="empty_box">
+                    <figure>
+                        <img src="/images/icons/empty.png" alt="">
+                    </figure>
+                </div>
             </div>
             <div v-if="!isLoaded">
                 <div class="objects_main"  v-for="object in objects" :key="object.id">
