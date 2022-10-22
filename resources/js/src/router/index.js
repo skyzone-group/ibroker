@@ -27,8 +27,7 @@ import Realtors from '../views/partners/RealtorsList.vue'
 import Zastroyshiki from '../views/partners/DeveloperList.vue'
 
 // Objects Pages
-import ObjectMain from '../views/objects/ObjectList.vue'
-import Objects from '../views/objects/Objects.vue'
+import ObjectMain from '../views/account/UserObjects.vue'
 
 // New Object Pages
 import NewObjectMain from '../views/object/AddObject.vue'
@@ -171,35 +170,11 @@ const routes = [
                 }
             },
             {
-                path: 'user/list/',
-                name: 'userannouncement',
-                //redirect: 'user/list/objects',
+                path: 'user/list/objects',
+                name: 'objects',
                 components: {
                     content: ObjectMain,
                 },
-                children: [
-                    {
-                        path: 'objects',
-                        name: 'objects',
-                        components: {
-                            objects: Objects,
-                        },
-                    },
-                    {
-                        path: 'objects/sales',
-                        name: 'sales',
-                        components: {
-                            objects: MainView,
-                        },
-                    },
-                    {
-                        path: 'objects/rent',
-                        name: 'rent',
-                        components: {
-                            objects: MainView,
-                        },
-                    },
-                ]
             },
             {
                 path: 'my-complaints',
