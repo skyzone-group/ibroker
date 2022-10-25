@@ -205,7 +205,7 @@ class ObjectController extends ResponseController
                 }
             }
         }
-        
+        if(sizeof($imagesData)) ImagesTable::insert($imagesData);
         #end of uploading image
         
         // Additional Field Property Values
