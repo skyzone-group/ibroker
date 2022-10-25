@@ -145,6 +145,9 @@ class ObjectController extends ResponseController
     }
 
     public function update(Request $request, $id){
+
+       
+
         $user_id = auth('sanctum')->user()->id;
         $query = Objects::query();
         $query = $query->find($id);
@@ -175,6 +178,35 @@ class ObjectController extends ResponseController
         $query->youtube_url           = $request->get('youtube_url') ?? 0;
         $query->save();
         
+        #Uploading image to server
+        $imagesData = [];
+        $images = $request->get('images');
+        
+        for($i = 0; $i < sizeof($images); $i++){
+            if($images[$i]['deleted'] == 0){
+                if(!isset($images[$i]['object_id']))
+                {
+                    $fileName = uploadBase64Image($images[$i]['img']);
+                    $imagesData[] = [
+                        'object_id'                => $objectId ?? 0,
+                        'name'                     => $fileName,
+                        'created_at'               => now(),
+                        'updated_at'               => now(),
+                    ];
+                }
+            }
+            else 
+            {
+                ImagesTable::where('name', '=', $images[$i]['name'])
+                ->update(['deleted' => 1]);
+                if(isset($images[$i]['object_id']))
+                {
+                    deleteUploadedImage($images[$i]['name']);
+                }
+            }
+        }
+        if(sizeof($imagesData)) ImagesTable::insert($imagesData);
+        #end of uploading image
         
         // Additional Field Property Values
         $additionalValues = AdditionalFieldValues::where('object_id', '=', $id);
