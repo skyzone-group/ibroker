@@ -352,6 +352,7 @@ export default {
             })
             .then(response => {
                 this.user = response.data.result;
+                this.$emit('name',  this.user);
                 this.isLoaded = false ;
             });
         },

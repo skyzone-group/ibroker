@@ -41,12 +41,13 @@ export default {
     data() {
         return {
             loggedIn: false,
+            user: []
         }
     },
     methods: {
         authStatus(status){
             this.loggedIn = status;
-        }
+        },
     },
     mounted() {
         this.loggedIn = localStorage.getItem('token') ? true : false;
