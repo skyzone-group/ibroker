@@ -13,7 +13,12 @@
 
     function public_file_path():string
     {
-        return public_path()."/files/";
+        return public_path()."/file/";
+    }
+    
+    function absolute_file_path($image):string
+    {
+        return public_path().'/file/'.$image;
     }
 
     function uploadBase64Image($imageBase64)
@@ -36,4 +41,12 @@
         return false;
     }
 
+    function deleteUploadedImage($image)
+    {
+        if(file_exists("file/".$image)) return unlink(public_path().'/file/'.$image);
+        else return false;
+    }
+
+
+   
 ?>
