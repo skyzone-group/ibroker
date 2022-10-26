@@ -6,31 +6,13 @@
                     <div class="product-page__content">
                         <div class="product-page__content_top_buttons product-page_btn_style">
                             <div class="product-page__content_top_buttons_item ml-0">
-                                <a href="#!" role="button" class="object_single_page_btn_style">
-                                    <span class="button-root__icon-8-1-3 button-root__icon--left-8-1-3"><div class="icon-4-0-1"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M10.56 3.27a1 1 0 00-1.41-1.42l-5.3 5.3a1 1 0 000 1.41l5.3 5.3a1 1 0 001.41-1.42L6.33 8.2a.5.5 0 010-.71l4.23-4.23z"></path></svg></div></span><span class="button-root__text-8-1-3">В поиск</span>
-                                </a>
+                                <router-link tag="a" :to="{ name: 'objects'}" class="object_single_page_btn_style">
+                                    <span class="button-root__icon-8-1-3 button-root__icon--left-8-1-3"><div class="icon-4-0-1"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M10.56 3.27a1 1 0 00-1.41-1.42l-5.3 5.3a1 1 0 000 1.41l5.3 5.3a1 1 0 001.41-1.42L6.33 8.2a.5.5 0 010-.71l4.23-4.23z"></path></svg></div></span><span class="button-root__text-8-1-3">Мои объявления</span>
+                                </router-link>
                             </div>
                             <div class="product-page__content_top_buttons_item d-flex">
                                 <div class="product-page__content_top_buttons_item_btn">
                                     <div class="position-relative">
-                                        <button @click="savedFavorites = !savedFavorites" type="button" id="favorites-add" class="object_single_page_btn_style">
-                                            <span class="button-root__icon-8-1-3 button-root__icon--left-8-1-3">
-                                                <span class="">
-                                                    <div class="icon-4-0-1" :class="iconSaved">
-                                                        <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path clip-rule="evenodd" d="M1 7C.5 3.5 2.7 2 4.8 2 6.82 2 8 4 8 4s1.17-2 3.2-2c2.1 0 4.3 1.5 3.8 5s-5.83 7-7 7-6.5-3.5-7-7z"></path></svg>
-                                                    </div>
-                                                </span>
-                                            </span>
-                                            <span class="button-root__text-8-1-3">Сохранить</span>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="product-page__content_top_buttons_item_btn">
-                                    <div class="position-relative">
-                                        <button type="button" id="favorites-add" class="object_single_page_btn_style dropdown-user-link" data-toggle="dropdown">
-                                            <span class="button-root__icon-8-1-3 button-root__icon--left-8-1-3"><div class="icon-4-0-1"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M10.54 2.09l4.1 4.13c.2.2.2.51 0 .7L10.52 11a.3.3 0 01-.51-.21V8.5a.3.3 0 00-.3-.3c-4.94.05-6.1 1.26-6.7 2.97a8.1 8.1 0 00-.3 2.61c0 .21-.26.27-.36.09-4.5-9.06 3.43-9.29 7.39-9.3a.3.3 0 00.3-.3V2.3c0-.27.32-.4.5-.21z"></path></svg></div></span>
-                                            <span class="button-root__text-8-1-3">Поделиться</span>
-                                        </button>
                                         <div class="dropdown-menu dropdown-menu-left">
                                             <div class="item">
                                                 <div class="hint-head-0-9-4">
@@ -103,10 +85,17 @@
                                         <div class="main_block__stretch">
                                             <div class="main_block__cardTitle">
                                                 <h1 v-if="object.object_type_id == 1 || object.object_type_id == 2 || object.object_type_id == 4" id="title" class="h1_style text-lowercase  mb-0">{{object.room_count}}-комн, {{object.object_type.name_ru}}, {{object.total_area}} м²</h1>
-                                                <h1 v-if="object.object_type_id == 3" id="title" class="h1_style mb-0">
-                                                    <span v-for="item in object.object_types_property_values" :key="item.id">{{item.object_type_property.name_ru}}, {{object.total_area}} м²</span>
+                                                <h1 v-if="object.object_type_id == 3" id="title" class="h1_style mb-0 d-inline-flex">
+                                                    <span v-for="item in object.object_types_property_values" :key="item.id">{{item.object_type_property.name_ru}},</span>{{object.total_area}} м²
                                                 </h1>
                                                 <h1 v-if="object.object_type_id == 5" id="title" class="h1_style mb-0">{{object.object_type.name_ru}}, {{object.land_area}} м²</h1>
+                                            </div>
+                                            <div class="main_block__subline">
+                                                <div class="nameless_style_1">
+                                                    <div class="nameless_style_1-1">
+                                                        <span>{{object.object_deals == 'buy' ? 'продажа' : 'Аренда'}} - {{object.rent_type == 'long-terim' ? 'Долгосрочный' : 'Посуточно'}}</span>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="main_block__subline">
                                                 <div class="nameless_style_1">
@@ -126,18 +115,15 @@
                                                     <div class="main_block__location_title">
                                                         <span class="mr-2">
                                                             <a href="#!" class="nameless_style_2">
-                                                                Москва
-                                                            </a>
-                                                            <a href="#!" class="nameless_style_2">
-                                                                Беловежская улица
-                                                            </a>
-                                                            <a href="#!" class="nameless_style_2">
-                                                                57
+                                                                <i class="feather icon-map-pin"></i>
+                                                                {{ object.quarter ? object.quarter.name_ru : "" }},
+                                                                {{ object.district ? object.district.name_ru : "" }},
+                                                                {{ object.region ? object.region.name_ru : "" }}
                                                             </a>
                                                         </span>
-                                                        <a href="#!" class="product-location__on-map-link" id="product-location__on-map-link">На карте</a>
+                                                        <!-- <a href="#!" class="product-location__on-map-link" id="product-location__on-map-link">На карте</a> -->
                                                     </div>
-                                                    <div class="transport-points">
+                                                    <!-- <div class="transport-points">
                                                         <div class="transport-points__point">
                                                             <span style="color: #242629;" class="d-flex align-items-center">
                                                                 <span class="mr-2">
@@ -148,7 +134,7 @@
                                                                 <span style="color: #93989d;">(17 мин.)</span>
                                                             </span>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -157,42 +143,88 @@
                                                 <div class="price">
                                                     <span>{{object.price}}$</span>
                                                 </div>
-                                                <div id="square-price" style="color: #737476;">
+                                                <!-- <div id="square-price" style="color: #737476;">
                                                     208 196 ₽/м²
                                                 </div>
-                                                <a href="#!" rel="noopener noreferrer" id="calculator-link" target="_blank" class="text-color">В ипотеку от 9,9%</a>
+                                                <a href="#!" rel="noopener noreferrer" id="calculator-link" target="_blank" class="text-color">В ипотеку от 9,9%</a> -->
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="main_block__gallery">
+                                    <div class="main_block__gallery mt-3">
                                         <div id="gallery-widget" class="dc-gallery__root--b20e7">
-                                            <galleria></galleria>
+                                            <galleria :images="object.images"></galleria>
                                         </div>
                                     </div>
                                     <div class="main_block__mainDetails">
-                                        <ul id="main-details-block" class="d-flex">
+                                        <ul id="main-details-block" class="d-flex" v-if="object.object_type_id == 1">
+                                            <li class="main_block__mainDetails_ul_li desktop">
+                                                <div title="10.5 м²" class="number_area">{{object.room_count}}</div>
+                                                <span style="color: #4b545b99;">Комнат</span>
+                                            </li>
                                             <li class="main_block__mainDetails_ul_li">
-                                                <div title="61 м²" class="number_area">61 м²</div>
-                                                <span style="color: #4b545b99;">Площадь</span>
-                                            </li>
-                                            <li class="main_block__mainDetails_ul_li desktop">
-                                                <div title="38 м²" class="number_area">38 м²</div>
-                                                <span style="color: #4b545b99;">Жилая</span>
-                                            </li>
-                                            <li class="main_block__mainDetails_ul_li desktop">
-                                                <div title="10.5 м²" class="number_area">10.5 м²</div>
-                                                <span style="color: #4b545b99;">Кухня</span>
+                                                <div title="61 м²" class="number_area">{{object.total_area}} м²</div>
+                                                <span style="color: #4b545b99;">Общая</span>
                                             </li>
                                             <li class="main_block__mainDetails_ul_li">
                                                 <div class="number_area d-flex align-items-center">
-                                                    4
-                                                    <span style="color: #4b545b99;" class="ml-1">из 14</span>
+                                                    {{object.floor}}
+                                                    <span style="color: #4b545b99;" class="ml-1">из {{object.floor_count}}</span>
                                                 </div>
                                                 <span style="color: #4b545b99;">Этаж</span>
                                             </li>
-                                            <li class="main_block__mainDetails_ul_li desktop">
-                                                <div class="number_area">2009</div>
+                                            <li v-if="object.build_year > 0" class="main_block__mainDetails_ul_li desktop">
+                                                <div class="number_area">{{object.build_year}}</div>
                                                 <span style="color: #4b545b99;">Год постройки</span>
+                                            </li>
+                                        </ul>
+                                        <ul id="main-details-block" class="d-flex" v-if="object.object_type_id == 2 || object.object_type_id == 4">
+                                            <li class="main_block__mainDetails_ul_li desktop">
+                                                <div title="10.5 м²" class="number_area">{{object.room_count}}</div>
+                                                <span style="color: #4b545b99;">Комнат</span>
+                                            </li>
+                                            <li class="main_block__mainDetails_ul_li">
+                                                <div title="61 м²" class="number_area">{{object.total_area}} м²</div>
+                                                <span style="color: #4b545b99;">Общая</span>
+                                            </li>
+                                            <li class="main_block__mainDetails_ul_li">
+                                                <div title="61 м²" class="number_area">{{object.floor_count}}</div>
+                                                <span style="color: #4b545b99;">Этажность</span>
+                                            </li>
+                                            <li class="main_block__mainDetails_ul_li">
+                                                <div title="61 м²" class="number_area">{{object.land_area}} м²</div>
+                                                <span style="color: #4b545b99;">Площадь участка</span>
+                                            </li>
+                                            <li v-if="object.build_year > 0" class="main_block__mainDetails_ul_li desktop">
+                                                <div class="number_area">{{object.build_year}}</div>
+                                                <span style="color: #4b545b99;">Год постройки</span>
+                                            </li>
+                                        </ul>
+                                        <ul id="main-details-block" class="d-flex" v-if="object.object_type_id == 3">
+                                            <li v-if="object.room_count > 0" class="main_block__mainDetails_ul_li desktop">
+                                                <div title="10.5 м²" class="number_area">{{object.room_count}}</div>
+                                                <span style="color: #4b545b99;">Комнат</span>
+                                            </li>
+                                            <li class="main_block__mainDetails_ul_li">
+                                                <div title="61 м²" class="number_area">{{object.total_area}} м²</div>
+                                                <span style="color: #4b545b99;">Общая</span>
+                                            </li>
+                                            <li v-if="object.floor_count > 0" class="main_block__mainDetails_ul_li">
+                                                <div title="61 м²" class="number_area">{{object.floor_count}}</div>
+                                                <span style="color: #4b545b99;">Этажность</span>
+                                            </li>
+                                            <li v-if="object.land_area > 0" class="main_block__mainDetails_ul_li">
+                                                <div title="61 м²" class="number_area">{{object.land_area}} м²</div>
+                                                <span style="color: #4b545b99;">Площадь участка</span>
+                                            </li>
+                                            <li v-if="object.build_year > 0" class="main_block__mainDetails_ul_li desktop">
+                                                <div class="number_area">{{object.build_year}}</div>
+                                                <span style="color: #4b545b99;">Год постройки</span>
+                                            </li>
+                                        </ul>
+                                        <ul id="main-details-block" class="d-flex" v-if="object.object_type_id == 5">
+                                            <li class="main_block__mainDetails_ul_li">
+                                                <div title="61 м²" class="number_area">{{object.land_area}} м²</div>
+                                                <span style="color: #4b545b99;">Площадь участка</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -214,7 +246,7 @@
                                     </div>
                                     <h2 class="product-page__title">Описание</h2>
                                     <div class="nameless_style_3" id="description">
-                                        Арт. 30753470 Внимание! 2-комнатная квартира 61 кв.м. по улице Беловежская 57 в Московском районе по привлекательной цене! Район с отлично развитой инфраструктурой: школы, детские сады, поликлиники, магазины. Здесь нет промышленных производств, зеленые дворы, пешая доступность общественного транспорта.Квартира на 4 этаже теплая, солнечная. Посмотрите на фото: удобный коридор, комнаты 20 кв.м и 18 кв.м, стандартной планировки кухня 10,5 кв.м. Эта недвижимость отличный вариант в развитом районе - его стоит посмотреть лично. Звоните! Центр недвижимости "Простор-недвижимость" гарантирует подготовку полного пакета документов и юридическое сопровождение сделки.Все сделки агентства застрахованы!
+                                        {{object.comment}}
                                     </div>
                                     <div class="product-page__map">
                                         <h2 class="product-page__title">Расположение</h2>
@@ -225,54 +257,85 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="product-page__section">
+                                <div v-if="object.additional_values != ''" class="product-page__section">
                                     <div id="Квартира">
-                                        <h4 class="_445so" data-testid="Квартира-заголовок">Квартира</h4>
-                                        <ul class="product-page__section_ul">
-                                            <li class="product-page__section_li">
-                                                <span class="product-page__section_li_span-1">Комнат</span>
-                                                <span class="product-page__section_li_span-2"></span>
-                                                <span class="product-page__section_li_span-3">2</span>
-                                            </li>
-                                            <li class="product-page__section_li">
-                                                <span class="product-page__section_li_span-1">Площадь</span>
-                                                <span class="product-page__section_li_span-2"></span>
-                                                <span class="product-page__section_li_span-3"><span>61 м<sup>2</sup></span></span>
-                                            </li>
-                                            <li class="product-page__section_li">
-                                                <span class="product-page__section_li_span-1">Жилая</span>
-                                                <span class="product-page__section_li_span-2"></span>
-                                                <span class="product-page__section_li_span-3"><span>38 м<sup>2</sup></span></span>
-                                            </li>
-                                            <li class="product-page__section_li">
-                                                <span class="product-page__section_li_span-1">Кухня</span>
-                                                <span class="product-page__section_li_span-2"></span>
-                                                <span class="product-page__section_li_span-3"><span>10,5 м<sup>2</sup></span></span>
-                                            </li>
-                                            <li class="product-page__section_li">
-                                                <span class="product-page__section_li_span-1">Этаж</span>
-                                                <span class="product-page__section_li_span-2"></span>
-                                                <span class="product-page__section_li_span-3">4</span>
-                                            </li>
-                                            <li class="product-page__section_li">
-                                                <span class="product-page__section_li_span-1">Количество балконов</span>
-                                                <span class="product-page__section_li_span-2"></span>
-                                                <span class="product-page__section_li_span-3">1</span>
-                                            </li>
-                                            <li class="product-page__section_li">
-                                                <span class="product-page__section_li_span-1">Ремонт</span>
-                                                <span class="product-page__section_li_span-2"></span>
-                                                <span class="product-page__section_li_span-3">косметический</span>
-                                            </li>
-                                            <li class="product-page__section_li">
-                                                <span class="product-page__section_li_span-1">Вид из окон</span>
-                                                <span class="product-page__section_li_span-2"></span>
-                                                <span class="product-page__section_li_span-3">во двор</span>
+                                        <h4 class="_445so" data-testid="Квартира-заголовок">Общая информация</h4>
+                                        <ul class="addtional_options_ul">
+                                            <li v-for="item in object.additional_values" :key="item.id" class="option_items">
+                                                <img src="/images/icons/additional/fridge.svg" alt="">
+                                                <span>{{item.additional_property.name_ru}}</span>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="product-page__section">
+                                    <div id="Квартира">
+                                        <h4 class="_445so" data-testid="Квартира-заголовок">
+                                            {{ object.object_type ? object.object_type.name_ru : "" }}
+                                        </h4>
+                                        <ul class="product-page__section_ul">
+                                            <li v-if="object.room_count > 0" class="product-page__section_li">
+                                                <span class="product-page__section_li_span-1">Комнат</span>
+                                                <span class="product-page__section_li_span-2"></span>
+                                                <span class="product-page__section_li_span-3">{{object.room_count}}</span>
+                                            </li>
+                                            <li v-if="object.land_area > 0" class="product-page__section_li">
+                                                <span class="product-page__section_li_span-1">Площадь участка</span>
+                                                <span class="product-page__section_li_span-2"></span>
+                                                <span class="product-page__section_li_span-3"><span>{{object.land_area}} м<sup>2</sup></span></span>
+                                            </li>
+                                            <li v-if="object.total_area > 0" class="product-page__section_li">
+                                                <span class="product-page__section_li_span-1">Площадь</span>
+                                                <span class="product-page__section_li_span-2"></span>
+                                                <span class="product-page__section_li_span-3"><span>{{object.total_area}} м<sup>2</sup></span></span>
+                                            </li>
+                                            <li v-if="object.living_area > 0" class="product-page__section_li">
+                                                <span class="product-page__section_li_span-1">Жилая</span>
+                                                <span class="product-page__section_li_span-2"></span>
+                                                <span class="product-page__section_li_span-3"><span>{{object.living_area}} м<sup>2</sup></span></span>
+                                            </li>
+                                            <li v-if="object.build_year > 0" class="product-page__section_li">
+                                                <span class="product-page__section_li_span-1">Год постройки</span>
+                                                <span class="product-page__section_li_span-2"></span>
+                                                <span class="product-page__section_li_span-3">{{object.build_year}}</span>
+                                            </li>
+                                            <li v-if="object.floor > 0" class="product-page__section_li">
+                                                <span class="product-page__section_li_span-1">Этаж</span>
+                                                <span class="product-page__section_li_span-2"></span>
+                                                <span class="product-page__section_li_span-3">{{object.floor}}</span>
+                                            </li>
+                                            <li  v-if="object.floor_count > 0" class="product-page__section_li">
+                                                <span class="product-page__section_li_span-1">Этажность</span>
+                                                <span class="product-page__section_li_span-2"></span>
+                                                <span class="product-page__section_li_span-3">{{object.floor_count}}</span>
+                                            </li>
+                                            <li  v-if="object.object_condition > 0" class="product-page__section_li">
+                                                <span class="product-page__section_li_span-1">Ремонт</span>
+                                                <span class="product-page__section_li_span-2"></span>
+                                                <span class="product-page__section_li_span-3">{{object.object_condition == 1 ? 'Косметический' : object.object_condition == 2 ? 'Евро' : object.object_condition == 3 ? 'Дизайнерский' : 'Без ремонта'}}</span>
+                                            </li>
+                                            <li  v-if="object.object_material_type > 0" class="product-page__section_li">
+                                                <span class="product-page__section_li_span-1">Материал стен</span>
+                                                <span class="product-page__section_li_span-2"></span>
+                                                <span class="product-page__section_li_span-3">{{object.object_material_type == 1 ? 'Кирпичный' : object.object_material_type == 2 ? 'Монолитный' : object.object_material_type == 3 ? 'Деревянный' : object.object_material_type == 4 ? 'Панельный' : 'Блочный'}}</span>
+                                            </li>
+                                            <li  v-if="object.object_time_type > 0" class="product-page__section_li">
+                                                <span class="product-page__section_li_span-1">Тип недвижимости</span>
+                                                <span class="product-page__section_li_span-2"></span>
+                                                <span class="product-page__section_li_span-3">{{object.object_time_type == 1 ? 'Вторичка' : 'Новостройка'}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div v-if="object.youtube_url > '0'" class="product-page__section">
+                                    <div id="Квартира">
+                                        <h4 class="_445so" data-testid="Квартира-заголовок">
+                                            YouTube видео
+                                        </h4>
+                                        <iframe width="100%" height="350" :src="'http://www.youtube.com/embed/' + youtubeId + '?rel=0&hd=1&autoplay=1&showinfo=0'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                                <!-- <div class="product-page__section">
                                     <div class="product-page__section_third">
                                         <h2 class="_445so">Информация о доме Беловежская улица, 57</h2>
                                         <div class="product-page__section_third_sub">
@@ -320,7 +383,7 @@
                                         </ul>
                                     </div>
                                     <a data-test="building-info-link" class="building-info-link" target="_blank" href="#!">Больше информации о доме</a>
-                                </div>
+                                </div> -->
                                 <div class="product-page__section" id="deal-info-block">
                                     <div id="Сделка">
                                         <h2 class="_445so">Сделка</h2>
@@ -328,17 +391,21 @@
                                             <li class="product-page__section_li">
                                                 <span class="product-page__section_li_span-1">Тип сделки</span>
                                                 <span class="product-page__section_li_span-2"></span>
-                                                <span class="product-page__section_li_span-3">свободная продажа</span>
+                                                <span class="product-page__section_li_span-3">{{object.object_deals == 'buy' ? 'продажа' : 'Аренда'}}</span>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="subscription__author product-page__section" id="author">
+                                <div v-for="user in object.user" :key="user.id" class="subscription__author product-page__section" id="author">
                                     <div class="subscription__author_block">
-                                        <a href="/agent-single" target="_blank" class="subscription__author_block_avatar d-flex align-items-center justify-content-center subscription__author_block_avatar_without_img">JT</a>
-                                        <div class="subscription__author_block_title">Агентство недвижимости</div>
+                                        <a href="/agent-single" target="_blank" class="subscription__author_block_avatar d-flex align-items-center justify-content-center">
+                                            <img v-if="!user.image" :src="defaultImage" alt="">
+                                            <img v-else :src="`/file/${user.image}`" alt="">
+                                            <!-- JT -->
+                                        </a>
+                                        <div class="subscription__author_block_title">{{object.user_type == 1 ? 'Собственник' : 'Агент'}}</div>
                                         <div class="subscription__author_block_name d-flex align-items-center mb-1">
-                                            <h4 class="subscription__author_name">Ashtons International Realty</h4>
+                                            <h4 class="subscription__author_name">{{ user.firstname }} {{ user.lastname }}</h4>
                                         </div>
                                         <div class="subscription__author_block_dignity d-flex">
                                             <div>
@@ -359,8 +426,8 @@
                                                 <button v-if="showPhoneSecond == false" @click="this.showPhoneSecond = true" type="button" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4  button-root--type-button-reset-8-1-3 button-root-8-1-3">
                                                     <span class="button-root__text-8-1-3">Показать телефон</span>
                                                 </button>
-                                                <a v-if="showPhoneSecond == true" href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4  button-root--type-button-reset-8-1-3 button-root-8-1-3">
-                                                    <span class="button-root__text-8-1-3">+99890 359-22-84</span>
+                                                <a v-if="showPhoneSecond == true" :href="`tel:+${user.phone}`" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4  button-root--type-button-reset-8-1-3 button-root-8-1-3">
+                                                    <span class="button-root__text-8-1-3">+{{user.phone}}</span>
                                                 </a>
                                             </div>
                                         </div>
@@ -384,9 +451,10 @@
                                 <div class="product-page__sidebar_autor_bottom autor_bottom_padding">
                                     <div class="product-page__sidebar_autor_bottom_top margin-bottom-24">
                                         <div class="d-flex">
-                                            <div v-if="!user.image" style="background-color: rgb(156, 198, 196);width: 60px;height: 60px;border-radius: 5px;" class="autor_bottom_top_style">TJ</div>
-                                            <div v-else style="width: 60px;height: 60px;border-radius: 5px;" class="autor_bottom_top_style">
-                                                <img :src="`/file/${user.image}`" alt="user_avatar">
+                                            <!-- <div v-if="!user.image" style="background-color: rgb(156, 198, 196);width: 60px;height: 60px;border-radius: 5px;" class="autor_bottom_top_style">TJ</div> -->
+                                            <div style="width: 60px;height: 60px;border-radius: 5px;" class="autor_bottom_top_style">
+                                                <img v-if="!user.image" :src="defaultImage" alt="user_avatar_default">
+                                                <img v-else :src="`/file/${user.image}`" alt="user_avatar">
                                             </div>
                                             <div class="product-page__sidebar_autor_bottom_content" style="flex: 1;">
                                                 <div class="autor_full_name">
@@ -512,12 +580,13 @@ import { onMounted } from 'vue'
 import InputText from 'primevue/inputtext';
 
 import CopyToClipboard from '../../../components/CopyToClipboard.vue'
+import defaultImage from "../../../../../public/images/avatar-dafault.png"
 
 export default {
     components: {
         Galleria,
         CopyToClipboard,
-        InputText
+        InputText,
     },
     data() {
         return {
@@ -534,7 +603,9 @@ export default {
                 phone: null,
                 message: null
             },
-            object: []
+            defaultImage,
+            object: [],
+            youtubeId: false
         }
     },
     methods: {
@@ -548,7 +619,17 @@ export default {
             })
             .then(response => {
                 this.object = response.data.result.object;
+                // set the youtube id if its youtube video
+                this.youtubeId = this.isYoutube(this.object.youtube_url);
             });
+        },
+        isYoutube(url) {
+            let pattern = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+            let matches = url.match(pattern);
+            if(matches){
+                return matches[1];
+            }
+            return false;
         },
         checkScreen() {
             this.windowWidth = window.innerWidth;

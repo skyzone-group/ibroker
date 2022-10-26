@@ -77,7 +77,7 @@ class Objects extends Model
         return $this->hasOne(Quarters::class,'id','quarter_id');
     }
 
-    public function additional()
+    public function additional_values()
     {
         return $this->hasMany(AdditionalFieldValues::class,'object_id','id');
     }

@@ -116,8 +116,9 @@ a:hover{
 .nameless_style_2{
     color: #242629;
     transition: color .15s;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 20px;
+    font-weight: 500;
 }
 
 .nameless_style_2:hover{
@@ -2415,6 +2416,21 @@ textarea.md-form__control {
     font-size: 1.0625rem;
     margin-right: 0.125rem;
     color: #fff;
+}
+/* //////////////////////////////////////////////////////////////////////////////////////////// */
+/*  ************************************** Show Object **************************************** */
+.option_items{
+    display: inline-flex;
+    position: relative;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    width: 240px;
+    font-size: 15px;
+    line-height: 22px;
+    list-style: none;
+}
+.option_items span{
+    padding-left: 15px;
 }
 /* ****************************** MEDIA ******************************************* */
 /************************************* Object Single Page styles *********************************** */

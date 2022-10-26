@@ -166,13 +166,13 @@
                                                                 <span class="ad_type_item_content_span">Тип недвижимости</span>
                                                                 <div class="single_button_select">
                                                                     <div class="single_button_select_box d-flex">
-                                                                        <label for="condition_house_1" class="single_button_select_box_label" :class="{'active' : this.form.object_time_type == '0'}">
-                                                                            <input v-model="form.object_time_type" id="condition_house_1" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="0">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.object_time_type == '0'}">Вторичка</span>
+                                                                        <label for="condition_house_1" class="single_button_select_box_label" :class="{'active' : this.form.object_time_type == '1'}">
+                                                                            <input v-model="form.object_time_type" id="condition_house_1" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="1">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.object_time_type == '1'}">Вторичка</span>
                                                                         </label>
-                                                                        <label for="condition_house_2" class="single_button_select_box_label" :class="{'active' : this.form.object_time_type == '1'}">
-                                                                            <input v-model="form.object_time_type" id="condition_house_2" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="1">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.object_time_type == '1'}">Новостройка</span>
+                                                                        <label for="condition_house_2" class="single_button_select_box_label" :class="{'active' : this.form.object_time_type == '2'}">
+                                                                            <input v-model="form.object_time_type" id="condition_house_2" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="2">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.object_time_type == '2'}">Новостройка</span>
                                                                         </label>
                                                                     </div>
                                                                 </div>

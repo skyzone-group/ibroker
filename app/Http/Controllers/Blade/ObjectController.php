@@ -110,7 +110,7 @@ class ObjectController extends ResponseController
                     'region',
                     'district',
                     'quarter',
-                    'additional'
+                    'additional_values'
                 ]);
 
         $total = $query->count();
@@ -135,7 +135,7 @@ class ObjectController extends ResponseController
                     'region',
                     'district',
                     'quarter',
-                    'additional'
+                    'additional_values'
                 ]);
                 
         $results = $query->get()->first();
@@ -259,8 +259,10 @@ class ObjectController extends ResponseController
                     'region',
                     'district',
                     'quarter',
-                    'additional'
                 ])
+                ->with(['additional_values' => function($query){
+                    $query->with('additional_property');
+                }])
                 ->with(['object_types_property_values' => function($query){
                     $query->with('object_type_property');
                 }]);

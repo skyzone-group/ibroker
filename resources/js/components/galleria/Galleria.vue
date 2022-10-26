@@ -52,6 +52,11 @@
 
 
 export default {
+    props: {
+        images: {
+            type: Array,
+        }
+    },
     data () {
 		return {
 			

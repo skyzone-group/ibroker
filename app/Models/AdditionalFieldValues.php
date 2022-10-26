@@ -17,4 +17,9 @@ class AdditionalFieldValues extends Model
         'object_id',
     ];
     
+    public function additional_property()
+    {
+        return $this->hasOne(Additional::class, 'id', 'additional_id');
+    }
+    
 }
