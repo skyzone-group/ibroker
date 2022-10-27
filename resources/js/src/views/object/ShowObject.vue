@@ -152,7 +152,7 @@
                                     </div>
                                     <div class="main_block__gallery mt-3">
                                         <div id="gallery-widget" class="dc-gallery__root--b20e7">
-                                            <galleria :images="object.images"></galleria>
+                                            <galleria-image :images="object.images"></galleria-image>
                                         </div>
                                     </div>
                                     <div class="main_block__mainDetails">
@@ -574,6 +574,7 @@
 
 <script>
 import Galleria from '../../../components/galleria/Galleria.vue'
+import GalleriaImage from '../../../components/galleria/GalleriaImage.vue'
 
 import { useRoute, useRouter } from 'vue-router'
 import { onMounted } from 'vue'
@@ -587,6 +588,7 @@ export default {
         Galleria,
         CopyToClipboard,
         InputText,
+        GalleriaImage
     },
     data() {
         return {
