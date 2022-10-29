@@ -27,10 +27,10 @@
     }
     
     .options_main__items_inputs{
-        display: flex !important;
-        align-items: flex-start !important;
-        flex-direction: row !important;
-        justify-content: space-between !important;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: row;
+        justify-content: space-between;
     }
     
     .options_main__items_inputs_media{
@@ -46,7 +46,11 @@
     }
     
     .options_main__items_inputs_block {
-        max-width: 13rem !important;
+        max-width: 13rem;
+    }
+    
+    .options_main__items_inputs_block-add{
+        max-width: 100%;
     }
 }
 

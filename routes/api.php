@@ -72,6 +72,8 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('/object/edit/{object_id}', [ObjectController::class, 'editObject']);
     Route::post('/object/update/{object_id}', [ObjectController::class, 'update']);
     Route::get('/show/object/{object_id}', [ObjectController::class, 'showObject']);
+    Route::post('/search/user', [UserController::class, 'searchUser']);
+    Route::post('/send/user', [UserController::class, 'sendUser']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

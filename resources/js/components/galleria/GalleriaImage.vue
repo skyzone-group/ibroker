@@ -8,7 +8,7 @@
               '--swiper-navigation-color': '#fff',
               '--swiper-pagination-color': '#fff',
             }"
-            :loop="true"
+            :loop="false"
             :spaceBetween="10"
             :navigation="true"
             :thumbs="{ swiper: thumbsSwiper }"
@@ -21,9 +21,41 @@
           </swiper>
           <swiper
             @swiper="setThumbsSwiper"
-            :loop="true"
-            :spaceBetween="10"
-            :slidesPerView="6"
+            :loop="false"
+            :breakpoints="{
+              '320': {
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
+              '414': {
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
+              '450': {
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
+              '475': {
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
+              '575': {
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
+              '767': {
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
+              '1024': {
+                slidesPerView: 6,
+                spaceBetween: 10,
+              },
+              '1400': {
+                slidesPerView: 6,
+                spaceBetween: 10,
+              },
+            }"
             :freeMode="true"
             :watchSlidesProgress="true"
             :modules="modules"
@@ -62,7 +94,7 @@ export default {
   data() {
     return {
       thumbsSwiper: null,
-      index: null
+      index: null,
     }
   },
   methods: {
@@ -140,7 +172,27 @@ export default {
   object-fit: cover;
   border-radius: 4px;
 }
-/* .object-image-gallery .thumbs-swiper .swiper-wrapper{
-  transform: translate3d(4px, 0px, 0px) scale(1) !important;
-} */
+/* ********************************************************************************************* */
+@media (max-width: 767px){
+  .object-image-gallery .gallery-swipper {
+    height: 400px;
+  }
+}
+
+@media (max-width: 575px){
+  .object-image-gallery .gallery-swipper {
+    height: 350px;
+  }
+}
+
+@media (max-width: 475px){
+  .object-image-gallery .gallery-swipper {
+    height: 300px;
+  }
+  
+  .object-image-gallery .swiper-button-next, .swiper-button-prev{
+    width:  40px !important;
+    height:  40px !important;
+  }
+}
 </style>

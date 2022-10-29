@@ -146,8 +146,6 @@ class ObjectController extends ResponseController
 
     public function update(Request $request, $id){
 
-       
-
         $user_id = auth('sanctum')->user()->id;
         $query = Objects::query();
         $query = $query->find($id);

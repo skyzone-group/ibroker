@@ -29,6 +29,9 @@
                     <div class="rotate-icon"  @click="rotateImage(element)">
                         <i class="feather icon-rotate-cw"></i>
                     </div>
+                    <div class="rotate-icon top-left-bottom-icon" :data-src="element.img ? element.img : `/file/${element.name}`" data-fancybox="gallery">
+                        <i class="feather icon-search"></i>
+                    </div>
                     <div class="backdrop-img" @click="showImg(index)"></div>
                 </div>
             </template>
@@ -42,11 +45,32 @@
                 </div>
             </template>
         </draggable>
-        <pre>
-            {{this.images}}
-        </pre>
         <div class="d-none">
             <input @change="onInputChange" multiple="multiple" type="file" name="images[]" id="media">
+        </div>
+        <div v-if="mobileImgView">
+            <div class="form__img-stock --large img_warpper_box w-100">
+                <div v-for="(element,index) in images" :key="index">
+                    <div v-if="element.deleted == 0" class="form__img-preview form__img-preview-back position-relative">
+                        <div class="form__img-preview-overflow">
+                            <img :src="element.img ? element.img : `/file/${element.name}`"  id="prev-img" class="form__img-src" width="100" height="100" :style="{transform: `rotate(${element.degree}deg) !important`}">
+                        </div>
+                        <div class="rotate-icon top-left-icon" :class="{'active' : mainImage == true}" @click="moveUp(index)">
+                            <i class="feather icon-star"></i>
+                        </div>
+                        <div class="rotate-icon top-icon" @click="element.deleted = 1">
+                            <i class="feather icon-x"></i>
+                        </div>
+                        <div class="rotate-icon"  @click="rotateImage(element)">
+                            <i class="feather icon-rotate-cw"></i>
+                        </div>
+                        <div class="rotate-icon top-left-bottom-icon" :data-src="element.img ? element.img : `/file/${element.name}`" data-fancybox="gallery">
+                            <i class="feather icon-search"></i>
+                        </div>
+                        <div class="backdrop-img" ></div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- <div v-for="(src, index) in imgs" :key="index" class="pic" @click="() => showImg(index)">
             <img :src="src" />
@@ -58,7 +82,6 @@
 <script>
 import draggable from 'vuedraggable'
 import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
-import CoolLightBox from 'vue-cool-lightbox'
 import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 import { ref } from 'vue'
 export default ({
@@ -121,8 +144,6 @@ export default ({
             reader.readAsDataURL(file);
             this.imageCount += 1;
             this.updateImagesBox();
-            
-            this.profileUpload();
         },
         profileUpload(){  // insert new file or image by this code
             let formm = new FormData();
@@ -362,6 +383,11 @@ export default ({
     top: 0.8rem;
 }
 
+.top-left-bottom-icon{
+    left: 0.8rem;
+    bottom: 0.8rem;
+}
+
 .mobile-file-input label{
     background-color: #242629;
     border: none;
@@ -410,6 +436,11 @@ export default ({
     
     .mobile-file-input{
         margin-top: 30px;
+    }
+    
+    .form__img-preview-back .backdrop-img, .form__img-preview-back .rotate-icon {
+        opacity: 1 !important;
+        cursor: move !important;
     }
 }
 

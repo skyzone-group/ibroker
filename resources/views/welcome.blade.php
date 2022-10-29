@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="{{asset('css/bootstrap.min.css.map')}}">
         <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/custom.css')}}">
+        <link rel="stylesheet" href="{{asset('fonts/vendor/fontawesome/css/all.min.css')}}">
         
         <!-- Swipper -->
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">

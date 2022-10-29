@@ -35,9 +35,13 @@ import NewObjectMain from '../views/object/AddObject.vue'
 import EditObject from '../views/object/UpdateObject.vue'
 //  Show Object
 import ShowObject from '../views/object/ShowObject.vue'
+import AddUser from '../views/AddFriends.vue'
 
 // Object Single Page Details
 import ObjectSinglePage from '../views/ObjectSinglePage.vue'
+
+
+
 const routes = [
     {
         path: '/',
@@ -195,8 +199,15 @@ const routes = [
                     content: UserComplaints,
                 }
             },
+            {
+                path: 'users',
+                name: 'friends',
+                components: {
+                    content: AddUser,
+                },
+            },
         ]
-    }
+    },
 ]
 
 const router = createRouter({

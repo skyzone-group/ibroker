@@ -47,7 +47,7 @@ export default {
     methods: {
         authStatus(status){
             this.loggedIn = status;
-        },
+        }
     },
     mounted() {
         this.loggedIn = localStorage.getItem('token') ? true : false;

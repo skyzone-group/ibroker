@@ -119,4 +119,23 @@ class UserController extends ResponseController
             'code'      => $code,
         ]);
     }
+    
+    public function searchUser(Request $request){
+        $user_id = auth('sanctum')->user()->id;
+        $phone = $request->phone;
+        $user = User::query();
+        if($user->where(['user_id' => $user_id])){
+            return self::errorResponse('User not found');
+        }
+        $user->where('phone', '=', $phone)->first();
+        return self::successResponse([
+            'user'      => $user,
+        ]);
+    }
+    
+    public function sendUser(Request $request){
+        $user_id = auth('sanctum')->user()->id;
+        $friend = $request->get('friend');
+        return $request->all();
+    }
 }

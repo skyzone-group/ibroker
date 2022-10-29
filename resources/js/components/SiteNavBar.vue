@@ -14,172 +14,170 @@
                     LOGO
                 </router-link>
                 <!-- Menu View start -->
-                    <nav v-if="!mobileView">
-                        <ul class="mb-0 navbar-ul descktop-menu">
-                            <li class="navbar-ul-li">
-                                <router-link :to="{name: 'siteRent'}">Аренда</router-link>
-                                <div class="sub-menu">
-                                    <div class="sub-menu-item">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Квартира</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Комнаты</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Дома и коттеджи</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Посуточная аренда</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="sub-menu-item">
-                                        <ul>
-                                            <li>
-                                                <a href="#">
-                                                    <span>Как снять или сдать квартиру</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <span>Как купить или продать квартиру на вторичном рынке</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                <nav v-if="!mobileView">
+                    <ul class="mb-0 navbar-ul descktop-menu">
+                        <li class="navbar-ul-li">
+                            <router-link :to="{name: 'siteRent'}">Аренда</router-link>
+                            <div class="sub-menu">
+                                <div class="sub-menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Квартира</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Комнаты</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Дома и коттеджи</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Посуточная аренда</a>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </li>
-                            <li class="navbar-ul-li">
-                                <router-link to="/sell">Продажа</router-link>
-                                <div class="sub-menu">
-                                    <div class="sub-menu-item">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Квартира</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Квартиры в новостройках</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Квартиры во вторичке</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Комнаты и доли</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Дома и коттеджи</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Участки</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Продать</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="sub-menu-item">
-                                        <ul>
-                                            <li>
-                                                <a href="#">
-                                                    <span>Как купить или продать квартиру на вторичном рынке</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <span>Всё, что важно знать при покупке новостройки</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                <div class="sub-menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <span>Как снять или сдать квартиру</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span>Как купить или продать квартиру на вторичном рынке</span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </li>
-                            <li class="navbar-ul-li">
-                                <router-link to="/test">Новостройки</router-link>
-                                <div class="sub-menu">
-                                    <div class="sub-menu-item">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Квартира</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Каталог жилых комплексов</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Каталог коттеджных поселков</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Каталог акций и скидок</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="sub-menu-item">
-                                        <ul>
-                                            <li>
-                                                <a href="#">
-                                                    <span>Как купить или продать квартиру на вторичном рынке</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <span>Всё, что важно знать при покупке новостройки</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                            </div>
+                        </li>
+                        <li class="navbar-ul-li">
+                            <router-link to="/sell">Продажа</router-link>
+                            <div class="sub-menu">
+                                <div class="sub-menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Квартира</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Квартиры в новостройках</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Квартиры во вторичке</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Комнаты и доли</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Дома и коттеджи</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Участки</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Продать</a>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </li>
-                            <li class="navbar-ul-li">
-                                <router-link :to="{name: 'siteCommercial'}">Коммерческая</router-link>
-                            </li>
-                            <li class="navbar-ul-li">
-                                <router-link to="/dwdw">Ипотека</router-link>
-                            </li>
-                            <li class="navbar-ul-li">
-                                <router-link to="/dwdw">Еще</router-link>
-                                <div class="sub-menu">
-                                    <div class="sub-menu-item">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Застройщики</a>
-                                            </li>
-                                            <li>
-                                                <a href="/partners/agents">Компании</a>
-                                            </li>
-                                            <li>
-                                                <a href="/partners/realtors">Риэлторы</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Избранные</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">О Нас</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="sub-menu-item">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Помощь</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Условия пользования сайтом</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Добавить объявление</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Блог</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                <div class="sub-menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <span>Как купить или продать квартиру на вторичном рынке</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span>Всё, что важно знать при покупке новостройки</span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </li>
-                        </ul>
-                    </nav>
-                    
-                    
+                            </div>
+                        </li>
+                        <li class="navbar-ul-li">
+                            <router-link to="/test">Новостройки</router-link>
+                            <div class="sub-menu">
+                                <div class="sub-menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Квартира</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Каталог жилых комплексов</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Каталог коттеджных поселков</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Каталог акций и скидок</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="sub-menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <span>Как купить или продать квартиру на вторичном рынке</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span>Всё, что важно знать при покупке новостройки</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="navbar-ul-li">
+                            <router-link :to="{name: 'siteCommercial'}">Коммерческая</router-link>
+                        </li>
+                        <li class="navbar-ul-li">
+                            <router-link to="/dwdw">Ипотека</router-link>
+                        </li>
+                        <li class="navbar-ul-li">
+                            <router-link to="/dwdw">Еще</router-link>
+                            <div class="sub-menu">
+                                <div class="sub-menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Застройщики</a>
+                                        </li>
+                                        <li>
+                                            <a href="/partners/agents">Компании</a>
+                                        </li>
+                                        <li>
+                                            <a href="/partners/realtors">Риэлторы</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Избранные</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">О Нас</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="sub-menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Помощь</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Условия пользования сайтом</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Добавить объявление</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Блог</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
                 <!-- Menu View end -->
                 
                 <!-- Mobile menu start -->
@@ -190,7 +188,7 @@
                             <ul class="m-0 p-0 list-unstyled">
                                 <li class="header_mobile_menu-nav-ul__li">
                                     <ul class="services m-0 p-0 list-unstyled">
-                                        <li class="service_item">
+                                        <li class="service_item" @click="visibleLeft = !visibleLeft">
                                             <a @click="visibleLeft = false" href="#!">
                                                 <span class="service_item-back">
                                                     <img src="../../../public/images/icons/search.svg" alt="">
@@ -198,15 +196,15 @@
                                                 Новый поиск
                                             </a>
                                         </li>
-                                        <li class="service_item">
-                                            <a href="razmestit-obyavlenie">
+                                        <li class="service_item" @click="visibleLeft = !visibleLeft">
+                                            <router-link :to="{name: 'newObject'}">
                                                 <span class="service_item-back">
                                                     <img src="../../../public/images/icons/plus-add.svg" alt="">
                                                 </span>
                                                 Разместить объявление
-                                            </a>
+                                            </router-link>
                                         </li>
-                                        <li class="service_item">
+                                        <li class="service_item" @click="visibleLeft = !visibleLeft">
                                             <a href="user/favorites">
                                                 <span class="service_item-back">
                                                     <img src="../../../public/images/icons/saved.svg" alt="">
@@ -214,7 +212,7 @@
                                                 Избранное
                                             </a>
                                         </li>
-                                        <li class="service_item">
+                                        <li class="service_item" @click="visibleLeft = !visibleLeft">
                                             <a href="#!">
                                                 <span class="service_item-back">
                                                     <img src="../../../public/images/icons/sapravochniy-center.svg" alt="">
@@ -222,7 +220,7 @@
                                                 Справочный центр
                                             </a>
                                         </li>
-                                        <li class="service_item">
+                                        <li class="service_item" @click="visibleLeft = !visibleLeft">
                                             <a href="#!">
                                                 <span class="service_item-back">
                                                     <img src="../../../public/images/icons/danger.svg" alt="">
@@ -230,7 +228,7 @@
                                                 Сообщить об ошибке
                                             </a>
                                         </li>
-                                        <li class="service_item">
+                                        <li class="service_item" @click="visibleLeft = !visibleLeft">
                                             <a href="#!">
                                                 <span class="service_item-back">
                                                     <img src="../../../public/images/icons/buy-rent.svg" alt="">
@@ -249,12 +247,12 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="header_mobile_menu-nav-ul__li">
+                                <!-- <li class="header_mobile_menu-nav-ul__li">
                                     <div class="logout">
                                         <div class="logout_icon"></div>
                                         Выйти
                                     </div>
-                                </li>
+                                </li> -->
                             </ul>
                         </nav>
                     </Sidebar>
@@ -280,51 +278,22 @@
                             <a href="#!" class="utilities-link d-lg-block d-md-block d-sm-block d-none">
                                 <svg class="icon_svg" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#BellStroke16a)"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C5.238 0 3.25 2.426 3.25 5.23v.847c0 .013-.001.016-.003.02v.001a.511.511 0 0 1-.076.113 3.33 3.33 0 0 1-.254.27l-.172.167-.021.02c-.062.06-.129.124-.198.193l-.046.038C1.935 7.357 1 8.143 1 9.462c0 .988.466 1.737 1.117 2.251.614.486 1.391.768 2.115.942C5.67 13 7.265 13 7.977 13h.046c.712 0 2.307 0 3.745-.345.724-.174 1.5-.456 2.115-.942C14.533 11.2 15 10.45 15 9.462c0-1.32-.935-2.105-1.48-2.563l-.046-.038-.198-.193-.02-.02a20.63 20.63 0 0 1-.172-.166 3.128 3.128 0 0 1-.255-.271.515.515 0 0 1-.076-.113c-.002-.005-.003-.008-.003-.021V5.23C12.75 2.426 10.762 0 8 0ZM5.25 5.23C5.25 3.298 6.562 2 8 2s2.75 1.297 2.75 3.23v.847c0 .595.242 1.043.521 1.389.18.223.427.46.64.665l.187.18.027.028.03.024c.67.568.845.787.845 1.099 0 .28-.105.483-.358.683-.287.228-.743.422-1.341.565-1.19.286-2.576.29-3.301.29-.725 0-2.11-.004-3.301-.29-.598-.143-1.053-.337-1.341-.565-.253-.2-.358-.403-.358-.683 0-.312.175-.53.846-1.099l.03-.024.027-.027c.056-.056.12-.117.185-.18.214-.206.461-.443.64-.666.28-.346.522-.794.522-1.39v-.845Zm-.148 8.578a3.001 3.001 0 0 0 5.78 0 21.283 21.283 0 0 1-2.89.192c-.601 0-1.705-.024-2.89-.192Z" fill="currentColor"></path></g><defs><clipPath id="BellStroke16a"><path fill="#fff" d="M0 0h16v16H0z"></path></clipPath></defs></svg>
                             </a>
-                            <a v-if="loggedIn === false" data-toggle="modal" data-target="#animation" href="#!" class="utilities-link d-lg-none d-md-none d-sm-none d-block">
-                            <svg class="icon_svg" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" id="IconChangeColor" height="16px" width="17px"><path fill="currentColor" d="M288 320a224 224 0 1 0 448 0 224 224 0 1 0-448 0zm544 608H160a32 32 0 0 1-32-32v-96a160 160 0 0 1 160-160h448a160 160 0 0 1 160 160v96a32 32 0 0 1-32 32z" id="mainIconPathAttribute"></path></svg>
-                            </a>
-                            <div v-else class="avatar_login d-lg-none d-md-none d-sm-none d-block">
-                                <a class="nav-link dropdown-user-link avatar_drop avatar_login_mobile" href="#" data-toggle="dropdown">
-                                    <img class="round" src="../../../public/images/avatar.jpg" width="100%" alt="avatar">
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-left" style="transform: translate3d(-44px, 44px, 0px) !important;">
-                                    <div class="avatar-inform">
-                                        <a href="http://" class="user_name">
-                                            Javohir Toirov
-                                        </a>
-                                        <a href="http://" class="mb-0 user_id">
-                                            ID 12345678
-                                        </a>
-                                    </div>
-                                    <a class="dropdown-item" href="account/summary">
-                                        Личный кабинет
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="auth-login.html">
-                                        Разместить объявление
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a  class="dropdown-item" href="#!">
-                                        Exit
-                                    </a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="btn-add-object">
                         <router-link :to="{name: 'newObject'}" class="btn-add">
                             <span class="_25d45facb5--text--rH6sj">+ Разместить объявление</span>
                         </router-link>
-                        <!-- <a href="/razmestit-obyavlenie" class="btn-add">
-                            <span class="_25d45facb5--text--rH6sj">+ Разместить объявление</span>
-                        </a> -->
                     </div>
                     
-                    <div v-if="DeskTopLogin">
+                    <div>
                         <div v-if="loggedIn === false" class="avatar_log">
                             <a class="btn-login" rel="noopener" href="#!" data-toggle="modal" data-target="#animation">
                                 <span>Войти</span>
                             </a>
+                            <!-- <a data-toggle="modal" data-target="#animation" href="#!" class="utilities-link d-lg-none d-md-none d-sm-none d-block">
+                            <svg class="icon_svg" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" id="IconChangeColor" height="16px" width="17px"><path fill="currentColor" d="M288 320a224 224 0 1 0 448 0 224 224 0 1 0-448 0zm544 608H160a32 32 0 0 1-32-32v-96a160 160 0 0 1 160-160h448a160 160 0 0 1 160 160v96a32 32 0 0 1-32 32z" id="mainIconPathAttribute"></path></svg>
+                            </a> -->
                         </div>
                         
                         <div v-else class="dropdown-avatar avatar_log">
@@ -333,20 +302,26 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <div class="avatar-inform">
-                                    <a href="http://" class="user_name">
+                                    <a href="#!" class="user_name">
                                         Javohir Toirov
                                     </a>
-                                    <a href="http://" class="mb-0 user_id">
+                                    <a href="#!" class="mb-0 user_id">
                                         ID 12345678
                                     </a>
                                 </div>
-                                <a class="dropdown-item" href="account/summary">
+                                <!-- <a class="dropdown-item" href="account/summary">
                                     Личный кабинет
-                                </a>
+                                </a> -->
+                                <router-link class="dropdown-item"  :to="{name: 'summary'}">
+                                    Личный кабинет
+                                </router-link>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="auth-login.html">
+                                <!-- <a class="dropdown-item" href="auth-login.html">
                                     Разместить объявление
-                                </a>
+                                </a> -->
+                                <router-link class="dropdown-item"  :to="{name: 'newObject'}">
+                                    Разместить объявление
+                                </router-link>
                                 <div class="dropdown-divider"></div>
                                 <a @click.prevent="logout" class="dropdown-item" href="#!">
                                     Exit
@@ -856,8 +831,7 @@ export default {
     // *****************************************
     @media (max-width: 660px){
         
-        .btn-add-object,
-        .avatar_log{
+        .btn-add-object{
             display: none;
         }
         
@@ -870,6 +844,13 @@ export default {
             width: 100%;
             object-fit: cover;
             border-radius: 50%;
+        }
+    }
+    @media (max-width: 575px){
+        
+        .header__navbar .nabvar .header-right-block .dropdown-avatar .nav-link {
+            width: 40px;
+            height: 40px;
         }
     }
     

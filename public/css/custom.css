@@ -96,6 +96,10 @@ a:hover{
     display: inherit;
 }
 
+.text-muted {
+    color: #b9b9c3!important;
+}
+
 .h1_style{
     color: #242629;
     font-size: 24px;
@@ -2412,7 +2416,20 @@ textarea.md-form__control {
     background: rgba(0,0,0,.8);
 }
 
-.listing__photos .icon {
+.saved_user_length{
+    position: absolute;
+    top: 0;
+    line-height: 1.5;
+    padding: 0.1875rem 0.625rem;
+    font-size: .75rem;
+    display: block;
+    right: 0;
+    font-weight: 700;
+    color: #fff;
+    background: rgba(0,0,0,.8);
+}
+.listing__photos .icon,
+.saved_user_length .icon {
     font-size: 1.0625rem;
     margin-right: 0.125rem;
     color: #fff;

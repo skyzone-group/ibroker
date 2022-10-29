@@ -8,9 +8,7 @@
                 </header> -->
                 <div class="block__body position-relative">
                     <!-- loader start -->
-                    <div v-if="isLoaded" class="loader_box w-100 h-100 d-flex justify-content-center align-items-center">
-                        <ProgressSpinner style="width:50px;height:50px" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"/>
-                    </div>
+                    <loader-gif v-if="isLoaded"></loader-gif>
                     <!-- loader end -->
                     
                     <div class="form">
@@ -858,6 +856,7 @@ import RadioButton from 'primevue/radiobutton';
 // Media Styles
 import  '../../../../../public/css/media-one.css'
 import VScrollActive from '../../../components/VScrollActive.vue';
+import LoaderGif from '../../../components/LoaderGif.vue';
 // Loader
 import ProgressSpinner from 'primevue/progressspinner';
 export default {
@@ -876,6 +875,7 @@ export default {
         Toast,
         VScrollActive,
         ProgressSpinner,
+        LoaderGif
     },
     data() {
         return {
@@ -1058,7 +1058,7 @@ export default {
             }
             const token = localStorage.getItem('token');
             console.log(token);
-            
+            this.isLoaded = true,
             axios.post('/api/object/create',  this.form, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
@@ -1075,7 +1075,10 @@ export default {
                 // this.onFailure(error.response.data.message);
                 alert(error);
                 console.log(error);
-            });
+            })
+            .finally(() => {
+                this.isLoaded =  false
+            });;
         },
         checkScreen() {
             this.windowWidth = window.innerWidth;

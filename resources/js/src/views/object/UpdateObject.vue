@@ -8,9 +8,7 @@
                 </header> -->
                 <div class="block__body position-relative">
                     <!-- loader start -->
-                    <div v-if="isLoaded" class="loader_box w-100 h-100 d-flex justify-content-center align-items-center">
-                        <ProgressSpinner style="width:50px;height:50px" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"/>
-                    </div>
+                    <loader-gif v-if="isLoaded"></loader-gif>
                     <!-- loader end -->
                     
                     <div class="form">
@@ -724,8 +722,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-buttons w-100 d-flex align-items-center mt-3 justify-content-lg-end justify-content-md-end justify-content-center">
-                                                <button type="button" class="form-buttons_btn" data-toggle="modal" data-target="#animation" :class="{'button-disabled' : loggedIn === true}" :disabled="loggedIn === true">Пройти идентификацию</button>
-                                                <button type="submit" class="form-buttons_btn ml-3" :class="{'button-disabled' : loggedIn === false}" :disabled="loggedIn === false">Сохранить</button>
+                                                <button type="submit" class="form-buttons_btn ml-3">Сохранить</button>
                                             </div>
                                             <div class="created-object">
                                                 <Toast />
@@ -862,6 +859,7 @@ import  '../../../../../public/css/media-one.css'
 import VScrollActive from '../../../components/VScrollActive.vue';
 // Loader
 import ProgressSpinner from 'primevue/progressspinner';
+import LoaderGif from '../../../components/LoaderGif.vue';
 export default {
     setup: () => ({ v$: useVuelidate() }),
     components: {
@@ -878,6 +876,7 @@ export default {
         Toast,
         VScrollActive,
         ProgressSpinner,
+        LoaderGif
     },
     data() {
         return {
@@ -1034,6 +1033,7 @@ export default {
             const token = localStorage.getItem('token');
             console.log(token);
             const object_id = this.$route.params.id;
+            this.isLoaded = true,
             axios.post('/api/object/update/' + object_id,  this.form, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
@@ -1051,6 +1051,9 @@ export default {
                 alert(error);
                 console.log(token);
                 console.log(error);
+            })
+            .finally(() => {
+                this.isLoaded =  false
             });
         },
         checkScreen() {

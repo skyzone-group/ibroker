@@ -98,9 +98,13 @@
                             <div class="objects_main-content-item">
                                 <div class="item-header d-flex">
                                     <div class="objects_main-row_img">
-                                        <a href="#!" target="_blank" class="objects_main-row_img-link">
+                                        <a :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" class="objects_main-row_img-link">
                                             <span title="Количество фотографий" class="listing__photos">
                                                 <i class="feather icon-camera icon"></i>
+                                                {{object.images.length}}
+                                            </span>
+                                            <span title="saved user length" class="saved_user_length">
+                                                <i class="feather icon-heart icon"></i>
                                                 {{object.images.length}}
                                             </span>
                                             <img :src="`/file/${object.images[0].name}`" :alt="object.images[0].name">
@@ -109,11 +113,11 @@
                                     <div class="objects_main-row-content">
                                         <div class="objects_main-row-content-header">
                                             <h5 class="item-title">
-                                                <a href="#!" v-if="object.object_type_id === 1">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor }} / {{ object.floor_count }} этаж</a>
-                                                <a href="#!" v-if="object.object_type_id === 2">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }}</a>
-                                                <a href="#!" v-if="object.object_type_id === 3">{{ object.object_type.name_ru }}, {{object.total_area }} м²</a>
-                                                <a href="#!" v-if="object.object_type_id === 4">{{ object.object_type.name_ru }}, {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }} м²</a>
-                                                <a href="#!" v-if="object.object_type_id === 5">{{ object.object_type.name_ru }}, {{ object.land_area }} м²</a>
+                                                <a :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" v-if="object.object_type_id === 1">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor }} / {{ object.floor_count }} этаж</a>
+                                                <a :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" v-if="object.object_type_id === 2">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }}</a>
+                                                <a :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" v-if="object.object_type_id === 3">{{ object.object_type.name_ru }}, {{object.total_area }} м²</a>
+                                                <a :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" v-if="object.object_type_id === 4">{{ object.object_type.name_ru }}, {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }} м²</a>
+                                                <a :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" v-if="object.object_type_id === 5">{{ object.object_type.name_ru }}, {{ object.land_area }} м²</a>
                                             </h5>
                                             <div class="objects_main-row-content-price-box d-flex">
                                                 <h6 class="item-title eu5v0x0">{{ object.price }}$</h6>
@@ -148,8 +152,11 @@
                                             <li class="item-bottom-right-actions-list mr-2">
                                                 <a :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" type="button" class="item-bottom-right-edit">Просмотреть</a>
                                             </li>
-                                            <li class="item-bottom-right-actions-list">
+                                            <li class="item-bottom-right-actions-list mr-2">
                                                 <a :href="`/adding/object/edit/${object.id}`" type="button" class="item-bottom-right-edit">Редактировать</a>
+                                            </li>
+                                            <li class="item-bottom-right-actions-list">
+                                                <a href="#!" type="button" class="item-bottom-right-edit">Удалить</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -570,26 +577,75 @@ export default {
     .fixed_panel_div .top_bar[data-v-ae5be99c] {
         justify-content: center;
     }
+    
+    .objects_main-box .checkbox-box{
+        display: none;
+    }
+    
+    .item-title {
+        font-size: 16px;
+    }
 } 
 
 @media (max-width: 575px){
-    .objects_main-row{
+    .objects_main-content-item{
+        padding: 0 !important;
+    }
+    .objects_main-content-item .item-header, 
+    .objects_main-content-item .item-bottom-info{
         flex-direction: column;
     }
     
-    .objects_main-row_checkbox{
-        margin: 0 0 25px 0;
-    }
-    
     .objects_main-row_img{
-        flex-basis: 150px;
-        margin: 0 20px;
-        min-width: 150px;
-        height: 150px;
+        margin: 0;
+        width: 100%;
+        height: 100%;
     }
     
-    .objects_main-row_content{
-        margin-top: 20px;
+    .objects_main-row_img-link img{
+        width: 100%;
+        height: 270px;
+        border-radius: 4px 4px 0 0;
+    }
+    .objects_main-row-content,
+    .objects_main-content-item .item-bottom-info{
+        margin: 0;
+        padding: 8px 12px;
+        flex-grow: 2;
+    }
+    
+    .listing__photos, .saved_user_length {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 475px){
+    .objects_main-row-content-header{
+        flex-direction: column-reverse;
+    }
+    .objects_main-row-content-header .item-title{
+        margin-top: 15px;
+    }
+    
+    .objects_main-row_img-link img{
+        height: 250px;
+    }
+    
+    .item-bottom-right-actions{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .item-bottom-right-actions-list{
+        display: flex;
+        flex: 1 0 auto;
+        -webkit-box-pack: end;
+        justify-content: flex-end;
+        margin: 4px !important;
+    }
+    
+    .item-bottom-right-edit{
+        width: 100%;
     }
 }
 </style>
