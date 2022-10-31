@@ -124,15 +124,18 @@ class UserController extends ResponseController
     public function searchUser(Request $request){
         $user_id = auth('sanctum')->user()->id;
         $phone = $request->phone;
-        $user = User::query();
-        $test = $user->where(['id' => $user_id])->get()->first();
-        if($test->phone == $phone){
+        
+        $user = User::where('phone', '=', $phone)
+                    ->where('id', '!=', $user_id)
+                    ->get()
+                    ->first();
+ 
+        if(!$user){
             return self::errorResponse('User not found');
         }
-        $users = User::query();
-        $users = $users->where('phone', '=', $phone)->get()->first();
+        
         return self::successResponse([
-            'user'      => $users,
+            'user'      => $user,
         ]);
     }
     
