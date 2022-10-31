@@ -74,6 +74,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('/show/object/{object_id}', [ObjectController::class, 'showObject']);
     Route::post('/search/user', [UserController::class, 'searchUser']);
     Route::post('/send/user', [UserController::class, 'sendUser']);
+    Route::get('/user/friends', [UserController::class, 'getFriends']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

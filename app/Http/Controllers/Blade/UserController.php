@@ -6,6 +6,7 @@ use App\Http\Controllers\ResponseController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Friends;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends ResponseController
@@ -124,18 +125,31 @@ class UserController extends ResponseController
         $user_id = auth('sanctum')->user()->id;
         $phone = $request->phone;
         $user = User::query();
-        if($user->where(['user_id' => $user_id])){
+        $test = $user->where(['id' => $user_id])->get()->first();
+        if($test->phone == $phone){
             return self::errorResponse('User not found');
         }
-        $user->where('phone', '=', $phone)->first();
+        $users = User::query();
+        $users = $users->where('phone', '=', $phone)->get()->first();
         return self::successResponse([
-            'user'      => $user,
+            'user'      => $users,
         ]);
     }
     
     public function sendUser(Request $request){
         $user_id = auth('sanctum')->user()->id;
         $friend = $request->get('friend');
+        Friends::create([
+            'owner'  => $user_id,
+            'friend'  => $friend,
+            'status'  => 'request',
+        ]);
         return $request->all();
+    }
+    
+    public function getFriends(){
+        $user_id = auth('sanctum')->user()->id;
+        $friends = Friends::where('owner', '=', $user_id)->with('user')->get()->all();
+        return self::successResponse($friends);
     }
 }

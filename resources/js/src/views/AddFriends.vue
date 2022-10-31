@@ -3,14 +3,14 @@
         <div class="add-friends-main-box">
             <Toast />
             <DataTable 
-            :value="users" 
+            :value="friends" 
             stripedRows 
             removableSort 
             showGridlines  
             v-model:filters="filters"
             filterDisplay="menu"
             :loading="loading"
-            :globalFilterFields="['user', 'phone']"
+            :globalFilterFields="['firstname', 'lastname', 'phone']"
             :resizableColumns="true" 
             columnResizeMode="fit"
             v-model:selection="selectedCustomer" 
@@ -38,31 +38,39 @@
                 <template #loading>
                     Loading customers data. Please wait.
                 </template>
-                <Column field="user" header="User" :sortable="true" sortField="user">
+                <Column field="firstname" header="User" :sortable="true" sortField="firstname">
                     <template #body="slotProps">
                         <div class="media">
                             <div class="media-aside align-self-center">
                                 <div class="media-avatar rounded-circle">
-                                    <img :src="slotProps.data.image" :alt="slotProps.data.image">
+                                    <img v-if="slotProps.data.user.image != null" :src="slotProps.data.user.image" :alt="slotProps.data.image">
+                                    <img v-else :src="src" :alt="slotProps.data.image">
                                 </div>
                             </div>
                             <div class="media-body">
-                                <a href="#!" class="font-weight-bold d-block text-nowrap"> {{slotProps.data.user}} </a>
-                                <small class="text-muted">ID: {{slotProps.data.id}}</small>
+                                <a href="#!" class="font-weight-bold d-block text-nowrap"> {{slotProps.data.user.firstname}} {{slotProps.data.user.lastname}}</a>
+                                <small class="text-muted">ID: {{slotProps.data.user.id}}</small>
                             </div>
                         </div>
                     </template>
                 </Column>
-                <Column field="phone" header="Phone" :sortable="true" sortField="phone"></Column>
+                <Column field="phone" header="Phone" :sortable="true" sortField="phone">
+                    <template #body="slotProps">
+                        {{slotProps.data.user.phone}}
+                    </template>
+                </Column>
                 <Column :exportable="false" style="min-width:8rem" header="Action">
                     <template #body="slotProps">
-                        <Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteProduct(slotProps.data.id)" />
+                        <Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteProduct(slotProps.data.user.id)" />
                     </template>
                 </Column>
                 <template #footer>
-                    In total there are {{users ? users.length : 0 }} users.
+                    In total there are {{friends ? friends.length : 0 }} users.
                 </template>
             </DataTable>
+            <pre>
+                {{friends}}
+            </pre>
             <div class="user-info-succes-box">
                 <Toast />
                 <div class="profile_form-avatar-delete">
@@ -103,7 +111,7 @@
                                     <p class="my-2">
                                         Найдите риэлтора по телефонному номеру для отправки запроса на добавления в друзъя
                                     </p>
-                                    <Button type="submit" :loading="loadingBtn" label="Поиск" icon="pi pi-search" style="background-color: var(--primary_100);" :disabled="form.phone.length == 0"/>
+                                    <Button type="submit" :loading="loadingBtn[1]" label="Поиск" icon="pi pi-search" style="background-color: var(--primary_100);" :disabled="form.phone.length == 0"/>
                                 </div>
                             </div>
                         </form>
@@ -124,7 +132,7 @@
                                     </div>
                                 </div>
                                 <div class="user-box-btns d-flex justify-content-between w-100">
-                                    <Button type="submit" label="Добавить друга"  style="background-color: var(--primary_100);"/>
+                                    <Button type="submit" :loading="loadingBtn[2]" label="Добавить друга"  style="background-color: var(--primary_100);"/>
                                     <Button type="button" label="Отмена"  class="p-button-danger" @click="resetUser"/>
                                 </div>
                             </form>
@@ -168,12 +176,13 @@ export default {
             customers: null,
             filters: null,
             loading: false,
-            loadingBtn: false,
+            loadingBtn: [false, false],
             selectedCustomer: null,
             deleteProductDialog: false,
             friend_id: null,
             visibleRight: false,
             user: null,
+            friends: [],
             message: null,
             users: [
                 {"user": "Volkswagen", "phone": "+998903592284", "id": "12", "image": "https://www.zastavki.com/pictures/originals/2020Men___Male_Celebrity_Actor_Dwayne_Johnson_on_a_black_background_140459_.jpg"},
@@ -183,12 +192,14 @@ export default {
     },
     created() {
         this.initFilters1();
+        this.getFriends();
     },
     methods: {
         initFilters1() {
             this.filters = {
                 'global': {value: null, matchMode: FilterMatchMode.CONTAINS},
-                'user': {operator: FilterOperator.AND, constraints: [{value: null, matchMode: FilterMatchMode.STARTS_WITH}]},
+                'firstname': {operator: FilterOperator.AND, constraints: [{value: null, matchMode: FilterMatchMode.STARTS_WITH}]},
+                'lastname': {operator: FilterOperator.AND, constraints: [{value: null, matchMode: FilterMatchMode.STARTS_WITH}]},
                 'phone': {operator: FilterOperator.AND, constraints: [{value: null, matchMode: FilterMatchMode.STARTS_WITH}]},
                 'activity': {value: null, matchMode: FilterMatchMode.BETWEEN},
                 'verified': {value: null, matchMode: FilterMatchMode.EQUALS}
@@ -200,27 +211,25 @@ export default {
         },
         searchUser(){
             const token = localStorage.getItem('token');
-            this.loadingBtn = true;
+            this.loadingBtn[1] = true;
             axios.post('/api/search/user',  this.form, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 }
             }).then(response => {
-                // this.onSuccess(response.data.message);
-                setTimeout(() => this.loadingBtn = false, 1000);
+                setTimeout(() => this.loadingBtn[1] = false, 1000);
                 if(response.data.status == true){
                     this.user = response.data.result.user;
                 }
                 else{
                     this.message = response.data.error.message;
+                    this.$toast.add({severity:'error', summary: 'User not found', detail:'Message Content', life: 3000});
                 }
-                // window.location.reload();
-                // window.location.href = '/account/user/list/objects';
             });
         },
         sendUser(id){
             const token = localStorage.getItem('token');
-            this.loadingBtn = true;
+            this.loadingBtn[2] = true;
             let formm = new FormData();
             formm.append('friend', id);
             axios.post('/api/send/user',  formm, {
@@ -228,16 +237,28 @@ export default {
                     'Authorization': `Bearer ${token}`, 
                 }
             }).then(response => {
-                // this.onSuccess(response.data.message);
-                setTimeout(() => this.loadingBtn = false, 1000);
-                console.log(response);
-                // window.location.reload();
+                setTimeout(() => this.loadingBtn[2] = false, 1000);
+                this.$toast.add({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
+                window.location.reload();
                 // window.location.href = '/account/user/list/objects';
             })
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);
                 alert(error);
-                console.log(error);
+            });
+        },
+        getFriends(){
+            this.loading = true;
+            const token = localStorage.getItem('token');
+            console.log(token);
+            axios.get('/api/user/friends', {
+                headers: {
+                    'Authorization': `Bearer ${token}`, 
+                }
+            })
+            .then(response => {
+                this.friends = response.data.result;
+                this.loading = false;
             });
         },
         // deleteProduct() {
