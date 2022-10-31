@@ -248,14 +248,14 @@
                                     <div class="nameless_style_3" id="description">
                                         {{object.comment}}
                                     </div>
-                                    <div class="product-page__map">
+                                    <!-- <div class="product-page__map">
                                         <h2 class="product-page__title">Расположение</h2>
                                         <div>
                                             <div class="offerMap_style" id="offerMap">
                                                 <div style="position:relative;overflow:hidden;"><a href="https://yandex.uz/maps/10335/tashkent/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Ташкент</a><a href="https://yandex.uz/maps/105813/tashkent-province/geo/1942699111/?ll=69.290607%2C41.311609&utm_medium=mapframe&utm_source=maps&z=19.68" style="color:#eee;font-size:12px;position:absolute;top:14px;">Улица Чорток — Яндекс Карты</a><iframe src="https://yandex.uz/map-widget/v1/-/CCURm8Q-8A" width="820px" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div v-if="object.additional_values != ''" class="product-page__section">
                                     <div id="Квартира">
@@ -399,8 +399,8 @@
                                 <div v-for="user in object.user" :key="user.id" class="subscription__author product-page__section" id="author">
                                     <div class="subscription__author_block">
                                         <a href="/agent-single" target="_blank" class="subscription__author_block_avatar d-flex align-items-center justify-content-center">
-                                            <img v-if="!user.image" :src="defaultImage" alt="">
-                                            <img v-else :src="`/file/${user.image}`" alt="">
+                                            <img v-if="!user.image" :src="defaultImage" alt="user_avatar" class="w-100 h-100">
+                                            <img v-else :src="`/file/${user.image}`" alt="user_avatar" class="w-100 h-100">
                                             <!-- JT -->
                                         </a>
                                         <div class="subscription__author_block_title">{{object.user_type == 1 ? 'Собственник' : 'Агент'}}</div>
@@ -453,8 +453,8 @@
                                         <div class="d-flex">
                                             <!-- <div v-if="!user.image" style="background-color: rgb(156, 198, 196);width: 60px;height: 60px;border-radius: 5px;" class="autor_bottom_top_style">TJ</div> -->
                                             <div style="width: 60px;height: 60px;border-radius: 5px;" class="autor_bottom_top_style">
-                                                <img v-if="!user.image" :src="defaultImage" alt="user_avatar_default">
-                                                <img v-else :src="`/file/${user.image}`" alt="user_avatar">
+                                                <img v-if="!user.image" :src="defaultImage" alt="user_avatar_default" class="w-100 h-100">
+                                                <img v-else :src="`/file/${user.image}`" alt="user_avatar" class="w-100 h-100">
                                             </div>
                                             <div class="product-page__sidebar_autor_bottom_content" style="flex: 1;">
                                                 <div class="autor_full_name">
@@ -505,10 +505,10 @@
             
             <!-- Fixed author phone -->
             <div v-if="mobileContant" class="object_single_page_main_object_phone">
-                <div class="object_single_page_main_object_phone_box">
+                <div v-for="user in object.user" :key="user.id" class="object_single_page_main_object_phone_box">
                     <button v-if="!mobileContantPhone" @click="this.mobileContantPhone = true" class="button-root-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3 button-root--type-button-reset-8-1-3 button-root--fluid-8-1-3" type="button" data-e2e-id="sticky-footer-show-phone"><span class="button-root__text-8-1-3">Показать телефон</span></button>
-                    <a v-if="mobileContantPhone == true" href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3 button-root--type-button-reset-8-1-3 button-root-8-1-3">
-                        <span class="button-root__text-8-1-3">+99890 359-22-84</span>
+                    <a v-if="mobileContantPhone == true" :href="`tel:+${user.phone}`" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3 button-root--type-button-reset-8-1-3 button-root-8-1-3">
+                        <span class="button-root__text-8-1-3">+{{user.phone}}</span>
                     </a>
                 </div>
             </div>
@@ -613,7 +613,6 @@ export default {
     methods: {
         getObject(){
             const token = localStorage.getItem('token');
-            console.log(token);
             axios.get('/api/show/object/' + this.$route.params.id, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 

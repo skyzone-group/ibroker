@@ -32,13 +32,13 @@
                                                                 <span class="ad_type_item_content_span">Тип аккаунта</span>
                                                                 <div class="single_button_select">
                                                                     <div class="single_button_select_box d-flex">
-                                                                        <label for="type__account_owner" class="single_button_select_box_label" :class="{'active' : this.form.user_type == '0'}">
-                                                                            <input v-model="form.user_type" id="type__account_owner" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="0">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.user_type == '0'}">Собственник</span>
+                                                                        <label for="type__account_owner" class="single_button_select_box_label" :class="{'active' : this.form.user_type == '1'}">
+                                                                            <input v-model="form.user_type" id="type__account_owner" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="1">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.user_type == '1'}">Собственник</span>
                                                                         </label>
-                                                                        <label for="type__account_agent" class="single_button_select_box_label" :class="{'active' : this.form.user_type == '1'}">
-                                                                            <input v-model="form.user_type" id="type__account_agent" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="1">
-                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.user_type == '1'}">Агент</span>
+                                                                        <label for="type__account_agent" class="single_button_select_box_label" :class="{'active' : this.form.user_type == '2'}">
+                                                                            <input v-model="form.user_type" id="type__account_agent" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="2">
+                                                                            <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.user_type == '2'}">Агент</span>
                                                                         </label>
                                                                     </div>
                                                                 </div>
@@ -1031,7 +1031,6 @@ export default {
                 return;
             }
             const token = localStorage.getItem('token');
-            console.log(token);
             const object_id = this.$route.params.id;
             this.isLoaded = true,
             axios.post('/api/object/update/' + object_id,  this.form, {
@@ -1049,7 +1048,6 @@ export default {
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);
                 alert(error);
-                console.log(token);
                 console.log(error);
             })
             .finally(() => {

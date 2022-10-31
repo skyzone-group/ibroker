@@ -40,7 +40,9 @@ import AddUser from '../views/AddFriends.vue'
 // Object Single Page Details
 import ObjectSinglePage from '../views/ObjectSinglePage.vue'
 
-
+// Notifications
+import Notifications from '../../src/layouts/Notifications.vue'
+import Friendship from '../views/notifications/Friendship.vue'
 
 const routes = [
     {
@@ -198,6 +200,13 @@ const routes = [
                 components: {
                     content: UserComplaints,
                 }
+            },
+            {
+                path: 'notifications',
+                name: 'notifications',
+                components: {
+                    content: Notifications,
+                },
             },
             {
                 path: 'users',

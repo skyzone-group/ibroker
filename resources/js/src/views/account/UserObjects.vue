@@ -209,9 +209,7 @@ export default {
     },
     methods: {
         getUserObjects(page){ // get user informations on database
-            console.log(page);
             const token = localStorage.getItem('token');
-            console.log(token);
             this.isLoaded = true ;
             axios.get(`/api/userObjects?page=${page+=1}&total=${this.total}`, {
                 headers: {

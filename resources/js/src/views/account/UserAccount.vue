@@ -260,7 +260,6 @@ export default {
         },
         saveData(){ // save user informations
             const token = localStorage.getItem('token');
-            console.log(token);
             axios.post('/api/user/update',  this.form, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
@@ -285,8 +284,6 @@ export default {
         },
         getVerifCode(){ // get verification code
             const token = localStorage.getItem('token');
-            console.log(token);
-            
             let formm = new FormData();
             formm.append('phone', this.phone);
             
@@ -343,7 +340,6 @@ export default {
         },
         getUserInfo(){ // get user informations on database
             const token = localStorage.getItem('token');
-            console.log(token);
             this.isLoaded = true ;
             axios.get('/api/getme', {
                 headers: {

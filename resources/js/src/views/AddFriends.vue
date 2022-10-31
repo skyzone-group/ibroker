@@ -10,7 +10,7 @@
             v-model:filters="filters"
             filterDisplay="menu"
             :loading="loading"
-            :globalFilterFields="['firstname', 'lastname', 'phone']"
+            :globalFilterFields="['user.firstname', 'user.lastname', 'user.phone']"
             :resizableColumns="true" 
             columnResizeMode="fit"
             v-model:selection="selectedCustomer" 
@@ -25,8 +25,8 @@
                             </div>
                             <div class="col-md-6 col-12">
                                 <div class="table-header-actions d-flex align-items-center justify-content-end">
-                                    <InputText type="text" v-model="filters['global'].value" placeholder="Search..." class="d-inline-block mr-1 action-filter-input"/>
-                                    <Button label="Add User" class="action-add-friend" @click="visibleRight = true"/>
+                                    <InputText type="text" v-model="filters['global'].value" placeholder="Поиск..." class="d-inline-block mr-1 action-filter-input"/>
+                                    <Button label="Добавить друга" class="action-add-friend" @click="visibleRight = true"/>
                                 </div>
                             </div>
                         </div>
@@ -38,40 +38,42 @@
                 <template #loading>
                     Loading customers data. Please wait.
                 </template>
-                <Column field="firstname" header="Пользователь" sortable>
+                <Column field="firstname" header="Пользователь" sortable sortField="user.firstname">
                     <template #body="slotProps">
                         <div class="media">
                             <div class="media-aside align-self-center">
                                 <div class="media-avatar rounded-circle">
-                                    <img v-if="slotProps.data.image != null" :src="`/file/${slotProps.data.image}`" :alt="slotProps.data.image">
+                                    <img v-if="slotProps.data.user.image != null" :src="`/file/${slotProps.data.user.image}`" :alt="slotProps.data.user.image">
                                     <img v-else :src="src" alt="user_avatar-def">
                                 </div>
                             </div>
                             <div class="media-body">
-                                <a href="#!" class="font-weight-bold d-block text-nowrap"> {{slotProps.data.firstname}} {{slotProps.data.lastname}}</a>
-                                <a v-if="slotProps.data.firstname == null && slotProps.data.lastname == null" href="#!" class="font-weight-bold d-block text-nowrap">User {{slotProps.data.id}}</a>
-                                <small class="text-muted">ID: {{slotProps.data.id}}</small>
+                                <a href="#!" class="font-weight-bold d-block text-nowrap"> {{slotProps.data.user.firstname}} {{slotProps.data.user.lastname}}</a>
+                                <a v-if="slotProps.data.user.firstname == null && slotProps.data.user.lastname == null" href="#!" class="font-weight-bold d-block text-nowrap">User {{slotProps.data.id}}</a>
+                                <small class="text-muted">ID: {{slotProps.data.user.id}}</small>
                             </div>
                         </div>
                     </template>
                 </Column>
-                <Column field="phone" header="Телефон" sortable>
+                <Column field="phone" header="Телефон" sortable sortField="user.phone">
                     <template #body="slotProps">
-                        {{slotProps.data.phone}}
+                        {{slotProps.data.user.phone}}
                     </template>
                 </Column>
-                <Column field="статус" header="Статус" sortable style="min-width: 10rem">
+                <Column field="status" header="Статус" sortable style="min-width: 10rem">
                     <template #body="slotProps">
-                        <span class="customer-badge status-unqualified">{{slotProps.data.phone}}</span>
+                        <span :class="'customer-badge status-' + slotProps.data.status">{{slotProps.data.status}}</span>
+                        <!-- {{slotProps}} -->
                     </template>
                 </Column>
-                <Column :exportable="false" style="min-width:8rem" header="Action">
+                <Column :exportable="false" style="min-width:8rem" header="Действие">
                     <template #body="slotProps">
-                        <Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteProduct(slotProps.data.id)" />
+                        <Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteUser(slotProps.data.user.id)" />
+                        <Button v-if="slotProps.data.status != 'confirm'" icon="pi pi-check" class="p-button-rounded p-button-success ml-2" @click="confirmDeleteUser(slotProps.data.user.id)" />
                     </template>
                 </Column>
                 <template #footer>
-                    In total there are {{friends ? friends.length : 0 }} друга.
+                    Всего {{friends ? friends.length : 0 }} друга.
                 </template>
             </DataTable>
             <div class="user-info-succes-box">
@@ -85,7 +87,7 @@
                             </div>
                             <template #footer>
                                 <Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteProductDialog = false"/>
-                                <Button label="Yes" type="submits" icon="pi pi-check" class="p-button-danger"  @click="deleteProduct" autofocus />
+                                <Button label="Yes" type="submit" icon="pi pi-check" class="p-button-danger"  @click="deleteProduct" autofocus />
                             </template>
                         </Dialog>
                     </form>
@@ -210,10 +212,6 @@ export default {
                 'verified': {value: null, matchMode: FilterMatchMode.EQUALS}
             }
         },
-        confirmDeleteProduct(id) {
-            this.friend_id = id;
-            this.deleteProductDialog = true;
-        },
         searchUser(){
             const token = localStorage.getItem('token');
             this.loadingBtn[1] = true;
@@ -255,26 +253,43 @@ export default {
         getFriends(){
             this.loading = true;
             const token = localStorage.getItem('token');
-            console.log(token);
             axios.get('/api/user/friends', {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 }
             })
             .then(response => {
-                let data = response.data.result;
-                Array.from(data).forEach(file => this.friends.push(file.user));
+                this.friends = response.data.result;
+                // Array.from(data).forEach(file => this.friends.push(file.user));
                 // console.log(this.friends);
                 // console.log(this.users);
                 this.loading = false;
             });
         },
-        // deleteProduct() {
-        //     this.products = this.products.filter(val => val.id !== this.product.id);
-        //     this.deleteProductDialog = false;
-        //     this.product = {};
-        //     this.$toast.add({severity:'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
-        // },
+        confirmDeleteUser(id) {
+            this.friend_id = id;
+            this.deleteProductDialog = true;
+        },
+        deleteProduct() {
+            const token = localStorage.getItem('token');
+            // console.log(this.friend_id);
+            let formDelete = new FormData();
+            formDelete.append('friend_id', this.friend_id);
+            axios.post('/api/delete/friend', formDelete, {
+                headers: {
+                    'Authorization': `Bearer ${token}`, 
+                }
+            }).then(response => {
+                this.$toast.add({severity:'success', summary: 'Друг удален', detail: 'Product Deleted', life: 3000});
+                this.deleteProductDialog = false;
+                window.location.reload();
+                // window.location.href = '/account/user/list/objects';
+            })
+            .catch(function (error) {
+                // this.onFailure(error.response.data.message);
+                alert(error);
+            });
+        },
         resetUser(){
             this.user = "",
             this.form.phone = ""
@@ -371,6 +386,10 @@ export default {
     padding: 1.5rem!important;
 } */
 
+.p-datatable {
+    position: relative;
+    box-shadow: 0 4px 24px 0 rgb(34 41 47 / 10%);
+}
 /* ****************************************************** */
 @media (max-width: 575px){
     .add-friends-main{

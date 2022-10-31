@@ -20,4 +20,9 @@ class Friends extends Model
     {
         return $this->hasOne(User::class, 'id', 'friend');
     }
+    
+    public function friendship()
+    {
+        return $this->hasOne(User::class, 'id', 'owner');
+    }
 }

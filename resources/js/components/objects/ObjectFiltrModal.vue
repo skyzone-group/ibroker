@@ -127,7 +127,6 @@ export default {
     methods: {
         searchObject(){
             const token = localStorage.getItem('token');
-            console.log(token);
             
             axios.get('/api/userObjects',  this.form, {
                 headers: {

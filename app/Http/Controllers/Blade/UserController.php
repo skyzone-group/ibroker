@@ -129,7 +129,6 @@ class UserController extends ResponseController
                     ->where('id', '!=', $user_id)
                     ->get()
                     ->first();
- 
         if(!$user){
             return self::errorResponse('User not found');
         }
@@ -154,5 +153,23 @@ class UserController extends ResponseController
         $user_id = auth('sanctum')->user()->id;
         $friends = Friends::where('owner', '=', $user_id)->with('user')->get()->all();
         return self::successResponse($friends);
+    }
+    
+    public function deleteFriend(Request $request){
+        $friend = Friends::where('friend', '=', $request->get('friend_id'))->delete();
+        return self::successResponse('User deleted');
+    }
+    
+    public function friendshipRequests(){
+        $user_id = auth('sanctum')->user()->id;
+        $friends = Friends::where('friend', '=', $user_id)->with('friendship')->get()->all();
+        return self::successResponse($friends);
+    }
+    
+    public function confirmRequest(Request $request){
+        $friend = Friends::where('owner', '=', $request->get('owner'))->first();
+        $friend->status = 'confirm';
+        $friend->save();
+        return $request->all();
     }
 }
