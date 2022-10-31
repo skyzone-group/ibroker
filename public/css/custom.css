@@ -75,6 +75,19 @@ a:hover{
     border: 1px solid red !important;
 }
 
+.customer-badge.status-unqualified {
+    background-color: #ffcdd2;
+    color: #c63737;
+}
+
+.customer-badge {
+    border-radius: 2px;
+    padding: 0.25em 0.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+}
 
 .required_inputs{
     background: #ff6a59;

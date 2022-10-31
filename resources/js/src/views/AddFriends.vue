@@ -38,39 +38,42 @@
                 <template #loading>
                     Loading customers data. Please wait.
                 </template>
-                <Column field="firstname" header="User" :sortable="true" sortField="firstname">
+                <Column field="firstname" header="Пользователь" sortable>
                     <template #body="slotProps">
                         <div class="media">
                             <div class="media-aside align-self-center">
                                 <div class="media-avatar rounded-circle">
-                                    <img v-if="slotProps.data.user.image != null" :src="slotProps.data.user.image" :alt="slotProps.data.image">
-                                    <img v-else :src="src" :alt="slotProps.data.image">
+                                    <img v-if="slotProps.data.image != null" :src="`/file/${slotProps.data.image}`" :alt="slotProps.data.image">
+                                    <img v-else :src="src" alt="user_avatar-def">
                                 </div>
                             </div>
                             <div class="media-body">
-                                <a href="#!" class="font-weight-bold d-block text-nowrap"> {{slotProps.data.user.firstname}} {{slotProps.data.user.lastname}}</a>
-                                <small class="text-muted">ID: {{slotProps.data.user.id}}</small>
+                                <a href="#!" class="font-weight-bold d-block text-nowrap"> {{slotProps.data.firstname}} {{slotProps.data.lastname}}</a>
+                                <a v-if="slotProps.data.firstname == null && slotProps.data.lastname == null" href="#!" class="font-weight-bold d-block text-nowrap">User {{slotProps.data.id}}</a>
+                                <small class="text-muted">ID: {{slotProps.data.id}}</small>
                             </div>
                         </div>
                     </template>
                 </Column>
-                <Column field="phone" header="Phone" :sortable="true" sortField="phone">
+                <Column field="phone" header="Телефон" sortable>
                     <template #body="slotProps">
-                        {{slotProps.data.user.phone}}
+                        {{slotProps.data.phone}}
+                    </template>
+                </Column>
+                <Column field="статус" header="Статус" sortable style="min-width: 10rem">
+                    <template #body="slotProps">
+                        <span class="customer-badge status-unqualified">{{slotProps.data.phone}}</span>
                     </template>
                 </Column>
                 <Column :exportable="false" style="min-width:8rem" header="Action">
                     <template #body="slotProps">
-                        <Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteProduct(slotProps.data.user.id)" />
+                        <Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteProduct(slotProps.data.id)" />
                     </template>
                 </Column>
                 <template #footer>
-                    In total there are {{friends ? friends.length : 0 }} users.
+                    In total there are {{friends ? friends.length : 0 }} друга.
                 </template>
             </DataTable>
-            <pre>
-                {{friends}}
-            </pre>
             <div class="user-info-succes-box">
                 <Toast />
                 <div class="profile_form-avatar-delete">
@@ -126,8 +129,10 @@
                                     </div>
                                     <div class="media-body">
                                         <a href="#!" class="font-weight-bold d-block text-nowrap">
-                                        <input type="hidden" id="user_id" v-model="form.user_id">
-                                        {{user.firstname}}  {{user.lastname}}</a>
+                                            <input type="hidden" id="user_id" v-model="form.user_id">
+                                            <span v-if="user.firstname != null || user.lastname != null">{{user.firstname}}  {{user.lastname}}</span>
+                                            <span v-else>User {{user.id}}</span>
+                                        </a>
                                         <small class="text-muted">{{user.phone}}</small>
                                     </div>
                                 </div>
@@ -257,7 +262,10 @@ export default {
                 }
             })
             .then(response => {
-                this.friends = response.data.result;
+                let data = response.data.result;
+                Array.from(data).forEach(file => this.friends.push(file.user));
+                // console.log(this.friends);
+                // console.log(this.users);
                 this.loading = false;
             });
         },
