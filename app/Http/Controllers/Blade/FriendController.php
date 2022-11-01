@@ -71,4 +71,27 @@ class FriendController extends ResponseController
         
         return self::errorResponse('Not found');        
     }
+
+    public function search(Request $request){
+        $user_id = auth('sanctum')->user()->id;
+        $phone = $request['phone'];
+       
+        $user = User::where('phone', '=', $phone)->get()->first();
+
+        if($user && $user['id'] != $user_id){
+            $request['friendId'] = $user['id'];
+            $res = self::detail($request);
+            if($res['status']) return $res;
+            
+            $result['id']        = $user['id'];
+            $result['firstname'] = $user['firstname'];
+            $result['lastname']  = $user['lastname'];
+            $result['phone']     = $user['phone'];
+            $result['email']     = $user['email'];
+            $result['image']     = $user['image'];   
+            $result['status']    = "not_friend";
+            return self::successResponse($result);
+        }
+        return self::errorResponse('Not found');
+    }
 }
