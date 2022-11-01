@@ -8,6 +8,7 @@ use App\Http\Controllers\Blade\AddressController;
 use App\Http\Controllers\Blade\ObjectController;
 use App\Http\Controllers\Blade\ObjectTypesController;
 use App\Http\Controllers\Blade\UserController;
+use App\Http\Controllers\Blade\FriendController;
 use App\Models\ImageUpload;
 /*
 |--------------------------------------------------------------------------
@@ -72,15 +73,20 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('/object/edit/{object_id}', [ObjectController::class, 'editObject']);
     Route::post('/object/update/{object_id}', [ObjectController::class, 'update']);
     Route::get('/show/object/{object_id}', [ObjectController::class, 'showObject']);
-    // Add Friends methods
-    Route::post('/search/user', [UserController::class, 'searchUser']);
-    Route::post('/send/user', [UserController::class, 'sendUser']);
-    Route::get('/user/friends', [UserController::class, 'getFriends']);
-    Route::post('/delete/friend', [UserController::class, 'deleteFriend']);
     
-    // FriendShip methods 
-    Route::get('/friendship/requests', [UserController::class, 'friendshipRequests']);
-    Route::post('/confirm/friend', [UserController::class, 'confirmRequest']);
+    // // Add Friends methods
+    // Route::post('/search/user', [UserController::class, 'searchUser']);
+    // Route::post('/send/user', [UserController::class, 'sendUser']);
+    // Route::get('/user/friends', [UserController::class, 'getFriends']);
+    // Route::post('/delete/friend', [UserController::class, 'deleteFriend']);
+    
+    // // FriendShip methods 
+    // Route::get('/friendship/requests', [UserController::class, 'friendshipRequests']);
+    // Route::post('/confirm/friend', [UserController::class, 'confirmRequest']);
+
+    # Friend
+    Route::get('/friend/all', [FriendController::class, 'getAll']);
+    Route::get('/friend/detail', [FriendController::class, 'detail']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
