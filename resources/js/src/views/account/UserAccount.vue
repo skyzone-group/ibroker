@@ -13,13 +13,13 @@
                                     <!-- Avatar -->
                                     <div class="profile_form_avatar">
                                         <div class="user_account_main_block-item-card-header">
-                                            <!-- <div class="avatar">
+                                            <div class="avatar">
                                                 <img v-if="!user.image" :src="src" alt="user_avatar" class="img-full">
                                                 <img v-if="user.image" :src="`/file/${user.image}`" alt="user_avatar" class="img-full">
-                                            </div> -->
+                                            </div>
                                             <div class="user_info">
-                                                <p class="mb-0 user_info-p">{{ user ? (user.firstname && user.firstname ? (`${user.firstname} ${user.lastname}`) : `User ${user.id}`) : ""}}</p>
-                                                <span class="user_info_span">{{ getFormattedDate(user ? user.created_at : '') }} год</span>
+                                                <p class="mb-0 user_info-p">{{ user.firstname && user.firstname ? (`${user.firstname} ${user.lastname}`) : `User ${user.id}`}}</p>
+                                                <span class="user_info_span">{{ getFormattedDate(user.created_at) }} год</span>
                                             </div>
                                         </div>
                                         <div class="profile_form_btns">
@@ -181,7 +181,7 @@ import Dialog from 'primevue/dialog';
 import defaultImage from "../../../../../public/images/avatar-dafault.png"
 
 import ProgressSpinner from 'primevue/progressspinner';
-
+import { mapGetters } from 'vuex'
 // Moment
 import moment from 'moment'
 
@@ -196,6 +196,11 @@ export default {
         Password,
         Dialog,
         ProgressSpinner
+    },
+    props: {
+        defimage: {
+            type: String
+        }
     },
     data() {
         return {
@@ -221,7 +226,6 @@ export default {
             FormValidate: false,
             FormPhone: false,
             displayBasic: false,
-            isLoaded: false
         }
     },
     methods: {
@@ -361,13 +365,13 @@ export default {
         }
     },
     mounted(){
-        // 
         this.$store.dispatch('getUserInfo');
     },
     computed: {
-        user() {
-            return this.$store.getters.user;
-        }
+        ...mapGetters([
+            'user',
+            'isLoaded'
+        ]),
     },
     created() {
         let today = new Date();

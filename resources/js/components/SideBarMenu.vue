@@ -4,18 +4,22 @@
             <div class="user-profile">
                 <div class="user-profile-block d-flex">
                     <a href="#!" class="user-profile-avatar">
-                        <div class="user-profile-img"></div>
+                        <img v-if="user.image == null" :src="defimage" alt="user_avatar">
+                        <img v-else :src="`/file/${user.image}`" alt="user_avatar">
                     </a>
                     <div class="user-profile-info">
                         <a href="#!" class="user-profile-info-link">
-                            <div class="user-profile-info-linktxt">
-                                Javohir
+                            <div v-if="user.firstname != null" class="user-profile-info-linktxt">
+                                {{user.firstname}}
                             </div>
-                            <div class="user-profile-info-linktxt">
-                                Toirov
+                            <div v-if="user.lastname != null" class="user-profile-info-linktxt">
+                                {{user.lastname}}
+                            </div>
+                            <div v-else class="user-profile-info-linktxt">
+                                User {{user.id}}
                             </div>
                             <div class="user-profile-info-id">
-                                ID 12345678
+                                ID {{user.id}}
                             </div>
                         </a>
                     </div>
@@ -122,8 +126,27 @@
 
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-    
+    props: {
+        defimage: {
+            type: String
+        }
+    },
+    data() {
+        return {
+            
+        }
+    },
+    mounted(){
+        this.$store.dispatch('getUserInfo');
+    },
+    computed: {
+        ...mapGetters([
+            'user',
+            'isLoaded'
+        ]),
+    },
 }
 </script>
 
@@ -164,6 +187,7 @@ export default {
     overflow: hidden;
     user-select: none;
     text-decoration: none;
+    box-shadow: 0 4px 24px 0 rgb(34 41 47 / 10%);
 }
 
 .user-profile-img{

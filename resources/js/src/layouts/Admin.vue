@@ -1,16 +1,16 @@
 <template>
     <div class="h-100">
-        <nav-bar :loggedIn="loggedIn"></nav-bar>
+        <nav-bar :loggedIn="loggedIn" :defimage="defaultImage"></nav-bar>
         <auth-modal @loggedIn="authStatus" :loggedIn="loggedIn"></auth-modal>
         <div class="ual-container-wrapper h-100">
             <div class="ual-container h-100">
                 <div class="ual-sidebar">
-                    <side-bar></side-bar>
+                    <side-bar :defimage="defaultImage"></side-bar>
                 </div>
                 <div class="ual-content h-100">
                     <div class="ual-wrapper">
                         <div class="frontend-user-area" style="flex: 1 0 auto;">
-                            <router-view name="content" :loggedIn="loggedIn"></router-view>
+                            <router-view name="content" :defimage="defaultImage" :loggedIn="loggedIn"></router-view>
                         </div>
                         <div class="ual-footer-desktop">
                             <div>© 2021 ЦИАН ГРУПП</div>
@@ -32,6 +32,7 @@
 import NavBar from '../../components/SiteNavBar.vue'
 import AuthModal from '../auth/AuthModal.vue'
 import SideBar from '../../components/SideBarMenu.vue'
+import defaultImage from "../../../../public/images/avatar-dafault.png"
 export default {
     components: {
         NavBar,
@@ -41,6 +42,7 @@ export default {
     data() {
         return {
             loggedIn: false,
+            defaultImage,
             user: []
         }
     },
