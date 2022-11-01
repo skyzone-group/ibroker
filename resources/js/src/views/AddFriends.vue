@@ -69,7 +69,7 @@
                 <Column :exportable="false" style="min-width:8rem" header="Действие">
                     <template #body="slotProps">
                         <Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteUser(slotProps.data.user.id)" />
-                        <Button v-if="slotProps.data.status != 'confirm'" icon="pi pi-check" class="p-button-rounded p-button-success ml-2" @click="confirmDeleteUser(slotProps.data.user.id)" />
+                        <!-- <Button v-if="slotProps.data.status != 'confirm'" icon="pi pi-check" class="p-button-rounded p-button-success ml-2" @click="confirmDeleteUser(slotProps.data.user.id)" /> -->
                     </template>
                 </Column>
                 <template #footer>
@@ -122,6 +122,7 @@
                         </form>
                         <div class="user-box" v-else>
                             <form @submit.prevent="sendUser(user.id)" method="POST" :model="form">
+                                <span v-if="message" class="alert-success p-1">{{message}}</span>
                                 <div class="media user-box-list my-2">
                                     <div class="media-aside align-self-center">
                                         <div class="media-avatar rounded-circle">
@@ -139,7 +140,7 @@
                                     </div>
                                 </div>
                                 <div class="user-box-btns d-flex justify-content-between w-100">
-                                    <Button type="submit" :loading="loadingBtn[2]" label="Добавить друга"  style="background-color: var(--primary_100);"/>
+                                    <Button type="submit" :loading="loadingBtn[2]" label="Добавить друга"  style="background-color: var(--primary_100);" :disabled="message" />
                                     <Button type="button" label="Отмена"  class="p-button-danger" @click="resetUser"/>
                                 </div>
                             </form>
@@ -223,6 +224,7 @@ export default {
                 setTimeout(() => this.loadingBtn[1] = false, 1000);
                 if(response.data.status == true){
                     this.user = response.data.result.user;
+                    this.message = response.data.result.message;
                 }
                 else{
                     this.message = response.data.error.message;
@@ -292,13 +294,14 @@ export default {
         },
         resetUser(){
             this.user = "",
+            this.message = null,
             this.form.phone = ""
         }
     },
 }
 </script>
 
-<style scoped> 
+<style> 
 .add-friends-main{
     display: flex;
     flex: 1 1;
@@ -394,6 +397,11 @@ export default {
 @media (max-width: 575px){
     .add-friends-main{
         display: block;
+    }
+}
+@media (max-width: 475px){
+    .p-sidebar-right {
+        width: 25rem;
     }
 }
 </style>

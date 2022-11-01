@@ -129,10 +129,17 @@ class UserController extends ResponseController
                     ->where('id', '!=', $user_id)
                     ->get()
                     ->first();
+        $friend_id = $user->id;
+        $friend = Friends::where('friend', '=', $friend_id)->get()->first();
         if(!$user){
             return self::errorResponse('User not found');
         }
-        
+        if($friend){
+            return self::successResponse([
+                'message'  => 'В вашей команде',
+                'user'      => $user,
+            ]);
+        }
         return self::successResponse([
             'user'      => $user,
         ]);

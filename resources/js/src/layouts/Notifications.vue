@@ -7,24 +7,41 @@
                         <span class="title">Уведомления</span>
                     </div>
                     <div class="notif-body">
-                        <friendship-request v-if="friendship" :data="friendship"></friendship-request>
+                        <div v-if="isLoaded" class="loader-main-box">
+                            <ProgressSpinner style="width:80px; height:80px" strokeWidth="3" fill="var(--surface-ground)" animationDuration="1s" />
+                        </div>
+                        <div v-else-if="friendship.length === 0">
+                            <div class="empty_box notification-empty flex-column">
+                                <figure>
+                                    <img src="/images/icons/notification-bell.png" alt="">
+                                </figure>
+                                <div class="empty_box-content">
+                                    <h5>Ещё нет уведомлений</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-else class="notificatios=item">
+                            <friendship-request v-if="friendship" :data="friendship"></friendship-request>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
     </div>
 </template>
 
 <script>
 import FriendshipRequest from '../views/notifications/Friendship.vue'
+import ProgressSpinner from 'primevue/progressspinner';
 export default {
     components: {
-        FriendshipRequest
+        FriendshipRequest,
+        ProgressSpinner
     },
     data() {
         return {
-            friendship: null
+            friendship: null,
+            isLoaded: false
         }
     },
     created() {
@@ -32,6 +49,7 @@ export default {
     },
     methods: {
         getFriendship(){
+            this.isLoaded = true ;
             const token = localStorage.getItem('token');
             axios.get('/api/friendship/requests', {
                 headers: {
@@ -40,6 +58,7 @@ export default {
             })
             .then(response => {
                 this.friendship = response.data.result;
+                this.isLoaded = false;
                 // Array.from(data).forEach(file => this.friends.push(file.user));
                 // console.log(this.friends);
                 // console.log(this.users);
@@ -98,5 +117,24 @@ export default {
 
 .notif-body{
     padding: 15px 20px;
+}
+
+.empty_box-content{
+    padding-top: 20px;
+}
+
+.empty_box-content h5{
+    font-weight: 700;
+    line-height: 22px;
+    font-size: 18px;
+    letter-spacing: normal;
+}
+
+/* ********************************************************************** */
+/* /////////////////////////////////// Meida /////////////////////////////////// */
+@media (max-width: 475px){
+    .notif-widget {
+        width: 100%;
+    }
 }
 </style>
