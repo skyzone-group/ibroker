@@ -87,6 +87,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     # Friend
     Route::get('/friend/all', [FriendController::class, 'getAll']);
     Route::get('/friend/detail', [FriendController::class, 'detail']);
+    Route::get('/friend/search', [FriendController::class, 'search']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
