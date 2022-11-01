@@ -298,15 +298,26 @@
                         
                         <div v-else class="dropdown-avatar avatar_log">
                             <a class="dropdown-toggle nav-link dropdown-user-link avatar_drop" href="#" data-toggle="dropdown">
-                                <img class="round" src="../../../public/images/avatar-dafault.png" width="100" alt="avatar">
+                                <img class="round h-100" v-if="user.image == null" :src="defimage" width="100" alt="avatar" style="object-fit: cover;">
+                                <img class="round h-100" v-else :src="`/file/${user.image}`" width="100" alt="avatar" style="object-fit: cover;">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <div class="avatar-inform">
-                                    <a href="#!" class="user_name">
-                                        Javohir Toirov
+                                    <a v-if="user.firstname != null && user.lastname != null" href="#!" class="user_name">
+                                        {{user.firstname}} {{user.lastname}}
                                     </a>
+                                    <a v-else-if="user.firstname != null" href="#!" class="user_name">
+                                        {{user.firstname}}
+                                    </a>
+                                    <a v-else-if="user.lastname != null" href="#!" class="user_name">
+                                        {{user.lastname}}
+                                    </a>
+                                    <a v-else href="#!" class="user_name">
+                                        User {{user.id}}
+                                    </a>
+                                    
                                     <a href="#!" class="mb-0 user_id">
-                                        ID 12345678
+                                        ID {{user.id}}
                                     </a>
                                 </div>
                                 <!-- <a class="dropdown-item" href="account/summary">
@@ -340,7 +351,7 @@
 <script>
 import Button from 'primevue/button';
 import Sidebar from 'primevue/sidebar';
-
+import { mapGetters } from 'vuex'
 export default {
     components: {
         Sidebar
@@ -364,6 +375,9 @@ export default {
     props: {
         loggedIn: {
             type: Boolean,
+        },
+        defimage: {
+            type: String
         }
     },
     methods: {
@@ -399,6 +413,15 @@ export default {
                 console.log('error');
             });
         },
+    },
+    mounted(){
+        this.$store.dispatch('getUserInfo');
+    },
+    computed: {
+        ...mapGetters([
+            'user',
+            'isLoaded'
+        ]),
     },
     created() {
         window.addEventListener('resize', this.checkScreen);

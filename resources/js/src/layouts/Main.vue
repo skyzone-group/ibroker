@@ -1,6 +1,6 @@
 <template>
     <div>
-        <nav-bar :loggedIn="loggedIn"></nav-bar>
+        <nav-bar :loggedIn="loggedIn" :defimage="defaultImage"></nav-bar>
         <auth-modal @loggedIn="authStatus" :loggedIn="loggedIn"></auth-modal>
         <router-view class="main-view" name="main" :loggedIn="loggedIn"></router-view>
         <footer-nav></footer-nav>
@@ -11,6 +11,7 @@
 import NavBar from '../../components/SiteNavBar.vue'
 import AuthModal from '../auth/AuthModal.vue'
 import FooterNav from '../../components/SiteFooter.vue'
+import defaultImage from "../../../../public/images/avatar-dafault.png"
 export default {
     components: {
         NavBar,
@@ -20,6 +21,7 @@ export default {
     data() {
         return {
             loggedIn: false,
+            defaultImage
         }
     },
     methods: {

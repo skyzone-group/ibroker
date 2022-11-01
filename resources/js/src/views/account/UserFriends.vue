@@ -10,7 +10,7 @@
             v-model:filters="filters"
             filterDisplay="menu"
             :loading="loading"
-            :globalFilterFields="['user.firstname', 'user.lastname', 'user.phone']"
+            :globalFilterFields="['friendInfo.firstname', 'friendInfo.lastname', 'friendInfo.phone']"
             :resizableColumns="true" 
             columnResizeMode="fit"
             v-model:selection="selectedCustomer" 
@@ -43,21 +43,21 @@
                         <div class="media">
                             <div class="media-aside align-self-center">
                                 <div class="media-avatar rounded-circle">
-                                    <img v-if="slotProps.data.user.image != null" :src="`/file/${slotProps.data.user.image}`" :alt="slotProps.data.user.image">
+                                    <img v-if="slotProps.data.friendInfo.image != null" :src="`/file/${slotProps.data.friendInfo.image}`" :alt="slotProps.data.friendInfo.image">
                                     <img v-else :src="src" alt="user_avatar-def">
                                 </div>
                             </div>
                             <div class="media-body">
-                                <a href="#!" class="font-weight-bold d-block text-nowrap"> {{slotProps.data.user.firstname}} {{slotProps.data.user.lastname}}</a>
-                                <a v-if="slotProps.data.user.firstname == null && slotProps.data.user.lastname == null" href="#!" class="font-weight-bold d-block text-nowrap">User {{slotProps.data.id}}</a>
-                                <small class="text-muted">ID: {{slotProps.data.user.id}}</small>
+                                <a href="#!" class="font-weight-bold d-block text-nowrap"> {{slotProps.data.friendInfo.firstname}} {{slotProps.data.friendInfo.lastname}}</a>
+                                <a v-if="slotProps.data.friendInfo.firstname == null && slotProps.data.friendInfo.lastname == null" href="#!" class="font-weight-bold d-block text-nowrap">User {{slotProps.data.friendInfo.id}}</a>
+                                <small class="text-muted">ID: {{slotProps.data.friendInfo.id}}</small>
                             </div>
                         </div>
                     </template>
                 </Column>
                 <Column field="phone" header="Телефон" sortable sortField="user.phone">
                     <template #body="slotProps">
-                        {{slotProps.data.user.phone}}
+                        {{slotProps.data.friendInfo.phone}}
                     </template>
                 </Column>
                 <Column field="status" header="Статус" sortable style="min-width: 10rem">
@@ -68,8 +68,8 @@
                 </Column>
                 <Column :exportable="false" style="min-width:8rem" header="Действие">
                     <template #body="slotProps">
-                        <Button label="Принять" class="p-button-rounded p-button-success" @click="confirmDeleteUser(slotProps.data.user.id)" />
-                        <Button label="Отменить" class="p-button-rounded p-button-danger ml-2" @click="confirmDeleteUser(slotProps.data.user.id)" />
+                        <Button v-if="slotProps.data.owner = false" label="Принять" class="p-button-rounded p-button-success" @click="confirmDeleteUser(slotProps.data.friendInfo.id)" />
+                        <Button label="Отменить" class="p-button-rounded p-button-danger ml-2" @click="confirmDeleteUser(slotProps.data.friendInfo.id)" />
                         <!-- <Button v-if="slotProps.data.status != 'confirm'" icon="pi pi-check" class="p-button-rounded p-button-success" @click="confirmDeleteUser(slotProps.data.user.id)" /> -->
                     </template>
                 </Column>
@@ -163,7 +163,7 @@ import {FilterMatchMode,FilterOperator} from 'primevue/api';
 import Toast from 'primevue/toast';
 import Dialog from 'primevue/dialog';
 import Sidebar from 'primevue/sidebar';
-import defaultImage from "../../../../public/images/avatar-dafault.png"
+import defaultImage from "../../../../../public/images/avatar-dafault.png"
 export default {
     components: {
         DataTable,
@@ -256,7 +256,7 @@ export default {
         getFriends(){
             this.loading = true;
             const token = localStorage.getItem('token');
-            axios.get('/api/user/friends', {
+            axios.get('/api/friend/all', {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 }

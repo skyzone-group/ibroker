@@ -5,8 +5,14 @@
 </template>
 
 <script>
+import defaultImage from "../../public/images/avatar-dafault.png"
 export default {
     name: 'App',
+    data() {
+        return {
+            
+        }
+    },
 }
 </script>
 
