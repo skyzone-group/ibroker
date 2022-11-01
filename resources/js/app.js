@@ -2,6 +2,7 @@ require('./bootstrap');
 
 import { createApp } from 'vue'
 import router from './src/router'
+import store from './store'
 import App from './App.vue'
 import PrimeVue from 'primevue/config';
 
@@ -52,6 +53,7 @@ import 'vue-easy-lightbox/external-css/vue-easy-lightbox.css'
 const app = createApp(App)
 //app.config.globalProperties.$IsLoggedIn = localStorage.getItem('token') ? true : false;
 app.use(router)
+app.use(store)
 app.use(PrimeVue)
 app.use(VueScrollTo, {
     container: "body",

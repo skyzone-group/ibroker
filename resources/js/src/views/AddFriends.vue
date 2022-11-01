@@ -68,8 +68,9 @@
                 </Column>
                 <Column :exportable="false" style="min-width:8rem" header="Действие">
                     <template #body="slotProps">
-                        <Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteUser(slotProps.data.user.id)" />
-                        <!-- <Button v-if="slotProps.data.status != 'confirm'" icon="pi pi-check" class="p-button-rounded p-button-success ml-2" @click="confirmDeleteUser(slotProps.data.user.id)" /> -->
+                        <Button label="Принять" class="p-button-rounded p-button-success" @click="confirmDeleteUser(slotProps.data.user.id)" />
+                        <Button label="Отменить" class="p-button-rounded p-button-danger ml-2" @click="confirmDeleteUser(slotProps.data.user.id)" />
+                        <!-- <Button v-if="slotProps.data.status != 'confirm'" icon="pi pi-check" class="p-button-rounded p-button-success" @click="confirmDeleteUser(slotProps.data.user.id)" /> -->
                     </template>
                 </Column>
                 <template #footer>
