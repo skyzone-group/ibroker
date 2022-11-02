@@ -146,12 +146,12 @@
                                 Ваш друг
                             </p>
                             <div class="user-box-btns w-100">
-                                <form v-if="confirm == false" class="user-box-btn" @submit.prevent="sendUser(user.id)" method="POST">
+                                <form v-if="confirm == true" class="user-box-btn" @submit.prevent="sendUser(user.id)" method="POST">
                                     <div class="user-btn w-100">
-                                        <Button type="submit" :loading="loadingBtn[2]" class="w-100" label="Добавить друга"  style="background-color: var(--primary_100);" :disabled="message || confirm != false || not_friend != 'not_friend'"/>
+                                        <Button type="submit" :loading="loadingBtn[2]" class="w-100" label="Добавить друга"  style="background-color: var(--primary_100);" :disabled="confirm_btn == true || message "/>
                                     </div>
                                 </form>
-                                <form v-else-if="confirm_message != 'confirm' && confirm == true" @submit.prevent="confirmUser(user.id)" class="user-box-btn" method="POST">
+                                <form v-if="confirm == false" @submit.prevent="confirmUser(user.id)" class="user-box-btn" method="POST">
                                     <div class="user-btn w-100">
                                         <Button type="submit" :loading="loadingBtn[2]" class="w-100" label="Принять"  style="background-color: var(--primary_100);" :disabled="message" />
                                     </div>
@@ -211,6 +211,7 @@ export default {
             ownerr: false,
             confirm: null,
             confirm_message: null,
+            confirm_btn: false,
         }
     },
     created() {
@@ -238,16 +239,24 @@ export default {
             }).then(response => {
                 setTimeout(() => this.loadingBtn[1] = false, 1000);
                 if(response.data.status == true){
-                    if(response.data.result.owner == true){
-                        this.user = response.data.result.friendInfo;
-                        this.confirm = false;
-                    }
-                    else if(response.data.result.owner == false){
-                        this.user = response.data.result.friendInfo;
-                        this.confirm_message = response.data.result.status;
+                    if(response.data.result.status == 'not_friend'){
+                        this.user = response.data.result;
                         this.confirm = true;
                     }
-                    else{
+                    else if(response.data.result.status == 'request'){
+                        this.user = response.data.result.friendInfo;
+                        if(this.user.phone != response.data.result.phone){
+                            this.confirm = true;
+                            this.confirm_btn = false;
+                        }
+                        else{
+                            this.confirm_btn = true;
+                        }
+                        
+                        // this.confirm_message = response.data.result.status;
+                        
+                    }
+                    else if(response.data.result.status == 'confirm'){
                         this.user = response.data.result;
                         this.not_friend = response.data.result.status;
                         this.confirm = false;
@@ -278,7 +287,7 @@ export default {
                     this.$toast.add({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
                 }
                 
-                window.location.reload();
+                // window.location.reload();
             })
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);
