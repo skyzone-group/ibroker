@@ -75,9 +75,7 @@ class FriendController extends ResponseController
     public function search(Request $request){
         $user_id = auth('sanctum')->user()->id;
         $phone = $request['phone'];
-       
         $user = User::where('phone', '=', $phone)->get()->first();
-
         if($user && $user['id'] != $user_id){
             $request['friendId'] = $user['id'];
             $res = self::detail($request);
@@ -104,7 +102,6 @@ class FriendController extends ResponseController
         if($user && $user['id'] != $user_id){
             $res = self::detail($request);
             if($res['status']) return self::errorResponse('Alredy friend!');
-           
             Friend::create([
                 'owner'  => $user_id,
                 'friend'  => $friendId,
