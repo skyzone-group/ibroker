@@ -90,6 +90,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/friend/search', [FriendController::class, 'search']);
     Route::post('/friend/send-request', [FriendController::class, 'sendRequest']);
     Route::post('/friend/confirm', [FriendController::class, 'confirm']);
+    Route::post('/friend/delete', [FriendController::class, 'delete']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

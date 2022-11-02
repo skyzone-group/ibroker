@@ -138,4 +138,29 @@ class FriendController extends ResponseController
         }
         return self::errorResponse('Not found');
     }
+    
+    public function delete(Request $request){
+        $user_id = auth('sanctum')->user()->id;
+        $friendId = $request['friendId'];
+
+        $user = User::where('id', '=', $friendId)->get()->first();
+
+        if($user && $user['id'] != $user_id){
+            $res = self::detail($request);
+            
+            if($res['status']) {
+                Friend::where(function($q)  use ($user_id, $friendId){
+                        $q->where('owner', '=', $user_id)
+                        ->Where('friend', '=', $friendId);
+                    })
+                    ->orWhere(function($q)  use ($user_id, $friendId){
+                        $q->where('owner', '=', $friendId)
+                        ->Where('friend', '=', $user_id);
+                    })
+                    ->delete();
+                    return self::successResponse('Succesfuly deleted');
+            }
+        }
+        return self::errorResponse('Not found');
+    }
 }
