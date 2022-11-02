@@ -68,9 +68,10 @@
                 </Column>
                 <Column :exportable="false" style="min-width:8rem" header="Действие">
                     <template #body="slotProps">
-                        <Button v-if="slotProps.data.owner = false" label="Принять" class="p-button-rounded p-button-success" @click="confirmDeleteUser(slotProps.data.friendInfo.id)" />
-                        <Button label="Отменить" class="p-button-rounded p-button-danger ml-2" @click="confirmDeleteUser(slotProps.data.friendInfo.id)" />
-                        <!-- <Button v-if="slotProps.data.status != 'confirm'" icon="pi pi-check" class="p-button-rounded p-button-success" @click="confirmDeleteUser(slotProps.data.user.id)" /> -->
+                        <form @submit.prevent="sendUser(slotProps.data.friendInfo.id)" method="POST">
+                            <Button v-if="slotProps.data.owner == false" type="submit" label="Принять" class="p-button-rounded p-button-success"/>
+                            <Button label="Отменить" class="p-button-rounded p-button-danger ml-2" @click="confirmDeleteUser(slotProps.data.friendInfo.id)" />
+                        </form>
                     </template>
                 </Column>
                 <template #footer>
@@ -141,7 +142,7 @@
                                     </div>
                                 </div>
                                 <div class="user-box-btns d-flex justify-content-between w-100">
-                                    <Button type="submit" :loading="loadingBtn[2]" label="Добавить друга"  style="background-color: var(--primary_100);" :disabled="message" />
+                                    <Button type="submit" :loading="loadingBtn[2]" :label="ownerr == false ? 'Добавить друга' : 'Принять'"  style="background-color: var(--primary_100);" :disabled="message" />
                                     <Button type="button" label="Отмена"  class="p-button-danger" @click="resetUser"/>
                                 </div>
                             </form>
@@ -179,7 +180,6 @@ export default {
         return {
             form: {
                 phone: "",
-                user_id: "",
             },
             src: defaultImage,
             customers: null,
@@ -193,6 +193,7 @@ export default {
             user: null,
             friends: [],
             message: null,
+            ownerr: false,
             users: [
                 {"user": "Volkswagen", "phone": "+998903592284", "id": "12", "image": "https://www.zastavki.com/pictures/originals/2020Men___Male_Celebrity_Actor_Dwayne_Johnson_on_a_black_background_140459_.jpg"},
                 {"user": "Mercedes Benz", "phone": "+998901234567", "id": "120", "image": "https://i.pinimg.com/736x/78/76/8d/78768d83fc6c3e2f1773faf9b9ad258d.jpg"},
@@ -217,14 +218,21 @@ export default {
         searchUser(){
             const token = localStorage.getItem('token');
             this.loadingBtn[1] = true;
-            axios.post('/api/search/user',  this.form, {
+            axios.post('/api/friend/search',  this.form, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 }
             }).then(response => {
                 setTimeout(() => this.loadingBtn[1] = false, 1000);
                 if(response.data.status == true){
-                    this.user = response.data.result.user;
+                    if(response.data.result.owner == false){
+                        this.user = response.data.result.friendInfo;
+                        this.ownerr = true;
+                    }
+                    else{
+                        this.user = response.data.result;
+                        this.ownerr = false;
+                    }
                     this.message = response.data.result.message;
                 }
                 else{
@@ -237,15 +245,21 @@ export default {
             const token = localStorage.getItem('token');
             this.loadingBtn[2] = true;
             let formm = new FormData();
-            formm.append('friend', id);
-            axios.post('/api/send/user',  formm, {
+            formm.append('friendId', id);
+            axios.post('/api/friend/send-request',  formm, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 }
             }).then(response => {
                 setTimeout(() => this.loadingBtn[2] = false, 1000);
-                this.$toast.add({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
-                window.location.reload();
+                if(response.data.status == false){
+                    this.message = response.data.error.message;
+                }
+                else{
+                    this.$toast.add({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
+                }
+                
+                // window.location.reload();
                 // window.location.href = '/account/user/list/objects';
             })
             .catch(function (error) {
