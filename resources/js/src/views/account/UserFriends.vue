@@ -10,7 +10,7 @@
             v-model:filters="filters"
             filterDisplay="menu"
             :loading="loading"
-            :globalFilterFields="['friendInfo.firstname', 'friendInfo.lastname', 'friendInfo.phone']"
+            :globalFilterFields="['friendInfo.firstname', 'friendInfo.lastname', 'friendInfo.phone', 'status']"
             :resizableColumns="true" 
             columnResizeMode="fit"
             v-model:selection="selectedCustomer" 
@@ -38,7 +38,7 @@
                 <template #loading>
                     Loading customers data. Please wait.
                 </template>
-                <Column field="firstname" header="Пользователь" sortable sortField="user.firstname">
+                <Column field="firstname" header="Пользователь" sortable sortField="friendInfo.firstname">
                     <template #body="slotProps">
                         <div class="media">
                             <div class="media-aside align-self-center">
@@ -55,7 +55,7 @@
                         </div>
                     </template>
                 </Column>
-                <Column field="phone" header="Телефон" sortable sortField="user.phone">
+                <Column field="phone" header="Телефон" sortable sortField="friendInfo.phone">
                     <template #body="slotProps">
                         {{slotProps.data.friendInfo.phone}}
                     </template>
@@ -68,9 +68,9 @@
                 </Column>
                 <Column :exportable="false" style="min-width:8rem" header="Действие">
                     <template #body="slotProps">
-                        <form @submit.prevent="sendUser(slotProps.data.friendInfo.id)" method="POST">
-                            <Button v-if="slotProps.data.owner == false" type="submit" label="Принять" class="p-button-rounded p-button-success"/>
-                            <Button label="Отменить" class="p-button-rounded p-button-danger ml-2" @click="confirmDeleteUser(slotProps.data.friendInfo.id)" />
+                        <form @submit.prevent="confirmUser(slotProps.data.friendInfo.id)" method="POST">
+                            <Button v-if="slotProps.data.owner == false && slotProps.data.status == 'request'" type="submit" label="Принять" class="p-button-rounded p-button-success mr-2"/>
+                            <Button label="Отменить" class="p-button-rounded p-button-danger" @click="confirmDeleteUser(slotProps.data.friendInfo.id)" />
                         </form>
                     </template>
                 </Column>
@@ -123,29 +123,43 @@
                             </div>
                         </form>
                         <div class="user-box" v-else>
-                            <form @submit.prevent="sendUser(user.id)" method="POST" :model="form">
-                                <span v-if="message" class="alert-success p-1">{{message}}</span>
-                                <div class="media user-box-list my-2">
-                                    <div class="media-aside align-self-center">
-                                        <div class="media-avatar rounded-circle">
-                                            <img v-if="!user.image" :src="src" alt="user_avatar">
-                                            <img v-if="user.image" :src="`/file/${user.image}`" alt="user_avatar">
-                                        </div>
-                                    </div>
-                                    <div class="media-body">
-                                        <a href="#!" class="font-weight-bold d-block text-nowrap">
-                                            <input type="hidden" id="user_id" v-model="form.user_id">
-                                            <span v-if="user.firstname != null || user.lastname != null">{{user.firstname}}  {{user.lastname}}</span>
-                                            <span v-else>User {{user.id}}</span>
-                                        </a>
-                                        <small class="text-muted">{{user.phone}}</small>
+                            <span v-if="message" class="alert-success p-1">{{message}}</span>
+                            <div class="media user-box-list my-2">
+                                <div class="media-aside align-self-center">
+                                    <div class="media-avatar rounded-circle">
+                                        <img v-if="!user.image" :src="src" alt="user_avatar">
+                                        <img v-if="user.image" :src="`/file/${user.image}`" alt="user_avatar">
                                     </div>
                                 </div>
-                                <div class="user-box-btns d-flex justify-content-between w-100">
-                                    <Button type="submit" :loading="loadingBtn[2]" :label="ownerr == false ? 'Добавить друга' : 'Принять'"  style="background-color: var(--primary_100);" :disabled="message" />
-                                    <Button type="button" label="Отмена"  class="p-button-danger" @click="resetUser"/>
+                                <div class="media-body">
+                                    <a href="#!" class="font-weight-bold d-block text-nowrap">
+                                        <span v-if="user.firstname != null || user.lastname != null">{{user.firstname}}  {{user.lastname}}</span>
+                                        <span v-else>User {{user.id}}</span>
+                                    </a>
+                                    <small class="text-muted">{{user.phone}}</small>
                                 </div>
-                            </form>
+                            </div>
+                            <p class="my-2">
+                                <span v-if="not_friend != 'not_friend'">
+                                    Отправлена заявка на добавления в Друзъя!
+                                </span>
+                                <!-- <span v-else-if="ownerr == true">ok</span> -->
+                            </p>
+                            <div class="user-box-btns w-100">
+                                <form v-if="not_friend == 'not_friend' || ownerr == false" class="user-box-btn" @submit.prevent="sendUser(user.id)" method="POST">
+                                    <div class="user-btn w-100">
+                                        <Button type="submit" :loading="loadingBtn[2]" class="w-100" label="Добавить друга"  style="background-color: var(--primary_100);" :disabled="message"/>
+                                    </div>
+                                </form>
+                                <form v-else-if="not_friend != 'not_friend' && ownerr == true" @submit.prevent="confirmUser(user.id)" class="user-box-btn" method="POST">
+                                    <div class="user-btn w-100">
+                                        <Button type="submit" :loading="loadingBtn[2]" class="w-100" label="Принять"  style="background-color: var(--primary_100);" :disabled="message" />
+                                    </div>
+                                </form>
+                                <div class="user-box-btn">
+                                    <Button type="button" label="Отмена"  class="p-button-danger w-100" @click="resetUser"/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </Sidebar>
@@ -193,6 +207,7 @@ export default {
             user: null,
             friends: [],
             message: null,
+            not_friend: null,
             ownerr: false,
             users: [
                 {"user": "Volkswagen", "phone": "+998903592284", "id": "12", "image": "https://www.zastavki.com/pictures/originals/2020Men___Male_Celebrity_Actor_Dwayne_Johnson_on_a_black_background_140459_.jpg"},
@@ -225,13 +240,16 @@ export default {
             }).then(response => {
                 setTimeout(() => this.loadingBtn[1] = false, 1000);
                 if(response.data.status == true){
-                    if(response.data.result.owner == false){
+                    // if(response.data.result.status == "not_friend"){
+                    //     this.user = response.data.result;
+                    // }
+                    if(response.data.result.owner == true){
                         this.user = response.data.result.friendInfo;
                         this.ownerr = true;
                     }
                     else{
                         this.user = response.data.result;
-                        this.ownerr = false;
+                        this.not_friend = response.data.result.status;
                     }
                     this.message = response.data.result.message;
                 }
@@ -261,6 +279,28 @@ export default {
                 
                 // window.location.reload();
                 // window.location.href = '/account/user/list/objects';
+            })
+            .catch(function (error) {
+                // this.onFailure(error.response.data.message);
+                alert(error);
+            });
+        },
+        confirmUser(id){
+            const token = localStorage.getItem('token');
+            let formm = new FormData();
+            formm.append('friendId', id);
+            axios.post('/api/friend/confirm',  formm, {
+                headers: {
+                    'Authorization': `Bearer ${token}`, 
+                }
+            }).then(response => {
+                if(response.data.status == false){
+                    this.message = response.data.error.message;
+                }
+                else{
+                    this.$toast.add({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
+                }
+                // window.location.reload();
             })
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);
@@ -407,6 +447,20 @@ export default {
 .p-datatable {
     position: relative;
     box-shadow: 0 4px 24px 0 rgb(34 41 47 / 10%);
+}
+
+.user-box-btns{
+    display: flex;
+    flex-wrap: wrap;
+    margin: -4px;
+}
+
+.user-box-btn{
+    display: flex;
+    flex: 1 0 auto;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    margin: 4px;
 }
 /* ****************************************************** */
 @media (max-width: 575px){
