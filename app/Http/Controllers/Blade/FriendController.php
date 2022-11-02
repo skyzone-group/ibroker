@@ -135,8 +135,6 @@ class FriendController extends ResponseController
                     ->update(['status' => 'confirm']);
                     return self::successResponse('Succesfuly updated');
             }
-           
-            
         }
         return self::errorResponse('Not found');
     }
