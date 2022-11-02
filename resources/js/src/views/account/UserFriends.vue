@@ -139,19 +139,19 @@
                                     <small class="text-muted">{{user.phone}}</small>
                                 </div>
                             </div>
-                            <p class="my-2">
-                                <span v-if="not_friend != 'not_friend'">
-                                    Отправлена заявка на добавления в Друзъя!
-                                </span>
-                                <!-- <span v-else-if="ownerr == true">ok</span> -->
+                            <p v-if="not_friend != 'not_friend'" class="my-2">
+                                Отправлена заявка на добавления в Друзъя!
+                            </p>
+                            <p v-if="confirm_message == 'confirm'" class="my-2 alert-success p-1">
+                                Ваш друг
                             </p>
                             <div class="user-box-btns w-100">
-                                <form v-if="not_friend == 'not_friend' || ownerr == false" class="user-box-btn" @submit.prevent="sendUser(user.id)" method="POST">
+                                <form v-if="confirm == false" class="user-box-btn" @submit.prevent="sendUser(user.id)" method="POST">
                                     <div class="user-btn w-100">
-                                        <Button type="submit" :loading="loadingBtn[2]" class="w-100" label="Добавить друга"  style="background-color: var(--primary_100);" :disabled="message"/>
+                                        <Button type="submit" :loading="loadingBtn[2]" class="w-100" label="Добавить друга"  style="background-color: var(--primary_100);" :disabled="message || confirm != false || not_friend != 'not_friend'"/>
                                     </div>
                                 </form>
-                                <form v-else-if="not_friend != 'not_friend' && ownerr == true" @submit.prevent="confirmUser(user.id)" class="user-box-btn" method="POST">
+                                <form v-else-if="confirm_message != 'confirm' && confirm == true" @submit.prevent="confirmUser(user.id)" class="user-box-btn" method="POST">
                                     <div class="user-btn w-100">
                                         <Button type="submit" :loading="loadingBtn[2]" class="w-100" label="Принять"  style="background-color: var(--primary_100);" :disabled="message" />
                                     </div>
@@ -209,10 +209,8 @@ export default {
             message: null,
             not_friend: null,
             ownerr: false,
-            users: [
-                {"user": "Volkswagen", "phone": "+998903592284", "id": "12", "image": "https://www.zastavki.com/pictures/originals/2020Men___Male_Celebrity_Actor_Dwayne_Johnson_on_a_black_background_140459_.jpg"},
-                {"user": "Mercedes Benz", "phone": "+998901234567", "id": "120", "image": "https://i.pinimg.com/736x/78/76/8d/78768d83fc6c3e2f1773faf9b9ad258d.jpg"},
-            ],
+            confirm: null,
+            confirm_message: null,
         }
     },
     created() {
@@ -240,16 +238,19 @@ export default {
             }).then(response => {
                 setTimeout(() => this.loadingBtn[1] = false, 1000);
                 if(response.data.status == true){
-                    // if(response.data.result.status == "not_friend"){
-                    //     this.user = response.data.result;
-                    // }
                     if(response.data.result.owner == true){
                         this.user = response.data.result.friendInfo;
-                        this.ownerr = true;
+                        this.confirm = false;
+                    }
+                    else if(response.data.result.owner == false){
+                        this.user = response.data.result.friendInfo;
+                        this.confirm_message = response.data.result.status;
+                        this.confirm = true;
                     }
                     else{
                         this.user = response.data.result;
                         this.not_friend = response.data.result.status;
+                        this.confirm = false;
                     }
                     this.message = response.data.result.message;
                 }
@@ -277,8 +278,7 @@ export default {
                     this.$toast.add({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
                 }
                 
-                // window.location.reload();
-                // window.location.href = '/account/user/list/objects';
+                window.location.reload();
             })
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);
@@ -300,7 +300,7 @@ export default {
                 else{
                     this.$toast.add({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
                 }
-                // window.location.reload();
+                window.location.reload();
             })
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);
@@ -331,8 +331,8 @@ export default {
             const token = localStorage.getItem('token');
             // console.log(this.friend_id);
             let formDelete = new FormData();
-            formDelete.append('friend_id', this.friend_id);
-            axios.post('/api/delete/friend', formDelete, {
+            formDelete.append('friendId', this.friend_id);
+            axios.post('/api/friend/delete', formDelete, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 }
@@ -340,7 +340,6 @@ export default {
                 this.$toast.add({severity:'success', summary: 'Друг удален', detail: 'Product Deleted', life: 3000});
                 this.deleteProductDialog = false;
                 window.location.reload();
-                // window.location.href = '/account/user/list/objects';
             })
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);
