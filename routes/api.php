@@ -85,10 +85,11 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     // Route::post('/confirm/friend', [UserController::class, 'confirmRequest']);
 
     # Friend
-    Route::get('/friend/all', [FriendController::class, 'getAll']);
-    Route::get('/friend/detail', [FriendController::class, 'detail']);
+    Route::post('/friend/all', [FriendController::class, 'getAll']);
+    Route::post('/friend/detail', [FriendController::class, 'detail']);
     Route::post('/friend/search', [FriendController::class, 'search']);
     Route::post('/friend/send-request', [FriendController::class, 'sendRequest']);
+    Route::post('/friend/confirm', [FriendController::class, 'confirm']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
