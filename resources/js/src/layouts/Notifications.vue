@@ -21,7 +21,9 @@
                             </div>
                         </div>
                         <div v-else class="notificatios=item">
-                            <friendship-request v-if="friendship" :data="friendship"></friendship-request>
+                            <pre>
+                                {{friendship}}
+                            </pre>
                         </div>
                     </div>
                 </div>
@@ -51,7 +53,7 @@ export default {
         getFriendship(){
             this.isLoaded = true ;
             const token = localStorage.getItem('token');
-            axios.get('/api/friendship/requests', {
+            axios.get('/api/friend/all', {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 }
