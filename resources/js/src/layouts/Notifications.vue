@@ -10,7 +10,7 @@
                         <div v-if="isLoaded" class="loader-main-box">
                             <ProgressSpinner style="width:80px; height:80px" strokeWidth="3" fill="var(--surface-ground)" animationDuration="1s" />
                         </div>
-                        <div v-else-if="friendship.length === 0">
+                        <div v-else-if="!friendship">
                             <div class="empty_box notification-empty flex-column">
                                 <figure>
                                     <img src="/images/icons/notification-bell.png" alt="">
@@ -21,9 +21,7 @@
                             </div>
                         </div>
                         <div v-else class="notificatios=item">
-                            <pre>
-                                {{friendship}}
-                            </pre>
+                            <friendship-request :data="friendship"></friendship-request>
                         </div>
                     </div>
                 </div>

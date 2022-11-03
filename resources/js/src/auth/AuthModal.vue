@@ -316,6 +316,7 @@ export default {
                             this.$emit("loggedIn", true);
                             localStorage.setItem('token', response.data.result.access_token);
                             $("#animation").modal('hide');
+                            window.location.reload();
                         }
                         else if(this.formData.form === 'reset-password-request'){
                             this.formData.form = 'reset-password';

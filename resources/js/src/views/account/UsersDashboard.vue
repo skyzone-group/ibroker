@@ -62,7 +62,7 @@ export default {
     flex: 1 0 auto;
     display: flex;
     flex-direction: column;
-    max-width: 1076px;
+    max-width: 100%;
 }
 
 .frontend-user-area{

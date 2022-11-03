@@ -2,28 +2,31 @@
     <div class="friendship-main">
         <div class="friendship-main-box">
             <div v-for="users in data" :key="users.id" class="friendship-items py-2">
-                <form @submit.prevent="confirmFriendship(users.owner)" class="profile_form" method="POST">
+                <div v-if="users.owner == false" class="profile_form" method="POST">
                     <div class="friendship-box">
                         <div class="friendship-box-aside align-self-center">
                             <div class="user-photo rounded-circle" style="width: 60px; height: 60px;">
-                                <img :src="`/file/${users.friendship.image}`" alt="" class="w-100 h-100" style="object-fit: cover; border-radius: inherit;">
+                                <img :src="`/file/${users.friendInfo.image}`" alt="" class="w-100 h-100" style="object-fit: cover; border-radius: inherit;">
                             </div>
                         </div>
                         <div class="friendship-body">
-                            <a v-if="users.friendship.firstname == null && users.friendship.lastname == null" href="#!" class="font-weight-bold d-block text-nowrap user-title">User {{users.friendship.id}}</a>
-                            <a v-else href="#!" class="font-weight-bold d-block text-nowrap user-title">{{users.friendship.firstname}}  {{users.friendship.lastname}}</a>
-                            <p class="text-muted text-5 mb-0">ID: {{users.friendship.id}}</p>
-                            <p class="text-muted text-5 mb-0">Телефон: <a :href="`tel:+${users.friendship.phone}`">{{users.friendship.phone}}</a></p>
+                            <a v-if="users.friendInfo.firstname == null && users.friendInfo.lastname == null" href="#!" class="font-weight-bold d-block text-nowrap user-title">User {{users.friendInfo.id}}</a>
+                            <a v-else href="#!" class="font-weight-bold d-block text-nowrap user-title">{{users.friendInfo.firstname}}  {{users.friendInfo.lastname}}</a>
+                            <p class="text-muted text-5 mb-0">ID: {{users.friendInfo.id}}</p>
+                            <p class="text-muted text-5 mb-0">Телефон: <a :href="`tel:+${users.friendInfo.phone}`">{{users.friendInfo.phone}}</a></p>
                         </div>
                         <!-- <div class="friendship-reason">
                             sended request to be friend
                         </div> -->
                         <div class="friendship-right ml-4">
-                            <Button :loading="loadingBtn[1]" type="submit" icon="pi pi-check" class="p-button-success" :disabled="(users.status == 'confirm')" />
-                            <Button type="submit" icon="pi pi-trash" class="p-button-danger ml-2"/>
+                            <Button :loading="loadingBtn" @click.prevent="this.$store.dispatch('confirmFriendship', users.friendInfo.id)" type="submit" icon="pi pi-check" class="p-button-success" :disabled="(users.status == 'confirm')" />
+                            <Button :loading="isLoaded" type="submit" icon="pi pi-trash" class="p-button-danger ml-2" @click.prevent="this.$store.dispatch('deleteFriend', users.friendInfo.id)" />
                         </div>
                     </div>
-                </form>
+                </div>
+            </div>
+            <div class="user-info-succes-box">
+                <Toast />
             </div>
         </div>
     </div>
@@ -31,9 +34,13 @@
 
 <script>
 import Button from 'primevue/button';
+import Toast from 'primevue/toast';
+import { mapGetters } from 'vuex'
+
 export default {
     components: {
-        Button
+        Button,
+        Toast
     },
     props: {
         data: {
@@ -42,30 +49,35 @@ export default {
     },
     data() {
         return {
-            loadingBtn: [false, false],
+            
         }
     },
     methods: {
-        confirmFriendship(id){
-            this.loadingBtn[1] = true;
-            const token = localStorage.getItem('token');
-            let owner = id;
-            let form = new FormData();
-            form.append('owner', owner);
-            axios.post('/api/confirm/friend', form, {
-                headers: {
-                    'Authorization': `Bearer ${token}`, 
-                }
-            }).then(response => {
-                setTimeout(() => this.loadingBtn[1] = false, 1000);
-                window.location.reload();
-                // window.location.href = '/account/user/list/objects';
-            })
-            .catch(function (error) {
-                // this.onFailure(error.response.data.message);
-                alert(error);
-            });
-        }
+        // confirmFriendship(id){
+        //     this.loadingBtn[1] = true;
+        //     const token = localStorage.getItem('token');
+        //     let owner = id;
+        //     let form = new FormData();
+        //     form.append('owner', owner);
+        //     axios.post('/api/friend/confirm', form, {
+        //         headers: {
+        //             'Authorization': `Bearer ${token}`, 
+        //         }
+        //     }).then(response => {
+        //         setTimeout(() => this.loadingBtn[1] = false, 1000);
+        //         window.location.reload();
+        //         // window.location.href = '/account/user/list/objects';
+        //     })
+        //     .catch(function (error) {
+        //         // this.onFailure(error.response.data.message);
+        //         alert(error);
+        //     });
+        // }
+    },
+    computed: {
+        ...mapGetters({
+            loadingBtn: 'loadingBtn'
+        }),
     },
 }
 </script>

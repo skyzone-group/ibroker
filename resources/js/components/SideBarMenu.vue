@@ -114,7 +114,7 @@
             </ul>
             <ul class="user_block-ul">
                 <li class="logout">
-                    <span>
+                    <span @click.prevent="logout">
                         <svg data-name="IconLogout" width="16" height="16" class="logout__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.2 15.2"><g fill="currentColor" stroke="none"><path d="M14.8.4h-8c-.22 0-.4.18-.4.4v.8c0 .22.18.4.4.4h6.64c.088 0 .16.072.16.16v10.88c0 .088-.072.16-.16.16H6.8c-.22 0-.4.18-.4.4v.8c0 .22.18.4.4.4h8c.22 0 .4-.18.4-.4V.8c0-.22-.18-.4-.4-.4z"></path><path d="M4.04 9.784L2.658 8.4H10.8c.22 0 .4-.18.4-.4v-.8c0-.22-.18-.4-.4-.4H2.657L4.04 5.416c.157-.156.157-.41 0-.566l-.397-.396c-.156-.156-.41-.156-.565 0L.048 7.487c-.063.062-.063.164 0 .226l3.03 3.033c.157.156.41.156.566 0l.396-.396c.156-.156.157-.41 0-.566z"></path></g></svg>
                         Выйти
                     </span>
@@ -137,6 +137,22 @@ export default {
         return {
             
         }
+    },
+    methods: {
+        logout(){
+            const token = localStorage.getItem('token');
+            axios.post('/api/logout', {},{
+                headers: {
+                    'Authorization': `Bearer ${token}`, 
+                }
+            }).then(response => {
+                localStorage.removeItem('token');
+                window.location.href = '/index';
+            })
+            .catch(function (error) {
+                console.log('error');
+            });
+        },
     },
     mounted(){
         this.$store.dispatch('getUserInfo');

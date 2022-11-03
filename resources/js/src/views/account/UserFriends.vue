@@ -9,7 +9,7 @@
             showGridlines  
             v-model:filters="filters"
             filterDisplay="menu"
-            :loading="loading"
+            :loading="isLoaded"
             :globalFilterFields="['friendInfo.firstname', 'friendInfo.lastname', 'friendInfo.phone', 'status']"
             :resizableColumns="true" 
             columnResizeMode="fit"
@@ -52,19 +52,34 @@
                                 </div>
                             </div>
                             <div class="media-body">
-                                <a href="#!" class="font-weight-bold d-block text-nowrap"> {{slotProps.data.friendInfo.firstname}} {{slotProps.data.friendInfo.lastname}}</a>
+                                <a data-toggle="modal" :data-target="`#modal${slotProps.data.friendInfo.id}`" href="#!" class="font-weight-bold d-block text-nowrap"> {{slotProps.data.friendInfo.firstname}} {{slotProps.data.friendInfo.lastname}}</a>
                                 <a v-if="slotProps.data.friendInfo.firstname == null && slotProps.data.friendInfo.lastname == null" href="#!" class="font-weight-bold d-block text-nowrap">User {{slotProps.data.friendInfo.id}}</a>
                                 <small class="text-muted">ID: {{slotProps.data.friendInfo.id}}</small>
+                                <div class="modal fade" :id="`modal${slotProps.data.friendInfo.id}`" tabindex="-1" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <img v-if="slotProps.data.friendInfo.image != null" :src="`/file/${slotProps.data.friendInfo.image}`" alt="user_avatar">
+                                                <img v-else :src="src" alt="user_avatar-def">
+                                                <h2 v-if="slotProps.data.friendInfo.firstname == null && slotProps.data.friendInfo.lastname == null">User {{slotProps.data.friendInfo.id}}</h2>
+                                                <h2 v-else>{{slotProps.data.friendInfo.firstname}} {{slotProps.data.friendInfo.lastname}}</h2>
+                                                <p>ID: {{slotProps.data.friendInfo.id}}</p>
+                                                <p>Телефон: +{{slotProps.data.friendInfo.phone}}</p>
+                                                <p v-if="slotProps.data.status == 'confirm'" class="text-green">Ваш друг!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </template>
                 </Column>
-                <Column field="phone" header="Телефон" sortable sortField="friendInfo.phone">
+                <Column v-if="mobile_view" field="phone" header="Телефон" sortable sortField="friendInfo.phone">
                     <template #body="slotProps">
                         {{slotProps.data.friendInfo.phone}}
                     </template>
                 </Column>
-                <Column field="status" header="Статус" sortable style="min-width: 10rem">
+                <Column v-if="mobile_view" field="status" header="Статус" sortable style="min-width: 10rem">
                     <template #body="slotProps">
                         <span :class="'customer-badge status-' + slotProps.data.status">{{slotProps.data.status}}</span>
                         <!-- {{slotProps}} -->
@@ -72,9 +87,13 @@
                 </Column>
                 <Column :exportable="false" style="min-width:8rem" header="Действие">
                     <template #body="slotProps">
-                        <form @submit.prevent="confirmUser(slotProps.data.friendInfo.id)" method="POST">
+                        <form v-if="mobile_view" @submit.prevent="confirmUser(slotProps.data.friendInfo.id)" method="POST">
                             <Button v-if="slotProps.data.owner == false && slotProps.data.status == 'request'" type="submit" label="Принять" class="p-button-rounded p-button-success mr-2"/>
                             <Button label="Отменить" class="p-button-rounded p-button-danger" @click="confirmDeleteUser(slotProps.data.friendInfo.id)" />
+                        </form>
+                        <form v-else @submit.prevent="confirmUser(slotProps.data.friendInfo.id)" method="POST">
+                            <Button v-if="slotProps.data.owner == false && slotProps.data.status == 'request'" type="submit" class="p-button-rounded p-button-success mr-2" icon="pi pi-check"/>
+                            <Button icon="pi pi-times" class="p-button-rounded p-button-danger" @click="confirmDeleteUser(slotProps.data.friendInfo.id)" />
                         </form>
                     </template>
                 </Column>
@@ -97,6 +116,14 @@
                             </template>
                         </Dialog>
                     </form>
+                </div>
+                <div class="profile_form-avatar-detail">
+                    <Dialog header="Confirm" v-model:visible="userDetail" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '35vw'}" :modal="true">
+                        <div class="confirmation-content d-flex align-items-center">
+                            <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
+                            <span v-if="friend_id">Are you sure you want to delete {{friend_id}}</span>
+                        </div>
+                    </Dialog>
                 </div>
             </div>
             <div class="add-friends-main-box-sidebar">
@@ -183,6 +210,7 @@ import Toast from 'primevue/toast';
 import Dialog from 'primevue/dialog';
 import Sidebar from 'primevue/sidebar';
 import defaultImage from "../../../../../public/images/avatar-dafault.png"
+import { mapGetters } from 'vuex'
 export default {
     components: {
         DataTable,
@@ -202,29 +230,26 @@ export default {
             src: defaultImage,
             customers: null,
             filters: null,
-            loading: false,
             loadingBtn: [false, false],
             selectedCustomer: null,
             deleteProductDialog: false,
+            userDetail: false,
             friend_id: null,
             visibleRight: false,
             user: null,
-            friends: [],
             message: null,
             confirm: null,
             confirm_message: false,
             sended_request: false,
             add_friend: false,
             confirm_friend: false,
-            totalRecords: 120,
-            total: 2,
-            pageInfo: null,
-            totalObject: null,
+            mobile_view: false,
         }
     },
     created() {
+        window.addEventListener('resize', this.checkScreen);
+        this.checkScreen();
         this.initFilters1();
-        this.getFriends();
     },
     methods: {
         initFilters1() {
@@ -288,9 +313,9 @@ export default {
                 }
                 else{
                     this.$toast.add({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
+                    this.visibleRight = false;
+                    this.$store.dispatch('getFriends');
                 }
-                
-                // window.location.reload();
             })
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);
@@ -311,7 +336,7 @@ export default {
                 }
                 else{
                     this.$toast.add({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
-                    this.getFriends();
+                    this.$store.dispatch('getFriends');
                     this.visibleRight = false;
                 }
                 // window.location.reload();
@@ -321,29 +346,28 @@ export default {
                 alert(error);
             });
         },
-        getFriends(){
-            this.loading = true;
-            const token = localStorage.getItem('token');
-            axios.get('/api/friend/all', {
-                headers: {
-                    'Authorization': `Bearer ${token}`, 
-                }
-            })
-            .then(response => {
-                this.friends = response.data.result;
-                // Array.from(data).forEach(file => this.friends.push(file.user));
-                // console.log(this.friends);
-                // console.log(this.users);
-                this.loading = false;
-            });
-        },
+        // getFriends(){
+        //     this.loading = true;
+        //     const token = localStorage.getItem('token');
+        //     axios.get('/api/friend/all', {
+        //         headers: {
+        //             'Authorization': `Bearer ${token}`, 
+        //         }
+        //     })
+        //     .then(response => {
+        //         this.friends = response.data.result;
+        //         // Array.from(data).forEach(file => this.friends.push(file.user));
+        //         // console.log(this.friends);
+        //         // console.log(this.users);
+        //         this.loading = false;
+        //     });
+        // },
         confirmDeleteUser(id) {
             this.friend_id = id;
             this.deleteProductDialog = true;
         },
         deleteProduct() {
             const token = localStorage.getItem('token');
-            // console.log(this.friend_id);
             let formDelete = new FormData();
             formDelete.append('friendId', this.friend_id);
             axios.post('/api/friend/delete', formDelete, {
@@ -353,7 +377,7 @@ export default {
             }).then(response => {
                 this.$toast.add({severity:'success', summary: 'Друг удален', detail: 'Product Deleted', life: 3000});
                 this.deleteProductDialog = false;
-                window.location.reload();
+                this.$store.dispatch('getFriends');
             })
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);
@@ -368,7 +392,34 @@ export default {
             this.sended_request = false;
             this.add_friend = false;
             this.confirm_friend = false;
-        }
+        },
+        fiendDetail(id){
+            // this.friend_id = id;
+            Array.from(this.friends).forEach(file => {
+                if(file.friendInfo.id == id){
+                    alert("ok");
+                }
+            });
+            this.userDetail = true;
+        },
+        checkScreen() {
+            this.windowWidth = window.innerWidth;
+            if(this.windowWidth <= 575){
+                this.mobile_view = false;
+                return;
+            }
+            this.mobile_view = true;
+            return;
+        },
+    },
+    mounted(){
+        this.$store.dispatch('getFriends');
+    },
+    computed: {
+        ...mapGetters([
+            'friends',
+            'isLoaded'
+        ]),
     },
 }
 </script>
@@ -479,7 +530,49 @@ export default {
     justify-content: flex-end;
     margin: 4px;
 }
+
+.media-body .modal .modal-content {
+    border: none;
+    overflow: visible;
+    box-shadow: 0 5px 20px 0 rgb(0 0 0 / 10%);
+    height: 274px;
+    border-radius: 10px;
+}
+.media-body .modal .modal-content .modal-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex: 0;
+    padding: 0;
+}
+.media-body .modal .modal-content .modal-body img{
+    height: 120px;
+    width: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: -60px;
+    background: #fff;
+    border: 4px solid var(--primary_100);
+}
+.media-body .modal .modal-content .modal-body h2{
+    font-weight: 700;
+    margin-top: 30px;
+    font-size: 24px;
+    color: #495057;
+}
+.media-body .modal .modal-content .modal-body p{
+    color: #6e8ca0;
+    margin-top: 10px;
+    font-size: 18px;
+}
 /* ****************************************************** */
+@media (min-width: 575px){
+    .media-body .modal-dialog {
+        max-width: 340px;
+    }
+}
 @media (max-width: 575px){
     .add-friends-main{
         display: block;

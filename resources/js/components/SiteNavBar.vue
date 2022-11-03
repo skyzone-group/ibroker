@@ -204,13 +204,43 @@
                                                 Разместить объявление
                                             </router-link>
                                         </li>
-                                        <li class="service_item" @click="visibleLeft = !visibleLeft">
-                                            <a href="user/favorites">
+                                        <li v-if="loggedIn == true" class="service_item" @click="visibleLeft = !visibleLeft">
+                                            <router-link :to="{ name: 'objects'}">
+                                                <div class="icon-div" style="margin-right: 18px;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                                                </div>
+                                                <div class="txt">
+                                                    Мои объявления
+                                                </div>
+                                            </router-link>
+                                        </li>
+                                        <li v-if="loggedIn == true" class="service_item" @click="visibleLeft = !visibleLeft">
+                                            <router-link :to="{ name: 'userfavorites'}">
                                                 <span class="service_item-back">
                                                     <img src="../../../public/images/icons/saved.svg" alt="">
                                                 </span>
                                                 Избранное
-                                            </a>
+                                            </router-link>
+                                        </li>
+                                        <li v-if="loggedIn == true" class="service_item" @click="visibleLeft = !visibleLeft">
+                                            <router-link :to="{ name: 'notifications'}">
+                                                <div class="icon-div" style="margin-right: 18px;">
+                                                    <svg class="icon_svg" aria-hidden="true" width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C5.238 0 3.25 2.426 3.25 5.23v.847c0 .013-.001.016-.003.02v.001a.511.511 0 0 1-.076.113 3.33 3.33 0 0 1-.254.27l-.172.167-.021.02c-.062.06-.129.124-.198.193l-.046.038C1.935 7.357 1 8.143 1 9.462c0 .988.466 1.737 1.117 2.251.614.486 1.391.768 2.115.942C5.67 13 7.265 13 7.977 13h.046c.712 0 2.307 0 3.745-.345.724-.174 1.5-.456 2.115-.942C14.533 11.2 15 10.45 15 9.462c0-1.32-.935-2.105-1.48-2.563l-.046-.038-.198-.193-.02-.02a20.63 20.63 0 0 1-.172-.166 3.128 3.128 0 0 1-.255-.271.515.515 0 0 1-.076-.113c-.002-.005-.003-.008-.003-.021V5.23C12.75 2.426 10.762 0 8 0ZM5.25 5.23C5.25 3.298 6.562 2 8 2s2.75 1.297 2.75 3.23v.847c0 .595.242 1.043.521 1.389.18.223.427.46.64.665l.187.18.027.028.03.024c.67.568.845.787.845 1.099 0 .28-.105.483-.358.683-.287.228-.743.422-1.341.565-1.19.286-2.576.29-3.301.29-.725 0-2.11-.004-3.301-.29-.598-.143-1.053-.337-1.341-.565-.253-.2-.358-.403-.358-.683 0-.312.175-.53.846-1.099l.03-.024.027-.027c.056-.056.12-.117.185-.18.214-.206.461-.443.64-.666.28-.346.522-.794.522-1.39v-.845Zm-.148 8.578a3.001 3.001 0 0 0 5.78 0 21.283 21.283 0 0 1-2.89.192c-.601 0-1.705-.024-2.89-.192Z" fill="currentColor"></path></g><defs><clipPath id="BellStroke16a"><path fill="#fff" d="M0 0h16v16H0z"></path></clipPath></defs></svg>
+                                                </div>
+                                                <div class="txt">
+                                                    Уведомления
+                                                </div>
+                                            </router-link>
+                                        </li>
+                                        <li v-if="loggedIn == true" class="service_item" @click="visibleLeft = !visibleLeft">
+                                            <router-link :to="{ name: 'friends'}">
+                                                <div class="icon-div" style="margin-right: 18px;">
+                                                    <i class="far fa-users" style="font-size: 24px; font-weight: 600;"></i>
+                                                </div>
+                                                <div class="txt">
+                                                    Друзъя
+                                                </div>
+                                            </router-link>
                                         </li>
                                         <li class="service_item" @click="visibleLeft = !visibleLeft">
                                             <a href="#!">
@@ -247,12 +277,12 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <!-- <li class="header_mobile_menu-nav-ul__li">
-                                    <div class="logout">
+                                <li v-if="loggedIn == true" class="header_mobile_menu-nav-ul__li">
+                                    <div @click.prevent="logout" class="logout">
                                         <div class="logout_icon"></div>
                                         Выйти
                                     </div>
-                                </li> -->
+                                </li>
                             </ul>
                         </nav>
                     </Sidebar>
