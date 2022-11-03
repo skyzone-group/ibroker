@@ -14,6 +14,10 @@
             :resizableColumns="true" 
             columnResizeMode="fit"
             v-model:selection="selectedCustomer" 
+            :paginator="true"
+            :rows="1"
+            :rowsPerPageOptions="[1,10,20]" 
+            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
             stateStorage="session"
             selectionMode="single"
             responsiveLayout="scroll">
@@ -212,6 +216,10 @@ export default {
             sended_request: false,
             add_friend: false,
             confirm_friend: false,
+            totalRecords: 120,
+            total: 2,
+            pageInfo: null,
+            totalObject: null,
         }
     },
     created() {
@@ -303,6 +311,8 @@ export default {
                 }
                 else{
                     this.$toast.add({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
+                    this.getFriends();
+                    this.visibleRight = false;
                 }
                 // window.location.reload();
             })
