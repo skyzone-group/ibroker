@@ -76,6 +76,9 @@
                 </Column>
                 <template #footer>
                     Всего {{friends ? friends.length : 0 }} друга.
+                    <pre>
+                        {{friends}}
+                    </pre>
                 </template>
             </DataTable>
             <div class="user-info-succes-box">
@@ -139,7 +142,7 @@
                                     <small class="text-muted">{{user.phone}}</small>
                                 </div>
                             </div>
-                            <p v-if="not_friend != 'not_friend'" class="my-2">
+                            <p v-if="confirm_btn == false" class="my-2">
                                 Отправлена заявка на добавления в Друзъя!
                             </p>
                             <p v-if="confirm_message == 'confirm'" class="my-2 alert-success p-1">
@@ -148,7 +151,7 @@
                             <div class="user-box-btns w-100">
                                 <form v-if="confirm == true" class="user-box-btn" @submit.prevent="sendUser(user.id)" method="POST">
                                     <div class="user-btn w-100">
-                                        <Button type="submit" :loading="loadingBtn[2]" class="w-100" label="Добавить друга"  style="background-color: var(--primary_100);" :disabled="confirm_btn == true || message "/>
+                                        <Button type="submit" :loading="loadingBtn[2]" class="w-100" label="Добавить друга"  style="background-color: var(--primary_100);" :disabled="confirm_btn == false || message"/>
                                     </div>
                                 </form>
                                 <form v-if="confirm == false" @submit.prevent="confirmUser(user.id)" class="user-box-btn" method="POST">
@@ -211,7 +214,7 @@ export default {
             ownerr: false,
             confirm: null,
             confirm_message: null,
-            confirm_btn: false,
+            confirm_btn: null,
         }
     },
     created() {
@@ -242,12 +245,19 @@ export default {
                     if(response.data.result.status == 'not_friend'){
                         this.user = response.data.result;
                         this.confirm = true;
+                        this.confirm_btn = true;
                     }
                     else if(response.data.result.status == 'request'){
                         this.user = response.data.result.friendInfo;
                         if(this.user.phone != response.data.result.phone){
                             this.confirm = true;
                             this.confirm_btn = false;
+                            Array.from(this.friends).forEach(file => {
+                                if(file.id == this.user.id){
+                                    this.confirm = false;
+                                    this.confirm_btn = true;
+                                }
+                            });
                         }
                         else{
                             this.confirm_btn = true;
