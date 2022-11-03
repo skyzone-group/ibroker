@@ -76,9 +76,6 @@
                 </Column>
                 <template #footer>
                     Всего {{friends ? friends.length : 0 }} друга.
-                    <pre>
-                        {{friends}}
-                    </pre>
                 </template>
             </DataTable>
             <div class="user-info-succes-box">
@@ -125,7 +122,7 @@
                                 </div>
                             </div>
                         </form>
-                        <div class="user-box" v-else>
+                        <div v-else class="user-box">
                             <span v-if="message" class="alert-success p-1">{{message}}</span>
                             <div class="media user-box-list my-2">
                                 <div class="media-aside align-self-center">
@@ -142,19 +139,19 @@
                                     <small class="text-muted">{{user.phone}}</small>
                                 </div>
                             </div>
-                            <p v-if="confirm_btn == false" class="my-2">
+                            <p v-if="sended_request" class="my-2">
                                 Отправлена заявка на добавления в Друзъя!
                             </p>
-                            <p v-if="confirm_message == 'confirm'" class="my-2 alert-success p-1">
+                            <p v-if="confirm_message" class="my-2 alert-success p-1">
                                 Ваш друг
                             </p>
                             <div class="user-box-btns w-100">
-                                <form v-if="confirm == true" class="user-box-btn" @submit.prevent="sendUser(user.id)" method="POST">
+                                <form v-if="add_friend" class="user-box-btn" @submit.prevent="sendUser(user.id)" method="POST">
                                     <div class="user-btn w-100">
-                                        <Button type="submit" :loading="loadingBtn[2]" class="w-100" label="Добавить друга"  style="background-color: var(--primary_100);" :disabled="confirm_btn == false || message"/>
+                                        <Button type="submit" :loading="loadingBtn[2]" class="w-100" label="Добавить друга"  style="background-color: var(--primary_100);" :disabled="message"/>
                                     </div>
                                 </form>
-                                <form v-if="confirm == false" @submit.prevent="confirmUser(user.id)" class="user-box-btn" method="POST">
+                                <form v-if="confirm_friend" @submit.prevent="confirmUser(user.id)" class="user-box-btn" method="POST">
                                     <div class="user-btn w-100">
                                         <Button type="submit" :loading="loadingBtn[2]" class="w-100" label="Принять"  style="background-color: var(--primary_100);" :disabled="message" />
                                     </div>
@@ -210,11 +207,11 @@ export default {
             user: null,
             friends: [],
             message: null,
-            not_friend: null,
-            ownerr: false,
             confirm: null,
-            confirm_message: null,
-            confirm_btn: null,
+            confirm_message: false,
+            sended_request: false,
+            add_friend: false,
+            confirm_friend: false,
         }
     },
     created() {
@@ -242,34 +239,22 @@ export default {
             }).then(response => {
                 setTimeout(() => this.loadingBtn[1] = false, 1000);
                 if(response.data.status == true){
-                    if(response.data.result.status == 'not_friend'){
+                    if(response.data.result.status == 'confirm'){
+                        this.confirm_message = true;
+                        this.user = response.data.result.friendInfo;
+                    }
+                    else if(response.data.result.status == 'not_friend'){
                         this.user = response.data.result;
-                        this.confirm = true;
-                        this.confirm_btn = true;
+                        this.add_friend = true;
                     }
                     else if(response.data.result.status == 'request'){
                         this.user = response.data.result.friendInfo;
-                        if(this.user.phone != response.data.result.phone){
-                            this.confirm = true;
-                            this.confirm_btn = false;
-                            Array.from(this.friends).forEach(file => {
-                                if(file.id == this.user.id){
-                                    this.confirm = false;
-                                    this.confirm_btn = true;
-                                }
-                            });
+                        if(response.data.result.owner == false){
+                            this.confirm_friend = true;
                         }
-                        else{
-                            this.confirm_btn = true;
+                        else if(response.data.result.owner == true){
+                            this.sended_request = true;
                         }
-                        
-                        // this.confirm_message = response.data.result.status;
-                        
-                    }
-                    else if(response.data.result.status == 'confirm'){
-                        this.user = response.data.result;
-                        this.not_friend = response.data.result.status;
-                        this.confirm = false;
                     }
                     this.message = response.data.result.message;
                 }
@@ -319,7 +304,7 @@ export default {
                 else{
                     this.$toast.add({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
                 }
-                window.location.reload();
+                // window.location.reload();
             })
             .catch(function (error) {
                 // this.onFailure(error.response.data.message);
@@ -366,9 +351,13 @@ export default {
             });
         },
         resetUser(){
-            this.user = "",
-            this.message = null,
-            this.form.phone = ""
+            this.user = "";
+            this.message = null;
+            this.form.phone = "";
+            this.confirm_message = false;
+            this.sended_request = false;
+            this.add_friend = false;
+            this.confirm_friend = false;
         }
     },
 }
