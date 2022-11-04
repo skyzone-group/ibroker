@@ -1,10 +1,41 @@
 <template>
     <TabView ref="tabview1">
         <TabPanel header="Купить">
-            <filtr-buy></filtr-buy>
+            <div class="filtr_block w-100">
+                <div class="filtr_block-item item-width-1">
+                    <MultiSelect v-model="selectedCities1" :options="form.user_type == 1 ? groupedCities : citiess" :selectAll="false" :showToggleAll="false" optionLabel="label" optionGroupLabel="label" placeholder="Select Cities" optionGroupChildren="items">
+                        <template #header>
+                            <div class="filtr_block-item-header">
+                                <label for="type__account_owner" class="single_button_select_box_label" :class="{'active' : this.form.user_type == '1'}">
+                                    <input v-model="form.user_type" id="type__account_owner" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="1">
+                                    <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.user_type == '1'}">Жилая</span>
+                                </label>
+                                <label for="type__account_agent" class="single_button_select_box_label" :class="{'active' : this.form.user_type == '2'}">
+                                    <input v-model="form.user_type" id="type__account_agent" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="2">
+                                    <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.user_type == '2'}">Коммерческая</span>
+                                </label>
+                            </div>
+                        </template>
+                        <template #optiongroup="slotProps">
+                            <div class="flex align-items-center country-item">
+                                <div>{{slotProps.option.label}}</div>
+                            </div>
+                        </template>
+                        <template #footer>
+                            <div class="flex align-items-center country-item">
+                                <div v-for="item in cities" :key="item.name" class="field-checkbox">
+                                    <Checkbox :id="`city_${index}`" name="city[]" :value="item ? item.name : ''" v-model="test" />
+                                    <label :for="`city_${index}`">{{item ? item.name : ''}}</label>
+                                </div>
+                            </div>
+                        </template>
+                    </MultiSelect>
+                </div>
+            </div>
         </TabPanel>
         <TabPanel header="Снять">
             <p>Снять</p>
+            {{formatedOptions}}
         </TabPanel>
         <TabPanel header="Посуточно">
             <p>Посуточно</p>
@@ -38,12 +69,83 @@
 <script>
 import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
-import FiltrBuy from './filtr/FiltrBuy.vue'
+import Dropdown from 'primevue/dropdown';
+import MultiSelect from 'primevue/multiselect';
+import Checkbox from 'primevue/checkbox';
+
+// import FiltrBuy from './filtr/FiltrBuy.vue'
 export default {
     components: {
         TabView,
         TabPanel,
-        FiltrBuy  
+        Dropdown,
+        MultiSelect,
+        Checkbox
+    },
+    data() {
+        return {
+            test: [],
+            selectedCities1: null,
+            value: null,
+            cities: [
+                {name: 'New York', code: 'NY'},
+                {name: 'Rome', code: 'RM'},
+                {name: 'London', code: 'LDN'},
+                {name: 'Istanbul', code: 'IST'},
+                {name: 'Paris', code: 'PRS'}
+            ],
+            citiess: [
+                {
+                    label: 'Germany', code: 'DE',
+                    items: [
+                        {label: 'Berlin', value: 'Berlin'},
+                        {label: 'Frankfurt', value: 'Frankfurt'},
+                        {label: 'Hamburg', value: 'Hamburg'},
+                        {label: 'Munich', value: 'Munich'}
+                    ]
+                },
+            ],
+            form: {
+                user_type: 1
+            },
+            groupedCities: [
+            {
+                label: 'Germany', code: 'DE',
+                items: [
+                    {label: 'Berlin', value: 'Berlin'},
+                    {label: 'Frankfurt', value: 'Frankfurt'},
+                    {label: 'Hamburg', value: 'Hamburg'},
+                    {label: 'Munich', value: 'Munich'}
+                ]
+            },
+            {
+                label: 'USA', code: 'US',
+                items: [
+                    {label: 'Chicago', value: 'Chicago'},
+                    {label: 'Los Angeles', value: 'Los Angeles'},
+                    {label: 'New York', value: 'New York'},
+                    {label: 'San Francisco', value: 'San Francisco'}
+                ]
+            },
+            {
+                label: 'Japan', code: 'JP',
+                items: [
+                    {label: 'Kyoto', value: 'Kyoto'},
+                    {label: 'Osaka', value: 'Osaka'},
+                    {label: 'Tokyo', value: 'Tokyo'},
+                    {label: 'Yokohama', value: 'Yokohama'}
+                ]
+            }],
+            // items: Array.from({ length: 1000 }, (_, i) => ({ label: `Item #${i}`, value: i }))
+        }
+    },
+    computed: {
+        formatedOptions(){
+            let fo = this.cities.map(item => {
+                return {...item, checked: false};
+            })
+            return fo;
+        }
     },
     setup() {
         
@@ -157,5 +259,45 @@ export default {
 .map-link{
     background: #fff;
     color: #152242;
+}
+
+.filtr_block-item{
+    position: relative;
+    border-right: 1px solid #f4f4f4;
+    height: 100%;
+}
+
+.filtr_block-item .p-multiselect .p-multiselect-label{
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding: 20px 38px 20px 24px;
+}
+.filtr_block-item .p-multiselect .p-multiselect-label.p-placeholder{
+    color: #121212;
+    font-size: 14px;
+    line-height: 1.43;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.filtr_block-item .p-multiselect{
+    border-radius: 0;
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 100%;
+    overflow: hidden;
+}
+
+.filtr_block-item-header{
+    padding: 0.5rem 12px !important;
+    display: flex;
+    align-items: flex-start;
+}
+
+.item-width-1{
+    width: 100%;
+    min-width: 140px;
+    max-width: 316px;
 }
 </style>
