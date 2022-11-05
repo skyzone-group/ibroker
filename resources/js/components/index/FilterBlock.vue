@@ -3,9 +3,10 @@
         <TabPanel header="Купить">
             <div class="filtr_block w-100">
                 <div class="filtr_block-item item-width-1">
-                    <MultiSelect v-model="selectedCities1" :options="form.user_type == 1 ? groupedCities : citiess" :selectAll="false" :showToggleAll="false" optionLabel="label" optionGroupLabel="label" placeholder="Select Cities" optionGroupChildren="items">
-                        <template #header>
-                            <div class="filtr_block-item-header">
+                    <button type="button" @click="filterDropdown = !filterDropdown" class="filtr_block-item-btn" :class="{'filtr_block-item-btn-active': filterDropdown == true}">Квартиру в новостройке и вторичке</button>
+                    <div class="filtr_block-item-dropdown" v-show="filterDropdown" @blur="filterDropdown = false">
+                        <div class="single_button_select">
+                            <div class="single_button_select_box d-flex">
                                 <label for="type__account_owner" class="single_button_select_box_label" :class="{'active' : this.form.user_type == '1'}">
                                     <input v-model="form.user_type" id="type__account_owner" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="1">
                                     <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.user_type == '1'}">Жилая</span>
@@ -15,21 +16,8 @@
                                     <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.user_type == '2'}">Коммерческая</span>
                                 </label>
                             </div>
-                        </template>
-                        <template #optiongroup="slotProps">
-                            <div class="flex align-items-center country-item">
-                                <div>{{slotProps.option.label}}</div>
-                            </div>
-                        </template>
-                        <template #footer>
-                            <div class="flex align-items-center country-item">
-                                <div v-for="item in cities" :key="item.name" class="field-checkbox">
-                                    <Checkbox :id="`city_${index}`" name="city[]" :value="item ? item.name : ''" v-model="test" />
-                                    <label :for="`city_${index}`">{{item ? item.name : ''}}</label>
-                                </div>
-                            </div>
-                        </template>
-                    </MultiSelect>
+                        </div>
+                    </div>
                 </div>
             </div>
         </TabPanel>
@@ -79,14 +67,13 @@ export default {
         TabView,
         TabPanel,
         Dropdown,
-        MultiSelect,
-        Checkbox
     },
     data() {
         return {
             test: [],
             selectedCities1: null,
             value: null,
+            activeItem: null,
             cities: [
                 {name: 'New York', code: 'NY'},
                 {name: 'Rome', code: 'RM'},
@@ -136,13 +123,24 @@ export default {
                     {label: 'Yokohama', value: 'Yokohama'}
                 ]
             }],
+            filterDropdown: false,
             // items: Array.from({ length: 1000 }, (_, i) => ({ label: `Item #${i}`, value: i }))
+        }
+    },
+    methods: {
+        check (e) {
+            if (e.target.checked == true){
+                console.log(e.target.value);
+            }
+        },
+        closeDropdown(){
+            console.log('ok');
         }
     },
     computed: {
         formatedOptions(){
             let fo = this.cities.map(item => {
-                return {...item, checked: false};
+                return item.name;
             })
             return fo;
         }
@@ -267,7 +265,7 @@ export default {
     height: 100%;
 }
 
-.filtr_block-item .p-multiselect .p-multiselect-label{
+/* .filtr_block-item .p-multiselect .p-multiselect-label{
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     padding: 20px 38px 20px 24px;
@@ -293,8 +291,72 @@ export default {
     padding: 0.5rem 12px !important;
     display: flex;
     align-items: flex-start;
+} */
+
+.filtr_block-item:first-of-type .filtr_block-item-btn {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
 }
 
+.filtr_block-item-btn {
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 20px 38px 20px 24px;
+    width: 100%;
+    overflow: hidden;
+    color: #121212;
+    font-size: 14px;
+    line-height: 1.43;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.filtr_block-item-btn:after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    -webkit-transform: translateY(-50%) rotate(45deg);
+    transform: translateY(-50%) rotate(45deg);
+    transition: transform .3s,-webkit-transform .3s,-moz-transform .3s;
+    border-right: 2px solid #c9c9c9;
+    border-bottom: 2px solid #c9c9c9;
+    width: 8px;
+    height: 8px;
+    content: "";
+}
+
+.filtr_block-item-btn.filtr_block-item-btn-active,
+.filtr_block-item-btn:hover,
+.filtr_block-item-btn:focus{
+    outline: none;
+    background: #e9f3fb;
+}
+
+.filtr_block-item-btn.filtr_block-item-btn-active:after {
+    transform: translateY(-10%) rotate(225deg) !important;
+}
+
+.filtr_block-item-dropdown{
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    margin-top: 8px;
+    box-shadow: 0 10px 20px 0 rgb(0 0 0 / 10%);
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 16px;
+    min-width: 290px;
+}
+
+.filtr_block-item-dropdown .single_button_select{
+    margin-bottom: 16px;
+}
+.filtr_block-item-dropdown .single_button_select .single_button_select_box_label{
+    height: 30px;
+}
 .item-width-1{
     width: 100%;
     min-width: 140px;
