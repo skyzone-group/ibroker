@@ -561,6 +561,10 @@ export default {
     background: hsla(0,0%,96.5%,.5);
     cursor: pointer;
 }
+.address-ul-li.region-active:hover{
+    background: #53b374;
+    cursor: pointer;
+}
 
 .address-ul-li:not(:last-child){
     padding-bottom: 10px;
