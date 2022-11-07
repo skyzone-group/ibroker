@@ -60,8 +60,6 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     });
 
     Route::post('/logout', [AuthController::class, 'logout']);
-    // Create Object
-    Route::post('/object/create', [ObjectController::class, 'createObject']);
     
     // User Info
     Route::post('/user/info', [UserController::class, 'updateUserInfo']);
@@ -69,21 +67,23 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('/getme', [UserController::class, 'getMe']);
     Route::post('/user/update', [UserController::class, 'update']);
     Route::post('/user-phone/update', [UserController::class, 'changeNumber']);
-    Route::get('/userObjects', [ObjectController::class, 'userObjects']);
+
+    /*
+    # Object
+    Route::post('/object/create', [ObjectController::class, 'createObject']);
+    Route::get('/userObjects', [ObjectController::class, 'userObjects']); // getAll
     Route::get('/object/edit/{object_id}', [ObjectController::class, 'editObject']);
     Route::post('/object/update/{object_id}', [ObjectController::class, 'update']);
     Route::get('/show/object/{object_id}', [ObjectController::class, 'showObject']);
-    
-    // // Add Friends methods
-    // Route::post('/search/user', [UserController::class, 'searchUser']);
-    // Route::post('/send/user', [UserController::class, 'sendUser']);
-    // Route::get('/user/friends', [UserController::class, 'getFriends']);
-    // Route::post('/delete/friend', [UserController::class, 'deleteFriend']);
-    
-    // // FriendShip methods 
-    // Route::get('/friendship/requests', [UserController::class, 'friendshipRequests']);
-    // Route::post('/confirm/friend', [UserController::class, 'confirmRequest']);
+    */
 
+    # Object
+    Route::get('/object', [ObjectController::class, 'index']);
+    Route::post('/object/create', [ObjectController::class, 'create']);
+    Route::get('/object/edit/{object_id}', [ObjectController::class, 'edit']);
+    Route::post('/object/update/{object_id}', [ObjectController::class, 'update']);
+    Route::get('/object/show/{object_id}', [ObjectController::class, 'show']);
+    
     # Friend
     Route::get('/friend/all', [FriendController::class, 'getAll']);
     Route::post('/friend/detail', [FriendController::class, 'detail']);

@@ -14,9 +14,32 @@ use Session;
 
 class ObjectController extends ResponseController
 {
-    public function createObject(Request $request)
-    {
+    public function index(Request $request){
+        $user_id = auth('sanctum')->user()->id;
 
+        $query = Objects::query();
+        $query = $query->where('user_id', '=', $user_id)
+                ->with([
+                    'images',
+                    'object_type',
+                    'region',
+                    'district',
+                    'quarter',
+                    'additional_values'
+                ]);
+
+        $total = $query->count();
+        $results = $query->orderBy('id', 'DESC')->paginate($request->total);
+        // $results = json_encode($results);
+        // $results = json_decode($results);
+        $data['count'] = 4;
+        $data['objects'] = $results;
+        $data['total'] = $total;
+
+        return self::successResponse($data);
+    }
+
+    public function create(Request $request){
         $user_id = auth('sanctum')->user()->id;
         $data = Objects::create([
             'user_id'              => $user_id,
@@ -98,33 +121,7 @@ class ObjectController extends ResponseController
         return $request->all();
     }
 
-    public function userObjects(Request $request)
-    {
-        $user_id = auth('sanctum')->user()->id;
-
-        $query = Objects::query();
-        $query = $query->where('user_id', '=', $user_id)
-                ->with([
-                    'images',
-                    'object_type',
-                    'region',
-                    'district',
-                    'quarter',
-                    'additional_values'
-                ]);
-
-        $total = $query->count();
-        $results = $query->orderBy('id', 'DESC')->paginate($request->total);
-        // $results = json_encode($results);
-        // $results = json_decode($results);
-        $data['count'] = 4;
-        $data['objects'] = $results;
-        $data['total'] = $total;
-
-        return self::successResponse($data);
-    }
-    
-    public function editObject($object_id){
+    public function edit($object_id){
         $user_id = auth('sanctum')->user()->id;
         $query = Objects::query();
         $query = $query->where(['user_id' => $user_id, 'id' => $object_id])
@@ -245,7 +242,7 @@ class ObjectController extends ResponseController
         return $request->all();
     }
     
-    public function showObject($id){
+    public function show($id){
         $user_id = auth('sanctum')->user()->id;
 
         $query = Objects::query();
