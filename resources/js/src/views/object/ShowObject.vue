@@ -613,7 +613,7 @@ export default {
     methods: {
         getObject(){
             const token = localStorage.getItem('token');
-            axios.get('/api/show/object/' + this.$route.params.id, {
+            axios.get('/api/object/show/' + this.$route.params.id, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 }

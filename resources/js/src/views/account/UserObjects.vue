@@ -211,7 +211,7 @@ export default {
         getUserObjects(page){ // get user informations on database
             const token = localStorage.getItem('token');
             this.isLoaded = true ;
-            axios.get(`/api/userObjects?page=${page+=1}&total=${this.total}`, {
+            axios.get(`/api/object?page=${page+=1}&total=${this.total}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 }

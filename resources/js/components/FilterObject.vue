@@ -140,7 +140,43 @@
                     </div>
                 </div>
                 <div class="filtr_block-item item-width-2">
-                    <Dropdown v-model="selectedCity1" :options="cities" optionLabel="name" optionValue="code" placeholder="Select a City" />
+                    <button type="button" @click="toggle(4)"  class="filtr_block-item-btn" :class="{'filtr_block-item-btn-active': 4 == open}">{{ region_name != '' ? region_name : 'Выберите регион' }}</button>
+                    <input type="hidden" v-model="form.region_id">
+                    <div class="filtr_block-item-dropdown" v-if="4 === open">
+                        <ul class="address-ul">
+                            <li class="address-ul-li" :class="{ 'region-active' : region.id === form.region_id }" v-for="region in regions" :key="region.id" @click="selectRegion(region.name_ru,4,region.id)">{{region.name_ru}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="filtr_block-item item-width-2">
+                    <button type="button" @click="toggle(5)"  class="filtr_block-item-btn" :class="{'filtr_block-item-btn-active': 5 == open}">                        
+                        <span v-if="form.district_id.length >= 3" style="vertical-align: unset;">
+                            {{form.district_id.length}} Выбрано
+                        </span>
+                        <span v-else-if="form.district_id.length > 0 || form.district_id.length >= 2" style="vertical-align: unset;" class="d-flex">
+                            <div v-for="item in districts" :key="item.id" class="mr-1">
+                                <span v-if="isInclude(item.id)" style="vertical-align: unset;">
+                                    {{item.name_ru}}
+                                </span>
+                            </div>
+                        </span>
+                        <span v-else style="vertical-align: unset;">Выберите район</span>
+                    </button>
+                    <div class="filtr_block-item-dropdown" v-if="5 === open && districts.length > 0">
+                        <ul class="filtr_block-item-dropdown-ul-inner p-0 m-0">
+                            <li :class="{ 'current' : district.name_ru === district_name }" v-for="district in districts" :key="district.id">
+                                <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
+                                    <div class="adddtional_main_block">
+                                        <div class="field-checkbox d-flex align-items-center district_input-checkox">
+                                            <input type="checkbox" :id="`district_${district.id}`" :value="district.id" v-model="form.district_id" @change="checkDistrict($event,district.id,district.name_ru)">
+                                            <label :for="`district_${district.id}`" class="district_input-checkox-label">{{district.name_ru}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- <MultiSelect v-model="form.district_id" :options="districts" optionLabel="name_ru" placeholder="Select Cities"/> -->
                 </div>
             </div>
         </div>
@@ -150,12 +186,13 @@
 <script>
 import Checkbox from 'primevue/checkbox';
 import Dropdown from 'primevue/dropdown';
+import MultiSelect from 'primevue/multiselect';
 
 // @blur="closeDropdown" tabindex="0" ref="dropdown"
 export default {
     components: {
         Checkbox,
-        Dropdown
+        MultiSelect
     },
     data() {
         return {
@@ -167,6 +204,8 @@ export default {
                 room_count: [],
                 from_price: "",
                 to_price: "",
+                region_id: "",
+                district_id: [],
             },
             room_count_val: [
                 {id: 1, name:"1-комнатную", isActive: false},
@@ -180,18 +219,30 @@ export default {
             dropdown: null,
             text: "",
             objectProperty: [],
+            regions: [],
+            districts: [],
+            region_name: "",
+            district_name: [],
             open: null,
             selectedCity1: false,
-            cities: [
-                {name: 'New York', code: 'NY'},
-                {name: 'Rome', code: 'RM'},
-                {name: 'London', code: 'LDN'},
-                {name: 'Istanbul', code: 'IST'},
-                {name: 'Paris', code: 'PRS'}
-            ],
+            // cities: [
+            //     {name: 'New York', code: 'NY'},
+            //     {name: 'Rome', code: 'RM'},
+            //     {name: 'London', code: 'LDN'},
+            //     {name: 'Istanbul', code: 'IST'},
+            //     {name: 'Paris', code: 'PRS'}
+            // ],
+        }
+    },
+    computed: {
+        anotherArrayName() {
+            return this.form.district_id.map(item => item.id)
         }
     },
     methods: {
+        isInclude(id) {
+            return this.form.district_id.find(item => item === id);
+        },
         getObjectTypesProperty(){
             axios.get('/api/objectProperty')
             .then(response => {
@@ -210,14 +261,45 @@ export default {
                 }
             })
         },
+        getRegions(){
+            axios.get('/api/allRegions')
+            .then(response => {
+                this.regions = response.data.result
+            });
+        },
         toggle(id) {
             this.open = this.open === id ? null : id
         },
         closeDropdown(){
             this.open = null;
         },
+        selectRegion(region_name,dropdown_id,region_id) {
+            this.region_name = region_name;
+            this.open = this.open === dropdown_id ? null : dropdown_id;
+            this.form.region_id = region_id;
+            this.test();
+        },
+        selectDistrict(district_name) {
+            this.district_name = district_name;
+        },
+        checkDistrict(e,district_id,district_name){
+            // this.districts.map(item => {
+            //     if(item.id == district_id){
+            //         this.district_name = item.name_ru;
+                    
+            //     }
+            // })
+        },
+        test(){
+            let region_id = this.form.region_id;
+            axios.get('/api/districts/' + region_id)
+            .then(response => {
+                this.districts = response.data.result;
+            });
+        }
     },
     async created() {
+        this.getRegions();
         this.getObjectTypesProperty();
     },
     setup() {
@@ -470,6 +552,69 @@ export default {
     line-height: inherit;
 }
 
+.address-ul-li{
+    padding: 5px 7px;
+    border-radius: 4px;
+    font-size: 15px;
+}
+.address-ul-li:hover{
+    background: hsla(0,0%,96.5%,.5);
+    cursor: pointer;
+}
+.address-ul-li.region-active:hover{
+    background: #53b374;
+    cursor: pointer;
+}
+
+.address-ul-li:not(:last-child){
+    padding-bottom: 10px;
+}
+
+.district_input-checkox input[type=checkbox] + .district_input-checkox-label {
+    display: block;
+    /* margin: 0.2em; */
+    cursor: pointer;
+    /* padding: 0.2em; */
+}
+
+.district_input-checkox input[type=checkbox] {
+    display: none;
+}
+
+.district_input-checkox input[type=checkbox] + .district_input-checkox-label:before {
+    font-family: 'primeicons';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    /* line-height: 1; */
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    content: "\e909";
+    font-size: 10px !important;
+    border: 2px solid #ced4da;
+    border-radius: 4px;
+    height: 20px;
+    width: 20px;
+    padding-left: 3.4px;
+    padding-bottom: 0.3em;
+    margin-right: 0.8rem;
+    vertical-align: bottom;
+    color: transparent;
+    transition: .2s;
+}
+
+.district_input-checkox input[type=checkbox] + .district_input-checkox-label:active:before {
+    transform: scale(0);
+}
+
+.district_input-checkox input[type=checkbox]:checked + .district_input-checkox-label:before {
+    background-color: #53b374;
+    border-color: #53b374;
+    color: #fff;
+}
+
 .item-width-1{
     width: 100%;
     min-width: 140px;
@@ -479,5 +624,10 @@ export default {
 .item-width-2{
     flex: 0 0 156px;
     max-width: 156px;
+}
+
+.region-active{
+    background-color: var(--form-button-color);
+    color: #fff;
 }
 </style>
