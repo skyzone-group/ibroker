@@ -14,7 +14,7 @@ use Session;
 
 class ObjectController extends ResponseController
 {
-    public function index(Request $request){
+    public function getAll(Request $request){
         $user_id = auth('sanctum')->user()->id;
 
         $query = Objects::query();
@@ -30,9 +30,8 @@ class ObjectController extends ResponseController
 
         $total = $query->count();
         $results = $query->orderBy('id', 'DESC')->paginate($request->total);
-        // $results = json_encode($results);
-        // $results = json_decode($results);
-        $data['count'] = 4;
+    
+        $data['count'] = $total;
         $data['objects'] = $results;
         $data['total'] = $total;
 
