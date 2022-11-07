@@ -17,8 +17,8 @@
         <div class="filters-view">
             <div class="filters-view-wrapper">
                 <div class="filtr_block-item item-width-1">
-                    <button type="button" @click="filterDropdown[0] = !filterDropdown[0]" class="filtr_block-item-btn" :class="{'filtr_block-item-btn-active': filterDropdown[0] == true}">Квартиру в новостройке и вторичке</button>
-                    <div class="filtr_block-item-dropdown" v-if="filterDropdown[0]" @blur="filterDropdown = false">
+                    <button type="button" @click="toggle(1)" class="filtr_block-item-btn" :class="{'filtr_block-item-btn-active': 1 == open}">Квартиру в новостройке и вторичке</button>
+                    <div class="filtr_block-item-dropdown" v-if="1 === open" @blur="filterDropdown = false">
                         <div class="single_button_select">
                             <div class="single_button_select_box d-flex">
                                 <label for="type__account_owner" class="single_button_select_box_label" :class="{'active' : this.form.user_type == '1'}">
@@ -110,8 +110,8 @@
                     </div>
                 </div>
                 <div class="filtr_block-item item-width-2">
-                    <button type="button"  @click="filterDropdown[1] = !filterDropdown[1], filterDropdown[0] = false"  class="filtr_block-item-btn" :class="{'filtr_block-item-btn-active': filterDropdown[1] == true}">{{form.room_count.length > 0 ? text : 'Комнат'}}</button>
-                    <div class="filtr_block-item-dropdown" v-if="filterDropdown[1]">
+                    <button type="button" @click="toggle(2)"  class="filtr_block-item-btn" :class="{'filtr_block-item-btn-active': 2 == open}">{{form.room_count.length > 0 ? text : 'Комнат'}}</button>
+                    <div class="filtr_block-item-dropdown" v-if="2 === open">
                         <ul class="room_count-list">
                             <li v-for="item in room_count_val" :key="item.id" class="room_count-list_li">
                                 <label :for="`room_count_${item.id}`" class="single_button_select_box_label" :class="{'active' : item.isActive}">
@@ -123,21 +123,24 @@
                     </div>
                 </div>
                 <div class="filtr_block-item item-width-2">
-                    <button type="button"  @click="filterDropdown[2] = !filterDropdown[2]"  class="filtr_block-item-btn" :class="{'filtr_block-item-btn-active': filterDropdown[2] == true}">{{(form.from_price != '' && form.to_price != '') ? (`${form.from_price} - ${form.to_price}`) : form.from_price != '' ? `от ${form.from_price}` : form.to_price != '' ? `до ${form.to_price}` : 'Цена'}}</button>
-                    <div class="filtr_block-item-dropdown" v-if="filterDropdown[2]">
+                    <button type="button"  @click="toggle(3)"  class="filtr_block-item-btn" :class="{'filtr_block-item-btn-active': 3 == open}">{{(form.from_price != '' && form.to_price != '') ? (`${form.from_price} - ${form.to_price}`) : form.from_price != '' ? `от ${form.from_price}` : form.to_price != '' ? `до ${form.to_price}` : 'Цена'}}</button>
+                    <div class="filtr_block-item-dropdown" v-if="3 === open">
                         <div class="filtr_block-item-dropdown-wrapper">
                             <div class="filtr_block-item-dropdown-wrapper-item">
                                 <div class="filtr_block-item-dropdown-wrapper-item-children">
-                                    <input placeholder="от" type="number" class="_025a50318d--input--cptMO" v-model="form.from_price" value=""/>
+                                    <input placeholder="от" type="number" class="_025a50318d--input--cptMO" v-model="form.from_price"/>
                                 </div>
                             </div>
                             <div class="filtr_block-item-dropdown-wrapper-item">
                                 <div class="filtr_block-item-dropdown-wrapper-item-children">
-                                    <input placeholder="до" type="number" class="_025a50318d--input--cptMO" v-model="form.to_price" value=""/>
+                                    <input placeholder="до" type="number" class="_025a50318d--input--cptMO" v-model="form.to_price"/>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="filtr_block-item item-width-2">
+                    <Dropdown v-model="selectedCity1" :options="cities" optionLabel="name" optionValue="code" placeholder="Select a City" />
                 </div>
             </div>
         </div>
@@ -146,10 +149,13 @@
 
 <script>
 import Checkbox from 'primevue/checkbox';
+import Dropdown from 'primevue/dropdown';
 
+// @blur="closeDropdown" tabindex="0" ref="dropdown"
 export default {
     components: {
-        Checkbox
+        Checkbox,
+        Dropdown
     },
     data() {
         return {
@@ -174,6 +180,15 @@ export default {
             dropdown: null,
             text: "",
             objectProperty: [],
+            open: null,
+            selectedCity1: false,
+            cities: [
+                {name: 'New York', code: 'NY'},
+                {name: 'Rome', code: 'RM'},
+                {name: 'London', code: 'LDN'},
+                {name: 'Istanbul', code: 'IST'},
+                {name: 'Paris', code: 'PRS'}
+            ],
         }
     },
     methods: {
@@ -194,7 +209,13 @@ export default {
                     
                 }
             })
-        }
+        },
+        toggle(id) {
+            this.open = this.open === id ? null : id
+        },
+        closeDropdown(){
+            this.open = null;
+        },
     },
     async created() {
         this.getObjectTypesProperty();
