@@ -22,7 +22,7 @@
                 <div v-if="active == 3" class="filtr_block-item filter-object-type item-width-1">
                     <Dropdown @click="open = null" v-model="form.object_new" optionValue="id" :options="object_time_type" optionLabel="name_ru" placeholder="Выбирать" panelClass="p-multiselect-panell" />
                 </div>
-                <div v-if="form.object_type_id == 3" class="filtr_block-item item-width-2">
+                <div v-if="form.object_type_id == 3 && active != 3" class="filtr_block-item item-width-2">
                     <MultiSelect v-model="form.object_types_property_id" @click="open = null" :options="objectProperty" optionLabel="name_ru" optionValue="id" display="chip" placeholder="Выбирать" :filter="true"
                     panelClass="p-multiselect-panell"/>
                 </div>
