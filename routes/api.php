@@ -33,6 +33,8 @@ Route::post('/upload_image', [TempImagesController::class, 'uploadImage']);
 Route::post('/rotate_image', [TempImagesController::class, 'rotateImage']);
 
 Route::get('/allRegions', [AddressController::class, 'allRegions']);
+Route::get('/allDistricts', [AddressController::class, 'allDistricts']);
+Route::get('/allQuarters', [AddressController::class, 'allQuarters']);
 Route::get('/districts/{region_id}', [AddressController::class, 'districts']);
 Route::get('/quarters/{quarter_id}', [AddressController::class, 'quarters']);
 
@@ -78,7 +80,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     */
 
     # Object
-    Route::get('/object', [ObjectController::class, 'index']);
+    Route::get('/object/all', [ObjectController::class, 'getAll']);//get all objects in user account
     Route::post('/object/create', [ObjectController::class, 'create']);
     Route::get('/object/edit/{object_id}', [ObjectController::class, 'edit']);
     Route::post('/object/update/{object_id}', [ObjectController::class, 'update']);
