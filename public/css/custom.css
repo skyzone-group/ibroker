@@ -35,6 +35,32 @@ body {
     border-color: var(--form-button-invalid-color) !important;
 }
 
+.p-dropdown-panel, .p-multiselect-panel{
+    border-radius: 4px !important;
+}
+
+.p-multiselect-item .p-checkbox .p-checkbox-box,
+.p-multiselect-header .p-checkbox .p-checkbox-box {
+    border: 1px solid #c9cbcd !important;
+    background: #ffffff;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px !important;
+    color: #242629 !important;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.p-multiselect.p-multiselect-chip .p-multiselect-token {
+    background: var(--form-button-color) !important;
+    color: #fff !important;
+    border-radius: 10px !important;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+    color: #fff !important;
+    background: var(--form-button-color) !important;
+}
+
 .main-container{
     min-width: 704px;
     max-width: 1376px;

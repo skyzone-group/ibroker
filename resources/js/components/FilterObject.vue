@@ -140,46 +140,32 @@
                     </div>
                 </div>
                 <div class="filtr_block-item item-width-2">
-                    <button type="button" @click="toggle(4)"  class="filtr_block-item-btn" :class="{'filtr_block-item-btn-active': 4 == open}">{{ region_name != '' ? region_name : 'Выберите регион' }}</button>
-                    <input type="hidden" v-model="form.region_id">
-                    <div class="filtr_block-item-dropdown" v-if="4 === open">
-                        <ul class="address-ul">
-                            <li class="address-ul-li" :class="{ 'region-active' : region.id === form.region_id }" v-for="region in regions" :key="region.id" @click="selectRegion(region.name_ru,4,region.id)">{{region.name_ru}}</li>
-                        </ul>
-                    </div>
+                    <Dropdown @click="open = null" v-model="form.region_id" @change="getDistricts()" optionValue="id" :options="regions" optionLabel="name_ru" placeholder="Выберите регион" panelClass="p-multiselect-panell" />
                 </div>
                 <div class="filtr_block-item item-width-2">
-                    <button type="button" @click="toggle(5)"  class="filtr_block-item-btn" :class="{'filtr_block-item-btn-active': 5 == open}">                        
-                        <span v-if="form.district_id.length >= 3" style="vertical-align: unset;">
-                            {{form.district_id.length}} Выбрано
-                        </span>
-                        <span v-else-if="form.district_id.length > 0 || form.district_id.length >= 2" style="vertical-align: unset;" class="d-flex">
-                            <div v-for="item in districts" :key="item.id" class="mr-1">
-                                <span v-if="isInclude(item.id)" style="vertical-align: unset;">
-                                    {{item.name_ru}}
-                                </span>
-                            </div>
-                        </span>
-                        <span v-else style="vertical-align: unset;">Выберите район</span>
-                    </button>
-                    <div class="filtr_block-item-dropdown" v-if="5 === open && districts.length > 0">
-                        <ul class="filtr_block-item-dropdown-ul-inner p-0 m-0">
-                            <li :class="{ 'current' : district.name_ru === district_name }" v-for="district in districts" :key="district.id">
-                                <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                    <div class="adddtional_main_block">
-                                        <div class="field-checkbox d-flex align-items-center district_input-checkox">
-                                            <input type="checkbox" :id="`district_${district.id}`" :value="district.id" v-model="form.district_id" @change="checkDistrict($event,district.id,district.name_ru)">
-                                            <label :for="`district_${district.id}`" class="district_input-checkox-label">{{district.name_ru}}</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- <MultiSelect v-model="form.district_id" :options="districts" optionLabel="name_ru" placeholder="Select Cities"/> -->
+                    <MultiSelect v-model="form.district_id" @change="getQuarters()" :options="districts" optionLabel="name_ru" optionValue="id" display="chip" placeholder="Выберите район" :filter="true"
+                    panelClass="p-multiselect-panell"/>
+                </div>
+                <div class="filtr_block-item" style="flex: 1 0;">
+                    <MultiSelect v-model="form.quarter_id" :options="quarters" optionLabel="name_ru" optionValue="id" display="chip" placeholder="Выбирать улица" :filter="true"
+                    panelClass="p-multiselect-panell"/>
                 </div>
             </div>
         </div>
+        <div class="filter-block-inputs_content-top-txt_btns">
+            <span class="filter_search_btns">
+                <!-- <span class="filter_search_btn">
+                    <a href="#!" class="filter_search_btn-link map-link">
+                        Показать на карте
+                    </a>
+                </span> -->
+                <span class="filter_search_btn">
+                    <button type="submit" @click.prevent="getData" class="filter_search_btn-link">
+                        Найти
+                    </button>
+                </span>
+            </span>
+    </div>
     </div>
 </template>
 
@@ -192,7 +178,8 @@ import MultiSelect from 'primevue/multiselect';
 export default {
     components: {
         Checkbox,
-        MultiSelect
+        MultiSelect,
+        Dropdown
     },
     data() {
         return {
@@ -206,6 +193,7 @@ export default {
                 to_price: "",
                 region_id: "",
                 district_id: [],
+                quarter_id: [],
             },
             room_count_val: [
                 {id: 1, name:"1-комнатную", isActive: false},
@@ -214,6 +202,7 @@ export default {
                 {id: 4, name:"1 - 4 комн.", isActive: false},
                 {id: 5, name:"1 - 5+ комн.", isActive: false},
             ],
+            search: '',
             filterDropdown: [false, false, false],
             active: 0,
             dropdown: null,
@@ -221,22 +210,30 @@ export default {
             objectProperty: [],
             regions: [],
             districts: [],
-            region_name: "",
-            district_name: [],
+            quarters: [],
             open: null,
-            selectedCity1: false,
-            // cities: [
-            //     {name: 'New York', code: 'NY'},
-            //     {name: 'Rome', code: 'RM'},
-            //     {name: 'London', code: 'LDN'},
-            //     {name: 'Istanbul', code: 'IST'},
-            //     {name: 'Paris', code: 'PRS'}
-            // ],
+            countries: [
+                {name: 'Australia', code: 'AU'},
+                {name: 'Brazil', code: 'BR'},
+                {name: 'China', code: 'CN'},
+                {name: 'Egypt', code: 'EG'},
+                {name: 'France', code: 'FR'},
+                {name: 'Germany', code: 'DE'},
+                {name: 'India', code: 'IN'},
+                {name: 'Japan', code: 'JP'},
+                {name: 'Spain', code: 'ES'},
+                {name: 'United States', code: 'US'}
+            ],
         }
     },
     computed: {
         anotherArrayName() {
             return this.form.district_id.map(item => item.id)
+        },
+        filteredList() {
+            return this.districts.filter(post => {
+                return post.name_ru.toLowerCase().includes(this.search.toLowerCase())
+            })
         }
     },
     methods: {
@@ -248,7 +245,6 @@ export default {
             .then(response => {
                 this.objectProperty = response.data.result
             });
-            
         },
         isChecked(genre){
             genre.isActive = !genre.isActive;
@@ -267,36 +263,27 @@ export default {
                 this.regions = response.data.result
             });
         },
+        getDistricts(){
+            let region_id = this.form.region_id;
+            axios.get('/api/districts/' + region_id)
+            .then(response => {
+                this.districts = response.data.result
+                this.quarters = []
+            });
+        },
+        getQuarters(){
+            let district_id = this.form.district_id;
+            axios.get('/api/quarters/' + district_id)
+            .then(response => {
+                this.quarters = response.data.result
+            });
+        },
         toggle(id) {
             this.open = this.open === id ? null : id
         },
         closeDropdown(){
             this.open = null;
         },
-        selectRegion(region_name,dropdown_id,region_id) {
-            this.region_name = region_name;
-            this.open = this.open === dropdown_id ? null : dropdown_id;
-            this.form.region_id = region_id;
-            this.test();
-        },
-        selectDistrict(district_name) {
-            this.district_name = district_name;
-        },
-        checkDistrict(e,district_id,district_name){
-            // this.districts.map(item => {
-            //     if(item.id == district_id){
-            //         this.district_name = item.name_ru;
-                    
-            //     }
-            // })
-        },
-        test(){
-            let region_id = this.form.region_id;
-            axios.get('/api/districts/' + region_id)
-            .then(response => {
-                this.districts = response.data.result;
-            });
-        }
     },
     async created() {
         this.getRegions();
@@ -310,6 +297,65 @@ export default {
 
 
 <style>
+.p-multiselect-panell{
+    position: absolute !important;
+    z-index: 10 !important;
+    margin-top: 8px !important;
+    box-shadow: 0 10px 20px 0 rgb(0 0 0 / 10%) !important;
+    border-radius: 4px !important;
+    background-color: #fff !important;
+    min-width: 290px !important;
+}
+
+.filtr_block-item .p-multiselect{
+    border-top-right-radius: 8px !important;
+    border-bottom-right-radius: 8px !important;
+}
+
+.filtr_block-item  .p-multiselect{
+    border: unset !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.filtr_block-item .p-dropdown {
+    background: #ffffff;
+    border: unset !important;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: unset !important;
+    display: flex !important;
+    justify-content: space-between !important;
+}
+
+.filtr_block-item .p-multiselect .p-multiselect-label,
+.filtr_block-item .p-dropdown .p-dropdown-label{
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 20px 0 20px 10px !important;
+    width: 100%;
+    overflow: hidden !important;
+    color: #121212 !important;
+    font-size: 14px !important;
+    line-height: 1.43;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap !important;
+    display: block !important;
+}
+
+.filtr_block-item .pi {
+    font-size: 13px !important;
+    color: #c9c9c9 !important;
+}
+
+.filtr_block-item .p-multiselect-token-icon  .pi {
+    color: #fff !important;
+}
+
 .filtersTabs-ul{
     display: flex;
     margin: 0;
@@ -320,6 +366,7 @@ export default {
 .filtersTabs-ul-li-btn{
     display: block;
     margin-bottom: -8px;
+    margin-right: 2px;
     border-radius: 4px 4px 0 0;
     background: hsla(0,0%,96.5%,.5);
     padding: 9px 16px 16px;
@@ -361,6 +408,10 @@ export default {
     position: relative;
     border-right: 1px solid #f4f4f4;
     height: 100%;
+}
+
+.filtr_block-item:last-of-type {
+    border-right: none;
 }
 
 .filtr_block-item:first-of-type .filtr_block-item-btn {
@@ -460,7 +511,7 @@ export default {
     height: unset;
 }
 
-.filtr_block-item-dropdown-ul-inner li .options_main__item_second .p-checkbox {
+.filtr_block-item-dropdown-ul-inner li .options_main__item_second .p-checkbox{
     border-radius: 4px;
     height: 20px;
     width: 20px;
@@ -470,8 +521,10 @@ export default {
     border-radius: 4px !important;
 }
 
-.filtr_block-item-dropdown-ul-inner li .p-checkbox .p-checkbox-box .p-checkbox-icon {
+.filtr_block-item-dropdown-ul-inner li .p-checkbox .p-checkbox-box .p-checkbox-icon,
+.p-checkbox .p-checkbox-box .p-checkbox-icon{
     font-size: 10px !important;
+    color: #fff !important;
 }
 
 .room_count-list{
@@ -615,6 +668,16 @@ export default {
     color: #fff;
 }
 
+.address-filter input{
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    border-bottom: 1px solid #D9D9D9;
+}
+.address-filter input:focus-visible{
+    outline: none;
+}
+
 .item-width-1{
     width: 100%;
     min-width: 140px;
@@ -629,5 +692,35 @@ export default {
 .region-active{
     background-color: var(--form-button-color);
     color: #fff;
+}
+
+/* ************************* */
+.filter-block-inputs_content-top-txt_btns{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.filter_search_btns{
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end
+}
+
+.filter_search_btn-link{
+    display: flex;
+    justify-content: center;
+    transition: all .2s;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--form-button-color);
+    padding: 0 16px;
+    min-width: 150px;
+    height: 40px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 40px;
+    text-decoration: none;
 }
 </style>

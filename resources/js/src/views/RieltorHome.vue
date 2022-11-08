@@ -1874,7 +1874,7 @@ export default {
 .p-dropdown-panel,
 .p-multiselect-panel{
     /* top: 400px !important; */
-    border-radius: 8px !important;
+    /* border-radius: 8px !important; */
     min-width: 284px !important;
 }
 
@@ -2123,11 +2123,11 @@ export default {
     box-shadow: unset !important;
 }
 
-.p-multiselect.p-multiselect-chip .p-multiselect-token {
+/* .p-multiselect.p-multiselect-chip .p-multiselect-token {
     background: var(--primary_100) !important;
     color: #fff !important;
     border-radius: 10px !important;
-}
+} */
 
 .filters-tabs-item{
     font-size: 16px;

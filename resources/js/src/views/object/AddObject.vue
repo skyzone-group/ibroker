@@ -1599,15 +1599,20 @@ export default {
     border-radius: 0.5rem !important;
 }
 
-.options_main__item_second .p-checkbox .p-checkbox-box.p-highlight {
+/* Main css ga olish kerak */
+.options_main__item_second .p-checkbox .p-checkbox-box.p-highlight,
+.p-multiselect-item .p-checkbox .p-checkbox-box.p-highlight,
+.p-multiselect-header .p-checkbox .p-checkbox-box.p-highlight {
     background: #53b374;
+    border-color: #53b374;
 }
 
-.options_main__item_second .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
-    background: #53b374;
-    color: #ffffff;
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
+    background: #53b374 !important;
+    color: #ffffff !important;
+    border-color: #53b374 !important;
 }
-
+/* Main css ga olish kerak */
 .options_main__item_second .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
     box-shadow: unset;
     border-color: #53b374;
