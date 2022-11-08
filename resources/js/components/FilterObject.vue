@@ -8,108 +8,25 @@
                 <button type="button" @click="active = 1" class="filtersTabs-ul-li-btn" :class="{'filtersTabs-ul-li-btn-active' : active == 1}">Снять</button>
             </li>
             <li class="filtersTabs-ul-li">
-                <button type="button" class="filtersTabs-ul-li-btn">Посуточно</button>
+                <button type="button" @click="active = 2" class="filtersTabs-ul-li-btn" :class="{'filtersTabs-ul-li-btn-active' : active == 2}">Посуточно</button>
             </li>
             <li class="filtersTabs-ul-li">
-                <button type="button" class="filtersTabs-ul-li-btn">Подбор риелтора</button>
+                <button type="button" @click="active = 3" class="filtersTabs-ul-li-btn" :class="{'filtersTabs-ul-li-btn-active' : active == 3}">Новостройка</button>
             </li>
         </ul>
         <div class="filters-view">
             <div class="filters-view-wrapper">
-                <div class="filtr_block-item item-width-1">
-                    <button type="button" @click="toggle(1)" class="filtr_block-item-btn" :class="{'filtr_block-item-btn-active': 1 == open}">Квартиру в новостройке и вторичке</button>
-                    <div class="filtr_block-item-dropdown" v-if="1 === open" @blur="filterDropdown = false">
-                        <div class="single_button_select">
-                            <div class="single_button_select_box d-flex">
-                                <label for="type__account_owner" class="single_button_select_box_label" :class="{'active' : this.form.user_type == '1'}">
-                                    <input v-model="form.user_type" id="type__account_owner" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="1">
-                                    <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.user_type == '1'}">Жилая</span>
-                                </label>
-                                <label for="type__account_agent" class="single_button_select_box_label" :class="{'active' : this.form.user_type == '2'}">
-                                    <input v-model="form.user_type" id="type__account_agent" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="2">
-                                    <span class="single_button_select_box_label_span" :class="{'active_span' : this.form.user_type == '2'}">Коммерческая</span>
-                                </label>
-                            </div>
-                        </div>
-                        <ul v-if="form.user_type == 1" class="filtr_block-item-dropdown-ul p-0 m-0">
-                            <li>
-                                <ul class="filtr_block-item-dropdown-ul-inner p-0 m-0">
-                                    <li>
-                                        <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                            <div class="adddtional_main_block">
-                                                <div class="field-checkbox d-flex align-items-center">
-                                                    <Checkbox id="aparentmant_type_1" name="options[]" value="1" v-model="form.aparentmant_type" />
-                                                    <label for="aparentmant_type_1">Квартира в новостройке</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                            <div class="adddtional_main_block">
-                                                <div class="field-checkbox d-flex align-items-center">
-                                                    <Checkbox id="aparentmant_type_2" name="options[]" value="2" v-model="form.aparentmant_type" />
-                                                    <label for="aparentmant_type_2">Квартира во вторичке</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                            <div class="adddtional_main_block">
-                                                <div class="field-checkbox d-flex align-items-center">
-                                                    <Checkbox id="aparentmant_type_3" name="options[]" value="3" v-model="form.aparentmant_type" />
-                                                    <label for="aparentmant_type_3">Комната</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <ul class="filtr_block-item-dropdown-ul-inner p-0 m-0">
-                                    <li>
-                                        <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                            <div class="adddtional_main_block">
-                                                <div class="field-checkbox d-flex align-items-center">
-                                                    <Checkbox @click="form.aparentmant_type == []" id="house_type_1" name="options[]" value="4" v-model="form.house_type" />
-                                                    <label for="house_type_2">Дом, дача</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                            <div class="adddtional_main_block">
-                                                <div class="field-checkbox d-flex align-items-center">
-                                                    <Checkbox id="house_type_2" name="options[]" value="5" v-model="form.house_type" />
-                                                    <label for="house_type_2">Участок</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul v-if="form.user_type == 2" class="filtr_block-item-dropdown-ul p-0 m-0">
-                            <li>
-                                <ul class="filtr_block-item-dropdown-ul-inner p-0 m-0">
-                                    <li v-for="item in objectProperty" :key="item.id">
-                                        <div class="options_main__item_second option_class_one mb-0 ml-0 option_class_second">
-                                            <div class="adddtional_main_block">
-                                                <div class="field-checkbox d-flex align-items-center">
-                                                    <Checkbox :id="`object_type-property_${item.id}`" name="object_type_property[]" :value="item.id" v-model="form.object_type_property" />
-                                                    <label :for="`object_type-property_${item.id}`">{{item.name_ru}}</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+                <div v-if="active != 3" class="filtr_block-item filter-object-type item-width-1">
+                    <Dropdown @click="open = null" v-model="form.object_type_id" optionValue="id" :options="objectTypes" optionLabel="name_ru" placeholder="Выбирать" panelClass="p-multiselect-panell" />
                 </div>
-                <div class="filtr_block-item item-width-2">
+                <div v-if="active == 3" class="filtr_block-item filter-object-type item-width-1">
+                    <Dropdown @click="open = null" v-model="form.object_new" optionValue="id" :options="object_time_type" optionLabel="name_ru" placeholder="Выбирать" panelClass="p-multiselect-panell" />
+                </div>
+                <div v-if="form.object_type_id == 3" class="filtr_block-item item-width-2">
+                    <MultiSelect v-model="form.object_types_property_id" @click="open = null" :options="objectProperty" optionLabel="name_ru" optionValue="id" display="chip" placeholder="Выбирать" :filter="true"
+                    panelClass="p-multiselect-panell"/>
+                </div>
+                <div v-if="form.object_type_id != 3" class="filtr_block-item item-width-2">
                     <button type="button" @click="toggle(2)"  class="filtr_block-item-btn" :class="{'filtr_block-item-btn-active': 2 == open}">{{form.room_count.length > 0 ? text : 'Комнат'}}</button>
                     <div class="filtr_block-item-dropdown" v-if="2 === open">
                         <ul class="room_count-list">
@@ -173,7 +90,7 @@
 import Checkbox from 'primevue/checkbox';
 import Dropdown from 'primevue/dropdown';
 import MultiSelect from 'primevue/multiselect';
-
+import { mapGetters } from 'vuex'
 // @blur="closeDropdown" tabindex="0" ref="dropdown"
 export default {
     components: {
@@ -185,9 +102,11 @@ export default {
         return {
             form: {
                 user_type: 1,
+                object_type_id: null,
+                object_new: null,
                 aparentmant_type: [],
                 house_type: [],
-                object_type_property: [],
+                object_types_property_id: [],
                 room_count: [],
                 from_price: "",
                 to_price: "",
@@ -207,7 +126,6 @@ export default {
             active: 0,
             dropdown: null,
             text: "",
-            objectProperty: [],
             regions: [],
             districts: [],
             quarters: [],
@@ -224,9 +142,25 @@ export default {
                 {name: 'Spain', code: 'ES'},
                 {name: 'United States', code: 'US'}
             ],
+            object_time_type: [
+                {id: 1, name_ru: 'Срок сдачи',name_uz: 'Срок сдачи'},
+                {id: 2, name_ru: 'Сдан',name_uz: 'Сдан'},
+                {id: 3, name_ru: 'Строится',name_uz: 'Строится'},
+                {id: 4, name_ru: 'Полгода',name_uz: 'Полгода'},
+                {id: 5, name_ru: '1 год',name_uz: '1 год'},
+                {id: 6, name_ru: '1,5 года',name_uz: '1,5 года'},
+            ]
         }
     },
+    mounted(){
+        this.$store.dispatch('getObjectTypes');
+        this.$store.dispatch('getObjectTypesProperty');
+    },
     computed: {
+        ...mapGetters([
+            'objectTypes',
+            'objectProperty'
+        ]),
         anotherArrayName() {
             return this.form.district_id.map(item => item.id)
         },
@@ -239,12 +173,6 @@ export default {
     methods: {
         isInclude(id) {
             return this.form.district_id.find(item => item === id);
-        },
-        getObjectTypesProperty(){
-            axios.get('/api/objectProperty')
-            .then(response => {
-                this.objectProperty = response.data.result
-            });
         },
         isChecked(genre){
             genre.isActive = !genre.isActive;
@@ -287,7 +215,6 @@ export default {
     },
     async created() {
         this.getRegions();
-        this.getObjectTypesProperty();
     },
     setup() {
         
@@ -330,6 +257,11 @@ export default {
     justify-content: space-between !important;
 }
 
+.filter-object-type .p-dropdown {
+    border-top-left-radius: 8px !important;
+    border-bottom-left-radius: 8px !important;
+}
+
 .filtr_block-item .p-multiselect .p-multiselect-label,
 .filtr_block-item .p-dropdown .p-dropdown-label{
     cursor: pointer;
@@ -352,7 +284,7 @@ export default {
     color: #c9c9c9 !important;
 }
 
-.filtr_block-item .p-multiselect-token-icon  .pi {
+.p-multiselect-token-icon.pi {
     color: #fff !important;
 }
 
@@ -414,10 +346,10 @@ export default {
     border-right: none;
 }
 
-.filtr_block-item:first-of-type .filtr_block-item-btn {
+/* .filtr_block-item:first-of-type .filtr_block-item-btn {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-}
+} */
 
 .filtr_block-item-btn {
     cursor: pointer;
@@ -681,12 +613,17 @@ export default {
 .item-width-1{
     width: 100%;
     min-width: 140px;
-    max-width: 316px;
+    max-width: 250px;
 }
 
 .item-width-2{
     flex: 0 0 156px;
     max-width: 156px;
+}
+
+.item-width-2:nth-child(5){
+    flex: 0 0 200px;
+    max-width: 200px;
 }
 
 .region-active{

@@ -109,7 +109,7 @@ export default {
         display: flex;
         flex: 1 0 auto;
         flex-direction: column;
-        max-width: 1076px;
+        max-width: 100%;
     }
     
     .summary_main-div-cards{
