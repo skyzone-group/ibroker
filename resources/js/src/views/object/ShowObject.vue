@@ -141,7 +141,7 @@
                                         <div class="main_block__price">
                                             <div class="main_block__price_box">
                                                 <div class="price">
-                                                    <span>{{object.price}}$</span>
+                                                    <span>{{vueNumberFormat(object.price, {})}}</span>
                                                 </div>
                                                 <!-- <div id="square-price" style="color: #737476;">
                                                     208 196 ₽/м²

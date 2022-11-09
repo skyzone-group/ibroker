@@ -120,7 +120,7 @@
                                                 <a :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" v-if="object.object_type_id === 5">{{ object.object_type.name_ru }}, {{ object.land_area }} м²</a>
                                             </h5>
                                             <div class="objects_main-row-content-price-box d-flex">
-                                                <h6 class="item-title eu5v0x0">{{ object.price }}$</h6>
+                                                <h6 class="item-title eu5v0x0">{{ vueNumberFormat(object.price, {}) }}</h6>
                                             </div>
                                         </div>
                                         <div class="objects_main-row-content-info">

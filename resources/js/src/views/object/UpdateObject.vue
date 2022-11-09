@@ -631,7 +631,8 @@
                                                             <div class="price_box_main_input_flex_input">
                                                                 <div class="input-medium-6 dc-input-6-1-2 w-100" :class="{'p-invalid': v$.form.price.$invalid && submitted }">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <input id="price" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" type="number" v-model.number="v$.form.price.$model">
+                                                                        <!-- <input id="price" class="dc-input__input-6-1-2" maxlength="24" placeholder="" tabindex="0" type="number" v-model.number="v$.form.price.$model"> -->
+                                                                        <VueNumberFormat v-model:value="v$.form.price.$model" class="dc-input__input-6-1-2"></VueNumberFormat>
                                                                         <small v-if="(v$.form.price.$invalid && submitted) || v$.form.price.$pending.$response" class="p-error">{{v$.form.price.required.$message.replace('Value', 'Name')}}</small>
                                                                     </div>
                                                                     <div class="dc-input__input-icon-right dc-input__input-icon-right-font">$</div>
