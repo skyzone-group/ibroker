@@ -132,11 +132,8 @@ export default {
             value: "",
             form: {
                 object_deals: 'buy',
-                user_type: 1,
                 object_type_id: null,
                 object_new: null,
-                aparentmant_type: [],
-                house_type: [],
                 object_types_property_id: [],
                 room_count: [],
                 from_price: "",
