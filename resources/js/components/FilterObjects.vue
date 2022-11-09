@@ -300,6 +300,188 @@ export default {
 </script>
 
 <style>
+.filter-block-inputs_content{
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1120px;
+}
+
+.filter-block-inputs_content-top{
+    position: relative;
+    z-index: 5;
+}
+
+.filter-block-inputs_content-top-txt{
+    margin: 0 auto;
+    max-width: 1109px;
+}
+
+.filter-block-inputs_content .title{
+    margin-bottom: 46px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 1.21;
+    text-shadow: 0 2px 4px rgb(0 0 0 / 50%);
+}
+
+.filter-block-inputs_content .p-tabview .p-tabview-nav {
+    background: transparent;
+}
+
+.filter-block-inputs_content .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+    display: block;
+    margin-bottom: -8px;
+    border-radius: 4px 4px 0 0;
+    background-color: rgba(37,37,37,.6);
+    padding: 9px 16px 16px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.38;
+    text-decoration: none;
+}
+
+.filter-block-inputs_content .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    background-color: #f1f1f1;
+    color: #152242;
+    font-weight: 700;
+}
+
+.filter-block-inputs_content .p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
+    box-shadow: unset;
+}
+
+.filter-block-inputs_content .p-tabview .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link {
+    background-color: #f1f1f1;
+    color: #152242;
+}
+
+
+.filter-block-inputs_content .p-tabview .p-tabview-panels {
+    padding: 0;
+}
+
+.filter-block-inputs_content-top-txt_btns{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.filter_search_btns{
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end
+}
+
+.filter_search_btn{
+    position: relative;
+    cursor: pointer;
+    margin: 12px 0 0;
+}
+.filter_search_btn:nth-child(2){
+    margin-left: 8px;
+}
+
+.filter_search_btn-link{
+    display: flex;
+    justify-content: center;
+    transition: all .2s;
+    border: none;
+    border-radius: 4px;
+    background: #0468ff;
+    padding: 0 16px;
+    min-width: 112px;
+    height: 40px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 40px;
+    text-decoration: none;
+}
+
+.map-link{
+    background: #fff;
+    color: #152242;
+}
+
+.filtr_block-item{
+    position: relative;
+    border-right: 1px solid #f4f4f4;
+    height: 100%;
+}
+
+.filtr_block-item:first-of-type .filtr_block-item-btn {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.filtr_block-item-btn {
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 20px 38px 20px 24px;
+    width: 100%;
+    overflow: hidden;
+    color: #121212;
+    font-size: 14px;
+    line-height: 1.43;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.filtr_block-item-btn:after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    -webkit-transform: translateY(-50%) rotate(45deg);
+    transform: translateY(-50%) rotate(45deg);
+    transition: transform .3s,-webkit-transform .3s,-moz-transform .3s;
+    border-right: 2px solid #c9c9c9;
+    border-bottom: 2px solid #c9c9c9;
+    width: 8px;
+    height: 8px;
+    content: "";
+}
+
+.filtr_block-item-btn.filtr_block-item-btn-active,
+.filtr_block-item-btn:hover,
+.filtr_block-item-btn:focus{
+    outline: none;
+    background: #e9f3fb;
+}
+
+.filtr_block-item-btn.filtr_block-item-btn-active:after {
+    transform: translateY(-10%) rotate(225deg) !important;
+}
+
+.filtr_block-item-dropdown{
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    margin-top: 8px;
+    box-shadow: 0 10px 20px 0 rgb(0 0 0 / 10%);
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 16px;
+    min-width: 290px;
+}
+
+.filtr_block-item-dropdown .single_button_select{
+    margin-bottom: 16px;
+}
+.filtr_block-item-dropdown .single_button_select .single_button_select_box_label{
+    height: 30px;
+}
+.item-width-1{
+    width: 100%;
+    min-width: 140px;
+    max-width: 316px;
+}
+
 .filtersTabs-ul,
 .filters-view-tab-top-ul {
     display: flex;

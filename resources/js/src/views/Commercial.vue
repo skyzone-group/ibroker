@@ -7,7 +7,7 @@
                         <div class="filter-block-inputs_content-top">
                             <div class="filter-block-inputs_content-top-txt">
                                 <h1 class="title">Коммерческая недвижимость в Ташкенте</h1>
-                                <filter-block></filter-block>
+                                <filter-objects></filter-objects>
                             </div>
                         </div>
                     </div>
@@ -431,9 +431,8 @@
 
 <script>
 import NavBar from '../../components/SiteNavBar.vue'
-import FilterBlock from '../../components/index/FilterBlock.vue'
 import Services from '../../components/index/section_component/Services.vue'
-
+import FilterObjects from '../../components/FilterObjects.vue'
 
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -447,7 +446,7 @@ import { Pagination, Navigation } from "swiper";
 export default {
     components: {
         NavBar,
-        FilterBlock,
+        FilterObjects,
         Services,
         Swiper,
         SwiperSlide,

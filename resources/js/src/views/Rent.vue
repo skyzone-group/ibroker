@@ -7,7 +7,7 @@
                         <div class="filter-block-inputs_content-top">
                             <div class="filter-block-inputs_content-top-txt">
                                 <h1 class="title">Аренда недвижимости в Ташкенте</h1>
-                                <filter-block></filter-block>
+                                <filter-objects></filter-objects>
                             </div>
                         </div>
                     </div>
@@ -51,10 +51,10 @@
 
 <script>
 import NavBar from '../../components/SiteNavBar.vue'
-import FilterBlock from '../../components/index/FilterBlock.vue'
+import FilterObjects from '../../components/FilterObjects.vue'
 export default {
     components: {
-        FilterBlock,
+        FilterObjects,
     },
     data() {
         return {
