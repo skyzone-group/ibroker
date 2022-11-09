@@ -17,6 +17,8 @@ import 'primevue/resources/primevue.min.css'
 import Tooltip from 'primevue/tooltip'
 import ToastService from 'primevue/toastservice';
 import VueScrollTo from 'vue-scrollto'
+// Number format
+import VueNumberFormat from 'vue-number-format'
 
 
 
@@ -67,6 +69,7 @@ app.use(VueHtmlToPaper, options)
 app.use(DropZone)
 app.use(VueEasyLightbox)
 app.use(ToastService)
+app.use(VueNumberFormat, {precision: 0, prefix: '$ ', decimal: ',', thousand: '.'})
 app.mount('#app')
 
 
