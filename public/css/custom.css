@@ -61,6 +61,18 @@ body {
     background: var(--form-button-color) !important;
 }
 
+.p-multiselect-panell .p-inputtext:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.2rem #5fcf86;
+    border-color: var(--form-button-color) !important;
+}
+
+.p-multiselect-token-icon.pi {
+    color: #fff !important;
+}
+
+
 .main-container{
     min-width: 704px;
     max-width: 1376px;

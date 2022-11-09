@@ -10,7 +10,8 @@
                                 <div class="filtr_block-container">
                                     <div class="filtr_block-wrapper">
                                         <!-- <filter-block></filter-block> -->
-                                        <filter-object></filter-object>
+                                        <!-- <filter-object></filter-object> -->
+                                        <filter-objects></filter-objects>
                                     </div>
                                 </div>
                             </div>
@@ -1132,6 +1133,7 @@
 import NavBar from '../../components/SiteNavBar.vue'
 import FilterBlock from '../../components/index/FilterBlock.vue'
 import FilterObject from '../../components/FilterObject.vue'
+import FilterObjects from '../../components/FilterObjects.vue'
 import QuickFiltr from '../../components/index/section_component/QuickFilter.vue'
 import Services from '../../components/index/section_component/Services.vue'
 import UsefulLinks from '../../components/index/UsefulLinks.vue'
@@ -1144,6 +1146,7 @@ export default {
         NavBar,
         FilterBlock,
         FilterObject,
+        FilterObjects,
         QuickFiltr,
         Services,
         UsefulLinks,
@@ -1198,7 +1201,7 @@ export default {
 .filter-block{
     padding-top: 94px;
     position: relative;
-    height: 490px;
+    height: 550px;
 }
 
 .filter-block-inputs{
@@ -1214,7 +1217,7 @@ export default {
     z-index: 2;
     background-color: rgba(24,41,48,.4);
     width: 100%;
-    height: 490px;
+    height: 550px;
 }
 
 .filter-block-back__img{

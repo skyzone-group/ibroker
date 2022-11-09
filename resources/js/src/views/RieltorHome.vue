@@ -2115,13 +2115,13 @@ export default {
     border: none;
 }
 
-.p-multiselect:not(.p-disabled):hover {
+/* .p-multiselect:not(.p-disabled):hover {
     border-color: transparent !important;
 }
 
 .p-multiselect:not(.p-disabled).p-focus{
     box-shadow: unset !important;
-}
+} */
 
 /* .p-multiselect.p-multiselect-chip .p-multiselect-token {
     background: var(--primary_100) !important;

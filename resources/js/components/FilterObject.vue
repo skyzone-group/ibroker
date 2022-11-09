@@ -255,15 +255,7 @@ export default {
 
 
 <style>
-.p-multiselect-panell {
-    position: absolute !important;
-    z-index: 10 !important;
-    margin-top: 8px !important;
-    box-shadow: 0 10px 20px 0 rgb(0 0 0 / 10%) !important;
-    border-radius: 4px !important;
-    background-color: #fff !important;
-    min-width: 290px !important;
-}
+
 
 .filtr_block-item .p-multiselect {
     border-top-right-radius: 8px !important;
@@ -315,41 +307,7 @@ export default {
     color: #c9c9c9 !important;
 }
 
-.p-multiselect-token-icon.pi {
-    color: #fff !important;
-}
 
-.filtersTabs-ul {
-    display: flex;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.filtersTabs-ul-li-btn {
-    display: block;
-    margin-bottom: -8px;
-    margin-right: 2px;
-    border-radius: 4px 4px 0 0;
-    background: hsla(0, 0%, 96.5%, .5);
-    padding: 9px 16px 16px;
-    color: #fff;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.38;
-    text-decoration: none;
-}
-
-.filtersTabs-ul-li-btn-active {
-    background-color: #f1f1f1;
-    color: #152242;
-    font-weight: 700;
-}
-
-.filtersTabs-ul-li-btn:hover {
-    background-color: #f1f1f1;
-    color: #152242;
-}
 
 .filters-view {
     display: flex;
@@ -667,32 +625,7 @@ export default {
 }
 
 /* ************************* */
-.filter-block-inputs_content-top-txt_btns {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-}
 
-.filter_search_btns {
-    display: flex;
-    flex-grow: 1;
-    justify-content: flex-end
-}
 
-.filter_search_btn-link {
-    display: flex;
-    justify-content: center;
-    transition: all .2s;
-    border: none;
-    border-radius: 4px;
-    background-color: var(--form-button-color);
-    padding: 0 16px;
-    min-width: 150px;
-    height: 40px;
-    color: #fff;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 40px;
-    text-decoration: none;
-}
+
 </style>

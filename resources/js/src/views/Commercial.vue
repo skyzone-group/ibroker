@@ -487,7 +487,7 @@ export default {
 .filter-block{
     padding-top: 94px;
     position: relative;
-    height: 490px;
+    height: 550px;
 }
 
 .filter-block-inputs{
@@ -503,7 +503,7 @@ export default {
     z-index: 2;
     background-color: rgba(38, 46, 49, 0.253);
     width: 100%;
-    height: 490px;
+    height: 550px;
 }
 
 .filter-block-back__img{

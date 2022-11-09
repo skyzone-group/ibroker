@@ -1,8 +1,7 @@
 const state = {
     objectTypes: [],
-    objectProperty: {
-        name_ru: "",
-    }
+    objectProperty: [],
+    regions: []
 }
 
 const getters = {
@@ -11,6 +10,9 @@ const getters = {
     },
     objectProperty: state => {
         return state.objectProperty
+    },
+    regions: state => {
+        return state.regions
     },
 }
 
@@ -29,6 +31,13 @@ const actions = {
             commit('setObjectProperty', response.data.result);
         });
     },
+    // Get all regions
+    getRegions({state, commit}) {
+        axios.get('/api/allRegions')
+        .then(response => {
+            commit('setRegions', response.data.result);
+        });
+    },
 }
 
 const mutations = {
@@ -37,6 +46,9 @@ const mutations = {
     },
     setObjectProperty(state, objectProperty){
         state.objectProperty = objectProperty
+    },
+    setRegions(state, regions){
+        state.regions = regions
     },
 }
 
