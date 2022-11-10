@@ -1080,7 +1080,7 @@ export default {
                 this.checked_additional_values = response.data.result.objects.additional_values;
                 this.checkedObjectTypesProperty();
                 this.checkedAdditionalValues();
-                // console.log(this.checked_object_types_property);
+                console.log(response.data.result.objects);
             });
         },
         getRegions(){
@@ -1158,6 +1158,8 @@ export default {
     async created() {
         await this.getValues();
         this.getRegions();
+        this.getDistricts();
+        this.getQuarters();
         this.getObjectTypes();
         this.getObjectTypesProperty();
         this.getAdditionalFields();

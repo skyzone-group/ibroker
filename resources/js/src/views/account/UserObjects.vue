@@ -198,7 +198,7 @@ export default {
             checked: false,
             objects: [],
             totalRecords: 120,
-            total: 2,
+            total: 10,
             pageInfo: null,
             totalObject: null,
             isLoaded: false,
