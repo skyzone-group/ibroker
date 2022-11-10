@@ -16,8 +16,19 @@ class ObjectController extends ResponseController
 {
     public function getAll(Request $request){
         $user_id = auth('sanctum')->user()->id;
+        $id              = $request->get('object_id');
+        $region_id       = $request->get('region_id');
+        $district_id     = $request->get('district_id');
+        $quarter_id      = $request->get('quarter_id');
+        $quarter_id      = $request->get('quarter_id');
 
         $query = Objects::query();
+        
+        if($id)          $query = $query->where('id', '=', $id);
+        if($region_id)   $query = $query->where('region_id', '=', $region_id);
+        if($district_id) $query = $query->where('district_id', '=', $district_id);
+        if($quarter_id)  $query = $query->where('quarter_id', '=', $quarter_id);
+
         $query = $query->where('user_id', '=', $user_id)
                 ->with([
                     'images',
