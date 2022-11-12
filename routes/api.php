@@ -23,69 +23,49 @@ use App\Models\ImageUpload;
 
 
 # Public routes
+
+# Auth routes
 Route::post('/send-code', [AuthController::class, 'sendCode']);
 Route::get('/resend-code', [AuthController::class, 'resendCode']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/reset-password-request', [AuthController::class, 'resetPasswordRequest']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
+
 Route::post('/upload_image', [TempImagesController::class, 'uploadImage']);
 Route::post('/rotate_image', [TempImagesController::class, 'rotateImage']);
-
 Route::get('/allRegions', [AddressController::class, 'allRegions']);
 Route::get('/allDistricts', [AddressController::class, 'allDistricts']);
 Route::get('/allQuarters', [AddressController::class, 'allQuarters']);
 Route::get('/districts/{region_id}', [AddressController::class, 'districts']);
 Route::get('/quarters/{quarter_id}', [AddressController::class, 'quarters']);
 
-// Object properties
+# Object properties
 Route::get('/objectTypes', [ObjectTypesController::class, 'objectTypes']);
 Route::get('/objectProperty', [ObjectTypesController::class, 'objectProperty']);
 Route::get('/additional/{object_id}', [ObjectTypesController::class, 'additionalFields']);
 
-
-# Protected routes
-Route::get('photo', 'App\Http\Controllers\Blade\ImageUploadController@index');
-Route::post('st', 'App\Http\Controllers\Blade\ImageUploadController@store');
-Route::get('show/{id}', function ($id) {
-    $link = ImageUpload::find($id);
-    return Response::json($link);
-});
-Route::post('update/{id}', 'App\Http\Controllers\Blade\ImageUploadController@update');
-Route::post('store_image/delete/{id}', 'App\Http\Controllers\Blade\ImageUploadController@destroy');
-
+# Public objects
+Route::get('/object/search', [ObjectController::class, 'search']); //search public objects
 
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
-    Route::get('/test', function(){
-        return "Testing api route";
-    });
-
     Route::post('/logout', [AuthController::class, 'logout']);
     
-    // User Info
+    # User Info
     Route::post('/user/info', [UserController::class, 'updateUserInfo']);
     Route::get('/user', [UserController::class, 'userInfo']);
     Route::get('/getme', [UserController::class, 'getMe']);
     Route::post('/user/update', [UserController::class, 'update']);
     Route::post('/user-phone/update', [UserController::class, 'changeNumber']);
 
-    /*
-    # Object
-    Route::post('/object/create', [ObjectController::class, 'createObject']);
-    Route::get('/userObjects', [ObjectController::class, 'userObjects']); // getAll
-    Route::get('/object/edit/{object_id}', [ObjectController::class, 'editObject']);
-    Route::post('/object/update/{object_id}', [ObjectController::class, 'update']);
-    Route::get('/show/object/{object_id}', [ObjectController::class, 'showObject']);
-    */
-
-    # Object
+    # Objects in USER ACCOUNT
     Route::get('/object/all', [ObjectController::class, 'getAll']);//get all objects in user account
     Route::post('/object/create', [ObjectController::class, 'create']);
     Route::get('/object/edit/{object_id}', [ObjectController::class, 'edit']);
     Route::post('/object/update/{object_id}', [ObjectController::class, 'update']);
     Route::get('/object/show/{object_id}', [ObjectController::class, 'show']);
-    
+
     # Friend
     Route::get('/friend/all', [FriendController::class, 'getAll']);
     Route::post('/friend/detail', [FriendController::class, 'detail']);
@@ -94,7 +74,3 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/friend/confirm', [FriendController::class, 'confirm']);
     Route::post('/friend/delete', [FriendController::class, 'delete']);
 });
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
