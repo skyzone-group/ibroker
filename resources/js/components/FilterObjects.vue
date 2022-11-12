@@ -205,7 +205,7 @@
                                         </a>
                                     </span> -->
                                     <span class="filter_search_btn">
-                                        <button type="submit" class="filter_search_btn-link">
+                                        <button @click="$router.push({name: 'SearchObject'});" type="submit" class="filter_search_btn-link">
                                             Найти
                                         </button>
                                     </span>
@@ -529,13 +529,12 @@ export default {
 .filters-view-tab-top-ul-li .single_button_select_box_label_span{
     font-size: 17px;
     color: rgba(0,0,0,.5);
+    font-weight: 600;
 }
 
 .filters-view-tab-top-ul-li .single_button_select_box_label_span.active_span {
     color: var(--form-button-color);
-    font-weight: 600;
     pointer-events: none;
-    font-size: 18px;
     transition: all .2s ease-in;
 }
 

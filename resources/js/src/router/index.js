@@ -30,11 +30,11 @@ import Zastroyshiki from '../views/partners/DeveloperList.vue'
 import ObjectMain from '../views/account/UserObjects.vue'
 
 // New Object Pages
-import NewObjectMain from '../views/object/AddObject.vue'
-//  Edit Object
-import EditObject from '../views/object/UpdateObject.vue'
-//  Show Object
+import AddObject from '../views/object/AddObject.vue'
+import UpdateObject from '../views/object/UpdateObject.vue'
 import ShowObject from '../views/object/ShowObject.vue'
+import SearchObject from '../views/object/SearchObject.vue'
+// 
 import AddUser from '../views/account/UserFriends.vue'
 
 // Object Single Page Details
@@ -81,7 +81,7 @@ const routes = [
                 path: '/razmestit-obyavlenie',
                 name: 'newObject',
                 components: {
-                    main: NewObjectMain,
+                    main: AddObject,
                 },
                 meta: {
                     reload: true,
@@ -91,7 +91,7 @@ const routes = [
                 path: '/adding/object/edit/:id',
                 name: 'editObject',
                 components: {
-                    main: EditObject,
+                    main: UpdateObject,
                 },
                 meta: {
                     reload: true,
@@ -105,6 +105,13 @@ const routes = [
                 },
                 meta: {
                     reload: true,
+                },
+            },
+            {
+                path: '/search',
+                name: 'SearchObject',
+                components: {
+                    main: SearchObject,
                 },
             },
             {
