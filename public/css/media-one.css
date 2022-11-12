@@ -1,4 +1,42 @@
 /* Media styles for Add New Object page */
+@media (max-width: 1200px) {
+    .object-photos {
+        width: 250px;
+    }
+
+    .object-photos-thumb {
+        height: 250px;
+    }
+}
+
+
+@media (max-width: 1000px) {
+    .object-photos {
+        width: 280px;
+    }
+
+    .object-photos-thumb {
+        height: 270px;
+    }
+
+    .author-box-pic-img {
+        height: 40px;
+        width: 40px;
+    }
+
+    .author-name {
+        font-size: 14px;
+    }
+
+    .object-details-header .title {
+        font-size: 17px;
+        line-height: 20px;
+    }
+
+    .object-details-description {
+        -webkit-line-clamp: 3;
+    }
+}
 
 
 @media only screen and (max-width: 767px){
@@ -51,6 +89,55 @@
     
     .options_main__items_inputs_block-add{
         max-width: 100%;
+    }
+
+
+    .object-photos-thumb .swiper .swiper-button-prev {
+        left: 20px;
+    }
+
+    .object-photos-thumb .swiper .swiper-button-next {
+        right: 25px;
+    }
+
+    .object-photos-thumb .swiper-button-prev, .object-photos-thumb .swiper-button-next {
+        width: 30px !important;
+        height: 30px !important;
+        opacity: 1 !important;
+    }
+}
+
+
+@media (max-width: 736px){
+    .object-item-block{
+        flex-direction: column;
+    }
+
+    .object-photos {
+        width: 100%;
+    }
+
+    .object-photos-thumb {
+        height: 215px;
+    }
+
+    .object-details {
+        margin: 16px 0 0 0;
+        width: 100%;
+    }
+
+    .object-details-item-btn{
+        width: 100%;
+    }
+
+    .object-price-list{
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+
+    .object-price-list-desc{
+        margin-left: 0 !important;
+        margin-bottom: 10px;
     }
 }
 
@@ -106,6 +193,11 @@
         height: 0.1rem;
         position: absolute;
         width: 100%;
+    }
+
+    .author-box-pic-img {
+        height: 50px;
+        width: 50px;
     }
 }
 

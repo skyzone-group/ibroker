@@ -205,7 +205,7 @@
                                         </a>
                                     </span> -->
                                     <span class="filter_search_btn">
-                                        <button @click="$router.push({name: 'SearchObject'});" type="submit" class="filter_search_btn-link">
+                                        <button @click="urlData" type="submit" class="filter_search_btn-link">
                                             Найти
                                         </button>
                                     </span>
@@ -261,6 +261,19 @@ export default {
         this.getRegions();
     },
     methods: {
+        urlData() {
+            if (this.form.object_deals !== "") {
+                this.$router.push({
+                    name: "SearchObject",
+                    query: {
+                        object_deals: this.form.object_deals,
+                        object_type: this.form.object_type,
+                        room_count_from: this.form.room_count_from,
+                        room_count_to: this.form.room_count_to,
+                    },
+                });
+            }
+        },
         filterData(){
             console.log(this.form);
         },
