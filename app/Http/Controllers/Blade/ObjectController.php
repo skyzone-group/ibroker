@@ -279,4 +279,34 @@ class ObjectController extends ResponseController
 
         return self::successResponse($data);
     }
+
+    public function search(Request $request){
+       
+        $region_id       = $request->get('region_id');
+        $district_id     = $request->get('district_id');
+        $quarter_id      = $request->get('quarter_id');
+
+        $query = Objects::query();
+        
+       
+
+        // $query = $query->where('user_id', '=', $user_id)
+        //         ->with([
+        //             'images',
+        //             'object_type',
+        //             'region',
+        //             'district',
+        //             'quarter',
+        //             'additional_values'
+        //         ]);
+
+        // $total = $query->count();
+        // $results = $query->orderBy('id', 'DESC')->paginate($request->total);
+    
+        // $data['count'] = $total;
+        // $data['objects'] = $results;
+        // $data['total'] = $total;
+
+        return self::successResponse($data);
+    }
 }
