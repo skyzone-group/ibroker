@@ -43,7 +43,6 @@ const options = {
 import DropZone from 'dropzone-vue';
 import 'dropzone-vue/dist/dropzone-vue.common.css';
 
-
 import VueEasyLightbox from 'vue-easy-lightbox'
 // you need to import css yourself
 import 'vue-easy-lightbox/external-css/vue-easy-lightbox.css'

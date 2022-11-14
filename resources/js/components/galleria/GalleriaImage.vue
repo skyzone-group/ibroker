@@ -16,7 +16,7 @@
             class="mySwiper2 gallery-swipper"
             >
             <swiper-slide v-for="(image,imageIndex) in images" :key="image.id" @click="index = imageIndex" :data-src="`/file/${image.name}`" data-fancybox="gallery">
-              <img :src="`/file/${image.name}`" class="w-100 h-100 gallery_box-swiper-image" />
+              <img :src="`/file/${image.name}`" class="w-100 h-100 gallery_box-swiper-image" style="object-fit: cover;" />
             </swiper-slide>
           </swiper>
           <swiper

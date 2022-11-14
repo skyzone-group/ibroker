@@ -632,6 +632,10 @@ export default {
                         white-space: nowrap;
                         align-items: center;
                         
+                        &:hover{
+                            color: var(--white_100) !important;
+                        }
+
                         span {
                             font-size: 14px;
                             line-height: 20px;
@@ -746,6 +750,10 @@ export default {
                         
                         .dropdown-item{
                             padding: 3px 0 !important;
+
+                            &:hover{
+                                color: #fff !important;
+                            }
                         }
                     }
                 }

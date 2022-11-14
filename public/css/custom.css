@@ -301,9 +301,45 @@ a:hover {
 
 .search-object-top-box,
 .search-object-body-box-content {
-    padding: 25px 0;
+    padding: 20px 0;
 }
 
+.search-object-top-filters-item{
+    white-space: nowrap;
+}
+
+.filters-item-select{
+    display: inline-block;
+    position: relative;
+    outline: none;
+}
+
+.filters-item-button{
+    align-items: center;
+    background: #0000;
+    border: 1px solid #d3d4d4;
+    border-radius: 5px;
+    color: #242629;
+    cursor: pointer;
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    justify-content: space-between;
+    line-height: 19px;
+    max-width: 270px;
+    padding: 10px 12px;
+    position: relative;
+    user-select: none;
+    margin-right: 8px;
+}
+
+.filters-item-button-txt {
+    flex: 0 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 /* .search-object-body{
       background-color: #f8f9f9;
   } */
@@ -364,14 +400,14 @@ a:hover {
 }
 
 .object-photos {
-    width: 320px;
+    width: 300px;
     display: flex;
     flex-direction: column;
 }
 
 .object-photos-thumb {
     border-radius: 5px;
-    height: 280px;
+    height: 260px;
     overflow: hidden;
     position: relative;
 }
@@ -500,7 +536,7 @@ a:hover {
 }
 .object-price {
     margin-left: 24px;
-    width: 218px;
+    width: 200px;
     display: flex;
     flex-direction: column;
 }
@@ -537,7 +573,7 @@ a:hover {
 }
 
 .object-details-description {
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     color: #a7a8a9;
     display: block;
@@ -584,13 +620,13 @@ a:hover {
 
 .author-box-pic-img {
     border-radius: 5px;
-    height: 60px;
+    height: 40px;
     object-fit: cover;
-    width: 60px;
+    width: 40px;
 }
 
 .author-name {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 20px;
     max-width: 228px;
@@ -1006,6 +1042,10 @@ a:hover {
     font-size: 18px;
     font-weight: 600;
     line-height: 24px;
+}
+
+.filters-item-select-overlay .p-overlaypanel-close {
+    background: var(--form-button-color) !important;
 }
 /* ! ************************ Home page Filter end ******************************************************************/
 /* *********************************** Home Page start ******************************************/

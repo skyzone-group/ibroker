@@ -3,9 +3,31 @@
     <div v-if="!sideBarFilter" class="search-object-top">
       <div class="container_fluid">
         <div class="search-object-top-box">
-          <div class="filter-block-inputs_content">
-            <div class="row">Search Object</div>
-          </div>
+            <div class="search-object-top-filters d-flex">
+                <div class="d-flex">
+                    <div class="search-object-top-filters-item">
+                        <div class="filters-item-select">
+                            <button @click="toggle" aria-haspopup="true" aria-controls="overlay_panel" tabindex="-1" type="button" class="filters-item-button">
+                                <span class="filters-item-button-txt">{{form.object_deals == 'buy' ? 'Купить' : 'Снять'}}</span>
+                            </button>
+                            <OverlayPanel ref="op" appendTo="body" :showCloseIcon="true" id="overlay_panel" style="width: 220px" :breakpoints="{'960px': '75vw'}" class="filters-item-select-overlay">
+                                <div class="single_button_select">
+                                    <div class="single_button_select_box d-flex">
+                                        <label for="object_deals_1" class="single_button_select_box_label" :class="{'active' : form.object_deals == 'buy'}">
+                                            <input v-model="form.object_deals" id="object_deals_1" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="buy">
+                                            <span class="single_button_select_box_label_span" :class="{'active_span' : form.object_deals == 'buy'}">Купить</span>
+                                        </label>
+                                        <label for="object_deals_2" class="single_button_select_box_label" :class="{'active' : form.object_deals == 'rent'}">
+                                            <input v-model="form.object_deals" id="object_deals_2" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="rent">
+                                            <span class="single_button_select_box_label_span" :class="{'active_span' : form.object_deals == 'rent'}">Снять</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </OverlayPanel>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
       </div>
     </div>
@@ -618,6 +640,7 @@ import MultiSelect from 'primevue/multiselect';
 import Sidebar from 'primevue/sidebar';
 import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
+import OverlayPanel from 'primevue/overlaypanel';
 // Validation
 import { required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
@@ -633,6 +656,7 @@ import "swiper/css/thumbs";
 // import required modules
 import { Autoplay, Pagination, Lazy, FreeMode, Navigation, Thumbs } from "swiper";
 import { mapGetters } from 'vuex'
+import { ref } from "vue";
 export default {
 //   setup: () => ({ v$: useVuelidate() }),
   components: {
@@ -645,7 +669,8 @@ export default {
     Sidebar,
     Dialog,
     MultiSelect,
-    Button
+    Button,
+    OverlayPanel
   },
   data() {
     return {
@@ -669,7 +694,7 @@ export default {
         name: '',
         phone: '',
         object_type: 1,
-        object_deals: 'buy',
+        object_deals: '',
         region_id: null,
         district_id: [],
         quarter_id: [],
@@ -765,6 +790,7 @@ export default {
   mounted() {
         this.$store.dispatch('getObjectTypes');
         this.$store.dispatch('getObjectTypesProperty');
+        this.form = this.$route.query;
     },
     computed: {
         ...mapGetters([
@@ -776,12 +802,28 @@ export default {
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen();
         this.getRegions();
+        // let uri = window.location.href.split('?');
+        // if(uri.length == 2) {
+        //     let vars = uri[1].split('&');
+        //     let getVars = {};
+        //     let tmp = '';
+        //     vars.forEach(function(v) {
+        //         tmp = v.split('=');
+        //         if(tmp.length == 2)
+        //         getVars[tmp[0]] = tmp[1];
+        //     });
+        //     console.log(getVars);
+        // }
     },
   setup() {
+    const op = ref();
+    const toggle = (event) => {
+        op.value.toggle(event);
+    };
     const v$ = useVuelidate();
     return {
       modules: [Autoplay,Pagination,Lazy,FreeMode,Navigation,Thumbs],
-      v$
+      v$, op, toggle
     };
   }
 };
