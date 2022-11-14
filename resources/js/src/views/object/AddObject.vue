@@ -1453,20 +1453,24 @@ export default {
     border-radius: 0 5px 5px 0;
 }
 
-.block__body_side-bar_content .single_button_select_box_label.active{
+.block__body_side-bar_content .single_button_select_box_label.active,
+.mobile-filter-dialog-form-header .single_button_select_box_label.active{
     background-color: var(--form-button-color);
     border-bottom-color: var(--form-button-color);
     border-top-color: var(--form-button-color);
     color: #fff;
 }
-.block__body_side-bar_content .single_button_select_box_label_span.active_span{
+.block__body_side-bar_content .single_button_select_box_label_span.active_span,
+.mobile-filter-dialog-form-header .single_button_select_box_label_span.active_span{
     color: #fff;
 }
 
-.block__body_side-bar_content .single_button_select_box_label.active:first-child {
+.block__body_side-bar_content .single_button_select_box_label.active:first-child,
+.mobile-filter-dialog-form-header .single_button_select_box_label.active:first-child{
     border-left-color: var(--form-button-color);
 }
-.block__body_side-bar_content .single_button_select_box_label.active:last-child {
+.block__body_side-bar_content .single_button_select_box_label.active:last-child,
+.mobile-filter-dialog-form-header .single_button_select_box_label.active:last-child{
     border-left-color: var(--form-button-color);
 }
 

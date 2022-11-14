@@ -1,6 +1,6 @@
 <template>
   <div class="search-object-main">
-    <div class="search-object-top">
+    <div v-if="!sideBarFilter" class="search-object-top">
       <div class="container_fluid">
         <div class="search-object-top-box">
           <div class="filter-block-inputs_content">
@@ -13,7 +13,7 @@
       <div class="container_fluid">
         <div class="search-object-body-box-content">
           <div class="search-object-body-box-content-objects">
-            <div class="objects-top row ml-0 mr-0">
+            <div v-if="!sideBarFilter" class="objects-top row ml-0 mr-0">
                 <div v-if="!searchObject" class="col align-self-center pl-0">
                     <a href="https://uybor.uz/ru/listing/search/sale" class="objects-top-link active">
                         Всего
@@ -29,7 +29,255 @@
                     </a>
                 </div>
                 <div class="col align-self-center pr-0">
-                    <Dropdown v-model="selectedCity1" :options="cities" optionLabel="name" optionValue="code" placeholder="Сортировка" />
+                    <Dropdown v-model="selectedCity1" :options="sortOptions" optionLabel="name" optionValue="code" placeholder="Сортировка" />
+                </div>
+            </div>
+            <div v-if="sideBarFilter" class="mobile-filter-sort-box d-flex align-items-center justify-content-between">
+                <div class="objects-total">80 106 объявлений</div>
+                <div class="mobile-filter-sort-btns">
+                    <button @click="openModal" type="button" class="mobile-filter mobile-search-btn">
+                        <span class="dropdownButton-button__icon-0-7-0">
+                            <svg width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.32929 4C7.91746 5.16519 6.80622 6 5.5 6C4.19378 6 3.08254 5.16519 2.67071 4H1C0.447715 4 2.62268e-07 3.55228 2.62268e-07 3C2.62268e-07 2.44772 0.447715 2 1 2H2.67071C3.08254 0.834808 4.19378 0 5.5 0C6.80622 0 7.91746 0.834808 8.32929 2H13C13.5523 2 14 2.44772 14 3C14 3.55228 13.5523 4 13 4H8.32929ZM4.5 3C4.5 2.44772 4.94772 2 5.5 2C6.05229 2 6.5 2.44772 6.5 3C6.5 3.55228 6.05229 4 5.5 4C4.94772 4 4.5 3.55228 4.5 3Z" fill="#242629"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.67071 10C6.08254 8.83481 7.19378 8 8.5 8C9.80622 8 10.9175 8.83481 11.3293 10H13C13.5523 10 14 10.4477 14 11C14 11.5523 13.5523 12 13 12H11.3293C10.9175 13.1652 9.80622 14 8.5 14C7.19378 14 6.08254 13.1652 5.67071 12H1C0.447715 12 4.82825e-08 11.5523 0 11C-4.8282e-08 10.4477 0.447715 10 1 10H5.67071ZM9.5 11C9.5 11.5523 9.05228 12 8.5 12C7.94772 12 7.5 11.5523 7.5 11C7.5 10.4477 7.94772 10 8.5 10C9.05228 10 9.5 10.4477 9.5 11Z" fill="#242629"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <Dialog v-model:visible="displayModal" :closable="false" :breakpoints="{'640px': '100vw'}" :style="{width: '100vw'}" :modal="true" class="mobile-filter-dialog">
+                        <template #header>
+                            <div class="d-flex align-items-center">
+                                <button @click="displayModal = !displayModal" class="p-dialog-header-icon p-dialog-header-close p-link" aria-label="close" type="button">
+                                    <span class="p-dialog-header-close-icon pi pi-angle-left"></span>
+                                </button>
+                            </div>
+                            <h1 class="mobile-filter-dialog-header-title">Фильтры</h1>
+                            <button type="button" class="mobile-filter-dialog-header-clear">Сбросить</button>
+                        </template>
+                        <div class="mobile-filter-dialog-body">
+                            <form class="w-100 mobile-filter-dialog-form" :model="form">
+                                <div class="mobile-filter-dialog-form-header">
+                                    <div class="Htvpx">
+                                        <div class="form-item">
+                                            <div class="single_button_select">
+                                                <div class="single_button_select_box d-flex">
+                                                    <label for="object_deals_1" class="single_button_select_box_label" :class="{'active' : form.object_deals == 'buy'}">
+                                                        <input v-model="form.object_deals" id="object_deals_1" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="buy">
+                                                        <span class="single_button_select_box_label_span" :class="{'active_span' : form.object_deals == 'buy'}">Купить</span>
+                                                    </label>
+                                                    <label for="object_deals_2" class="single_button_select_box_label" :class="{'active' : form.object_deals == 'rent'}">
+                                                        <input v-model="form.object_deals" id="object_deals_2" type="radio" class="single_button_select_box_label_inpt"  tabindex="0" value="rent">
+                                                        <span class="single_button_select_box_label_span" :class="{'active_span' : form.object_deals == 'rent'}">Снять</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-item">
+                                            <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
+                                                <span class="inputs_block_title">
+                                                    Тип объекта
+                                                </span>
+                                                <div class="options_main__items_inputs_block d-flex flex-column">
+                                                    <Dropdown v-model="form.object_type" optionValue="id" :options="objectTypes" optionLabel="name_ru" placeholder="Тип объекта" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-item">
+                                            <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
+                                                <span class="inputs_block_title">
+                                                    Регион
+                                                </span>
+                                                <div class="options_main__items_inputs_block d-flex flex-column">
+                                                    <Dropdown v-model="form.region_id" @change="getDistricts()"
+                                                    optionValue="id" :options="regions" optionLabel="name_ru" placeholder="Выберите регион" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-item">
+                                            <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
+                                                <span class="inputs_block_title">
+                                                    Район
+                                                </span>
+                                                <div class="options_main__items_inputs_block d-flex flex-column">
+                                                    <MultiSelect v-model="form.district_id" @change="getQuarters()" :options="districts"
+                                                    optionLabel="name_ru" optionValue="id" display="chip" placeholder="Выберите район"
+                                                    :filter="true" panelClass="mobile-filter-form-item-panell"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-item">
+                                            <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
+                                                <span class="inputs_block_title">
+                                                    Улица
+                                                </span>
+                                                <div class="options_main__items_inputs_block d-flex flex-column">
+                                                    <MultiSelect v-model="form.quarter_id" :options="quarters"
+                                                    optionLabel="name_ru" optionValue="id" display="chip" placeholder="Выберите район"
+                                                    :filter="true" panelClass="mobile-filter-form-item-panell" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div v-if="form.object_type == 3" class="form-item">
+                                            <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
+                                                <span class="inputs_block_title">
+                                                    Тип недвижимости
+                                                </span>
+                                                <div class="options_main__items_inputs_block d-flex flex-column">
+                                                    <MultiSelect v-model="form.object_types_property_id" :options="objectProperty"
+                                                    optionLabel="name_ru" optionValue="id" display="chip" placeholder="Тип недвижимости"
+                                                    :filter="true" panelClass="mobile-filter-form-item-panell" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-item">
+                                            <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
+                                                <span class="inputs_block_title">
+                                                    Цена, y.e.
+                                                </span>
+                                                <div class="options_main__items_inputs_block d-flex align-items-center justify-content-center">
+                                                    <div class="input-medium-6 dc-input-6-1-2 h-100 mr-2 w-50">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <!-- <input id="room_count" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="От" type="number" tabindex="0" v-model.number="form.price_from" name="room_count"> -->
+                                                            <VueNumberFormat v-model:value="form.price_from" class="dc-input__input-6-1-2"></VueNumberFormat>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-medium-6 dc-input-6-1-2 h-100 w-50">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <VueNumberFormat v-model:value="form.price_to" class="dc-input__input-6-1-2"></VueNumberFormat>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div v-if="form.object_type != 3 && form.object_type != 5" class="form-item">
+                                            <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
+                                                <span class="inputs_block_title">
+                                                    Комнатность
+                                                </span>
+                                                <div class="options_main__items_inputs_block d-flex align-items-center justify-content-between">
+                                                    <div class="input-medium-6 dc-input-6-1-2 h-100 mr-2 w-50">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <input id="room_count_1" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="От" type="number" tabindex="0" v-model.number="form.room_count_from" name="roomCountFrom"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-medium-6 dc-input-6-1-2 h-100 w-50">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <input id="room_count_2" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="До" type="number" tabindex="0" v-model.number="form.room_count_to" name="roomCountTo"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div v-if="form.object_type == 1" class="form-item">
+                                            <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
+                                                <span class="inputs_block_title">
+                                                    Этаж
+                                                </span>
+                                                <div class="options_main__items_inputs_block d-flex align-items-center justify-content-between">
+                                                    <div class="input-medium-6 dc-input-6-1-2 h-100 mr-2 w-50">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <input id="floor_from" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="От" type="number" tabindex="0" v-model.number="form.floor_from" name="floorFrom"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-medium-6 dc-input-6-1-2 h-100 w-50">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <input id="floor_to" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="До" type="number" tabindex="0" v-model.number="form.floor_to" name="floorTo"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-item">
+                                            <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
+                                                <span class="inputs_block_title">
+                                                    Этажность
+                                                </span>
+                                                <div class="options_main__items_inputs_block d-flex align-items-center justify-content-between">
+                                                    <div class="input-medium-6 dc-input-6-1-2 h-100 mr-2 w-50">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <input id="floor_from" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="От" type="number" tabindex="0" v-model.number="form.floor_count_from" name="floorCountFrom"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-medium-6 dc-input-6-1-2 h-100 w-50">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <input id="floor_to" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="До" type="number" tabindex="0" v-model.number="form.floor_count_to" name="floorCountTo"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-item">
+                                            <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
+                                                <span class="inputs_block_title">
+                                                    Площадь, м2
+                                                </span>
+                                                <div class="options_main__items_inputs_block d-flex align-items-center justify-content-between">
+                                                    <div class="input-medium-6 dc-input-6-1-2 h-100 mr-2 w-50">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <input id="totalAreaTo" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="От" type="number" tabindex="0" v-model.number="form.total_area_from" name="totalAreaTo"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-medium-6 dc-input-6-1-2 h-100 w-50">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <input id="totalAreaTo" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="До" type="number" tabindex="0" v-model.number="form.total_area_to" name="totalAreaTo"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <duv v-if="form.object_type == 2 || form.object_type == 4 || form.object_type == 5" class="form-item">
+                                            <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
+                                                <span class="inputs_block_title">
+                                                    Площадь участка (сот.)
+                                                </span>
+                                                <div class="options_main__items_inputs_block d-flex align-items-center justify-content-between">
+                                                    <div class="input-medium-6 dc-input-6-1-2 h-100 mr-2 w-50">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <input id="landAreaFrom" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="От" type="number" tabindex="0" v-model.number="form.land_area_from" name="landAreaFrom"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-medium-6 dc-input-6-1-2 h-100 w-50">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <input id="landAreaTo" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="До" type="number" tabindex="0" v-model.number="form.land_area_to" name="landAreaTo"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </duv>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <template #footer>
+                            <Button type="submit" label="Показать" icon="pi pi-search"/>
+                        </template>
+                    </Dialog>
+                    <button  @click="visibleBottom = true" type="button" class="mobile-sort mobile-search-btn">
+                        <span class="dropdownButton-button__icon-0-7-0">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-e2e-id="replacement-icon" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.5579 1.96142V11.373H14.4696C14.9369 11.373 15.1812 11.8922 14.8413 12.1902L11.8782 14.863C11.6658 15.0457 11.3365 15.0457 11.1241 14.863L8.16094 12.1902C7.82108 11.8922 8.05473 11.373 8.53266 11.373H10.4338V1.96142C10.4338 1.43264 10.9117 1 11.4958 1C12.08 1 12.5579 1.43264 12.5579 1.96142Z" fill="#242629"></path>
+                                <path d="M4.12783 1.13691L1.16113 3.81744C0.820865 4.11527 1.0548 4.63408 1.5333 4.63408H3.43667V14.0392C3.43667 14.5677 3.91517 15 4.5 15C5.08483 15 5.56333 14.5677 5.56333 14.0392V4.63408H7.4667C7.9452 4.63408 8.17914 4.11527 7.83887 3.81744L4.87217 1.13691C4.67013 0.954364 4.32987 0.954364 4.12783 1.13691Z" fill="#242629"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <Sidebar v-model:visible="visibleBottom" :baseZIndex="10000" position="bottom" class="slider-bottom">
+                        <div class="siber-bottom-header">
+                            <div @click="visibleBottom = !visibleBottom" class="siber-bottom-header-cancel-box" role="button" aria-label="Закрыть" tabindex="0">
+                                <svg class="c29edcec40--container--wOtqt c29edcec40--display_inline-block--DEn9_ c29edcec40--color_current_color--gpi6p" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="m8 9.414-5.65 5.65-1.415-1.413L6.585 8 .936 2.35 2.35.934 8 6.585l5.65-5.65 1.415 1.414L9.415 8l5.65 5.65-1.414 1.415L8 9.415Z" fill="currentColor"></path>
+                                </svg>
+                            </div>
+                            <div class="siber-bottom-header-title">Сортировка</div>
+                        </div>
+                        <div class="siber-bottom-body">
+                            <div class="siber-bottom-body-box">
+                                <div class="siber-bottom-body-box-items">
+                                    <div v-for="item in sortOptions" :key="item.code" class="siber-bottom-body-box-item">
+                                        <p class="siber-bottom-body-box-item-p mb-0" style="flex: 1 1;">{{item.name}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Sidebar>
                 </div>
             </div>
             <div class="objects-box">
@@ -366,7 +614,10 @@ import CopyToClipboard from '../../../components/CopyToClipboard.vue'
 import Rating from 'primevue/rating';
 import Paginator from 'primevue/paginator';
 import Dropdown from 'primevue/dropdown';
-
+import MultiSelect from 'primevue/multiselect';
+import Sidebar from 'primevue/sidebar';
+import Dialog from 'primevue/dialog';
+import Button from 'primevue/button';
 // Validation
 import { required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
@@ -381,7 +632,7 @@ import "swiper/css/pagination";
 import "swiper/css/thumbs";
 // import required modules
 import { Autoplay, Pagination, Lazy, FreeMode, Navigation, Thumbs } from "swiper";
-
+import { mapGetters } from 'vuex'
 export default {
 //   setup: () => ({ v$: useVuelidate() }),
   components: {
@@ -390,7 +641,11 @@ export default {
     CopyToClipboard,
     Rating,
     Paginator,
-    Dropdown
+    Dropdown,
+    Sidebar,
+    Dialog,
+    MultiSelect,
+    Button
   },
   data() {
     return {
@@ -404,11 +659,35 @@ export default {
       searchObject: false,
       totalRecords: 120,
       selectedCity1: null,
+      visibleBottom: false,
+      sideBarFilter: false,
+      displayModal: false,
+      regions: [],
+      districts: [],
+      quarters: [],
       form: {
         name: '',
-        phone: ''
+        phone: '',
+        object_type: 1,
+        object_deals: 'buy',
+        region_id: null,
+        district_id: [],
+        quarter_id: [],
+        object_types_property_id: [],
+        price_from: '',
+        price_to: '',
+        room_count_from: '',
+        room_count_to: '',
+        floor_from: '',
+        floor_to: '',
+        floor_count_from: '',
+        floor_count_to: '',
+        total_area_from: '',
+        total_area_to: '',
+        land_area_from: '',
+        land_area_to: ''
       },
-      cities: [
+      sortOptions: [
             {name: 'Самые новые', code: 'NY'},
             {name: 'Самые дешевые', code: 'RM'},
             {name: 'Самые дорогие', code: 'LDN'},
@@ -424,6 +703,9 @@ export default {
         }
     },
   methods: {
+    openModal() {
+        this.displayModal = true;
+    },
     setThumbsSwiper(swiper) {
       this.thumbsSwiper = swiper;
     },
@@ -437,6 +719,27 @@ export default {
         }
 
     },
+    getRegions() {
+        axios.get('/api/allRegions')
+        .then(response => {
+            this.regions = response.data.result
+        });
+    },
+    getDistricts() {
+        let region_id = this.form.region_id;
+        axios.get('/api/districts/' + region_id)
+        .then(response => {
+            this.districts = response.data.result
+            this.quarters = []
+        });
+    },
+    getQuarters() {
+        let district_id = this.form.district_id;
+        axios.get('/api/quarters/' + district_id)
+        .then(response => {
+            this.quarters = response.data.result
+        });
+    },
     checkScreen() {
         this.windowWidth = window.innerWidth;
         if(this.windowWidth <= 1000){
@@ -446,8 +749,12 @@ export default {
             if(this.windowWidth <= 736){
                 this.objectBtns = true;
             }
+            if(this.windowWidth <= 575){
+                this.sideBarFilter = true;
+            }
             return;
         }
+        this.sideBarFilter = false;
         this.searchObject = false;
         this.objectBtns = false;
         this.sideBar = true;
@@ -455,9 +762,20 @@ export default {
         return;
     },
   },
+  mounted() {
+        this.$store.dispatch('getObjectTypes');
+        this.$store.dispatch('getObjectTypesProperty');
+    },
+    computed: {
+        ...mapGetters([
+            'objectTypes',
+            'objectProperty',
+        ]),
+    },
     async created() {
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen();
+        this.getRegions();
     },
   setup() {
     const v$ = useVuelidate();

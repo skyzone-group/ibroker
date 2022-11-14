@@ -205,9 +205,10 @@
                                         </a>
                                     </span> -->
                                     <span class="filter_search_btn">
-                                        <button @click="urlData" type="submit" class="filter_search_btn-link">
+                                        <!-- <button @click="urlData" type="submit" class="filter_search_btn-link">
                                             Найти
-                                        </button>
+                                        </button> -->
+                                        <Button type="submit" label="Найти" :loading="loading"  class="filter_search_btn-link" />
                                     </span>
                                 </span>
                             </div>
@@ -222,11 +223,13 @@
 <script>
 import Dropdown from 'primevue/dropdown';
 import MultiSelect from 'primevue/multiselect';
+import Button from 'primevue/button';
 import { mapGetters } from 'vuex'
 export default {
     components: {
         Dropdown,
-        MultiSelect
+        MultiSelect,
+        Button
     },
     data() {
         return {
@@ -254,7 +257,8 @@ export default {
             active: 0,
             regions: [],
             districts: [],
-            quarters: []
+            quarters: [],
+            loading: false,
         }
     },
     created() {
@@ -270,12 +274,23 @@ export default {
                         object_type: this.form.object_type,
                         room_count_from: this.form.room_count_from,
                         room_count_to: this.form.room_count_to,
+                        region_id: this.form.region_id,
                     },
                 });
             }
         },
         filterData(){
-            console.log(this.form);
+            this.loading = true;
+            axios.get('/api/object/search', this.form)
+            .then(response => {
+                this.loading = false;
+                this.urlData();
+                console.log(response);
+            })
+            .catch(function (error){
+                alert(error);
+                this.loading = false;
+            });;
         },
         getRegions() {
             axios.get('/api/allRegions')
@@ -670,6 +685,30 @@ export default {
     display: flex;
     flex-grow: 1;
     justify-content: flex-end
+}
+
+.filter_search_btn .p-button:enabled:hover{
+    background: var(--form-button-color);
+    color: #ffffff;
+    border-color: unset;
+}
+
+.filter_search_btn  .p-button {
+    border: unset;
+    background: var(--form-button-color);
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 4px;
+}
+
+.filter_search_btn .p-button:enabled:active {
+    background: var(--form-button-color);
+    color: #ffffff;
+    border-color: unset;
+}
+
+.filter_search_btn .p-button:focus {
+    box-shadow: unset;
 }
 
 .filter_search_btn-link {

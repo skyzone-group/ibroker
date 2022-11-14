@@ -87,6 +87,10 @@
         max-width: 13rem;
     }
     
+    .mobile-filter-dialog-body .options_main__items_inputs_block{
+        max-width: 100%;
+    }
+
     .options_main__items_inputs_block-add{
         max-width: 100%;
     }
