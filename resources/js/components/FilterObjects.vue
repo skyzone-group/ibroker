@@ -293,19 +293,15 @@ export default {
             }
         },
         filterData(){
-            console.log('ok');
-            this.urlData();
-            // this.loading = true;
-            // axios.get('/api/object/search', this.form)
-            // .then(response => {
-            //     this.loading = false;
-            //     this.urlData();
-            //     console.log(response);
-            // })
-            // .catch(function (error){
-            //     alert(error);
-            //     this.loading = false;
-            // });;
+            // console.log('ok');
+            // this.urlData();
+            axios.get('/api/object/search', this.form)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(function (error){
+                alert(error);
+            });;
         },
         getRegions() {
             axios.get('/api/allRegions')
