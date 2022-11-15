@@ -287,25 +287,23 @@ class ObjectController extends ResponseController
         $quarter_id      = $request->get('quarter_id');
 
         $query = Objects::query();
-        
-       
 
-        // $query = $query->where('user_id', '=', $user_id)
-        //         ->with([
-        //             'images',
-        //             'object_type',
-        //             'region',
-        //             'district',
-        //             'quarter',
-        //             'additional_values'
-        //         ]);
+        $query = $query->where('user_id', '=', $user_id)
+                ->with([
+                    'images',
+                    'object_type',
+                    'region',
+                    'district',
+                    'quarter',
+                    'additional_values'
+                ]);
 
-        // $total = $query->count();
-        // $results = $query->orderBy('id', 'DESC')->paginate($request->total);
+        $total = $query->count();
+        $results = $query->orderBy('id', 'DESC')->paginate($request->total);
     
-        // $data['count'] = $total;
-        // $data['objects'] = $results;
-        // $data['total'] = $total;
+        $data['count'] = $total;
+        $data['objects'] = $results;
+        $data['total'] = $total;
 
         return self::successResponse($data);
     }
