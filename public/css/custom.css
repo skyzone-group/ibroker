@@ -301,7 +301,7 @@ a:hover {
 
 .search-object-top-box,
 .search-object-body-box-content {
-    padding: 20px 0;
+    padding: 10px 0;
 }
 
 .search-object-top-filters-item{
@@ -1046,6 +1046,33 @@ a:hover {
 
 .filters-item-select-overlay .p-overlaypanel-close {
     background: var(--form-button-color) !important;
+}
+
+.search-object-top-filters .inputs_block_title {
+    font-size: 14px;
+    line-height: 25px;
+    margin: 0;
+}
+
+.p-dialog-bottomright .p-dialog {
+    margin: 0 !important;
+}
+
+.search-object-top-filters .filters-view-tab-bottom-item .p-inputtext, 
+.search-object-top-filters .filters-view-tab-bottom-item .p-multiselect .p-multiselect-label {
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 13px;
+}
+
+.search-object-top-filters .filters-view-tab-bottom-item .dc-input__input-6-1-2 {
+    font-size: 13px !important;
+    padding: 10px !important;
+}
+
+.search-object-top-filters .input-medium-6, 
+.search-object-top-filters  .dc-input__input-container-6-1-2 {
+    height: auto !important;
 }
 /* ! ************************ Home page Filter end ******************************************************************/
 /* *********************************** Home Page start ******************************************/

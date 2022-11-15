@@ -275,6 +275,19 @@ export default {
                         room_count_from: this.form.room_count_from,
                         room_count_to: this.form.room_count_to,
                         region_id: this.form.region_id,
+                        district_id: this.form.district_id,
+                        quarter_id: this.form.quarter_id,
+                        object_types_property_id: this.form.object_types_property_id,
+                        price_from: this.form.price_from,
+                        price_to: this.form.price_to,
+                        floor_from: this.form.floor_from,
+                        floor_to: this.form.floor_to,
+                        floor_count_from: this.form.floor_count_from,
+                        floor_count_to: this.form.floor_count_to,
+                        total_area_from: this.form.total_area_from,
+                        total_area_to: this.form.total_area_to,
+                        land_area_from: this.form.land_area_from,
+                        land_area_to: this.form.land_area_to
                     },
                 });
             }
@@ -408,7 +421,7 @@ export default {
 .filter_search_btn{
     position: relative;
     cursor: pointer;
-    margin: 12px 0 0;
+    margin: 0;
 }
 .filter_search_btn:nth-child(2){
     margin-left: 8px;

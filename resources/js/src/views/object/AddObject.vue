@@ -1441,15 +1441,18 @@ export default {
 
 
 
-.block__body_side-bar_content .single_button_select_box_label:first-child {
+.block__body_side-bar_content .single_button_select_box_label:first-child,
+.filters-item-select-overlay .single_button_select_box_label:first-child {
     border-radius: 5px 0 0 5px;
 }
 
-.block__body_side-bar_content .single_button_select_box_label:not(:last-child) {
+.block__body_side-bar_content .single_button_select_box_label:not(:last-child),
+.filters-item-select-overlay .single_button_select_box_label:not(:last-child){
     border-right: 0;
 }
 
-.block__body_side-bar_content .single_button_select_box_label:last-child {
+.block__body_side-bar_content .single_button_select_box_label:last-child,
+.filters-item-select-overlay .single_button_select_box_label:last-child {
     border-radius: 0 5px 5px 0;
 }
 
