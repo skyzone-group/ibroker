@@ -287,7 +287,7 @@ class ObjectController extends ResponseController
 
         $query = Objects::query();
 
-        $query = $query->where('user_id', '=', $user_id)
+        $query = $query
                 ->with([
                     'images',
                     'object_type',
