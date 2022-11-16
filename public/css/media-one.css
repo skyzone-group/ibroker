@@ -109,6 +109,10 @@
         height: 30px !important;
         opacity: 1 !important;
     }
+
+    .object-body-content .object-details{
+        width: auto;
+    }
 }
 
 
@@ -202,6 +206,14 @@
     .author-box-pic-img {
         height: 50px;
         width: 50px;
+    }
+
+    .search-object-body-box-content-objects .objects-box .object-body{
+        margin-left: 0;
+    }
+
+    .search-object-body-box-content-objects .objects-box .object-body .object-body-footer{
+        margin-top: 20px;
     }
 }
 

@@ -298,10 +298,11 @@ export default {
             axios.get('/api/object/search', this.form)
             .then(response => {
                 console.log(response);
+                this.$router.push({name: "SearchObject", query: this.form});
             })
             .catch(function (error){
                 alert(error);
-            });;
+            });
         },
         getRegions() {
             axios.get('/api/allRegions')
