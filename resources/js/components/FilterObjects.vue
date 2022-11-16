@@ -1,6 +1,6 @@
 <template>
     <div class="filtersTabs-box">
-        <form @submit.prevent="filterData()" method="POST" :model="form">
+        <form @submit.prevent="filterData()" method="GET" :model="form">
             <ul class="filtersTabs-ul">
                 <input type="hidden" v-model="form.object_deals">
                 <li class="filtersTabs-ul-li">
@@ -41,7 +41,7 @@
                                 <div class="options_main__items_inputs_block d-flex flex-column">
                                     <Dropdown v-model="form.region_id" @change="getDistricts()"
                                     optionValue="id" :options="regions" optionLabel="name_ru" placeholder="Выберите регион"
-                                    panelClass="p-multiselect-panell" />
+                                    panelClass="p-multiselect-panell" name="regionId" :value="form.region_id" />
                                 </div>
                             </div>
                         </div>
@@ -109,12 +109,12 @@
                                 <div class="options_main__items_inputs_block d-flex align-items-center justify-content-between">
                                     <div class="input-medium-6 dc-input-6-1-2 h-100 mr-2">
                                         <div class="dc-input__input-container-6-1-2 input_div">
-                                            <input id="room_count_1" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="От" type="number" tabindex="0" v-model.number="form.room_count_from" name="roomCountFrom"/>
+                                            <input id="room_count_1" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="От" type="number" tabindex="0" v-model.number="form.room_count_from" name="roomCountFrom" value=""/>
                                         </div>
                                     </div>
                                     <div class="input-medium-6 dc-input-6-1-2 h-100">
                                         <div class="dc-input__input-container-6-1-2 input_div">
-                                            <input id="room_count_2" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="До" type="number" tabindex="0" v-model.number="form.room_count_to" name="roomCountTo"/>
+                                            <input id="room_count_2" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="До" type="number" tabindex="0" v-model.number="form.room_count_to" name="roomCountTo" value=""/>
                                         </div>
                                     </div>
                                 </div>
@@ -295,10 +295,14 @@ export default {
         filterData(){
             // console.log('ok');
             // this.urlData();
+            this.loading = true;
             axios.get('/api/object/search', this.form)
             .then(response => {
                 console.log(response);
-                this.$router.push({name: "SearchObject", query: this.form});
+                setTimeout(() => {
+                    this.loading = false;
+                    this.$router.push({name: "SearchObject", query: this.form});
+                },1000);
             })
             .catch(function (error){
                 alert(error);

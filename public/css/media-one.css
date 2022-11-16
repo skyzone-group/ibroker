@@ -215,6 +215,11 @@
     .search-object-body-box-content-objects .objects-box .object-body .object-body-footer{
         margin-top: 20px;
     }
+
+    .quick-filter-top .single_button_select_box_label,
+    .quick_filtr_block-fieldset .single_button_select_box_label {
+        width: auto;
+    }
 }
 
 @media only screen and (max-width: 475px){
