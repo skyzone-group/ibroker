@@ -1,6 +1,6 @@
 <template>
     <div class="filtersTabs-box">
-        <form @submit.prevent="filterData()" method="GET" :model="form">
+        <form @submit.prevent="filterData()" method="POST" :model="form">
             <ul class="filtersTabs-ul">
                 <input type="hidden" v-model="form.object_deals">
                 <li class="filtersTabs-ul-li">
