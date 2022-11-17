@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div class="quick-filter-body">
-                    <div class="">
+                    <div class="" style="margin: 0 -15px; padding: 0 15px; overflow-y: hidden;">
                         <div class="quick_filtr_block-scroll">
                             <fieldset class="quick_filtr_block-fieldset">
                                 <div class="d-flex justify-content-center align-items-stretch">
@@ -211,6 +211,9 @@ export default {
     .quick_filtr_block-scroll{
         width: auto !important;
         overflow-x: auto;
+        margin: 0 -0.9375rem -0.9375rem;
+        padding-left: 0.9375rem;
+        padding-bottom: 0.9375rem;
     }
 
     .quick_filtr_block-fieldset{
