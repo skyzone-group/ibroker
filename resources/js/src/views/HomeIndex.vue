@@ -19,7 +19,7 @@
                 <div class="filter-block-back"></div>
                 <div class="filter-block-back__img"></div>
             </div>
-            <div v-show="sectionComponents" class="section__components m-0">
+            <div v-if="sectionComponents" class="section__components m-0">
                 <quick-filtr></quick-filtr>
                 <services></services>
             </div>

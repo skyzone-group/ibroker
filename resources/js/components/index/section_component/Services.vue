@@ -1,5 +1,5 @@
 <template>
-    <div id="services">
+    <div id="services" class="main-padding">
         <h2 class="section__components_title">Сервисы</h2>
         <div class="services_div">
             <div class="services_div_wrapper">

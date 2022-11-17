@@ -109,12 +109,12 @@
                                 <div class="options_main__items_inputs_block d-flex align-items-center justify-content-between">
                                     <div class="input-medium-6 dc-input-6-1-2 h-100 mr-2">
                                         <div class="dc-input__input-container-6-1-2 input_div">
-                                            <input id="room_count_1" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="От" type="number" tabindex="0" v-model.number="form.room_count_from" name="roomCountFrom" value=""/>
+                                            <input id="room_count_1" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="От" type="number" tabindex="0" v-model.number="form.room_count_from" name="roomCountFrom"/>
                                         </div>
                                     </div>
                                     <div class="input-medium-6 dc-input-6-1-2 h-100">
                                         <div class="dc-input__input-container-6-1-2 input_div">
-                                            <input id="room_count_2" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="До" type="number" tabindex="0" v-model.number="form.room_count_to" name="roomCountTo" value=""/>
+                                            <input id="room_count_2" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="До" type="number" tabindex="0" v-model.number="form.room_count_to" name="roomCountTo"/>
                                         </div>
                                     </div>
                                 </div>

@@ -37,6 +37,10 @@ a:hover{
     color: var(--form-button-color) !important;
 }
 
+.main-padding{
+    padding-top: 0.5rem;
+}
+
 .p-dropdown-panel,
 .p-multiselect-panel {
     border-radius: 4px !important;

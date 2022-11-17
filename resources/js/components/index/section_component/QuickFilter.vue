@@ -1,6 +1,5 @@
 <template>
-    <div id="quickFiltr" class="quick-mobile-filter">
-        <h2 class="section__components_title">Поиск недвижимости</h2>
+    <div id="quickFiltr" class="quick-mobile-filter main-padding">
         <div class="quick-mobile-filter-main container_fluid">
             <form :model="form">
                 <div class="quick-filter-top">
@@ -31,6 +30,39 @@
                             </fieldset>
                         </div>
                     </div>
+                    <div class="quick-filter-body-search-by-address quick-filter-mt">
+                        <div class="input-medium-6 dc-input-6-1-2 w-100">
+                            <div class="dc-input__input-container-6-1-2 input_div">
+                                <input id="keyword" class="dc-input__input-6-1-2" maxlength="24" placeholder="Введите район, улицу..." type="text" tabindex="0" v-model.number="form.keyword" name="keyword"  >
+                            </div>
+                            <div class="dc-input__input-icon-right dc-input__input-icon-right-font"><i class="feather icon-search"></i></div>
+                        </div>
+                    </div>
+                    <div class="quick-filter-body-by-price quick-filter-mt">
+                        <span class="inputs_block_title m-0">
+                            Цена, y.e.
+                        </span>
+                        <div class="w-100 d-flex align-items-center justify-content-between">
+                            <div class="input-medium-6 dc-input-6-1-2 h-100 mr-2 w-50">
+                                <div class="dc-input__input-container-6-1-2 input_div">
+                                    <!-- <input id="room_count" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="От" type="number" tabindex="0" v-model.number="form.price_from" name="room_count"> -->
+                                    <VueNumberFormat v-model:value="form.price_from" class="dc-input__input-6-1-2"></VueNumberFormat>
+                                </div>
+                                <div class="dc-input__input-icon-right dc-input__input-icon-right-font">От</div>
+                            </div>
+                            <div class="input-medium-6 dc-input-6-1-2 h-100 w-50">
+                                <div class="dc-input__input-container-6-1-2 input_div">
+                                    <VueNumberFormat v-model:value="form.price_to" class="dc-input__input-6-1-2"></VueNumberFormat>
+                                </div>
+                                <div class="dc-input__input-icon-right dc-input__input-icon-right-font">До</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quick-filter-body-form-btn quick-filter-mt">
+                        <span class="filter_search_btn w-100">
+                            <Button type="submit" label="Найти" :loading="loading"  class="filter_search_btn-link w-100" />
+                        </span>
+                    </div>
                 </div>
             </form>
         </div>
@@ -39,13 +71,20 @@
 
 
 <script>
+import Button from 'primevue/button';
 import { mapGetters } from 'vuex'
 export default {
+    components: {
+        Button
+    },
     data() {
         return {
             form: {
                 object_deals: 'buy',
                 object_type: 1,
+                keyword: '',
+                price_from: '',
+                price_to: ''
             },
             itemsCard: [
                 {
@@ -229,6 +268,17 @@ export default {
 
     .quick_filtr_block-fieldset .single_button_select_box_label:not(:first-child) {
         margin-left: 0.375rem!important;
+    }
+
+    .quick-filter-mt{
+        margin-top: 0.9375rem;
+    }
+
+    .quick-filter-body-search-by-address .input-medium-6, 
+    .quick-filter-body-search-by-address .dc-input__input-container-6-1-2,
+    .quick-filter-body-by-price .input-medium-6,
+    .quick-filter-body-by-price .dc-input__input-container-6-1-2{
+        height: 46px;
     }
 
 </style>
