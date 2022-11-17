@@ -162,7 +162,7 @@
 }
 
 .mobile-filter-tabs  .single_button_select_box_label.active{
-    border-bottom: 2px solid var(--primary_100);
+    border-bottom: 2px solid #fff;
 }
 
 .mobile-filter-tabs .single_button_select_box_label_span.active_span{

@@ -2158,7 +2158,8 @@ a:hover {
 }
 
 .product-page__content_top_buttons_item_btn .dropdown-menu,
-.search-object-body .object-actions .dropdown-menu {
+.search-object-body .object-actions .dropdown-menu,
+.agent-single-div-content-div-objects .object-item .object-actions .dropdown-menu{
     padding: 24px 16px !important;
     border-color: #fff;
     transition: opacity 0.2s ease-in;
@@ -2185,7 +2186,8 @@ a:hover {
 } */
 
 .product-page__content_top_buttons_item_btn .dropdown-menu .hint-title-0-9-4,
-.search-object-body .object-actions .dropdown-menu .hint-title-0-9-4 {
+.search-object-body .object-actions .dropdown-menu .hint-title-0-9-4,
+.agent-single-div-content-div-objects .object-item .object-actions .dropdown-menu .hint-title-0-9-4{
     color: #242629;
     display: flex;
     font-size: 18px;
@@ -2200,23 +2202,16 @@ a:hover {
     text-transform: none;
 }
 
-.product-page__content_top_buttons_item_btn
-    .dropdown-menu
-    .hint-title-content-0-9-4,
-.search-object-body .object-actions .dropdown-menu .hint-title-content-0-9-4 {
+.product-page__content_top_buttons_item_btn .dropdown-menu .hint-title-content-0-9-4,
+.search-object-body .object-actions .dropdown-menu .hint-title-content-0-9-4,
+.agent-single-div-content-div-objects .object-item .object-actions .dropdown-menu .hint-title-content-0-9-4{
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-.product-page__content_top_buttons_item_btn
-    .dropdown-menu
-    .hint-title-content-0-9-4
-    .title,
-.search-object-body
-    .object-actions
-    .dropdown-menu
-    .hint-title-content-0-9-4
-    .title {
+.product-page__content_top_buttons_item_btn .dropdown-menu .hint-title-content-0-9-4 .title,
+.search-object-body .object-actions .dropdown-menu .hint-title-content-0-9-4 .title,
+.agent-single-div-content-div-objects .object-item .object-actions .dropdown-menu .hint-title-content-0-9-4 .title{
     font-size: 14px;
     line-height: 20px;
 }
@@ -3090,17 +3085,17 @@ textarea.md-form__control {
     border-radius: 0;
     background-color: transparent;
     position: sticky;
-    bottom: 20px;
+    bottom: 0;
     z-index: 5;
-    margin: 20px auto;
-    padding: 0 16px;
+    padding: 16px;
     width: 100%;
+    background: #fff;
     display: flex;
 }
 
 .actions-mobile-main-item {
     flex-grow: 1;
-    margin-right: 8px;
+    margin-right: 0;
 }
 
 .actions-mobile-main-item:last-of-type {

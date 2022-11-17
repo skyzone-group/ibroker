@@ -6,7 +6,7 @@
                     <div class="page__container">
                         <!-- Regions start -->
                         <div class="mobile-filter-region">
-                            <b class="mobile-filter-region-label">Выберите регион для поиска</b>
+                            <b class="mobile-filter-region-label">Выберите регион</b>
                             <div role="button" @click="openRegion('bottom')">
                                 <div class="field__container">
                                     <div class="field__set">
@@ -48,7 +48,7 @@
                         <!-- Districts start -->
                         <div class="mobile-filter-region">
                             <b class="mobile-filter-region-label">
-                                Выберите район для поиска</b>
+                                Выберите район</b>
                             <div role="button" @click="openDistrict('bottom')">
                                 <div class="field__container">
                                     <div class="field__set">
@@ -93,7 +93,7 @@
                         <!-- Quarters start -->
                         <div class="mobile-filter-region">
                             <b class="mobile-filter-region-label">
-                                Выберите улица для поиска</b>
+                                Выберите улица</b>
                             <div role="button" @click="openQuarter('bottom')">
                                 <div class="field__container">
                                     <div class="field__set">
@@ -212,12 +212,9 @@ export default {
     },
     methods: {
         filterData(){
-            // console.log('ok');
-            // this.urlData();
             this.loading = true;
             axios.get('/api/object/search', this.form)
             .then(response => {
-                console.log(response);
                 setTimeout(() => {
                     this.loading = false;
                     this.$router.push({name: "SearchObject", query: this.form});

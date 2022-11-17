@@ -39,9 +39,15 @@
                                     Регион
                                 </span>
                                 <div class="options_main__items_inputs_block d-flex flex-column">
-                                    <Dropdown v-model="form.region_id" @change="getDistricts()"
+                                    <Dropdown v-model="form.region_id" @change="getDistricts()" :virtualScrollerOptions="{ lazy: true, onLazyLoad: getRegions, itemSize: 38, showLoader: true, loading: loadingIn, delay: 250 }"
                                     optionValue="id" :options="regions" optionLabel="name_ru" placeholder="Выберите регион"
-                                    panelClass="p-multiselect-panell" name="regionId" :value="form.region_id" />
+                                    panelClass="p-multiselect-panell" name="regionId" :value="form.region_id">
+                                        <template v-slot:loader="{ options }">
+                                            <div class="flex align-items-center p-2" style="height: 38px" >
+                                                <Skeleton :width="options.even ? '60%' : '50%'" height="1rem" />
+                                            </div>
+                                        </template>
+                                    </Dropdown>
                                 </div>
                             </div>
                         </div>
@@ -51,9 +57,20 @@
                                     Район
                                 </span>
                                 <div class="options_main__items_inputs_block d-flex flex-column">
-                                    <MultiSelect v-model="form.district_id" @change="getQuarters()" :options="districts"
+                                    <MultiSelect v-model="form.district_id" @change="getQuarters()" :virtualScrollerOptions="{ lazy: true, onLazyLoad: getQuarters, itemSize: 38, showLoader: true, loading: loadingIn, delay: 250 }" :options="districts"
                                     optionLabel="name_ru" optionValue="id" display="chip" placeholder="Выберите район"
-                                    :filter="true" panelClass="p-multiselect-panell" />
+                                    :filter="true" panelClass="p-multiselect-panell">
+                                        <template v-slot:loader="{ options }">
+                                            <div class="flex align-items-center p-2" style="height: 38px" >
+                                                <Skeleton :width="options.even ? '60%' : '50%'" height="1rem" />
+                                            </div>
+                                        </template>
+                                        <template #empty>
+                                            <div class="flex align-items-center p-2" style="height: 38px" >
+                                                No available options
+                                            </div>
+                                        </template>
+                                    </MultiSelect>
                                 </div>
                             </div>
                         </div>
@@ -224,12 +241,14 @@
 import Dropdown from 'primevue/dropdown';
 import MultiSelect from 'primevue/multiselect';
 import Button from 'primevue/button';
+import Skeleton from 'primevue/skeleton';
 import { mapGetters } from 'vuex'
 export default {
     components: {
         Dropdown,
         MultiSelect,
-        Button
+        Button,
+        Skeleton
     },
     data() {
         return {
@@ -259,6 +278,7 @@ export default {
             districts: [],
             quarters: [],
             loading: false,
+            loadingIn: false,
         }
     },
     created() {
@@ -308,19 +328,45 @@ export default {
                 alert(error);
             });
         },
-        getRegions() {
-            axios.get('/api/allRegions')
-            .then(response => {
-                this.regions = response.data.result
-            });
+        getRegions(event) {
+            this.loadingIn = true;
+
+            if (this.loadLazyTimeout) {
+                clearTimeout(this.loadLazyTimeout);
+            }
+
+            //imitate delay of a backend call
+            this.loadLazyTimeout = setTimeout(() => {
+                axios.get('/api/allRegions')
+                .then(response => {
+                    this.regions = response.data.result
+                    const lazyItems = [...this.regions];
+    
+    
+                    this.regions = lazyItems;
+                    this.loadingIn = false;
+                });
+            }, Math.random() * 1000 + 250);
         },
         getDistricts() {
+            this.loadingIn = true;
+
+            if (this.loadLazyTimeout) {
+                clearTimeout(this.loadLazyTimeout);
+            }
+
             let region_id = this.form.region_id;
-            axios.get('/api/districts/' + region_id)
-            .then(response => {
-                this.districts = response.data.result
-                this.quarters = []
-            });
+            //imitate delay of a backend call
+            this.loadLazyTimeout = setTimeout(() => {
+                axios.get('/api/districts/' + region_id)
+                .then(response => {
+                    this.districts = response.data.result
+                    const lazyItems = [...this.districts];
+                    this.quarters = []
+                    this.districts = lazyItems;
+                    this.loadingIn = false;
+                });
+            }, Math.random() * 1000 + 250);
         },
         getQuarters() {
             let district_id = this.form.district_id;

@@ -856,7 +856,7 @@
                                     <div class="agent-single-div-content-div-objects">
                                         <h1 class="agent-single-div-content-div-objects-title">Мои объявления</h1>
                                         <div class="row ml-0 mr-0">
-                                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                            <!-- <div class="col-lg-4 col-md-4 col-sm-6">
                                                 <div class="commercial_page_div_objects_lists_item">
                                                     <div class="objects_lists_item_box">
                                                         <div class="objects_lists_item_box_header">
@@ -899,12 +899,6 @@
                                                                 <a href="#!" class="text-left"><i class="feather icon-map-pin"></i> Юсуфа Хос Ходжиба (улица), Яккасарайский район </a>
                                                             </div>
                                                             <div class="objects_carousel_item_box_content_show_contant mt-3">
-                                                                <!-- <button @click="showNum(1)" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 align-items-center" id="showNum_1" style="display: flex;">
-                                                                    <i class="feather icon-phone mr-2"></i>
-                                                                    <span class="button-root__text-8-1-3">
-                                                                        Позвонить
-                                                                    </span>
-                                                                </button> -->
                                                                 <a href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 align-items-center">
                                                                     <i class="feather icon-phone mr-2"></i>
                                                                     <span class="button-root__text-8-1-3">
@@ -918,220 +912,335 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                                <div class="commercial_page_div_objects_lists_item">
-                                                    <div class="objects_lists_item_box">
-                                                        <div class="objects_lists_item_box_header">
-                                                            <div class="objects_lists_item_box_header_carousel w-100">
-                                                                <swiper 
-                                                                :pagination="{
-                                                                    type: 'fraction',
-                                                                }"
-                                                                :navigation="true" 
-                                                                :modules="modules" class="mySwiper"
-                                                                >
-                                                                    <swiper-slide>
-                                                                        <a href="#!" target="_blank" class="text-dark">
-                                                                            <picture class="h-auto w-100">
-                                                                                <source class="w-100" srcset="images/luxury-house.jpg" type="image/jpg" style="object-fit: cover;">
-                                                                                <img src="images/luxury-house.jpg" class="w-100" alt="" style="object-fit: cover;">
-                                                                            </picture>
-                                                                        </a>
-                                                                    </swiper-slide>
-                                                                    <swiper-slide>
-                                                                        <a href="#!" target="_blank" class="text-dark">
-                                                                            <picture class="h-auto w-100">
-                                                                                <source class="w-100" srcset="images/luxury-house-2.jpg" type="image/jpg" style="object-fit: cover;">
-                                                                                <img src="images/luxury-house-2.jpg" class="w-100" alt="" style="object-fit: cover;">
-                                                                            </picture>
-                                                                        </a>
-                                                                    </swiper-slide>
-                                                                </swiper>
-                                                            </div>
-                                                        </div>
-                                                        <div class="objects_lists_item_box_content">
-                                                            <div class="objects_carousel_item_box_content_price d-flex justify-content-start text-left flex-column">
-                                                                <p class="total_price">46 500 y.e</p>
-                                                                <span>652 y.e / м²</span>
-                                                            </div>
-                                                            <div class="objects_carousel_item_box_content_title">
-                                                                <h4><a href="#!">2-комн. квартира, 5/7 этаж, 70 м²</a></h4>
-                                                            </div>
-                                                            <div class="objects_carousel_item_box_content_location text-left">
-                                                                <a href="#!" class="text-left"><i class="feather icon-map-pin"></i> Юсуфа Хос Ходжиба (улица), Яккасарайский район </a>
-                                                            </div>
-                                                            <div class="objects_carousel_item_box_content_show_contant mt-3">
-                                                                <!-- <button @click="showNum(1)" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 align-items-center" id="showNum_1" style="display: flex;">
-                                                                    <i class="feather icon-phone mr-2"></i>
-                                                                    <span class="button-root__text-8-1-3">
-                                                                        Позвонить
-                                                                    </span>
-                                                                </button> -->
-                                                                <a href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 align-items-center">
-                                                                    <i class="feather icon-phone mr-2"></i>
-                                                                    <span class="button-root__text-8-1-3">
-                                                                        Позвонить
-                                                                    </span>
-                                                                </a>
-                                                            </div>
-                                                            <button class="objects_lists_item_box_btn_saved">
-                                                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" class="_DEYS" style="color: rgb(132, 132, 132);"><path d="M10.72 19.84c-2.58-2.33-4.7-4.26-6.18-6.07-1.48-1.8-2.29-3.46-2.29-5.27A5.2 5.2 0 017.5 3.25c1.57 0 3.08.69 4.12 1.8.2.21.55.21.76 0a5.74 5.74 0 014.12-1.8 5.2 5.2 0 015.25 5.25c0 1.8-.81 3.47-2.29 5.27-1.47 1.8-3.58 3.73-6.15 6.06l-.03.02-.77.7a.75.75 0 01-1.01 0l-.78-.7z"></path></svg>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                                <div class="commercial_page_div_objects_lists_item">
-                                                    <div class="objects_lists_item_box">
-                                                        <div class="objects_lists_item_box_header">
-                                                            <div class="objects_lists_item_box_header_carousel w-100">
-                                                                <swiper 
-                                                                :pagination="{
-                                                                    type: 'fraction',
-                                                                }"
-                                                                :navigation="true" 
-                                                                :modules="modules" class="mySwiper"
-                                                                >
-                                                                    <swiper-slide>
-                                                                        <a href="#!" target="_blank" class="text-dark">
-                                                                            <picture class="h-auto w-100">
-                                                                                <source class="w-100" srcset="images/luxury-house-6.jpg" type="image/jpg" style="object-fit: cover;">
-                                                                                <img src="images/luxury-house-6.jpg" class="w-100" alt="" style="object-fit: cover;">
-                                                                            </picture>
-                                                                        </a>
-                                                                    </swiper-slide>
-                                                                    <swiper-slide>
-                                                                        <a href="#!" target="_blank" class="text-dark">
-                                                                            <picture class="h-auto w-100">
-                                                                                <source class="w-100" srcset="images/luxury-house-4.jpg" type="image/jpg" style="object-fit: cover;">
-                                                                                <img src="images/luxury-house-4.jpg" class="w-100" alt="" style="object-fit: cover;">
-                                                                            </picture>
-                                                                        </a>
-                                                                    </swiper-slide>
-                                                                </swiper>
-                                                            </div>
-                                                        </div>
-                                                        <div class="objects_lists_item_box_content">
-                                                            <div class="objects_carousel_item_box_content_price d-flex justify-content-start text-left flex-column">
-                                                                <p class="total_price">46 500 y.e</p>
-                                                                <span>652 y.e / м²</span>
-                                                            </div>
-                                                            <div class="objects_carousel_item_box_content_title">
-                                                                <h4><a href="#!">2-комн. квартира, 5/7 этаж, 70 м²</a></h4>
-                                                            </div>
-                                                            <div class="objects_carousel_item_box_content_location text-left">
-                                                                <a href="#!" class="text-left"><i class="feather icon-map-pin"></i> Юсуфа Хос Ходжиба (улица), Яккасарайский район </a>
-                                                            </div>
-                                                            <div class="objects_carousel_item_box_content_show_contant mt-3">
-                                                                <!-- <button @click="showNum(1)" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 align-items-center" id="showNum_1" style="display: flex;">
-                                                                    <i class="feather icon-phone mr-2"></i>
-                                                                    <span class="button-root__text-8-1-3">
-                                                                        Позвонить
-                                                                    </span>
-                                                                </button> -->
-                                                                <a href="tel:+998903592284" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 button-root-8-1-3-4 button-root--primary-8-1-3-4 align-items-center">
-                                                                    <i class="feather icon-phone mr-2"></i>
-                                                                    <span class="button-root__text-8-1-3">
-                                                                        Позвонить
-                                                                    </span>
-                                                                </a>
-                                                            </div>
-                                                            <button class="objects_lists_item_box_btn_saved">
-                                                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" class="_DEYS" style="color: rgb(132, 132, 132);"><path d="M10.72 19.84c-2.58-2.33-4.7-4.26-6.18-6.07-1.48-1.8-2.29-3.46-2.29-5.27A5.2 5.2 0 017.5 3.25c1.57 0 3.08.69 4.12 1.8.2.21.55.21.76 0a5.74 5.74 0 014.12-1.8 5.2 5.2 0 015.25 5.25c0 1.8-.81 3.47-2.29 5.27-1.47 1.8-3.58 3.73-6.15 6.06l-.03.02-.77.7a.75.75 0 01-1.01 0l-.78-.7z"></path></svg>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            </div> -->
                                             <div class="col-12">
-                                                <div class="property-box-2">
-                                                    <div class="row ml-0 mr-0">
-                                                        <div class="col-lg-4 col-md-5 col-sm-4 col-12 pl-0 pr-0" style="height: 230px; position: relative;">
-                                                            <div>
-                                                                <div class="yyyyyy">
-                                                                    <swiper 
+                                                <div class="object-item">
+                                                    <div class="object-item-block">
+                                                        <div class="object-photos">
+                                                            <div class="object-photos-thumb">
+                                                                <swiper
+                                                                    :style="{
+                                                                    '--swiper-navigation-color': '#fff',
+                                                                    '--swiper-pagination-color': '#fff',
+                                                                    }"
                                                                     :pagination="{
                                                                         type: 'fraction',
                                                                     }"
-                                                                    :navigation="true" 
-                                                                    :modules="modules" class="mySwiper"
-                                                                    >
-                                                                        <swiper-slide>
-                                                                            <a href="#!" target="_blank" class="text-dark property-img">
-                                                                                <picture class="h-100 w-100">
-                                                                                    <source class="w-100" srcset="images/architecture.jpg" type="image/jpg" style="object-fit: cover;">
-                                                                                    <img src="images/architecture.jpg" class="w-100 h-100" alt="" style="object-fit: cover;">
-                                                                                </picture>
-                                                                            </a>
-                                                                        </swiper-slide>
-                                                                        <swiper-slide>
-                                                                            <a href="#!" target="_blank" class="text-dark property-img">
-                                                                                <picture class="h-100 w-100">
-                                                                                    <source class="w-100" srcset="images/buy_office.jpg" type="image/jpg" style="object-fit: cover;">
-                                                                                    <img src="images/buy_office.jpg" class="w-100 h-100" alt="" style="object-fit: cover;">
-                                                                                </picture>
-                                                                            </a>
-                                                                        </swiper-slide>
-                                                                    </swiper>
-                                                                </div>
+                                                                    :loop="true"
+                                                                    :lazy="true"
+                                                                    :spaceBetween="10"
+                                                                    :navigation="true"
+                                                                    :thumbs="{ swiper: thumbsSwiper }"
+                                                                    :modules="modules"
+                                                                    class="mySwiper2 w-100"
+                                                                >
+                                                                    <swiper-slide>
+                                                                        <img src="https://swiperjs.com/demos/images/nature-1.jpg" class="swiper-lazy"/>
+                                                                        <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div> 
+                                                                    </swiper-slide>
+                                                                    <swiper-slide>
+                                                                        <img src="https://swiperjs.com/demos/images/nature-2.jpg" class="swiper-lazy"/>
+                                                                    </swiper-slide>
+                                                                    <swiper-slide>
+                                                                        <img src="https://swiperjs.com/demos/images/nature-3.jpg" class="swiper-lazy"/>
+                                                                    </swiper-slide>
+                                                                    <swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-8.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img src="https://swiperjs.com/demos/images/nature-10.jpg"
+                                                                    /></swiper-slide>
+                                                                </swiper>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-8 col-md-7 col-sm-8 col-12 pl-0 pr-0 estatedetail">
-                                                            <div class="detail">
-                                                                <div class="hdg">
-                                                                    <h3 class="title" style="margin-bottom: 0px;">
-                                                                        <a href="/estatedetails/263024" style="float: left">85 000 y.e</a>
-                                                                        <a href="/estatedetails/263024" style="font-size: 16px; color: #000; float: right; padding-right: 10px"> №: 263024</a>
-                                                                        <div style="clear: both"></div>
-                                                                        <p style="margin-bottom: 0px; margin-top: 0px; color: #AEAEAE">
-                                                                        1 417 y.e / м²</p>
-                                                                    </h3>
-                                                                    <h5 class="location">
-                                                                        <a href="#!">
-                                                                            <i class="feather icon-map-pin"></i>Себзор (улица), Олмазарский район
+                                                        <div class="object-body">
+                                                            <div class="object-body-content">
+                                                                <div class="object-details">
+                                                                    <div v-if="mobilePrice == true" class="object-price-list d-flex align-items-center">
+                                                                        <p class="object-price-list-p">22 500 000 ₽</p>
+                                                                        <p class="object-price-list-desc ml-2">264 705$/м²</p>
+                                                                    </div>
+                                                                    <div class="object-details-item object-details-header">
+                                                                        <a class="NXJyid" href="https://domclick.ru/card/sale__flat__1564626862" target="_blank" rel="noopener noreferrer">
+                                                                            <span class="title">2-комн. квартира 51 м² 2/9 этаж</span>
                                                                         </a>
-                                                                    </h5>
-                                                                </div>  
-                                                                <ul class="facilities-list clearfix" style="">
-                                                                    <a href="#!"><h5 style="margin-bottom: 0px;">3-комнатная, 4/5 этаж, 72 м²</h5></a>
-                                                                </ul>  
-                                                                <div class="padding-tb-35 paddingDesk">
-                                                                    <div class="row">
-                                                                        <div class="col-12" style="min-height: 55px">
-                                                                            <p style="margin-bottom: 0px; font-size: 13px">
-                                                                            ✅ Евро ремонт қилинган
-                                                                            ✅ Атрофда мактаб, боғча, маркет яқин
-                                                                            👁 ориентир: Ат Термизий масжиди...</p>
+                                                                    </div>
+                                                                    <div class="object-details-item object-details-address mt-3">
+                                                                        <div class="w-100 object-details-item align-items-center">
+                                                                            <i class="fas fa-map-marker-alt mr-1"></i>
+                                                                            <span class="PjgOZO">Москва, Чертановская улица, 21к1</span>
                                                                         </div>
-                                                                        <div class="col-12">
-                                                                            <div class="estatedetail-footer d-flex align-items-center mt-2">
-                                                                                <div class="buttons-left-panel">
-                                                                                    <div class="button--WWB73 btn-container">
-                                                                                        <a href="tel:+998903592284" class="button_component-primary _3ea6fa5da8--button--GlIFI _3ea6fa5da8--simplified-button--BYaqf button_component">
-                                                                                            <span data-name="Phone" class="_3ea6fa5da8--phone--pigCj _3ea6fa5da8--simplified-phone--xK9FU">+99890 359-22-84</span>
-                                                                                        </a>
+                                                                    </div>
+                                                                    <div class="object-details-item mt-3">
+                                                                        <div class="object-details-description">
+                                                                            СВОБОДНАЯ ПРОДАЖА!   Продается 2-х ком. Кв. м. Южная, ул. Чертановская, д. 21, корп.1 на 2-м этаже 9-ти этажного панельного дома в менее 10-ти минутах пешего хода от метро.  Общая площадь – 51м2, комнаты изолированные – 20  и 15 м2, кухня 7м2, с/у – раздельный.  Окна во двор.  Балкона – нет. Ремонт косметический. Дом располагается в районе с развитой инфраструктурой в шаговой доступности множество популярных сетевых магазинов, ТЦ.  Хорошая транспортная доступность до нескольких станций метро.  
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="object-details-addtional"></div>
+                                                                </div>
+                                                                <div v-if="!mobilePrice" class="object-price">
+                                                                    <div class="object-price-list">
+                                                                        <p class="object-price-list-p">22 500 000 ₽</p>
+                                                                        <p class="object-price-list-desc">264 705$/м²</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div v-if="!objectBtns" class="object-actions">
+                                                                    <button type="button" class="object-actions-btn" title="Добавить в избранное">
+                                                                        <div class="icon-4-0-1">
+                                                                            <svg fill="#fff" style="stroke: grey; stroke-width: 1px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                                                                <path clip-rule="evenodd" d="M1 7C.5 3.5 2.7 2 4.8 2 6.82 2 8 4 8 4s1.17-2 3.2-2c2.1 0 4.3 1.5 3.8 5s-5.83 7-7 7-6.5-3.5-7-7z"></path>
+                                                                            </svg>
+                                                                        </div>
+                                                                    </button>
+                                                                    <div>
+                                                                        <button type="button" class="object-actions-btn" title="Поделиться объявлением" data-toggle="dropdown">
+                                                                            <div class="icon-4-0-1">
+                                                                                <div class="icon-4-0-1">
+                                                                                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                                                                        <path d="M10.54 2.09l4.1 4.13c.2.2.2.51 0 .7L10.52 11a.3.3 0 01-.51-.21V8.5a.3.3 0 00-.3-.3c-4.94.05-6.1 1.26-6.7 2.97a8.1 8.1 0 00-.3 2.61c0 .21-.26.27-.36.09-4.5-9.06 3.43-9.29 7.39-9.3a.3.3 0 00.3-.3V2.3c0-.27.32-.4.5-.21z"></path>
+                                                                                    </svg>
+                                                                                </div>
+                                                                            </div>
+                                                                        </button>
+                                                                        <div class="dropdown-menu dropdown-menu-left">
+                                                                            <div class="item">
+                                                                                <div class="hint-head-0-9-4">
+                                                                                    <div class="hint-title-0-9-4">
+                                                                                        <div class="hint-title-content-0-9-4">
+                                                                                            <div class="hint-text-wrap-0-9-4 w-100">
+                                                                                                <div data-e2e-id="share_hint__title" class="title">Поделиться объявлением</div>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div class="button--WWB73 _3ea6fa5da8--like-container--UxcUH">
-                                                                                        <button type="button" class="_3ea6fa5da8--like-button--ZUZsf _3ea6fa5da8--button--AQsMD _3ea6fa5da8--light--nOps1 _3ea6fa5da8--main--bn3jO d-flex align-items-center">
-                                                                                            <svg class="_3ea6fa5da8--icon--GdoXI" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.004 14" width="14" height="14"><path stroke="#E84260" stroke-width="2" d="M6.99 11.72L1.825 6.677C.727 5.582.725 3.805 1.82 2.707l.015-.015c1.118-1.08 2.962-1.08 4.092.014l.36.35.67.648.694-.62.394-.35.03-.028c1.13-1.095 2.973-1.095 4.104 0 1.1 1.093 1.103 2.87.01 3.968l-.015.015-5.182 5.03z"></path></svg>
-                                                                                            В избранном
-                                                                                        </button>
+                                                                                </div>
+                                                                                <div class="hint-content-0-9-4">
+                                                                                    <div id="share__content" class="share__content_div">
+                                                                                        <div class="share__content_div_socials">
+                                                                                            <div>
+                                                                                                <a href="#!" title="ok" class="share__content_div_socials_links socials_ok" target="_blank">
+                                                                                                    <div class="icon-4-0-1 icon--32-4-0-1">
+                                                                                                        <svg fill="currentColor" class="socials_ok" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill-rule="evenodd" clip-rule="evenodd" d="M3 10.8c0-2.73 0-4.1.53-5.14a4.88 4.88 0 012.13-2.13C6.71 3 8.07 3 10.8 3h10.4c2.73 0 4.1 0 5.14.53a4.88 4.88 0 012.13 2.13C29 6.71 29 8.07 29 10.8v10.4c0 2.73 0 4.1-.53 5.14a4.88 4.88 0 01-2.13 2.13c-1.05.53-2.41.53-5.14.53H10.8c-2.73 0-4.1 0-5.14-.53a4.88 4.88 0 01-2.13-2.13C3 25.29 3 23.93 3 21.2V10.8zm13 5.46a4.18 4.18 0 004.15-4.19c0-2.31-1.86-4.2-4.15-4.2a4.18 4.18 0 00-4.15 4.2 4.18 4.18 0 004.15 4.2zm1.72-4.19A1.73 1.73 0 0016 10.33a1.73 1.73 0 00-1.72 1.74A1.73 1.73 0 0016 13.81a1.73 1.73 0 001.72-1.74zm2.37 6.6a7.72 7.72 0 01-2.41 1.01L20 22.03c.45.48.45 1.23 0 1.7a1.2 1.2 0 01-1.72.04L16 21.47l-2.3 2.3c-.22.24-.53.35-.84.35-.32 0-.63-.12-.86-.35l-.02-.02a1.23 1.23 0 01.02-1.72l2.32-2.35a7.68 7.68 0 01-2.4-1 1.24 1.24 0 01-.39-1.7 1.2 1.2 0 011.68-.39 5.22 5.22 0 005.58 0 1.2 1.2 0 011.63.38 1.24 1.24 0 01-.33 1.7z"></path></svg>
+                                                                                                    </div>
+                                                                                                </a>
+                                                                                                <a href="#!" title="wk" class="share__content_div_socials_links socials_wk" target="_blank">
+                                                                                                    <div class="icon-4-0-1 icon--32-4-0-1">
+                                                                                                        <svg fill="currentColor" class="socials_wk" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.53 5.66C3 6.7 3 8.07 3 10.8v10.4c0 2.73 0 4.1.53 5.14a4.88 4.88 0 002.13 2.13c1.05.53 2.41.53 5.14.53h10.4c2.73 0 4.1 0 5.14-.53a4.88 4.88 0 002.13-2.13c.53-1.05.53-2.41.53-5.14V10.8c0-2.73 0-4.1-.53-5.14a4.88 4.88 0 00-2.13-2.13C25.29 3 23.93 3 21.2 3H10.8c-2.73 0-4.1 0-5.14.53a4.88 4.88 0 00-2.13 2.13zM22.1 21.55H24c.52 0 .8-.28.61-.8a8.21 8.21 0 00-1.6-2.23c-.22-.26-.5-.53-.74-.77s-.46-.45-.55-.58c-.28-.37-.2-.52 0-.85 0 0 2.3-3.27 2.55-4.37.12-.4 0-.7-.57-.7h-1.9c-.47 0-.7.26-.82.54 0 0-.97 2.35-2.33 3.87-.44.44-.64.59-.88.59-.11 0-.3-.15-.3-.55v-3.77c0-.47-.14-.7-.54-.7h-2.98a.46.46 0 00-.47.45c0 .17.1.3.22.46.2.25.48.6.53 1.4v2.78c0 .6-.11.72-.35.72-.64 0-2.2-2.37-3.14-5.07-.18-.51-.37-.73-.84-.73H8c-.52 0-.63.26-.63.53 0 .51.64 3 2.99 6.3 1.56 2.25 3.78 3.46 5.78 3.46 1.2 0 1.35-.27 1.35-.73v-1.7c0-.54.11-.65.5-.65.28 0 .77.15 1.9 1.23.36.37.64.69.87.95.57.63.83.92 1.34.92z"></path></svg>
+                                                                                                    </div>
+                                                                                                </a>
+                                                                                                <a href="#!" title="whatsapp" class="share__content_div_socials_links socials_ws" target="_blank">
+                                                                                                    <div class="icon-4-0-1 icon--32-4-0-1">
+                                                                                                        <svg fill="currentColor" class="socials_ws" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.75 22.42a8.08 8.08 0 004.43 1.32 8.03 8.03 0 008.04-8c0-4.4-3.6-7.98-8.05-7.98a8.03 8.03 0 00-8.05 7.99c0 1.75.57 3.37 1.54 4.68l-1 2.97 3.09-.98zm1.67-11c.23.01.35.03.51.4l.2.47.52 1.26c.06.11.12.27.04.43-.07.15-.14.22-.24.34l-.02.02-.15.17a3.42 3.42 0 00-.2.22c-.12.13-.23.27-.1.5.14.23.61 1 1.3 1.6.83.74 1.52 1.01 1.82 1.13l.08.03c.19.08.42.06.56-.09.16-.16.34-.42.54-.69l.1-.13c.15-.23.36-.26.57-.18.22.08 1.37.64 1.6.76l.14.07c.16.07.27.12.31.2.06.1.06.57-.13 1.11-.2.55-.97 1-1.58 1.13-.42.09-.97.16-2.82-.6-2.2-.9-3.66-3.02-3.96-3.45l-.05-.07-.01-.01a4.5 4.5 0 01-.95-2.4c0-1.1.56-1.67.8-1.92l.03-.02c.19-.2.51-.28.82-.28h.27z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M3.53 5.66C3 6.7 3 8.07 3 10.8v10.4c0 2.73 0 4.1.53 5.14a4.88 4.88 0 002.13 2.13c1.05.53 2.41.53 5.14.53h10.4c2.73 0 4.1 0 5.14-.53a4.88 4.88 0 002.13-2.13c.53-1.05.53-2.41.53-5.14V10.8c0-2.73 0-4.1-.53-5.14a4.88 4.88 0 00-2.13-2.13C25.29 3 23.93 3 21.2 3H10.8c-2.73 0-4.1 0-5.14.53a4.88 4.88 0 00-2.13 2.13zm3.08 10.09c0-5.25 4.28-9.5 9.57-9.5a9.54 9.54 0 019.57 9.5c0 5.24-4.29 9.5-9.57 9.5a9.6 9.6 0 01-4.63-1.19l-5.3 1.69 1.73-5.1a9.42 9.42 0 01-1.37-4.9z"></path></svg>
+                                                                                                    </div>
+                                                                                                </a>
+                                                                                                <a href="#!" title="viber" class="share__content_div_socials_links socials_vb" target="_blank">
+                                                                                                    <div class="icon-4-0-1 icon--32-4-0-1">
+                                                                                                        <svg fill="currentColor" class="socials_vb" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill-rule="evenodd" clip-rule="evenodd" d="M20.2 22.34c.92-.21 3.44-.8 3.9-4.56.54-4.31-.19-7.25-1.62-8.48-.44-.4-2.3-1.57-6.2-1.58 0 0-4.6-.3-6.83 1.72-1.25 1.23-1.67 3.06-1.71 5.29v.22c-.06 2.28-.15 6.3 3.8 7.4l-.02 3.44c0 .2.03.33.14.36.08.02.2-.02.3-.13.65-.65 2.74-3.17 2.74-3.17a17.2 17.2 0 005.5-.51zm-2.87-4.53c-.2.25-.57.22-.57.22-2.67-.69-3.38-3.39-3.38-3.39s-.03-.37.2-.56l.5-.39c.23-.18.38-.63.14-1.07-.41-.73-1-1.51-1.32-1.84-.24-.28-.59-.35-.96-.15a4 4 0 00-.99.8c-.32.38-.5.81-.35 1.28h.01a13.04 13.04 0 003.97 5.82 15.48 15.48 0 004.1 2.26l.02.02c.46.15.9-.03 1.27-.35.34-.31.6-.64.8-.99.2-.38.13-.73-.15-.97-.51-.48-1.26-.99-1.84-1.32-.44-.24-.89-.09-1.07.15l-.38.48zm3.9-2.29a.26.26 0 01-.26.26.26.26 0 01-.26-.25 5.02 5.02 0 00-1.4-3.72 4.82 4.82 0 00-3.45-1.36.26.26 0 01-.26-.26.26.26 0 01.26-.26c1.51.01 2.8.52 3.81 1.51a5.53 5.53 0 011.56 4.08zm-1.63-.27a.26.26 0 00.26-.25 3.55 3.55 0 00-.91-2.57 3.78 3.78 0 00-2.61-1.15.26.26 0 00-.04.52c.99.07 1.73.4 2.27.98a3 3 0 01.77 2.2.26.26 0 00.26.27zm-1.6-.7a.26.26 0 00.27.25h.01a.26.26 0 00.25-.27c-.06-1.15-.68-1.8-1.8-1.85a.26.26 0 00-.03.52c.85.04 1.26.47 1.3 1.36z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M3.53 5.66C3 6.7 3 8.07 3 10.8v10.4c0 2.73 0 4.1.53 5.14a4.88 4.88 0 002.13 2.13c1.05.53 2.41.53 5.14.53h10.4c2.73 0 4.1 0 5.14-.53a4.88 4.88 0 002.13-2.13c.53-1.05.53-2.41.53-5.14V10.8c0-2.73 0-4.1-.53-5.14a4.88 4.88 0 00-2.13-2.13C25.29 3 23.93 3 21.2 3H10.8c-2.73 0-4.1 0-5.14.53a4.88 4.88 0 00-2.13 2.13zm12.84.6c4.6.02 6.67 1.52 7.18 2 1.7 1.47 2.63 4.73 2 9.89-.56 4.55-3.73 5.36-4.8 5.63l-.25.07c-.28.1-2.82.73-6.12.45-.37.43-.85.98-1.2 1.36l-.3.33c-.47.54-.84.96-1.4.78-.55-.17-.52-1-.52-1v-2.08c-4.82-1.36-4.75-6.36-4.7-9.03.06-2.67.58-4.82 2.05-6.3 2.64-2.42 8.06-2.1 8.06-2.1z"></path></svg>
+                                                                                                    </div>
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <copy-to-clipboard>
+                                                                                            <button type="button" class="object_single_page_btn_style w-100">
+                                                                                                <span class="button-root__text-8-1-3">Скопировать ссылку</span>
+                                                                                            </button>
+                                                                                        </copy-to-clipboard>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>  
+                                                                </div>
+                                                            </div>
+                                                            <div class="object-body-footer">
+                                                                <div class="object-details-item">
+                                                                    <button v-if="2 != open" @click="toggle(2)" class="object-details-item-btn" type="button">
+                                                                        <span class="object-details-item-btn-txt">Показать телефон</span>
+                                                                    </button>
+                                                                    <a v-if="2 === open" href="tel:+998903592284" class="object-details-item-btn">
+                                                                        <span class="object-details-item-btn-txt">+99890 359-22-84</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="object-item">
+                                                    <div class="object-item-block">
+                                                        <div class="object-photos">
+                                                            <div class="object-photos-thumb">
+                                                                <swiper
+                                                                    :style="{
+                                                                    '--swiper-navigation-color': '#fff',
+                                                                    '--swiper-pagination-color': '#fff',
+                                                                    }"
+                                                                    :pagination="{
+                                                                        type: 'fraction',
+                                                                    }"
+                                                                    :loop="true"
+                                                                    :lazy="true"
+                                                                    :spaceBetween="10"
+                                                                    :navigation="true"
+                                                                    :thumbs="{ swiper: thumbsSwiper }"
+                                                                    :modules="modules"
+                                                                    class="mySwiper2 w-100"
+                                                                >
+                                                                    <swiper-slide>
+                                                                        <img src="/images/luxury-house.jpg" class="swiper-lazy"/>
+                                                                        <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div> 
+                                                                    </swiper-slide>
+                                                                    <swiper-slide>
+                                                                        <img src="/images/luxury-house-2.jpg" class="swiper-lazy"/>
+                                                                    </swiper-slide>
+                                                                    <swiper-slide>
+                                                                        <img src="/images/luxury-house-3.jpg" class="swiper-lazy"/>
+                                                                    </swiper-slide>
+                                                                    <swiper-slide
+                                                                    ><img
+                                                                        src="/images/luxury-house-4.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="/images/luxury-house-5.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="/images/luxury-house-6.jpg" /></swiper-slide
+                                                                    >
+                                                                </swiper>
+                                                            </div>
+                                                        </div>
+                                                        <div class="object-body">
+                                                            <div class="object-body-content">
+                                                                <div class="object-details">
+                                                                    <div v-if="mobilePrice == true" class="object-price-list d-flex align-items-center">
+                                                                        <p class="object-price-list-p">22 500 000 ₽</p>
+                                                                        <p class="object-price-list-desc ml-2">264 705$/м²</p>
+                                                                    </div>
+                                                                    <div class="object-details-item object-details-header">
+                                                                        <a class="NXJyid" href="https://domclick.ru/card/sale__flat__1564626862" target="_blank" rel="noopener noreferrer">
+                                                                            <span class="title">2-комн. квартира 51 м² 2/9 этаж</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="object-details-item object-details-address mt-3">
+                                                                        <div class="w-100 object-details-item align-items-center">
+                                                                            <i class="fas fa-map-marker-alt mr-1"></i>
+                                                                            <span class="PjgOZO">Москва, Чертановская улица, 21к1</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="object-details-item mt-3">
+                                                                        <div class="object-details-description">
+                                                                            СВОБОДНАЯ ПРОДАЖА!   Продается 2-х ком. Кв. м. Южная, ул. Чертановская, д. 21, корп.1 на 2-м этаже 9-ти этажного панельного дома в менее 10-ти минутах пешего хода от метро.  Общая площадь – 51м2, комнаты изолированные – 20  и 15 м2, кухня 7м2, с/у – раздельный.  Окна во двор.  Балкона – нет. Ремонт косметический. Дом располагается в районе с развитой инфраструктурой в шаговой доступности множество популярных сетевых магазинов, ТЦ.  Хорошая транспортная доступность до нескольких станций метро.  
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="object-details-addtional"></div>
+                                                                </div>
+                                                                <div v-if="!mobilePrice" class="object-price">
+                                                                    <div class="object-price-list">
+                                                                        <p class="object-price-list-p">22 500 000 ₽</p>
+                                                                        <p class="object-price-list-desc">264 705$/м²</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div v-if="!objectBtns" class="object-actions">
+                                                                    <button type="button" class="object-actions-btn" title="Добавить в избранное">
+                                                                        <div class="icon-4-0-1">
+                                                                            <svg fill="#fff" style="stroke: grey; stroke-width: 1px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                                                                <path clip-rule="evenodd" d="M1 7C.5 3.5 2.7 2 4.8 2 6.82 2 8 4 8 4s1.17-2 3.2-2c2.1 0 4.3 1.5 3.8 5s-5.83 7-7 7-6.5-3.5-7-7z"></path>
+                                                                            </svg>
+                                                                        </div>
+                                                                    </button>
+                                                                    <div>
+                                                                        <button type="button" class="object-actions-btn" title="Поделиться объявлением" data-toggle="dropdown">
+                                                                            <div class="icon-4-0-1">
+                                                                                <div class="icon-4-0-1">
+                                                                                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                                                                        <path d="M10.54 2.09l4.1 4.13c.2.2.2.51 0 .7L10.52 11a.3.3 0 01-.51-.21V8.5a.3.3 0 00-.3-.3c-4.94.05-6.1 1.26-6.7 2.97a8.1 8.1 0 00-.3 2.61c0 .21-.26.27-.36.09-4.5-9.06 3.43-9.29 7.39-9.3a.3.3 0 00.3-.3V2.3c0-.27.32-.4.5-.21z"></path>
+                                                                                    </svg>
+                                                                                </div>
+                                                                            </div>
+                                                                        </button>
+                                                                        <div class="dropdown-menu dropdown-menu-left">
+                                                                            <div class="item">
+                                                                                <div class="hint-head-0-9-4">
+                                                                                    <div class="hint-title-0-9-4">
+                                                                                        <div class="hint-title-content-0-9-4">
+                                                                                            <div class="hint-text-wrap-0-9-4 w-100">
+                                                                                                <div data-e2e-id="share_hint__title" class="title">Поделиться объявлением</div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="hint-content-0-9-4">
+                                                                                    <div id="share__content" class="share__content_div">
+                                                                                        <div class="share__content_div_socials">
+                                                                                            <div>
+                                                                                                <a href="#!" title="ok" class="share__content_div_socials_links socials_ok" target="_blank">
+                                                                                                    <div class="icon-4-0-1 icon--32-4-0-1">
+                                                                                                        <svg fill="currentColor" class="socials_ok" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill-rule="evenodd" clip-rule="evenodd" d="M3 10.8c0-2.73 0-4.1.53-5.14a4.88 4.88 0 012.13-2.13C6.71 3 8.07 3 10.8 3h10.4c2.73 0 4.1 0 5.14.53a4.88 4.88 0 012.13 2.13C29 6.71 29 8.07 29 10.8v10.4c0 2.73 0 4.1-.53 5.14a4.88 4.88 0 01-2.13 2.13c-1.05.53-2.41.53-5.14.53H10.8c-2.73 0-4.1 0-5.14-.53a4.88 4.88 0 01-2.13-2.13C3 25.29 3 23.93 3 21.2V10.8zm13 5.46a4.18 4.18 0 004.15-4.19c0-2.31-1.86-4.2-4.15-4.2a4.18 4.18 0 00-4.15 4.2 4.18 4.18 0 004.15 4.2zm1.72-4.19A1.73 1.73 0 0016 10.33a1.73 1.73 0 00-1.72 1.74A1.73 1.73 0 0016 13.81a1.73 1.73 0 001.72-1.74zm2.37 6.6a7.72 7.72 0 01-2.41 1.01L20 22.03c.45.48.45 1.23 0 1.7a1.2 1.2 0 01-1.72.04L16 21.47l-2.3 2.3c-.22.24-.53.35-.84.35-.32 0-.63-.12-.86-.35l-.02-.02a1.23 1.23 0 01.02-1.72l2.32-2.35a7.68 7.68 0 01-2.4-1 1.24 1.24 0 01-.39-1.7 1.2 1.2 0 011.68-.39 5.22 5.22 0 005.58 0 1.2 1.2 0 011.63.38 1.24 1.24 0 01-.33 1.7z"></path></svg>
+                                                                                                    </div>
+                                                                                                </a>
+                                                                                                <a href="#!" title="wk" class="share__content_div_socials_links socials_wk" target="_blank">
+                                                                                                    <div class="icon-4-0-1 icon--32-4-0-1">
+                                                                                                        <svg fill="currentColor" class="socials_wk" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.53 5.66C3 6.7 3 8.07 3 10.8v10.4c0 2.73 0 4.1.53 5.14a4.88 4.88 0 002.13 2.13c1.05.53 2.41.53 5.14.53h10.4c2.73 0 4.1 0 5.14-.53a4.88 4.88 0 002.13-2.13c.53-1.05.53-2.41.53-5.14V10.8c0-2.73 0-4.1-.53-5.14a4.88 4.88 0 00-2.13-2.13C25.29 3 23.93 3 21.2 3H10.8c-2.73 0-4.1 0-5.14.53a4.88 4.88 0 00-2.13 2.13zM22.1 21.55H24c.52 0 .8-.28.61-.8a8.21 8.21 0 00-1.6-2.23c-.22-.26-.5-.53-.74-.77s-.46-.45-.55-.58c-.28-.37-.2-.52 0-.85 0 0 2.3-3.27 2.55-4.37.12-.4 0-.7-.57-.7h-1.9c-.47 0-.7.26-.82.54 0 0-.97 2.35-2.33 3.87-.44.44-.64.59-.88.59-.11 0-.3-.15-.3-.55v-3.77c0-.47-.14-.7-.54-.7h-2.98a.46.46 0 00-.47.45c0 .17.1.3.22.46.2.25.48.6.53 1.4v2.78c0 .6-.11.72-.35.72-.64 0-2.2-2.37-3.14-5.07-.18-.51-.37-.73-.84-.73H8c-.52 0-.63.26-.63.53 0 .51.64 3 2.99 6.3 1.56 2.25 3.78 3.46 5.78 3.46 1.2 0 1.35-.27 1.35-.73v-1.7c0-.54.11-.65.5-.65.28 0 .77.15 1.9 1.23.36.37.64.69.87.95.57.63.83.92 1.34.92z"></path></svg>
+                                                                                                    </div>
+                                                                                                </a>
+                                                                                                <a href="#!" title="whatsapp" class="share__content_div_socials_links socials_ws" target="_blank">
+                                                                                                    <div class="icon-4-0-1 icon--32-4-0-1">
+                                                                                                        <svg fill="currentColor" class="socials_ws" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.75 22.42a8.08 8.08 0 004.43 1.32 8.03 8.03 0 008.04-8c0-4.4-3.6-7.98-8.05-7.98a8.03 8.03 0 00-8.05 7.99c0 1.75.57 3.37 1.54 4.68l-1 2.97 3.09-.98zm1.67-11c.23.01.35.03.51.4l.2.47.52 1.26c.06.11.12.27.04.43-.07.15-.14.22-.24.34l-.02.02-.15.17a3.42 3.42 0 00-.2.22c-.12.13-.23.27-.1.5.14.23.61 1 1.3 1.6.83.74 1.52 1.01 1.82 1.13l.08.03c.19.08.42.06.56-.09.16-.16.34-.42.54-.69l.1-.13c.15-.23.36-.26.57-.18.22.08 1.37.64 1.6.76l.14.07c.16.07.27.12.31.2.06.1.06.57-.13 1.11-.2.55-.97 1-1.58 1.13-.42.09-.97.16-2.82-.6-2.2-.9-3.66-3.02-3.96-3.45l-.05-.07-.01-.01a4.5 4.5 0 01-.95-2.4c0-1.1.56-1.67.8-1.92l.03-.02c.19-.2.51-.28.82-.28h.27z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M3.53 5.66C3 6.7 3 8.07 3 10.8v10.4c0 2.73 0 4.1.53 5.14a4.88 4.88 0 002.13 2.13c1.05.53 2.41.53 5.14.53h10.4c2.73 0 4.1 0 5.14-.53a4.88 4.88 0 002.13-2.13c.53-1.05.53-2.41.53-5.14V10.8c0-2.73 0-4.1-.53-5.14a4.88 4.88 0 00-2.13-2.13C25.29 3 23.93 3 21.2 3H10.8c-2.73 0-4.1 0-5.14.53a4.88 4.88 0 00-2.13 2.13zm3.08 10.09c0-5.25 4.28-9.5 9.57-9.5a9.54 9.54 0 019.57 9.5c0 5.24-4.29 9.5-9.57 9.5a9.6 9.6 0 01-4.63-1.19l-5.3 1.69 1.73-5.1a9.42 9.42 0 01-1.37-4.9z"></path></svg>
+                                                                                                    </div>
+                                                                                                </a>
+                                                                                                <a href="#!" title="viber" class="share__content_div_socials_links socials_vb" target="_blank">
+                                                                                                    <div class="icon-4-0-1 icon--32-4-0-1">
+                                                                                                        <svg fill="currentColor" class="socials_vb" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill-rule="evenodd" clip-rule="evenodd" d="M20.2 22.34c.92-.21 3.44-.8 3.9-4.56.54-4.31-.19-7.25-1.62-8.48-.44-.4-2.3-1.57-6.2-1.58 0 0-4.6-.3-6.83 1.72-1.25 1.23-1.67 3.06-1.71 5.29v.22c-.06 2.28-.15 6.3 3.8 7.4l-.02 3.44c0 .2.03.33.14.36.08.02.2-.02.3-.13.65-.65 2.74-3.17 2.74-3.17a17.2 17.2 0 005.5-.51zm-2.87-4.53c-.2.25-.57.22-.57.22-2.67-.69-3.38-3.39-3.38-3.39s-.03-.37.2-.56l.5-.39c.23-.18.38-.63.14-1.07-.41-.73-1-1.51-1.32-1.84-.24-.28-.59-.35-.96-.15a4 4 0 00-.99.8c-.32.38-.5.81-.35 1.28h.01a13.04 13.04 0 003.97 5.82 15.48 15.48 0 004.1 2.26l.02.02c.46.15.9-.03 1.27-.35.34-.31.6-.64.8-.99.2-.38.13-.73-.15-.97-.51-.48-1.26-.99-1.84-1.32-.44-.24-.89-.09-1.07.15l-.38.48zm3.9-2.29a.26.26 0 01-.26.26.26.26 0 01-.26-.25 5.02 5.02 0 00-1.4-3.72 4.82 4.82 0 00-3.45-1.36.26.26 0 01-.26-.26.26.26 0 01.26-.26c1.51.01 2.8.52 3.81 1.51a5.53 5.53 0 011.56 4.08zm-1.63-.27a.26.26 0 00.26-.25 3.55 3.55 0 00-.91-2.57 3.78 3.78 0 00-2.61-1.15.26.26 0 00-.04.52c.99.07 1.73.4 2.27.98a3 3 0 01.77 2.2.26.26 0 00.26.27zm-1.6-.7a.26.26 0 00.27.25h.01a.26.26 0 00.25-.27c-.06-1.15-.68-1.8-1.8-1.85a.26.26 0 00-.03.52c.85.04 1.26.47 1.3 1.36z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M3.53 5.66C3 6.7 3 8.07 3 10.8v10.4c0 2.73 0 4.1.53 5.14a4.88 4.88 0 002.13 2.13c1.05.53 2.41.53 5.14.53h10.4c2.73 0 4.1 0 5.14-.53a4.88 4.88 0 002.13-2.13c.53-1.05.53-2.41.53-5.14V10.8c0-2.73 0-4.1-.53-5.14a4.88 4.88 0 00-2.13-2.13C25.29 3 23.93 3 21.2 3H10.8c-2.73 0-4.1 0-5.14.53a4.88 4.88 0 00-2.13 2.13zm12.84.6c4.6.02 6.67 1.52 7.18 2 1.7 1.47 2.63 4.73 2 9.89-.56 4.55-3.73 5.36-4.8 5.63l-.25.07c-.28.1-2.82.73-6.12.45-.37.43-.85.98-1.2 1.36l-.3.33c-.47.54-.84.96-1.4.78-.55-.17-.52-1-.52-1v-2.08c-4.82-1.36-4.75-6.36-4.7-9.03.06-2.67.58-4.82 2.05-6.3 2.64-2.42 8.06-2.1 8.06-2.1z"></path></svg>
+                                                                                                    </div>
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <copy-to-clipboard>
+                                                                                            <button type="button" class="object_single_page_btn_style w-100">
+                                                                                                <span class="button-root__text-8-1-3">Скопировать ссылку</span>
+                                                                                            </button>
+                                                                                        </copy-to-clipboard>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="object-body-footer">
+                                                                <div class="object-details-item">
+                                                                    <button v-if="2 != open" @click="toggle(2)" class="object-details-item-btn" type="button">
+                                                                        <span class="object-details-item-btn-txt">Показать телефон</span>
+                                                                    </button>
+                                                                    <a v-if="2 === open" href="tel:+998903592284" class="object-details-item-btn">
+                                                                        <span class="object-details-item-btn-txt">+99890 359-22-84</span>
+                                                                    </a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="agent-single-div-content-pagination">
-                                            
+                                        <div class="objects-paginator">
+                                            <Paginator :rows="10" 
+                                            template="PrevPageLink PageLinks NextPageLink"
+                                            :totalRecords="totalRecords"></Paginator>
                                         </div>
                                     </div>
                                 </div>
@@ -1271,14 +1380,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 // import required modules
-import { Pagination, Navigation } from "swiper";
-
+import { Autoplay, Pagination, Lazy, FreeMode, Navigation, Thumbs } from "swiper";
+import CopyToClipboard from '../../components/CopyToClipboard.vue'
 import Dropdown from 'primevue/dropdown';
 import MultiSelect from 'primevue/multiselect';
 import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
 import InputSwitch from 'primevue/inputswitch';
-
+import Paginator from 'primevue/paginator';
 export default {
     components: {
         Swiper,
@@ -1287,12 +1396,13 @@ export default {
         MultiSelect,
         TabView,
         TabPanel,
-        InputSwitch
+        InputSwitch,
+        CopyToClipboard,
+        Paginator
     },
     data() {
         return {
             showPhoneNumber: false,
-            testDrop: false,
             Studio: false,
             Room1: false,
             Room2: false,
@@ -1303,6 +1413,10 @@ export default {
             commercialType: null,
             active4: 0,
             DesktopFilter: false,
+            mobilePrice: false,
+            objectBtns: false,
+            open: null,
+            totalRecords: 120,
             typeSearch: 'buy',
             test: "",
             selectedCity1: '',
@@ -1356,19 +1470,30 @@ export default {
     },
     setup() {
         return {
-            modules: [Pagination, Navigation],
+            modules: [Autoplay,Pagination,Lazy,FreeMode,Navigation,Thumbs],
         };
     },
     methods: {
+        toggle(id) {
+            this.open = this.open === id ? null : id
+        },
         checkScreen() {
             this.windowWidth = window.innerWidth;
-            if(this.windowWidth <= 575){
-                this.DesktopFilter = false;
-                this.actionMobile = true;
+            if(this.windowWidth <= 1000){
+                this.mobilePrice = true;
+                if(this.windowWidth <= 736){
+                    this.objectBtns = true;
+                }
+                if(this.windowWidth <= 575){
+                    this.DesktopFilter = false;
+                    this.actionMobile = true;
+                }
                 return;
             }
+            this.objectBtns = false;
             this.DesktopFilter = true;
             this.actionMobile = false;
+            this.mobilePrice = false
             return;
         },
     },
@@ -2590,6 +2715,31 @@ export default {
     margin-right: 8px;
 }
 
+.agent-single-div-content-div-objects .object-details {
+    width: 300px;
+}
+
+/* .agent-single-div-content-div-objects  .object-details-description {
+    -webkit-line-clamp: 3;
+} */
+
+.agent-single-div-content-div-objects .object-details-header .title {
+    font-size: 20px;
+    line-height: 25px;
+}
+
+.agent-single-div-content-div-objects .object-price-list-p {
+    font-size: 22px;
+    line-height: 25px;
+}
+
+.agent-single-div-content-div-objects .object-body-footer {
+    justify-content: flex-end;
+}
+
+.agent-single-div-content-div-objects .object-item{
+    margin-bottom: 20px;
+}
 /* *************************** Mobile Filter *************************************** */
 /* *********************************************************************************** */
 /* ************************************* MEDIA *********************************** */
