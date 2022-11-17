@@ -1,0 +1,234 @@
+#__layout {
+    min-height: 100vh;
+    background: #53b374;
+}
+
+.mobile-filter-body{
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    position: relative;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    color: #fff;
+}
+
+.mobile-filter-content{
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    position: relative;
+}
+
+.page__container {
+    max-width: 750px;
+    margin-left: auto;
+    width: 100%;
+    margin-right: auto;
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+.mobile-filter-region{
+    margin-bottom: 10px;
+}
+
+.mobile-filter-region-label{
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.field__container {
+    display: flex;
+    align-items: stretch;
+    color: #495057;
+    border-radius: 0.25rem;
+    box-shadow: 1px 1px 6px rgb(0 0 0 / 20%);
+    background: #f8f9fa;
+}
+
+.field__set{
+    flex-grow: 2;
+    position: relative;
+    cursor: pointer;
+}
+
+.field__control {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 0;
+}
+
+.field__glypth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.field__iconaction {
+    height: 100%;
+    line-height: 1;
+    padding-right: 12px;
+    user-select: none;
+    color: #999;
+}
+
+.field__iconaction, .field__item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.p-dialog-bottom .p-dialog {
+    margin: auto !important;
+}
+
+.p-dialog .p-dialog-header,
+.p-dialog .p-dialog-footer {
+    padding: 10px !important;
+    color: #000 !important;
+}
+
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
+    background: #2196F3 !important;
+    color: #ffffff !important;
+    border-color: #2196F3 !important;
+}
+
+.p-dialog .p-dialog-header h5{
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.p-dialog .p-dialog-footer button {
+    margin: 0;
+}
+
+.field__item {
+    padding: 8px 12px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.field__item:first-child {
+    border-top: 1px solid #e9ecef;
+}
+
+.p-dialog .p-dialog-content{
+    padding: 0 !important;
+}
+
+.field__item .p-radiobutton,
+.field__item .p-checkbox{
+    margin-right: 8px
+}
+
+.field__item label {
+    color: #464646;
+    margin-bottom: 0;
+    padding-left: 0;
+    font-size: 16px;
+    flex-grow: 2;
+    line-height: 1.3;
+}
+
+.mobile-filter-tabs{
+    display: flex;
+    margin: 15px 0 8px 0; 
+}
+
+
+.mobile-filter-tabs .single_button_select_box_label {
+    height: unset;
+    align-items: center;
+    background-color: transparent;
+    border: unset;
+    box-shadow: none;
+    color: #242629;
+    font-weight: 600;
+    justify-content: start;
+    padding: 0;
+    border-bottom: 2px solid transparent;
+}
+
+.mobile-filter-tabs  .single_button_select_box_label_span{
+    padding: 0.5rem 0;
+    color: #fff;
+    font-size: 18px;
+}
+
+.mobile-filter-tabs  .single_button_select_box_label.active{
+    border-bottom: 2px solid var(--primary_100);
+}
+
+.mobile-filter-tabs .single_button_select_box_label_span.active_span{
+    color: #fff;
+}
+
+.mobile-filter-tabs .single_button_select_box_label+.single_button_select_box_label {
+    margin-left: 1rem;
+}
+
+.mobile-filter-guides{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.mobile-filter-guide{
+    display: flex;
+    width: 50%;
+    padding: 4px;
+}
+
+.mobile-filter-guide .single_button_select_box_label{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    color: #343a40;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    box-shadow: 1px 1px 6px rgb(0 0 0 / 20%);
+    background: #f8f9fa;
+}
+
+.mobile-filter-guide-icon img{
+    margin-right: 8px;
+}
+
+
+.mobile-filter-guide  .single_button_select_box_label.active{
+    background-color: #ebfff27d;
+}
+
+.mobile-filter-add{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.mobile-filter-add-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    background: rgba(0,0,0,.3);
+}
+
+.mobile-filter-add-link .feather{
+    margin-right: 8px;
+    font-size: 24px;
+    line-height: 1;
+}

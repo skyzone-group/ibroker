@@ -43,7 +43,6 @@ import ObjectSinglePage from '../views/ObjectSinglePage.vue'
 // Notifications
 import Notifications from '../../src/layouts/Notifications.vue'
 import Friendship from '../views/notifications/Friendship.vue'
-
 const routes = [
     {
         path: '/',

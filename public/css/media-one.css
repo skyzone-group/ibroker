@@ -216,8 +216,8 @@
         margin-top: 20px;
     }
 
-    .quick-filter-top .single_button_select_box_label,
-    .quick_filtr_block-fieldset .single_button_select_box_label {
+    .mobile-filter-tabs  .single_button_select_box_label,
+    .mobile-filter-tabs  .single_button_select_box_label {
         width: auto;
     }
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="home_page">
-        <div class="home_page_div">
-            <div v-show="filterBlock" class="filter-block">
+        <div v-if="filterBlock" class="home_page_div">
+            <div class="filter-block">
                 <div class="filter-block-inputs">
                     <div class="filter-block-inputs_content">
                         <div class="filter-block-inputs_content-top">
@@ -18,10 +18,6 @@
                 </div>
                 <div class="filter-block-back"></div>
                 <div class="filter-block-back__img"></div>
-            </div>
-            <div v-if="sectionComponents" class="section__components m-0">
-                <quick-filtr></quick-filtr>
-                <services></services>
             </div>
             <useful-links></useful-links>
             <objects></objects>
@@ -72,7 +68,6 @@
                     </div>
                 </div>
             </div>
-            
             <!-- New Objects list start -->
             <div class="new_objects_list mb-5">
                 <div class="container_fluid">
@@ -1124,6 +1119,9 @@
             </div>
             <!-- Useful cards end -->
         </div>
+        <div v-else class="mobile-filter">
+            <mobile-filter></mobile-filter>
+        </div>
     </div>
 </template>
 
@@ -1136,21 +1134,21 @@ import UsefulLinks from '../../components/index/UsefulLinks.vue'
 import Objects from '../../components/index/obejcts/Objects.vue'
 import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
+import MobileFilter from '../../components/index/MobileFilter.vue'
+
 
 export default {
     components: {
         NavBar,
         FilterObjects,
-        QuickFiltr,
-        Services,
         UsefulLinks,
         Objects,
         TabView,
-        TabPanel
+        TabPanel,
+        MobileFilter
     },
     data() {
         return {
-            sectionComponents: false,
             filterBlock: false,
             active1: 0,
             active2: 0,
@@ -1176,11 +1174,9 @@ export default {
         checkScreen() {
             this.windowWidth = window.innerWidth;
             if(this.windowWidth <= 991){
-                this.sectionComponents = true;
                 this.filterBlock = false;
                 return;
             }
-            this.sectionComponents = false;
             this.filterBlock = true;
         },
     },
