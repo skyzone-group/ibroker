@@ -57,14 +57,19 @@
                                     Район
                                 </span>
                                 <div class="options_main__items_inputs_block d-flex flex-column">
-                                    <MultiSelect v-model="form.district_id" @change="getQuarters()" :virtualScrollerOptions="{ lazy: true, onLazyLoad: getQuarters, itemSize: 38, showLoader: true, loading: loadingIn, delay: 250 }" :options="districts"
-                                    optionLabel="name_ru" optionValue="id" display="chip" placeholder="Выберите район"
+                                    <MultiSelect v-model="form.district_id" @change="getQuarters()" 
+                                    :virtualScrollerOptions="{ lazy: true, onLazyLoad: getDistricts, itemSize: 38, showLoader: true, loading: loadingIn, delay: 250 }" 
+                                    :options="districts"
+                                    optionLabel="name_ru" 
+                                    optionValue="id" 
+                                    display="chip" 
+                                    placeholder="Выберите район"
                                     :filter="true" panelClass="p-multiselect-panell">
-                                        <template v-slot:loader="{ options }">
+                                        <!-- <template v-slot:loader="{ options }">
                                             <div class="flex align-items-center p-2" style="height: 38px" >
                                                 <Skeleton :width="options.even ? '60%' : '50%'" height="1rem" />
                                             </div>
-                                        </template>
+                                        </template> -->
                                         <template #empty>
                                             <div class="flex align-items-center p-2" style="height: 38px" >
                                                 No available options
@@ -80,9 +85,17 @@
                                     Улица
                                 </span>
                                 <div class="options_main__items_inputs_block d-flex flex-column">
-                                    <MultiSelect v-model="form.quarter_id" :options="quarters"
+                                    <MultiSelect v-model="form.quarter_id" 
+                                    :virtualScrollerOptions="{ lazy: true, itemSize: 38, onLazyLoad: getQuarters, showLoader: true, loading: loadingIn, delay: 250 }" 
+                                    :options="quarters"
                                     optionLabel="name_ru" optionValue="id" display="chip" placeholder="Выберите район"
-                                    :filter="true" panelClass="p-multiselect-panell" />
+                                    :filter="true" panelClass="p-multiselect-panell">
+                                        <template #empty>
+                                            <div class="flex align-items-center p-2" style="height: 38px" >
+                                                No available options
+                                            </div>
+                                        </template>
+                                    </MultiSelect>
                                 </div>
                             </div>
                         </div>
@@ -341,9 +354,10 @@ export default {
                 .then(response => {
                     this.regions = response.data.result
                     const lazyItems = [...this.regions];
-    
-    
                     this.regions = lazyItems;
+                    this.loadingIn = false;
+                })
+                .catch(function (error){
                     this.loadingIn = false;
                 });
             }, Math.random() * 1000 + 250);
@@ -369,11 +383,23 @@ export default {
             }, Math.random() * 1000 + 250);
         },
         getQuarters() {
+            this.loadingIn = true;
+
+            if (this.loadLazyTimeout) {
+                clearTimeout(this.loadLazyTimeout);
+            }
+
             let district_id = this.form.district_id;
-            axios.get('/api/quarters/' + district_id)
-            .then(response => {
-                this.quarters = response.data.result
-            });
+            //imitate delay of a backend call
+            this.loadLazyTimeout = setTimeout(() => {
+                axios.get('/api/quarters/' + district_id)
+                .then(response => {
+                    this.quarters = response.data.result
+                    const lazyItems = [...this.quarters];
+                    this.quarters = lazyItems;
+                    this.loadingIn = false;
+                });
+            }, Math.random() * 1000 + 250);
         },
     },
     mounted() {
