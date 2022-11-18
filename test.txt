@@ -1,0 +1,620 @@
+<div class="mobile-filter-view-tabs-view">
+    <TabView ref="tabview5" v-model:activeIndex="active4">
+        <TabPanel>
+            <div class="mobile-filter-view-tabs-view-item">
+                <Dropdown v-model="selectedCity1" :options="cities" optionLabel="name" optionValue="code" placeholder="Выберите тип" class="w-100" />
+            </div>
+            <div v-if="selectedCity1 === 'apartment'" class="mobile-filter-view-tabs-view-item">
+                <div class="mobile-filter-apartment-types">
+                    <label for="all-types" class="mobile-filter-apartment-types-label" :class="{'active' : this.typeApartment == 'all-types'}">
+                        <input v-model="typeApartment" id="all-types" type="radio" value="all-types" tabindex="0">
+                        Все
+                    </label>
+                    <label for="new-buildings" class="mobile-filter-apartment-types-label" :class="{'active' : this.typeApartment == 'new-buildings'}">
+                        <input v-model="typeApartment" id="new-buildings" type="radio" value="new-buildings" tabindex="0">
+                        Новостройка
+                    </label>
+                    <label for="resale" class="mobile-filter-apartment-types-label" :class="{'active' : this.typeApartment == 'resale'}">
+                        <input v-model="typeApartment" id="resale" type="radio" value="resale" tabindex="0">
+                        Вторичка
+                    </label>
+                </div>
+            </div>
+            <div v-if="selectedCity1 === 'house'" class="mobile-filter-view-tabs-view-item">
+                <div class="mobile-filter-apartment-types">
+                    <label for="all-types" class="mobile-filter-apartment-types-label" :class="{'active' : this.typeHouse == 'all-types'}">
+                        <input v-model="typeHouse" id="all-types" type="radio" value="all-types" tabindex="0">
+                        Все
+                    </label>
+                    <label for="cottage" class="mobile-filter-apartment-types-label" :class="{'active' : this.typeHouse == 'cottage'}">
+                        <input v-model="typeHouse" id="cottage" type="radio" value="cottage" tabindex="0">
+                        Коттеджный пос.
+                    </label>
+                    <label for="resale" class="mobile-filter-apartment-types-label" :class="{'active' : this.typeHouse == 'resale'}">
+                        <input v-model="typeHouse" id="resale" type="radio" value="resale" tabindex="0">
+                        Вторичка
+                    </label>
+                </div>
+            </div>
+            <div v-if="selectedCity1 === 'house' || selectedCity1 === 'garage' || selectedCity1 === 'commercial'" class="mobile-filter-view-tabs-view-item">
+                <div>
+                    <div>
+                        <label class="mobile-filter-view-tabs-view-item-label">
+                            {{ selectedCity1 == 'house' ? 'Тип дома' : selectedCity1 == 'garage' ? 'Тип гаража' : 'Тип коммерческой недвижимости' }}
+                        </label>
+                    </div>
+                    <div class="mobile-filter-view-tabs-view-item-content-wrapper">
+                        <div class="mobile-filter-views-house-container">
+                            <div class="mobile-filter-views-house-item w-100">
+                                <button data-toggle="modal" data-target="#typeHouseModal"  class="d-flex align-items-center justify-content-between w-100 mobile-filter-views-house-item-btn" type="button">
+                                    <span>{{ selectedCity1 == 'house' ? 'Тип дома' : selectedCity1 == 'garage' ? 'Тип гаража' : 'Тип коммерческой недвижимости' }}</span>
+                                    <span>неважно</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="selectedCity1 === 'apartment'" class="mobile-filter-view-tabs-view-item">
+                <div>
+                    <div>
+                        <label class="mobile-filter-view-tabs-view-item-label">
+                            Количество комнат
+                        </label>
+                    </div>
+                    <div class="mobile-filter-view-tabs-view-item-content-wrapper">
+                        <div class="w-100">
+                            <div class="">
+                                <div class="mobile-filter-views-room-types">
+                                    <div class="mobile-filter-views-room-item">
+                                        <label for="room1" class="apartment-type_label">
+                                            <input v-if="Room1" name="roomstotal[]" id="room1" value="room-1" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Room1 = !this.Room1" class="apartment-type-btn" type="button" :class="{'active' : this.Room1 === true}">
+                                                <span class="Button__text">1</span>
+                                            </button>
+                                        </label>
+                                    </div>
+                                    <div class="mobile-filter-views-room-item">
+                                        <label for="room2" class="apartment-type_label">
+                                            <input v-if="Room2" name="roomstotal[]" id="room2" value="room-2" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Room2 = !this.Room2" class="apartment-type-btn" type="button" :class="{'active' : this.Room2 === true}">
+                                                <span class="Button__text">2</span>
+                                            </button>
+                                        </label>
+                                    </div>
+                                    <div class="mobile-filter-views-room-item">
+                                        <label for="room3" class="apartment-type_label">
+                                            <input v-if="Room3" name="roomstotal[]" id="room3" value="room-3" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Room3 = !this.Room3" class="apartment-type-btn" type="button" :class="{'active' : this.Room3 === true}">
+                                                <span class="Button__text">3</span>
+                                            </button>
+                                        </label>
+                                    </div>
+                                    <div class="mobile-filter-views-room-item">
+                                        <label for="room4" class="apartment-type_label">
+                                            <input v-if="Room4" name="roomstotal[]" id="room4" value="room-4" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Room4 = !this.Room4" class="apartment-type-btn" type="button" :class="{'active' : this.Room4 === true}">
+                                                <span class="Button__text">4+</span>
+                                            </button>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="w-100 mt-3">
+                                    <div class="mobile-filter-views-room-item w-100">
+                                        <label for="studio" class="apartment-type_label w-100">
+                                            <input v-if="Studio" name="roomstotal[]" id="studio" value="studio" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Studio = !this.Studio" class="apartment-type-btn" type="button" :class="{'active' : this.Studio === true}">
+                                                <span class="Button__text">Студия</span>
+                                            </button>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-filter-view-tabs-view-item">
+                <div>
+                    <div>
+                        <label class="mobile-filter-view-tabs-view-item-label">
+                            Цена <b>сум</b>
+                        </label>
+                    </div>
+                    <div class="mobile-filter-view-tabs-view-item-content-wrapper">
+                        <div>
+                            <div class="w-100 d-flex align-items-center">
+                                <div class="w-100 d-flex" style="flex-grow: 1;">
+                                    <span class="mobile-filter-view-tabs-view-item-content-price-span">
+                                        <input type="text" class="mobile-filter-view-tabs-view-item-content-price-span-input" id="filter-price-min" minlength="0"  maxlength="16" autocomplete="off" placeholder="от" name="price_min">
+                                    </span>
+                                    <span class="mobile-filter-view-tabs-view-item-content-price-span">
+                                        <input type="text" class="mobile-filter-view-tabs-view-item-content-price-span-input" id="filter-price-max" minlength="0"  maxlength="16" autocomplete="off" placeholder="до" name="price_max">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="selectedCity1 === 'apartment' || selectedCity1 === 'commercial'" class="mobile-filter-view-tabs-view-item">
+                <div class="mobile-filter-apartment-types mobile-filter-price-types">
+                    <label for="for-all" class="mobile-filter-apartment-types-label" :class="{'active' : this.typePrice == 'for-all'}">
+                        <input v-model="typePrice" id="for-all" type="radio" value="for-all" tabindex="0">
+                        За всё
+                    </label>
+                    <label for="per_m²" class="mobile-filter-apartment-types-label" :class="{'active' : this.typePrice == 'per_m²'}">
+                        <input v-model="typePrice" id="per_m²" type="radio" value="per_m²" tabindex="0">
+                        За м²
+                    </label>
+                </div>
+            </div>
+            <div v-if="selectedCity1 === 'plot'" class="mobile-filter-view-tabs-view-item">
+                <div class="mobile-filter-apartment-types mobile-filter-price-types">
+                    <label for="for-all" class="mobile-filter-apartment-types-label" :class="{'active' : this.typePrice == 'for-all'}">
+                        <input v-model="typePrice" id="for-all" type="radio" value="for-all" tabindex="0">
+                        За всё
+                    </label>
+                    <label for="per_hundred" class="mobile-filter-apartment-types-label" :class="{'active' : this.typePrice == 'per_hundred'}">
+                        <input v-model="typePrice" id="per_hundred" type="radio" value="per_hundred" tabindex="0">
+                        За сот
+                    </label>
+                </div>
+            </div>
+            <div v-if="selectedCity1 != 'garage'" class="mobile-filter-view-tabs-view-item">
+                <div>
+                    <div>
+                        <label class="mobile-filter-view-tabs-view-item-label">
+                            Площадь <b>{{ selectedCity1 === 'plot' ? 'сот.' : 'м²' }}</b>
+                        </label>
+                    </div>
+                    <div class="mobile-filter-view-tabs-view-item-content-wrapper">
+                        <div>
+                            <div class="w-100 d-flex align-items-center">
+                                <div class="w-100 d-flex" style="flex-grow: 1;">
+                                    <span class="mobile-filter-view-tabs-view-item-content-price-span">
+                                        <input type="text" class="mobile-filter-view-tabs-view-item-content-price-span-input" id="filter-area-min" minlength="0"  maxlength="16" autocomplete="off" placeholder="от" name="area_min">
+                                    </span>
+                                    <span class="mobile-filter-view-tabs-view-item-content-price-span">
+                                        <input type="text" class="mobile-filter-view-tabs-view-item-content-price-span-input" id="filter-area-max" minlength="0"  maxlength="16" autocomplete="off" placeholder="до" name="area_max">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-filter-view-tabs-view-item">
+                <div>
+                    <!-- <div>
+                        <label class="mobile-filter-view-tabs-view-item-label">
+                            Цена <b>сум</b>
+                        </label>
+                    </div> -->
+                    <div class="mobile-filter-view-tabs-view-item-content-wrapper">
+                        <div>
+                            <div class="w-100 d-flex align-items-center">
+                                <div class="w-100" style="flex-grow: 1;">
+                                    <span class="mobile-filter-view-tabs-view-item-content-price-span">
+                                        <input type="text" class="mobile-filter-view-tabs-view-item-content-address-span-input" id="address" minlength="0"  maxlength="255" autocomplete="off" name="address-name" placeholder="Город, адрес, метро, район">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </TabPanel>
+        <TabPanel>
+            <div class="mobile-filter-view-tabs-view-item">
+                <Dropdown v-model="selectedCity1" :options="cities" optionLabel="name" optionValue="code" placeholder="Выберите тип" class="w-100" />
+            </div>
+            <div v-if="selectedCity1 === 'apartment'" class="mobile-filter-view-tabs-view-item">
+                <div>
+                    <div>
+                        <label class="mobile-filter-view-tabs-view-item-label">
+                            Количество комнат
+                        </label>
+                    </div>
+                    <div class="mobile-filter-view-tabs-view-item-content-wrapper">
+                        <div class="w-100">
+                            <div class="">
+                                <div class="mobile-filter-views-room-types">
+                                    <div class="mobile-filter-views-room-item">
+                                        <label for="room1" class="apartment-type_label">
+                                            <input v-if="Room1" name="roomstotal[]" id="room1" value="room-1" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Room1 = !this.Room1" class="apartment-type-btn" type="button" :class="{'active' : this.Room1 === true}">
+                                                <span class="Button__text">1</span>
+                                            </button>
+                                        </label>
+                                    </div>
+                                    <div class="mobile-filter-views-room-item">
+                                        <label for="room2" class="apartment-type_label">
+                                            <input v-if="Room2" name="roomstotal[]" id="room2" value="room-2" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Room2 = !this.Room2" class="apartment-type-btn" type="button" :class="{'active' : this.Room2 === true}">
+                                                <span class="Button__text">2</span>
+                                            </button>
+                                        </label>
+                                    </div>
+                                    <div class="mobile-filter-views-room-item">
+                                        <label for="room3" class="apartment-type_label">
+                                            <input v-if="Room3" name="roomstotal[]" id="room3" value="room-3" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Room3 = !this.Room3" class="apartment-type-btn" type="button" :class="{'active' : this.Room3 === true}">
+                                                <span class="Button__text">3</span>
+                                            </button>
+                                        </label>
+                                    </div>
+                                    <div class="mobile-filter-views-room-item">
+                                        <label for="room4" class="apartment-type_label">
+                                            <input v-if="Room4" name="roomstotal[]" id="room4" value="room-4" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Room4 = !this.Room4" class="apartment-type-btn" type="button" :class="{'active' : this.Room4 === true}">
+                                                <span class="Button__text">4+</span>
+                                            </button>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="w-100 mt-3">
+                                    <div class="mobile-filter-views-room-item w-100">
+                                        <label for="studio" class="apartment-type_label w-100">
+                                            <input v-if="Studio" name="roomstotal[]" id="studio" value="studio" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Studio = !this.Studio" class="apartment-type-btn" type="button" :class="{'active' : this.Studio === true}">
+                                                <span class="Button__text">Студия</span>
+                                            </button>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="selectedCity1 === 'house' || selectedCity1 === 'garage' || selectedCity1 === 'commercial'" class="mobile-filter-view-tabs-view-item">
+                <div>
+                    <div>
+                        <label class="mobile-filter-view-tabs-view-item-label">
+                            {{ selectedCity1 == 'house' ? 'Тип дома' : selectedCity1 == 'garage' ? 'Тип гаража' : 'Тип коммерческой недвижимости' }}
+                        </label>
+                    </div>
+                    <div class="mobile-filter-view-tabs-view-item-content-wrapper">
+                        <div class="mobile-filter-views-house-container">
+                            <div class="mobile-filter-views-house-item w-100">
+                                <button data-toggle="modal" data-target="#typeHouseModal"  class="d-flex align-items-center justify-content-between w-100 mobile-filter-views-house-item-btn" type="button">
+                                    <span>{{ selectedCity1 == 'house' ? 'Тип дома' : selectedCity1 == 'garage' ? 'Тип гаража' : 'Тип коммерческой недвижимости' }}</span>
+                                    <span>неважно</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-filter-view-tabs-view-item">
+                <div>
+                    <div>
+                        <label class="mobile-filter-view-tabs-view-item-label">
+                            Цена <b>сум</b>
+                        </label>
+                    </div>
+                    <div class="mobile-filter-view-tabs-view-item-content-wrapper">
+                        <div>
+                            <div class="w-100 d-flex align-items-center">
+                                <div class="w-100 d-flex" style="flex-grow: 1;">
+                                    <span class="mobile-filter-view-tabs-view-item-content-price-span">
+                                        <input type="text" class="mobile-filter-view-tabs-view-item-content-price-span-input" id="filter-price-min" minlength="0"  maxlength="16" autocomplete="off" placeholder="от" name="price_min">
+                                    </span>
+                                    <span class="mobile-filter-view-tabs-view-item-content-price-span">
+                                        <input type="text" class="mobile-filter-view-tabs-view-item-content-price-span-input" id="filter-price-max" minlength="0"  maxlength="16" autocomplete="off" placeholder="до" name="price_max">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="selectedCity1 === 'commercial'" class="mobile-filter-view-tabs-view-item">
+                <div class="mobile-filter-apartment-types mobile-filter-price-types">
+                    <label for="for-all" class="mobile-filter-apartment-types-label" :class="{'active' : this.typePrice == 'for-all'}">
+                        <input v-model="typePrice" id="for-all" type="radio" value="for-all" tabindex="0">
+                        За всё
+                    </label>
+                    <label for="per_m²" class="mobile-filter-apartment-types-label" :class="{'active' : this.typePrice == 'per_m²'}">
+                        <input v-model="typePrice" id="per_m²" type="radio" value="per_m²" tabindex="0">
+                        За м²
+                    </label>
+                </div>
+            </div>
+            <div v-if="selectedCity1 != 'garage'" class="mobile-filter-view-tabs-view-item">
+                <div>
+                    <div>
+                        <label class="mobile-filter-view-tabs-view-item-label">
+                            Площадь <b>{{ selectedCity1 === 'plot' ? 'сот.' : 'м²' }}</b>
+                        </label>
+                    </div>
+                    <div class="mobile-filter-view-tabs-view-item-content-wrapper">
+                        <div>
+                            <div class="w-100 d-flex align-items-center">
+                                <div class="w-100 d-flex" style="flex-grow: 1;">
+                                    <span class="mobile-filter-view-tabs-view-item-content-price-span">
+                                        <input type="text" class="mobile-filter-view-tabs-view-item-content-price-span-input" id="filter-area-min" minlength="0"  maxlength="16" autocomplete="off" placeholder="от" name="area_min">
+                                    </span>
+                                    <span class="mobile-filter-view-tabs-view-item-content-price-span">
+                                        <input type="text" class="mobile-filter-view-tabs-view-item-content-price-span-input" id="filter-area-max" minlength="0"  maxlength="16" autocomplete="off" placeholder="до" name="area_max">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-filter-view-tabs-view-item">
+                <div>
+                    <!-- <div>
+                        <label class="mobile-filter-view-tabs-view-item-label">
+                            Цена <b>сум</b>
+                        </label>
+                    </div> -->
+                    <div class="mobile-filter-view-tabs-view-item-content-wrapper">
+                        <div>
+                            <div class="w-100 d-flex align-items-center">
+                                <div class="w-100" style="flex-grow: 1;">
+                                    <span class="mobile-filter-view-tabs-view-item-content-price-span">
+                                        <input type="text" class="mobile-filter-view-tabs-view-item-content-address-span-input" id="address" minlength="0"  maxlength="255" autocomplete="off" name="address-name" placeholder="Город, адрес, метро, район">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </TabPanel>
+        <TabPanel>
+            <div class="mobile-filter-view-tabs-view-item">
+                <Dropdown v-model="selectedCity1" :options="hourlyType" optionLabel="name" optionValue="code" placeholder="Выберите тип" class="w-100" />
+            </div>
+            <div v-if="selectedCity1 === 'apartment'" class="mobile-filter-view-tabs-view-item">
+                <div>
+                    <div>
+                        <label class="mobile-filter-view-tabs-view-item-label">
+                            Количество комнат
+                        </label>
+                    </div>
+                    <div class="mobile-filter-view-tabs-view-item-content-wrapper">
+                        <div class="w-100">
+                            <div class="">
+                                <div class="mobile-filter-views-room-types">
+                                    <div class="mobile-filter-views-room-item">
+                                        <label for="room1" class="apartment-type_label">
+                                            <input v-if="Room1" name="roomstotal[]" id="room1" value="room-1" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Room1 = !this.Room1" class="apartment-type-btn" type="button" :class="{'active' : this.Room1 === true}">
+                                                <span class="Button__text">1</span>
+                                            </button>
+                                        </label>
+                                    </div>
+                                    <div class="mobile-filter-views-room-item">
+                                        <label for="room2" class="apartment-type_label">
+                                            <input v-if="Room2" name="roomstotal[]" id="room2" value="room-2" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Room2 = !this.Room2" class="apartment-type-btn" type="button" :class="{'active' : this.Room2 === true}">
+                                                <span class="Button__text">2</span>
+                                            </button>
+                                        </label>
+                                    </div>
+                                    <div class="mobile-filter-views-room-item">
+                                        <label for="room3" class="apartment-type_label">
+                                            <input v-if="Room3" name="roomstotal[]" id="room3" value="room-3" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Room3 = !this.Room3" class="apartment-type-btn" type="button" :class="{'active' : this.Room3 === true}">
+                                                <span class="Button__text">3</span>
+                                            </button>
+                                        </label>
+                                    </div>
+                                    <div class="mobile-filter-views-room-item">
+                                        <label for="room4" class="apartment-type_label">
+                                            <input v-if="Room4" name="roomstotal[]" id="room4" value="room-4" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Room4 = !this.Room4" class="apartment-type-btn" type="button" :class="{'active' : this.Room4 === true}">
+                                                <span class="Button__text">4+</span>
+                                            </button>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="w-100 mt-3">
+                                    <div class="mobile-filter-views-room-item w-100">
+                                        <label for="studio" class="apartment-type_label w-100">
+                                            <input v-if="Studio" name="roomstotal[]" id="studio" value="studio" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Studio = !this.Studio" class="apartment-type-btn" type="button" :class="{'active' : this.Studio === true}">
+                                                <span class="Button__text">Студия</span>
+                                            </button>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="selectedCity1 === 'house'" class="mobile-filter-view-tabs-view-item">
+                <div>
+                    <div>
+                        <label class="mobile-filter-view-tabs-view-item-label">
+                            {{ selectedCity1 == 'house' ? 'Тип дома' : selectedCity1 == 'garage' ? 'Тип гаража' : 'Тип коммерческой недвижимости' }}
+                        </label>
+                    </div>
+                    <div class="mobile-filter-view-tabs-view-item-content-wrapper">
+                        <div class="mobile-filter-views-house-container">
+                            <div class="mobile-filter-views-house-item w-100">
+                                <button data-toggle="modal" data-target="#typeHouseModal"  class="d-flex align-items-center justify-content-between w-100 mobile-filter-views-house-item-btn" type="button">
+                                    <span>{{ selectedCity1 == 'house' ? 'Тип дома' : selectedCity1 == 'garage' ? 'Тип гаража' : 'Тип коммерческой недвижимости' }}</span>
+                                    <span>неважно</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-filter-view-tabs-view-item">
+                <div>
+                    <div>
+                        <label class="mobile-filter-view-tabs-view-item-label">
+                            Цена <b>сум</b>
+                        </label>
+                    </div>
+                    <div class="mobile-filter-view-tabs-view-item-content-wrapper">
+                        <div>
+                            <div class="w-100 d-flex align-items-center">
+                                <div class="w-100 d-flex" style="flex-grow: 1;">
+                                    <span class="mobile-filter-view-tabs-view-item-content-price-span">
+                                        <input type="text" class="mobile-filter-view-tabs-view-item-content-price-span-input" id="filter-price-min" minlength="0"  maxlength="16" autocomplete="off" placeholder="от" name="price_min">
+                                    </span>
+                                    <span class="mobile-filter-view-tabs-view-item-content-price-span">
+                                        <input type="text" class="mobile-filter-view-tabs-view-item-content-price-span-input" id="filter-price-max" minlength="0"  maxlength="16" autocomplete="off" placeholder="до" name="price_max">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div  class="mobile-filter-view-tabs-view-item">
+                <div>
+                    <div>
+                        <label class="mobile-filter-view-tabs-view-item-label">
+                            Площадь <b>{{ selectedCity1 === 'plot' ? 'сот.' : 'м²' }}</b>
+                        </label>
+                    </div>
+                    <div class="mobile-filter-view-tabs-view-item-content-wrapper">
+                        <div>
+                            <div class="w-100 d-flex align-items-center">
+                                <div class="w-100 d-flex" style="flex-grow: 1;">
+                                    <span class="mobile-filter-view-tabs-view-item-content-price-span">
+                                        <input type="text" class="mobile-filter-view-tabs-view-item-content-price-span-input" id="filter-area-min" minlength="0"  maxlength="16" autocomplete="off" placeholder="от" name="area_min">
+                                    </span>
+                                    <span class="mobile-filter-view-tabs-view-item-content-price-span">
+                                        <input type="text" class="mobile-filter-view-tabs-view-item-content-price-span-input" id="filter-area-max" minlength="0"  maxlength="16" autocomplete="off" placeholder="до" name="area_max">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-filter-view-tabs-view-item">
+                <div>
+                    <!-- <div>
+                        <label class="mobile-filter-view-tabs-view-item-label">
+                            Цена <b>сум</b>
+                        </label>
+                    </div> -->
+                    <div class="mobile-filter-view-tabs-view-item-content-wrapper">
+                        <div>
+                            <div class="w-100 d-flex align-items-center">
+                                <div class="w-100" style="flex-grow: 1;">
+                                    <span class="mobile-filter-view-tabs-view-item-content-price-span">
+                                        <input type="text" class="mobile-filter-view-tabs-view-item-content-address-span-input" id="address" minlength="0"  maxlength="255" autocomplete="off" name="address-name" placeholder="Город, адрес, метро, район">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </TabPanel>
+    </TabView>
+    <!-- Modal -->
+    <div class="mobile-filter-views-house-modal">
+        <div class="modal" id="typeHouseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                <div v-if="selectedCity1 === 'house'" class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center" id="exampleModalLabel">Тип дома</h5>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="modal-body-form">
+                            <form>
+                                <div class="FiltersFormFieldPanel__controls">
+                                    <div class="mt-4">
+                                        <div class="d-flex flex-column">
+                                            <div v-for="(item, index) in typesHouse" :key="item.code" class="mobile-filter-views-house-modal-item">
+                                                <div class="Tumbler__title">{{ item.name }}</div>
+                                                <InputSwitch v-model="checked1[index]" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="FiltersFormFieldPanel__actions">
+                                    <button  data-dismiss="modal" aria-label="Close" class="Button Button_js_inited Button_size_l Button_theme_islands Button_type_button FiltersFormFieldPanel__cancel" type="button"><span class="Button__text">Отменить</span></button>
+                                    <button class="Button Button_js_inited Button_size_l Button_theme_realty Button_type_button Button_theme_islands Button_view_yellow FiltersFormFieldPanel__save" type="submit"><span class="Button__text d-block">Поиск</span></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="selectedCity1 === 'garage'" class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center" id="exampleModalLabel">Тип гаража</h5>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="modal-body-form">
+                            <form>
+                                <div class="FiltersFormFieldPanel__controls">
+                                    <div class="mt-4">
+                                        <div class="d-flex flex-column">
+                                            <div v-for="(item, index) in typesGarage" :key="item.code" class="mobile-filter-views-house-modal-item">
+                                                <div class="Tumbler__title">{{ item.name }}</div>
+                                                <InputSwitch v-model="checked1[index]" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="FiltersFormFieldPanel__actions">
+                                    <button  data-dismiss="modal" aria-label="Close" class="Button Button_js_inited Button_size_l Button_theme_islands Button_type_button FiltersFormFieldPanel__cancel" type="button"><span class="Button__text">Отменить</span></button>
+                                    <button class="Button Button_js_inited Button_size_l Button_theme_realty Button_type_button Button_theme_islands Button_view_yellow FiltersFormFieldPanel__save" type="submit"><span class="Button__text d-block">Поиск</span></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="selectedCity1 === 'commercial'" class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center" id="exampleModalLabel">Тип коммерческой недвижимости</h5>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="modal-body-form">
+                            <form>
+                                <div class="FiltersFormFieldPanel__controls">
+                                    <div class="mt-4">
+                                        <div class="d-flex flex-column">
+                                            <div v-for="(item, index) in typesCommercial" :key="item.code" class="mobile-filter-views-house-modal-item">
+                                                <div class="Tumbler__title">{{ item.name }}</div>
+                                                <InputSwitch v-model="checked1[index]" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="FiltersFormFieldPanel__actions">
+                                    <button  data-dismiss="modal" aria-label="Close" class="Button Button_js_inited Button_size_l Button_theme_islands Button_type_button FiltersFormFieldPanel__cancel" type="button"><span class="Button__text">Отменить</span></button>
+                                    <button class="Button Button_js_inited Button_size_l Button_theme_realty Button_type_button Button_theme_islands Button_view_yellow FiltersFormFieldPanel__save" type="submit"><span class="Button__text d-block">Поиск</span></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    
+    <!-- mobile-filter-views Buttons  -->
+    <div class="mobile-filter-views-buttons-container">
+        <div class="FormFieldSet__controls Grid">
+            <div class="mobile-filter-views-btn GridCell_size_3">
+                <button class="w-100 mobile-filter-views-btn-block" type="button">
+                    <img src="images/icons/location.png" alt="location" class="map-location-img IconSvg">
+                    <span class="Button__text">На карте</span>
+                </button>
+            </div>
+            <div class="mobile-filter-views-btn GridCell_size_5">
+                <button class="w-100 mobile-filter-views-btn-block button-yellow" type="button">
+                    <i class="feather icon-search"></i>
+                    <span class="Button__text">Найти</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

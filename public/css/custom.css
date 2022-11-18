@@ -1026,7 +1026,7 @@ a:hover {
     border-bottom: 1px solid #00000012 !important;
 }
 
-.mobile-filter-dialog  .p-dialog-content {
+.mobile-filter-dialog .p-dialog .p-dialog-content {
     padding: 0 2rem !important;
     height: 100% !important;
     overflow-y: auto;
@@ -1038,13 +1038,17 @@ a:hover {
 
 .mobile-filter-dialog-form-header{
     background: #f3f8fd;
-    margin: 0 -2rem;
 }
 
-.Htvpx {
+/* .Htvpx {
     padding: 1.5rem 2rem;
-}
+} */
 
+
+.mobile-filter-dialog .p-dialog-content{
+    background: #f3f8fd !important;
+    padding: 1.5rem 2rem !important;
+}
 
 .form-item+.form-item{
     margin-top: 16px;
@@ -3352,7 +3356,7 @@ textarea.md-form__control {
 .p-dialog-mask {
     background: rgba(24, 41, 48, 0.8) !important;
 }
-.p-dialog .p-dialog-header .p-dialog-title {
+.delete_user_avatar-model .p-dialog-header .p-dialog-title {
     display: block;
     color: #000 important;
     font-weight: 600 !important;

@@ -243,3 +243,27 @@
         height: 50px;
     }
 }
+
+@media (max-width: 450px){
+    .author-box-pic-img {
+        height: 40px;
+        width: 40px;
+    }
+}
+
+@media (max-width: 420px){
+    .object-body-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .object-body-footer .object-details-item {
+        margin-bottom: 15px;
+    }
+
+
+    .object-body-footer .object-details-item:not(:first-child) {
+        margin-bottom: 0;
+        width: 100%;
+    }
+}

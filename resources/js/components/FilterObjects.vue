@@ -298,36 +298,7 @@ export default {
         this.getRegions();
     },
     methods: {
-        urlData() {
-            if (this.form.object_deals !== "") {
-                this.$router.push({
-                    name: "SearchObject",
-                    query: {
-                        object_deals: this.form.object_deals,
-                        object_type: this.form.object_type,
-                        room_count_from: this.form.room_count_from,
-                        room_count_to: this.form.room_count_to,
-                        region_id: this.form.region_id,
-                        district_id: this.form.district_id,
-                        quarter_id: this.form.quarter_id,
-                        object_types_property_id: this.form.object_types_property_id,
-                        price_from: this.form.price_from,
-                        price_to: this.form.price_to,
-                        floor_from: this.form.floor_from,
-                        floor_to: this.form.floor_to,
-                        floor_count_from: this.form.floor_count_from,
-                        floor_count_to: this.form.floor_count_to,
-                        total_area_from: this.form.total_area_from,
-                        total_area_to: this.form.total_area_to,
-                        land_area_from: this.form.land_area_from,
-                        land_area_to: this.form.land_area_to
-                    },
-                });
-            }
-        },
         filterData(){
-            // console.log('ok');
-            // this.urlData();
             this.loading = true;
             axios.get('/api/object/search', this.form)
             .then(response => {
@@ -376,30 +347,20 @@ export default {
                 .then(response => {
                     this.districts = response.data.result
                     const lazyItems = [...this.districts];
-                    this.quarters = []
                     this.districts = lazyItems;
+                    this.loadingIn = false;
+                })
+                .catch(function (error){
                     this.loadingIn = false;
                 });
             }, Math.random() * 1000 + 250);
         },
         getQuarters() {
-            this.loadingIn = true;
-
-            if (this.loadLazyTimeout) {
-                clearTimeout(this.loadLazyTimeout);
-            }
-
             let district_id = this.form.district_id;
-            //imitate delay of a backend call
-            this.loadLazyTimeout = setTimeout(() => {
-                axios.get('/api/quarters/' + district_id)
-                .then(response => {
-                    this.quarters = response.data.result
-                    const lazyItems = [...this.quarters];
-                    this.quarters = lazyItems;
-                    this.loadingIn = false;
-                });
-            }, Math.random() * 1000 + 250);
+            axios.get('/api/quarters/' + district_id)
+            .then(response => {
+                this.quarters = response.data.result
+            })
         },
     },
     mounted() {

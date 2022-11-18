@@ -6,7 +6,6 @@
                     <div class="page__container">
                         <!-- Regions start -->
                         <div class="mobile-filter-region">
-                            <b class="mobile-filter-region-label">Выберите регион</b>
                             <div role="button" @click="openRegion('bottom')">
                                 <div class="field__container">
                                     <div class="field__set">
@@ -28,7 +27,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <Dialog v-model:visible="regionModal" :position="position" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}" contentClass="address-modal">
+                            <Dialog v-model:visible="regionModal" :position="position" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}" class="address_modal" contentClass="address-modal">
                                 <template #header>
                                     <h5>Выберите регион для поиска</h5>
                                 </template>
@@ -47,8 +46,6 @@
 
                         <!-- Districts start -->
                         <div class="mobile-filter-region">
-                            <b class="mobile-filter-region-label">
-                                Выберите район</b>
                             <div role="button" @click="openDistrict('bottom')">
                                 <div class="field__container">
                                     <div class="field__set">
@@ -73,7 +70,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <Dialog v-model:visible="districtModal" :position="position" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}" contentClass="address-modal">
+                            <Dialog v-model:visible="districtModal" :position="position" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}" class="address_modal" contentClass="address-modal">
                                 <template #header>
                                     <h5>Выберите район для поиска</h5>
                                 </template>
@@ -92,8 +89,6 @@
 
                         <!-- Quarters start -->
                         <div class="mobile-filter-region">
-                            <b class="mobile-filter-region-label">
-                                Выберите улица</b>
                             <div role="button" @click="openQuarter('bottom')">
                                 <div class="field__container">
                                     <div class="field__set">
@@ -118,7 +113,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <Dialog v-model:visible="quarterModal" :position="position" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}" contentClass="address-modal">
+                            <Dialog v-model:visible="quarterModal" :position="position" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}" class="address_modal" contentClass="address-modal">
                                 <template #header>
                                     <h5>Выберите улица для поиска</h5>
                                 </template>

@@ -3,12 +3,12 @@ import {createRouter, createWebHistory} from 'vue-router'
 // Main Views
 import Main from '../../src/layouts/Main.vue'
 import Admin from '../../src/layouts/Admin.vue'
+import AgentSite from '../../src/layouts/AgentSite.vue'
 // Web Pages
 import IndexPage from '../../src/views/HomeIndex.vue'
 import CommercialPage from '../../src/views/Commercial.vue'
 import RentPage from '../../src/views/Rent.vue'
 import PartnersInfo from '../../src/views/PartnersPage.vue'
-import RieltorHome from '../../src/views/RieltorHome.vue'
 import RieltorInfo from '../../src/views/RieltorInfo.vue'
 import Edit from '../../src/views/edit.vue'
 
@@ -121,13 +121,6 @@ const routes = [
                 },
             },
             {
-                path: '/agent-single',
-                name: 'agentSingle',
-                components: {
-                    main: RieltorHome,
-                },
-            },
-            {
                 path: '/agent-info',
                 name: 'agentInfo',
                 components: {
@@ -222,6 +215,11 @@ const routes = [
                 },
             },
         ]
+    },
+    {
+        path: '/agent-single',
+        name: 'agentSingle',
+        component: AgentSite,
     },
 ]
 
