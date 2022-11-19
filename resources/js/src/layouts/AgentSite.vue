@@ -49,133 +49,7 @@
                                             </div>
                                         </div>
                                         <div class="realtor__info-main-filter mt-5">
-                                            <!-- Desktop Filter start -->
-                                            <div v-if="DesktopFilter" class="realtor__info-main-filter-filters">
-                                                <form class="FiltersForm_name_main">
-                                                    <div class="FiltersForm__content">
-                                                        <div class="filters-tabs">
-                                                            <div class="filters-tabs-wrapper d-flex align-items-center">
-                                                                <label for="type__filter" class="filters-tabs-item Radio_theme_realty" :class="{'active' : this.typeSearch == 'buy'}">
-                                                                    <input v-model="typeSearch" id="type__filter" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="buy">
-                                                                    Купить
-                                                                </label>
-                                                                <label for="type__filter_2" class="filters-tabs-item Radio_theme_realty" :class="{'active' : this.typeSearch == 'rent'}">
-                                                                    <input v-model="typeSearch" id="type__filter_2" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="rent">
-                                                                    Снять
-                                                                </label>
-                                                                <label for="type__filter_3" class="filters-tabs-item Radio_theme_realty" :class="{'active' : this.typeSearch == 'hourly'}">
-                                                                    <input v-model="typeSearch" id="type__filter_3" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="hourly">
-                                                                    Посуточно
-                                                                </label>
-                                                                <label for="type__filter_4" class="filters-tabs-item Radio_theme_realty" :class="{'active' : this.typeSearch == 'new_buildings'}">
-                                                                    <input v-model="typeSearch" id="type__filter_4" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="new_buildings">
-                                                                    Новостройки
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="FiltersForm__content-filters mb-4">
-                                                            <div class="filters-wrapper w-100 d-flex">
-                                                                <div class="filters-wrapper-item filters-wrapper-item-container-1">
-                                                                    <Dropdown v-model="selectedCity1" :options="typeSearch == 'buy' || typeSearch == 'rent' ? cities : typeSearch == 'hourly'  ? hourlyType : newBuildingsType" optionLabel="name" optionValue="code" placeholder="Выберите тип" />
-                                                                </div>
-                                                                <div v-if="selectedCity1 === 'apartment'" class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_roomsTotal FiltersFormField">
-                                                                    <div class='apartment-type h-100 d-flex align-items-center filters-wrapper-item-padding'>
-                                                                        <!-- <label for="studio" class="apartment-type_label">
-                                                                            <button class="apartment-type-btn" type="button" :class="{'apartment-type-btn-active' : roomsTotal === true}">
-                                                                            <input v-model="roomsTotal" type="checkbox" id="studio" value="studio" class="apartment-type_label-input">
-                                                                                <span class="Button__text">Студия</span>
-                                                                            </button>
-                                                                        </label> -->
-                                                                        <label for="studio" class="apartment-type_label">
-                                                                            <input v-if="Studio" name="roomstotal[]" id="studio" value="studio" type="hidden" class="apartment-type_label-input" tabindex="0">
-                                                                            <button @click="this.Studio = !this.Studio" class="apartment-type-btn" type="button" :class="{'apartment-type-btn-active' : this.Studio === true}">
-                                                                                <span class="Button__text">Студия</span>
-                                                                            </button>
-                                                                        </label>
-                                                                        <label for="studio" class="apartment-type_label">
-                                                                            <input v-if="Room1" name="roomstotal[]" id="studio" value="1" type="hidden" class="apartment-type_label-input" tabindex="0">
-                                                                            <button @click="this.Room1 = !this.Room1" class="apartment-type-btn apartment-type-btn-border" type="button" :class="{'apartment-type-btn-active' : this.Room1 === true}">
-                                                                                <span class="Button__text">1</span>
-                                                                            </button>
-                                                                        </label>
-                                                                        <label for="studio" class="apartment-type_label">
-                                                                            <input v-if="Room2" name="roomstotal[]" id="studio" value="2" type="hidden" class="apartment-type_label-input" tabindex="0">
-                                                                            <button @click="this.Room2 = !this.Room2" class="apartment-type-btn apartment-type-btn-border" type="button" :class="{'apartment-type-btn-active' : this.Room2 === true}">
-                                                                                <span class="Button__text">2</span>
-                                                                            </button>
-                                                                        </label>
-                                                                        <label for="studio" class="apartment-type_label">
-                                                                            <input v-if="Room3" name="roomstotal[]" id="studio" value="3" type="hidden" class="apartment-type_label-input" tabindex="0">
-                                                                            <button @click="this.Room3 = !this.Room3" class="apartment-type-btn apartment-type-btn-border" type="button" :class="{'apartment-type-btn-active' : this.Room3 === true}">
-                                                                                <span class="Button__text">3</span>
-                                                                            </button>
-                                                                        </label>
-                                                                        <label for="room4" class="apartment-type_label">
-                                                                            <input v-if="Room4"  name="roomstotal[]" id="room4" value="4" type="hidden" class="apartment-type_label-input" tabindex="0">
-                                                                            <button @click="this.Room4 = !this.Room4" class="apartment-type-btn apartment-type-btn-border" type="button" :class="{'apartment-type-btn-active' : this.Room4 === true}">
-                                                                                <span class="Button__text">4+</span>
-                                                                            </button>
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                                <div v-if="selectedCity1 === 'house'" class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_roomsTotal FiltersFormField">
-                                                                    <MultiSelect v-model="houseType" :options="typesHouse" optionLabel="name" placeholder="Тип" display="chip" />
-                                                                </div>
-                                                                <div v-if="selectedCity1 === 'garage'" class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_roomsTotal FiltersFormField">
-                                                                    <MultiSelect v-model="garageType" :options="typesGarage" optionLabel="name" placeholder="Тип" display="chip" />
-                                                                </div>
-                                                                <div v-if="selectedCity1 === 'commercial'" class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_roomsTotal FiltersFormField">
-                                                                    <MultiSelect v-model="commercialType" :options="typesCommercial" optionLabel="name" placeholder="Тип" display="chip" />
-                                                                </div>
-                                                                <div class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_price-type FiltersFormField">
-                                                                    <div class="filter-price-type d-flex align-items-center filters-wrapper-item-padding">
-                                                                        <div class="filter-price-type-wrapper">
-                                                                            <div class="filter-price-type-wrapper-item">
-                                                                                <span class="TextInput__box">
-                                                                                    <input type="text" class="TextInput__control" id="filters_control_price_from" name="priceMin" value="" placeholder="Цена от" maxlength="15" autocomplete="off" inputmode="numeric">
-                                                                                </span>
-                                                                            </div>
-                                                                            <span class="NumberRange__separator">–</span>
-                                                                            <div class="filter-price-type-wrapper-item">
-                                                                                <span class="TextInput__box">
-                                                                                    <input type="text" class="TextInput__control" id="filters_control_price_from" name="priceMax" value="" placeholder="до" maxlength="15" autocomplete="off" inputmode="numeric">
-                                                                                </span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField FiltersFormField_name_address">
-                                                                    <div class="filter-price-type d-flex align-items-center filters-wrapper-item-padding w-100">
-                                                                        <span class="TextInput__box w-100">
-                                                                            <input type="text" class="TextInput__control" value="" placeholder="Адрес, ЖК или Ж/Д станция" maxlength="200" autocomplete="off">
-                                                                        </span>
-                                                                        <label class="TextInput__extra">
-                                                                            <div class="FiltersFormField__refinements">
-                                                                                <div class="FiltersFormField__refinements-selector">
-                                                                                    <span class="Link Link_js_inited Link_size_xxl Link_theme_islands" role="button">Метро</span>
-                                                                                    <span class="Link Link_js_inited Link_size_xxl Link_theme_islands" role="button">Район</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="filters-wrapper w-100 d-flex">
-                                                            <div class="filters-button-container d-flex justify-content-end w-100">
-                                                                <div class="FiltersFormField_name_counter-submit">
-                                                                    <div class="w-100">
-                                                                        <button class="Button w-100 Button_size_xxl Button_view_yellow Button_theme_realty">
-                                                                            <span class="Button__text d-block">Показать</span>
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <!-- Desktop Filter end -->
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -229,8 +103,134 @@
                         </div>
                     </div>
                 </div>
-                <div class="agent-single-div-header-background"></div>
-                <div class="agent-single-div-header-banner"></div>
+                <div>
+                <!-- Desktop Filter start -->
+                <div v-if="DesktopFilter" class="realtor__info-main-filter-filters desktop-filter">
+                    <div class="container_medium" style="position: relative; top: 60px">
+                        <form class="FiltersForm_name_main" :model="form">
+                            <div class="filters-tabs">
+                                <div class="filters-tabs-wrapper">
+                                    <div class="filters-tabs-wrapper-inner">
+                                        <div class="filters-tabs-buttons">
+                                            <label for="type__filter_buy" class="filters-tabs-item Radio_theme_realty" :class="{'active' : form.object_deals == 'buy'}">
+                                                <input v-model="form.object_deals" id="type__filter_buy" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="buy">
+                                                Купить
+                                            </label>
+                                            <label for="type__filter_rent" class="filters-tabs-item Radio_theme_realty" :class="{'active' : form.object_deals == 'rent'}">
+                                                <input v-model="form.object_deals" id="type__filter_rent" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="rent">
+                                                Снять
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="FiltersForm__content-filters">
+                                <div class="filters-wrapper-item filters-wrapper-item-container-1">
+                                    <Dropdown v-model="form.object_type" 
+                                    :options="objectTypes" 
+                                    optionLabel="name_ru" 
+                                    optionValue="id" 
+                                    placeholder="Выберите тип"
+                                    panelClass="p-multiselect-panell" />
+                                </div>
+                                <div v-if="selectedCity1 === 'apartment'" class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_roomsTotal FiltersFormField">
+                                    <div class='apartment-type h-100 d-flex align-items-center filters-wrapper-item-padding'>
+                                        <!-- <label for="studio" class="apartment-type_label">
+                                            <button class="apartment-type-btn" type="button" :class="{'apartment-type-btn-active' : roomsTotal === true}">
+                                            <input v-model="roomsTotal" type="checkbox" id="studio" value="studio" class="apartment-type_label-input">
+                                                <span class="Button__text">Студия</span>
+                                            </button>
+                                        </label> -->
+                                        <label for="studio" class="apartment-type_label">
+                                            <input v-if="Studio" name="roomstotal[]" id="studio" value="studio" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Studio = !this.Studio" class="apartment-type-btn" type="button" :class="{'apartment-type-btn-active' : this.Studio === true}">
+                                                <span class="Button__text">Студия</span>
+                                            </button>
+                                        </label>
+                                        <label for="studio" class="apartment-type_label">
+                                            <input v-if="Room1" name="roomstotal[]" id="studio" value="1" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Room1 = !this.Room1" class="apartment-type-btn apartment-type-btn-border" type="button" :class="{'apartment-type-btn-active' : this.Room1 === true}">
+                                                <span class="Button__text">1</span>
+                                            </button>
+                                        </label>
+                                        <label for="studio" class="apartment-type_label">
+                                            <input v-if="Room2" name="roomstotal[]" id="studio" value="2" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Room2 = !this.Room2" class="apartment-type-btn apartment-type-btn-border" type="button" :class="{'apartment-type-btn-active' : this.Room2 === true}">
+                                                <span class="Button__text">2</span>
+                                            </button>
+                                        </label>
+                                        <label for="studio" class="apartment-type_label">
+                                            <input v-if="Room3" name="roomstotal[]" id="studio" value="3" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Room3 = !this.Room3" class="apartment-type-btn apartment-type-btn-border" type="button" :class="{'apartment-type-btn-active' : this.Room3 === true}">
+                                                <span class="Button__text">3</span>
+                                            </button>
+                                        </label>
+                                        <label for="room4" class="apartment-type_label">
+                                            <input v-if="Room4"  name="roomstotal[]" id="room4" value="4" type="hidden" class="apartment-type_label-input" tabindex="0">
+                                            <button @click="this.Room4 = !this.Room4" class="apartment-type-btn apartment-type-btn-border" type="button" :class="{'apartment-type-btn-active' : this.Room4 === true}">
+                                                <span class="Button__text">4+</span>
+                                            </button>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div v-if="selectedCity1 === 'house'" class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_roomsTotal FiltersFormField">
+                                    <MultiSelect v-model="houseType" :options="typesHouse" optionLabel="name" placeholder="Тип" display="chip" />
+                                </div>
+                                <div v-if="selectedCity1 === 'garage'" class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_roomsTotal FiltersFormField">
+                                    <MultiSelect v-model="garageType" :options="typesGarage" optionLabel="name" placeholder="Тип" display="chip" />
+                                </div>
+                                <div v-if="selectedCity1 === 'commercial'" class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_roomsTotal FiltersFormField">
+                                    <MultiSelect v-model="commercialType" :options="typesCommercial" optionLabel="name" placeholder="Тип" display="chip" />
+                                </div>
+                                <div class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_price-type FiltersFormField">
+                                    <div class="filter-price-type d-flex align-items-center filters-wrapper-item-padding">
+                                        <div class="filter-price-type-wrapper">
+                                            <div class="filter-price-type-wrapper-item">
+                                                <span class="TextInput__box">
+                                                    <input type="text" class="TextInput__control" id="filters_control_price_from" name="priceMin" value="" placeholder="Цена от" maxlength="15" autocomplete="off" inputmode="numeric">
+                                                </span>
+                                            </div>
+                                            <span class="NumberRange__separator">–</span>
+                                            <div class="filter-price-type-wrapper-item">
+                                                <span class="TextInput__box">
+                                                    <input type="text" class="TextInput__control" id="filters_control_price_from" name="priceMax" value="" placeholder="до" maxlength="15" autocomplete="off" inputmode="numeric">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField FiltersFormField_name_address">
+                                    <div class="filter-price-type d-flex align-items-center filters-wrapper-item-padding w-100">
+                                        <span class="TextInput__box w-100">
+                                            <input type="text" class="TextInput__control" value="" placeholder="Адрес, ЖК или Ж/Д станция" maxlength="200" autocomplete="off">
+                                        </span>
+                                        <label class="TextInput__extra">
+                                            <div class="FiltersFormField__refinements">
+                                                <div class="FiltersFormField__refinements-selector">
+                                                    <span class="Link Link_js_inited Link_size_xxl Link_theme_islands" role="button">Метро</span>
+                                                    <span class="Link Link_js_inited Link_size_xxl Link_theme_islands" role="button">Район</span>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filters-wrapper w-100 d-flex">
+                                <div class="filters-button-container d-flex justify-content-end w-100">
+                                    <div class="FiltersFormField_name_counter-submit">
+                                        <div class="w-100">
+                                            <button class="Button w-100 Button_size_xxl Button_view_yellow Button_theme_realty">
+                                                <span class="Button__text d-block">Показать</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Desktop Filter end -->
+                </div>
             </div>
             
             <div class="agent-single-div-content my-5">
@@ -650,26 +650,40 @@ export default {
 
 <style>
 .agent-single-div-header{
-    padding-top: 40px;
+    background: url('/images/agent-single.jpg') top left repeat;
+    background-size: cover;
+    background-color: #b4b5b8;
+    height: 400px;
+    background-position: center center;
+    background-repeat: no-repeat;
     position: relative;
-    height: 550px;
+}
+
+.agent-single-div-header:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .agent-single-container{
     padding: 0 16px;
 }
 
-.agent-single-div-header-background{
+/* .agent-single-div-header-background{
     position: absolute;
     top: 0;
     left: 0;
     z-index: 2;
     background-color: rgba(21, 25, 27, 0.61);
     width: 100%;
-    height: 550px;
-}
+    height: 400px;
+} */
 
-.agent-single-div-header-banner{
+/* .agent-single-div-header-banner{
     display: block;
     position: absolute;
     top: 0;
@@ -681,6 +695,13 @@ export default {
     width: 100%;
     height: 100%;
     background: url('/images/agent-single.jpg');
+} */
+
+.desktop-filter{
+    transition: all 0.4s;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 .agent-single-div-header-main{
@@ -914,6 +935,32 @@ export default {
 
 .FiltersForm_name_main{
     width: 100%;
+    padding: 20px 24px 24px;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 6px 1px #24262914;
+}
+
+.filters-tabs{
+    max-width: 100vw;
+    position: relative;
+}
+
+.filters-tabs-wrapper {
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+    z-index: 1;
+}
+
+.filters-tabs-wrapper-inner{
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.filters-tabs-buttons{
+    display: table;
+    white-space: nowrap;
 }
 
 .FiltersForm__content {
@@ -922,12 +969,12 @@ export default {
     margin: 0 auto;
 }
 .FiltersForm__content-filters{
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
     display: flex;
-    border-radius: 8px;
-    background-color: #fff;
-    height: 50px;
-    position: relative;
+    margin-top: 12px;
 }
+
 .agent-single-div-info{
     background-color: #fff;
     border-radius: 5px;
@@ -994,14 +1041,23 @@ export default {
 }
 
 .filters-wrapper-item{
-    position: relative;
-    border-right: 1px solid #f4f4f4;
-    height: 100%;
+    align-items: center;
+    display: flex;
+}
+
+
+.filters-wrapper-item+.filters-wrapper-item {
+    border-left: 1px solid #e5e5e5;
 }
 
 .filters-wrapper-item-container-1{
-    width: 100%;
-    max-width: 140px;
+    flex-shrink: 0;
+    width: 200px;
+}
+
+.filters-wrapper-item .p-inputtext {
+    font-size: 14px;
+    padding: 20px 10px;
 }
 
 .FiltersFormField_name_roomsTotal{
@@ -1127,10 +1183,8 @@ export default {
 .filters-wrapper-item .p-dropdown .p-dropdown-label,
 .filters-wrapper-item .p-multiselect .p-multiselect-label.p-placeholder {
     background: transparent;
-    border: 0 none;
-    font-size: 16px;
-    line-height: 48px;
-    font-weight: 500;
+    line-height: 20px;
+    font-weight: 400;
     color: #000;
 }
 
@@ -1402,36 +1456,37 @@ export default {
 } */
 
 .filters-tabs-item{
-    font-size: 16px;
-    font-weight: 500;
-    height: auto;
-    line-height: 38px;
-    background: rgba(0,0,0,.56);
-    color: #fff;
-    font-family: inherit;
-    -webkit-box-align: center;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    align-items: center;
-    border: 0;
-    border-radius: 64px;
+    appearance: none;
+    background: none;
+    border: none;
+    border-bottom: 2px solid #0000;
+    box-shadow: none;
     box-sizing: border-box;
-    display: flex;
-    margin: 0;
-    outline: 0;
-    overflow: hidden;
-    padding: 0 16px;
-    position: relative;
-    text-align: center;
+    color: #737476;
     cursor: pointer;
-    margin-bottom: 10px;
+    display: inline-block;
+    font: 600 14px/20px Lato,sans-serif;
+    height: 32px;
+    letter-spacing: normal;
+    margin: 0;
+    outline: none;
+    padding: 0;
+    text-align: left;
+    text-decoration: none;
+    text-indent: 0;
+    text-shadow: none;
+    text-transform: none;
+    transition: .15s ease-in-out;
+    white-space: nowrap;
 }
 
-.filters-tabs-item:not(:last-child){
-    margin-right: 8px;
+.filters-tabs-item+.filters-tabs-item {
+    margin-left: 32px;
 }
+
 .filters-tabs-item.active{
-    background: #fff;
-    color: rgba(0,0,0,.92);
+    border-bottom-color: var(--form-button-color);
+    color: var(--form-button-color);
 }
 
 .FiltersFormField_name_map-submit{
