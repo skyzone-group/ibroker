@@ -244,6 +244,8 @@
                                 </span>
                             </div>
                         </div>
+                        {{form.district_id}}
+                        {{this.quarters}}
                     </div>
                 </div>
             </div>
@@ -326,6 +328,8 @@ export default {
         getDistricts() {
             this.loading[1] = true;
             let region_id = this.form.region_id;
+            this.form.district_id = [];
+            this.form.quarter_id = [];
             axios.get('/api/districts/' + region_id)
             .then(response => {
                 this.districts = response.data.result
@@ -338,6 +342,7 @@ export default {
         getQuarters() {
             this.loading[2] = true;
             let district_id = this.form.district_id;
+            this.form.quarter_id = [];
             axios.get('/api/quarters/' + district_id)
             .then(response => {
                 this.quarters = response.data.result
@@ -346,7 +351,7 @@ export default {
             .catch(function (error){
                 this.loading[2] = false;
             });
-        },
+        }
     },
     mounted() {
         this.$store.dispatch('getObjectTypes');

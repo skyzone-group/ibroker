@@ -34,12 +34,12 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword']);
 
 Route::post('/upload_image', [TempImagesController::class, 'uploadImage']);
 Route::post('/rotate_image', [TempImagesController::class, 'rotateImage']);
+Route::get('/allRegionQuarterDistrict', [AddressController::class, 'allRegionQuarterDistrict']);
 Route::get('/allRegions', [AddressController::class, 'allRegions']);
 Route::get('/allDistricts', [AddressController::class, 'allDistricts']);
 Route::get('/allQuarters', [AddressController::class, 'allQuarters']);
 Route::get('/districts/{region_id}', [AddressController::class, 'districts']);
 Route::get('/quarters/{quarter_id}', [AddressController::class, 'quarters']);
-
 # Object properties
 Route::get('/objectTypes', [ObjectTypesController::class, 'objectTypes']);
 Route::get('/objectProperty', [ObjectTypesController::class, 'objectProperty']);

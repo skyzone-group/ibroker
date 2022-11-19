@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResponseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Regions;
 
 class AddressController extends ResponseController
 {
@@ -37,6 +38,16 @@ class AddressController extends ResponseController
     public function quarters($district_id){
         $quarters = DB::table('quarters')->where('district_id', '=', $district_id)->get();
         if($quarters) return self::successResponse($quarters);
+        return self::errorResponse('Not found');
+    }
+
+    public function allRegionQuarterDistrict(){
+        $regions = Regions::with(['districts' => function($query){
+                        return $query->with('quarters');
+                    }])
+                    ->get();
+                    
+        if($regions) return self::successResponse($regions);
         return self::errorResponse('Not found');
     }
 }
