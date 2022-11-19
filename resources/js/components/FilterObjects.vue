@@ -39,7 +39,8 @@
                                     Регион
                                 </span>
                                 <div class="options_main__items_inputs_block d-flex flex-column">
-                                    <Dropdown v-model="form.region_id" @change="getDistricts()" :virtualScrollerOptions="{ lazy: true, onLazyLoad: getRegions, itemSize: 38, showLoader: true, loading: loadingIn, delay: 250 }"
+                                    <Dropdown v-model="form.region_id" @change="getDistricts()" 
+                                    :loading="loading[0]"
                                     optionValue="id" :options="regions" optionLabel="name_ru" placeholder="Выберите регион"
                                     panelClass="p-multiselect-panell" name="regionId" :value="form.region_id">
                                         <template v-slot:loader="{ options }">
@@ -58,7 +59,7 @@
                                 </span>
                                 <div class="options_main__items_inputs_block d-flex flex-column">
                                     <MultiSelect v-model="form.district_id" @change="getQuarters()" 
-                                    :virtualScrollerOptions="{ lazy: true, onLazyLoad: getDistricts, itemSize: 38, showLoader: true, loading: loadingIn, delay: 250 }" 
+                                    :loading="loading[1]"
                                     :options="districts"
                                     optionLabel="name_ru" 
                                     optionValue="id" 
@@ -86,7 +87,7 @@
                                 </span>
                                 <div class="options_main__items_inputs_block d-flex flex-column">
                                     <MultiSelect v-model="form.quarter_id" 
-                                    :virtualScrollerOptions="{ lazy: true, itemSize: 38, onLazyLoad: getQuarters, showLoader: true, loading: loadingIn, delay: 250 }" 
+                                    :loading="loading[2]"
                                     :options="quarters"
                                     optionLabel="name_ru" optionValue="id" display="chip" placeholder="Выберите район"
                                     :filter="true" panelClass="p-multiselect-panell">
@@ -238,7 +239,7 @@
                                         <!-- <button @click="urlData" type="submit" class="filter_search_btn-link">
                                             Найти
                                         </button> -->
-                                        <Button type="submit" label="Найти" :loading="loading"  class="filter_search_btn-link" />
+                                        <Button type="submit" label="Найти" :loading="loading[3]"  class="filter_search_btn-link" />
                                     </span>
                                 </span>
                             </div>
@@ -290,8 +291,7 @@ export default {
             regions: [],
             districts: [],
             quarters: [],
-            loading: false,
-            loadingIn: false,
+            loading: [false,false,false,false],
         }
     },
     created() {
@@ -299,12 +299,12 @@ export default {
     },
     methods: {
         filterData(){
-            this.loading = true;
+            this.loading[3] = true;
             axios.get('/api/object/search', this.form)
             .then(response => {
                 console.log(response);
                 setTimeout(() => {
-                    this.loading = false;
+                    this.loading[3] = false;
                     this.$router.push({name: "SearchObject", query: this.form});
                 },1000);
             })
@@ -312,55 +312,40 @@ export default {
                 alert(error);
             });
         },
-        getRegions(event) {
-            this.loadingIn = true;
-
-            if (this.loadLazyTimeout) {
-                clearTimeout(this.loadLazyTimeout);
-            }
-
-            //imitate delay of a backend call
-            this.loadLazyTimeout = setTimeout(() => {
-                axios.get('/api/allRegions')
-                .then(response => {
-                    this.regions = response.data.result
-                    const lazyItems = [...this.regions];
-                    this.regions = lazyItems;
-                    this.loadingIn = false;
-                })
-                .catch(function (error){
-                    this.loadingIn = false;
-                });
-            }, Math.random() * 1000 + 250);
+        getRegions() {
+            this.loading[0] = true;
+            axios.get('/api/allRegions')
+            .then(response => {
+                this.regions = response.data.result
+                this.loading[0] = false;
+            })
+            .catch(function (error){
+                this.loading[0] = false;
+            });
         },
         getDistricts() {
-            this.loadingIn = true;
-
-            if (this.loadLazyTimeout) {
-                clearTimeout(this.loadLazyTimeout);
-            }
-
+            this.loading[1] = true;
             let region_id = this.form.region_id;
-            //imitate delay of a backend call
-            this.loadLazyTimeout = setTimeout(() => {
-                axios.get('/api/districts/' + region_id)
-                .then(response => {
-                    this.districts = response.data.result
-                    const lazyItems = [...this.districts];
-                    this.districts = lazyItems;
-                    this.loadingIn = false;
-                })
-                .catch(function (error){
-                    this.loadingIn = false;
-                });
-            }, Math.random() * 1000 + 250);
+            axios.get('/api/districts/' + region_id)
+            .then(response => {
+                this.districts = response.data.result
+                this.loading[1] = false;
+            })
+            .catch(function (error){
+                this.loading[1] = false;
+            });
         },
         getQuarters() {
+            this.loading[2] = true;
             let district_id = this.form.district_id;
             axios.get('/api/quarters/' + district_id)
             .then(response => {
                 this.quarters = response.data.result
+                this.loading[2] = false;
             })
+            .catch(function (error){
+                this.loading[2] = false;
+            });
         },
     },
     mounted() {

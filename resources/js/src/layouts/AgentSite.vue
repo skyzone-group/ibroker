@@ -163,16 +163,6 @@
                                                         </div>
                                                         <div class="filters-wrapper w-100 d-flex">
                                                             <div class="filters-button-container d-flex justify-content-end w-100">
-                                                                <div class="FiltersFormField_name_map-submit">
-                                                                    <div class="FormField__control w-100">
-                                                                        <a href="#!" class="Button Button_js_inited Button_size_xxl Button_theme_realty Button_type_link Button_view_white w-100" role="link">
-                                                                            <span class="Button__text">
-                                                                                <img src="images/icons/location.png" alt="location" class="map-location-img IconSvg">
-                                                                                Смотреть на карте
-                                                                            </span>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
                                                                 <div class="FiltersFormField_name_counter-submit">
                                                                     <div class="w-100">
                                                                         <button class="Button w-100 Button_size_xxl Button_view_yellow Button_theme_realty">
