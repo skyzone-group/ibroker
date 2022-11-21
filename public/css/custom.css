@@ -58,6 +58,18 @@ a:not(.nohover):hover{
         box-shadow 0.2s;
 }
 
+.p-multiselect:not(.p-disabled).p-focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: unset !important;
+    border-color: unset !important;
+}
+
+
+.p-multiselect:not(.p-disabled):hover {
+    border-color: unset !important;
+}
+
 .p-multiselect.p-multiselect-chip .p-multiselect-token {
     background: var(--form-button-color) !important;
     color: #fff !important;

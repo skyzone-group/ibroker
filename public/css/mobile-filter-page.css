@@ -203,7 +203,7 @@
 .mobile-filter-guide  .more-filter-btn {
     display: block;
     text-align: center;
-    color: #f15044;
+    color: var(--primary_100);
     font-weight: 600;
 }
 
