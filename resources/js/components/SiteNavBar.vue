@@ -399,6 +399,7 @@ export default {
                 {id: 3,title: "Новостройки", link: "/"},
                 {id: 4,title: "Коммерческая", link: "/commercial"},
                 {id: 5,title: "Ипотека", link: "/"},
+                {id: 5,title: "Риэлторы", link: "/partners/realtors"},
             ],
         }
     },
