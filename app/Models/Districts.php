@@ -9,4 +9,8 @@ class Districts extends Model
 {
     protected $table = 'districts';
     use HasFactory;
+
+    public function quarters(){
+        return $this->hasMany(Quarters::class, 'district_id', 'id');
+    }
 }

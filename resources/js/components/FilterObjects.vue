@@ -295,7 +295,7 @@ export default {
         }
     },
     created() {
-        this.getRegions();
+        this.allRegionQuarterDistrict();
     },
     methods: {
         filterData(){
@@ -312,9 +312,9 @@ export default {
                 alert(error);
             });
         },
-        getRegions() {
+        allRegionQuarterDistrict(){
             this.loading[0] = true;
-            axios.get('/api/allRegions')
+            axios.get('/api/allRegionQuarterDistrict')
             .then(response => {
                 this.regions = response.data.result
                 this.loading[0] = false;
@@ -323,30 +323,40 @@ export default {
                 this.loading[0] = false;
             });
         },
+        
         getDistricts() {
             this.loading[1] = true;
             let region_id = this.form.region_id;
-            axios.get('/api/districts/' + region_id)
-            .then(response => {
-                this.districts = response.data.result
-                this.loading[1] = false;
+            this.form.district_id = [];
+            this.form.quarter_id = [];
+
+            this.regions.forEach(region => {
+                if(region.id == this.form.region_id){
+                    this.districts = region.districts;
+                }
             })
-            .catch(function (error){
-                this.loading[1] = false;
-            });
+
+            this.loading[1] = false;
         },
         getQuarters() {
             this.loading[2] = true;
-            let district_id = this.form.district_id;
-            axios.get('/api/quarters/' + district_id)
-            .then(response => {
-                this.quarters = response.data.result
-                this.loading[2] = false;
+            this.form.quarter_id = [];
+            this.quarters = [];
+
+            this.regions.forEach(region => {
+                if(region.id == this.form.region_id){
+                    region.districts.forEach(district => {
+                        if(this.form.district_id.includes(district.id)){
+                            this.quarters.push(...district.quarters);
+                        }
+                    })
+                }
             })
-            .catch(function (error){
-                this.loading[2] = false;
+            this.quarters.sort(function (a, b) {
+                return a.name_ru.localeCompare(b.name_ru);
             });
-        },
+            this.loading[2] = false;
+        }
     },
     mounted() {
         this.$store.dispatch('getObjectTypes');

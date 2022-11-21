@@ -9,4 +9,8 @@ class Regions extends Model
 {
     protected $table = 'regions';
     use HasFactory;
+
+    public function districts(){
+        return $this->hasMany(Districts::class, 'region_id', 'id');
+    }
 }
