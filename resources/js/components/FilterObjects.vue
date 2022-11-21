@@ -89,7 +89,7 @@
                                     <MultiSelect v-model="form.quarter_id" 
                                     :loading="loading[2]"
                                     :options="quarters"
-                                    optionLabel="name_ru" optionValue="id" display="chip" placeholder="Выберите район"
+                                    optionLabel="name_ru" optionValue="id" display="chip" placeholder="Выберите улица"
                                     :filter="true" panelClass="p-multiselect-panell">
                                         <template #empty>
                                             <div class="flex align-items-center p-2" style="height: 38px" >

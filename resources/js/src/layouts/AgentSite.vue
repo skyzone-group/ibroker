@@ -106,7 +106,7 @@
                 <div>
                 <!-- Desktop Filter start -->
                 <div v-if="DesktopFilter" class="realtor__info-main-filter-filters desktop-filter">
-                    <div class="container_medium" style="position: relative; top: 60px">
+                    <div class="container_medium" style="position: relative; top: 90px">
                         <form class="FiltersForm_name_main" :model="form">
                             <div class="filters-tabs">
                                 <div class="filters-tabs-wrapper">
@@ -200,20 +200,166 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="FiltersForm__content-filters">
+                            <div v-if="FilterMoreOptions" class="FiltersForm__content-filters">
                                 <div class="filters-wrapper-item filters-wrapper-item-container-1">
-                                    <Dropdown v-model="form.object_type" 
-                                    :options="objectTypes" 
+                                    <Dropdown v-model="form.region_id" 
+                                    :options="regions" 
                                     optionLabel="name_ru" 
                                     optionValue="id" 
-                                    placeholder="Выберите тип"
+                                    :loading="loading[0]"
+                                    @change="getDistricts()" 
+                                    placeholder="Выберите регион"
                                     panelClass="p-multiselect-panell" />
+                                </div>
+                                <div class="filters-wrapper-item filters-wrapper-item-container-1">
+                                    <MultiSelect v-model="form.district_id" @change="getQuarters()" 
+                                    :loading="loading[1]"
+                                    :options="districts"
+                                    optionLabel="name_ru" 
+                                    optionValue="id" 
+                                    display="chip" 
+                                    placeholder="Выберите район"
+                                    :filter="true" panelClass="p-multiselect-panell">
+                                        <template #empty>
+                                            <div class="flex align-items-center p-2" style="height: 38px" >
+                                                No available options
+                                            </div>
+                                        </template>
+                                    </MultiSelect>
+                                </div>
+                                <div class="filters-wrapper-item filters-wrapper-item-container-1">
+                                    <MultiSelect v-model="form.quarter_id" @change="getQuarters()" 
+                                    :loading="loading[2]"
+                                    :options="quarters"
+                                    optionLabel="name_ru" 
+                                    optionValue="id" 
+                                    display="chip" 
+                                    placeholder="Выберите улица"
+                                    :filter="true" panelClass="p-multiselect-panell">
+                                        <template #empty>
+                                            <div class="flex align-items-center p-2" style="height: 38px" >
+                                                No available options
+                                            </div>
+                                        </template>
+                                    </MultiSelect>
+                                </div>
+                                <div v-if="form.object_type == 1" class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_price-type FiltersFormField">
+                                    <div class="dropdown-filteritem dropdown-room w-100">
+                                        <a class="filters-wrapper-item-dropdown dropdown-toggle nohover" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                            <div class="dropdown-label">
+                                                {{ (form.floor_from != '' && form.floor_to != '') ? (`${form.floor_from} - ${form.floor_to}`) : form.floor_from != '' ? `от ${form.floor_from}` : form.floor_to != '' ? `до ${form.floor_to}` : 'Этаж'}}         
+                                            </div>                               
+                                            <div class="dropdown-icon" role="button">
+                                                <span><i class="feather icon-chevron-down"></i></span>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <div class="dropdown-filteritem-inputs">
+                                                <div class="dropdown-filteritem-inputs-wrapper-groups">
+                                                    <div class="input-medium-6 dc-input-6-1-2">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <input id="room_to" class="dc-input__input-6-1-2" v-model="form.floor_from" maxlength="24" name="room_to" type="number" placeholder="от" tabindex="0"  />
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-medium-6 dc-input-6-1-2">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <input id="room_from" class="dc-input__input-6-1-2" v-model="form.floor_to" maxlength="24" name="room_from" type="number" placeholder="до" tabindex="0"  />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_price-type FiltersFormField">
+                                    <div class="dropdown-filteritem dropdown-room w-100">
+                                        <a class="filters-wrapper-item-dropdown dropdown-toggle nohover" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                            <div class="dropdown-label">
+                                                {{ (form.floor_count_from != '' && form.floor_count_to != '') ? (`${form.floor_count_from} - ${form.floor_count_to}`) : form.floor_count_from != '' ? `от ${form.floor_count_from}` : form.floor_count_to != '' ? `до ${form.floor_count_to}` : 'Этажность'}}         
+                                            </div>                               
+                                            <div class="dropdown-icon" role="button">
+                                                <span><i class="feather icon-chevron-down"></i></span>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <div class="dropdown-filteritem-inputs">
+                                                <div class="dropdown-filteritem-inputs-wrapper-groups">
+                                                    <div class="input-medium-6 dc-input-6-1-2">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <input id="room_to" class="dc-input__input-6-1-2" v-model="form.floor_count_from" maxlength="24" name="room_to" type="number" placeholder="от" tabindex="0"  />
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-medium-6 dc-input-6-1-2">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <input id="room_from" class="dc-input__input-6-1-2" v-model="form.floor_count_to" maxlength="24" name="room_from" type="number" placeholder="до" tabindex="0"  />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_price-type FiltersFormField" style="max-width: 100%; flex: 1;">
+                                    <div class="dropdown-filteritem dropdown-room w-100">
+                                        <a class="filters-wrapper-item-dropdown dropdown-toggle nohover" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                            <div class="dropdown-label">
+                                                {{ (form.total_area_from != '' && form.total_area_to != '') ? (`${form.total_area_from} - ${form.total_area_to}`) : form.total_area_from != '' ? `от ${form.total_area_from}` : form.total_area_to != '' ? `до ${form.total_area_to}` : 'Площадь, м2'}}         
+                                            </div>                               
+                                            <div class="dropdown-icon" role="button">
+                                                <span><i class="feather icon-chevron-down"></i></span>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <div class="dropdown-filteritem-inputs">
+                                                <div class="dropdown-filteritem-inputs-wrapper-groups">
+                                                    <div class="input-medium-6 dc-input-6-1-2">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <input id="totalAreaFrom" class="dc-input__input-6-1-2" v-model="form.total_area_from" maxlength="24" name="totalAreaFrom" type="number" placeholder="от" tabindex="0"  />
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-medium-6 dc-input-6-1-2">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <input id="totalAreaTo" class="dc-input__input-6-1-2" v-model="form.total_area_to" maxlength="24" name="totalAreaTo" type="number" placeholder="до" tabindex="0"  />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div v-if="form.object_type == 2 || form.object_type == 4 || form.object_type == 5" class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_price-type FiltersFormField" style="max-width: 100%; flex: 1;">
+                                    <div class="dropdown-filteritem dropdown-room w-100">
+                                        <a class="filters-wrapper-item-dropdown dropdown-toggle nohover" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                            <div class="dropdown-label">
+                                                {{ (form.land_area_from != '' && form.land_area_to != '') ? (`${form.land_area_from} - ${form.land_area_to}`) : form.land_area_from != '' ? `от ${form.land_area_from}` : form.land_area_to != '' ? `до ${form.land_area_to}` : 'Площадь участка (сот.)'}}         
+                                            </div>                               
+                                            <div class="dropdown-icon" role="button">
+                                                <span><i class="feather icon-chevron-down"></i></span>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <div class="dropdown-filteritem-inputs">
+                                                <div class="dropdown-filteritem-inputs-wrapper-groups">
+                                                    <div class="input-medium-6 dc-input-6-1-2">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <input id="landAreaFrom" class="dc-input__input-6-1-2" v-model="form.land_area_from" maxlength="24" name="landAreaFrom" type="number" placeholder="от" tabindex="0"  />
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-medium-6 dc-input-6-1-2">
+                                                        <div class="dc-input__input-container-6-1-2 input_div">
+                                                            <input id="landAreaTo" class="dc-input__input-6-1-2" v-model="form.land_area_to" maxlength="24" name="landAreaTo" type="number" placeholder="до" tabindex="0"  />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="filters-wrapper mt-4 w-100 d-flex">
                                 <div class="filters-button-container d-flex align-items-center justify-content-end w-100">
                                     <span class="filter_search_btn">
-                                        <Button  @click="openModal" type="button" icon="pi pi-sliders-v" label="Расширенный поиск" class="p-button-link" style="font-size: 14px;" />
+                                        <Button  @click="FilterMoreOptions = !FilterMoreOptions" type="button" icon="pi pi-sliders-v" label="Дополнительные параметры" class="p-button-link" style="font-size: 14px;" />
                                     </span>
                                     <span class="filter_search_btn">
                                         <Button type="submit" label="Найти" class="filter_search_btn-link" />
@@ -532,8 +678,22 @@ export default {
                 price_from: '',
                 object_property_id: [],
                 keyword: '',
+                region_id: null,
+                district_id: [],
+                quarter_id: [],
+                floor_from: '',
+                floor_to: '',
+                floor_count_from: '',
+                floor_count_to: '',
+                total_area_from: '',
+                total_area_to: '',
+                land_area_from: '',
+                land_area_to: '',
             },
-            loading: false,
+            regions: [],
+            districts: [],
+            quarters: [],
+            loading: [false,false,false],
             showPhoneNumber: false,
             active4: 0,
             DesktopFilter: false,
@@ -553,6 +713,7 @@ export default {
             checked1: false,
             actionMobile: false,
             displayModal: false,
+            FilterMoreOptions: false,
 
         }
     },
@@ -563,11 +724,11 @@ export default {
     },
     methods: {
         filterData(){
-            this.loading = true;
+            // this.loading = true;
             axios.get('/api/object/search', this.form)
             .then(response => {
                 setTimeout(() => {
-                    this.loading = false;
+                    // this.loading = false;
                 },1000);
             })
             .catch(function (error){
@@ -593,10 +754,56 @@ export default {
         openModal() {
             this.displayModal = true;
         },
+        allRegionQuarterDistrict(){
+            this.loading[0] = true;
+            axios.get('/api/allRegionQuarterDistrict')
+            .then(response => {
+                this.regions = response.data.result
+                this.loading[0] = false;
+            })
+            .catch(function (error){
+                this.loading[0] = false;
+            });
+        },
+        
+        getDistricts() {
+            this.loading[1] = true;
+            let region_id = this.form.region_id;
+            this.form.district_id = [];
+            this.form.quarter_id = [];
+
+            this.regions.forEach(region => {
+                if(region.id == this.form.region_id){
+                    this.districts = region.districts;
+                }
+            })
+
+            this.loading[1] = false;
+        },
+        getQuarters() {
+            this.loading[2] = true;
+            this.form.quarter_id = [];
+            this.quarters = [];
+
+            this.regions.forEach(region => {
+                if(region.id == this.form.region_id){
+                    region.districts.forEach(district => {
+                        if(this.form.district_id.includes(district.id)){
+                            this.quarters.push(...district.quarters);
+                        }
+                    })
+                }
+            })
+            this.quarters.sort(function (a, b) {
+                return a.name_ru.localeCompare(b.name_ru);
+            });
+            this.loading[2] = false;
+        }
     },
     created() {
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen();
+        this.allRegionQuarterDistrict();
     },
     mounted() {
         this.$store.dispatch('getObjectTypes');
