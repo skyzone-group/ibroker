@@ -342,7 +342,6 @@ export default {
         },
         getQuarters() {
             this.loading[2] = true;
-            let district_id = this.form.district_id;
             this.form.quarter_id = [];
             this.quarters = [];
 
@@ -355,7 +354,7 @@ export default {
                     })
                 }
             })
-
+            this.quarters.sort((a, b) => a.name_uz.localeCompare(b.name_uz));
             this.loading[2] = false;
         }
     },
