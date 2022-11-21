@@ -244,8 +244,6 @@
                                 </span>
                             </div>
                         </div>
-                        <pre>
-                        </pre>
                     </div>
                 </div>
             </div>
@@ -354,7 +352,9 @@ export default {
                     })
                 }
             })
-            this.quarters.sort((a, b) => a.name_uz.localeCompare(b.name_uz));
+            this.quarters.sort(function (a, b) {
+                return a.name_ru.localeCompare(b.name_ru);
+            });
             this.loading[2] = false;
         }
     },
