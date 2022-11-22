@@ -11,13 +11,14 @@
                 <!-- hamburger menu icon -->
                 
                 <router-link :to="{name: 'siteIndex'}" class="nabvar__block-logo">
-                    LOGO
+                    <img src="/images/logo/logo.png" alt="logo" class="w-100 h-100">
+                    <!-- <p><span>i</span>BROKER</p> -->
                 </router-link>
                 <!-- Menu View start -->
                 <nav v-if="!mobileView">
                     <ul class="mb-0 navbar-ul descktop-menu">
                         <li class="navbar-ul-li">
-                            <router-link :to="{name: 'siteRent'}">Аренда</router-link>
+                            <router-link :to="{name: 'SearchObject', query: form}">Аренда</router-link>
                             <div class="sub-menu">
                                 <div class="sub-menu-item">
                                     <ul>
@@ -290,7 +291,7 @@
                 
                 <!-- Mobile menu end -->
                 <div class="header-right-block">
-                    <div class="btn-icons">
+                    <!-- <div class="btn-icons">
                         <div class="utilities d-flex position-relative align-items-center">
                             <a href="#!" class="utilities-link d-lg-block d-md-block d-sm-block d-none">
                                 <svg class="icon_svg" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 4h14V2H1v2Zm0 5h10V7H1v2Zm7 5H1v-2h7v2Zm4 2v-2h-2v-2h2v-2h2v2h2v2h-2v2h-2Z" fill="currentColor"></path>
@@ -309,7 +310,7 @@
                                 <svg class="icon_svg" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#BellStroke16a)"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C5.238 0 3.25 2.426 3.25 5.23v.847c0 .013-.001.016-.003.02v.001a.511.511 0 0 1-.076.113 3.33 3.33 0 0 1-.254.27l-.172.167-.021.02c-.062.06-.129.124-.198.193l-.046.038C1.935 7.357 1 8.143 1 9.462c0 .988.466 1.737 1.117 2.251.614.486 1.391.768 2.115.942C5.67 13 7.265 13 7.977 13h.046c.712 0 2.307 0 3.745-.345.724-.174 1.5-.456 2.115-.942C14.533 11.2 15 10.45 15 9.462c0-1.32-.935-2.105-1.48-2.563l-.046-.038-.198-.193-.02-.02a20.63 20.63 0 0 1-.172-.166 3.128 3.128 0 0 1-.255-.271.515.515 0 0 1-.076-.113c-.002-.005-.003-.008-.003-.021V5.23C12.75 2.426 10.762 0 8 0ZM5.25 5.23C5.25 3.298 6.562 2 8 2s2.75 1.297 2.75 3.23v.847c0 .595.242 1.043.521 1.389.18.223.427.46.64.665l.187.18.027.028.03.024c.67.568.845.787.845 1.099 0 .28-.105.483-.358.683-.287.228-.743.422-1.341.565-1.19.286-2.576.29-3.301.29-.725 0-2.11-.004-3.301-.29-.598-.143-1.053-.337-1.341-.565-.253-.2-.358-.403-.358-.683 0-.312.175-.53.846-1.099l.03-.024.027-.027c.056-.056.12-.117.185-.18.214-.206.461-.443.64-.666.28-.346.522-.794.522-1.39v-.845Zm-.148 8.578a3.001 3.001 0 0 0 5.78 0 21.283 21.283 0 0 1-2.89.192c-.601 0-1.705-.024-2.89-.192Z" fill="currentColor"></path></g><defs><clipPath id="BellStroke16a"><path fill="#fff" d="M0 0h16v16H0z"></path></clipPath></defs></svg>
                             </a>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="btn-add-object">
                         <router-link :to="{name: 'newObject'}" class="btn-add">
                             <span class="_25d45facb5--text--rH6sj">+ Разместить объявление</span>
@@ -333,38 +334,38 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <div class="avatar-inform">
-                                    <a v-if="user.firstname != null && user.lastname != null" href="#!" class="user_name">
+                                    <a v-if="user.firstname != null && user.lastname != null" href="#!" class="user_name nohover">
                                         {{user.firstname}} {{user.lastname}}
                                     </a>
-                                    <a v-else-if="user.firstname != null" href="#!" class="user_name">
+                                    <a v-else-if="user.firstname != null" href="#!" class="user_name nohover">
                                         {{user.firstname}}
                                     </a>
-                                    <a v-else-if="user.lastname != null" href="#!" class="user_name">
+                                    <a v-else-if="user.lastname != null" href="#!" class="user_name nohover">
                                         {{user.lastname}}
                                     </a>
-                                    <a v-else href="#!" class="user_name">
+                                    <a v-else href="#!" class="user_name nohover">
                                         User {{user.id}}
                                     </a>
                                     
-                                    <a href="#!" class="mb-0 user_id">
+                                    <a href="#!" class="mb-0 user_id nohover">
                                         ID {{user.id}}
                                     </a>
                                 </div>
                                 <!-- <a class="dropdown-item" href="account/summary">
                                     Личный кабинет
                                 </a> -->
-                                <router-link class="dropdown-item"  :to="{name: 'summary'}">
+                                <router-link class="dropdown-item nohover"  :to="{name: 'summary'}">
                                     Личный кабинет
                                 </router-link>
                                 <div class="dropdown-divider"></div>
                                 <!-- <a class="dropdown-item" href="auth-login.html">
                                     Разместить объявление
                                 </a> -->
-                                <router-link class="dropdown-item"  :to="{name: 'newObject'}">
+                                <router-link class="dropdown-item nohover"  :to="{name: 'newObject'}">
                                     Разместить объявление
                                 </router-link>
                                 <div class="dropdown-divider"></div>
-                                <a @click.prevent="logout" class="dropdown-item" href="#!">
+                                <a @click.prevent="logout" class="dropdown-item nohover" href="#!">
                                     Exit
                                 </a>
                             </div>
@@ -388,6 +389,9 @@ export default {
     },
     data() {
         return {
+            form: {
+                object_deals: '',
+            },
             mobileView: false,
             mobileNav: false,
             showNav: false,
@@ -473,18 +477,23 @@ export default {
             position: relative;
             
             .nabvar__block-logo{
-                // background-size: 100%;
-                // width: 110px;
-                // height: 67px;
-                // background-position: 0 6px;
                 flex-shrink: 0;
                 text-align: center;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                font-size: 30px;
-                font-weight: 700;
-                // background: url('../../../public/images/logo.svg')no-repeat center;
+                box-shadow: none;
+                box-sizing: border-box;
+                height: 40px;
+                outline: none;
+                padding: 0 8px;
+                width: auto;
+
+                // p{
+                //     font-size: 30px;
+                //     font-weight: 700;
+                //     display: inline-flex;
+                // }
             }
             
             nav{

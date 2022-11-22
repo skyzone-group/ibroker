@@ -150,12 +150,12 @@
                                     <div class="item-bottom-right">
                                         <ul class="item-bottom-right-actions">
                                             <li class="item-bottom-right-actions-list mr-2">
-                                                <a :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" type="button" class="item-bottom-right-edit">Просмотреть</a>
+                                                <a :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" type="button" class="item-bottom-right-edit nohover">Просмотреть</a>
                                             </li>
                                             <li class="item-bottom-right-actions-list mr-2">
-                                                <a :href="`/adding/object/edit/${object.id}`" type="button" class="item-bottom-right-edit">Редактировать</a>
+                                                <a :href="`/adding/object/edit/${object.id}`" type="button" class="item-bottom-right-edit nohover">Редактировать</a>
                                             </li>
-                                            <li class="item-bottom-right-actions-list">
+                                            <li class="item-bottom-right-actions-list nohover">
                                                 <a href="#!" type="button" class="item-bottom-right-edit">Удалить</a>
                                             </li>
                                         </ul>
@@ -198,7 +198,7 @@ export default {
             checked: false,
             objects: [],
             totalRecords: 120,
-            total: 10,
+            total: 4,
             pageInfo: null,
             totalObject: null,
             isLoaded: false,
@@ -241,7 +241,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .objects-main-div_nav_ul_li{
     margin-right: 10px;
 }

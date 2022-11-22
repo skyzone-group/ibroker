@@ -37,6 +37,10 @@ a:not(.nohover):hover{
     color: var(--form-button-color) !important;
 }
 
+.h-100vh{
+    height: 100vh;
+}
+
 .main-padding{
     padding-top: 0.5rem;
 }

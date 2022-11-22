@@ -6,12 +6,12 @@
                     <b class="block_title title">Добавление объявления</b>
                     <span class="text-secondary">Вы можете бесплатно добавить до 2 объявлений в месяц</span>
                 </header> -->
-                <div class="block__body position-relative">
+                <div class="block__body position-relative" :class="{'h-100vh' : closeData == true}">
                     <!-- loader start -->
                     <loader-gif v-if="isLoaded"></loader-gif>
                     <!-- loader end -->
                     
-                    <div class="form">
+                    <div v-if="closeData == false" class="form">
                         <div class="block__body_main">
                             <div class="block__body_side-bar_content">
                                 <form @submit.prevent="saveData(!v$.$invalid)" id="file-dropzone" method="POST" :model="form">
@@ -724,9 +724,6 @@
                                                 <button type="button" class="form-buttons_btn" data-toggle="modal" data-target="#animation" :class="{'button-disabled' : loggedIn === true}" :disabled="loggedIn === true">Пройти идентификацию</button>
                                                 <button type="submit" class="form-buttons_btn ml-3" :class="{'button-disabled' : loggedIn === false}" :disabled="loggedIn === false">Опубликовать объявлению</button>
                                             </div>
-                                            <div class="created-object">
-                                                <Toast />
-                                            </div>
                                         </div>
                                     </div>
                                     <!-- contacts -->
@@ -827,6 +824,12 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div v-if="closeData == true" class="loader-main-box">
+                        <ProgressSpinner style="width:80px; height:80px" strokeWidth="3" fill="var(--surface-ground)" animationDuration="1s" />
+                        <div class="created-object">
+                            <Toast />
                         </div>
                     </div>
                 </div>
@@ -957,6 +960,7 @@ export default {
             submitted: false,
             thumbnailpreview: "",
             isLoaded: false,
+            closeData: false,
             messages: [],
         }
     },
@@ -1059,6 +1063,7 @@ export default {
             }
             const token = localStorage.getItem('token');
             this.isLoaded = true,
+            this.closeData = true,
             axios.post('/api/object/create',  this.form, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
