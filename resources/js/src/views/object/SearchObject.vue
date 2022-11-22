@@ -11,6 +11,7 @@
                         </span>
                         <div class="options_main__items_inputs_block d-flex flex-column">
                             <Dropdown v-model="form.region_id" @change="getDistricts()"
+                            :loading="loading[0]"
                             optionValue="id" :options="regions" optionLabel="name_ru" placeholder="Выберите регион"
                             panelClass="p-multiselect-panell" />
                         </div>
@@ -23,6 +24,7 @@
                         </span>
                         <div class="options_main__items_inputs_block d-flex flex-column">
                             <MultiSelect v-model="form.district_id" @change="getQuarters()" :options="districts"
+                            :loading="loading[1]"
                             optionLabel="name_ru" optionValue="id" display="chip" placeholder="Выберите район"
                             :filter="true" panelClass="p-multiselect-panell" />
                         </div>
@@ -35,6 +37,7 @@
                         </span>
                         <div class="options_main__items_inputs_block d-flex flex-column">
                             <MultiSelect v-model="form.quarter_id" :options="quarters"
+                            :loading="loading[2]"
                             optionLabel="name_ru" optionValue="id" display="chip" placeholder="Выберите район"
                             :filter="true" panelClass="p-multiselect-panell" />
                         </div>
@@ -171,7 +174,7 @@
                     <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column mb-lg-0 mb-md-0 mb-sm-4">
                         <span class="search-object-top-filter_btn">
                             <span class="filter_search_btn">
-                                <Button type="submit" label="Найти" :loading="loading"  class="filter_search_btn-link float-sm-right" />
+                                <Button type="submit" label="Найти" :loading="loading[3]"  class="filter_search_btn-link float-sm-right" />
                             </span>
                         </span>
                     </div>
@@ -186,15 +189,15 @@
                 <div class="search-object-body-box-content-objects">
                     <div v-if="!sideBarFilter" class="objects-top row ml-0 mr-0">
                         <div v-if="!searchObject" class="col align-self-center pl-0">
-                            <a href="https://uybor.uz/ru/listing/search/sale" class="objects-top-link active">
+                            <a href="#" class="objects-top-link active">
                                 Всего
                                 <span class="ml-1">(4801)</span>
                             </a>
-                            <a href="https://uybor.uz/ru/listing/search/sale" class="objects-top-link">
+                            <a href="#" class="objects-top-link">
                                 Вторичка
                                 <span class="ml-1">(4801)</span>
                             </a>
-                            <a href="https://uybor.uz/ru/listing/search/sale" class="objects-top-link">
+                            <a href="#" class="objects-top-link">
                                 Новостройки
                                 <span class="ml-1">(4801)</span>
                             </a>
@@ -744,7 +747,7 @@ export default {
             sideBarFilter: false,
             displayModal: false,
             position: 'center',
-            loading: false,
+            loading: [false,false,false,false],
             regions: [],
             districts: [],
             quarters: [],
@@ -803,26 +806,49 @@ export default {
             }
 
         },
-        getRegions() {
-            axios.get('/api/allRegions')
+        allRegionQuarterDistrict(){
+            this.loading[0] = true;
+            axios.get('/api/allRegionQuarterDistrict')
             .then(response => {
                 this.regions = response.data.result
+                this.loading[0] = false;
+            })
+            .catch(function (error){
+                this.loading[0] = false;
             });
         },
         getDistricts() {
+            this.loading[1] = true;
             let region_id = this.form.region_id;
-            axios.get('/api/districts/' + region_id)
-            .then(response => {
-                this.districts = response.data.result
-                this.quarters = []
-            });
+            this.form.district_id = [];
+            this.form.quarter_id = [];
+
+            this.regions.forEach(region => {
+                if(region.id == this.form.region_id){
+                    this.districts = region.districts;
+                }
+            })
+
+            this.loading[1] = false;
         },
         getQuarters() {
-            let district_id = this.form.district_id;
-            axios.get('/api/quarters/' + district_id)
-            .then(response => {
-                this.quarters = response.data.result
+            this.loading[2] = true;
+            this.form.quarter_id = [];
+            this.quarters = [];
+
+            this.regions.forEach(region => {
+                if(region.id == this.form.region_id){
+                    region.districts.forEach(district => {
+                        if(this.form.district_id.includes(district.id)){
+                            this.quarters.push(...district.quarters);
+                        }
+                    })
+                }
+            })
+            this.quarters.sort(function (a, b) {
+                return a.name_ru.localeCompare(b.name_ru);
             });
+            this.loading[2] = false;
         },
         checkScreen() {
             this.windowWidth = window.innerWidth;
@@ -886,7 +912,7 @@ export default {
     async created() {
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen();
-        this.getRegions();
+        this.allRegionQuarterDistrict();
     },
     setup() {
         const v$ = useVuelidate();
