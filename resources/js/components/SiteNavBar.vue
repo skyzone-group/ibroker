@@ -18,7 +18,7 @@
                 <nav v-if="!mobileView">
                     <ul class="mb-0 navbar-ul descktop-menu">
                         <li class="navbar-ul-li">
-                            <router-link :to="{name: 'SearchObject', query: form}">Аренда</router-link>
+                            <a href="/search?object_deals=rent">Аренда</a>
                             <div class="sub-menu">
                                 <div class="sub-menu-item">
                                     <ul>
@@ -53,7 +53,7 @@
                             </div>
                         </li>
                         <li class="navbar-ul-li">
-                            <router-link to="/sell">Продажа</router-link>
+                            <a href="/search?object_deals=buy">Продажа</a>
                             <div class="sub-menu">
                                 <div class="sub-menu-item">
                                     <ul>
@@ -132,7 +132,7 @@
                             </div>
                         </li>
                         <li class="navbar-ul-li">
-                            <router-link :to="{name: 'siteCommercial'}">Коммерческая</router-link>
+                            <a href="/search?object_deals=buy&object_type=3">Коммерческая</a>
                         </li>
                         <li class="navbar-ul-li">
                             <router-link to="/dwdw">Ипотека</router-link>
@@ -398,10 +398,10 @@ export default {
             visibleLeft: false,
             DeskTopLogin: true,
             rubricsMenu: [
-                {id: 1,title: "Аренда", link: "/"},
-                {id: 2,title: "Продажа", link: "/"},
+                {id: 1,title: "Аренда", link: "/search?object_deals=rent"},
+                {id: 2,title: "Продажа", link: "/search?object_deals=buy"},
                 {id: 3,title: "Новостройки", link: "/"},
-                {id: 4,title: "Коммерческая", link: "/commercial"},
+                {id: 4,title: "Коммерческая", link: "/search?object_deals=buy&object_type=3"},
                 {id: 5,title: "Ипотека", link: "/"},
                 {id: 5,title: "Риэлторы", link: "/partners/realtors"},
             ],

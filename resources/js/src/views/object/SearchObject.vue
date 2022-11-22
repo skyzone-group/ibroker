@@ -183,7 +183,7 @@
                 </div>
             </div>
         </div>
-        <div class="search-object-body">
+        <div class="search-object-body" :class="{'h-100vh' : loaderProgress == true}">
             <div class="container_medium">
                 <div class="search-object-body-box-content">
                     <div class="search-object-body-box-content-objects">
@@ -440,8 +440,14 @@
                                 </Sidebar>
                             </div>
                         </div>
-                        <div class="objects-box">
-                            <div class="object-item">
+                        <div v-if="loaderProgress" class="loader-main-box">
+                            <ProgressSpinner style="width:80px; height:80px" strokeWidth="3" fill="var(--surface-ground)" animationDuration="1s" />
+                        </div>
+                        <div v-else-if="objects.length == 0" class="h-100vh">
+                            <h3 class="text-theme text-center" style="font-size: 25px;color: #000;font-weight: 700;">Результатов не найдено</h3>
+                        </div>
+                        <div v-else class="objects-box">
+                            <div v-for="object in objects" :key="object.id" class="object-item">
                                 <div class="object-item-block">
                                     <div class="object-photos">
                                         <div class="object-photos-thumb">
@@ -461,113 +467,45 @@
                                                 :modules="modules"
                                                 class="mySwiper2 w-100"
                                             >
-                                                <swiper-slide>
-                                                    <img src="https://swiperjs.com/demos/images/nature-1.jpg" class="swiper-lazy"/>
+                                                <swiper-slide v-for="image in object.images" :key="image.id">
+                                                    <img :src="`/file/${image.name}`" class="swiper-lazy"/>
                                                     <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div> 
                                                 </swiper-slide>
-                                                <swiper-slide>
-                                                    <img src="https://swiperjs.com/demos/images/nature-2.jpg" class="swiper-lazy"/>
-                                                </swiper-slide>
-                                                <swiper-slide>
-                                                    <img src="https://swiperjs.com/demos/images/nature-3.jpg" class="swiper-lazy"/>
-                                                </swiper-slide>
-                                                <swiper-slide
-                                                ><img
-                                                    src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide
-                                                ><swiper-slide
-                                                ><img
-                                                    src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide
-                                                ><swiper-slide
-                                                ><img
-                                                    src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide
-                                                ><swiper-slide
-                                                ><img
-                                                    src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide
-                                                ><swiper-slide
-                                                ><img
-                                                    src="https://swiperjs.com/demos/images/nature-8.jpg" /></swiper-slide
-                                                ><swiper-slide
-                                                ><img
-                                                    src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide
-                                                ><swiper-slide
-                                                ><img src="https://swiperjs.com/demos/images/nature-10.jpg"
-                                                /></swiper-slide>
                                             </swiper>
                                         </div>
-                                        <!-- <div class="object-photos-gallery mt-2">
-                                            <swiper
-                                                @swiper="setThumbsSwiper"
-                                                :loop="true"
-                                                :spaceBetween="10"
-                                                :slidesPerView="3"
-                                                :freeMode="true"
-                                                :watchSlidesProgress="true"
-                                                :modules="modules"
-                                                class="mySwiper  w-100"
-                                            >
-                                                <swiper-slide>
-                                                    <div class="object-photos-gallery-wrapper">
-                                                        <img  src="https://swiperjs.com/demos/images/nature-1.jpg" />
-                                                    </div>
-                                                </swiper-slide
-                                                ><swiper-slide
-                                                ><img
-                                                    src="https://swiperjs.com/demos/images/nature-2.jpg" /></swiper-slide
-                                                ><swiper-slide
-                                                ><img
-                                                    src="https://swiperjs.com/demos/images/nature-3.jpg" /></swiper-slide
-                                                ><swiper-slide
-                                                ><img
-                                                    src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide
-                                                ><swiper-slide
-                                                ><img
-                                                    src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide
-                                                ><swiper-slide
-                                                ><img
-                                                    src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide
-                                                ><swiper-slide
-                                                ><img
-                                                    src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide
-                                                ><swiper-slide
-                                                ><img
-                                                    src="https://swiperjs.com/demos/images/nature-8.jpg" /></swiper-slide
-                                                ><swiper-slide
-                                                ><img
-                                                    src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide
-                                                ><swiper-slide
-                                                ><img src="https://swiperjs.com/demos/images/nature-10.jpg"
-                                                /></swiper-slide>
-                                            </swiper>
-                                        </div> -->
                                     </div>
                                     <div class="object-body">
                                         <div class="object-body-content">
                                             <div class="object-details">
                                                 <div v-if="mobilePrice == true" class="object-price-list d-flex align-items-center">
-                                                    <p class="object-price-list-p">22 500 000 ₽</p>
+                                                    <p class="object-price-list-p">{{ vueNumberFormat(object.price, {}) }}</p>
                                                     <p class="object-price-list-desc ml-2">264 705$/м²</p>
                                                 </div>
                                                 <div class="object-details-item object-details-header">
                                                     <a class="NXJyid" href="https://domclick.ru/card/sale__flat__1564626862" target="_blank" rel="noopener noreferrer">
-                                                        <span class="title">2-комн. квартира 51 м² 2/9 этаж</span>
+                                                        <span v-if="object.object_type_id === 1" class="title">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor }} / {{ object.floor_count }} этаж</span>
+                                                        <span v-if="object.object_type_id === 2" class="title">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }}</span>
+                                                        <span v-if="object.object_type_id === 3" class="title">{{ object.object_type.name_ru }}, {{object.total_area }} м²</span>
+                                                        <span v-if="object.object_type_id === 4" class="title">{{ object.object_type.name_ru }}, {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }} м²</span>
+                                                        <span v-if="object.object_type_id === 5" class="title">{{ object.object_type.name_ru }}, {{ object.land_area }} м²</span>
                                                     </a>
                                                 </div>
                                                 <div class="object-details-item object-details-address mt-3">
                                                     <div class="w-100 object-details-item align-items-center">
                                                         <i class="fas fa-map-marker-alt mr-1"></i>
-                                                        <span class="PjgOZO">Москва, Чертановская улица, 21к1</span>
+                                                        <span class="PjgOZO">{{object.region.name_ru}}, {{object.district.name_ru}}, {{object.quarter.name_ru}}</span>
                                                     </div>
                                                 </div>
                                                 <div class="object-details-item mt-3">
                                                     <div class="object-details-description">
-                                                        СВОБОДНАЯ ПРОДАЖА!   Продается 2-х ком. Кв. м. Южная, ул. Чертановская, д. 21, корп.1 на 2-м этаже 9-ти этажного панельного дома в менее 10-ти минутах пешего хода от метро.  Общая площадь – 51м2, комнаты изолированные – 20  и 15 м2, кухня 7м2, с/у – раздельный.  Окна во двор.  Балкона – нет. Ремонт косметический. Дом располагается в районе с развитой инфраструктурой в шаговой доступности множество популярных сетевых магазинов, ТЦ.  Хорошая транспортная доступность до нескольких станций метро.  
+                                                        {{object.comment}}
                                                     </div>
                                                 </div>
                                                 <div class="object-details-addtional"></div>
                                             </div>
                                             <div v-if="!mobilePrice" class="object-price">
                                                 <div class="object-price-list">
-                                                    <p class="object-price-list-p">22 500 000 ₽</p>
+                                                    <p class="object-price-list-p">{{ vueNumberFormat(object.price, {}) }}</p>
                                                     <p class="object-price-list-desc">264 705$/м²</p>
                                                 </div>
                                             </div>
@@ -688,6 +626,7 @@ import MultiSelect from 'primevue/multiselect';
 import Sidebar from 'primevue/sidebar';
 import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
+import ProgressSpinner from 'primevue/progressspinner';
 // Validation
 import { required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
@@ -716,6 +655,7 @@ export default {
         Dialog,
         MultiSelect,
         Button,
+        ProgressSpinner
     },
     data() {
         return {
@@ -731,11 +671,13 @@ export default {
             visibleBottom: false,
             sideBarFilter: false,
             displayModal: false,
+            loaderProgress: false,
             position: 'center',
             loading: [false,false,false,false],
             regions: [],
             districts: [],
             quarters: [],
+            objects: [],
             form: {
                 name: '',
                 phone: '',
@@ -790,6 +732,18 @@ export default {
                 return;
             }
 
+        },
+        getObjects(){
+            this.loaderProgress = true;
+            this.form = this.$route.query;
+            axios.get('/api/object/search', this.form)
+            .then(response => {
+                this.objects = response.data.result.objects.data;
+                this.loaderProgress = false;
+            })
+            .catch(function (error){
+                alert(error);
+            });
         },
         allRegionQuarterDistrict(){
             this.loading[0] = true;
@@ -897,6 +851,7 @@ export default {
     async created() {
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen();
+        this.getObjects();
         this.allRegionQuarterDistrict();
     },
     setup() {

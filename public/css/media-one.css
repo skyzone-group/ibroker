@@ -223,9 +223,9 @@
         width: auto;
     }
 
-    .object-photos-thumb .swiper .swiper-wrapper .swiper-slide img{
+    /* .object-photos-thumb .swiper .swiper-wrapper .swiper-slide img{
         height: auto;
-    }
+    } */
 }
 
 @media only screen and (max-width: 475px){

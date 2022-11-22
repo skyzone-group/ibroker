@@ -291,6 +291,7 @@ export default {
             regions: [],
             districts: [],
             quarters: [],
+            objects: [],
             loading: [false,false,false,false],
         }
     },
@@ -305,7 +306,7 @@ export default {
                 console.log(response);
                 setTimeout(() => {
                     this.loading[3] = false;
-                    this.$router.push({name: "SearchObject", query: this.form});
+                    this.$router.push({name: "SearchObject", query: this.form });
                 },1000);
             })
             .catch(function (error){
