@@ -166,7 +166,11 @@
                     </div>
                 </div>
             </div>
-            <Paginator v-if="pageInfo" :CurrentPageReport="pageInfo.current_page"  @page="getUserObjects($event.page)" :rows="parseInt(pageInfo.per_page)" :totalRecords="pageInfo.total">
+            <Paginator v-if="pageInfo" 
+            :CurrentPageReport="pageInfo.current_page"  
+            @page="getUserObjects($event.page)" 
+            :rows="parseInt(pageInfo.per_page)" 
+            :totalRecords="pageInfo.total">
                 <template #start>
                     <p style="font-weight: 600; color: rgb(0, 47, 52);">Jami e'lonlar: {{totalObject}}</p>
                 </template>
