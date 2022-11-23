@@ -199,6 +199,9 @@
     box-shadow: 1px 1px 6px rgb(0 0 0 / 20%);
     background: #f8f9fa;
 }
+.mobile-filter-guide .single_button_select_box_label{
+    justify-content: space-between;
+}
 
 .mobile-filter-guide  .more-filter-btn {
     display: block;

@@ -150,11 +150,11 @@
                             <div v-for="item in objectTypes" :key="item.id" class="mobile-filter-guide">
                                 <label @click="filterData" :for="`item__${item.id}`" class="single_button_select_box_label" :class="{'active' : form.object_type == item.id}">
                                     <input v-model="form.object_type" :id="`item__${item.id}`" type="radio" class="single_button_select_box_label_inpt" tabindex="0" :value="item.id">
-                                    <i v-if="loading && form.object_type == item.id" class="pi pi-spin pi-spinner m-auto" style="font-size: 2rem"></i>
-                                    <div v-else class="mobile-filter-guide-icon d-flex align-items-center">
+                                    <div class="mobile-filter-guide-icon d-flex align-items-center">
                                         <img style="width: 30px" :src="`/images/icons/quickfilter/${item.id == 1 ? 'flat' : item.id == 2 ? 'home' : item.id == 3 ? 'office' : item.id == 4 ? 'villa' : 'land'}.png`" alt="">
                                         <span class="single_button_select_box_label_span" :class="{'active_span' : form.object_type == item.id}">{{item.name_ru}}</span>
                                     </div>
+                                    <i v-if="loading && form.object_type == item.id" class="pi pi-spin pi-spinner" style="font-size: 2rem; float: right;"></i>
                                 </label>
                             </div>
                         </div>
@@ -212,7 +212,13 @@ export default {
             .then(response => {
                 setTimeout(() => {
                     this.loading = false;
-                    this.$router.push({name: "SearchObject", query: this.form});
+                    this.$router.push({name: "SearchObject", query: {
+                        object_deals: this.form.object_deals,
+                        object_type: this.form.object_type,
+                        region_id: this.form.region_id,
+                        'district_id[]': this.form.district_id.map(e => e),
+                        'quarter_id[]' : this.form.quarter_id.map(e => e),
+                    }});
                 },1000);
             })
             .catch(function (error){
