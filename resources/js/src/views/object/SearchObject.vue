@@ -3,7 +3,7 @@
         <div v-if="!sideBarFilter" class="search-object-top">
             <div class="container_fluid">
                 <div class="search-object-top-box">
-                    <form @submit="searchObject" :model="form">
+                    <form @submit.prevent="searchObjectTest" :model="form" method="GET">
                         <div class="search-object-top-filters row ml-0 mr-0 align-items-center">
                             <div class="col-lg-2 col-md-2 col-sm-3 pl-0">
                                 <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
@@ -213,10 +213,10 @@
                                             </button>
                                         </div>
                                         <h1 class="mobile-filter-dialog-header-title">Фильтры</h1>
-                                        <button type="button" class="mobile-filter-dialog-header-clear">Сбросить</button>
+                                        <button type="button" class="mobile-filter-dialog-header-clear" @click="clearForm">Сбросить</button>
                                     </template>
                                     <div class="mobile-filter-dialog-body">
-                                        <form class="w-100 mobile-filter-dialog-form" @submit.prevent="getObjects()" :model="form">
+                                        <form class="w-100 mobile-filter-dialog-form" :model="form">
                                             <div class="mobile-filter-dialog-form-header">
                                                 <div class="Htvpx">
                                                     <div class="form-item">
@@ -410,7 +410,7 @@
                                         </form>
                                     </div>
                                     <template #footer>
-                                        <Button type="submit" label="Показать" icon="pi pi-search"/>
+                                        <Button @click="searchObjectTest" type="submit" :loading="loading[3]" label="Показать" icon="pi pi-search"/>
                                     </template>
                                 </Dialog>
                                 <button  @click="visibleBottom = true" type="button" class="mobile-sort mobile-search-btn">
@@ -449,7 +449,7 @@
                             <h3 class="text-theme text-center" style="font-size: 25px;color: #000;font-weight: 700;">Результатов не найдено</h3>
                         </div>
                         <div v-else class="objects-box">
-                            <div v-for="object in objects" :key="object.id" class="object-item">
+                            <div v-for="object in objects" :key="object.id" @click="this.$router.push({name: 'showObject', params: {type_deal: object.object_deals, type: object.object_type.name_ru, id: object.id}})" class="object-item">
                                 <div class="object-item-block">
                                     <div class="object-photos">
                                         <div class="object-photos-thumb">
@@ -484,7 +484,7 @@
                                                     <p class="object-price-list-desc ml-2">264 705$/м²</p>
                                                 </div>
                                                 <div class="object-details-item object-details-header">
-                                                    <a class="NXJyid" href="https://domclick.ru/card/sale__flat__1564626862" target="_blank" rel="noopener noreferrer">
+                                                    <a class="NXJyid" :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" target="_blank" rel="noopener noreferrer">
                                                         <span v-if="object.object_type_id === 1" class="title">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor }} / {{ object.floor_count }} этаж</span>
                                                         <span v-if="object.object_type_id === 2" class="title">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }}</span>
                                                         <span v-if="object.object_type_id === 3" class="title">{{ object.object_type.name_ru }}, {{object.total_area }} м²</span>
@@ -689,23 +689,23 @@ export default {
             objects: [],
             form: {
                 object_type: 1,
-                object_deals: '',
+                object_deals: this.$route.query.object_deals,
                 region_id: null,
                 district_id: [],
                 quarter_id: [],
                 object_types_property_id: [],
-                price_from: '',
-                price_to: '',
-                room_count_from: '',
-                room_count_to: '',
-                floor_from: '',
-                floor_to: '',
-                floor_count_from: '',
-                floor_count_to: '',
-                total_area_from: '',
-                total_area_to: '',
-                land_area_from: '',
-                land_area_to: ''
+                price_from: this.$route.query.price_from,
+                price_to: this.$route.query.price_to,
+                room_count_from: this.$route.query.room_count_from,
+                room_count_to: this.$route.query.room_count_to,
+                floor_from: this.$route.query.floor_from,
+                floor_to: this.$route.query.floor_to,
+                floor_count_from: this.$route.query.floor_count_from,
+                floor_count_to: this.$route.query.floor_count_to,
+                total_area_from: this.$route.query.total_area_from,
+                total_area_to: this.$route.query.total_area_to,
+                land_area_from: this.$route.query.land_area_from,
+                land_area_to: this.$route.query.land_area_to,
             },
             sortOptions: [
                 {name: 'Самые новые', code: 'NY'},
@@ -732,14 +732,46 @@ export default {
             }
 
         },
-        searchObject(){
-            this.$router.push({query: this.form});
+        searchObjectTest(){
+            // let query = this.$route.query;
+            // let x = this.form;
+            this.loading[3] = true;
+            setTimeout(() => {
+                this.loading[3] = false;
+                this.$router.push(
+                {
+                    name: "SearchObject",
+                    query: {
+                        object_deals: this.form.object_deals,
+                        object_type: this.form.object_type,
+                        region_id: this.form.region_id,
+                        'district_id[]': this.form.district_id.map(e => e),
+                        'quarter_id[]' : this.form.quarter_id.map(e => e),
+                        'object_types_property_id[]' : this.form.object_types_property_id.map(e => e),
+                        price_from: this.form.price_from,
+                        price_to: this.form.price_to,
+                        room_count_from: this.form.room_count_from,
+                        room_count_to: this.form.room_count_to,
+                        floor_from: this.form.floor_from,
+                        floor_to: this.form.floor_to,
+                        floor_count_from: this.form.floor_count_from,
+                        floor_count_to: this.form.floor_count_to,
+                        total_area_from: this.form.total_area_from,
+                        total_area_to: this.form.total_area_to,
+                        land_area_from: this.form.land_area_from,
+                        land_area_to: this.form.land_area_to
+                    }
+                });
+                this.displayModal = false;
+                // this.test();
+            },1000);
             this.getObjects();
+            // window.location.reload();
         },
         getObjects(page){
             this.loaderProgress = true;
-            this.form = this.$route.query;
-            axios.get(`/api/object/search?page=${page+=1}&total=${this.total}`, this.form)
+            // const test = this.$route.query ;
+            axios.get(`/api/object/search?page=${page+=1}&total=${this.total}`, this.$route.query)
             .then(response => {
                 this.objects = response.data.result.objects.data;
                 this.pageInfo = response.data.result.objects;
@@ -813,38 +845,32 @@ export default {
             this.mobilePrice = false
             return;
         },
-        // test(){
-        //     this.regions.map(item => {
-        //         if(item.id == this.form.region_id){
-        //             let name = item.name_ru;
-        //             return name;
-        //         }
-        //     })
-        // }
+        clearForm(){
+            this.form.object_type = null;
+            this.form.object_deals = '';
+            this.form.region_id = null;
+            this.form.price_from = '';
+            this.form.price_to = '';
+            this.form.room_count_from = '';
+            this.form.room_count_to = '';
+            this.form.floor_from = '';
+            this.form.floor_to = '';
+            this.form.floor_count_from = '';
+            this.form.floor_count_to = '';
+            this.form.total_area_from = '';
+            this.form.total_area_to = '';
+            this.form.land_area_from = '';
+            this.form.land_area_to = '';
+        },
         checkAddress(){
-            this.form = this.$route.query;
-            let region_id = Number(this.$route.query.region_id);
-            let district_id = this.$route.query.district_id;
-            if(this.form.region_id == region_id){
-                this.form.region_id = region_id;
-                // let x = JSON.parse(district_id);
-                this.getDistricts();
-                console.log(district_id);
-
-                const arrayFailed = Object.entries(district_id).map((arr) => ({
-                    id: arr[1],
-                }));
-                // console.log(arrayFailed);
-
-                // for(let i = 0; i < arrayFailed.length; i++){
-                //     this.form.district_id.push(Number(district_id[i]));
-                // }
-            }
+            this.form.region_id = Number(this.$route.query.region_id);
+            this.allRegionQuarterDistrict();
         }
     },
     mounted() {
         this.$store.dispatch('getObjectTypes');
         this.$store.dispatch('getObjectTypesProperty');
+        this.getObjects();
         this.checkAddress();
     },
     computed: {
@@ -853,10 +879,9 @@ export default {
             'objectProperty',
         ])
     },
-    async created() {
+    created() {
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen();
-        this.getObjects();
         this.allRegionQuarterDistrict();
     },
     setup() {

@@ -281,6 +281,7 @@ class ObjectController extends ResponseController
     }
 
     public function search(Request $request){
+        // dd($request);
         $region_id       = $request->get('region_id');
         $district_id     = $request->get('district_id');
         $quarter_id      = $request->get('quarter_id');
