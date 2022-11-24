@@ -281,12 +281,16 @@ class ObjectController extends ResponseController
     }
 
     public function search(Request $request){
-        // dd($request);
+
         $region_id       = $request->get('region_id');
         $district_id     = $request->get('district_id');
         $quarter_id      = $request->get('quarter_id');
-
+        
         $query = Objects::query();
+
+        if($region_id) $query = $query->where('region_id', '=', $district_id);
+        if($district_id) $query = $query->whereIn('district_id', $district_id);
+        if($quarter_id) $query = $query->whereIn('quarter_id', $quarter_id);
 
         $query = $query
                 ->with([
