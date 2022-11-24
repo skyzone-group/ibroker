@@ -287,7 +287,7 @@ class ObjectController extends ResponseController
         
         $query = Objects::query();
 
-        if($region_id) $query = $query->where('region_id', '=', $district_id);
+        if($region_id) $query = $query->where('region_id', '=', $region_id);
         if($district_id) $query = $query->whereIn('district_id', $district_id);
         if($quarter_id) $query = $query->whereIn('quarter_id', $quarter_id);
 

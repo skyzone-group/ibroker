@@ -300,52 +300,33 @@ export default {
     methods: {
         filterData(){
             this.loading[3] = true;
-            axios.get('/api/object/search', this.form)
-            .then(response => {
-                console.log(response);
-                setTimeout(() => {
-                    this.loading[3] = false;
-                    // const searchParams = new URLSearchParams();
-                    // Object.entries(this.form).forEach((key, value) => {
-                    //     if(Array.isArray(value)) {
-                    //         value.forEach(item => searchParams.append(`${key}[]`, item))
-                    //     } else {
-                    //         searchParams.append(key, value);
-                    //     }
-                    // });
-                    // var searchString = searchParams.toString()
-                    // console.log(searchString);
-                    this.$router.push(
-                    {
-                        name: "SearchObject",
-                        query: {
-                            object_deals: this.form.object_deals,
-                            object_type: this.form.object_type,
-                            region_id: this.form.region_id,
-                            'district_id[]': this.form.district_id.map(e => e),
-                            'quarter_id[]' : this.form.quarter_id.map(e => e),
-                            'object_types_property_id[]' : this.form.object_types_property_id.map(e => e),
-                            price_from: this.form.price_from,
-                            price_to: this.form.price_to,
-                            room_count_from: this.form.room_count_from,
-                            room_count_to: this.form.room_count_to,
-                            floor_from: this.form.floor_from,
-                            floor_to: this.form.floor_to,
-                            floor_count_from: this.form.floor_count_from,
-                            floor_count_to: this.form.floor_count_to,
-                            total_area_from: this.form.total_area_from,
-                            total_area_to: this.form.total_area_to,
-                            land_area_from: this.form.land_area_from,
-                            land_area_to: this.form.land_area_to
-                        }
-                    });
-
-                    // this.test();
-                },1000);
-            })
-            .catch(function (error){
-                alert(error);
-            });
+            setTimeout(() => {
+                this.loading[3] = false;
+                this.$router.push(
+                {
+                    name: "SearchObject",
+                    query: {
+                        object_deals: this.form.object_deals,
+                        object_type: this.form.object_type,
+                        region_id: this.form.region_id,
+                        'district_id[]': this.form.district_id.map(e => e),
+                        'quarter_id[]' : this.form.quarter_id.map(e => e),
+                        'object_types_property_id[]' : this.form.object_types_property_id.map(e => e),
+                        price_from: this.form.price_from,
+                        price_to: this.form.price_to,
+                        room_count_from: this.form.room_count_from,
+                        room_count_to: this.form.room_count_to,
+                        floor_from: this.form.floor_from,
+                        floor_to: this.form.floor_to,
+                        floor_count_from: this.form.floor_count_from,
+                        floor_count_to: this.form.floor_count_to,
+                        total_area_from: this.form.total_area_from,
+                        total_area_to: this.form.total_area_to,
+                        land_area_from: this.form.land_area_from,
+                        land_area_to: this.form.land_area_to
+                    }
+                });
+            },1000);
         },
         allRegionQuarterDistrict(){
             this.loading[0] = true;

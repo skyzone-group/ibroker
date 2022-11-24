@@ -675,7 +675,7 @@ export default {
             totalRecords: 120,
             pageInfo: null,
             totalObject: null,
-            total: 5,
+            total: 2,
             selectedCity1: null,
             visibleBottom: false,
             sideBarFilter: false,
@@ -733,8 +733,6 @@ export default {
 
         },
         searchObjectTest(){
-            // let query = this.$route.query;
-            // let x = this.form;
             this.loading[3] = true;
             setTimeout(() => {
                 this.loading[3] = false;
@@ -763,24 +761,10 @@ export default {
                     }
                 });
                 this.displayModal = false;
-                
-                // this.test();
             },1000);
-            // this.getObjects();
-            // window.location.reload();
         },
-        getObjects(page){
+        async getObjects(page){
             this.loaderProgress = true;
-            // const test = this.$route.query ;
-            const getFormData = object => Object.entries(object).reduce((fd, [ key, val ]) => {
-                if (Array.isArray(val)) {
-                    val.forEach(v => fd.append(key, v))
-                } else {
-                    fd.append(key, val)
-                }
-                return fd
-            }, new FormData());
-
             axios.get(`/api/object/search?page=${page+=1}&total=${this.total}`, { params: this.$route.query})
             .then(response => {
                 this.objects = response.data.result.objects.data;
@@ -894,12 +878,7 @@ export default {
         this.checkScreen();
         this.allRegionQuarterDistrict();
         this.getObjects();
-        this.$watch(
-            () => this.$route.query,
-            async ()=>{
-                this.getObjects();
-            }
-        )
+        this.$watch(() => this.$route.query, this.getObjects);
     },
     setup() {
         return {
