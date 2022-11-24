@@ -305,16 +305,16 @@ export default {
                 console.log(response);
                 setTimeout(() => {
                     this.loading[3] = false;
-                    const searchParams = new URLSearchParams();
-                    Object.entries(this.form).forEach((key, value) => {
-                        if(Array.isArray(value)) {
-                            value.forEach(item => searchParams.append(`${key}[]`, item))
-                        } else {
-                            searchParams.append(key, value);
-                        }
-                    });
-                    var searchString = searchParams.toString()
-                    console.log(searchString);
+                    // const searchParams = new URLSearchParams();
+                    // Object.entries(this.form).forEach((key, value) => {
+                    //     if(Array.isArray(value)) {
+                    //         value.forEach(item => searchParams.append(`${key}[]`, item))
+                    //     } else {
+                    //         searchParams.append(key, value);
+                    //     }
+                    // });
+                    // var searchString = searchParams.toString()
+                    // console.log(searchString);
                     this.$router.push(
                     {
                         name: "SearchObject",

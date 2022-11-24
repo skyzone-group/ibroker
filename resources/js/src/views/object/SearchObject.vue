@@ -772,8 +772,16 @@ export default {
         getObjects(page){
             this.loaderProgress = true;
             // const test = this.$route.query ;
-            console.log(this.$route.query);
-            axios.get(`/api/object/search?page=${page+=1}&total=${this.total}`, this.$route.query)
+            const getFormData = object => Object.entries(object).reduce((fd, [ key, val ]) => {
+                if (Array.isArray(val)) {
+                    val.forEach(v => fd.append(key, v))
+                } else {
+                    fd.append(key, val)
+                }
+                return fd
+            }, new FormData());
+
+            axios.get(`/api/object/search?page=${page+=1}&total=${this.total}`, { params: this.$route.query})
             .then(response => {
                 this.objects = response.data.result.objects.data;
                 this.pageInfo = response.data.result.objects;
