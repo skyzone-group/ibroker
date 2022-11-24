@@ -449,7 +449,7 @@
                             <h3 class="text-theme text-center" style="font-size: 25px;color: #000;font-weight: 700;">Результатов не найдено</h3>
                         </div>
                         <div v-else class="objects-box">
-                            <div v-for="object in objects" :key="object.id" @click="this.$router.push({name: 'showObject', params: {type_deal: object.object_deals, type: object.object_type.name_ru, id: object.id}})" class="object-item">
+                            <div v-for="object in objects" :key="object.id"  class="object-item">
                                 <div class="object-item-block">
                                     <div class="object-photos">
                                         <div class="object-photos-thumb">
@@ -763,14 +763,16 @@ export default {
                     }
                 });
                 this.displayModal = false;
+                
                 // this.test();
             },1000);
-            this.getObjects();
+            // this.getObjects();
             // window.location.reload();
         },
         getObjects(page){
             this.loaderProgress = true;
             // const test = this.$route.query ;
+            console.log(this.$route.query);
             axios.get(`/api/object/search?page=${page+=1}&total=${this.total}`, this.$route.query)
             .then(response => {
                 this.objects = response.data.result.objects.data;
@@ -870,7 +872,7 @@ export default {
     mounted() {
         this.$store.dispatch('getObjectTypes');
         this.$store.dispatch('getObjectTypesProperty');
-        this.getObjects();
+        
         this.checkAddress();
     },
     computed: {
@@ -879,10 +881,17 @@ export default {
             'objectProperty',
         ])
     },
-    created() {
+    async created() {
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen();
         this.allRegionQuarterDistrict();
+        this.getObjects();
+        this.$watch(
+            () => this.$route.query,
+            async ()=>{
+                this.getObjects();
+            }
+        )
     },
     setup() {
         return {

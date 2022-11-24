@@ -618,3 +618,5 @@
         </div>
     </div>
 </div>
+
+@click="this.$router.push({name: 'showObject', params: {type_deal: object.object_deals, type: object.object_type.name_ru, id: object.id}})"
