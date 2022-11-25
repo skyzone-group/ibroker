@@ -613,11 +613,7 @@ export default {
     methods: {
         getObject(){
             const token = localStorage.getItem('token');
-            axios.get('/api/object/show/' + this.$route.params.id, {
-                headers: {
-                    'Authorization': `Bearer ${token}`, 
-                }
-            })
+            axios.get('/api/object/show/' + this.$route.params.id)
             .then(response => {
                 this.object = response.data.result.object;
                 // set the youtube id if its youtube video

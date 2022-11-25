@@ -271,7 +271,7 @@
                                 <div class="objects-total">{{vueNumberFormat(objectsCount, {prefix: ''})}} объявлений</div>
                             </div>
                             <div class="col align-self-center pr-0">
-                                <Dropdown v-model="selectedCity1" :options="sortOptions" optionLabel="name" optionValue="code" placeholder="Сортировка" />
+                                <Dropdown @change="pushParamsURL()" v-model="form.sort_direction" :options="sortOptions" optionLabel="name_ru" optionValue="id" placeholder="Сортировка" panelClass="sort-object-dropdown"/>
                             </div>
                         </div>
                         <div v-if="sideBarFilter" class="mobile-filter-sort-box d-flex align-items-center justify-content-between">
@@ -513,9 +513,15 @@
                                     <div class="siber-bottom-body">
                                         <div class="siber-bottom-body-box">
                                             <div class="siber-bottom-body-box-items">
-                                                <div v-for="item in sortOptions" :key="item.code" class="siber-bottom-body-box-item">
-                                                    <p class="siber-bottom-body-box-item-p mb-0" style="flex: 1 1;">{{item.name}}</p>
-                                                </div>
+                                                <label :for="`sort_option_${item.id}`" v-for="item in sortOptions" :key="item.id" class="siber-bottom-body-box-item position-relative">
+                                                    <p class="siber-bottom-body-box-item-p mb-0" style="flex: 1 1;">{{item.name_ru}}</p>
+                                                    <input @change="pushParamsURL()" @click="visibleBottom = !visibleBottom" :id="`sort_option_${item.id}`" type="radio" v-model="form.sort_direction" :value="item.id" tabindex="0" class="siber-bottom-body-box-items-input">
+                                                    <div v-if="form.sort_direction === item.id" class="siber-bottom-body-box-items-svg">
+                                                        <svg  aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="m14.733 4.68-8.067 8.688-5.299-4.327 1.265-1.549L6.478 10l6.79-6.68 1.466 1.36Z" fill="currentColor"></path>
+                                                        </svg>
+                                                    </div>
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
@@ -558,7 +564,7 @@
                                     </div>
                                     <div class="object-body">
                                         <div class="object-body-content">
-                                            <div class="object-details">
+                                            <div @click="this.$router.push({name: 'showObject', params: {type_deal: object.object_deals, type: object.object_type.name_ru, id: object.id}})" class="object-details">
                                                 <div v-if="mobilePrice == true" class="object-price-list d-flex align-items-center">
                                                     <p class="object-price-list-p">{{ vueNumberFormat(object.price, {}) }}</p>
                                                     <p class="object-price-list-desc ml-2">264 705$/м²</p>
@@ -792,12 +798,14 @@ export default {
                 total_area_to: this.$route.query.total_area_to,
                 land_area_from: this.$route.query.land_area_from,
                 land_area_to: this.$route.query.land_area_to,
-                keyword: ''
+                keyword: '',
+                sort_direction: ''
             },
             sortOptions: [
-                {name: 'Самые новые', code: 'NY'},
-                {name: 'Самые дешевые', code: 'RM'},
-                {name: 'Самые дорогие', code: 'LDN'},
+                {name_ru: 'Самые новые', name_uz: 'Eng yangi', id: 'date_new'},
+                {name_ru: 'Самые старые', name_uz: 'Eng eski', id: 'date_old'},
+                {name_ru: 'Самые дорогие', name_uz: 'Eng qimmat', id: 'price_expensive'},
+                {name_ru: 'Самые дешевые', name_uz: 'Eng arzon', id: 'price_cheap'},
             ],
         }
     },
@@ -819,39 +827,43 @@ export default {
             }
 
         },
+        pushParamsURL(){
+            this.$router.push(
+            {
+                name: "SearchObject",
+                query: {
+                    object_deals: this.form.object_deals,
+                    object_type: this.form.object_type,
+                    region_id: this.form.region_id,
+                    'district_id[]': this.form.district_id.map(e => e),
+                    'quarter_id[]' : this.form.quarter_id.map(e => e),
+                    'object_types_property_id[]' : this.form.object_types_property_id.map(e => e),
+                    price_from: this.form.price_from,
+                    price_to: this.form.price_to,
+                    room_count_from: this.form.room_count_from,
+                    room_count_to: this.form.room_count_to,
+                    floor_from: this.form.floor_from,
+                    floor_to: this.form.floor_to,
+                    floor_count_from: this.form.floor_count_from,
+                    floor_count_to: this.form.floor_count_to,
+                    total_area_from: this.form.total_area_from,
+                    total_area_to: this.form.total_area_to,
+                    land_area_from: this.form.land_area_from,
+                    land_area_to: this.form.land_area_to,
+                    sort_direction: this.form.sort_direction
+                }
+            });
+        },
         searchObjectTest(){
             this.loading[3] = true;
             setTimeout(() => {
                 this.loading[3] = false;
-                this.$router.push(
-                {
-                    name: "SearchObject",
-                    query: {
-                        object_deals: this.form.object_deals,
-                        object_type: this.form.object_type,
-                        region_id: this.form.region_id,
-                        'district_id[]': this.form.district_id.map(e => e),
-                        'quarter_id[]' : this.form.quarter_id.map(e => e),
-                        'object_types_property_id[]' : this.form.object_types_property_id.map(e => e),
-                        price_from: this.form.price_from,
-                        price_to: this.form.price_to,
-                        room_count_from: this.form.room_count_from,
-                        room_count_to: this.form.room_count_to,
-                        floor_from: this.form.floor_from,
-                        floor_to: this.form.floor_to,
-                        floor_count_from: this.form.floor_count_from,
-                        floor_count_to: this.form.floor_count_to,
-                        total_area_from: this.form.total_area_from,
-                        total_area_to: this.form.total_area_to,
-                        land_area_from: this.form.land_area_from,
-                        land_area_to: this.form.land_area_to
-                    }
-                });
+                this.pushParamsURL();
                 this.displayModal = false;
                 this.moreOptions = false;
             },1000);
         },
-        async getObjects(page = 0){
+        async getObjects(page){
             this.loaderProgress = true;
             axios.get(`/api/object/search?page=${page+=1}&total=${this.total}`, { params: this.$route.query})
             .then(response => {

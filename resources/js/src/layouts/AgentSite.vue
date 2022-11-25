@@ -1655,7 +1655,7 @@ export default {
 .p-multiselect-panel{
     /* top: 400px !important; */
     /* border-radius: 8px !important; */
-    min-width: 284px !important;
+    min-width: 284px ;
 }
 
 .p-multiselect-panel .p-multiselect-header{

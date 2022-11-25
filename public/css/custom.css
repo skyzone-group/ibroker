@@ -1002,6 +1002,23 @@ a:hover {
     flex-direction: row;
 }
 
+.siber-bottom-body-box-items-input{
+    box-shadow: none;
+    box-sizing: border-box;
+    height: 0;
+    opacity: 0;
+    outline: none;
+    position: absolute;
+    width: 0;
+    z-index: -1;
+}
+
+.siber-bottom-body-box-items-svg{
+    flex: 0 0 auto;
+    padding-right: 2px;
+    color: var(--form-button-color);
+}
+
 .slider-bottom{
     height: auto !important;
 }
@@ -1454,6 +1471,13 @@ a:hover {
     top: 0;
     transform: translate(100%,-50%);
     width: 8px;
+}
+
+.sort-object-dropdown{
+    min-width: 200px !important;
+    margin-top: 8px !important;
+    box-shadow: 0 10px 20px 0 rgb(0 0 0 / 10%) !important;
+    border-radius: 4px !important;
 }
 /* ! ************************ Home page Filter end ******************************************************************/
 /* ************************************* FilterObjects component start ******************************** */
