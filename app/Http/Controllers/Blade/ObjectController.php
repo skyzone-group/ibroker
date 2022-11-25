@@ -256,7 +256,10 @@ class ObjectController extends ResponseController
         $user_id = auth('sanctum')->user()->id;
 
         $query = Objects::query();
-        $query = $query->where(['user_id' => $user_id, 'id' => $id])
+        
+        //if(!$user_id) $query = $query->where('access_type', '=', 'public');
+
+        $query = $query->where(['id' => $id])
                 ->with([
                     'user',
                     'images',

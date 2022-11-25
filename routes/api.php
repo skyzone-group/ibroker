@@ -40,6 +40,7 @@ Route::get('/allDistricts', [AddressController::class, 'allDistricts']);
 Route::get('/allQuarters', [AddressController::class, 'allQuarters']);
 Route::get('/districts/{region_id}', [AddressController::class, 'districts']);
 Route::get('/quarters/{quarter_id}', [AddressController::class, 'quarters']);
+
 # Object properties
 Route::get('/objectTypes', [ObjectTypesController::class, 'objectTypes']);
 Route::get('/objectProperty', [ObjectTypesController::class, 'objectProperty']);
@@ -47,7 +48,7 @@ Route::get('/additional/{object_id}', [ObjectTypesController::class, 'additional
 
 # Public objects
 Route::get('/object/search', [ObjectController::class, 'search']); //search public objects
-
+Route::get('/object/show/{object_id}', [ObjectController::class, 'show']);
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -64,7 +65,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/object/create', [ObjectController::class, 'create']);
     Route::get('/object/edit/{object_id}', [ObjectController::class, 'edit']);
     Route::post('/object/update/{object_id}', [ObjectController::class, 'update']);
-    Route::get('/object/show/{object_id}', [ObjectController::class, 'show']);
+    //Route::get('/object/show/{object_id}', [ObjectController::class, 'show']);
 
     # Friend
     Route::get('/friend/all', [FriendController::class, 'getAll']);
