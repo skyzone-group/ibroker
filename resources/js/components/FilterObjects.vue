@@ -170,7 +170,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-3 pl-0">
+                        <div v-if="form.object_type != 3 && form.object_type != 5" class="col-3 pl-0">
                             <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
                                 <span class="inputs_block_title">
                                     Этажность
@@ -208,7 +208,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-if="form.object_type == 2 || form.object_type == 4 || form.object_type == 5" class="col-3 pl-0 pr-0">
+                        <div v-if="form.object_type == 2 || form.object_type == 4" class="col-3 pl-0 pr-0">
                             <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
                                 <span class="inputs_block_title">
                                     Площадь участка (сот.)
