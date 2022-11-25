@@ -281,15 +281,35 @@ class ObjectController extends ResponseController
     }
 
     public function search(Request $request){
-        $region_id       = $request->get('region_id');
-        $district_id     = $request->get('district_id');
-        $quarter_id      = $request->get('quarter_id');
+        $region_id          = $request->get('region_id');
+        $district_id        = $request->get('district_id');
+        $quarter_id         = $request->get('quarter_id');
+        $object_type        = $request->get('object_type');
+        $object_deals       = $request->get('object_deals');
+        $price_from         = $request->get('price_from');
+        $price_to           = $request->get('price_to');
+
+        $room_count_from    = $request->get('room_count_from');
+        $room_count_to      = $request->get('room_count_to');
+        $floor_from         = $request->get('floor_from');
+        $floor_to           = $request->get('floor_to');
+        $floor_count_from   = $request->get('floor_count_from');
+        $floor_count_to     = $request->get('floor_count_to');
+        $total_area_from    = $request->get('total_area_from');
+        $total_area_to      = $request->get('total_area_to');
+        $land_area_from     = $request->get('land_area_from');
+        $land_area_to       = $request->get('land_area_to');
         
+
         $query = Objects::query();
 
         if($region_id) $query = $query->where('region_id', '=', $region_id);
         if($district_id) $query = $query->whereIn('district_id', $district_id);
         if($quarter_id) $query = $query->whereIn('quarter_id', $quarter_id);
+        if($object_type) $query = $query->where('object_type_id', '=', $object_type);
+        if($object_deals) $query = $query->where('object_deals', '=', $object_deals);
+        if($price_from) $query = $query->where('price', '>=', $price_from);
+        if($price_to) $query = $query->where('price', '<=', $price_to);
 
         $query = $query
                 ->with([
