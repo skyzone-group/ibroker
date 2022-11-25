@@ -5,14 +5,26 @@
                 <div class="object_single_page_main_box">
                     <div class="product-page__content">
                         <div class="product-page__content_top_buttons product-page_btn_style">
-                            <div class="product-page__content_top_buttons_item ml-0">
-                                <router-link tag="a" :to="{ name: 'objects'}" class="object_single_page_btn_style">
+                            <div v-if="user.id == object.user_id" class="product-page__content_top_buttons_item ml-0">
+                                <router-link tag="a" :to="{ name: 'objects'}" class="object_single_page_btn_style nohover">
                                     <span class="button-root__icon-8-1-3 button-root__icon--left-8-1-3"><div class="icon-4-0-1"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M10.56 3.27a1 1 0 00-1.41-1.42l-5.3 5.3a1 1 0 000 1.41l5.3 5.3a1 1 0 001.41-1.42L6.33 8.2a.5.5 0 010-.71l4.23-4.23z"></path></svg></div></span><span class="button-root__text-8-1-3">Мои объявления</span>
                                 </router-link>
+                            </div>
+                            <div v-else class="product-page__content_top_buttons_item ml-0">
+                                <a tag="a" @click="$router.go(-1)" class="object_single_page_btn_style nohover">
+                                    <span class="button-root__icon-8-1-3 button-root__icon--left-8-1-3">
+                                        <div class="icon-4-0-1"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                            <path d="M10.56 3.27a1 1 0 00-1.41-1.42l-5.3 5.3a1 1 0 000 1.41l5.3 5.3a1 1 0 001.41-1.42L6.33 8.2a.5.5 0 010-.71l4.23-4.23z"></path>
+                                        </svg></div></span><span class="button-root__text-8-1-3">Назад</span>
+                                </a>
                             </div>
                             <div class="product-page__content_top_buttons_item d-flex">
                                 <div class="product-page__content_top_buttons_item_btn">
                                     <div class="position-relative">
+                                        <button type="button" id="favorites-add" class="object_single_page_btn_style dropdown-user-link" data-toggle="dropdown" aria-expanded="false">
+                                            <span class="button-root__icon-8-1-3" :class="{'button-root__icon--left-8-1-3' : Sidebar == false}"><div class="icon-4-0-1"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M10.54 2.09l4.1 4.13c.2.2.2.51 0 .7L10.52 11a.3.3 0 01-.51-.21V8.5a.3.3 0 00-.3-.3c-4.94.05-6.1 1.26-6.7 2.97a8.1 8.1 0 00-.3 2.61c0 .21-.26.27-.36.09-4.5-9.06 3.43-9.29 7.39-9.3a.3.3 0 00.3-.3V2.3c0-.27.32-.4.5-.21z"></path></svg></div></span>
+                                            <span v-if="Sidebar == false" class="button-root__text-8-1-3">Поделиться</span>
+                                        </button>
                                         <div class="dropdown-menu dropdown-menu-left">
                                             <div class="item">
                                                 <div class="hint-head-0-9-4">
@@ -59,21 +71,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="product-page__content_top_buttons_item_btn">
-                                    <div class="position-relative">
-                                        <button @click="print" type="button" id="object-print" class="object_single_page_btn_style">
-                                            <span class="button-root__icon-8-1-3 button-root__icon--left-8-1-3 m-0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path fill="#93989D" d="M13 14v2H3v-2H1.994A1.992 1.992 0 0 1 0 12V6c0-1.105.895-2 1.994-2h12.012C15.107 4 16 4.887 16 6v6c0 1.105-.895 2-1.994 2H13zM3 0h10v3H3V0zm2 11.5c0 .268.22.5.491.5h5.018a.5.5 0 0 0 0-1H5.491a.5.5 0 0 0-.491.5zm0 2c0 .268.22.5.491.5h5.018a.5.5 0 0 0 0-1H5.491a.5.5 0 0 0-.491.5z"></path></svg></span>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div v-if="Sidebar == true" class="product-page__content_top_buttons_item_btn">
-                                    <div class="position-relative">
-                                        <button data-toggle="modal" data-target="#commentsModal" v-tooltip.bottom="'Комментарии'"  type="button" id="object-print"
-                                        class="object_single_page_btn_style">
-                                            <span class="button-root__icon-8-1-3 button-root__icon--left-8-1-3 m-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" id="IconChangeColor" height="16px" width="16px"><path fill="#93989D" fill-rule="evenodd" d="M2 6a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7.667a1 1 0 0 0-.6.2L3.6 21.8A1 1 0 0 1 2 21V6zm5 0a1 1 0 0 0 0 2h10a1 1 0 1 0 0-2H7zm0 4a1 1 0 1 0 0 2h10a1 1 0 1 0 0-2H7zm0 4a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2H7z" clip-rule="evenodd" id="mainIconPathAttribute" filter="url(#shadow)"></path><filter id="shadow"><feDropShadow id="shadowValue" stdDeviation=".5" dx="0" dy="0" flood-color="black"></feDropShadow></filter><filter id="shadow"><feDropShadow id="shadowValue" stdDeviation=".5" dx="0" dy="0" flood-color="black"></feDropShadow></filter></svg></span>
-                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -423,10 +420,10 @@
                                         </div>
                                         <div class="subscription__author_block_actions">
                                             <div class="subscription__author_block_actions_block">
-                                                <button v-if="showPhoneSecond == false" @click="this.showPhoneSecond = true" type="button" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4  button-root--type-button-reset-8-1-3 button-root-8-1-3">
+                                                <button v-if="showPhone[1] == false" @click="showPhone[1] = true" type="button" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4  button-root--type-button-reset-8-1-3 button-root-8-1-3">
                                                     <span class="button-root__text-8-1-3">Показать телефон</span>
                                                 </button>
-                                                <a v-if="showPhoneSecond == true" :href="`tel:+${user.phone}`" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4  button-root--type-button-reset-8-1-3 button-root-8-1-3">
+                                                <a v-if="showPhone[1] == true" :href="`tel:+${user.phone}`" class="nohover button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4  button-root--type-button-reset-8-1-3 button-root-8-1-3">
                                                     <span class="button-root__text-8-1-3">+{{user.phone}}</span>
                                                 </a>
                                             </div>
@@ -439,7 +436,7 @@
                     <!-- sidebar -->
                     <div v-if="!Sidebar" class="product-page__sidebar">
                         <div class="product-page__sticky">
-                            <aside v-for="user in object.user" :key="user.id" class="product-page__sidebar_autor autor_box_style">
+                            <aside v-for="user in owner" :key="user.id" class="product-page__sidebar_autor autor_box_style">
                                 <div class="product-page__sidebar_autor_top autor_box_style-2">
                                     <div class="product-page__sidebar_autor_top_box d-flex align-items-center">
                                         <div class="title">
@@ -467,16 +464,16 @@
                                         </div>
                                     </div>
                                     <div class="product-page__sidebar_autor_bottom_button d-flex flex-column">
-                                        <button v-if="showPhone == false" @click="this.showPhone = true" type="button" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3 button-root--type-button-reset-8-1-3 button-root-8-1-3">
+                                        <button v-if="showPhone[0] == false" @click="showPhone[0] = true" type="button" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3 button-root--type-button-reset-8-1-3 button-root-8-1-3">
                                             <span class="button-root__text-8-1-3">Показать телефон</span>
                                         </button>
-                                        <a v-if="showPhone == true" :href="`tel:+${user.phone}`" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3 button-root--type-button-reset-8-1-3 button-root-8-1-3">
+                                        <a v-if="showPhone[0] == true" :href="`tel:+${user.phone}`" class="nohover button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3 button-root--type-button-reset-8-1-3 button-root-8-1-3">
                                             <span class="button-root__text-8-1-3">+{{user.phone}}</span>
                                         </a>
                                     </div>
                                 </div>
                             </aside>
-                            <div class="product-page__sticky__comments">
+                            <!-- <div class="product-page__sticky__comments">
                                 <div class="product-page__sticky__comments_box">
                                     <div class="product-page__sticky__comments_header">
                                         <b class="product-page__sticky__comments_header_title title">Напишите автору</b>
@@ -497,7 +494,7 @@
                                         </form>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -505,66 +502,11 @@
             
             <!-- Fixed author phone -->
             <div v-if="mobileContant" class="object_single_page_main_object_phone">
-                <div v-for="user in object.user" :key="user.id" class="object_single_page_main_object_phone_box">
+                <div v-for="user in owner" :key="user.id" class="object_single_page_main_object_phone_box">
                     <button v-if="!mobileContantPhone" @click="this.mobileContantPhone = true" class="button-root-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3 button-root--type-button-reset-8-1-3 button-root--fluid-8-1-3" type="button" data-e2e-id="sticky-footer-show-phone"><span class="button-root__text-8-1-3">Показать телефон</span></button>
-                    <a v-if="mobileContantPhone == true" :href="`tel:+${user.phone}`" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3 button-root--type-button-reset-8-1-3 button-root-8-1-3">
+                    <a v-if="mobileContantPhone == true" :href="`tel:+${user.phone}`" class="nohover button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3 button-root--type-button-reset-8-1-3 button-root-8-1-3">
                         <span class="button-root__text-8-1-3">+{{user.phone}}</span>
                     </a>
-                </div>
-            </div>
-            
-            <!-- Textarea model mobile -->
-            <div v-if="messageModal" class="comments_modal_box">
-                <!-- Modal -->
-                <div class="modal fade" id="commentsModal" tabindex="-1" aria-labelledby="exampleModalLabel"  aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title product-page__sticky__comments_header_title title" id="exampleModalLabel">Напишите автору</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="modal-body-form">
-                                    <form :model="formComment">
-                                        <div class="modal-body-form_item">
-                                            <span class="p-float-label p-input-icon-right w-100">
-                                                <i class="pi pi-plus" />
-                                                <InputText id="comments-form-name" type="text" name="name" v-model="formComment.name" class="w-100" />
-                                                <label for="comments-form-name">Ваше имя*</label>
-                                            </span>
-                                        </div>
-                                        <div class="modal-body-form_item">
-                                            <span class="p-float-label p-input-icon-right w-100">
-                                                <i class="pi pi-plus" />
-                                                <InputText id="comments-form-email" type="email" name="email" v-model="formComment.email" class="w-100" />
-                                                <label for="comments-form-email">Ваш email*</label>
-                                            </span>
-                                        </div>
-                                        <div class="modal-body-form_item">
-                                            <span class="p-float-label p-input-icon-right w-100">
-                                                <i class="pi pi-plus" />
-                                                <InputText id="comments-form-phone" type="tel" name="phone" v-model="formComment.phone" class="w-100" />
-                                                <label for="comments-form-phone">Ваш телефон*</label>
-                                            </span>
-                                        </div>
-                                        <div class="modal-body-form_item">
-                                            <span class="p-float-label p-input-icon-right w-100">
-                                                <i class="pi pi-plus" />
-                                                <Textarea id="comments-form-message" v-model="formComment.message" rows="4" />
-                                                <label for="comments-form-message textarea-label">Ваше сообщение*</label>
-                                            </span>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                                <button type="button" class="btn btn-primary">Отправить</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -582,7 +524,7 @@ import InputText from 'primevue/inputtext';
 
 import CopyToClipboard from '../../../components/CopyToClipboard.vue'
 import defaultImage from "../../../../../public/images/avatar-dafault.png"
-
+import { mapGetters } from 'vuex'
 export default {
     components: {
         Galleria,
@@ -592,7 +534,7 @@ export default {
     },
     data() {
         return {
-            showPhone: false,
+            showPhone: [false,false],
             showPhoneSecond: false,
             Sidebar: false,
             mobileContant: false,
@@ -607,6 +549,7 @@ export default {
             },
             defaultImage,
             object: [],
+            owner: [],
             youtubeId: false
         }
     },
@@ -616,6 +559,7 @@ export default {
             axios.get('/api/object/show/' + this.$route.params.id)
             .then(response => {
                 this.object = response.data.result.object;
+                this.owner = response.data.result.object.user;
                 // set the youtube id if its youtube video
                 this.youtubeId = this.isYoutube(this.object.youtube_url);
             });
@@ -643,12 +587,13 @@ export default {
         },
         print() {
             this.$htmlToPaper("printMe");
-        },
+        }
     },
     async created() {
         this.getObject();
         window.addEventListener('resize', this.checkScreen);
-        this.checkScreen()
+        this.checkScreen();
+
     },
     setup() {
         const route = useRoute()
@@ -661,10 +606,17 @@ export default {
 
         return { route }
     },
+    mounted(){
+        this.$store.dispatch('getUserInfo');
+    },
     computed: {
+        ...mapGetters([
+            'user',
+            'isLoaded'
+        ]),
         iconSaved(){
             return this.savedFavorites ? 'icon-saved' : '';
         }
-    }
+    },
 }
 </script>

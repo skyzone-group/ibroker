@@ -253,7 +253,7 @@ class ObjectController extends ResponseController
     }
     
     public function show($id){
-        $user_id = auth('sanctum')->user()->id;
+        // $user_id = auth('sanctum')->user()->id;
 
         $query = Objects::query();
         

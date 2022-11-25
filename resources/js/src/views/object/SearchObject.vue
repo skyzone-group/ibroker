@@ -555,7 +555,7 @@
                                                 :modules="modules"
                                                 class="mySwiper2 w-100"
                                             >
-                                                <swiper-slide v-for="image in object.images" :key="image.id">
+                                                <swiper-slide @click="this.$router.push({name: 'showObject', params: {type_deal: object.object_deals, type: object.object_type.name_ru, id: object.id}})" v-for="image in object.images" :key="image.id">
                                                     <img :src="`/file/${image.name}`" class="swiper-lazy"/>
                                                     <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div> 
                                                 </swiper-slide>
