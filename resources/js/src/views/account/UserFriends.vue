@@ -15,9 +15,8 @@
             columnResizeMode="fit"
             v-model:selection="selectedCustomer" 
             :paginator="true"
-            :rows="1"
-            :rowsPerPageOptions="[1,10,20]" 
-            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+            :rows="10"
+            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink"
             stateStorage="session"
             selectionMode="single"
             responsiveLayout="scroll">
