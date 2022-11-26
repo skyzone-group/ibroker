@@ -812,7 +812,13 @@ export default {
             networks: [
                 { network: 'telegram', icon: 'fab fah fa-lg fa-telegram-plane', color: '#0088cc' },
                 { network: 'whatsapp', icon: 'fab fah fa-lg fa-whatsapp', color: '#25d366' },
-            ]
+            ],
+            sortOptions: [
+                {name_ru: 'Самые новые', name_uz: 'Eng yangi', id: 'date_new'},
+                {name_ru: 'Самые старые', name_uz: 'Eng eski', id: 'date_old'},
+                {name_ru: 'Самые дорогие', name_uz: 'Eng qimmat', id: 'price_expensive'},
+                {name_ru: 'Самые дешевые', name_uz: 'Eng arzon', id: 'price_cheap'},
+            ],
         }
     },
     methods: {
