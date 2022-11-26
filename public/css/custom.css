@@ -2976,7 +2976,7 @@ a:hover {
     justify-content: center;
 }
 .product-page__content_top_buttons_item_btn .dropdown-menu .hint-title-content-0-9-4 .title,
-.search-object-body .object-actions .dropdown-menu .hint-title-content-0-9-4 .title,
+.social-icons-overlay .p-overlaypanel-content .item .hint-head-0-9-4 .title,
 .agent-single-div-content-div-objects .object-item .object-actions .dropdown-menu .hint-title-content-0-9-4 .title{
     font-size: 14px;
     line-height: 20px;
@@ -3003,9 +3003,8 @@ a:hover {
     background-size: contain;
     color: #4b545b;
     display: inline-block;
-    font-size: 16px;
+    font-size: 25px;
     line-height: 0;
-    overflow: hidden;
     vertical-align: middle;
     white-space: nowrap;
 }

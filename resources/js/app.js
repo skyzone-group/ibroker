@@ -19,6 +19,8 @@ import ToastService from 'primevue/toastservice';
 import VueScrollTo from 'vue-scrollto'
 // Number format
 import VueNumberFormat from 'vue-number-format'
+// Vue Share with social networks
+import VueSocialSharing from 'vue-social-sharing'
 
 
 
@@ -69,6 +71,7 @@ app.use(DropZone)
 app.use(VueEasyLightbox)
 app.use(ToastService)
 app.use(VueNumberFormat, {precision: 0, prefix: '$ ', decimal: ',', thousand: '.'})
+app.use(VueSocialSharing)
 app.mount('#app')
 
 
