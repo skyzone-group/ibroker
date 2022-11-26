@@ -20,15 +20,18 @@ class ObjectController extends ResponseController
         $region_id       = $request->get('region_id');
         $district_id     = $request->get('district_id');
         $quarter_id      = $request->get('quarter_id');
-        $quarter_id      = $request->get('quarter_id');
-
+        $object_type        = $request->get('object_type');
+        $object_deals       = $request->get('object_deals');
+        
         $query = Objects::query();
         
         if($id)          $query = $query->where('id', '=', $id);
         if($region_id)   $query = $query->where('region_id', '=', $region_id);
         if($district_id) $query = $query->where('district_id', '=', $district_id);
         if($quarter_id)  $query = $query->where('quarter_id', '=', $quarter_id);
-
+        if($object_type) $query = $query->where('object_type_id', '=', $object_type);
+        if($object_deals) $query = $query->where('object_deals', '=', $object_deals);
+        
         $query = $query->where('user_id', '=', $user_id)
                 ->with([
                     'images',

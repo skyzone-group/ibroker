@@ -88,11 +88,11 @@
                     <template #body="slotProps">
                         <form v-if="mobile_view" @submit.prevent="confirmUser(slotProps.data.friendInfo.id)" method="POST">
                             <Button v-if="slotProps.data.owner == false && slotProps.data.status == 'request'" type="submit" label="Принять" class="p-button-rounded p-button-success mr-2"/>
-                            <Button label="Отменить" class="p-button-rounded p-button-danger" @click="confirmDeleteUser(slotProps.data.friendInfo.id)" />
+                            <Button label="Отменить" class="p-button-rounded p-button-danger" @click="confirmDeleteUser(slotProps.data.friendInfo)" />
                         </form>
                         <form v-else @submit.prevent="confirmUser(slotProps.data.friendInfo.id)" method="POST">
                             <Button v-if="slotProps.data.owner == false && slotProps.data.status == 'request'" type="submit" class="p-button-rounded p-button-success mr-2" icon="pi pi-check"/>
-                            <Button icon="pi pi-times" class="p-button-rounded p-button-danger" @click="confirmDeleteUser(slotProps.data.friendInfo.id)" />
+                            <Button icon="pi pi-times" class="p-button-rounded p-button-danger" @click="confirmDeleteUser(slotProps.data.friendInfo)" />
                         </form>
                     </template>
                 </Column>
@@ -104,14 +104,14 @@
                 <Toast />
                 <div class="profile_form-avatar-delete">
                     <form v-if="deleteProductDialog" @submit.prevent="deleteImage()" class="profile_form" method="POST">
-                        <Dialog header="Confirm" v-model:visible="deleteProductDialog" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '40vw'}" :modal="true">
+                        <Dialog header="Подтверждение" v-model:visible="deleteProductDialog" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '40vw'}" :modal="true">
                             <div class="confirmation-content d-flex align-items-center">
                                 <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-                                <span v-if="friend_id">Are you sure you want to delete <b>{{friend_id}}</b>?</span>
+                                <span v-if="friendData">Вы уверены, что хотите удалить <b>{{friendData.firstname}}</b>?</span>
                             </div>
                             <template #footer>
-                                <Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteProductDialog = false"/>
-                                <Button label="Yes" type="submit" icon="pi pi-check" class="p-button-danger"  @click="deleteProduct" autofocus />
+                                <Button label="Нет" icon="pi pi-times" class="p-button-text" @click="deleteProductDialog = false"/>
+                                <Button label="Да" type="submit" icon="pi pi-check" class="p-button-danger"  @click="deleteProduct" autofocus />
                             </template>
                         </Dialog>
                     </form>
@@ -120,7 +120,7 @@
                     <Dialog header="Confirm" v-model:visible="userDetail" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '35vw'}" :modal="true">
                         <div class="confirmation-content d-flex align-items-center">
                             <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-                            <span v-if="friend_id">Are you sure you want to delete {{friend_id}}</span>
+                            <span v-if="friendData">shu form qayda ishlidi? Вы уверены, что хотите удалить {{friendData}}</span>
                         </div>
                     </Dialog>
                 </div>
@@ -243,6 +243,7 @@ export default {
             add_friend: false,
             confirm_friend: false,
             mobile_view: false,
+            friendData: []
         }
     },
     created() {
@@ -361,14 +362,14 @@ export default {
         //         this.loading = false;
         //     });
         // },
-        confirmDeleteUser(id) {
-            this.friend_id = id;
+        confirmDeleteUser(data) {
+            this.friendData = data;
             this.deleteProductDialog = true;
         },
         deleteProduct() {
             const token = localStorage.getItem('token');
             let formDelete = new FormData();
-            formDelete.append('friendId', this.friend_id);
+            formDelete.append('friendId', this.friendData.id);
             axios.post('/api/friend/delete', formDelete, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
