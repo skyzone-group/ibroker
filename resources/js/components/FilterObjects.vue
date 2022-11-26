@@ -33,7 +33,7 @@
                 </div>
                 <div class="filters-view-tab-bottom w-100 pt-4">
                     <div class="row ml-0 mr-0">
-                        <div class="col-3 pl-0">
+                        <div class="col-2 pl-0">
                             <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
                                 <span class="inputs_block_title">
                                     Регион
@@ -100,7 +100,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-if="form.object_type == 3" class="col-3 pl-0" :class="{'pr-0' : (form.object_type == 3)}">
+                        <div v-if="form.object_type == 3" class="col-2 pl-0">
                             <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
                                 <span class="inputs_block_title">
                                     Тип недвижимости
@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-3 pl-0" :class="{'pr-0' : (form.object_type != 3)}">
+                        <div class="col-2 pl-0">
                             <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
                                 <span class="inputs_block_title">
                                     Цена, y.e.
@@ -132,7 +132,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-if="form.object_type != 3 && form.object_type != 5" class="col-3 pl-0">
+                        <div v-if="form.object_type != 3 && form.object_type != 5" class="col-2 pl-0">
                             <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
                                 <span class="inputs_block_title">
                                     Комнатность
@@ -189,7 +189,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-3 pl-0" :class="{'pr-0' : (form.object_type == 1 || form.object_type == 3)}">
+                        <div class="pl-0" :class="form.object_type != 5 ? 'col-3' : 'col-2'">
                             <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
                                 <span class="inputs_block_title">
                                     Площадь, м2
@@ -208,7 +208,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-if="form.object_type == 2 || form.object_type == 4" class="col-3 pl-0 pr-0">
+                        <div v-if="form.object_type == 2 || form.object_type == 4" class="col-3 pl-0">
                             <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
                                 <span class="inputs_block_title">
                                     Площадь участка (сот.)
@@ -223,6 +223,18 @@
                                         <div class="dc-input__input-container-6-1-2 input_div">
                                             <input id="landAreaTo" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="До" type="number" tabindex="0" v-model.number="form.land_area_to" name="landAreaTo"/>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 pl-0">
+                            <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
+                                <span class="inputs_block_title">
+                                    Поиск
+                                </span>
+                                <div class="input-medium-6 dc-input-6-1-2 h-100">
+                                    <div class="dc-input__input-container-6-1-2 input_div">
+                                        <input id="keyword" class="dc-input__input-6-1-2" placeholder="Введите район, улицу..." type="text" tabindex="0" v-model.number="form.keyword" name="keyword">
                                     </div>
                                 </div>
                             </div>
@@ -284,7 +296,8 @@ export default {
                 total_area_from: '',
                 total_area_to: '',
                 land_area_from: '',
-                land_area_to: ''
+                land_area_to: '',
+                keyword: ''
             },
             active: 0,
             regions: [],
@@ -323,7 +336,8 @@ export default {
                         total_area_from: this.form.total_area_from,
                         total_area_to: this.form.total_area_to,
                         land_area_from: this.form.land_area_from,
-                        land_area_to: this.form.land_area_to
+                        land_area_to: this.form.land_area_to,
+                        keyword: this.form.keyword
                     }
                 });
             },1000);
