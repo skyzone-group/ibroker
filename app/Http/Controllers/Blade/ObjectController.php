@@ -30,8 +30,9 @@ class ObjectController extends ResponseController
         if($district_id) $query = $query->where('district_id', '=', $district_id);
         if($quarter_id)  $query = $query->where('quarter_id', '=', $quarter_id);
         if($object_type) $query = $query->where('object_type_id', '=', $object_type);
-        if($object_deals) $query = $query->where('object_deals', '=', $object_deals);
+        if($object_deals) $object_deals == 'all' ? $query : $query = $query->where('object_deals', '=', $object_deals);
         
+
         $query = $query->where('user_id', '=', $user_id)
                 ->with([
                     'images',

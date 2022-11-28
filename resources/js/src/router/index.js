@@ -188,7 +188,7 @@ const routes = [
             },
             {
                 path: 'user/list/objects',
-                name: 'objects',
+                name: 'myObjects',
                 components: {
                     content: ObjectMain,
                 },

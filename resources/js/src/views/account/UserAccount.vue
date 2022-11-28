@@ -154,7 +154,7 @@
                 <Toast />
                 <div class="profile_form-avatar-delete">
                     <form v-if="displayBasic" @submit.prevent="deleteImage()" class="profile_form" method="POST">
-                        <Dialog header="Удалить фото профиля?" v-model:visible="displayBasic" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '40vw'}" class="delete_user_avatar-model">
+                        <Dialog header="Удалить фото профиля?" v-model:visible="displayBasic" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '40vw'}" class="delete_user_avatar-model" :modal="true" :dismissableMask="true" :draggable="false">
                             <template #footer>
                                 <Button label="No" icon="pi pi-times" @click="closeBasic" class="p-button-text"/>
                                 <Button label="Yes" type="submit" @click="deleteImage" icon="pi pi-check" class="p-button-danger"  autofocus />

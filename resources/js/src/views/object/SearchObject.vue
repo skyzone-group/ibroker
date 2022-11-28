@@ -271,7 +271,15 @@
                                 <div class="objects-total">{{vueNumberFormat(objectsCount, {prefix: ''})}} объявлений</div>
                             </div>
                             <div class="col align-self-center pr-0">
-                                <Dropdown @change="pushParamsURL()" v-model="form.sort_direction" :options="sortOptions" optionLabel="name_ru" optionValue="id" placeholder="Сортировка" panelClass="sort-object-dropdown"/>
+                                <Dropdown @change="pushParamsURL()" 
+                                v-model="form.sort_direction" 
+                                :options="sortOptions" 
+                                optionLabel="name_ru" 
+                                optionValue="id" 
+                                placeholder="Сортировка" 
+                                panelClass="sort-object-dropdown">
+                                
+                                </Dropdown>
                             </div>
                         </div>
                         <div v-if="sideBarFilter" class="mobile-filter-sort-box d-flex align-items-center justify-content-between">

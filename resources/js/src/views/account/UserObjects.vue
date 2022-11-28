@@ -4,19 +4,18 @@
             <nav class="objects-main-div_nav">
                 <ul class="objects-main-div_nav_ul d-flex m-0 p-0">
                     <li class="objects-main-div_nav_ul_li">
-                        <a href="#!" class="objects-main-div_nav_ul_li_a">
+                        <label for="type__filter_all" class="filters-tabs-item Radio_theme_realty" :class="{'active' : form.object_deals == 'all'}">
+                            <input @change="filterData()" v-model="form.object_deals" id="type__filter_all" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="all">
                             Все
-                        </a>
-                    </li>
-                    <li class="objects-main-div_nav_ul_li">
-                        <a href="#!" class="objects-main-div_nav_ul_li_a">
-                            Продано
-                        </a>
-                    </li>
-                    <li class="objects-main-div_nav_ul_li">
-                        <a href="#!" class="objects-main-div_nav_ul_li_a">
+                        </label>
+                        <label for="type__filter_buy" class="filters-tabs-item Radio_theme_realty" :class="{'active' : form.object_deals == 'buy'}">
+                            <input @change="filterData()" v-model="form.object_deals" id="type__filter_buy" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="buy">
+                            Продажа
+                        </label>
+                        <label for="type__filter_rent" class="filters-tabs-item Radio_theme_realty" :class="{'active' : form.object_deals == 'rent'}">
+                            <input @change="filterData()" v-model="form.object_deals" id="type__filter_rent" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="rent">
                             Аренда
-                        </a>
+                        </label>
                     </li>
                 </ul>
             </nav>
@@ -155,8 +154,8 @@
                                             <li class="item-bottom-right-actions-list mr-2">
                                                 <a :href="`/adding/object/edit/${object.id}`" type="button" class="item-bottom-right-edit nohover">Редактировать</a>
                                             </li>
-                                            <li class="item-bottom-right-actions-list nohover">
-                                                <a href="#!" type="button" class="item-bottom-right-edit">Удалить</a>
+                                            <li class="item-bottom-right-actions-list">
+                                                <button @click="deleteUserObject(object.id)" type="button" class="item-bottom-right-edit nohover">Удалить</button>
                                             </li>
                                         </ul>
                                     </div>
@@ -176,6 +175,19 @@
                 </template>
             </Paginator>
         </div>
+        <div class="user-info-succes-box">
+            <Toast />
+            <div class="profile_form-avatar-delete">
+                <form v-if="displayModal" @submit.prevent="deleteObject()" class="profile_form" method="POST">
+                    <Dialog header="Удалить объявление?" v-model:visible="displayModal" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '40vw'}" class="delete_user_avatar-model" :modal="true" :dismissableMask="true" :draggable="false">
+                        <template #footer>
+                            <Button label="No" icon="pi pi-times" @click="displayModal = !displayModal" class="p-button-text"/>
+                            <Button label="Yes" type="submit" @click="deleteObject" icon="pi pi-check" class="p-button-danger" />
+                        </template>
+                    </Dialog>
+                </form>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -186,6 +198,8 @@ import Checkbox from 'primevue/checkbox';
 import Button from 'primevue/button';
 import Paginator from 'primevue/paginator';
 import ProgressSpinner from 'primevue/progressspinner';
+import Dialog from 'primevue/dialog';
+import Toast from 'primevue/toast';
 // Moment
 import moment from 'moment'
 export default {
@@ -194,7 +208,9 @@ export default {
         Checkbox,
         Button,
         Paginator,
-        ProgressSpinner
+        ProgressSpinner,
+        Dialog,
+        Toast
     },
     data() {
         return {
@@ -209,16 +225,22 @@ export default {
             select_all: false,
             selected: [],
             imageCount: false,
+            displayModal: false,
+            object_id: null,
+            form: {
+                object_deals: 'all',
+            }
         }
     },
     methods: {
-        getUserObjects(page){ // get user informations on database
+        async getUserObjects(page){ // get user informations on database
             const token = localStorage.getItem('token');
             this.isLoaded = true ;
             axios.get(`/api/object/all?page=${page+=1}&total=${this.total}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
-                }
+                },
+                params: this.$route.query
             })
             .then(response => {
                 this.objects = response.data.result.objects.data;
@@ -237,10 +259,43 @@ export default {
                     this.selected.push(this.objects[i].id);
                 }
             }
+        },
+        filterData(){
+            this.$router.push(
+            {
+                name: "myObjects",
+                query: { object_deals: this.form.object_deals}
+            });
+        },
+        deleteUserObject(id){
+            this.object_id = id;
+            this.displayModal = true;
+        },
+        deleteObject(){
+            const token = localStorage.getItem('token');
+            let formm = new FormData();
+            formm.append('object_id', this.object_id);
+            axios.post('/api/user/object/delete', formm, {
+                headers: {
+                    'Authorization': `Bearer ${token}`, 
+                }
+            })
+            .then(response => {
+                window.location.reload();
+                this.displayModal = false;
+            })
+            .catch(function (error) {
+                console.log("889");
+                alert("bad");
+            });
         }
     },
-    mounted(){
-        this.getUserObjects();
+    // mounted(){
+    //     this.getUserObjects();
+    // },
+    async created() {
+        this.filterData();
+        this.$watch(() => this.$route.params, this.getUserObjects);
     }
 }
 </script>
@@ -282,7 +337,7 @@ export default {
 .fixed_panel{
     position: relative;
     z-index: 2;
-    margin-top: 28px;
+    margin-top: 15px;
     min-height: 60px;
 }
 
@@ -347,6 +402,9 @@ export default {
     align-items: center;
 }
 
+.objects-main-div_nav_ul_li .filters-tabs-item{
+    font: 600 18px/20px Lato,sans-serif;
+}
 
 /* .selectAll-box{
     min-height: 56px;

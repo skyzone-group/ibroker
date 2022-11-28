@@ -26,14 +26,14 @@
                 </div>
             </div>
             <ul class="user_block-ul">
-                <li class="user_block-ul-li">
+                <!-- <li class="user_block-ul-li">
                     <router-link :to="{ name: 'summary'}" class="user_block-ul-li-link">
                         <div class="icon-div">
                             <svg data-name="IconHome" width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><path fill-rule="evenodd" stroke-width="1.6" d="M12.726 6.2L7.067 1.074 1.287 6.2h1.62v7h8.165v-7h1.654z"></path></svg>
                         </div>
                         Сводка
                     </router-link>
-                </li>
+                </li> -->
                 <li class="user_block-ul-li">
                     <router-link :to="{ name: 'myaccount'}" class="user_block-ul-li-link">
                         <div class="icon-div">
@@ -43,7 +43,7 @@
                     </router-link>
                 </li>
                 <li class="user_block-ul-li">
-                    <router-link :to="{ name: 'objects'}" class="user_block-ul-li-link">
+                    <router-link :to="{ name: 'myObjects'}" class="user_block-ul-li-link">
                         <div class="icon-div">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
                         </div>
