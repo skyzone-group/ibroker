@@ -2,11 +2,14 @@
     <div class="object_single_page_frontend">
         <div class="object_single_page_main">
             <div class="container_fluid">
-                <div class="object_single_page_main_box">
+                <div v-if="loaderProgress" class="loader-main-box" style="height: 100vh;">
+                    <ProgressSpinner style="width:80px; height:80px" strokeWidth="3" fill="var(--surface-ground)" animationDuration="1s" />
+                </div>
+                <div v-else class="object_single_page_main_box">
                     <div class="product-page__content">
                         <div class="product-page__content_top_buttons product-page_btn_style">
                             <div v-if="user.id == object.user_id" class="product-page__content_top_buttons_item ml-0">
-                                <router-link tag="a" :to="{ name: 'objects'}" class="object_single_page_btn_style nohover">
+                                <router-link tag="a" :to="{ name: 'myObjects'}" class="object_single_page_btn_style nohover">
                                     <span class="button-root__icon-8-1-3 button-root__icon--left-8-1-3"><div class="icon-4-0-1"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M10.56 3.27a1 1 0 00-1.41-1.42l-5.3 5.3a1 1 0 000 1.41l5.3 5.3a1 1 0 001.41-1.42L6.33 8.2a.5.5 0 010-.71l4.23-4.23z"></path></svg></div></span><span class="button-root__text-8-1-3">Мои объявления</span>
                                 </router-link>
                             </div>
@@ -45,6 +48,7 @@
                                                                     :quote="sharing.quote"
                                                                     :hashtags="sharing.hashtags"
                                                                     :twitterUser="sharing.twitterUser"
+                                                                    popup="{width: 100%, height: 100%}"
                                                                 >
                                                                     <i :class="network.icon" :style="{color: network.color}"></i>
                                                                 </ShareNetwork>
@@ -446,7 +450,7 @@ import defaultImage from "../../../../../public/images/avatar-dafault.png"
 import { mapGetters } from 'vuex'
 import OverlayPanel from 'primevue/overlaypanel';
 import Button from 'primevue/button';
-
+import ProgressSpinner from 'primevue/progressspinner';
 export default {
     components: {
         Galleria,
@@ -454,7 +458,8 @@ export default {
         InputText,
         GalleriaImage,
         OverlayPanel,
-        Button
+        Button,
+        ProgressSpinner
     },
     data() {
         return {
@@ -465,6 +470,7 @@ export default {
             mobileContantPhone: false,
             savedFavorites: false,
             messageModal: false,
+            loaderProgress: false,
             formComment: {
                 name: null,
                 email: null,
@@ -490,7 +496,8 @@ export default {
         }
     },
     methods: {
-        getObject(){
+        async getObject(){
+            this.loaderProgress = true;
             const token = localStorage.getItem('token');
             axios.get('/api/object/show/' + this.$route.params.id)
             .then(response => {
@@ -498,6 +505,7 @@ export default {
                 this.owner = response.data.result.object.user;
                 // set the youtube id if its youtube video
                 this.youtubeId = this.isYoutube(this.object.youtube_url);
+                this.loaderProgress = false;
             });
         },
         isYoutube(url) {
@@ -507,6 +515,10 @@ export default {
                 return matches[1];
             }
             return false;
+        },
+        open(url){
+            console.log(url);
+            window.open(url, '_blank').focus();
         },
         checkScreen() {
             this.windowWidth = window.innerWidth;

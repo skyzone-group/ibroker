@@ -191,11 +191,11 @@ export default {
 }
 
 .steps_item_btn.active .link_txt{
-    color: var(--form-button-color) !important;
-    border-color: var(--form-button-color);
+    color: var(--form-button-color-green) !important;
+    border-color: var(--form-button-color-green);
 }
 
 .steps_item_btn.active .icon_div{
-    color: var(--form-button-color) !important;
+    color: var(--form-button-color-green) !important;
 }
 </style>

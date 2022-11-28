@@ -277,9 +277,7 @@
                                 optionLabel="name_ru" 
                                 optionValue="id" 
                                 placeholder="Сортировка" 
-                                panelClass="sort-object-dropdown">
-                                
-                                </Dropdown>
+                                panelClass="sort-object-dropdown"/>
                             </div>
                         </div>
                         <div v-if="sideBarFilter" class="mobile-filter-sort-box d-flex align-items-center justify-content-between">
@@ -544,161 +542,165 @@
                         </div>
                         <div v-else class="objects-box">
                             <div v-for="object in objects" :key="object.id"  class="object-item">
-                                <div class="object-item-block">
-                                    <div class="object-photos">
-                                        <div class="object-photos-thumb">
-                                            <swiper
-                                                :style="{
-                                                '--swiper-navigation-color': '#fff',
-                                                '--swiper-pagination-color': '#fff',
-                                                }"
-                                                :pagination="{
-                                                    type: 'fraction',
-                                                }"
-                                                :loop="true"
-                                                :lazy="true"
-                                                :spaceBetween="10"
-                                                :navigation="true"
-                                                :thumbs="{ swiper: thumbsSwiper }"
-                                                :modules="modules"
-                                                class="mySwiper2 w-100"
-                                            >
-                                                <swiper-slide @click="this.$router.push({name: 'showObject', params: {type_deal: object.object_deals, type: object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land', id: object.id}})" v-for="image in object.images" :key="image.id">
-                                                    <img :src="`/file/${image.name}`" class="swiper-lazy"/>
-                                                    <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div> 
-                                                </swiper-slide>
-                                            </swiper>
+                                <router-link :to="{name: 'showObject', params: {type_deal: object.object_deals, type: object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land', id: object.id}}">
+                                    <div class="object-item-block">
+                                        <div class="object-photos">
+                                            <div class="object-photos-thumb">
+                                                <swiper
+                                                    :style="{
+                                                    '--swiper-navigation-color': '#fff',
+                                                    '--swiper-pagination-color': '#fff',
+                                                    }"
+                                                    :pagination="{
+                                                        type: 'fraction',
+                                                    }"
+                                                    :loop="true"
+                                                    :lazy="true"
+                                                    :spaceBetween="10"
+                                                    :navigation="true"
+                                                    :thumbs="{ swiper: thumbsSwiper }"
+                                                    :modules="modules"
+                                                    class="mySwiper2 w-100"
+                                                >
+                                                    <swiper-slide @click="this.$router.push({name: 'showObject', params: {type_deal: object.object_deals, type: object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land', id: object.id}})" v-for="image in object.images" :key="image.id">
+                                                        <img :src="`/file/${image.name}`" class="swiper-lazy"/>
+                                                        <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div> 
+                                                    </swiper-slide>
+                                                </swiper>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="object-body">
-                                        <div class="object-body-content">
-                                            <div @click="this.$router.push({name: 'showObject', params: {type_deal: object.object_deals, type: object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land', id: object.id}})" class="object-details">
-                                                <div v-if="mobilePrice == true" class="object-price-list d-flex align-items-center">
-                                                    <p class="object-price-list-p">{{ vueNumberFormat(object.price, {}) }}</p>
-                                                    <p class="object-price-list-desc ml-2">264 705$/м²</p>
+                                        <div class="object-body">
+                                            <div class="object-body-content">
+                                                <div class="object-details">
+                                                    <div v-if="mobilePrice == true" class="object-price-list d-flex align-items-center">
+                                                        <p class="object-price-list-p">{{ vueNumberFormat(object.price, {}) }}</p>
+                                                        <p class="object-price-list-desc ml-2">264 705$/м²</p>
+                                                    </div>
+                                                    <div class="object-details-item object-details-header">
+                                                        <a class="NXJyid" :href="`/show/object/${object.object_deals}/${object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land'}/${object.id}`" rel="noopener noreferrer">
+                                                            <span v-if="object.object_type_id === 1" class="title">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor }} / {{ object.floor_count }} этаж</span>
+                                                            <span v-if="object.object_type_id === 2" class="title">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }}</span>
+                                                            <span v-if="object.object_type_id === 3" class="title">{{ object.object_type.name_ru }}, {{object.total_area }} м²</span>
+                                                            <span v-if="object.object_type_id === 4" class="title">{{ object.object_type.name_ru }}, {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }} м²</span>
+                                                            <span v-if="object.object_type_id === 5" class="title">{{ object.object_type.name_ru }}, {{ object.land_area }} м²</span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="object-details-item object-details-address mt-3">
+                                                        <div class="w-100 object-details-item align-items-center">
+                                                            <i class="fas fa-map-marker-alt mr-1"></i>
+                                                            <span class="PjgOZO">{{object.region.name_ru}}, {{object.district.name_ru}}, {{object.quarter.name_ru}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="object-details-item mt-3">
+                                                        <div class="object-details-description">
+                                                            {{object.comment}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="object-details-addtional"></div>
                                                 </div>
-                                                <div class="object-details-item object-details-header">
-                                                    <a class="NXJyid" :href="`/show/object/${object.object_deals}/${object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land'}/${object.id}`" rel="noopener noreferrer">
-                                                        <span v-if="object.object_type_id === 1" class="title">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor }} / {{ object.floor_count }} этаж</span>
-                                                        <span v-if="object.object_type_id === 2" class="title">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }}</span>
-                                                        <span v-if="object.object_type_id === 3" class="title">{{ object.object_type.name_ru }}, {{object.total_area }} м²</span>
-                                                        <span v-if="object.object_type_id === 4" class="title">{{ object.object_type.name_ru }}, {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }} м²</span>
-                                                        <span v-if="object.object_type_id === 5" class="title">{{ object.object_type.name_ru }}, {{ object.land_area }} м²</span>
-                                                    </a>
-                                                </div>
-                                                <div class="object-details-item object-details-address mt-3">
-                                                    <div class="w-100 object-details-item align-items-center">
-                                                        <i class="fas fa-map-marker-alt mr-1"></i>
-                                                        <span class="PjgOZO">{{object.region.name_ru}}, {{object.district.name_ru}}, {{object.quarter.name_ru}}</span>
+                                                <div v-if="!mobilePrice" class="object-price">
+                                                    <div class="object-price-list">
+                                                        <p class="object-price-list-p">{{ vueNumberFormat(object.price, {}) }}</p>
+                                                        <p class="object-price-list-desc">264 705$/м²</p>
                                                     </div>
                                                 </div>
-                                                <div class="object-details-item mt-3">
-                                                    <div class="object-details-description">
-                                                        {{object.comment}}
-                                                    </div>
-                                                </div>
-                                                <div class="object-details-addtional"></div>
-                                            </div>
-                                            <div v-if="!mobilePrice" class="object-price">
-                                                <div class="object-price-list">
-                                                    <p class="object-price-list-p">{{ vueNumberFormat(object.price, {}) }}</p>
-                                                    <p class="object-price-list-desc">264 705$/м²</p>
-                                                </div>
-                                            </div>
-                                            <div v-if="!objectBtns" class="object-actions">
-                                                <button type="button" class="object-actions-btn" title="Добавить в избранное">
-                                                    <div class="icon-4-0-1">
-                                                        <svg fill="#fff" style="stroke: grey; stroke-width: 1px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                                                            <path clip-rule="evenodd" d="M1 7C.5 3.5 2.7 2 4.8 2 6.82 2 8 4 8 4s1.17-2 3.2-2c2.1 0 4.3 1.5 3.8 5s-5.83 7-7 7-6.5-3.5-7-7z"></path>
-                                                        </svg>
-                                                    </div>
-                                                </button>
-                                                <div>
-                                                    <button type="button" class="object-actions-btn" title="Поделиться объявлением" data-toggle="dropdown">
+                                                <div v-if="!objectBtns" class="object-actions">
+                                                    <button @click.prevent type="button" class="object-actions-btn" title="Добавить в избранное">
                                                         <div class="icon-4-0-1">
-                                                            <div class="icon-4-0-1">
-                                                                <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                                                                    <path d="M10.54 2.09l4.1 4.13c.2.2.2.51 0 .7L10.52 11a.3.3 0 01-.51-.21V8.5a.3.3 0 00-.3-.3c-4.94.05-6.1 1.26-6.7 2.97a8.1 8.1 0 00-.3 2.61c0 .21-.26.27-.36.09-4.5-9.06 3.43-9.29 7.39-9.3a.3.3 0 00.3-.3V2.3c0-.27.32-.4.5-.21z"></path>
-                                                                </svg>
-                                                            </div>
+                                                            <svg fill="#fff" style="stroke: grey; stroke-width: 1px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                                                <path clip-rule="evenodd" d="M1 7C.5 3.5 2.7 2 4.8 2 6.82 2 8 4 8 4s1.17-2 3.2-2c2.1 0 4.3 1.5 3.8 5s-5.83 7-7 7-6.5-3.5-7-7z"></path>
+                                                            </svg>
                                                         </div>
                                                     </button>
-                                                    <div class="dropdown-menu dropdown-menu-left">
-                                                        <div class="item">
-                                                            <div class="hint-head-0-9-4">
-                                                                <div class="title" style="font-weight: 700;">Поделиться объявлением</div>
+                                                    <div>
+                                                        <button @click.prevent type="button" class="object-actions-btn" title="Поделиться объявлением" data-toggle="dropdown">
+                                                            <div class="icon-4-0-1">
+                                                                <div class="icon-4-0-1">
+                                                                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                                                        <path d="M10.54 2.09l4.1 4.13c.2.2.2.51 0 .7L10.52 11a.3.3 0 01-.51-.21V8.5a.3.3 0 00-.3-.3c-4.94.05-6.1 1.26-6.7 2.97a8.1 8.1 0 00-.3 2.61c0 .21-.26.27-.36.09-4.5-9.06 3.43-9.29 7.39-9.3a.3.3 0 00.3-.3V2.3c0-.27.32-.4.5-.21z"></path>
+                                                                    </svg>
+                                                                </div>
                                                             </div>
-                                                            <div class="hint-content-0-9-4">
-                                                                <div id="share__content" class="share__content_div">
-                                                                    <div class="share__content_div_socials">
-                                                                        <div>
-                                                                            <ShareNetwork
-                                                                                network="telegram"
-                                                                                class="share__content_div_socials_links"
-                                                                                :url="`http://ibroker.skybox.uz/show/object/${object.object_deals}/${object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land'}/${object.id}`"
-                                                                                title="iBROKER.uz"
-                                                                                description="⭐ Помогу купить, продать, сдать и снять квартиру в Ташкенте.⭐ Благотворительность."
-                                                                                quote="The hot reload is so fast it\'s near instant. - Evan You"
-                                                                                hashtags="vuejs,vite,javascript"
-                                                                                twitterUser="youyuxi"
-                                                                            >
-                                                                                <i class="fab fah fa-lg fa-telegram-plane" style="color: #0088cc;"></i>
-                                                                            </ShareNetwork>
-                                                                            <ShareNetwork
-                                                                                network="whatsapp"
-                                                                                class="share__content_div_socials_links"
-                                                                                :url="`http://ibroker.skybox.uz/show/object/${object.object_deals}/${object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land'}/${object.id}`"
-                                                                                title="iBROKER.uz"
-                                                                                description="⭐ Помогу купить, продать, сдать и снять квартиру в Ташкенте.⭐ Благотворительность."
-                                                                                quote="The hot reload is so fast it\'s near instant. - Evan You"
-                                                                                hashtags="vuejs,vite,javascript"
-                                                                                twitterUser="youyuxi"
-                                                                            >
-                                                                                <i class="fab fah fa-lg fa-whatsapp" style="color: #25d366;"></i>
-                                                                            </ShareNetwork>
+                                                        </button>
+                                                        <div class="dropdown-menu dropdown-menu-left">
+                                                            <div class="item">
+                                                                <div class="hint-head-0-9-4">
+                                                                    <div class="title" style="font-weight: 700;">Поделиться объявлением</div>
+                                                                </div>
+                                                                <div class="hint-content-0-9-4">
+                                                                    <div id="share__content" class="share__content_div">
+                                                                        <div class="share__content_div_socials">
+                                                                            <div>
+                                                                                <ShareNetwork
+                                                                                    network="telegram"
+                                                                                    class="share__content_div_socials_links"
+                                                                                    :url="`http://ibroker.skybox.uz/show/object/${object.object_deals}/${object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land'}/${object.id}`"
+                                                                                    title="iBROKER.uz"
+                                                                                    description="⭐ Помогу купить, продать, сдать и снять квартиру в Ташкенте.⭐ Благотворительность."
+                                                                                    quote="The hot reload is so fast it\'s near instant. - Evan You"
+                                                                                    hashtags="vuejs,vite,javascript"
+                                                                                    twitterUser="youyuxi"
+                                                                                    @click.prevent
+                                                                                >
+                                                                                    <i class="fab fah fa-lg fa-telegram-plane" style="color: #0088cc;"></i>
+                                                                                </ShareNetwork>
+                                                                                <ShareNetwork
+                                                                                    network="whatsapp"
+                                                                                    class="share__content_div_socials_links"
+                                                                                    :url="`http://ibroker.skybox.uz/show/object/${object.object_deals}/${object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land'}/${object.id}`"
+                                                                                    title="iBROKER.uz"
+                                                                                    description="⭐ Помогу купить, продать, сдать и снять квартиру в Ташкенте.⭐ Благотворительность."
+                                                                                    quote="The hot reload is so fast it\'s near instant. - Evan You"
+                                                                                    hashtags="vuejs,vite,javascript"
+                                                                                    twitterUser="youyuxi"
+                                                                                    @click.prevent
+                                                                                >
+                                                                                    <i class="fab fah fa-lg fa-whatsapp" style="color: #25d366;"></i>
+                                                                                </ShareNetwork>
+                                                                            </div>
                                                                         </div>
+                                                                        <copy-to-clipboard v-slot="props">
+                                                                            <button @click.prevent="props.copy(`http://ibroker.skybox.uz/show/object/${object.object_deals}/${object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land'}/${object.id}`)" :disabled="props.status === 'copied'" type="button" class="object_single_page_btn_style w-100" :class="{'button-disabled' : props.status === 'copied'}">
+                                                                                <span class="button-root__text-8-1-3">{{props.status === 'copied' ? 'Ссылка скопирована' : 'Скопировать ссылку'}}</span>
+                                                                            </button>
+                                                                        </copy-to-clipboard>
                                                                     </div>
-                                                                    <copy-to-clipboard v-slot="props">
-                                                                        <button @click="props.copy(`http://ibroker.skybox.uz/show/object/${object.object_deals}/${object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land'}/${object.id}`)" :disabled="props.status === 'copied'" type="button" class="object_single_page_btn_style w-100" :class="{'button-disabled' : props.status === 'copied'}">
-                                                                            <span class="button-root__text-8-1-3">{{props.status === 'copied' ? 'Ссылка скопирована' : 'Скопировать ссылку'}}</span>
-                                                                        </button>
-                                                                    </copy-to-clipboard>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="object-body-footer">
-                                            <div class="object-details-item">
-                                                <div class="object-details-author">
-                                                    <div class="author-box">
-                                                        <div style="height: 100%;">
-                                                            <picture class="author-box-pic">
-                                                                <img class="author-box-pic-img" src="https://img06.domclick.ru/s200x200q80/partnerhub/avatars/ff/16/84b1f568-7e09-4c67-b58d-f4f7286e63e5.png" alt="Елена">
-                                                            </picture>
+                                            <div class="object-body-footer">
+                                                <div class="object-details-item">
+                                                    <div class="object-details-author">
+                                                        <div class="author-box">
+                                                            <div style="height: 100%;">
+                                                                <picture class="author-box-pic">
+                                                                    <img class="author-box-pic-img" src="https://img06.domclick.ru/s200x200q80/partnerhub/avatars/ff/16/84b1f568-7e09-4c67-b58d-f4f7286e63e5.png" alt="Елена">
+                                                                </picture>
+                                                            </div>
                                                         </div>
+                                                        <span class="author-name">Лофт Балтийская</span>
                                                     </div>
-                                                    <span class="author-name">Лофт Балтийская</span>
                                                 </div>
-                                            </div>
-                                            <div class="object-details-item">
-                                                <button v-if="2 != open" @click="toggle(2)" class="object-details-item-btn" type="button">
-                                                    <span class="object-details-item-btn-txt">Показать телефон</span>
-                                                </button>
-                                                <a v-if="2 === open" href="tel:+998903592284" class="object-details-item-btn">
-                                                    <span class="object-details-item-btn-txt">+99890 359-22-84</span>
-                                                </a>
+                                                <div class="object-details-item">
+                                                    <button v-if="2 != open" @click="toggle(2)" class="object-details-item-btn" type="button">
+                                                        <span class="object-details-item-btn-txt">Показать телефон</span>
+                                                    </button>
+                                                    <a v-if="2 === open" href="tel:+998903592284" class="object-details-item-btn">
+                                                        <span class="object-details-item-btn-txt">+99890 359-22-84</span>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </router-link>
                             </div>
                         </div>
                         <div class="objects-paginator">
                             <Paginator
-                                v-if="pageInfo" 
+                                v-if="objectsCount > 0" 
                                 :CurrentPageReport="pageInfo.current_page"  
                                 @page="getObjects($event.page)" 
                                 :rows="parseInt(pageInfo.per_page)" 
@@ -846,6 +848,9 @@ export default {
                 return;
             }
 
+        },
+        testMethod(){
+            console.log('click');
         },
         pushParamsURL(){
             this.$router.push(
