@@ -1,7 +1,10 @@
 <template>
     <div class="add-friends-main">
-        <div class="add-friends-main-box">
-            <Toast />
+        <div v-if="isLoaded" class="loader-main-box">
+            <ProgressSpinner style="width:80px; height:80px" strokeWidth="3" fill="var(--surface-ground)" animationDuration="1s" />
+        </div>
+        
+        <div v-else class="add-friends-main-box">
             <DataTable 
             :value="friends" 
             stripedRows 
@@ -100,100 +103,100 @@
                     Всего {{friends ? friends.length : 0 }} друга.
                 </template>
             </DataTable>
-            <div class="user-info-succes-box">
-                <Toast />
-                <div class="profile_form-avatar-delete">
-                    <form v-if="deleteProductDialog" @submit.prevent="deleteImage()" class="profile_form" method="POST">
-                        <Dialog header="Подтверждение" v-model:visible="deleteProductDialog" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '40vw'}" :modal="true">
-                            <div class="confirmation-content d-flex align-items-center">
-                                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-                                <span v-if="friendData">Вы уверены, что хотите удалить <b>{{friendData.firstname}}</b>?</span>
-                            </div>
-                            <template #footer>
-                                <Button label="Нет" icon="pi pi-times" class="p-button-text" @click="deleteProductDialog = false"/>
-                                <Button label="Да" type="submit" icon="pi pi-check" class="p-button-danger"  @click="deleteProduct" autofocus />
-                            </template>
-                        </Dialog>
-                    </form>
-                </div>
-                <div class="profile_form-avatar-detail">
-                    <Dialog header="Confirm" v-model:visible="userDetail" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '35vw'}" :modal="true">
+        </div>
+        <div class="user-info-succes-box">
+            <Toast />
+            <div class="profile_form-avatar-delete">
+                <form v-if="deleteProductDialog" @submit.prevent="deleteImage()" class="profile_form" method="POST">
+                    <Dialog header="Подтверждение" v-model:visible="deleteProductDialog" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '40vw'}" :modal="true">
                         <div class="confirmation-content d-flex align-items-center">
                             <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-                            <span v-if="friendData">shu form qayda ishlidi? Вы уверены, что хотите удалить {{friendData}}</span>
+                            <span v-if="friendData">Вы уверены, что хотите удалить <b>{{friendData.firstname}}</b>?</span>
                         </div>
+                        <template #footer>
+                            <Button label="Нет" icon="pi pi-times" class="p-button-text" @click="deleteProductDialog = false"/>
+                            <Button label="Да" type="submit" icon="pi pi-check" class="p-button-danger"  @click="deleteProduct" autofocus />
+                        </template>
                     </Dialog>
-                </div>
+                </form>
             </div>
-            <div class="add-friends-main-box-sidebar">
-                <Sidebar v-model:visible="visibleRight" :baseZIndex="10000" position="right">
-                    <div class="d-flex justify-content-between align-items-center content-sidebar-header px-2 py-1">
-                        <h5 class="mb-0"> Добавить нового друга </h5>
-                        <svg @click="visibleRight = !visibleRight" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1 cursor-pointer feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            <div class="profile_form-avatar-detail">
+                <Dialog header="Confirm" v-model:visible="userDetail" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '35vw'}" :modal="true">
+                    <div class="confirmation-content d-flex align-items-center">
+                        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
+                        <span v-if="friendData">shu form qayda ishlidi? Вы уверены, что хотите удалить {{friendData}}</span>
                     </div>
-                    <div class="p-3">
-                        <form v-if="!user" @submit.prevent="searchUser()" method="POST" :model="form">
-                            <div class="options_main__items_inputs options_main__items_inputs_media flex-column" style="max-width: 100% !important;">
-                                <span class="inputs_block_title"> 
-                                    Телефонный номер:
-                                    <div class="required_inputs"></div>
-                                </span>
-                                <div class="options_main__items_inputs_block d-flex flex-column options_main__items_inputs_block-add">
-                                    <span v-if="!user" style="color: red;">{{message}}</span>
-                                    <div class="input-medium-6 dc-input-6-1-2">
-                                        <div class="dc-input__input-container-6-1-2 input_div">
-                                            <input id="phone" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model="form.phone" name="phone">
-                                        </div>
+                </Dialog>
+            </div>
+        </div>
+        <div class="add-friends-main-box-sidebar">
+            <Sidebar v-model:visible="visibleRight" :baseZIndex="10000" position="right">
+                <div class="d-flex justify-content-between align-items-center content-sidebar-header px-2 py-1">
+                    <h5 class="mb-0"> Добавить нового друга </h5>
+                    <svg @click="visibleRight = !visibleRight" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1 cursor-pointer feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </div>
+                <div class="p-3">
+                    <form v-if="!user" @submit.prevent="searchUser()" method="POST" :model="form">
+                        <div class="options_main__items_inputs options_main__items_inputs_media flex-column" style="max-width: 100% !important;">
+                            <span class="inputs_block_title"> 
+                                Телефонный номер:
+                                <div class="required_inputs"></div>
+                            </span>
+                            <div class="options_main__items_inputs_block d-flex flex-column options_main__items_inputs_block-add">
+                                <span v-if="!user" style="color: red;">{{message}}</span>
+                                <div class="input-medium-6 dc-input-6-1-2">
+                                    <div class="dc-input__input-container-6-1-2 input_div">
+                                        <input id="phone" class="dc-input__input-6-1-2" maxlength="24" placeholder="" type="number" tabindex="0" v-model="form.phone" name="phone">
                                     </div>
-                                    <p class="my-2">
-                                        Найдите риэлтора по телефонному номеру для отправки запроса на добавления в друзъя
-                                    </p>
-                                    <Button type="submit" :loading="loadingBtn[1]" label="Поиск" icon="pi pi-search" style="background-color: var(--primary_100);" :disabled="form.phone.length == 0"/>
+                                </div>
+                                <p class="my-2">
+                                    Найдите риэлтора по телефонному номеру для отправки запроса на добавления в друзъя
+                                </p>
+                                <Button type="submit" :loading="loadingBtn[1]" label="Поиск" icon="pi pi-search" style="background-color: var(--primary_100);" :disabled="form.phone.length == 0"/>
+                            </div>
+                        </div>
+                    </form>
+                    <div v-else class="user-box">
+                        <span v-if="message" class="alert-success p-1">{{message}}</span>
+                        <div class="media user-box-list my-2">
+                            <div class="media-aside align-self-center">
+                                <div class="media-avatar rounded-circle">
+                                    <img v-if="!user.image" :src="src" alt="user_avatar">
+                                    <img v-if="user.image" :src="`/file/${user.image}`" alt="user_avatar">
                                 </div>
                             </div>
-                        </form>
-                        <div v-else class="user-box">
-                            <span v-if="message" class="alert-success p-1">{{message}}</span>
-                            <div class="media user-box-list my-2">
-                                <div class="media-aside align-self-center">
-                                    <div class="media-avatar rounded-circle">
-                                        <img v-if="!user.image" :src="src" alt="user_avatar">
-                                        <img v-if="user.image" :src="`/file/${user.image}`" alt="user_avatar">
-                                    </div>
-                                </div>
-                                <div class="media-body">
-                                    <a href="#!" class="font-weight-bold d-block text-nowrap">
-                                        <span v-if="user.firstname != null || user.lastname != null">{{user.firstname}}  {{user.lastname}}</span>
-                                        <span v-else>User {{user.id}}</span>
-                                    </a>
-                                    <small class="text-muted">{{user.phone}}</small>
-                                </div>
+                            <div class="media-body">
+                                <a href="#!" class="font-weight-bold d-block text-nowrap">
+                                    <span v-if="user.firstname != null || user.lastname != null">{{user.firstname}}  {{user.lastname}}</span>
+                                    <span v-else>User {{user.id}}</span>
+                                </a>
+                                <small class="text-muted">{{user.phone}}</small>
                             </div>
-                            <p v-if="sended_request" class="my-2">
-                                Отправлена заявка на добавления в Друзъя!
-                            </p>
-                            <p v-if="confirm_message" class="my-2 alert-success p-1">
-                                Ваш друг
-                            </p>
-                            <div class="user-box-btns w-100">
-                                <form v-if="add_friend" class="user-box-btn" @submit.prevent="sendUser(user.id)" method="POST">
-                                    <div class="user-btn w-100">
-                                        <Button type="submit" :loading="loadingBtn[2]" class="w-100" label="Добавить друга"  style="background-color: var(--primary_100);" :disabled="message"/>
-                                    </div>
-                                </form>
-                                <form v-if="confirm_friend" @submit.prevent="confirmUser(user.id)" class="user-box-btn" method="POST">
-                                    <div class="user-btn w-100">
-                                        <Button type="submit" :loading="loadingBtn[2]" class="w-100" label="Принять"  style="background-color: var(--primary_100);" :disabled="message" />
-                                    </div>
-                                </form>
-                                <div class="user-box-btn">
-                                    <Button type="button" label="Отмена"  class="p-button-danger w-100" @click="resetUser"/>
+                        </div>
+                        <p v-if="sended_request" class="my-2">
+                            Отправлена заявка на добавления в Друзъя!
+                        </p>
+                        <p v-if="confirm_message" class="my-2 alert-success p-1">
+                            Ваш друг
+                        </p>
+                        <div class="user-box-btns w-100">
+                            <form v-if="add_friend" class="user-box-btn" @submit.prevent="sendUser(user.id)" method="POST">
+                                <div class="user-btn w-100">
+                                    <Button type="submit" :loading="loadingBtn[2]" class="w-100" label="Добавить друга"  style="background-color: var(--primary_100);" :disabled="message"/>
                                 </div>
+                            </form>
+                            <form v-if="confirm_friend" @submit.prevent="confirmUser(user.id)" class="user-box-btn" method="POST">
+                                <div class="user-btn w-100">
+                                    <Button type="submit" :loading="loadingBtn[2]" class="w-100" label="Принять"  style="background-color: var(--primary_100);" :disabled="message" />
+                                </div>
+                            </form>
+                            <div class="user-box-btn">
+                                <Button type="button" label="Отмена"  class="p-button-danger w-100" @click="resetUser"/>
                             </div>
                         </div>
                     </div>
-                </Sidebar>
-            </div>
+                </div>
+            </Sidebar>
         </div>
 	</div>
 </template>
@@ -210,6 +213,7 @@ import Dialog from 'primevue/dialog';
 import Sidebar from 'primevue/sidebar';
 import defaultImage from "../../../../../public/images/avatar-dafault.png"
 import { mapGetters } from 'vuex'
+import ProgressSpinner from 'primevue/progressspinner';
 export default {
     components: {
         DataTable,
@@ -219,7 +223,8 @@ export default {
         InputText,
         Toast,
         Dialog,
-        Sidebar
+        Sidebar,
+        ProgressSpinner
     },
     data() {
         return {
@@ -581,6 +586,19 @@ export default {
 @media (max-width: 475px){
     .p-sidebar-right {
         width: 25rem;
+    }
+
+    .table-header-actions{
+        flex-direction: column;
+    }
+
+    .table-header-actions .action-filter-input {
+        margin: 10px 0 !important;
+        width: 100%;
+    }
+
+    .table-header-actions .action-add-friend{
+        margin-left: auto;
     }
 }
 </style>

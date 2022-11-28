@@ -120,13 +120,15 @@
                                 <div class="options_main__items_inputs_block d-flex align-items-center justify-content-between">
                                     <div class="input-medium-6 dc-input-6-1-2 h-100 mr-2">
                                         <div class="dc-input__input-container-6-1-2 input_div">
-                                            <!-- <input id="room_count" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="От" type="number" tabindex="0" v-model.number="form.price_from" name="room_count"> -->
-                                            <VueNumberFormat v-model:value="form.price_from" class="dc-input__input-6-1-2"></VueNumberFormat>
+                                            <!-- <input id="room_count" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="От" type="number" tabindex="0" v-model="form.price_from" step=0.01 name="room_count"> -->
+                                            <!-- <VueNumberFormat v-model:value="form.price_from" class="dc-input__input-6-1-2"></VueNumberFormat> -->
+                                            <InputNumber inputClass="dc-input__input-6-1-2" inputId="price_from" min="0" v-model="form.price_from" placeholder="От" prefix="$"/>
                                         </div>
                                     </div>
                                     <div class="input-medium-6 dc-input-6-1-2 h-100">
                                         <div class="dc-input__input-container-6-1-2 input_div">
-                                            <VueNumberFormat v-model:value="form.price_to" class="dc-input__input-6-1-2"></VueNumberFormat>
+                                            <InputNumber inputClass="dc-input__input-6-1-2" inputId="price_to" min="0" v-model="form.price_to" placeholder="До" prefix="$"/>
+                                            <!-- <VueNumberFormat v-model:value="form.price_to" class="dc-input__input-6-1-2"></VueNumberFormat> -->
                                         </div>
                                     </div>
                                 </div>
@@ -268,13 +270,16 @@ import Dropdown from 'primevue/dropdown';
 import MultiSelect from 'primevue/multiselect';
 import Button from 'primevue/button';
 import Skeleton from 'primevue/skeleton';
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
+import InputNumber from 'primevue/inputnumber';
+
 export default {
     components: {
         Dropdown,
         MultiSelect,
         Button,
-        Skeleton
+        Skeleton,
+        InputNumber
     },
     data() {
         return {
@@ -285,8 +290,8 @@ export default {
                 district_id: [],
                 quarter_id: [],
                 object_types_property_id: [],
-                price_from: '',
-                price_to: '',
+                price_from: null,
+                price_to: null,
                 room_count_from: '',
                 room_count_to: '',
                 floor_from: '',
@@ -392,7 +397,7 @@ export default {
             var search = new URLSearchParams(this.form.district_id.map(s=>['id[]',s]))
             var searchString = search.toString()
             console.log(searchString);
-        }
+        },
     },
     mounted() {
         

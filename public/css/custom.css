@@ -24,7 +24,8 @@ body {
     --dark_100: #000;
     --secondary_button_10: rgba(4, 104, 255, 0.1);
     --superblack_40: rgba(0, 0, 0, 0.4);
-    --form-button-color: #53b374;
+    --form-button-color: #0468ff;
+    --form-button-color-green: #53b374;
     --form-button-invalid-color: #f44336;
     --dc-color-grey-200: #d3d4d4;
 }
@@ -4095,13 +4096,13 @@ textarea.md-form__control {
 
 .steps_item_btn.active .link_txt,
 .steps_item_btn.succes-input .link_txt {
-    color: var(--form-button-color) !important;
-    border-color: var(--form-button-color);
+    color: var(--form-button-color-green) !important;
+    border-color: var(--form-button-color-green);
 }
 
 .steps_item_btn.active .icon_div,
 .steps_item_btn.succes-input .icon_div {
-    color: var(--form-button-color) !important;
+    color: var(--form-button-color-green) !important;
 }
 
 .steps_item_btn.input-invalid .link_txt {

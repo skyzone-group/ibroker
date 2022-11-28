@@ -53,7 +53,6 @@ import 'vue-easy-lightbox/external-css/vue-easy-lightbox.css'
 //     window.scrollTo(0,0);
 //     next(true);
 // });
-
 const app = createApp(App)
 //app.config.globalProperties.$IsLoggedIn = localStorage.getItem('token') ? true : false;
 app.use(router)
@@ -70,7 +69,7 @@ app.use(VueHtmlToPaper, options)
 app.use(DropZone)
 app.use(VueEasyLightbox)
 app.use(ToastService)
-app.use(VueNumberFormat, {precision: 0, prefix: '$ ', decimal: ',', thousand: '.'})
+app.use(VueNumberFormat, {precision: '', nullValue: '', prefix: '$', decimal: ',', thousand: '.'})
 app.use(VueSocialSharing)
 app.mount('#app')
 
