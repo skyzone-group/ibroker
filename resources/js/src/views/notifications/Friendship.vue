@@ -1,26 +1,28 @@
 <template>
     <div class="friendship-main">
         <div class="friendship-main-box">
-            <div v-for="users in data" :key="users.id" class="friendship-items py-2">
-                <div v-if="users.owner == false" class="profile_form" method="POST">
-                    <div class="friendship-box">
-                        <div class="friendship-box-aside align-self-center">
-                            <div class="user-photo rounded-circle" style="width: 60px; height: 60px;">
-                                <img :src="`/file/${users.friendInfo.image}`" alt="" class="w-100 h-100" style="object-fit: cover; border-radius: inherit;">
+            <div v-for="users in data" :key="users.id" >
+                <div v-if="users.owner == true && users.status == 'request'" class="friendship-items py-2">
+                    <div class="profile_form" method="POST">
+                        <div class="friendship-box">
+                            <div class="friendship-box-aside align-self-center">
+                                <div class="user-photo rounded-circle" style="width: 60px; height: 60px;">
+                                    <img :src="`/file/${users.friendInfo.image}`" alt="" class="w-100 h-100" style="object-fit: cover; border-radius: inherit;">
+                                </div>
                             </div>
-                        </div>
-                        <div class="friendship-body">
-                            <a v-if="users.friendInfo.firstname == null && users.friendInfo.lastname == null" href="#!" class="font-weight-bold d-block text-nowrap user-title">User {{users.friendInfo.id}}</a>
-                            <a v-else href="#!" class="font-weight-bold d-block text-nowrap user-title">{{users.friendInfo.firstname}}  {{users.friendInfo.lastname}}</a>
-                            <p class="text-muted text-5 mb-0">ID: {{users.friendInfo.id}}</p>
-                            <p class="text-muted text-5 mb-0">Телефон: <a :href="`tel:+${users.friendInfo.phone}`">{{users.friendInfo.phone}}</a></p>
-                        </div>
-                        <!-- <div class="friendship-reason">
-                            sended request to be friend
-                        </div> -->
-                        <div class="friendship-right ml-4">
-                            <Button :loading="loadingBtn" @click.prevent="this.$store.dispatch('confirmFriendship', users.friendInfo.id)" type="submit" icon="pi pi-check" class="p-button-success" :disabled="(users.status == 'confirm')" />
-                            <Button :loading="isLoaded" type="submit" icon="pi pi-trash" class="p-button-danger ml-2" @click.prevent="this.$store.dispatch('deleteFriend', users.friendInfo.id)" />
+                            <div class="friendship-body">
+                                <a v-if="users.friendInfo.firstname == null && users.friendInfo.lastname == null" href="#!" class="font-weight-bold d-block text-nowrap user-title">User {{users.friendInfo.id}}</a>
+                                <a v-else href="#!" class="font-weight-bold d-block text-nowrap user-title">{{users.friendInfo.firstname}}  {{users.friendInfo.lastname}}</a>
+                                <p class="text-muted text-5 mb-0">ID: {{users.friendInfo.id}}</p>
+                                <p class="text-muted text-5 mb-0">Телефон: <a :href="`tel:+${users.friendInfo.phone}`">{{users.friendInfo.phone}}</a></p>
+                            </div>
+                            <!-- <div class="friendship-reason">
+                                sended request to be friend
+                            </div> -->
+                            <div class="friendship-right ml-4">
+                                <Button :loading="loadingBtn" @click.prevent="this.$store.dispatch('confirmFriendship', users.friendInfo.id)" type="submit" icon="pi pi-check" class="p-button-success" :disabled="(users.status == 'confirm')" />
+                                <Button :loading="isLoaded" type="submit" icon="pi pi-trash" class="p-button-danger ml-2" @click.prevent="this.$store.dispatch('deleteFriend', users.friendInfo.id)" />
+                            </div>
                         </div>
                     </div>
                 </div>
