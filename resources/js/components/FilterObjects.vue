@@ -120,15 +120,12 @@
                                 <div class="options_main__items_inputs_block d-flex align-items-center justify-content-between">
                                     <div class="input-medium-6 dc-input-6-1-2 h-100 mr-2">
                                         <div class="dc-input__input-container-6-1-2 input_div">
-                                            <!-- <input id="room_count" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="От" type="number" tabindex="0" v-model="form.price_from" step=0.01 name="room_count"> -->
-                                            <!-- <VueNumberFormat v-model:value="form.price_from" class="dc-input__input-6-1-2"></VueNumberFormat> -->
                                             <InputNumber inputClass="dc-input__input-6-1-2" inputId="price_from" min="0" v-model="form.price_from" placeholder="От" prefix="$"/>
                                         </div>
                                     </div>
                                     <div class="input-medium-6 dc-input-6-1-2 h-100">
                                         <div class="dc-input__input-container-6-1-2 input_div">
                                             <InputNumber inputClass="dc-input__input-6-1-2" inputId="price_to" min="0" v-model="form.price_to" placeholder="До" prefix="$"/>
-                                            <!-- <VueNumberFormat v-model:value="form.price_to" class="dc-input__input-6-1-2"></VueNumberFormat> -->
                                         </div>
                                     </div>
                                 </div>

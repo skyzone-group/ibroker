@@ -13,7 +13,7 @@
                                     </svg>
                                     <span class="vx1-X position-relative">Фильтры</span>
                                     <div 
-                                    v-if="form.room_count_from != '' || form.room_count_to != '' || form.floor_from != '' || form.floor_to != '' || form.floor_count_from != '' || form.floor_count_to != '' || form.price_from != '' || form.price_to != ''" 
+                                    v-if="form.room_count_from != '' || form.room_count_to != '' || form.floor_from != '' || form.floor_to != '' || form.floor_count_from != '' || form.floor_count_to != '' || form.price_from > 0 || form.price_to > 0" 
                                     class="+wich"></div>
                                 </div>
                             </button>
@@ -161,11 +161,12 @@
                                         <div class="d-flex justify-content-center more-filter-item-third">
                                             <div class="input-medium-6 dc-input-6-1-2">
                                                 <div class="dc-input__input-container-6-1-2 input_div">
-                                                    <VueNumberFormat v-model:value="form.price_from" class="dc-input__input-6-1-2"></VueNumberFormat>                                                </div>
+                                                    <InputNumber inputClass="dc-input__input-6-1-2" inputId="price_from" min="0" v-model="form.price_from" placeholder="от" prefix="$"/>
+                                                </div>                                        
                                             </div>
                                             <div class="input-medium-6 dc-input-6-1-2">
                                                 <div class="dc-input__input-container-6-1-2 input_div">
-                                                    <VueNumberFormat v-model:value="form.price_to" class="dc-input__input-6-1-2"></VueNumberFormat>
+                                                    <InputNumber inputClass="dc-input__input-6-1-2" inputId="price_to" min="0" v-model="form.price_to" placeholder="до" prefix="$"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -384,13 +385,12 @@
                                                             <div class="options_main__items_inputs_block d-flex align-items-center justify-content-center">
                                                                 <div class="input-medium-6 dc-input-6-1-2 h-100 mr-2 w-50">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <!-- <input id="room_count" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="От" type="number" tabindex="0" v-model.number="form.price_from" name="room_count"> -->
-                                                                        <VueNumberFormat v-model:value="form.price_from" class="dc-input__input-6-1-2"></VueNumberFormat>
+                                                                        <InputNumber inputClass="dc-input__input-6-1-2" inputId="price_from" min="0" v-model="form.price_from" placeholder="От" prefix="$"/>
                                                                     </div>
                                                                 </div>
                                                                 <div class="input-medium-6 dc-input-6-1-2 h-100 w-50">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <VueNumberFormat v-model:value="form.price_to" class="dc-input__input-6-1-2"></VueNumberFormat>
+                                                                        <InputNumber inputClass="dc-input__input-6-1-2" inputId="price_to" min="0" v-model="form.price_to" placeholder="До" prefix="$"/>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -729,6 +729,7 @@ import Button from 'primevue/button';
 import Checkbox from 'primevue/checkbox';
 import ProgressSpinner from 'primevue/progressspinner';
 import OverlayPanel from 'primevue/overlaypanel';
+import InputNumber from 'primevue/inputnumber';
 // Validation
 import { required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
@@ -759,7 +760,8 @@ export default {
         Button,
         Checkbox,
         ProgressSpinner,
-        OverlayPanel
+        OverlayPanel,
+        InputNumber
     },
     data() {
         return {

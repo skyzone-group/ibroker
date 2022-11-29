@@ -294,7 +294,7 @@ export default {
     //     this.getUserObjects();
     // },
     async created() {
-        this.filterData();
+        this.getUserObjects();
         this.$watch(() => this.$route.params, this.getUserObjects);
     }
 }
