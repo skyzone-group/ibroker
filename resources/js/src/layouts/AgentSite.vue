@@ -288,59 +288,251 @@
                     </div>
                 </div>
                 <div>
-                <!-- Desktop Filter start -->
-                <div v-if="DesktopFilter" class="realtor__info-main-filter-filters desktop-filter">
-                    <div class="container_medium" style="position: relative; top: 90px">
-                        <form action='' class="FiltersForm_name_main" :model="form" method="GET">
-                            <div class="filters-tabs">
-                                <div class="filters-tabs-wrapper">
-                                    <div class="filters-tabs-wrapper-inner">
-                                        <div class="filters-tabs-buttons">
-                                            <label for="type__filter_buy" class="filters-tabs-item Radio_theme_realty" :class="{'active' : form.object_deals == 'buy'}">
-                                                <input v-model="form.object_deals" id="type__filter_buy" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="buy">
-                                                Купить
-                                            </label>
-                                            <label for="type__filter_rent" class="filters-tabs-item Radio_theme_realty" :class="{'active' : form.object_deals == 'rent'}">
-                                                <input v-model="form.object_deals" id="type__filter_rent" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="rent">
-                                                Снять
-                                            </label>
+                    <div class="realtor__info-main-filter-filters desktop-filter">
+                        <div class="container_medium" style="position: relative; top: 90px">
+                            <!-- Desktop Filter start -->
+                            <form v-if="DesktopFilter" action='' class="FiltersForm_name_main" :model="form" method="GET">
+                                <div class="filters-tabs">
+                                    <div class="filters-tabs-wrapper">
+                                        <div class="filters-tabs-wrapper-inner">
+                                            <div class="filters-tabs-buttons">
+                                                <label for="type__filter_buy" class="filters-tabs-item Radio_theme_realty" :class="{'active' : form.object_deals == 'buy'}">
+                                                    <input v-model="form.object_deals" id="type__filter_buy" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="buy">
+                                                    Купить
+                                                </label>
+                                                <label for="type__filter_rent" class="filters-tabs-item Radio_theme_realty" :class="{'active' : form.object_deals == 'rent'}">
+                                                    <input v-model="form.object_deals" id="type__filter_rent" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="rent">
+                                                    Снять
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="FiltersForm__content-filters">
-                                <div class="filters-wrapper-item filters-wrapper-item-container-1">
-                                    <Dropdown v-model="form.object_type" 
-                                    :options="objectTypes" 
-                                    optionLabel="name_ru" 
-                                    optionValue="id" 
-                                    placeholder="Выберите тип"
-                                    panelClass="p-multiselect-panell" />
-                                </div>
-                                <div v-if="form.object_type === 3" class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_commercial-type FiltersFormField">
-                                    <MultiSelect v-model="form.object_property_id" :options="objectProperty" optionLabel="name_ru" optionValue="id" placeholder="Тип" display="chip" />
-                                </div>
-                                <div class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_price-type FiltersFormField">
-                                    <div class="dropdown-filteritem dropdown-room w-100">
-                                        <a class="filters-wrapper-item-dropdown dropdown-toggle nohover" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                                            <div class="dropdown-label">
-                                                {{ (form.price_to != '' && form.price_from != '') ? (`${vueNumberFormat(form.price_to, {})} - ${vueNumberFormat(form.price_from, {})}`) : form.price_to != '' ? `от ${vueNumberFormat(form.price_to, {})}` : form.price_from != '' ? `до ${vueNumberFormat(form.price_from, {})}` : 'Цена'}}         
-                                            </div>                               
-                                            <div class="dropdown-icon" role="button">
-                                                <span><i class="feather icon-chevron-down"></i></span>
-                                            </div>
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <div class="dropdown-filteritem-inputs">
-                                                <div class="dropdown-filteritem-inputs-wrapper-groups">
-                                                    <div class="input-medium-6 dc-input-6-1-2">
-                                                        <div class="dc-input__input-container-6-1-2 input_div">
-                                                            <input id="room_to" class="dc-input__input-6-1-2" v-model="form.price_to" maxlength="24" name="room_to" type="number" placeholder="от" tabindex="0"  />
+                                <div class="FiltersForm__content-filters">
+                                    <div class="filters-wrapper-item filters-wrapper-item-container-1">
+                                        <Dropdown v-model="form.object_type" 
+                                        :options="objectTypes" 
+                                        optionLabel="name_ru" 
+                                        optionValue="id" 
+                                        placeholder="Выберите тип"
+                                        panelClass="p-multiselect-panell" />
+                                    </div>
+                                    <div v-if="form.object_type === 3" class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_commercial-type FiltersFormField">
+                                        <MultiSelect v-model="form.object_property_id" :options="objectProperty" optionLabel="name_ru" optionValue="id" placeholder="Тип" display="chip" />
+                                    </div>
+                                    <div class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_price-type FiltersFormField">
+                                        <div class="dropdown-filteritem dropdown-room w-100">
+                                            <a class="filters-wrapper-item-dropdown dropdown-toggle nohover" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                                <div class="dropdown-label">
+                                                    {{ (form.price_to != '' && form.price_from != '') ? (`${vueNumberFormat(form.price_to, {})} - ${vueNumberFormat(form.price_from, {})}`) : form.price_to != '' ? `от ${vueNumberFormat(form.price_to, {})}` : form.price_from != '' ? `до ${vueNumberFormat(form.price_from, {})}` : 'Цена'}}         
+                                                </div>                               
+                                                <div class="dropdown-icon" role="button">
+                                                    <span><i class="feather icon-chevron-down"></i></span>
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <div class="dropdown-filteritem-inputs">
+                                                    <div class="dropdown-filteritem-inputs-wrapper-groups">
+                                                        <div class="input-medium-6 dc-input-6-1-2">
+                                                            <div class="dc-input__input-container-6-1-2 input_div">
+                                                                <input id="room_to" class="dc-input__input-6-1-2" v-model="form.price_to" maxlength="24" name="room_to" type="number" placeholder="от" tabindex="0"  />
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-medium-6 dc-input-6-1-2">
+                                                            <div class="dc-input__input-container-6-1-2 input_div">
+                                                                <input id="room_from" class="dc-input__input-6-1-2" v-model="form.price_from" maxlength="24" name="room_from" type="number" placeholder="до" tabindex="0"  />
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="input-medium-6 dc-input-6-1-2">
-                                                        <div class="dc-input__input-container-6-1-2 input_div">
-                                                            <input id="room_from" class="dc-input__input-6-1-2" v-model="form.price_from" maxlength="24" name="room_from" type="number" placeholder="до" tabindex="0"  />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div v-if="form.object_type != 3 && form.object_type != 5" class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_room_count FiltersFormField">
+                                        <div class="dropdown-filteritem dropdown-room w-100">
+                                            <a class="filters-wrapper-item-dropdown dropdown-toggle nohover" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                                <div class="dropdown-label">
+                                                    {{ (form.room_to != '' && form.room_from != '') ? (`${form.room_to} - ${form.room_from}`) : form.room_to != '' ? `от ${form.room_to}` : form.room_from != '' ? `до ${form.room_from}` : 'Комнат'}}
+                                                </div> 
+                                                <div class="dropdown-icon" role="button">
+                                                    <span><i class="feather icon-chevron-down"></i></span>
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <div class="dropdown-filteritem-inputs">
+                                                    <div class="dropdown-filteritem-inputs-wrapper-groups">
+                                                        <div class="input-medium-6 dc-input-6-1-2">
+                                                            <div class="dc-input__input-container-6-1-2 input_div">
+                                                                <input id="room_to" class="dc-input__input-6-1-2" v-model="form.room_to" maxlength="24" name="room_to" type="number" placeholder="от" tabindex="0"  />
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-medium-6 dc-input-6-1-2">
+                                                            <div class="dc-input__input-container-6-1-2 input_div">
+                                                                <input id="room_from" class="dc-input__input-6-1-2" v-model="form.room_from" maxlength="24" name="room_from" type="number" placeholder="до" tabindex="0"  />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField FiltersFormField_name_address">
+                                        <div class="filter-price-type d-flex align-items-center filters-wrapper-item-padding w-100">
+                                            <span class="TextInput__box w-100">
+                                                <input type="text" class="TextInput__control" v-model="form.keyword" name="keyword" placeholder="Введите район, улицу..." maxlength="200" autocomplete="off">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div v-if="FilterMoreOptions" class="FiltersForm__content-filters">
+                                    <div class="filters-wrapper-item filters-wrapper-item-container-1">
+                                        <Dropdown v-model="form.region_id" 
+                                        :options="regions" 
+                                        optionLabel="name_ru" 
+                                        optionValue="id" 
+                                        :loading="loading[0]"
+                                        @change="getDistricts()" 
+                                        placeholder="Выберите регион"
+                                        panelClass="p-multiselect-panell" />
+                                    </div>
+                                    <div class="filters-wrapper-item filters-wrapper-item-container-1">
+                                        <MultiSelect v-model="form.district_id" @change="getQuarters()" 
+                                        :loading="loading[1]"
+                                        :options="districts"
+                                        optionLabel="name_ru" 
+                                        optionValue="id" 
+                                        display="chip" 
+                                        placeholder="Выберите район"
+                                        :filter="true" panelClass="p-multiselect-panell">
+                                            <template #empty>
+                                                <div class="flex align-items-center p-2" style="height: 38px" >
+                                                    No available options
+                                                </div>
+                                            </template>
+                                        </MultiSelect>
+                                    </div>
+                                    <div class="filters-wrapper-item filters-wrapper-item-container-1">
+                                        <MultiSelect v-model="form.quarter_id" 
+                                        :loading="loading[2]"
+                                        :options="quarters"
+                                        optionLabel="name_ru" 
+                                        optionValue="id" 
+                                        display="chip" 
+                                        placeholder="Выберите улица"
+                                        :filter="true" panelClass="p-multiselect-panell">
+                                            <template #empty>
+                                                <div class="flex align-items-center p-2" style="height: 38px" >
+                                                    No available options
+                                                </div>
+                                            </template>
+                                        </MultiSelect>
+                                    </div>
+                                    <div v-if="form.object_type == 1" class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_price-type FiltersFormField">
+                                        <div class="dropdown-filteritem dropdown-room w-100">
+                                            <a class="filters-wrapper-item-dropdown dropdown-toggle nohover" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                                <div class="dropdown-label">
+                                                    {{ (form.floor_from != '' && form.floor_to != '') ? (`${form.floor_from} - ${form.floor_to}`) : form.floor_from != '' ? `от ${form.floor_from}` : form.floor_to != '' ? `до ${form.floor_to}` : 'Этаж'}}         
+                                                </div>                               
+                                                <div class="dropdown-icon" role="button">
+                                                    <span><i class="feather icon-chevron-down"></i></span>
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <div class="dropdown-filteritem-inputs">
+                                                    <div class="dropdown-filteritem-inputs-wrapper-groups">
+                                                        <div class="input-medium-6 dc-input-6-1-2">
+                                                            <div class="dc-input__input-container-6-1-2 input_div">
+                                                                <input id="room_to" class="dc-input__input-6-1-2" v-model="form.floor_from" maxlength="24" name="room_to" type="number" placeholder="от" tabindex="0"  />
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-medium-6 dc-input-6-1-2">
+                                                            <div class="dc-input__input-container-6-1-2 input_div">
+                                                                <input id="room_from" class="dc-input__input-6-1-2" v-model="form.floor_to" maxlength="24" name="room_from" type="number" placeholder="до" tabindex="0"  />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_price-type FiltersFormField">
+                                        <div class="dropdown-filteritem dropdown-room w-100">
+                                            <a class="filters-wrapper-item-dropdown dropdown-toggle nohover" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                                <div class="dropdown-label">
+                                                    {{ (form.floor_count_from != '' && form.floor_count_to != '') ? (`${form.floor_count_from} - ${form.floor_count_to}`) : form.floor_count_from != '' ? `от ${form.floor_count_from}` : form.floor_count_to != '' ? `до ${form.floor_count_to}` : 'Этажность'}}         
+                                                </div>                               
+                                                <div class="dropdown-icon" role="button">
+                                                    <span><i class="feather icon-chevron-down"></i></span>
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <div class="dropdown-filteritem-inputs">
+                                                    <div class="dropdown-filteritem-inputs-wrapper-groups">
+                                                        <div class="input-medium-6 dc-input-6-1-2">
+                                                            <div class="dc-input__input-container-6-1-2 input_div">
+                                                                <input id="room_to" class="dc-input__input-6-1-2" v-model="form.floor_count_from" maxlength="24" name="room_to" type="number" placeholder="от" tabindex="0"  />
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-medium-6 dc-input-6-1-2">
+                                                            <div class="dc-input__input-container-6-1-2 input_div">
+                                                                <input id="room_from" class="dc-input__input-6-1-2" v-model="form.floor_count_to" maxlength="24" name="room_from" type="number" placeholder="до" tabindex="0"  />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_price-type FiltersFormField" style="max-width: 100%; flex: 1;">
+                                        <div class="dropdown-filteritem dropdown-room w-100">
+                                            <a class="filters-wrapper-item-dropdown dropdown-toggle nohover" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                                <div class="dropdown-label">
+                                                    {{ (form.total_area_from != '' && form.total_area_to != '') ? (`${form.total_area_from} - ${form.total_area_to}`) : form.total_area_from != '' ? `от ${form.total_area_from}` : form.total_area_to != '' ? `до ${form.total_area_to}` : 'Площадь, м2'}}         
+                                                </div>                               
+                                                <div class="dropdown-icon" role="button">
+                                                    <span><i class="feather icon-chevron-down"></i></span>
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <div class="dropdown-filteritem-inputs">
+                                                    <div class="dropdown-filteritem-inputs-wrapper-groups">
+                                                        <div class="input-medium-6 dc-input-6-1-2">
+                                                            <div class="dc-input__input-container-6-1-2 input_div">
+                                                                <input id="totalAreaFrom" class="dc-input__input-6-1-2" v-model="form.total_area_from" maxlength="24" name="totalAreaFrom" type="number" placeholder="от" tabindex="0"  />
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-medium-6 dc-input-6-1-2">
+                                                            <div class="dc-input__input-container-6-1-2 input_div">
+                                                                <input id="totalAreaTo" class="dc-input__input-6-1-2" v-model="form.total_area_to" maxlength="24" name="totalAreaTo" type="number" placeholder="до" tabindex="0"  />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div v-if="form.object_type == 2 || form.object_type == 4 || form.object_type == 5" class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_price-type FiltersFormField" style="max-width: 100%; flex: 1;">
+                                        <div class="dropdown-filteritem dropdown-room w-100">
+                                            <a class="filters-wrapper-item-dropdown dropdown-toggle nohover" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                                <div class="dropdown-label">
+                                                    {{ (form.land_area_from != '' && form.land_area_to != '') ? (`${form.land_area_from} - ${form.land_area_to}`) : form.land_area_from != '' ? `от ${form.land_area_from}` : form.land_area_to != '' ? `до ${form.land_area_to}` : 'Площадь участка (сот.)'}}         
+                                                </div>                               
+                                                <div class="dropdown-icon" role="button">
+                                                    <span><i class="feather icon-chevron-down"></i></span>
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <div class="dropdown-filteritem-inputs">
+                                                    <div class="dropdown-filteritem-inputs-wrapper-groups">
+                                                        <div class="input-medium-6 dc-input-6-1-2">
+                                                            <div class="dc-input__input-container-6-1-2 input_div">
+                                                                <input id="landAreaFrom" class="dc-input__input-6-1-2" v-model="form.land_area_from" maxlength="24" name="landAreaFrom" type="number" placeholder="от" tabindex="0"  />
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-medium-6 dc-input-6-1-2">
+                                                            <div class="dc-input__input-container-6-1-2 input_div">
+                                                                <input id="landAreaTo" class="dc-input__input-6-1-2" v-model="form.land_area_to" maxlength="24" name="landAreaTo" type="number" placeholder="до" tabindex="0"  />
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -348,423 +540,340 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div v-if="form.object_type != 3 && form.object_type != 5" class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_room_count FiltersFormField">
-                                    <div class="dropdown-filteritem dropdown-room w-100">
-                                        <a class="filters-wrapper-item-dropdown dropdown-toggle nohover" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                                            <div class="dropdown-label">
-                                                {{ (form.room_to != '' && form.room_from != '') ? (`${form.room_to} - ${form.room_from}`) : form.room_to != '' ? `от ${form.room_to}` : form.room_from != '' ? `до ${form.room_from}` : 'Комнат'}}
-                                            </div> 
-                                            <div class="dropdown-icon" role="button">
-                                                <span><i class="feather icon-chevron-down"></i></span>
-                                            </div>
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <div class="dropdown-filteritem-inputs">
-                                                <div class="dropdown-filteritem-inputs-wrapper-groups">
-                                                    <div class="input-medium-6 dc-input-6-1-2">
-                                                        <div class="dc-input__input-container-6-1-2 input_div">
-                                                            <input id="room_to" class="dc-input__input-6-1-2" v-model="form.room_to" maxlength="24" name="room_to" type="number" placeholder="от" tabindex="0"  />
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-medium-6 dc-input-6-1-2">
-                                                        <div class="dc-input__input-container-6-1-2 input_div">
-                                                            <input id="room_from" class="dc-input__input-6-1-2" v-model="form.room_from" maxlength="24" name="room_from" type="number" placeholder="до" tabindex="0"  />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField FiltersFormField_name_address">
-                                    <div class="filter-price-type d-flex align-items-center filters-wrapper-item-padding w-100">
-                                        <span class="TextInput__box w-100">
-                                            <input type="text" class="TextInput__control" v-model="form.keyword" name="keyword" placeholder="Введите район, улицу..." maxlength="200" autocomplete="off">
+                                <div class="filters-wrapper mt-4 w-100 d-flex">
+                                    <div class="filters-button-container d-flex align-items-center justify-content-end w-100">
+                                        <span class="filter_search_btn">
+                                            <Button  @click="FilterMoreOptions = !FilterMoreOptions" type="button" icon="pi pi-sliders-v" label="Дополнительные параметры" class="p-button-link" style="font-size: 14px;" />
+                                        </span>
+                                        <span class="filter_search_btn">
+                                            <Button @click="filterData" :loading="loading[3]" type="submit" label="Найти" class="filter_search_btn-link" />
                                         </span>
                                     </div>
-                                </div>
-                            </div>
-                            <div v-if="FilterMoreOptions" class="FiltersForm__content-filters">
-                                <div class="filters-wrapper-item filters-wrapper-item-container-1">
-                                    <Dropdown v-model="form.region_id" 
-                                    :options="regions" 
-                                    optionLabel="name_ru" 
-                                    optionValue="id" 
-                                    :loading="loading[0]"
-                                    @change="getDistricts()" 
-                                    placeholder="Выберите регион"
-                                    panelClass="p-multiselect-panell" />
-                                </div>
-                                <div class="filters-wrapper-item filters-wrapper-item-container-1">
-                                    <MultiSelect v-model="form.district_id" @change="getQuarters()" 
-                                    :loading="loading[1]"
-                                    :options="districts"
-                                    optionLabel="name_ru" 
-                                    optionValue="id" 
-                                    display="chip" 
-                                    placeholder="Выберите район"
-                                    :filter="true" panelClass="p-multiselect-panell">
-                                        <template #empty>
-                                            <div class="flex align-items-center p-2" style="height: 38px" >
-                                                No available options
-                                            </div>
+                                    <Dialog :draggable="false" :dismissableMask="true" header="Header" v-model:visible="displayModal" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}" :modal="true">
+                                        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                        <template #footer>
+                                            <Button label="No" icon="pi pi-times" @click="closeModal" class="p-button-text"/>
+                                            <Button label="Yes" icon="pi pi-check" @click="closeModal" autofocus />
                                         </template>
-                                    </MultiSelect>
+                                    </Dialog>
                                 </div>
-                                <div class="filters-wrapper-item filters-wrapper-item-container-1">
-                                    <MultiSelect v-model="form.quarter_id" 
-                                    :loading="loading[2]"
-                                    :options="quarters"
-                                    optionLabel="name_ru" 
-                                    optionValue="id" 
-                                    display="chip" 
-                                    placeholder="Выберите улица"
-                                    :filter="true" panelClass="p-multiselect-panell">
-                                        <template #empty>
-                                            <div class="flex align-items-center p-2" style="height: 38px" >
-                                                No available options
-                                            </div>
-                                        </template>
-                                    </MultiSelect>
-                                </div>
-                                <div v-if="form.object_type == 1" class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_price-type FiltersFormField">
-                                    <div class="dropdown-filteritem dropdown-room w-100">
-                                        <a class="filters-wrapper-item-dropdown dropdown-toggle nohover" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                                            <div class="dropdown-label">
-                                                {{ (form.floor_from != '' && form.floor_to != '') ? (`${form.floor_from} - ${form.floor_to}`) : form.floor_from != '' ? `от ${form.floor_from}` : form.floor_to != '' ? `до ${form.floor_to}` : 'Этаж'}}         
-                                            </div>                               
-                                            <div class="dropdown-icon" role="button">
-                                                <span><i class="feather icon-chevron-down"></i></span>
-                                            </div>
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <div class="dropdown-filteritem-inputs">
-                                                <div class="dropdown-filteritem-inputs-wrapper-groups">
-                                                    <div class="input-medium-6 dc-input-6-1-2">
-                                                        <div class="dc-input__input-container-6-1-2 input_div">
-                                                            <input id="room_to" class="dc-input__input-6-1-2" v-model="form.floor_from" maxlength="24" name="room_to" type="number" placeholder="от" tabindex="0"  />
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-medium-6 dc-input-6-1-2">
-                                                        <div class="dc-input__input-container-6-1-2 input_div">
-                                                            <input id="room_from" class="dc-input__input-6-1-2" v-model="form.floor_to" maxlength="24" name="room_from" type="number" placeholder="до" tabindex="0"  />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                            </form>
+                            <!-- Desktop Filter end -->
+                            <div class="agent-single-div-content">
+                                <div class="agent-single-div-content-block">
+                                    <div class="agent-single-div-content-div">
+                                        <h1 class="agent-single-div-content-div-objects-title">Мои объявления</h1>
+                                        <div class="shell_agent_objects_block_buttons mb-5">
+                                            <ul class="shell_agent_objects_block_ul p-0 m-0 list-style-none">
+                                                <li class="shell_agent_objects_block_ul_li">
+                                                    <a href="#!" class="shell_agent_objects_block_ul_li_link nohover" :class="{'shell_agent_objects_block_ul_li_link-active' : active3 === 0}">
+                                                        Продажа (28)</a>
+                                                        <label for="type__filter_buy" class="filters-tabs-item Radio_theme_realty" :class="{'active' : form.object_deals == 'buy'}">
+                                                            <input v-model="form.object_deals" id="type__filter_buy" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="buy">
+                                                            Продажа
+                                                        </label>
+                                                </li>
+                                                <li class="shell_agent_objects_block_ul_li">
+                                                    <a href="#!" class="shell_agent_objects_block_ul_li_link nohover" :class="{'shell_agent_objects_block_ul_li_link-active' : active3 === 1}">Аренда (2)</a>
+                                                </li>
+                                                <li class="shell_agent_objects_block_ul_li">
+                                                    <a href="#!" class="shell_agent_objects_block_ul_li_link mr-0 nohover" :class="{'shell_agent_objects_block_ul_li_link-active' : active3 === 2}">Новостройки (4)</a>
+                                                </li>
+                                            </ul>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_price-type FiltersFormField">
-                                    <div class="dropdown-filteritem dropdown-room w-100">
-                                        <a class="filters-wrapper-item-dropdown dropdown-toggle nohover" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                                            <div class="dropdown-label">
-                                                {{ (form.floor_count_from != '' && form.floor_count_to != '') ? (`${form.floor_count_from} - ${form.floor_count_to}`) : form.floor_count_from != '' ? `от ${form.floor_count_from}` : form.floor_count_to != '' ? `до ${form.floor_count_to}` : 'Этажность'}}         
-                                            </div>                               
-                                            <div class="dropdown-icon" role="button">
-                                                <span><i class="feather icon-chevron-down"></i></span>
-                                            </div>
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <div class="dropdown-filteritem-inputs">
-                                                <div class="dropdown-filteritem-inputs-wrapper-groups">
-                                                    <div class="input-medium-6 dc-input-6-1-2">
-                                                        <div class="dc-input__input-container-6-1-2 input_div">
-                                                            <input id="room_to" class="dc-input__input-6-1-2" v-model="form.floor_count_from" maxlength="24" name="room_to" type="number" placeholder="от" tabindex="0"  />
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-medium-6 dc-input-6-1-2">
-                                                        <div class="dc-input__input-container-6-1-2 input_div">
-                                                            <input id="room_from" class="dc-input__input-6-1-2" v-model="form.floor_count_to" maxlength="24" name="room_from" type="number" placeholder="до" tabindex="0"  />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_price-type FiltersFormField" style="max-width: 100%; flex: 1;">
-                                    <div class="dropdown-filteritem dropdown-room w-100">
-                                        <a class="filters-wrapper-item-dropdown dropdown-toggle nohover" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                                            <div class="dropdown-label">
-                                                {{ (form.total_area_from != '' && form.total_area_to != '') ? (`${form.total_area_from} - ${form.total_area_to}`) : form.total_area_from != '' ? `от ${form.total_area_from}` : form.total_area_to != '' ? `до ${form.total_area_to}` : 'Площадь, м2'}}         
-                                            </div>                               
-                                            <div class="dropdown-icon" role="button">
-                                                <span><i class="feather icon-chevron-down"></i></span>
-                                            </div>
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <div class="dropdown-filteritem-inputs">
-                                                <div class="dropdown-filteritem-inputs-wrapper-groups">
-                                                    <div class="input-medium-6 dc-input-6-1-2">
-                                                        <div class="dc-input__input-container-6-1-2 input_div">
-                                                            <input id="totalAreaFrom" class="dc-input__input-6-1-2" v-model="form.total_area_from" maxlength="24" name="totalAreaFrom" type="number" placeholder="от" tabindex="0"  />
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-medium-6 dc-input-6-1-2">
-                                                        <div class="dc-input__input-container-6-1-2 input_div">
-                                                            <input id="totalAreaTo" class="dc-input__input-6-1-2" v-model="form.total_area_to" maxlength="24" name="totalAreaTo" type="number" placeholder="до" tabindex="0"  />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div v-if="form.object_type == 2 || form.object_type == 4 || form.object_type == 5" class="filters-wrapper-item filters-wrapper-item-container-2 FiltersFormField_name_price-type FiltersFormField" style="max-width: 100%; flex: 1;">
-                                    <div class="dropdown-filteritem dropdown-room w-100">
-                                        <a class="filters-wrapper-item-dropdown dropdown-toggle nohover" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                                            <div class="dropdown-label">
-                                                {{ (form.land_area_from != '' && form.land_area_to != '') ? (`${form.land_area_from} - ${form.land_area_to}`) : form.land_area_from != '' ? `от ${form.land_area_from}` : form.land_area_to != '' ? `до ${form.land_area_to}` : 'Площадь участка (сот.)'}}         
-                                            </div>                               
-                                            <div class="dropdown-icon" role="button">
-                                                <span><i class="feather icon-chevron-down"></i></span>
-                                            </div>
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <div class="dropdown-filteritem-inputs">
-                                                <div class="dropdown-filteritem-inputs-wrapper-groups">
-                                                    <div class="input-medium-6 dc-input-6-1-2">
-                                                        <div class="dc-input__input-container-6-1-2 input_div">
-                                                            <input id="landAreaFrom" class="dc-input__input-6-1-2" v-model="form.land_area_from" maxlength="24" name="landAreaFrom" type="number" placeholder="от" tabindex="0"  />
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-medium-6 dc-input-6-1-2">
-                                                        <div class="dc-input__input-container-6-1-2 input_div">
-                                                            <input id="landAreaTo" class="dc-input__input-6-1-2" v-model="form.land_area_to" maxlength="24" name="landAreaTo" type="number" placeholder="до" tabindex="0"  />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="filters-wrapper mt-4 w-100 d-flex">
-                                <div class="filters-button-container d-flex align-items-center justify-content-end w-100">
-                                    <span class="filter_search_btn">
-                                        <Button  @click="FilterMoreOptions = !FilterMoreOptions" type="button" icon="pi pi-sliders-v" label="Дополнительные параметры" class="p-button-link" style="font-size: 14px;" />
-                                    </span>
-                                    <span class="filter_search_btn">
-                                        <Button @click="filterData" :loading="loading[3]" type="submit" label="Найти" class="filter_search_btn-link" />
-                                    </span>
-                                </div>
-                                <Dialog :draggable="false" :dismissableMask="true" header="Header" v-model:visible="displayModal" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}" :modal="true">
-                                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                    <template #footer>
-                                        <Button label="No" icon="pi pi-times" @click="closeModal" class="p-button-text"/>
-                                        <Button label="Yes" icon="pi pi-check" @click="closeModal" autofocus />
-                                    </template>
-                                </Dialog>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- Desktop Filter end -->
-                </div>
-            </div>
-            
-            <div class="agent-single-div-content">
-                <div class="agent-single-div-content-block">
-                    <div class="agent-single-container">
-                        <div class="agent-single-div-content-div">
-                            <h1 class="agent-single-div-content-div-objects-title">Мои объявления</h1>
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="object-item">
-                                        <div class="object-item-block">
-                                            <div class="object-photos">
-                                                <div class="object-photos-thumb">
-                                                    <swiper
-                                                        :style="{
-                                                        '--swiper-navigation-color': '#fff',
-                                                        '--swiper-pagination-color': '#fff',
-                                                        }"
-                                                        :pagination="{
-                                                            type: 'fraction',
-                                                        }"
-                                                        :loop="true"
-                                                        :lazy="true"
-                                                        :spaceBetween="10"
-                                                        :navigation="true"
-                                                        :modules="modules"
-                                                        class="mySwiper2 w-100"
-                                                    >
-                                                        <swiper-slide>
-                                                            <img src="https://swiperjs.com/demos/images/nature-1.jpg" class="swiper-lazy"/>
-                                                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div> 
-                                                        </swiper-slide>
-                                                        <swiper-slide>
-                                                            <img src="https://swiperjs.com/demos/images/nature-2.jpg" class="swiper-lazy"/>
-                                                        </swiper-slide>
-                                                        <swiper-slide>
-                                                            <img src="https://swiperjs.com/demos/images/nature-3.jpg" class="swiper-lazy"/>
-                                                        </swiper-slide>
-                                                        <swiper-slide
-                                                        ><img
-                                                            src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide
-                                                        ><swiper-slide
-                                                        ><img
-                                                            src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide
-                                                        ><swiper-slide
-                                                        ><img
-                                                            src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide
-                                                        ><swiper-slide
-                                                        ><img
-                                                            src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide
-                                                        ><swiper-slide
-                                                        ><img
-                                                            src="https://swiperjs.com/demos/images/nature-8.jpg" /></swiper-slide
-                                                        ><swiper-slide
-                                                        ><img
-                                                            src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide
-                                                        ><swiper-slide
-                                                        ><img src="https://swiperjs.com/demos/images/nature-10.jpg"
-                                                        /></swiper-slide>
-                                                    </swiper>
-                                                </div>
-                                            </div>
-                                            <div class="object-body">
-                                                <div class="object-body-content">
-                                                    <div class="object-details">
-                                                        <div class="object-price-list d-flex align-items-center">
-                                                            <p class="object-price-list-p">22 500 000 ₽</p>
-                                                            <p class="object-price-list-desc ml-2">264 705$/м²</p>
-                                                        </div>
-                                                        <div class="object-details-item object-details-header">
-                                                            <a class="NXJyid" href="https://domclick.ru/card/sale__flat__1564626862" target="_blank" rel="noopener noreferrer">
-                                                                <span class="title">2-комн. квартира 51 м² 2/9 этаж</span>
-                                                            </a>
-                                                        </div>
-                                                        <div class="object-details-item object-details-address mt-3">
-                                                            <div class="w-100 object-details-item align-items-center">
-                                                                <i class="fas fa-map-marker-alt mr-1"></i>
-                                                                <span class="PjgOZO">Москва, Чертановская улица, 21к1</span>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="object-item">
+                                                    <div class="object-item-block">
+                                                        <div class="object-photos">
+                                                            <div class="object-photos-thumb">
+                                                                <swiper
+                                                                    :style="{
+                                                                    '--swiper-navigation-color': '#fff',
+                                                                    '--swiper-pagination-color': '#fff',
+                                                                    }"
+                                                                    :pagination="{
+                                                                        type: 'fraction',
+                                                                    }"
+                                                                    :loop="true"
+                                                                    :lazy="true"
+                                                                    :spaceBetween="10"
+                                                                    :navigation="true"
+                                                                    :modules="modules"
+                                                                    class="mySwiper2 w-100"
+                                                                >
+                                                                    <swiper-slide>
+                                                                        <img src="https://swiperjs.com/demos/images/nature-1.jpg" class="swiper-lazy"/>
+                                                                        <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div> 
+                                                                    </swiper-slide>
+                                                                    <swiper-slide>
+                                                                        <img src="https://swiperjs.com/demos/images/nature-2.jpg" class="swiper-lazy"/>
+                                                                    </swiper-slide>
+                                                                    <swiper-slide>
+                                                                        <img src="https://swiperjs.com/demos/images/nature-3.jpg" class="swiper-lazy"/>
+                                                                    </swiper-slide>
+                                                                    <swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-8.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img src="https://swiperjs.com/demos/images/nature-10.jpg"
+                                                                    /></swiper-slide>
+                                                                </swiper>
                                                             </div>
                                                         </div>
-                                                        <div class="object-details-item mt-3">
-                                                            <div class="object-details-description">
-                                                                СВОБОДНАЯ ПРОДАЖА!   Продается 2-х ком. Кв. м. Южная, ул. Чертановская, д. 21, корп.1 на 2-м этаже 9-ти этажного панельного дома в менее 10-ти минутах пешего хода от метро.  Общая площадь – 51м2, комнаты изолированные – 20  и 15 м2, кухня 7м2, с/у – раздельный.  Окна во двор.  Балкона – нет. Ремонт косметический. Дом располагается в районе с развитой инфраструктурой в шаговой доступности множество популярных сетевых магазинов, ТЦ.  Хорошая транспортная доступность до нескольких станций метро.  
+                                                        <div class="object-body">
+                                                            <div class="object-body-content">
+                                                                <div class="object-details">
+                                                                    <div class="object-price-list d-flex align-items-center">
+                                                                        <p class="object-price-list-p">22 500 000 ₽</p>
+                                                                        <p class="object-price-list-desc ml-2">264 705$/м²</p>
+                                                                    </div>
+                                                                    <div class="object-details-item object-details-header">
+                                                                        <a class="NXJyid" href="https://domclick.ru/card/sale__flat__1564626862" target="_blank" rel="noopener noreferrer">
+                                                                            <span class="title">2-комн. квартира 51 м² 2/9 этаж</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="object-details-item object-details-address mt-3">
+                                                                        <div class="w-100 object-details-item align-items-center">
+                                                                            <i class="fas fa-map-marker-alt mr-1"></i>
+                                                                            <span class="PjgOZO">Москва, Чертановская улица, 21к1</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="object-details-item mt-3">
+                                                                        <div class="object-details-description">
+                                                                            СВОБОДНАЯ ПРОДАЖА!   Продается 2-х ком. Кв. м. Южная, ул. Чертановская, д. 21, корп.1 на 2-м этаже 9-ти этажного панельного дома в менее 10-ти минутах пешего хода от метро.  Общая площадь – 51м2, комнаты изолированные – 20  и 15 м2, кухня 7м2, с/у – раздельный.  Окна во двор.  Балкона – нет. Ремонт косметический. Дом располагается в районе с развитой инфраструктурой в шаговой доступности множество популярных сетевых магазинов, ТЦ.  Хорошая транспортная доступность до нескольких станций метро.  
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="object-details-addtional"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="object-body-footer justify-content-end">
+                                                                <div class="object-details-item">
+                                                                    <button v-if="2 != open" @click="toggle(2)" class="object-details-item-btn" type="button">
+                                                                        <span class="object-details-item-btn-txt">Показать телефон</span>
+                                                                    </button>
+                                                                    <a v-if="2 === open" href="tel:+998903592284" class="object-details-item-btn">
+                                                                        <span class="object-details-item-btn-txt">+99890 359-22-84</span>
+                                                                    </a>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="object-details-addtional"></div>
                                                     </div>
                                                 </div>
-                                                <div class="object-body-footer justify-content-end">
-                                                    <div class="object-details-item">
-                                                        <button v-if="2 != open" @click="toggle(2)" class="object-details-item-btn" type="button">
-                                                            <span class="object-details-item-btn-txt">Показать телефон</span>
-                                                        </button>
-                                                        <a v-if="2 === open" href="tel:+998903592284" class="object-details-item-btn">
-                                                            <span class="object-details-item-btn-txt">+99890 359-22-84</span>
-                                                        </a>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="object-item">
+                                                    <div class="object-item-block">
+                                                        <div class="object-photos">
+                                                            <div class="object-photos-thumb">
+                                                                <swiper
+                                                                    :style="{
+                                                                    '--swiper-navigation-color': '#fff',
+                                                                    '--swiper-pagination-color': '#fff',
+                                                                    }"
+                                                                    :pagination="{
+                                                                        type: 'fraction',
+                                                                    }"
+                                                                    :loop="true"
+                                                                    :lazy="true"
+                                                                    :spaceBetween="10"
+                                                                    :navigation="true"
+                                                                    :modules="modules"
+                                                                    class="mySwiper2 w-100"
+                                                                >
+                                                                    <swiper-slide>
+                                                                        <img src="https://swiperjs.com/demos/images/nature-1.jpg" class="swiper-lazy"/>
+                                                                        <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div> 
+                                                                    </swiper-slide>
+                                                                    <swiper-slide>
+                                                                        <img src="https://swiperjs.com/demos/images/nature-2.jpg" class="swiper-lazy"/>
+                                                                    </swiper-slide>
+                                                                    <swiper-slide>
+                                                                        <img src="https://swiperjs.com/demos/images/nature-3.jpg" class="swiper-lazy"/>
+                                                                    </swiper-slide>
+                                                                    <swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-8.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img src="https://swiperjs.com/demos/images/nature-10.jpg"
+                                                                    /></swiper-slide>
+                                                                </swiper>
+                                                            </div>
+                                                        </div>
+                                                        <div class="object-body">
+                                                            <div class="object-body-content">
+                                                                <div class="object-details">
+                                                                    <div class="object-price-list d-flex align-items-center">
+                                                                        <p class="object-price-list-p">22 500 000 ₽</p>
+                                                                        <p class="object-price-list-desc ml-2">264 705$/м²</p>
+                                                                    </div>
+                                                                    <div class="object-details-item object-details-header">
+                                                                        <a class="NXJyid" href="https://domclick.ru/card/sale__flat__1564626862" target="_blank" rel="noopener noreferrer">
+                                                                            <span class="title">2-комн. квартира 51 м² 2/9 этаж</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="object-details-item object-details-address mt-3">
+                                                                        <div class="w-100 object-details-item align-items-center">
+                                                                            <i class="fas fa-map-marker-alt mr-1"></i>
+                                                                            <span class="PjgOZO">Москва, Чертановская улица, 21к1</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="object-details-item mt-3">
+                                                                        <div class="object-details-description">
+                                                                            СВОБОДНАЯ ПРОДАЖА!   Продается 2-х ком. Кв. м. Южная, ул. Чертановская, д. 21, корп.1 на 2-м этаже 9-ти этажного панельного дома в менее 10-ти минутах пешего хода от метро.  Общая площадь – 51м2, комнаты изолированные – 20  и 15 м2, кухня 7м2, с/у – раздельный.  Окна во двор.  Балкона – нет. Ремонт косметический. Дом располагается в районе с развитой инфраструктурой в шаговой доступности множество популярных сетевых магазинов, ТЦ.  Хорошая транспортная доступность до нескольких станций метро.  
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="object-details-addtional"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="object-body-footer justify-content-end">
+                                                                <div class="object-details-item">
+                                                                    <button v-if="2 != open" @click="toggle(2)" class="object-details-item-btn" type="button">
+                                                                        <span class="object-details-item-btn-txt">Показать телефон</span>
+                                                                    </button>
+                                                                    <a v-if="2 === open" href="tel:+998903592284" class="object-details-item-btn">
+                                                                        <span class="object-details-item-btn-txt">+99890 359-22-84</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="object-item">
+                                                    <div class="object-item-block">
+                                                        <div class="object-photos">
+                                                            <div class="object-photos-thumb">
+                                                                <swiper
+                                                                    :style="{
+                                                                    '--swiper-navigation-color': '#fff',
+                                                                    '--swiper-pagination-color': '#fff',
+                                                                    }"
+                                                                    :pagination="{
+                                                                        type: 'fraction',
+                                                                    }"
+                                                                    :loop="true"
+                                                                    :lazy="true"
+                                                                    :spaceBetween="10"
+                                                                    :navigation="true"
+                                                                    :modules="modules"
+                                                                    class="mySwiper2 w-100"
+                                                                >
+                                                                    <swiper-slide>
+                                                                        <img src="https://swiperjs.com/demos/images/nature-1.jpg" class="swiper-lazy"/>
+                                                                        <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div> 
+                                                                    </swiper-slide>
+                                                                    <swiper-slide>
+                                                                        <img src="https://swiperjs.com/demos/images/nature-2.jpg" class="swiper-lazy"/>
+                                                                    </swiper-slide>
+                                                                    <swiper-slide>
+                                                                        <img src="https://swiperjs.com/demos/images/nature-3.jpg" class="swiper-lazy"/>
+                                                                    </swiper-slide>
+                                                                    <swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-8.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img
+                                                                        src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide
+                                                                    ><swiper-slide
+                                                                    ><img src="https://swiperjs.com/demos/images/nature-10.jpg"
+                                                                    /></swiper-slide>
+                                                                </swiper>
+                                                            </div>
+                                                        </div>
+                                                        <div class="object-body">
+                                                            <div class="object-body-content">
+                                                                <div class="object-details">
+                                                                    <div class="object-price-list d-flex align-items-center">
+                                                                        <p class="object-price-list-p">22 500 000 ₽</p>
+                                                                        <p class="object-price-list-desc ml-2">264 705$/м²</p>
+                                                                    </div>
+                                                                    <div class="object-details-item object-details-header">
+                                                                        <a class="NXJyid" href="https://domclick.ru/card/sale__flat__1564626862" target="_blank" rel="noopener noreferrer">
+                                                                            <span class="title">2-комн. квартира 51 м² 2/9 этаж</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="object-details-item object-details-address mt-3">
+                                                                        <div class="w-100 object-details-item align-items-center">
+                                                                            <i class="fas fa-map-marker-alt mr-1"></i>
+                                                                            <span class="PjgOZO">Москва, Чертановская улица, 21к1</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="object-details-item mt-3">
+                                                                        <div class="object-details-description">
+                                                                            СВОБОДНАЯ ПРОДАЖА!   Продается 2-х ком. Кв. м. Южная, ул. Чертановская, д. 21, корп.1 на 2-м этаже 9-ти этажного панельного дома в менее 10-ти минутах пешего хода от метро.  Общая площадь – 51м2, комнаты изолированные – 20  и 15 м2, кухня 7м2, с/у – раздельный.  Окна во двор.  Балкона – нет. Ремонт косметический. Дом располагается в районе с развитой инфраструктурой в шаговой доступности множество популярных сетевых магазинов, ТЦ.  Хорошая транспортная доступность до нескольких станций метро.  
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="object-details-addtional"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="object-body-footer justify-content-end">
+                                                                <div class="object-details-item">
+                                                                    <button v-if="2 != open" @click="toggle(2)" class="object-details-item-btn" type="button">
+                                                                        <span class="object-details-item-btn-txt">Показать телефон</span>
+                                                                    </button>
+                                                                    <a v-if="2 === open" href="tel:+998903592284" class="object-details-item-btn">
+                                                                        <span class="object-details-item-btn-txt">+99890 359-22-84</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="objects-paginator">
+                                                    <Paginator :rows="10" 
+                                                    template="PrevPageLink PageLinks NextPageLink"
+                                                    :totalRecords="totalRecords"></Paginator>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="object-item">
-                                        <div class="object-item-block">
-                                            <div class="object-photos">
-                                                <div class="object-photos-thumb">
-                                                    <swiper
-                                                        :style="{
-                                                        '--swiper-navigation-color': '#fff',
-                                                        '--swiper-pagination-color': '#fff',
-                                                        }"
-                                                        :pagination="{
-                                                            type: 'fraction',
-                                                        }"
-                                                        :loop="true"
-                                                        :lazy="true"
-                                                        :spaceBetween="10"
-                                                        :navigation="true"
-                                                        :modules="modules"
-                                                        class="mySwiper2 w-100"
-                                                    >
-                                                        <swiper-slide>
-                                                            <img src="https://swiperjs.com/demos/images/nature-1.jpg" class="swiper-lazy"/>
-                                                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div> 
-                                                        </swiper-slide>
-                                                        <swiper-slide>
-                                                            <img src="https://swiperjs.com/demos/images/nature-2.jpg" class="swiper-lazy"/>
-                                                        </swiper-slide>
-                                                        <swiper-slide>
-                                                            <img src="https://swiperjs.com/demos/images/nature-3.jpg" class="swiper-lazy"/>
-                                                        </swiper-slide>
-                                                        <swiper-slide
-                                                        ><img
-                                                            src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide
-                                                        ><swiper-slide
-                                                        ><img
-                                                            src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide
-                                                        ><swiper-slide
-                                                        ><img
-                                                            src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide
-                                                        ><swiper-slide
-                                                        ><img
-                                                            src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide
-                                                        ><swiper-slide
-                                                        ><img
-                                                            src="https://swiperjs.com/demos/images/nature-8.jpg" /></swiper-slide
-                                                        ><swiper-slide
-                                                        ><img
-                                                            src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide
-                                                        ><swiper-slide
-                                                        ><img src="https://swiperjs.com/demos/images/nature-10.jpg"
-                                                        /></swiper-slide>
-                                                    </swiper>
-                                                </div>
-                                            </div>
-                                            <div class="object-body">
-                                                <div class="object-body-content">
-                                                    <div class="object-details">
-                                                        <div class="object-price-list d-flex align-items-center">
-                                                            <p class="object-price-list-p">22 500 000 ₽</p>
-                                                            <p class="object-price-list-desc ml-2">264 705$/м²</p>
-                                                        </div>
-                                                        <div class="object-details-item object-details-header">
-                                                            <a class="NXJyid" href="https://domclick.ru/card/sale__flat__1564626862" target="_blank" rel="noopener noreferrer">
-                                                                <span class="title">2-комн. квартира 51 м² 2/9 этаж</span>
-                                                            </a>
-                                                        </div>
-                                                        <div class="object-details-item object-details-address mt-3">
-                                                            <div class="w-100 object-details-item align-items-center">
-                                                                <i class="fas fa-map-marker-alt mr-1"></i>
-                                                                <span class="PjgOZO">Москва, Чертановская улица, 21к1</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="object-details-item mt-3">
-                                                            <div class="object-details-description">
-                                                                СВОБОДНАЯ ПРОДАЖА!   Продается 2-х ком. Кв. м. Южная, ул. Чертановская, д. 21, корп.1 на 2-м этаже 9-ти этажного панельного дома в менее 10-ти минутах пешего хода от метро.  Общая площадь – 51м2, комнаты изолированные – 20  и 15 м2, кухня 7м2, с/у – раздельный.  Окна во двор.  Балкона – нет. Ремонт косметический. Дом располагается в районе с развитой инфраструктурой в шаговой доступности множество популярных сетевых магазинов, ТЦ.  Хорошая транспортная доступность до нескольких станций метро.  
-                                                            </div>
-                                                        </div>
-                                                        <div class="object-details-addtional"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="object-body-footer justify-content-end">
-                                                    <div class="object-details-item">
-                                                        <button v-if="2 != open" @click="toggle(2)" class="object-details-item-btn" type="button">
-                                                            <span class="object-details-item-btn-txt">Показать телефон</span>
-                                                        </button>
-                                                        <a v-if="2 === open" href="tel:+998903592284" class="object-details-item-btn">
-                                                            <span class="object-details-item-btn-txt">+99890 359-22-84</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="objects-paginator">
-                                        <Paginator :rows="10" 
-                                        template="PrevPageLink PageLinks NextPageLink"
-                                        :totalRecords="totalRecords"></Paginator>
                                     </div>
                                 </div>
                             </div>
@@ -772,6 +881,7 @@
                     </div>
                 </div>
             </div>
+            
             
             
             <!-- Actions Mobile -->
@@ -1061,7 +1171,6 @@ export default {
 .desktop-filter{
     transition: all 0.4s;
     position: absolute;
-    bottom: 0;
     width: 100%;
 }
 
@@ -1390,7 +1499,7 @@ export default {
 }
 
 .agent-single-div-content{
-    margin-top: 120px;
+    margin-top: 60px;
 }
 
 .agent-single-div-content-div-objects-title{
@@ -2048,6 +2157,13 @@ export default {
     background-color: #ffde5a !important;
 }
 
+/* user objects style */
+.agent-single-div-content-div .object-price-list-p,
+.agent-single-div-content-div  .object-details-header .title {
+    font-size: 20px;
+    line-height: 25px;
+}
+/* user objects style */
 /* *********************************************************************************** */
 /* *************************** Mobile Filter *************************************** */
 .mobile-filter-view-box{

@@ -2,12 +2,13 @@
     <div class="friendship-main">
         <div class="friendship-main-box">
             <div v-for="users in data" :key="users.id" >
-                <div v-if="users.owner == true && users.status == 'request'" class="friendship-items py-2">
+                <div v-if="users.owner == false && users.status == 'request'" class="friendship-items py-2">
                     <div class="profile_form" method="POST">
                         <div class="friendship-box">
                             <div class="friendship-box-aside align-self-center">
                                 <div class="user-photo rounded-circle" style="width: 60px; height: 60px;">
-                                    <img :src="`/file/${users.friendInfo.image}`" alt="" class="w-100 h-100" style="object-fit: cover; border-radius: inherit;">
+                                    <img v-if="!users.friendInfo.image" :src="src" alt="user_avatar" class="img-full" style="object-fit: cover;">
+                                    <img v-else :src="`/file/${users.friendInfo.image}`" alt="" class="w-100 h-100" style="object-fit: cover; border-radius: inherit;">
                                 </div>
                             </div>
                             <div class="friendship-body">
@@ -38,11 +39,13 @@
 import Button from 'primevue/button';
 import Toast from 'primevue/toast';
 import { mapGetters } from 'vuex'
-
+import Dialog from 'primevue/dialog';
+import defaultImage from "../../../../../public/images/avatar-dafault.png"
 export default {
     components: {
         Button,
-        Toast
+        Toast,
+        Dialog
     },
     props: {
         data: {
@@ -51,7 +54,7 @@ export default {
     },
     data() {
         return {
-            
+            src: defaultImage,
         }
     },
     methods: {

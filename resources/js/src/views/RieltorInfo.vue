@@ -127,7 +127,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="shell_agent_objects">
+                    <!-- <div class="shell_agent_objects">
                         <div class="shell_agent_objects_block">
                             <div class="shell_agent_objects_block_buttons mb-5">
                                 <ul class="shell_agent_objects_block_ul p-0 m-0 list-style-none">
@@ -342,7 +342,7 @@
                                 </TabView>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

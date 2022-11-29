@@ -13,7 +13,7 @@
                                     </svg>
                                     <span class="vx1-X position-relative">Фильтры</span>
                                     <div 
-                                    v-if="form.room_count_from != '' || form.room_count_to != '' || form.floor_from != '' || form.floor_to != '' || form.floor_count_from != '' || form.floor_count_to != '' || form.price_from != '' || form.price_to != ''" 
+                                    v-if="form.room_count_from != '' || form.room_count_to != '' || form.floor_from != '' || form.floor_to != '' || form.floor_count_from != '' || form.floor_count_to != '' || form.price_from > 0 || form.price_to > 0" 
                                     class="+wich"></div>
                                 </div>
                             </button>
@@ -161,11 +161,12 @@
                                         <div class="d-flex justify-content-center more-filter-item-third">
                                             <div class="input-medium-6 dc-input-6-1-2">
                                                 <div class="dc-input__input-container-6-1-2 input_div">
-                                                    <VueNumberFormat v-model:value="form.price_from" class="dc-input__input-6-1-2"></VueNumberFormat>                                                </div>
+                                                    <InputNumber inputClass="dc-input__input-6-1-2" inputId="price_from" min="0" v-model="form.price_from" placeholder="от" prefix="$"/>
+                                                </div>                                        
                                             </div>
                                             <div class="input-medium-6 dc-input-6-1-2">
                                                 <div class="dc-input__input-container-6-1-2 input_div">
-                                                    <VueNumberFormat v-model:value="form.price_to" class="dc-input__input-6-1-2"></VueNumberFormat>
+                                                    <InputNumber inputClass="dc-input__input-6-1-2" inputId="price_to" min="0" v-model="form.price_to" placeholder="до" prefix="$"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -384,13 +385,12 @@
                                                             <div class="options_main__items_inputs_block d-flex align-items-center justify-content-center">
                                                                 <div class="input-medium-6 dc-input-6-1-2 h-100 mr-2 w-50">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <!-- <input id="room_count" class="dc-input__input-6-1-2" maxlength="24" pattern="\d*" placeholder="От" type="number" tabindex="0" v-model.number="form.price_from" name="room_count"> -->
-                                                                        <VueNumberFormat v-model:value="form.price_from" class="dc-input__input-6-1-2"></VueNumberFormat>
+                                                                        <InputNumber inputClass="dc-input__input-6-1-2" inputId="price_from" min="0" v-model="form.price_from" placeholder="От" prefix="$"/>
                                                                     </div>
                                                                 </div>
                                                                 <div class="input-medium-6 dc-input-6-1-2 h-100 w-50">
                                                                     <div class="dc-input__input-container-6-1-2 input_div">
-                                                                        <VueNumberFormat v-model:value="form.price_to" class="dc-input__input-6-1-2"></VueNumberFormat>
+                                                                        <InputNumber inputClass="dc-input__input-6-1-2" inputId="price_to" min="0" v-model="form.price_to" placeholder="До" prefix="$"/>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -671,25 +671,26 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="object-body-footer">
+                                            <div v-for="user in object.user" :key="user.id" class="object-body-footer">
                                                 <div class="object-details-item">
                                                     <div class="object-details-author">
                                                         <div class="author-box">
                                                             <div style="height: 100%;">
                                                                 <picture class="author-box-pic">
-                                                                    <img class="author-box-pic-img" src="https://img06.domclick.ru/s200x200q80/partnerhub/avatars/ff/16/84b1f568-7e09-4c67-b58d-f4f7286e63e5.png" alt="Елена">
+                                                                    <img v-if="!user.image" :src="src" alt="user_avatar" class="img-full author-box-pic-img" style="object-fit: cover;">
+                                                                    <img v-else :src="`/file/${user.image}`" alt="user_avatar" class="img-full author-box-pic-img" style="object-fit: cover;">
                                                                 </picture>
                                                             </div>
                                                         </div>
-                                                        <span class="author-name">Лофт Балтийская</span>
+                                                        <span class="author-name">{{ user.firstname && user.firstname ? (`${user.firstname} ${user.lastname}`) : `User ${user.id}`}}</span>
                                                     </div>
                                                 </div>
                                                 <div class="object-details-item">
-                                                    <button v-if="2 != open" @click="toggle(2)" class="object-details-item-btn" type="button">
+                                                    <button @click.prevent v-if="object.id != open" @click="togglePhoneNum(object.id)" class="object-details-item-btn" type="button">
                                                         <span class="object-details-item-btn-txt">Показать телефон</span>
                                                     </button>
-                                                    <a v-if="2 === open" href="tel:+998903592284" class="object-details-item-btn">
-                                                        <span class="object-details-item-btn-txt">+99890 359-22-84</span>
+                                                    <a v-if="object.id === open" @click.prevent :href="`tel:+${user.phone}`" class="object-details-item-btn">
+                                                        <span class="object-details-item-btn-txt">+{{user.phone}}</span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -729,6 +730,7 @@ import Button from 'primevue/button';
 import Checkbox from 'primevue/checkbox';
 import ProgressSpinner from 'primevue/progressspinner';
 import OverlayPanel from 'primevue/overlaypanel';
+import InputNumber from 'primevue/inputnumber';
 // Validation
 import { required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
@@ -744,6 +746,7 @@ import "swiper/css/thumbs";
 // import required modules
 import { Autoplay, Pagination, Lazy, FreeMode, Navigation, Thumbs } from "swiper";
 import { mapGetters } from 'vuex'
+import defaultImage from "../../../../../public/images/avatar-dafault.png"
 export default {
 //   setup: () => ({ v$: useVuelidate() }),
     components: {
@@ -759,7 +762,8 @@ export default {
         Button,
         Checkbox,
         ProgressSpinner,
-        OverlayPanel
+        OverlayPanel,
+        InputNumber
     },
     data() {
         return {
@@ -788,6 +792,7 @@ export default {
             districts: [],
             quarters: [],
             objects: [],
+            src: defaultImage,
             form: {
                 object_deals: this.$route.query.object_deals,
                 object_type: Number(this.$route.query.object_type),
@@ -839,7 +844,7 @@ export default {
         setThumbsSwiper(swiper) {
         this.thumbsSwiper = swiper;
         },
-        toggle(id) {
+        togglePhoneNum(id) {
             this.open = this.open === id ? null : id
         },
         saveData(isFormValid){

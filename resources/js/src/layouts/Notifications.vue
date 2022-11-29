@@ -10,7 +10,7 @@
                         <div v-if="isLoaded" class="loader-main-box">
                             <ProgressSpinner style="width:80px; height:80px" strokeWidth="3" fill="var(--surface-ground)" animationDuration="1s" />
                         </div>
-                        <div v-else-if="!friendship">
+                        <div v-if="!friendship && (friendship ? friendship.map(e => e.status == 'confirm') && friendship.map(e => e.owner == true) : '')">
                             <div class="empty_box notification-empty flex-column">
                                 <figure>
                                     <img src="/images/icons/notification-bell.png" alt="">
@@ -22,6 +22,7 @@
                         </div>
                         <div v-else class="notificatios=item">
                             <friendship-request :data="friendship"></friendship-request>
+                            ok
                         </div>
                     </div>
                 </div>
@@ -41,7 +42,9 @@ export default {
     data() {
         return {
             friendship: null,
-            isLoaded: false
+            isLoaded: false,
+            message: '',
+            status: null,
         }
     },
     created() {
@@ -59,6 +62,7 @@ export default {
             .then(response => {
                 this.friendship = response.data.result;
                 this.isLoaded = false;
+                this.status = response.data.result;
                 // Array.from(data).forEach(file => this.friends.push(file.user));
                 // console.log(this.friends);
                 // console.log(this.users);

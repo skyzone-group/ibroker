@@ -354,7 +354,7 @@
                                 <!-- <a class="dropdown-item" href="account/summary">
                                     Личный кабинет
                                 </a> -->
-                                <router-link class="dropdown-item nohover"  :to="{name: 'myObjects'}">
+                                <router-link class="dropdown-item nohover" :to="{ name: 'myObjects', query: form}">
                                     Личный кабинет
                                 </router-link>
                                 <div class="dropdown-divider"></div>
@@ -390,7 +390,7 @@ export default {
     data() {
         return {
             form: {
-                object_deals: '',
+                object_deals: 'all',
             },
             mobileView: false,
             mobileNav: false,
