@@ -320,6 +320,7 @@ class ObjectController extends ResponseController
 
         $query = $query
                 ->with([
+                    'user',
                     'images',
                     'object_type',
                     'region',
