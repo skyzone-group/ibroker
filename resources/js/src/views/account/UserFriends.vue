@@ -39,10 +39,10 @@
                     </div>
                 </template>
                 <template #empty>
-                    No customers found.
+                    Друзей не найдено.
                 </template>
                 <template #loading>
-                    Loading customers data. Please wait.
+                    Загрузка.. пожалуйста подождите.
                 </template>
                 <Column field="firstname" header="Пользователь" sortable sortField="friendInfo.firstname">
                     <template #body="slotProps">
@@ -83,7 +83,9 @@
                 </Column>
                 <Column v-if="mobile_view" field="status" header="Статус" sortable style="min-width: 10rem">
                     <template #body="slotProps">
-                        <span :class="'customer-badge status-' + slotProps.data.status">{{slotProps.data.status}}</span>
+                        <span :class="'customer-badge status-' + slotProps.data.status">
+                            {{slotProps.data.status == 'request' ? 'запрос отправлен' : 'подтверждено'}}
+                        </span>
                         <!-- {{slotProps}} -->
                     </template>
                 </Column>
@@ -102,6 +104,7 @@
                 <template #footer>
                     Всего {{friends ? friends.length : 0 }} друга.
                 </template>
+                
             </DataTable>
         </div>
         <div class="user-info-succes-box">
