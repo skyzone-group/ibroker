@@ -69,7 +69,7 @@ app.use(VueHtmlToPaper, options)
 app.use(DropZone)
 app.use(VueEasyLightbox)
 app.use(ToastService)
-app.use(VueNumberFormat, {precision: '', nullValue: '', prefix: '$', decimal: ',', thousand: '.'})
+app.use(VueNumberFormat, {precision: '', nullValue: '', prefix: '$', decimal: ',', thousand: ' '})
 app.use(VueSocialSharing)
 app.mount('#app')
 

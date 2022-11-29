@@ -96,7 +96,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="main_block__subline">
+                                            <!-- <div class="main_block__subline">
                                                 <div class="nameless_style_1">
                                                     <div class="nameless_style_1-1">
                                                         <span>15 часов назад</span>
@@ -108,7 +108,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="main_block__location">
                                                 <div class="main_block__location_block">
                                                     <div class="main_block__location_title">
@@ -228,7 +228,7 @@
                                         </ul>
                                     </div>
                                     <div class="main_block__plans"></div>
-                                    <div class="main_block__features" id="features-block">
+                                    <!-- <div class="main_block__features" id="features-block">
                                         <div class="main_block__features_block">
                                             <h2 class="main_block__features_block_title">Особенности</h2>
                                             <ul>
@@ -242,12 +242,67 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
-                                    <h2 class="product-page__title">Описание</h2>
-                                    <div class="nameless_style_3" id="description">
-                                        {{object.comment}}
-                                    </div>
+                                    </div> -->
+                                    
+                                    <!-- object.object_type -->
+                                    <h4 class="_445so" data-testid="Квартира-заголовок">
+                                        {{ object.object_type ? object.object_type.name_ru : "" }}
+                                    </h4>
+                                    <ul class="product-page__section_ul">
+                                        <li v-if="object.room_count > 0" class="product-page__section_li">
+                                            <span class="product-page__section_li_span-1">Комнат</span>
+                                            <span class="product-page__section_li_span-2"></span>
+                                            <span class="product-page__section_li_span-3">{{object.room_count}}</span>
+                                        </li>
+                                        <li v-if="object.land_area > 0" class="product-page__section_li">
+                                            <span class="product-page__section_li_span-1">Площадь участка</span>
+                                            <span class="product-page__section_li_span-2"></span>
+                                            <span class="product-page__section_li_span-3"><span>{{object.land_area}} м<sup>2</sup></span></span>
+                                        </li>
+                                        <li v-if="object.total_area > 0" class="product-page__section_li">
+                                            <span class="product-page__section_li_span-1">Площадь</span>
+                                            <span class="product-page__section_li_span-2"></span>
+                                            <span class="product-page__section_li_span-3"><span>{{object.total_area}} м<sup>2</sup></span></span>
+                                        </li>
+                                        <li v-if="object.living_area > 0" class="product-page__section_li">
+                                            <span class="product-page__section_li_span-1">Жилая</span>
+                                            <span class="product-page__section_li_span-2"></span>
+                                            <span class="product-page__section_li_span-3"><span>{{object.living_area}} м<sup>2</sup></span></span>
+                                        </li>
+                                        <li v-if="object.build_year > 0" class="product-page__section_li">
+                                            <span class="product-page__section_li_span-1">Год постройки</span>
+                                            <span class="product-page__section_li_span-2"></span>
+                                            <span class="product-page__section_li_span-3">{{object.build_year}}</span>
+                                        </li>
+                                        <li v-if="object.floor > 0" class="product-page__section_li">
+                                            <span class="product-page__section_li_span-1">Этаж</span>
+                                            <span class="product-page__section_li_span-2"></span>
+                                            <span class="product-page__section_li_span-3">{{object.floor}}</span>
+                                        </li>
+                                        <li  v-if="object.floor_count > 0" class="product-page__section_li">
+                                            <span class="product-page__section_li_span-1">Этажность</span>
+                                            <span class="product-page__section_li_span-2"></span>
+                                            <span class="product-page__section_li_span-3">{{object.floor_count}}</span>
+                                        </li>
+                                        <li  v-if="object.object_condition > 0" class="product-page__section_li">
+                                            <span class="product-page__section_li_span-1">Ремонт</span>
+                                            <span class="product-page__section_li_span-2"></span>
+                                            <span class="product-page__section_li_span-3">{{object.object_condition == 1 ? 'Косметический' : object.object_condition == 2 ? 'Евро' : object.object_condition == 3 ? 'Дизайнерский' : 'Без ремонта'}}</span>
+                                        </li>
+                                        <li  v-if="object.object_material_type > 0" class="product-page__section_li">
+                                            <span class="product-page__section_li_span-1">Материал стен</span>
+                                            <span class="product-page__section_li_span-2"></span>
+                                            <span class="product-page__section_li_span-3">{{object.object_material_type == 1 ? 'Кирпичный' : object.object_material_type == 2 ? 'Монолитный' : object.object_material_type == 3 ? 'Деревянный' : object.object_material_type == 4 ? 'Панельный' : 'Блочный'}}</span>
+                                        </li>
+                                        <li  v-if="object.object_time_type > 0" class="product-page__section_li">
+                                            <span class="product-page__section_li_span-1">Тип недвижимости</span>
+                                            <span class="product-page__section_li_span-2"></span>
+                                            <span class="product-page__section_li_span-3">{{object.object_time_type == 1 ? 'Вторичка' : 'Новостройка'}}</span>
+                                        </li>
+                                    </ul>
+                                    <!-- object.object_type -->
                                 </div>
+                                <!-- additional_values -->
                                 <div v-if="object.additional_values != ''" class="product-page__section">
                                     <div id="Квартира">
                                         <h4 class="_445so" data-testid="Квартира-заголовок">Общая информация</h4>
@@ -259,65 +314,22 @@
                                         </ul>
                                     </div>
                                 </div>
+                                <!-- additional_values -->
+
+                                <!-- description -->
                                 <div class="product-page__section">
                                     <div id="Квартира">
                                         <h4 class="_445so" data-testid="Квартира-заголовок">
-                                            {{ object.object_type ? object.object_type.name_ru : "" }}
+                                            Описание
                                         </h4>
-                                        <ul class="product-page__section_ul">
-                                            <li v-if="object.room_count > 0" class="product-page__section_li">
-                                                <span class="product-page__section_li_span-1">Комнат</span>
-                                                <span class="product-page__section_li_span-2"></span>
-                                                <span class="product-page__section_li_span-3">{{object.room_count}}</span>
-                                            </li>
-                                            <li v-if="object.land_area > 0" class="product-page__section_li">
-                                                <span class="product-page__section_li_span-1">Площадь участка</span>
-                                                <span class="product-page__section_li_span-2"></span>
-                                                <span class="product-page__section_li_span-3"><span>{{object.land_area}} м<sup>2</sup></span></span>
-                                            </li>
-                                            <li v-if="object.total_area > 0" class="product-page__section_li">
-                                                <span class="product-page__section_li_span-1">Площадь</span>
-                                                <span class="product-page__section_li_span-2"></span>
-                                                <span class="product-page__section_li_span-3"><span>{{object.total_area}} м<sup>2</sup></span></span>
-                                            </li>
-                                            <li v-if="object.living_area > 0" class="product-page__section_li">
-                                                <span class="product-page__section_li_span-1">Жилая</span>
-                                                <span class="product-page__section_li_span-2"></span>
-                                                <span class="product-page__section_li_span-3"><span>{{object.living_area}} м<sup>2</sup></span></span>
-                                            </li>
-                                            <li v-if="object.build_year > 0" class="product-page__section_li">
-                                                <span class="product-page__section_li_span-1">Год постройки</span>
-                                                <span class="product-page__section_li_span-2"></span>
-                                                <span class="product-page__section_li_span-3">{{object.build_year}}</span>
-                                            </li>
-                                            <li v-if="object.floor > 0" class="product-page__section_li">
-                                                <span class="product-page__section_li_span-1">Этаж</span>
-                                                <span class="product-page__section_li_span-2"></span>
-                                                <span class="product-page__section_li_span-3">{{object.floor}}</span>
-                                            </li>
-                                            <li  v-if="object.floor_count > 0" class="product-page__section_li">
-                                                <span class="product-page__section_li_span-1">Этажность</span>
-                                                <span class="product-page__section_li_span-2"></span>
-                                                <span class="product-page__section_li_span-3">{{object.floor_count}}</span>
-                                            </li>
-                                            <li  v-if="object.object_condition > 0" class="product-page__section_li">
-                                                <span class="product-page__section_li_span-1">Ремонт</span>
-                                                <span class="product-page__section_li_span-2"></span>
-                                                <span class="product-page__section_li_span-3">{{object.object_condition == 1 ? 'Косметический' : object.object_condition == 2 ? 'Евро' : object.object_condition == 3 ? 'Дизайнерский' : 'Без ремонта'}}</span>
-                                            </li>
-                                            <li  v-if="object.object_material_type > 0" class="product-page__section_li">
-                                                <span class="product-page__section_li_span-1">Материал стен</span>
-                                                <span class="product-page__section_li_span-2"></span>
-                                                <span class="product-page__section_li_span-3">{{object.object_material_type == 1 ? 'Кирпичный' : object.object_material_type == 2 ? 'Монолитный' : object.object_material_type == 3 ? 'Деревянный' : object.object_material_type == 4 ? 'Панельный' : 'Блочный'}}</span>
-                                            </li>
-                                            <li  v-if="object.object_time_type > 0" class="product-page__section_li">
-                                                <span class="product-page__section_li_span-1">Тип недвижимости</span>
-                                                <span class="product-page__section_li_span-2"></span>
-                                                <span class="product-page__section_li_span-3">{{object.object_time_type == 1 ? 'Вторичка' : 'Новостройка'}}</span>
-                                            </li>
-                                        </ul>
+                                        <div class="nameless_style_3" id="description">
+                                            {{object.comment}}
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- description -->
+
+                                <!-- youtube url -->
                                 <div v-if="object.youtube_url > '0'" class="product-page__section">
                                     <div id="Квартира">
                                         <h4 class="_445so" data-testid="Квартира-заголовок">
@@ -326,6 +338,9 @@
                                         <iframe width="100%" height="350" :src="'http://www.youtube.com/embed/' + youtubeId + '?rel=0&hd=1&autoplay=1&showinfo=0'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                     </div>
                                 </div>
+                                <!-- youtube url -->
+
+                                <!-- object_deals -->
                                 <div class="product-page__section" id="deal-info-block">
                                     <div id="Сделка">
                                         <h2 class="_445so">Сделка</h2>
@@ -338,6 +353,9 @@
                                         </ul>
                                     </div>
                                 </div>
+                                <!-- object_deals -->
+
+                                <!-- user info -->
                                 <div v-for="user in object.user" :key="user.id" class="subscription__author product-page__section" id="author">
                                     <div class="subscription__author_block">
                                         <a href="/agent-single" target="_blank" class="subscription__author_block_avatar d-flex align-items-center justify-content-center">
@@ -375,6 +393,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- user info -->
                             </div>
                         </div>
                     </div>
@@ -382,14 +401,6 @@
                     <div v-if="!Sidebar" class="product-page__sidebar">
                         <div class="product-page__sticky">
                             <aside v-for="user in owner" :key="user.id" class="product-page__sidebar_autor autor_box_style">
-                                <div class="product-page__sidebar_autor_top autor_box_style-2">
-                                    <div class="product-page__sidebar_autor_top_box d-flex align-items-center">
-                                        <div class="title">
-                                            Object Single Page
-                                        </div>
-                                        <div class="title_img" style="background: url('https://img.dmclk.ru/s200x200q80/partnerhub/logos/20/a8/7d42b61a-d7d3-440c-8deb-4161ba4616b9.webp')"></div>
-                                    </div>
-                                </div>
                                 <div class="product-page__sidebar_autor_bottom autor_bottom_padding">
                                     <div class="product-page__sidebar_autor_bottom_top margin-bottom-24">
                                         <div class="d-flex">
@@ -571,3 +582,143 @@ export default {
     },
 }
 </script>
+
+<style>
+.object_single_page_main_box{
+    display: flex;
+    margin: 0 auto;
+    padding: 30px 34px 0;
+    width: 100%;
+}
+
+.product-page__content{
+    flex: 1;
+    min-width: 0;
+}
+
+.product-page__sidebar {
+    flex: none;
+    margin-left: 20px;
+    padding-top: 50px;
+    width: 380px;
+}
+
+.product-page_btn_style{
+    display: flex;
+    padding: 20px 0;
+    position: relative;
+    margin-top: -35px;
+}
+
+.object_single_page_btn_style{
+    color: #242629;
+    padding-left: 12px;
+    transition: border-color .5s;
+    background-color: #fff;
+    border-color: #d3d4d4 !important;
+    height: 40px;
+    padding: 0 16px;
+    box-shadow: none;
+    box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+
+.object_single_page_btn_style:active{
+    border-color: transparent !important;
+    color: #242629 !important;
+    background-color: #d3d4d4 !important;
+}
+.object_single_page_btn_style:hover{
+    border-color: transparent !important;
+    color: #242629 !important;
+    background-color: #d3d4d4 !important;
+}
+
+.product-page__sticky{
+    position: sticky;
+    top: 20px;
+    width: 100%;
+}
+
+.autor_box_style{
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px 0 #00000012;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.autor_box_style-2{
+    border-bottom: 1px solid #c9cbcd;
+    padding: 8px 32px;
+}
+
+.title, .title_img{
+    overflow: hidden;
+}
+.product-page__sidebar_autor_top_box .title{
+    color: #242629;
+    flex-grow: 1;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-overflow: ellipsis;
+}
+.product-page__sidebar_autor_top_box .title_img{
+    background: no-repeat 50%/contain;
+    flex-shrink: 0;
+    height: 40px;
+    margin-left: 8px;
+    width: 40px;
+}
+.autor_bottom_padding{
+    padding: 32px;
+}
+
+.margin-bottom-24{
+    margin-bottom: 24px;
+}
+
+.autor_bottom_top_style{
+    align-items: center;
+    color: #fff;
+    display: flex;
+    flex: none;
+    font-size: 18px;
+    font-weight: 500;
+    justify-content: center;
+    line-height: 24px;
+    margin-right: 16px;
+}
+
+.autor_full_name{
+    display: flex;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.autor_full_name a{
+    color: inherit;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.autor_full_name a:hover{
+    color: #53b374;
+}
+
+.comments_modal_box .modal-body {
+    padding: 2rem 0 0 0!important;
+}
+</style>

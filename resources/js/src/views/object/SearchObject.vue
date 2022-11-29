@@ -671,25 +671,26 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="object-body-footer">
+                                            <div v-for="user in object.user" :key="user.id" class="object-body-footer">
                                                 <div class="object-details-item">
                                                     <div class="object-details-author">
                                                         <div class="author-box">
                                                             <div style="height: 100%;">
                                                                 <picture class="author-box-pic">
-                                                                    <img class="author-box-pic-img" src="https://img06.domclick.ru/s200x200q80/partnerhub/avatars/ff/16/84b1f568-7e09-4c67-b58d-f4f7286e63e5.png" alt="Елена">
+                                                                    <img v-if="!user.image" :src="src" alt="user_avatar" class="img-full author-box-pic-img" style="object-fit: cover;">
+                                                                    <img v-else :src="`/file/${user.image}`" alt="user_avatar" class="img-full author-box-pic-img" style="object-fit: cover;">
                                                                 </picture>
                                                             </div>
                                                         </div>
-                                                        <span class="author-name">Лофт Балтийская</span>
+                                                        <span class="author-name">{{ user.firstname && user.firstname ? (`${user.firstname} ${user.lastname}`) : `User ${user.id}`}}</span>
                                                     </div>
                                                 </div>
                                                 <div class="object-details-item">
-                                                    <button v-if="2 != open" @click="toggle(2)" class="object-details-item-btn" type="button">
+                                                    <button @click.prevent v-if="object.id != open" @click="togglePhoneNum(object.id)" class="object-details-item-btn" type="button">
                                                         <span class="object-details-item-btn-txt">Показать телефон</span>
                                                     </button>
-                                                    <a v-if="2 === open" href="tel:+998903592284" class="object-details-item-btn">
-                                                        <span class="object-details-item-btn-txt">+99890 359-22-84</span>
+                                                    <a v-if="object.id === open" @click.prevent :href="`tel:+${user.phone}`" class="object-details-item-btn">
+                                                        <span class="object-details-item-btn-txt">+{{user.phone}}</span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -745,6 +746,7 @@ import "swiper/css/thumbs";
 // import required modules
 import { Autoplay, Pagination, Lazy, FreeMode, Navigation, Thumbs } from "swiper";
 import { mapGetters } from 'vuex'
+import defaultImage from "../../../../../public/images/avatar-dafault.png"
 export default {
 //   setup: () => ({ v$: useVuelidate() }),
     components: {
@@ -790,6 +792,7 @@ export default {
             districts: [],
             quarters: [],
             objects: [],
+            src: defaultImage,
             form: {
                 object_deals: this.$route.query.object_deals,
                 object_type: Number(this.$route.query.object_type),
@@ -841,7 +844,7 @@ export default {
         setThumbsSwiper(swiper) {
         this.thumbsSwiper = swiper;
         },
-        toggle(id) {
+        togglePhoneNum(id) {
             this.open = this.open === id ? null : id
         },
         saveData(isFormValid){
