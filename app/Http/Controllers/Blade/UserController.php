@@ -65,6 +65,7 @@ class UserController extends ResponseController
         if($request->get('firstname')) $user->firstname  = $request->get('firstname');
         if($request->get('lastname')) $user->lastname    = $request->get('lastname');
         if($request->get('email')) $user->email          = $request->get('email');
+        if($request->get('username')) $user->username    = $request->get('username');
         if($request->get('password') && $request->get('new_password'))
         {
             if(!Hash::check($request->password, $user->password))

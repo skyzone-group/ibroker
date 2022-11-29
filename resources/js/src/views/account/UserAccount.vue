@@ -120,6 +120,24 @@
                                 </div>
                             </form>
                         </div>
+                        <div class="widget_nickname">
+                            <form name="EmailForm"  @submit.prevent="saveData()" method="POST" :model="form">
+                                <div class="widget_email-div">
+                                    <div class="widget_email-div_txt d-flex align-items-center">
+                                        Ваш username
+                                        <svg v-if="user.username" class="ml-2" data-name="IconCheck" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 10"><path fill="currentColor" fill-rule="evenodd" d="M5.44 9.5h-.01a1.03 1.03 0 0 1-.727-.31L.293 4.68a1.03 1.03 0 0 1 1.473-1.44l3.686 3.77L12.247.297a1.03 1.03 0 1 1 1.447 1.464L6.164 9.2c-.194.19-.454.298-.725.298"></path></svg>
+                                    </div>
+                                    <div class="email-div_block_input mb-3">
+                                        <label v-if="!user.username" class="email-div_block_input_label">
+                                            <InputText type="text" v-model="form.username" class="w-100" v-tooltip.bottom="'Please be careful! You can enter username only once.You cannot change username'" placeholder="Напишите текст без пробелов" required />
+                                        </label>
+                                        <a v-else :href="`http://ibroker.skybox.uz/${user.username}`" class="widget_email-div__email">{{`http://ibroker.skybox.uz/${user.username}`}}</a>
+                                        <span class="d-lg-none d-md-none d-sm-none d-block" style="font-style: italic; color: #EA5455!important;">Please be careful! You can enter username only once.You cannot change username</span>
+                                    </div>
+                                    <button v-if="!user.username" type="submit" class="phone-form-btn">Сохранить</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <div class="change_password">
@@ -212,6 +230,7 @@ export default {
                 email: "",
                 password: "",
                 new_password: "",
+                username: "",
             },
             phone: "",
             exampleCode: "",
@@ -271,7 +290,7 @@ export default {
                 console.log(response);
                 if (response.data.status) {
                     this.showSuccess();
-                    window.location.reload();
+                    this.$store.dispatch('getUserInfo');
                 }
                 else{
                     var password_error = response.data.error.message;
@@ -502,11 +521,15 @@ export default {
     background-color: #fff;
 }
 
-.widget_phone{
+.widget_phone, 
+.widget_email{
     border-bottom: 1px solid #e4e4e4;
     padding: 15px;
 }
 
+.widget_nickname{
+    padding: 15px;
+}
 /* .phone-div{
     margin-bottom: 10px;
 } */
@@ -546,7 +569,7 @@ export default {
 }
 
 /* ******************* */
-.phone-div_block_input_labelm , .email-div_block_input_label{
+.phone-div_block_input_label , .email-div_block_input_label{
     display: block;
     position: relative;
 }
@@ -563,9 +586,6 @@ export default {
     color: #1a62a6;
 }
 
-.widget_email{
-    padding: 15px;
-}
 
 .widget_email-div_txt{
     margin-bottom: 6px;

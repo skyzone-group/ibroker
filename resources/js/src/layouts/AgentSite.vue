@@ -568,18 +568,16 @@
                                         <div class="shell_agent_objects_block_buttons mb-5">
                                             <ul class="shell_agent_objects_block_ul p-0 m-0 list-style-none">
                                                 <li class="shell_agent_objects_block_ul_li">
-                                                    <a href="#!" class="shell_agent_objects_block_ul_li_link nohover" :class="{'shell_agent_objects_block_ul_li_link-active' : active3 === 0}">
-                                                        Продажа (28)</a>
-                                                        <label for="type__filter_buy" class="filters-tabs-item Radio_theme_realty" :class="{'active' : form.object_deals == 'buy'}">
-                                                            <input v-model="form.object_deals" id="type__filter_buy" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="buy">
-                                                            Продажа
-                                                        </label>
+                                                    <label for="type__filter_buy_1" class="shell_agent_objects_block_ul_li_link" :class="{'active' : form.object_deals == 'buy'}">
+                                                        <input v-model="form.object_deals" id="type__filter_buy_1" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="buy">
+                                                        Продажа
+                                                    </label>
                                                 </li>
                                                 <li class="shell_agent_objects_block_ul_li">
-                                                    <a href="#!" class="shell_agent_objects_block_ul_li_link nohover" :class="{'shell_agent_objects_block_ul_li_link-active' : active3 === 1}">Аренда (2)</a>
-                                                </li>
-                                                <li class="shell_agent_objects_block_ul_li">
-                                                    <a href="#!" class="shell_agent_objects_block_ul_li_link mr-0 nohover" :class="{'shell_agent_objects_block_ul_li_link-active' : active3 === 2}">Новостройки (4)</a>
+                                                    <label for="type__filter_rent_2" class="shell_agent_objects_block_ul_li_link" :class="{'active' : form.object_deals == 'rent'}">
+                                                        <input v-model="form.object_deals" id="type__filter_rent_2" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="rent">
+                                                        Аренда
+                                                    </label>
                                                 </li>
                                             </ul>
                                         </div>
@@ -1503,11 +1501,10 @@ export default {
 }
 
 .agent-single-div-content-div-objects-title{
-    padding-left: 15px;
     font-size: 30px;
     font-weight: 600;
     color: #000;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .agent-single-div-info:not(:last-child){

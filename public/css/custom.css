@@ -2761,13 +2761,7 @@ a:hover {
     font-weight: 700;
     transition: 0.3s all ease;
 }
-
-.shell_agent_objects_block_ul_li_link:hover {
-    background: var(--form-button-color);
-    border-color: var(--form-button-color);
-    color: #fff;
-}
-.shell_agent_objects_block_ul_li_link-active {
+.shell_agent_objects_block_ul_li_link.active{
     background: var(--form-button-color);
     border-color: var(--form-button-color);
     color: #fff;
