@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Friend;
 use App\Models\User;
+use App\Models\Notification;
 
 class FriendController extends ResponseController
 {
@@ -102,12 +103,20 @@ class FriendController extends ResponseController
         if($user && $user['id'] != $user_id){
             $res = self::detail($request);
             if($res['status']) return self::errorResponse('Alredy friend!');
-            Friend::create([
+            $res = Friend::create([
                 'owner'  => $user_id,
                 'friend'  => $friendId,
                 'status'  => 'request',
             ]);
-
+            Notification::create([
+                'owner' => $friendId,
+                'extra_id' => $res->id,
+                'type' => 'offer',
+                'title' => 'Связаться с другом',
+                'body' => 'Запрос дружбы от '.
+                auth('sanctum')->user()->firstname.' '.
+                auth('sanctum')->user()->lastname.', чтобы поделиться вашей информацией'
+            ]);
             return self::successResponse('Request sent succesfuly');
         }
         return self::errorResponse('Not found');
