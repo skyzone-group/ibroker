@@ -53,6 +53,28 @@ import 'vue-easy-lightbox/external-css/vue-easy-lightbox.css'
 //     window.scrollTo(0,0);
 //     next(true);
 // });
+
+
+function isLoggedIn(){
+    return localStorage.getItem('token');
+}
+
+router.beforeEach((to, from, next) => {
+    // instead of having to check every route record with
+    // to.matched.some(record => record.meta.requiresAuth)
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if(!isLoggedIn()){
+            next({
+                path: '/',
+            })
+        } else{
+            next();
+        }
+    }else{
+        next();
+    }
+})
+
 const app = createApp(App)
 //app.config.globalProperties.$IsLoggedIn = localStorage.getItem('token') ? true : false;
 app.use(router)

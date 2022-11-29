@@ -164,6 +164,7 @@ const routes = [
         path: '/account/',
         name: 'siteAdmin',
         component: Admin,
+        meta: { requiresAuth: true },
         children: [
             {
                 path: 'summary',
