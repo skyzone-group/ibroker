@@ -61,6 +61,13 @@ class UserController extends ResponseController
     {
         $user_id = auth('sanctum')->user()->id;
         
+        $validate = $this->validate($request->all(), [
+            'username'     => 'unique:users',
+        ]);
+
+        if ($validate !== true) return $validate;
+
+
         $user = User::where('id', '=', $user_id)->first();
         if($request->get('firstname')) $user->firstname  = $request->get('firstname');
         if($request->get('lastname')) $user->lastname    = $request->get('lastname');

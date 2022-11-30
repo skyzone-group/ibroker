@@ -338,4 +338,34 @@ class ObjectController extends ResponseController
 
         return self::successResponse($data);
     }
+
+    public function getOthers(Request $request, $user_id){
+        
+        $object_deals       = $request->get('object_deals');
+
+        $query = Objects::query();
+        
+        if($user_id)      $query = $query->where('user_id', '=', $user_id);
+        if($object_deals) $object_deals == 'all' ? $query : $query = $query->where('object_deals', '=', $object_deals);
+        
+        $query = $query->where('user_id', '=', $user_id)
+                ->with([
+                    'user',
+                    'images',
+                    'object_type',
+                    'region',
+                    'district',
+                    'quarter',
+                    'additional_values'
+                ]);
+
+        $total = $query->count();
+        $results = $query->orderBy('id', 'DESC')->paginate($request->total);
+    
+        $data['count'] = $total;
+        $data['objects'] = $results;
+        $data['total'] = $total;
+
+        return self::successResponse($data);
+    }
 }
