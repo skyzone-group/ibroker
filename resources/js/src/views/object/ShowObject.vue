@@ -14,12 +14,12 @@
                                 </router-link>
                             </div>
                             <div v-else class="product-page__content_top_buttons_item ml-0">
-                                <a tag="a" @click="$router.go(-1)" class="object_single_page_btn_style nohover">
+                                <router-link tag="a" :to="{ name: 'siteIndex'}" class="object_single_page_btn_style nohover">
                                     <span class="button-root__icon-8-1-3 button-root__icon--left-8-1-3">
                                         <div class="icon-4-0-1"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                                             <path d="M10.56 3.27a1 1 0 00-1.41-1.42l-5.3 5.3a1 1 0 000 1.41l5.3 5.3a1 1 0 001.41-1.42L6.33 8.2a.5.5 0 010-.71l4.23-4.23z"></path>
                                         </svg></div></span><span class="button-root__text-8-1-3">Назад</span>
-                                </a>
+                                </router-link>
                             </div>
                             <div class="product-page__content_top_buttons_item d-flex">
                                 <div class="product-page__content_top_buttons_item_btn">
@@ -403,14 +403,14 @@
                             <aside v-for="user in owner" :key="user.id" class="product-page__sidebar_autor autor_box_style">
                                 <div class="product-page__sidebar_autor_bottom autor_bottom_padding">
                                     <div class="product-page__sidebar_autor_bottom_top margin-bottom-24">
-                                        <div class="d-flex">
+                                        <div class="d-flex flex-column align-items-center justify-content-center">
                                             <!-- <div v-if="!user.image" style="background-color: rgb(156, 198, 196);width: 60px;height: 60px;border-radius: 5px;" class="autor_bottom_top_style">TJ</div> -->
-                                            <div style="width: 60px;height: 60px;border-radius: 5px;" class="autor_bottom_top_style">
+                                            <div style="width: 120px;height: 120px;" class="autor_bottom_top_style">
                                                 <img v-if="!user.image" :src="defaultImage" alt="user_avatar_default" class="w-100 h-100" style="object-fit: cover;">
                                                 <img v-else :src="`/file/${user.image}`" alt="user_avatar" class="w-100 h-100" style="object-fit: cover;">
                                             </div>
-                                            <div class="product-page__sidebar_autor_bottom_content" style="flex: 1;">
-                                                <div class="autor_full_name">
+                                            <div class="product-page__sidebar_autor_bottom_content text-center" style="flex: auto;">
+                                                <div class="autor_full_name justify-content-center">
                                                     <a href="/agent-single" target="_blank">{{ user.firstname }} {{ user.lastname }}</a>
                                                 </div>
                                                 <div class="autor_enter_date" style="color: #4b545b99;">
@@ -420,12 +420,15 @@
                                         </div>
                                     </div>
                                     <div class="product-page__sidebar_autor_bottom_button d-flex flex-column">
-                                        <button v-if="showPhone[0] == false" @click="showPhone[0] = true" type="button" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3 button-root--type-button-reset-8-1-3 button-root-8-1-3">
+                                        <button v-if="showPhone[0] == false" @click="showPhone[0] = true" type="button" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3">
                                             <span class="button-root__text-8-1-3">Показать телефон</span>
                                         </button>
-                                        <a v-if="showPhone[0] == true" :href="`tel:+${user.phone}`" class="nohover button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3 button-root--type-button-reset-8-1-3 button-root-8-1-3">
+                                        <a v-if="showPhone[0] == true" :href="`tel:+${user.phone}`" class="nohover button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3">
                                             <span class="button-root__text-8-1-3">+{{user.phone}}</span>
                                         </a>
+                                        <router-link target="_blank" :to="{name: 'userObjects', params: {id: user.id}, query: {object_deals: 'all'}}" type="button" class="button-root--fluid-8-1-3 button-root--show-all-object button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 nohover" style="margin-top: 8px;">
+                                            <span class="button-root__text-8-1-3" style="font-weight: 600;">Показать все объявления</span>
+                                        </router-link>
                                     </div>
                                 </div>
                             </aside>
@@ -584,7 +587,8 @@ export default {
 </script>
 
 <style>
-.object_single_page_main_box{
+.object_single_page_main_box,
+.agent_objects_page_main_box{
     display: flex;
     margin: 0 auto;
     padding: 30px 34px 0;
@@ -698,7 +702,11 @@ export default {
     font-weight: 500;
     justify-content: center;
     line-height: 24px;
-    margin-right: 16px;
+    margin: 0 0 15px 0;
+}
+
+.autor_bottom_top_style img{
+    border-radius: 50%;
 }
 
 .autor_full_name{
@@ -710,8 +718,9 @@ export default {
 .autor_full_name a{
     color: inherit;
     font-weight: 500;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center;
 }
 
 .autor_full_name a:hover{
@@ -720,5 +729,18 @@ export default {
 
 .comments_modal_box .modal-body {
     padding: 2rem 0 0 0!important;
+}
+
+.button-root--show-all-object{
+    background-color: rgba(8, 241, 4, 0.1);
+    color: var(--form-button-color-green);
+}
+
+.button-root--show-all-object:hover{
+    background-color: var(--fill_secondary_hover_20);
+}
+
+.button-root--show-all-object:hover .button-root__text-8-1-3{
+    color: var(--form-button-color-green);
 }
 </style>

@@ -27,6 +27,7 @@ body {
     --form-button-color: #0468ff;
     --form-button-color-green: #53b374;
     --form-button-invalid-color: #f44336;
+    --fill_secondary_hover_20: rgba(8, 241, 4, .2);
     --dc-color-grey-200: #d3d4d4;
 }
 

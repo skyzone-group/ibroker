@@ -34,6 +34,7 @@ import AddObject from '../views/object/AddObject.vue'
 import UpdateObject from '../views/object/UpdateObject.vue'
 import ShowObject from '../views/object/ShowObject.vue'
 import SearchObject from '../views/object/SearchObject.vue'
+import UserObjects from '../views/object/UserObjects.vue'
 // 
 import AddUser from '../views/account/UserFriends.vue'
 
@@ -105,6 +106,13 @@ const routes = [
                 meta: {
                     reload: true,
                 },
+            },
+            {
+                path: '/agent/:id',
+                name: 'userObjects',
+                components: {
+                    main: UserObjects,
+                }
             },
             {
                 path: '/search',

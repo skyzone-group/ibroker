@@ -322,9 +322,6 @@
                             <a class="btn-login" rel="noopener" href="#!" data-toggle="modal" data-target="#animation">
                                 <span>Войти</span>
                             </a>
-                            <!-- <a data-toggle="modal" data-target="#animation" href="#!" class="utilities-link d-lg-none d-md-none d-sm-none d-block">
-                            <svg class="icon_svg" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" id="IconChangeColor" height="16px" width="17px"><path fill="currentColor" d="M288 320a224 224 0 1 0 448 0 224 224 0 1 0-448 0zm544 608H160a32 32 0 0 1-32-32v-96a160 160 0 0 1 160-160h448a160 160 0 0 1 160 160v96a32 32 0 0 1-32 32z" id="mainIconPathAttribute"></path></svg>
-                            </a> -->
                         </div>
                         
                         <div v-else class="dropdown-avatar avatar_log">
@@ -449,7 +446,7 @@ export default {
             });
         },
     },
-    mounted(){
+    async mounted(){
         this.$store.dispatch('getUserInfo');
     },
     computed: {

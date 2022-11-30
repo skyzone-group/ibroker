@@ -272,7 +272,7 @@ export default {
                 })
                 .then(response => {
                     console.log(response);
-                    alert("ok");
+                    this.$store.dispatch('getUserInfo');
                 })
                 .catch(function (error) {
                     console.log("889");

@@ -542,7 +542,7 @@
                         </div>
                         <div v-else class="objects-box">
                             <div v-for="object in objects" :key="object.id"  class="object-item">
-                                <router-link :to="{name: 'showObject', params: {type_deal: object.object_deals, type: object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land', id: object.id}}">
+                                <router-link target="_blank" :to="{name: 'showObject', params: {type_deal: object.object_deals, type: object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land', id: object.id}}">
                                     <div class="object-item-block">
                                         <div class="object-photos">
                                             <div class="object-photos-thumb">
