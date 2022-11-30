@@ -10,6 +10,7 @@ use App\Models\Objects;
 use App\Models\AdditionalFieldValues;
 use App\Models\ObjectTypesPropertyValues;
 use App\Models\ImagesTable;
+use App\Models\User;
 use Session;
 
 class ObjectController extends ResponseController
@@ -335,6 +336,36 @@ class ObjectController extends ResponseController
         $data['count'] = $total;
         $data['objects'] = $results;
         $data['total'] = $total;
+
+        return self::successResponse($data);
+    }
+
+    public function getOthers(Request $request, $user_id){
+        
+        $object_deals       = $request->get('object_deals');
+        $user = User::where('id', '=', $user_id)->get()->first();
+        $query = Objects::query();
+        
+        if($user_id)      $query = $query->where('user_id', '=', $user_id);
+        if($object_deals) $object_deals == 'all' ? $query : $query = $query->where('object_deals', '=', $object_deals);
+        
+        $query = $query->where('user_id', '=', $user_id)
+                ->with([
+                    'images',
+                    'object_type',
+                    'region',
+                    'district',
+                    'quarter',
+                    'additional_values'
+                ]);
+
+        $total = $query->count();
+        $results = $query->orderBy('id', 'DESC')->paginate($request->total);
+    
+        $data['count']   = $total;
+        $data['user']    = $user;
+        $data['objects'] = $results;
+        $data['total']   = $total;
 
         return self::successResponse($data);
     }

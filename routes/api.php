@@ -49,6 +49,7 @@ Route::get('/additional/{object_id}', [ObjectTypesController::class, 'additional
 # Public objects
 Route::get('/object/search', [ObjectController::class, 'search']); //search public objects
 Route::get('/object/show/{object_id}', [ObjectController::class, 'show']);
+Route::get('/object/getOthers/{user_id}', [ObjectController::class, 'getOthers']);
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/logout', [AuthController::class, 'logout']);
