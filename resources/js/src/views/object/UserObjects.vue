@@ -337,12 +337,46 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .listing__section-title{
     display: block;
     margin-bottom: 20px;
     font-weight: 500;
     font-size: 1.5rem;
     color: #000;
+}
+
+.filters-tabs-item{
+    appearance: none;
+    background: none;
+    border: none;
+    border-bottom: 2px solid #0000;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #737476;
+    cursor: pointer;
+    display: inline-block;
+    font: 600 14px/20px Lato,sans-serif;
+    height: 32px;
+    letter-spacing: normal;
+    margin: 0;
+    outline: none;
+    padding: 0;
+    text-align: left;
+    text-decoration: none;
+    text-indent: 0;
+    text-shadow: none;
+    text-transform: none;
+    transition: .15s ease-in-out;
+    white-space: nowrap;
+}
+
+.filters-tabs-item+.filters-tabs-item {
+    margin-left: 32px;
+}
+
+.filters-tabs-item.active{
+    border-bottom-color: var(--form-button-color);
+    color: var(--form-button-color);
 }
 </style>

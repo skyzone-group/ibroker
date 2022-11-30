@@ -124,7 +124,7 @@
                             <form name="EmailForm"  @submit.prevent="saveData()" method="POST" :model="form">
                                 <div class="widget_email-div">
                                     <div class="widget_email-div_txt d-flex align-items-center">
-                                        Ваш username
+                                        Ваш усернаме
                                         <svg v-if="user.username" class="ml-2" data-name="IconCheck" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 10"><path fill="currentColor" fill-rule="evenodd" d="M5.44 9.5h-.01a1.03 1.03 0 0 1-.727-.31L.293 4.68a1.03 1.03 0 0 1 1.473-1.44l3.686 3.77L12.247.297a1.03 1.03 0 1 1 1.447 1.464L6.164 9.2c-.194.19-.454.298-.725.298"></path></svg>
                                     </div>
                                     <div class="email-div_block_input mb-3">
