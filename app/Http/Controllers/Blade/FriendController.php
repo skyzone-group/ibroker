@@ -55,8 +55,8 @@ class FriendController extends ResponseController
                         })
                         ->with('friend_info:id,firstname,lastname,phone,email,image')
                         ->with('owner_info:id,firstname,lastname,phone,email,image');
-        
-                        $results = $query->get()->all();
+        $results = $query->get()->all();
+
         if($results){
             foreach($results as $result):
                 $friendId = $result['owner'] == $user_id ? $result['friend'] : $result['owner'];

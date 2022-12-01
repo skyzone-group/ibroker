@@ -9,6 +9,7 @@ use App\Http\Controllers\Blade\ObjectController;
 use App\Http\Controllers\Blade\ObjectTypesController;
 use App\Http\Controllers\Blade\UserController;
 use App\Http\Controllers\Blade\FriendController;
+use App\Http\Controllers\Blade\NotificationController;
 use App\Models\ImageUpload;
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/reset-password-request', [AuthController::class, 'resetPasswordRequest']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
+Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::post('/upload_image', [TempImagesController::class, 'uploadImage']);
 Route::post('/rotate_image', [TempImagesController::class, 'rotateImage']);
@@ -52,7 +54,6 @@ Route::get('/object/show/{object_id}', [ObjectController::class, 'show']);
 Route::get('/object/getOthers/{user_id}', [ObjectController::class, 'getOthers']);
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
-    Route::post('/logout', [AuthController::class, 'logout']);
     
     # User Info
     Route::post('/user/info', [UserController::class, 'updateUserInfo']);
@@ -75,4 +76,8 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/friend/send-request', [FriendController::class, 'sendRequest']);
     Route::post('/friend/confirm', [FriendController::class, 'confirm']);
     Route::post('/friend/delete', [FriendController::class, 'delete']);
+
+    #Notifications
+    Route::get('/notification/all', [NotificationController::class, 'getAll']);
+    Route::get('/notification/show/{notification_id}', [NotificationController::class, 'show']);
 });
