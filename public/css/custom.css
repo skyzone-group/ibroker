@@ -40,36 +40,6 @@ a:not(.nohover):hover{
     color: var(--form-button-color) !important;
 }
 
-a[class^="share-network-"] {
-    flex: none;
-    color: #FFFFFF;
-    background-color: #333;
-    border-radius: 3px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    align-items: center;
-    cursor: pointer;
-    margin: 0 0 10px 0;
-    text-decoration: none;
-}
-
-a[class^="share-network-"] .fah {
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    flex: 0 1 auto;
-    font-size: 1.33333em;
-    line-height: .75em;
-    vertical-align: -0.0667em;
-}
-
-a[class^="share-network-"] span {
-    padding: 0 10px;
-    flex: 1 1;
-    font-weight: 500;
-}
-
 .h-100vh{
     height: 100vh;
 }

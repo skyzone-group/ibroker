@@ -6,6 +6,7 @@
                     <ProgressSpinner style="width:80px; height:80px" strokeWidth="3" fill="var(--surface-ground)" animationDuration="1s" />
                 </div>
                 <div v-else class="agent_objects_page_container">
+                    <!-- mobile agent info start -->
                     <div v-if="Sidebar == false" class="product-page__sidebar mobile-agent_header-top">
                         <div class="product-page__sticky">
                             <aside class="product-page__sidebar_autor autor_box_style">
@@ -36,14 +37,13 @@
                                                         :network="network.network"
                                                         :key="network.network"
                                                         :style="{backgroundColor: network.color}"
-                                                        class="nohover"
+                                                        class="nohover share-page-agent-links"
                                                         :url="sharing.url"
                                                         :title="sharing.title"
                                                         :description="sharing.description"
                                                         :quote="sharing.quote"
                                                         :hashtags="sharing.hashtags"
                                                         :twitterUser="sharing.twitterUser"
-                                                        popup="{width: 100%, height: 100%}"
                                                     >
                                                         <i :class="network.icon"></i>
                                                         <span>{{network.name}}</span>
@@ -72,6 +72,7 @@
                             </aside>
                         </div>
                     </div>
+                    <!-- mobile agent info end -->
                     <div class="header-title-top">
                         <h2 class="listing__section-title">Объявления пользователя</h2>
                     </div>
@@ -387,6 +388,16 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Fixed author phone -->
+                    <div v-if="FixedAgentPhone" class="object_single_page_main_object_phone">
+                        <div class="object_single_page_main_object_phone_box">
+                            <button v-if="showPhone[2] == false" @click="showPhone[2] = true" class="button-root-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3 button-root--type-button-reset-8-1-3 button-root--fluid-8-1-3" type="button" data-e2e-id="sticky-footer-show-phone"><span class="button-root__text-8-1-3">Показать телефон</span></button>
+                            <a  v-if="showPhone[2] == true" :href="`tel:+${owner.phone}`" class="nohover button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3 button-root--type-button-reset-8-1-3 button-root-8-1-3">
+                                <span class="button-root__text-8-1-3">+{{owner.phone}}</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="objects-paginator">
                     <Paginator
@@ -441,13 +452,14 @@ export default {
         return {
             Sidebar: true,
             loaderProgress: false,
-            showPhone: [false,false],
+            showPhone: [false,false,false],
             mobilePrice: false,
             objectBtns: false,
             visibleBottom: false,
             DesktopSort: true,
             MobileAgentInfo: false,
             shareAgentPage: false,
+            FixedAgentPhone: false,
             open: null,
             totalRecords: 120,
             pageInfo: null,
@@ -498,6 +510,7 @@ export default {
             this.windowWidth = window.innerWidth;
             if(this.windowWidth <= 1024){
                 this.Sidebar = false;
+                this.FixedAgentPhone = true;
                 if(this.windowWidth <= 1000){
                     this.mobilePrice = true;
                     if(this.windowWidth <= 736){
@@ -509,6 +522,7 @@ export default {
                 }
                 return;
             }
+            this.FixedAgentPhone = false;
             this.DesktopSort = true;
             this.objectBtns = false;
             this.mobilePrice = false;
@@ -642,8 +656,35 @@ export default {
     -webkit-line-clamp: 5;
 }
 
+.share-page-agent-links {
+    flex: none;
+    color: #FFFFFF;
+    background-color: #333;
+    border-radius: 3px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 0 0 10px 0;
+    text-decoration: none;
+}
 
+.share-page-agent-links .fah {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    flex: 0 1 auto;
+    font-size: 1.33333em;
+    line-height: .75em;
+    vertical-align: -0.0667em;
+}
 
+.share-page-agent-links span {
+    padding: 0 10px;
+    flex: 1 1;
+    font-weight: 500;
+}
 /* ***************************0 */
 @media (max-width: 1024px){
     .agent_objects_page_container{
