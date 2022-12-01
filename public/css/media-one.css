@@ -21,7 +21,20 @@
     }
 
     .agent_objects_all .object-item .object-photos-thumb {
-        height: 200px !important;
+        height: 180px !important;
+    }
+
+    .agent_objects_all .object-item .object-details {
+        width: 250px !important;
+    }
+
+    .agent_objects_all .object-details-header .title {
+        font-size: 17px !important;
+    }
+
+    .agent_objects_all .author-box-pic-img {
+        height: 40px !important;
+        width: 40px !important;
     }
 }
 
@@ -254,6 +267,11 @@
     /* .object-photos-thumb .swiper .swiper-wrapper .swiper-slide img{
         height: auto;
     } */
+
+
+    .agent_objects_page_main_box .product-page_btn_style {
+        padding: 0 !important;
+    }
 }
 
 @media only screen and (max-width: 475px){
@@ -269,6 +287,10 @@
     }
     .file-input{
         height: 50px;
+    }
+
+    .agent_objects_page_container .listing__section-title {
+        font-size: 1.4rem;
     }
 }
 

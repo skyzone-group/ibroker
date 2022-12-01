@@ -562,7 +562,7 @@
                                                     :modules="modules"
                                                     class="mySwiper2 w-100"
                                                 >
-                                                    <swiper-slide @click="this.$router.push({name: 'showObject', params: {type_deal: object.object_deals, type: object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land', id: object.id}})" v-for="image in object.images" :key="image.id">
+                                                    <swiper-slide v-for="image in object.images" :key="image.id">
                                                         <img :src="`/file/${image.name}`" class="swiper-lazy"/>
                                                         <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div> 
                                                     </swiper-slide>
@@ -577,7 +577,7 @@
                                                         <p class="object-price-list-desc ml-2">264 705$/м²</p>
                                                     </div>
                                                     <div class="object-details-item object-details-header">
-                                                        <a class="NXJyid" :href="`/show/object/${object.object_deals}/${object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land'}/${object.id}`" rel="noopener noreferrer">
+                                                        <a class="NXJyid" target="_blank" :href="`/show/object/${object.object_deals}/${object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land'}/${object.id}`" rel="noopener noreferrer">
                                                             <span v-if="object.object_type_id === 1" class="title">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor }} / {{ object.floor_count }} этаж</span>
                                                             <span v-if="object.object_type_id === 2" class="title">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }}</span>
                                                             <span v-if="object.object_type_id === 3" class="title">{{ object.object_type.name_ru }}, {{object.total_area }} м²</span>
