@@ -60,12 +60,13 @@ class UserController extends ResponseController
     public function update(Request $request)
     {
         $user_id = auth('sanctum')->user()->id;
-        
-        $validate = $this->validate($request->all(), [
-            'username'     => 'unique:users',
-        ]);
-
-        if ($validate !== true) return $validate;
+        if($request->get('username')){
+            $validate = $this->validate($request->all(), [
+                'username'     => 'unique:users',
+            ]);
+    
+            if ($validate !== true) return $validate;
+        }
 
 
         $user = User::where('id', '=', $user_id)->first();

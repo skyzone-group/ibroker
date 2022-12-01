@@ -703,7 +703,7 @@
                             <Paginator
                                 v-if="objectsCount > 0" 
                                 :CurrentPageReport="pageInfo.current_page"  
-                                @page="getObjects($event.page)" 
+                                @page="onPage($event)" 
                                 :rows="parseInt(pageInfo.per_page)" 
                                 :totalRecords="pageInfo.total">
                             </Paginator>
@@ -779,7 +779,7 @@ export default {
             totalRecords: 120,
             pageInfo: null,
             totalObject: null,
-            total: 2,
+            total: 1,
             selectedCity1: null,
             visibleBottom: false,
             sideBarFilter: false,
@@ -847,6 +847,15 @@ export default {
         togglePhoneNum(id) {
             this.open = this.open === id ? null : id
         },
+        onPage(event){
+            let current_page = event.page +=1;
+            var to = current_page * this.total;
+            this.pushParamsURL();
+            // console.log(`Offset-${to}`);
+            // console.log(`New page number-${current_page}`);
+            // console.log(`Number of rows to display in new page-${event.rows}`);
+            // console.log(`Total number of pages-${event.pageCount}`);
+        },
         saveData(isFormValid){
             this.submitted = true;
             if (!isFormValid) {
@@ -880,7 +889,8 @@ export default {
                     total_area_to: this.form.total_area_to,
                     land_area_from: this.form.land_area_from,
                     land_area_to: this.form.land_area_to,
-                    sort_direction: this.form.sort_direction
+                    sort_direction: this.form.sort_direction,
+                    offset: onPage(),
                 }
             });
         },

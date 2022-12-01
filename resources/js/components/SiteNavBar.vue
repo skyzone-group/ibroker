@@ -97,45 +97,7 @@
                             </div>
                         </li>
                         <li class="navbar-ul-li">
-                            <router-link to="/test">Новостройки</router-link>
-                            <div class="sub-menu">
-                                <div class="sub-menu-item">
-                                    <ul>
-                                        <li>
-                                            <a href="#">Квартира</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Каталог жилых комплексов</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Каталог коттеджных поселков</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Каталог акций и скидок</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="sub-menu-item">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <span>Как купить или продать квартиру на вторичном рынке</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span>Всё, что важно знать при покупке новостройки</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="navbar-ul-li">
                             <a href="/search?object_deals=buy&object_type=3">Коммерческая</a>
-                        </li>
-                        <li class="navbar-ul-li">
-                            <router-link to="/dwdw">Ипотека</router-link>
                         </li>
                         <li class="navbar-ul-li">
                             <router-link to="/dwdw">Еще</router-link>
@@ -243,22 +205,22 @@
                                                 </div>
                                             </router-link>
                                         </li>
-                                        <li class="service_item" @click="visibleLeft = !visibleLeft">
+                                        <!-- <li class="service_item" @click="visibleLeft = !visibleLeft">
                                             <a href="#!">
                                                 <span class="service_item-back">
                                                     <img src="../../../public/images/icons/sapravochniy-center.svg" alt="">
                                                 </span>
                                                 Справочный центр
                                             </a>
-                                        </li>
-                                        <li class="service_item" @click="visibleLeft = !visibleLeft">
+                                        </li> -->
+                                        <!-- <li class="service_item" @click="visibleLeft = !visibleLeft">
                                             <a href="#!">
                                                 <span class="service_item-back">
                                                     <img src="../../../public/images/icons/danger.svg" alt="">
                                                 </span>
                                                 Сообщить об ошибке
                                             </a>
-                                        </li>
+                                        </li> -->
                                         <li class="service_item" @click="visibleLeft = !visibleLeft">
                                             <a href="#!">
                                                 <span class="service_item-back">

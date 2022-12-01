@@ -29,12 +29,11 @@
                     <div class="fixed_panel_div">
                         <div class="top_bar">
                             <div class="top_bar_total">
-                                <div class="top_bar_total_checkBox d-lg-block d-md-block d-sm-block d-none">
+                                <!-- <div class="top_bar_total_checkBox d-lg-block d-md-block d-sm-block d-none">
                                     <div class="field-checkbox">
                                         <Checkbox  id="binary" v-model="select_all" @click="selectAll" :binary="true"/>
-                                        <!-- <label for="binary">{{checked}}</label> -->
                                     </div>
-                                </div>
+                                </div> -->
                                 <span class="mr-2 d-lg-block d-md-block d-sm-block d-none">{{totalObject}} объявление</span>
                                 <div class="dropdown-avatar">
                                     <a class=" nav-link dropdown-user-link avatar_drop align-items-center d-flex" href="#" data-toggle="dropdown">
@@ -58,14 +57,14 @@
                                 </div>
                             </div>
                             <div class="top_bar_btns d-lg-block d-md-block d-sm-block d-none">
-                                <button v-show="printBtn">
+                                <!-- <button v-show="printBtn">
                                     <svg class="object_fil" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 0a1 1 0 0 0-1 1v2h10V1a1 1 0 0 0-1-1H4ZM0 6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v7h-3v3H3v-3H0V6Zm11 4H5v4h6v-4ZM4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" fill="currentColor"></path></svg>
                                     <span class="top_bar_btns_txt">Печатать</span>
-                                </button>
-                                <button>
+                                </button> -->
+                                <!-- <button>
                                     <svg class="object_fil" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5 0a1 1 0 0 0-1 1v2H1v2h14V3h-3V1a1 1 0 0 0-1-1H5Zm5 2H6v1h4V2ZM3 7h10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z" fill="currentColor"></path></svg>
                                     <span class="top_bar_btns_txt">Удалить</span>
-                                </button>
+                                </button> -->
                             </div>
                         </div>
                     </div>
@@ -86,13 +85,13 @@
             <div v-if="!isLoaded">
                 <div class="objects_main"  v-for="object in objects" :key="object.id">
                     <div class="objects_main-box">
-                        <div class="checkbox-box">
+                        <!-- <div class="checkbox-box">
                             <div class="top_bar_total_checkBox">
                                 <div class="field-checkbox">
                                     <Checkbox :id="`object_check_${object.id}`" :value="object.id" v-model="selected" />
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="objects_main-content w-100">
                             <div class="objects_main-content-item">
                                 <div class="item-header d-flex">
