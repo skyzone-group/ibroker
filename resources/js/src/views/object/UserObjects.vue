@@ -5,7 +5,7 @@
                 <div v-if="loaderProgress" class="loader-main-box" style="height: 100vh;">
                     <ProgressSpinner style="width:80px; height:80px" strokeWidth="3" fill="var(--surface-ground)" animationDuration="1s" />
                 </div>
-                <div v-else class="agent_objects_page_main_box">
+                <div v-else class="agent_objects_page_main_box mb-5">
                     <div class="product-page__content">
                         <div class="product-page_btn_style flex-column">
                             <h2 class="listing__section-title">Объявления пользователя</h2>
@@ -38,7 +38,6 @@
                             </div>
                         </div>
                         <div class="agent_objects_all">
-                            Objwcts
                             <div v-for="object in objects" :key="object.id"  class="object-item">
                                 <router-link target="_blank" :to="{name: 'showObject', params: {type_deal: object.object_deals, type: object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land', id: object.id}}">
                                     <div class="object-item-block">
@@ -169,26 +168,26 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div v-for="user in object.user" :key="user.id" class="object-body-footer">
+                                            <div class="object-body-footer">
                                                 <div class="object-details-item">
                                                     <div class="object-details-author">
                                                         <div class="author-box">
                                                             <div style="height: 100%;">
                                                                 <picture class="author-box-pic">
-                                                                    <img v-if="!user.image" :src="src" alt="user_avatar" class="img-full author-box-pic-img" style="object-fit: cover;">
-                                                                    <img v-else :src="`/file/${user.image}`" alt="user_avatar" class="img-full author-box-pic-img" style="object-fit: cover;">
+                                                                    <img v-if="!owner.image" :src="defaultImage" alt="user_avatar" class="img-full author-box-pic-img" style="object-fit: cover;">
+                                                                    <img v-else :src="`/file/${owner.image}`" alt="user_avatar" class="img-full author-box-pic-img" style="object-fit: cover;">
                                                                 </picture>
                                                             </div>
                                                         </div>
-                                                        <span class="author-name">{{ user.firstname && user.firstname ? (`${user.firstname} ${user.lastname}`) : `User ${user.id}`}}</span>
+                                                        <span class="author-name">{{ owner.firstname && owner.firstname ? (`${owner.firstname} ${owner.lastname}`) : `User ${owner.id}`}}</span>
                                                     </div>
                                                 </div>
                                                 <div class="object-details-item">
                                                     <button @click.prevent v-if="object.id != open" @click="togglePhoneNum(object.id)" class="object-details-item-btn" type="button">
                                                         <span class="object-details-item-btn-txt">Показать телефон</span>
                                                     </button>
-                                                    <a v-if="object.id === open" @click.prevent :href="`tel:+${user.phone}`" class="object-details-item-btn">
-                                                        <span class="object-details-item-btn-txt">+{{user.phone}}</span>
+                                                    <a v-if="object.id === open" @click.prevent :href="`tel:+${owner.phone}`" class="object-details-item-btn">
+                                                        <span class="object-details-item-btn-txt">+{{owner.phone}}</span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -196,24 +195,27 @@
                                     </div>
                                 </router-link>
                             </div>
+                            <div v-if="objects.length == 0">
+                                <h3 class="text-theme text-center" style="font-size: 25px;color: #000;font-weight: 700;">Результатов не найдено</h3>
+                            </div>
                         </div>
                     </div>
 
                     <!-- sidebar -->
                     <div v-if="!Sidebar" class="product-page__sidebar">
                         <div class="product-page__sticky">
-                            <aside v-for="user in owner" :key="user.id" class="product-page__sidebar_autor autor_box_style">
+                            <aside class="product-page__sidebar_autor autor_box_style">
                                 <div class="product-page__sidebar_autor_bottom autor_bottom_padding">
                                     <div class="product-page__sidebar_autor_bottom_top margin-bottom-24">
                                         <div class="d-flex flex-column align-items-center justify-content-center">
                                             <!-- <div v-if="!user.image" style="background-color: rgb(156, 198, 196);width: 60px;height: 60px;border-radius: 5px;" class="autor_bottom_top_style">TJ</div> -->
                                             <div style="width: 120px;height: 120px;" class="autor_bottom_top_style">
-                                                <img v-if="!user.image" :src="defaultImage" alt="user_avatar_default" class="w-100 h-100" style="object-fit: cover;">
-                                                <img v-else :src="`/file/${user.image}`" alt="user_avatar" class="w-100 h-100" style="object-fit: cover;">
+                                                <img v-if="!owner.image" :src="defaultImage" alt="user_avatar_default" class="w-100 h-100" style="object-fit: cover;">
+                                                <img v-else :src="`/file/${owner.image}`" alt="user_avatar" class="w-100 h-100" style="object-fit: cover;">
                                             </div>
                                             <div class="product-page__sidebar_autor_bottom_content text-center" style="flex: auto;">
                                                 <div class="autor_full_name justify-content-center">
-                                                    <a href="/agent-single" target="_blank">{{ user.firstname }} {{ user.lastname }}</a>
+                                                    <a href="/agent-single" target="_blank">{{ owner.firstname }} {{ owner.lastname }}</a>
                                                 </div>
                                                 <div class="autor_enter_date" style="color: #4b545b99;">
                                                     На iBroker 1 год 1 мес.
@@ -225,8 +227,8 @@
                                         <button v-if="showPhone[0] == false" @click="showPhone[0] = true" type="button" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3">
                                             <span class="button-root__text-8-1-3">Показать телефон</span>
                                         </button>
-                                        <a v-if="showPhone[0] == true" :href="`tel:+${user.phone}`" class="nohover button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3">
-                                            <span class="button-root__text-8-1-3">+{{user.phone}}</span>
+                                        <a v-if="showPhone[0] == true" :href="`tel:+${owner.phone}`" class="nohover button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3">
+                                            <span class="button-root__text-8-1-3">+{{owner.phone}}</span>
                                         </a>
                                     </div>
                                 </div>
@@ -243,7 +245,8 @@
 import defaultImage from "../../../../../public/images/avatar-dafault.png"
 import ProgressSpinner from 'primevue/progressspinner';
 import Dropdown from 'primevue/dropdown';
-import CopyToClipboard from '../../../components/CopyToClipboard.vue'
+import CopyToClipboard from '../../../components/CopyToClipboard.vue';
+import Button from 'primevue/button';
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
 // Import Swiper styles
@@ -261,7 +264,8 @@ export default {
         SwiperSlide,
         ProgressSpinner,
         Dropdown,
-        CopyToClipboard
+        CopyToClipboard,
+        Button
     },
     data() {
         return {
@@ -270,6 +274,7 @@ export default {
             showPhone: [false,false],
             mobilePrice: false,
             objectBtns: false,
+            open: null,
             objects: [],
             owner: [],
             defaultImage,
@@ -286,12 +291,12 @@ export default {
         }
     },
     methods: {
-        async getObject(){
+        async getObjects(){
             this.loaderProgress = true;
-            axios.get('/api/object/show/' + this.$route.params.id, { params: this.$route.query})
+            axios.get('/api/object/getOthers/' + this.$route.params.id, { params: this.$route.query})
             .then(response => {
-                this.object = response.data.result.object;
-                this.owner = response.data.result.object.user;
+                this.objects = response.data.result.objects.data;
+                this.owner = response.data.result.user;
                 this.loaderProgress = false;
             });
         },
@@ -322,9 +327,12 @@ export default {
                 }
             });
         },
+        togglePhoneNum(id) {
+            this.open = this.open === id ? null : id
+        },
     },
     async created() {
-        this.getObject();
+        this.getObjects();
         this.$watch(() => this.$route.query, this.getObjects);
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen();
@@ -337,7 +345,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .listing__section-title{
     display: block;
     margin-bottom: 20px;
@@ -378,5 +386,45 @@ export default {
 .filters-tabs-item.active{
     border-bottom-color: var(--form-button-color);
     color: var(--form-button-color);
+}
+
+.agent_objects_page_main_box .product-page__sidebar {
+    width: 320px;
+}
+
+.agent_objects_all .object-item .object-photos {
+    width: 250px;
+}
+
+.agent_objects_all .object-item .object-photos-thumb {
+    height: 200px;
+}
+
+.agent_objects_all .object-item .object-details {
+    width: 300px;
+}
+
+.agent_objects_all .object-item .object-price {
+    width: 150px;
+}
+
+.agent_objects_all .object-details-header .title {
+    font-size: 18px;
+    line-height: 25px;
+}
+
+.agent_objects_all .object-price-list-p {
+    font-size: 20px;
+    line-height: 25px;
+}
+
+.agent_objects_all .object-details-description {
+    -webkit-line-clamp: 3;
+}
+
+
+/* ***************************0 */
+@media (max-width: 575px){
+
 }
 </style>

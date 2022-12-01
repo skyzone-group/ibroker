@@ -11,8 +11,9 @@
     src: url(../fonts/font/Lato-Regular.ttf);
 }
 
-body {
+html body {
     font-family: "Lato", sans-serif !important;
+    background-color: #f2f4f6 !important;
 }
 
 :root {
@@ -2915,7 +2916,7 @@ a:hover {
 .product-page__content_top_buttons_item_btn .dropdown-menu,
 .search-object-body .object-actions .dropdown-menu,
 .agent-single-div-content-div-objects .object-item .object-actions .dropdown-menu,
-.social-icons-overlay .p-overlaypanel-content{
+.social-icons-overlay .p-overlaypanel-content, .agent_objects_all .object-item .object-actions .dropdown-menu{
     padding: 24px 16px !important;
     border-color: #fff;
     transition: opacity 0.2s ease-in;
@@ -2949,7 +2950,8 @@ a:hover {
 
 .product-page__content_top_buttons_item_btn .dropdown-menu .hint-title-0-9-4,
 .search-object-body .object-actions .dropdown-menu .hint-title-0-9-4,
-.agent-single-div-content-div-objects .object-item .object-actions .dropdown-menu .hint-title-0-9-4{
+.agent-single-div-content-div-objects .object-item .object-actions .dropdown-menu .hint-title-0-9-4,
+.agent_objects_all .object-item .object-actions .dropdown-menu .hint-title-0-9-4{
     color: #242629;
     display: flex;
     font-size: 18px;
@@ -2966,14 +2968,16 @@ a:hover {
 
 .product-page__content_top_buttons_item_btn .dropdown-menu .hint-title-content-0-9-4,
 .search-object-body .object-actions .dropdown-menu .hint-title-content-0-9-4,
-.agent-single-div-content-div-objects .object-item .object-actions .dropdown-menu .hint-title-content-0-9-4{
+.agent-single-div-content-div-objects .object-item .object-actions .dropdown-menu .hint-title-content-0-9-4,
+.agent_objects_all .object-item .object-actions .dropdown-menu .hint-title-content-0-9-4{
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 .product-page__content_top_buttons_item_btn .dropdown-menu .hint-title-content-0-9-4 .title,
 .social-icons-overlay .p-overlaypanel-content .item .hint-head-0-9-4 .title,
-.agent-single-div-content-div-objects .object-item .object-actions .dropdown-menu .hint-title-content-0-9-4 .title{
+.agent-single-div-content-div-objects .object-item .object-actions .dropdown-menu .hint-title-content-0-9-4 .title,
+.agent_objects_all .object-item .object-actions .dropdown-menu .hint-title-content-0-9-4 .title{
     font-size: 14px;
     line-height: 20px;
 }

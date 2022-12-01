@@ -1,11 +1,27 @@
 /* Media styles for Add New Object page */
+@media (max-width: 1350px){
+    .agent_objects_all .object-actions{
+        flex-direction: column;
+        width: auto;
+    }
+}
+
+
 @media (max-width: 1200px) {
     .object-photos {
         width: 250px;
     }
 
+    .agent_objects_all .object-item .object-photos {
+        width: 200px !important;
+    }
+
     .object-photos-thumb {
         height: 250px;
+    }
+
+    .agent_objects_all .object-item .object-photos-thumb {
+        height: 200px !important;
     }
 }
 
@@ -121,17 +137,29 @@
         flex-direction: column;
     }
 
-    .object-photos {
-        width: 100%;
+    .object-photos, .agent_objects_all .object-item .object-photos {
+        width: 100% !important;
     }
 
-    .object-photos-thumb {
-        height: 215px;
+    .object-photos-thumb, .agent_objects_all .object-item .object-photos-thumb {
+        height: 215px !important;
     }
 
-    .object-details {
-        margin: 16px 0 0 0;
-        width: 100%;
+    .object-details,.agent_objects_all .object-item .object-details {
+        margin: 16px 0 0 0 !important;
+        width: 100% !important;
+    }
+
+    .object-body {
+        margin-left: 0;
+    }
+
+    .object-body-footer{
+        margin-top: 20px;
+    }
+
+    .agent_objects_page_main_box {
+        padding: 30px 0 !important;
     }
 
     .object-details-item-btn{
