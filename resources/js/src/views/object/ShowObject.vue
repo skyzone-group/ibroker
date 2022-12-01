@@ -382,13 +382,16 @@
                                             </div>
                                         </div>
                                         <div class="subscription__author_block_actions">
-                                            <div class="subscription__author_block_actions_block">
+                                            <div class="subscription__author_block_actions_block flex-column">
                                                 <button v-if="showPhone[1] == false" @click="showPhone[1] = true" type="button" class="button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4  button-root--type-button-reset-8-1-3 button-root-8-1-3">
                                                     <span class="button-root__text-8-1-3">Показать телефон</span>
                                                 </button>
                                                 <a v-if="showPhone[1] == true" :href="`tel:+${user.phone}`" class="nohover button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4  button-root--type-button-reset-8-1-3 button-root-8-1-3">
                                                     <span class="button-root__text-8-1-3">+{{user.phone}}</span>
                                                 </a>
+                                                <router-link target="_blank" :to="{name: 'userObjects', params: {id: user.id}, query: {object_deals: 'all', sort_direction: 'date_new'}}" type="button" class="button-root--fluid-8-1-3 button-root--show-all-object button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 nohover d-lg-none d-inline-flex" style="margin-top: 8px;">
+                                                    <span class="button-root__text-8-1-3" style="font-weight: 600;">Показать все объявления</span>
+                                                </router-link>
                                             </div>
                                         </div>
                                     </div>
@@ -426,7 +429,7 @@
                                         <a v-if="showPhone[0] == true" :href="`tel:+${user.phone}`" class="nohover button-root--fluid-8-1-3 button-root--primary-8-1-3 button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3">
                                             <span class="button-root__text-8-1-3">+{{user.phone}}</span>
                                         </a>
-                                        <router-link target="_blank" :to="{name: 'userObjects', params: {id: user.id}, query: {object_deals: 'all', order: 'date_new'}}" type="button" class="button-root--fluid-8-1-3 button-root--show-all-object button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 nohover" style="margin-top: 8px;">
+                                        <router-link target="_blank" :to="{name: 'userObjects', params: {id: user.id}, query: {object_deals: 'all', sort_direction: 'date_new'}}" type="button" class="button-root--fluid-8-1-3 button-root--show-all-object button-root--large-8-1-3-4 button-root--type-button-reset-8-1-3 button-root-8-1-3 nohover" style="margin-top: 8px;">
                                             <span class="button-root__text-8-1-3" style="font-weight: 600;">Показать все объявления</span>
                                         </router-link>
                                     </div>
