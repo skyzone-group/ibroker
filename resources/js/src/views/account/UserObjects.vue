@@ -50,10 +50,10 @@
                                     </div>
                                 </div>
                                 <div class="filtr_block">
-                                    <a data-toggle="modal" data-target="#objectModal" class="nav-link align-items-center d-flex" href="#!">
+                                    <button @click="objectFilter = true" class="nav-link align-items-center d-flex" type="button">
                                         <i class="feather icon-filter object_fil mr-2"></i>
                                         Фильтр
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                             <div class="top_bar_btns d-lg-block d-md-block d-sm-block d-none">
@@ -185,6 +185,54 @@
                         </template>
                     </Dialog>
                 </form>
+                <div class="search-object-top-more-filter">
+                    <Dialog header="Фильтр" v-model:visible="objectFilter" 
+                    class="more-filter-modal user-objects-filter-modal"
+                    :breakpoints="{'960px': '75vw', '640px': '90vw'}" 
+                    :style="{width: '50vw'}" 
+                    :dismissableMask="true" 
+                    :draggable="false" 
+                    :modal="true">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12 mb-3">
+                                <div class="field">
+                                    <label for="field-label">Регион</label>
+                                    <Dropdown @change="getDistricts()" v-model="form.region_id" :options="regions" optionLabel="name_uz" optionValue="id" placeholder="Выберите регио..." class="w-100" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12 mb-3">
+                                <div class="field">
+                                    <label for="field-label">Район</label>
+                                    <Dropdown @change="getQuarters()"  v-model="form.district_id" :options="districts" optionLabel="name_uz" optionValue="id" placeholder="Выберите регио..." class="w-100" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12 mb-3">
+                                <div class="field">
+                                    <label for="field-label">Улица</label>
+                                    <Dropdown v-model="form.quarter_id" :options="quarters" optionLabel="name_uz" optionValue="id" placeholder="Выберите регио..." class="w-100" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12 mb-lg-0 mb-md-0 mb-3">
+                                <div class="field">
+                                    <label for="field-label">Тир Недвижимость</label>
+                                    <Dropdown v-model="form.object_type_id" :options="objectTypes" optionLabel="name_ru" optionValue="id" placeholder="Тип недви..." class="w-100" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12 mb-lg-0 mb-md-0 mb-3">
+                                <div class="field">
+                                    <label for="field-label-object_id">Номер объявления (ID)</label>
+                                    <InputText id="field-label-object_id" v-model="form.object_id"  placeholder="ID" class="w-100"/>
+                                </div>
+                            </div>
+                        </div>
+                        <template #footer>
+                            <button @click="objectFilter = !objectFilter" class="more-filter-modal-btn button-root--primary-outline-8-2-0">
+                                <span class="button-root__text-8-2-0">Закрыть</span>
+                            </button>
+                            <Button class="more-filter-modal-btn" label="Показать"/>
+                        </template>
+                    </Dialog>
+                </div>
             </div>
         </div>
     </div>
@@ -199,8 +247,11 @@ import Paginator from 'primevue/paginator';
 import ProgressSpinner from 'primevue/progressspinner';
 import Dialog from 'primevue/dialog';
 import Toast from 'primevue/toast';
+import Dropdown from 'primevue/dropdown';
+import InputText from 'primevue/inputtext';
 // Moment
 import moment from 'moment'
+import { mapGetters } from 'vuex'
 export default {
     components: {
         ObjectModal,
@@ -209,7 +260,9 @@ export default {
         Paginator,
         ProgressSpinner,
         Dialog,
-        Toast
+        Toast,
+        Dropdown,
+        InputText
     },
     data() {
         return {
@@ -221,13 +274,23 @@ export default {
             pageInfo: null,
             totalObject: null,
             isLoaded: false,
+            loading: [false,false,false,false],
             select_all: false,
             selected: [],
             imageCount: false,
             displayModal: false,
+            objectFilter: false,
             object_id: null,
+            regions: [],
+            districts: [],
+            quarters: [],
             form: {
                 object_deals: 'all',
+                region_id: null,
+                district_id: [],
+                quarter_id: [],
+                object_type_id: null,
+                object_id: null,
             }
         }
     },
@@ -287,12 +350,67 @@ export default {
                 console.log("889");
                 alert("bad");
             });
-        }
+        },
+        allRegionQuarterDistrict(){
+            this.loading[0] = true;
+            axios.get('/api/allRegionQuarterDistrict')
+            .then(response => {
+                this.regions = response.data.result
+                this.loading[0] = false;
+            })
+            .catch(function (error){
+                this.loading[0] = false;
+            });
+        },
+        getDistricts() {
+            this.loading[1] = true;
+            let region_id = this.form.region_id;
+            this.form.district_id = [];
+            this.form.quarter_id = [];
+
+            this.regions.forEach(region => {
+                if(region.id == this.form.region_id){
+                    this.districts = region.districts;
+                }
+            })
+
+            this.loading[1] = false;
+        },
+        getQuarters() {
+            this.loading[2] = true;
+            this.form.quarter_id = [];
+            this.quarters = [];
+
+            this.regions.forEach(region => {
+                if(region.id == this.form.region_id){
+                    region.districts.forEach(district => {
+                        if(this.form.district_id.includes(district.id)){
+                            this.quarters.push(...district.quarters);
+                        }
+                    })
+                }
+            })
+            this.quarters.sort(function (a, b) {
+                return a.name_ru.localeCompare(b.name_ru);
+            });
+            this.loading[2] = false;
+        },
     },
     // mounted(){
     //     this.getUserObjects();
     // },
+    mounted() {
+        this.$store.dispatch('getObjectTypes');
+        this.$store.dispatch('getObjectTypesProperty');
+    },
+    computed: {
+        ...mapGetters([
+            'objectTypes',
+            'objectProperty',
+        ]),
+    },
     async created() {
+        this.allRegionQuarterDistrict();
         this.getUserObjects();
         this.$watch(() => this.$route.params, this.getUserObjects);
     }
@@ -628,6 +746,16 @@ export default {
 .item-bottom-right-edit:not(:disabled):hover {
     background: var(--primary_100);
     color: #fff;
+}
+
+
+.user-objects-filter-modal .p-dialog-content {
+    padding: 20px !important;
+}
+
+.user-objects-filter-modal .p-dialog-content .field label{
+    font-size: 14px;
+    font-weight: 500;
 }
 /* ********************************************** */
 /* ********************************************************** */

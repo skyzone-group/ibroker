@@ -339,7 +339,7 @@ export default {
                         total_area_to: this.form.total_area_to,
                         land_area_from: this.form.land_area_from,
                         land_area_to: this.form.land_area_to,
-                        keyword: this.form.keyword
+                        keyword: this.form.keyword,
                     }
                 });
             },1000);

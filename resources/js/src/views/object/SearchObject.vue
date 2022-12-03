@@ -702,8 +702,8 @@
                         <div class="objects-paginator">
                             <Paginator
                                 v-if="objectsCount > 0" 
-                                :CurrentPageReport="pageInfo.current_page"  
-                                @page="onPage($event)" 
+                                :CurrentPageReport="pageInfo.current_page"
+                                @page="getObjects($event.page)" 
                                 :rows="parseInt(pageInfo.per_page)" 
                                 :totalRecords="pageInfo.total">
                             </Paginator>
@@ -850,7 +850,6 @@ export default {
         onPage(event){
             let current_page = event.page +=1;
             var to = current_page * this.total;
-            this.pushParamsURL();
             // console.log(`Offset-${to}`);
             // console.log(`New page number-${current_page}`);
             // console.log(`Number of rows to display in new page-${event.rows}`);
@@ -890,7 +889,6 @@ export default {
                     land_area_from: this.form.land_area_from,
                     land_area_to: this.form.land_area_to,
                     sort_direction: this.form.sort_direction,
-                    offset: onPage(),
                 }
             });
         },
@@ -905,13 +903,16 @@ export default {
         },
         async getObjects(page){
             this.loaderProgress = true;
+            // if(typeof page === NaN || typeof page === 'undefined'){
+            //     page = 1
+            // }
             axios.get(`/api/object/search?page=${page+=1}&total=${this.total}`, { params: this.$route.query})
             .then(response => {
                 this.objects = response.data.result.objects.data;
                 this.pageInfo = response.data.result.objects;
                 this.totalObject = response.data.result.total;
                 this.objectsCount = response.data.result.count;
-                this.loaderProgress = false;
+                this.loaderProgress = false;;
             })
             .catch(function (error){
                 alert(error);
@@ -1019,7 +1020,7 @@ export default {
         ...mapGetters([
             'objectTypes',
             'objectProperty',
-        ])
+        ]),
     },
     async created() {
         window.addEventListener('resize', this.checkScreen);

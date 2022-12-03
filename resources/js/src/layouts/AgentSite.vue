@@ -296,11 +296,11 @@
                                     <div class="filters-tabs-wrapper">
                                         <div class="filters-tabs-wrapper-inner">
                                             <div class="filters-tabs-buttons">
-                                                <label for="type__filter_buy" class="filters-tabs-item Radio_theme_realty" :class="{'active' : form.object_deals == 'buy'}">
+                                                <label for="type__filter_buy" class="filters-tabs-item Radio_theme_realty ml-0" :class="{'active' : form.object_deals == 'buy'}">
                                                     <input v-model="form.object_deals" id="type__filter_buy" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="buy">
                                                     Купить
                                                 </label>
-                                                <label for="type__filter_rent" class="filters-tabs-item Radio_theme_realty" :class="{'active' : form.object_deals == 'rent'}">
+                                                <label for="type__filter_rent" class="filters-tabs-item Radio_theme_realty ml-0" :class="{'active' : form.object_deals == 'rent'}">
                                                     <input v-model="form.object_deals" id="type__filter_rent" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="rent">
                                                     Снять
                                                 </label>
@@ -567,22 +567,6 @@
                                 <div class="agent-single-div-content-block">
                                     <div class="agent-single-div-content-div">
                                         <h1 class="agent-single-div-content-div-objects-title">Мои объявления</h1>
-                                        <div class="shell_agent_objects_block_buttons mb-5">
-                                            <ul class="shell_agent_objects_block_ul p-0 m-0 list-style-none">
-                                                <li class="shell_agent_objects_block_ul_li">
-                                                    <label for="type__filter_buy_1" class="shell_agent_objects_block_ul_li_link" :class="{'active' : form.object_deals == 'buy'}">
-                                                        <input v-model="form.object_deals" id="type__filter_buy_1" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="buy">
-                                                        Продажа
-                                                    </label>
-                                                </li>
-                                                <li class="shell_agent_objects_block_ul_li">
-                                                    <label for="type__filter_rent_2" class="shell_agent_objects_block_ul_li_link" :class="{'active' : form.object_deals == 'rent'}">
-                                                        <input v-model="form.object_deals" id="type__filter_rent_2" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="rent">
-                                                        Аренда
-                                                    </label>
-                                                </li>
-                                            </ul>
-                                        </div>
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="object-item">
@@ -1835,23 +1819,21 @@ export default {
 
 
 .FiltersForm_name_main .filters-tabs-item{
-    font: 600 14px/20px Lato,sans-serif;
+    font: 600 16px/20px Lato,sans-serif !important;
     display: block;
     margin-bottom: -8px;
     border-radius: 4px 4px 0 0;
-    background-color: rgba(37,37,37,.6);
-    padding: 9px 16px 16px;
+    background-color: hsla(0,0%,96.5%,.5);
+    padding: 10px 16px 16px;
     color: #fff;
     font-weight: 400;
     font-size: 16px;
     line-height: 1.38;
     text-decoration: none;
     cursor: pointer;
+    height: unset;
 }
 
-/* .FiltersForm_name_main .filters-tabs-item+.filters-tabs-item {
-    margin-left: 32px;
-} */
 
 .FiltersForm_name_main .filters-tabs-item.active{
     background-color: #f1f1f1;

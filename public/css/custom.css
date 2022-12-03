@@ -858,8 +858,9 @@ a:hover {
 .objects-paginator .p-paginator .p-paginator-prev, 
 .objects-paginator .p-paginator .p-paginator-next, 
 .objects-paginator .p-paginator .p-paginator-last {
-    background-color: var(--form-button-color);
-    color: #fff;
+    background-color: #fff;
+    box-shadow: 0 2px 4px 0 #00000012;
+    color: #4b545b;
 }
 
 .objects-paginator  .p-paginator .p-paginator-first:not(.p-disabled):not(.p-highlight):hover, 
