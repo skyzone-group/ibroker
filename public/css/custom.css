@@ -20,8 +20,10 @@ html body {
     --white_100: #fff;
     --black_100: #152242;
     --gray10_100: #e8e9ec;
+    --gray40_100: #a1a7b3;
     --gray60_100: #737a8e;
     --primary_100: #0468ff;
+    --primary_10: rgba(4,104,255,.1);
     --dark_100: #000;
     --secondary_button_10: rgba(4, 104, 255, 0.1);
     --superblack_40: rgba(0, 0, 0, 0.4);
@@ -42,6 +44,31 @@ a:not(.nohover):hover{
 
 .h-100vh{
     height: 100vh;
+}
+
+
+.span-line-height-18{
+    line-height: 20px;
+}
+
+.span-line-height-20{
+    line-height: 20px;
+}
+
+.span-default-font-size-12{
+    font-size: 12px;
+}
+
+.span-default-font-size-14{
+    font-size: 14px;
+}
+
+.span-deafault-color{
+    color: var(--black_100);
+}
+
+.span-color-grey{
+    color: var(--gray40_100);
 }
 
 .main-padding{

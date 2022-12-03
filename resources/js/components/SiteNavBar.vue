@@ -253,9 +253,9 @@
                 
                 <!-- Mobile menu end -->
                 <div class="header-right-block">
-                    <!-- <div class="btn-icons">
+                    <div v-if="navbarTools" class="btn-icons">
                         <div class="utilities d-flex position-relative align-items-center">
-                            <a href="#!" class="utilities-link d-lg-block d-md-block d-sm-block d-none">
+                            <!-- <a href="#!" class="utilities-link d-lg-block d-md-block d-sm-block d-none">
                                 <svg class="icon_svg" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 4h14V2H1v2Zm0 5h10V7H1v2Zm7 5H1v-2h7v2Zm4 2v-2h-2v-2h2v-2h2v2h2v2h-2v2h-2Z" fill="currentColor"></path>
                                 </svg>
                             </a>
@@ -267,12 +267,41 @@
                             </a>
                             <a href="#!" class="utilities-link">
                                 <svg class="icon_svg" aria-hidden="true" width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.731 2.045C6.406 1.453 5.801 1 5 1c-.707 0-1.25.48-1.5.96C3.25 1.48 2.706 1 2 1 .766 1 0 2.073 0 3.072c0 .975.795 1.92 1.627 2.64l.1.084c.625.526 1.254.919 1.568 1.098.122.069.196.106.205.106.052 0 2.452-1.322 3.247-2.937l.027-.057a2.211 2.211 0 0 0 .224-1.028 2.168 2.168 0 0 0-.267-.933ZM1.037 7.799a6.5 6.5 0 0 0 10.807 5.537l2.885 2.59 1.336-1.487-2.955-2.654a6.502 6.502 0 0 0-4.223-9.636c.075.31.113.621.113.923 0 .402-.063.78-.166 1.129A4.502 4.502 0 0 1 7.5 13a4.5 4.5 0 0 1-4.479-4.058l-.02-.005H3a2.04 2.04 0 0 1-.448-.173 5.217 5.217 0 0 1-.196-.104 13.689 13.689 0 0 1-1.318-.861Z" fill="currentColor"></path></svg>
-                            </a>
-                            <a href="#!" class="utilities-link d-lg-block d-md-block d-sm-block d-none">
+                            </a> -->
+                            <button @click.prevent="notificationModal = !notificationModal" v-tooltip.bottom="'Уведомления'" class="utilities-link" :class="{'utilities-link-unread' : notifications.count > 0}">
                                 <svg class="icon_svg" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#BellStroke16a)"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C5.238 0 3.25 2.426 3.25 5.23v.847c0 .013-.001.016-.003.02v.001a.511.511 0 0 1-.076.113 3.33 3.33 0 0 1-.254.27l-.172.167-.021.02c-.062.06-.129.124-.198.193l-.046.038C1.935 7.357 1 8.143 1 9.462c0 .988.466 1.737 1.117 2.251.614.486 1.391.768 2.115.942C5.67 13 7.265 13 7.977 13h.046c.712 0 2.307 0 3.745-.345.724-.174 1.5-.456 2.115-.942C14.533 11.2 15 10.45 15 9.462c0-1.32-.935-2.105-1.48-2.563l-.046-.038-.198-.193-.02-.02a20.63 20.63 0 0 1-.172-.166 3.128 3.128 0 0 1-.255-.271.515.515 0 0 1-.076-.113c-.002-.005-.003-.008-.003-.021V5.23C12.75 2.426 10.762 0 8 0ZM5.25 5.23C5.25 3.298 6.562 2 8 2s2.75 1.297 2.75 3.23v.847c0 .595.242 1.043.521 1.389.18.223.427.46.64.665l.187.18.027.028.03.024c.67.568.845.787.845 1.099 0 .28-.105.483-.358.683-.287.228-.743.422-1.341.565-1.19.286-2.576.29-3.301.29-.725 0-2.11-.004-3.301-.29-.598-.143-1.053-.337-1.341-.565-.253-.2-.358-.403-.358-.683 0-.312.175-.53.846-1.099l.03-.024.027-.027c.056-.056.12-.117.185-.18.214-.206.461-.443.64-.666.28-.346.522-.794.522-1.39v-.845Zm-.148 8.578a3.001 3.001 0 0 0 5.78 0 21.283 21.283 0 0 1-2.89.192c-.601 0-1.705-.024-2.89-.192Z" fill="currentColor"></path></g><defs><clipPath id="BellStroke16a"><path fill="#fff" d="M0 0h16v16H0z"></path></clipPath></defs></svg>
-                            </a>
+                            </button>
+                            <div v-if="notificationModal" ref="target" class="notification-modal">
+                                <div class="notification-modal-header">
+                                    <span class="title">Уведомления</span>
+                                    <button class="btn-kebab" type="button">
+                                        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm6 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 2a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="currentColor"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div v-if="(notifications.count == 0)" class="notification-modal-empty">
+                                    <div class="empty_box notification-empty flex-column">
+                                        <figure>
+                                            <img src="/images/icons/notification-bell.png" alt="">
+                                        </figure>
+                                        <div class="empty_box-content text-center pt-4">
+                                            <span class="content-title span-line-height-20 span-default-font-size-14 span-deafault-color" style="font-weight: 700;">Здесь будут уведомления об изменении цены и новых объявлениях по вашему поиску</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div v-else class="notification-modal-list">
+                                    <router-link  :to="{name: (item.type == 'offer' ? 'friends' : '/')}" v-for="item in notifications.items" :key="item.id" class="notification-link" :class="{'notification-unread-link' : item.is_readed == 0}">
+                                        <div class="notification-link-content">
+                                            <span class="content-title span-line-height-20 span-default-font-size-14 span-deafault-color" style="font-weight: 700;">{{item.title}}</span>
+                                            <span class="content-desc span-line-height-20 span-default-font-size-14 span-deafault-color" style="font-weight: 400;">{{item.body}}</span>
+                                            <span class="content-time span-line-height-18 span-default-font-size-12 span-color-grey">{{ getFormattedDate(item.updated_at) }}</span>
+                                        </div>
+                                    </router-link>
+                                </div>
+                            </div>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="btn-add-object">
                         <router-link :to="{name: 'newObject'}" class="btn-add">
                             <span class="_25d45facb5--text--rH6sj">+ Разместить объявление</span>
@@ -341,10 +370,14 @@
 <script>
 import Button from 'primevue/button';
 import Sidebar from 'primevue/sidebar';
-import { mapGetters } from 'vuex'
+import moment from 'moment';
+import 'moment/locale/ru'
+import { mapGetters } from 'vuex';
+import { ref } from 'vue';
+import { onClickOutside } from '@vueuse/core'
 export default {
     components: {
-        Sidebar
+        Sidebar,
     },
     data() {
         return {
@@ -356,6 +389,7 @@ export default {
             showNav: false,
             visibleLeft: false,
             DeskTopLogin: true,
+            navbarTools: true,
             rubricsMenu: [
                 {id: 1,title: "Аренда", link: "/search?object_deals=rent"},
                 {id: 2,title: "Продажа", link: "/search?object_deals=buy"},
@@ -375,6 +409,11 @@ export default {
         }
     },
     methods: {
+        close() {
+            setTimeout(() => {
+                this.notificationModal = false;
+            }, 200);
+        },
         toggleMobileNav() {
             this.mobileNav = !this.mobileNav;
         },
@@ -382,12 +421,13 @@ export default {
             this.windowWidth = window.innerWidth;
             if(this.windowWidth <= 1024){
                 this.mobileView = true;
+
+                if(this.windowWidth <= 991){
+                    this.navbarTools = false;
+                }
                 return;
             }
-            if(this.windowWidth <= 575){
-                this.DeskTopLogin = false;
-                return;
-            }
+            this.navbarTools = true;
             this.mobileView = false;
             this.showNav = false;
             this.DeskTopLogin = true;
@@ -407,20 +447,33 @@ export default {
                 console.log('error');
             });
         },
+        getFormattedDate(date) { // get only year from timestempt
+            return moment(date).fromNow()
+        },
     },
     async mounted(){
         this.$store.dispatch('getUserInfo');
+        this.$store.dispatch('getNotification');
     },
     computed: {
         ...mapGetters([
             'user',
-            'isLoaded'
+            'isLoaded',
+            'notifications'
         ]),
     },
     created() {
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen()
-    }
+    },
+    setup() {
+        const target = ref(null)
+        const notificationModal = ref(false)
+        onClickOutside(target, (event) => {
+            notificationModal.value = false
+        }) 
+        return {target, notificationModal}
+    },
 }
 </script>
 
@@ -548,7 +601,7 @@ export default {
                                 display: grid!important;
                                 grid-template-columns: repeat(4, 1fr);
                                 padding: 40px 5rem;
-                                z-index: 10;
+                                z-index: 1050;
                             }
                         }
                     }
@@ -581,6 +634,94 @@ export default {
                     .icon_svg{
                         color: currentColor;
                     }
+                }
+                .notification-modal{
+                    position: absolute;
+                    top: 135%;
+                    right: 0;
+                    z-index: 10;
+                    display: flex;
+                    flex-flow: column;
+                    box-shadow: 0 8px 16px var(--superblack_40);
+                    border: 1px solid var(--gray10_100);
+                    border-radius: 4px;
+                    background: #fff;
+                    width: 386px;
+                    height: 367px;
+
+                    .notification-modal-header{
+                        position: relative;
+                        display: flex;
+                        justify-content: space-between;
+                        border-bottom: 1px solid var(--gray10_100);
+                        padding: 20px 16px;
+
+                        .title{
+                            line-height: 22px;
+                            font-weight: 700;
+                            font-size: 16px;
+                            letter-spacing: normal;
+                            color: var(--black_100);
+                        }
+
+                        .btn-kebab{
+                            opacity: .6;
+                            cursor: pointer;
+                            border: none;
+                            background: none;
+                            width: 16px;
+                        }
+                    }
+
+                    .notification-modal-list{
+                        height: calc(100% - 62px);
+                        overflow-y: scroll;
+
+                        .notification-link{
+                            border-bottom: 1px solid var(--gray10_100);
+                            padding: 8px 16px;
+                            text-decoration: none;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            cursor: pointer;
+
+                            .notification-link-content{
+                                display: flex;
+                                flex-direction: column;
+                            }
+
+                        }
+
+                        .notification-unread-link{
+                            background: var(--primary_10);
+
+                            &:hover{
+                                background: #d9e4f4;
+                            }
+                        }
+                    }
+
+                    .notification-modal-empty{
+                        padding: 25px 16px 0 16px;
+
+                        img{
+                            width: 80px;
+                        }
+                    }
+                }   
+
+                .utilities-link-unread:after {
+                    display: block;
+                    position: absolute;
+                    top: 7px;
+                    right: 7px;
+                    border: 1px solid #fff;
+                    border-radius: 8px;
+                    background: #ff1f34;
+                    width: 8px;
+                    height: 8px;
+                    content: "";
                 }
                 
                 .btn-add-object{

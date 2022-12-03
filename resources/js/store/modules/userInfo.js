@@ -9,6 +9,7 @@ const state = {
         created_at: ""
     },
     friends: [],
+    notifications: [],
     isLoaded: false,
     loadingBtn: [false, false],
 }
@@ -25,6 +26,9 @@ const getters = {
     },
     friends: state => {
         return state.friends
+    },
+    notifications: state => {
+        return state.notifications
     }
 }
 
@@ -102,6 +106,21 @@ const actions = {
             alert(error);
         });
     },
+
+    // Notification All
+    getNotification({state, commit}){
+        const token = localStorage.getItem('token');
+        commit('isLoaded', true);
+        axios.get('/api/notification/all', {
+            headers: {
+                'Authorization': `Bearer ${token}`, 
+            }
+        })
+        .then(response => {
+            commit('setNotifications', response.data.result);
+            commit('isLoaded', false);
+        });
+    }
 }
 
 const mutations = {
@@ -110,6 +129,9 @@ const mutations = {
     },
     setFriends(state, friends){
         state.friends = friends
+    },
+    setNotifications(state, notifications){
+        state.notifications = notifications
     },
     isLoaded(state, newLoadingStatus){
         state.isLoaded = newLoadingStatus

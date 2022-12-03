@@ -186,52 +186,74 @@
                     </Dialog>
                 </form>
                 <div class="search-object-top-more-filter">
-                    <Dialog header="Фильтр" v-model:visible="objectFilter" 
-                    class="more-filter-modal user-objects-filter-modal"
-                    :breakpoints="{'960px': '75vw', '640px': '90vw'}" 
-                    :style="{width: '50vw'}" 
-                    :dismissableMask="true" 
-                    :draggable="false" 
-                    :modal="true">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-12 mb-3">
-                                <div class="field">
-                                    <label for="field-label">Регион</label>
-                                    <Dropdown @change="getDistricts()" v-model="form.region_id" :options="regions" optionLabel="name_uz" optionValue="id" placeholder="Выберите регио..." class="w-100" />
+                    <form v-if="objectFilter" @submit.prevent="searchObjects()" class="profile_form" method="POST">
+                        <Dialog header="Фильтр" v-model:visible="objectFilter" 
+                        class="more-filter-modal user-objects-filter-modal"
+                        :breakpoints="{'960px': '75vw', '640px': '90vw'}" 
+                        :style="{width: '50vw'}" 
+                        :dismissableMask="true" 
+                        :draggable="false" 
+                        :modal="true">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12 mb-3">
+                                    <div class="field">
+                                        <label for="field-label">Регион</label>
+                                        <Dropdown @change="getDistricts()" 
+                                        v-model="form.region_id" 
+                                        :options="regions" 
+                                        :loading="loading[0]"
+                                        optionLabel="name_uz" 
+                                        optionValue="id" 
+                                        placeholder="Выберите регио..." 
+                                        class="w-100" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-12 mb-3">
+                                    <div class="field">
+                                        <label for="field-label">Район</label>
+                                        <MultiSelect 
+                                        @change="getQuarters()"  
+                                        v-model="form.district_id" 
+                                        :options="districts" 
+                                        optionLabel="name_uz" 
+                                        optionValue="id" 
+                                        placeholder="Выберите регио..." 
+                                        class="w-100" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-12 mb-3">
+                                    <div class="field">
+                                        <label for="field-label">Улица</label>
+                                        <MultiSelect 
+                                        v-model="form.quarter_id" 
+                                        :options="quarters" 
+                                        optionLabel="name_uz" 
+                                        optionValue="id" 
+                                        placeholder="Выберите улица..." 
+                                        class="w-100" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-12 mb-lg-0 mb-md-0 mb-3">
+                                    <div class="field">
+                                        <label for="field-label">Тир Недвижимость</label>
+                                        <Dropdown v-model="form.object_type_id" :options="objectTypes" optionLabel="name_ru" optionValue="id" placeholder="Тип недви..." class="w-100" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-12 mb-lg-0 mb-md-0 mb-3">
+                                    <div class="field">
+                                        <label for="field-label-object_id">Номер объявления (ID)</label>
+                                        <InputText id="field-label-object_id" v-model="form.object_id"  placeholder="ID" class="w-100"/>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-12 mb-3">
-                                <div class="field">
-                                    <label for="field-label">Район</label>
-                                    <Dropdown @change="getQuarters()"  v-model="form.district_id" :options="districts" optionLabel="name_uz" optionValue="id" placeholder="Выберите регио..." class="w-100" />
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-12 mb-3">
-                                <div class="field">
-                                    <label for="field-label">Улица</label>
-                                    <Dropdown v-model="form.quarter_id" :options="quarters" optionLabel="name_uz" optionValue="id" placeholder="Выберите регио..." class="w-100" />
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-12 mb-lg-0 mb-md-0 mb-3">
-                                <div class="field">
-                                    <label for="field-label">Тир Недвижимость</label>
-                                    <Dropdown v-model="form.object_type_id" :options="objectTypes" optionLabel="name_ru" optionValue="id" placeholder="Тип недви..." class="w-100" />
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-12 mb-lg-0 mb-md-0 mb-3">
-                                <div class="field">
-                                    <label for="field-label-object_id">Номер объявления (ID)</label>
-                                    <InputText id="field-label-object_id" v-model="form.object_id"  placeholder="ID" class="w-100"/>
-                                </div>
-                            </div>
-                        </div>
-                        <template #footer>
-                            <button @click="objectFilter = !objectFilter" class="more-filter-modal-btn button-root--primary-outline-8-2-0">
-                                <span class="button-root__text-8-2-0">Закрыть</span>
-                            </button>
-                            <Button class="more-filter-modal-btn" label="Показать"/>
-                        </template>
-                    </Dialog>
+                            <template #footer>
+                                <button @click="objectFilter = !objectFilter" class="more-filter-modal-btn button-root--primary-outline-8-2-0">
+                                    <span class="button-root__text-8-2-0">Закрыть</span>
+                                </button>
+                                <Button class="more-filter-modal-btn" :loading="loading[1]" icon="pi pi-search" type="submit" label="Показать"/>
+                            </template>
+                        </Dialog>
+                    </form>
                 </div>
             </div>
         </div>
@@ -248,6 +270,7 @@ import ProgressSpinner from 'primevue/progressspinner';
 import Dialog from 'primevue/dialog';
 import Toast from 'primevue/toast';
 import Dropdown from 'primevue/dropdown';
+import MultiSelect from 'primevue/multiselect';
 import InputText from 'primevue/inputtext';
 // Moment
 import moment from 'moment'
@@ -262,6 +285,7 @@ export default {
         Dialog,
         Toast,
         Dropdown,
+        MultiSelect,
         InputText
     },
     data() {
@@ -274,7 +298,7 @@ export default {
             pageInfo: null,
             totalObject: null,
             isLoaded: false,
-            loading: [false,false,false,false],
+            loading: [false,true,false,false],
             select_all: false,
             selected: [],
             imageCount: false,
@@ -351,6 +375,9 @@ export default {
                 alert("bad");
             });
         },
+        searchObjects(){
+            this.loading[1] = true;
+        },
         allRegionQuarterDistrict(){
             this.loading[0] = true;
             axios.get('/api/allRegionQuarterDistrict')
@@ -363,7 +390,6 @@ export default {
             });
         },
         getDistricts() {
-            this.loading[1] = true;
             let region_id = this.form.region_id;
             this.form.district_id = [];
             this.form.quarter_id = [];
@@ -373,11 +399,8 @@ export default {
                     this.districts = region.districts;
                 }
             })
-
-            this.loading[1] = false;
         },
         getQuarters() {
-            this.loading[2] = true;
             this.form.quarter_id = [];
             this.quarters = [];
 
@@ -393,7 +416,6 @@ export default {
             this.quarters.sort(function (a, b) {
                 return a.name_ru.localeCompare(b.name_ru);
             });
-            this.loading[2] = false;
         },
     },
     // mounted(){
