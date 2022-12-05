@@ -123,14 +123,6 @@
                     </Dialog>
                 </form>
             </div>
-            <div class="profile_form-avatar-detail">
-                <Dialog header="Confirm" v-model:visible="userDetail" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '35vw'}" :modal="true">
-                    <div class="confirmation-content d-flex align-items-center">
-                        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-                        <span v-if="friendData">shu form qayda ishlidi? Вы уверены, что хотите удалить {{friendData}}</span>
-                    </div>
-                </Dialog>
-            </div>
         </div>
         <div class="add-friends-main-box-sidebar">
             <Sidebar v-model:visible="visibleRight" :baseZIndex="10000" position="right">
@@ -251,7 +243,7 @@ export default {
             add_friend: false,
             confirm_friend: false,
             mobile_view: false,
-            friendData: []
+            friendData: [],
         }
     },
     created() {
@@ -322,6 +314,7 @@ export default {
                 else{
                     this.$toast.add({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
                     this.visibleRight = false;
+                    this.resetUser();
                     this.$store.dispatch('getFriends');
                 }
             })
@@ -400,15 +393,6 @@ export default {
             this.sended_request = false;
             this.add_friend = false;
             this.confirm_friend = false;
-        },
-        fiendDetail(id){
-            // this.friend_id = id;
-            Array.from(this.friends).forEach(file => {
-                if(file.friendInfo.id == id){
-                    alert("ok");
-                }
-            });
-            this.userDetail = true;
         },
         checkScreen() {
             this.windowWidth = window.innerWidth;

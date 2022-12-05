@@ -7,6 +7,7 @@
                 <div class="favorites-frontend_box_block_button d-flex justify-content-end mb-4">
                     <button data-toggle="modal" data-target="#favoritesModal" v-tooltip.bottom="'Фильтр'" class="favorites-frontend_box_block_button_btn">
                         <i class="feather icon-filter"></i>
+                        <span>Фильтр</span>
                     </button>
                 </div>
                 <div class="favorites-frontend_box_block_objects">
@@ -64,14 +65,16 @@
                                         </div>
                                         <div class="item-bottom-right">
                                             <ul class="item-bottom-right-actions">
-                                                <li class="item-bottom-right-actions-list mr-2">
-                                                    <a href="#" type="button" class="item-bottom-right-edit nohover">Просмотреть</a>
-                                                </li>
-                                                <li class="item-bottom-right-actions-list mr-2">
-                                                    <a href="#" type="button" class="item-bottom-right-edit nohover">Редактировать</a>
+                                                <li class="item-bottom-right-actions-list mr-2 nohover">
+                                                    <button class="favorites-frontend_box_block_small_btn"  v-tooltip.bottom="'Удалить'">
+                                                        <i class="feather icon-trash"></i>
+                                                    </button>
                                                 </li>
                                                 <li class="item-bottom-right-actions-list nohover">
-                                                    <a href="#!" type="button" class="item-bottom-right-edit">Удалить</a>
+                                                    <button role="button" title="Позвонить автору" class="btn btn-primary --icon-left">
+                                                        <i class="feather icon-phone"></i>
+                                                        Контакты
+                                                    </button>
                                                 </li>
                                             </ul>
                                         </div>
@@ -80,7 +83,6 @@
                             </div>
                         </div>
                     </div>
-                    <favorites-list></favorites-list>
                 </div>
             </div>
         </div>
@@ -89,11 +91,9 @@
 
 <script>
 import FavoritesModal from '../../../components/account/favorites/FavoritesFilterModal.vue'
-import FavoritesList from '../../../components/account/favorites/FavoritesList.vue'
 export default {
     components: { 
         FavoritesModal,
-        FavoritesList
     },
     
 }
@@ -117,6 +117,8 @@ export default {
     position: relative;
     cursor: pointer;
     outline: none;
+    display: flex;
+    align-items: center;
     border: 1px solid transparent;
     padding: 3px 11px;
     height: 40px;
@@ -128,6 +130,26 @@ export default {
 
 .favorites-frontend_box_block_button_btn i{
     font-size: 18px;
+    color: var(--primary_100);
+    font-weight: 500;
+}
+
+.favorites-frontend_box_block_small_btn{
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    background-color: var(--secondary_button_10);
+    color: var(--primary_100);
+    vertical-align: middle;
+}
+
+
+.favorites-frontend_box_block_small_btn i{
+    font-size: 1rem;
     color: var(--primary_100);
     font-weight: 500;
 }

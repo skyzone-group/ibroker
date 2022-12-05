@@ -91,7 +91,7 @@
                             <svg data-name="IconArrowLabel" width="5" height="5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 5"><path fill="currentColor" fill-rule="evenodd" d="M3 1h1v1L1 5 0 4l3-3zm2 3V0H1v1h3v3h1z" opacity=".4"></path></svg>
                         </div>
                         <div class="number-saved">
-                            <span data-name="Badge" class="circle_num">0</span>
+                            <span v-if="(count > 0)" data-name="Badge" class="circle_num">{{count}}</span>
                         </div>
                     </router-link>
                 </li>
@@ -126,7 +126,7 @@
 
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 export default {
     props: {
         defimage: {
@@ -162,7 +162,8 @@ export default {
     computed: {
         ...mapGetters([
             'user',
-            'isLoaded'
+            'isLoaded',
+            'count'
         ]),
     },
 }

@@ -8,7 +8,7 @@
                             <div class="container_fluid">
                                 <div class="header-main-content-top-main">
                                     <div class="realtor-header">
-                                        <div class="col-lg-8 col-12">
+                                        <div class="col-lg-8 col-12 pl-0 pr-0">
                                             <div class="realtor__info-main">
                                                 <div class="realtor__info-main_img">
                                                     <div class="realtor__info-main_img_photo">
@@ -664,9 +664,9 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="objects-paginator">
-                                                    <Paginator :rows="10" 
-                                                    template="PrevPageLink PageLinks NextPageLink"
-                                                    :totalRecords="totalRecords"></Paginator>
+                                                    <button class="object_single_page_btn_style nohover">
+                                                        <span class="button-root__text-8-1-3">Показать больше</span>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>

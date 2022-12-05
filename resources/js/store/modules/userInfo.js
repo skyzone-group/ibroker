@@ -12,6 +12,7 @@ const state = {
     notifications: [],
     isLoaded: false,
     loadingBtn: [false, false],
+    count: null,
 }
 
 const getters = {
@@ -29,6 +30,9 @@ const getters = {
     },
     notifications: state => {
         return state.notifications
+    },
+    count: state => {
+        return state.count
     }
 }
 
@@ -118,6 +122,7 @@ const actions = {
         })
         .then(response => {
             commit('setNotifications', response.data.result);
+            commit('setCount', response.data.result.count);
             commit('isLoaded', false);
         });
     }
@@ -139,6 +144,9 @@ const mutations = {
     loadingBtn(state, loadingBtn){
         state.isLoaded = loadingBtn
     },
+    setCount(state, countData){
+        state.count = countData
+    }
 }
 
 export default {

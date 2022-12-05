@@ -576,6 +576,7 @@ export default {
     },
     mounted(){
         this.$store.dispatch('getUserInfo');
+        // document.title = "Edit Case " + this.$route.params.id
     },
     computed: {
         ...mapGetters([

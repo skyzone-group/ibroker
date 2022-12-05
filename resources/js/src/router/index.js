@@ -18,6 +18,7 @@ import MainView from '../views/account/UserMainView.vue'
 import UserAccount from '../views/account/UserAccount.vue'
 import UserFavorites from '../views/account/UserFavorites.vue'
 import UserComplaints from '../views/account/UserComplaints.vue'
+import UserNotifications from '../views/account/UserNotifications.vue'
 import UserAnnouncements from '../views/account/UserAnnouncements.vue'
 import TestUpload from '../../components/TestUpload.vue'
 
@@ -41,9 +42,6 @@ import AddUser from '../views/account/UserFriends.vue'
 // Object Single Page Details
 import ObjectSinglePage from '../views/ObjectSinglePage.vue'
 
-// Notifications
-import Notifications from '../../src/layouts/Notifications.vue'
-import Friendship from '../views/notifications/Friendship.vue'
 const routes = [
     {
         path: '/',
@@ -103,9 +101,7 @@ const routes = [
                 components: {
                     main: ShowObject,
                 },
-                meta: {
-                    reload: true,
-                },
+                meta: (router) => ({ title: 'Team Member' + router.params.type_deal}) 
             },
             {
                 path: '/agent/:id',
@@ -186,14 +182,16 @@ const routes = [
                 name: 'myaccount',
                 components: {
                     content: UserAccount,
-                }
+                },
+                meta: { title: 'Профиль' }
             },
             {
                 path: 'user/favorites',
                 name: 'userfavorites',
                 components: {
                     content: UserFavorites,
-                }
+                },
+                meta: { title: 'Избранное' }
             },
             {
                 path: 'user/list/objects',
@@ -201,6 +199,19 @@ const routes = [
                 components: {
                     content: ObjectMain,
                 },
+                meta: { 
+                    title: 'Мои объявления',
+                    metaTags: [
+                        {
+                        name: 'description',
+                        content: 'The home page of our example app.'
+                        },
+                        {
+                        property: 'og:description',
+                        content: 'The home page of our example app.'
+                        }
+                    ]
+                }
             },
             {
                 path: 'my-complaints',
@@ -213,8 +224,9 @@ const routes = [
                 path: 'notifications',
                 name: 'notifications',
                 components: {
-                    content: Notifications,
+                    content: UserNotifications,
                 },
+                meta: { title: 'Уведомления' }
             },
             {
                 path: 'users',
@@ -222,6 +234,7 @@ const routes = [
                 components: {
                     content: AddUser,
                 },
+                meta: { title: 'Мои друзъя' }
             },
         ]
     },
@@ -241,5 +254,25 @@ const router = createRouter({
         })
     },
 })
+
+router.afterEach((to, from) => {
+
+    document.title = to.meta && to.meta.title ? to.meta.title : 'iBroker - Умный поиск недвижимость в Ташкенте'; // You can add a default here
+
+    Array.from(document.querySelectorAll('[data-vue-meta]')).map(el => el.parentNode.removeChild(el));
+
+    if (to.meta && to.meta.metaTags) {
+        to.meta.metaTags.map(tagDef => {
+            let tag = document.createElement('meta');
+
+            Object.keys(tagDef).forEach(key => tag.setAttribute(key, tagDef[key]));
+
+            tag.setAttribute('data-vue-meta', '');
+
+            return tag;
+        }).forEach(tag => document.head.appendChild(tag));
+    }
+});
+
 
 export default router

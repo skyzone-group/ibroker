@@ -280,7 +280,7 @@
                                         </svg>
                                     </button>
                                 </div>
-                                <div v-if="(notifications.count == 0)" class="notification-modal-empty">
+                                <div v-if="((notifications.length == 0) || count == 0)" class="notification-modal-empty">
                                     <div class="empty_box notification-empty flex-column">
                                         <figure>
                                             <img src="/images/icons/notification-bell.png" alt="">
@@ -459,7 +459,8 @@ export default {
         ...mapGetters([
             'user',
             'isLoaded',
-            'notifications'
+            'notifications',
+            'count'
         ]),
     },
     created() {

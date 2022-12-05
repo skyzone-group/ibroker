@@ -22,9 +22,6 @@
         </div>
         <div class="filter_card">
             <div class="filter_panel">
-                <div class="object_filtr">
-                    <object-modal></object-modal>
-                </div>
                 <div class="fixed_panel">
                     <div class="fixed_panel_div">
                         <div class="top_bar">
@@ -35,8 +32,10 @@
                                     </div>
                                 </div> -->
                                 <span class="mr-2 d-lg-block d-md-block d-sm-block d-none">{{totalObject}} объявление</span>
+                            </div>
+                            <div class="top_bar_btns d-flex">
                                 <div class="dropdown-avatar">
-                                    <a class=" nav-link dropdown-user-link avatar_drop align-items-center d-flex" href="#" data-toggle="dropdown">
+                                    <a class=" nav-link dropdown-user-link avatar_drop align-items-center d-flex nohover" href="#" data-toggle="dropdown">
                                         <svg class="object_fil mr-2" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.207 1.293 4.5.586l-.707.707-3.5 3.5 1.414 1.414L3.5 4.414V15h2V4.414l1.793 1.793 1.414-1.414-3.5-3.5Zm7 13.414-.707.707-.707-.707-3.5-3.5 1.414-1.414 1.793 1.793V1h2v10.586l1.793-1.793 1.414 1.414-3.5 3.5Z" fill="currentColor"></path></svg>
                                         Сортировать
                                     </a>
@@ -49,22 +48,12 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="filtr_block">
-                                    <button @click="objectFilter = true" class="nav-link align-items-center d-flex" type="button">
+                                <div class="filtr_block ml-2">
+                                    <button @click="objectFilter = true" class="nav-link align-items-center d-flex nohover" type="button">
                                         <i class="feather icon-filter object_fil mr-2"></i>
                                         Фильтр
                                     </button>
                                 </div>
-                            </div>
-                            <div class="top_bar_btns d-lg-block d-md-block d-sm-block d-none">
-                                <!-- <button v-show="printBtn">
-                                    <svg class="object_fil" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 0a1 1 0 0 0-1 1v2h10V1a1 1 0 0 0-1-1H4ZM0 6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v7h-3v3H3v-3H0V6Zm11 4H5v4h6v-4ZM4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" fill="currentColor"></path></svg>
-                                    <span class="top_bar_btns_txt">Печатать</span>
-                                </button> -->
-                                <!-- <button>
-                                    <svg class="object_fil" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5 0a1 1 0 0 0-1 1v2H1v2h14V3h-3V1a1 1 0 0 0-1-1H5Zm5 2H6v1h4V2ZM3 7h10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z" fill="currentColor"></path></svg>
-                                    <span class="top_bar_btns_txt">Удалить</span>
-                                </button> -->
                             </div>
                         </div>
                     </div>
@@ -262,7 +251,6 @@
 
 
 <script>
-import ObjectModal from '../../../components/objects/ObjectFiltrModal.vue'
 import Checkbox from 'primevue/checkbox';
 import Button from 'primevue/button';
 import Paginator from 'primevue/paginator';
@@ -277,7 +265,6 @@ import moment from 'moment'
 import { mapGetters } from 'vuex'
 export default {
     components: {
-        ObjectModal,
         Checkbox,
         Button,
         Paginator,
@@ -524,21 +511,12 @@ export default {
     font-weight: 700;
 }
 
-.top_bar_btns button{
-    margin-left: 2px;
-    background-color: transparent;
-    color: var(--primary_100);
-    padding: 3px 11px;
-    height: 28px;
+.top_bar_btns .nav-link{
+    border: 1px solid var(--gray10_100);
     border-radius: 4px;
-    white-space: nowrap;
-    display: inline-flex;
-    position: relative;
-    cursor: pointer;
-    outline: none;
-    border: 1px solid transparent;
-    justify-content: center;
-    align-items: center;
+    background: #fff;
+    font-weight: 600;
+    height: 40px;
 }
 
 .objects-main-div_nav_ul_li .filters-tabs-item{
