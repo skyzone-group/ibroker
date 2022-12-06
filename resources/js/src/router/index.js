@@ -3,7 +3,6 @@ import {createRouter, createWebHistory} from 'vue-router'
 // Main Views
 import Main from '../../src/layouts/Main.vue'
 import Admin from '../../src/layouts/Admin.vue'
-import AgentSite from '../../src/layouts/AgentSite.vue'
 // Web Pages
 import IndexPage from '../../src/views/HomeIndex.vue'
 import CommercialPage from '../../src/views/Commercial.vue'
@@ -26,6 +25,11 @@ import TestUpload from '../../components/TestUpload.vue'
 import Agents from '../views/partners/AgentsList.vue'
 import Realtors from '../views/partners/RealtorsList.vue'
 import Zastroyshiki from '../views/partners/DeveloperList.vue'
+
+
+// Agent Pages
+import HomePage from '../views/agent/HomePage.vue'
+import ShowObjectAgent from '../views/agent/ShowObject.vue'
 
 // Objects Pages
 import ObjectMain from '../views/account/UserObjects.vue'
@@ -241,8 +245,13 @@ const routes = [
     {
         path: '/agent-single',
         name: 'agentSingle',
-        component: AgentSite,
+        component: HomePage,
     },
+    {
+        path: '/agent-single/listing_detail',
+        name: 'agentObject',
+        component: ShowObjectAgent,
+    }
 ]
 
 const router = createRouter({
