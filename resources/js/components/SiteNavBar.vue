@@ -444,7 +444,10 @@ export default {
                 window.location.href = '/index';
             })
             .catch(function (error) {
-                console.log('error');
+                if(error.response.status == 401) {
+                    localStorage.removeItem('token');
+                    window.location.href = '/index';
+                }
             });
         },
         getFormattedDate(date) { // get only year from timestempt

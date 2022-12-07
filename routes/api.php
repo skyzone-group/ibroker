@@ -33,7 +33,6 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/reset-password-request', [AuthController::class, 'resetPasswordRequest']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
-Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::post('/upload_image', [TempImagesController::class, 'uploadImage']);
 Route::post('/rotate_image', [TempImagesController::class, 'rotateImage']);
@@ -60,7 +59,9 @@ Route::get('/agent/info/{agent_username}', [AgentController::class, 'getInfo']);
 
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
-    
+    # Logout
+    Route::post('/logout', [AuthController::class, 'logout']);
+
     # User Info
     Route::post('/user/info', [UserController::class, 'updateUserInfo']);
     Route::get('/user', [UserController::class, 'userInfo']);
