@@ -3,6 +3,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 // Main Views
 import Main from '../../src/layouts/Main.vue'
 import Admin from '../../src/layouts/Admin.vue'
+import Agent from '../../src/layouts/Agent.vue'
 // Web Pages
 import IndexPage from '../../src/views/HomeIndex.vue'
 import CommercialPage from '../../src/views/Commercial.vue'
@@ -242,8 +243,22 @@ const routes = [
             },
         ]
     },
+    // {
+    //     path: '/agent/',
+    //     name: 'agentIndex',
+    //     component: Agent,
+    //     children: [
+    //         {
+    //             path: 'index',
+    //             name: 'agentHome',
+    //             components: {
+    //                 agent: HomePage,
+    //             },
+    //         },
+    //     ]
+    // },
     {
-        path: '/agent/:id',
+        path: '/rieltor/:id',
         name: 'agentHome',
         component: HomePage,
     },

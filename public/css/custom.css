@@ -153,6 +153,9 @@ a:not(.nohover):hover{
     width: 100%;
 }
 
+.container_fluid.\--static {
+    max-width: 1248px;
+}
 
 
 .header__nav-container {

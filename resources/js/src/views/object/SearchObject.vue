@@ -573,7 +573,7 @@
                                             <div class="object-body-content">
                                                 <div class="object-details">
                                                     <div v-if="mobilePrice == true" class="object-price-list d-flex align-items-center">
-                                                        <p class="object-price-list-p">{{ vueNumberFormat(object.price, {}) }}</p>
+                                                        <p class="object-price-list-p">{{ vueNumberFormat(object.price, {}) }} y.e</p>
                                                         <p class="object-price-list-desc ml-2">264 705$/м²</p>
                                                     </div>
                                                     <div class="object-details-item object-details-header">
@@ -600,7 +600,7 @@
                                                 </div>
                                                 <div v-if="!mobilePrice" class="object-price">
                                                     <div class="object-price-list">
-                                                        <p class="object-price-list-p">{{ vueNumberFormat(object.price, {}) }}</p>
+                                                        <p class="object-price-list-p">{{ vueNumberFormat(object.price, {}) }} y.e</p>
                                                         <p class="object-price-list-desc">264 705$/м²</p>
                                                     </div>
                                                 </div>

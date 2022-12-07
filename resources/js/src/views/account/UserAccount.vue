@@ -3,172 +3,234 @@
         <div v-if="isLoaded" class="loader-main-box">
             <ProgressSpinner style="width:80px; height:80px" strokeWidth="3" fill="var(--surface-ground)" animationDuration="1s" />
         </div>
-        <div  v-if="!isLoaded" class="user_account_main_block">
-            <div class="user_account_main_block-item">
-                <div>
-                    <div class="user_account_main_block-item-card">
-                        <div class="user_account_main_block-item-card_bottom">
-                            <div class="user_account_main_block-item-card_bottom_info">
-                                <form @submit.prevent="saveData()" class="profile_form" method="POST" :model="form">
-                                    <!-- Avatar -->
-                                    <div class="profile_form_avatar">
-                                        <div class="user_account_main_block-item-card-header">
-                                            <div class="avatar">
-                                                <img v-if="!user.image" :src="src" alt="user_avatar" class="img-full" style="object-fit: cover;">
-                                                <img v-if="user.image" :src="`/file/${user.image}`" alt="user_avatar" class="img-full" style="object-fit: cover;">
+        <div  v-if="!isLoaded" class="user_account_main_box w-100">
+            <ul class="nav nav-tabs mb-4" role="tablist">
+                <li class="nav-item">
+                    <button class="nav-link d-flex align-items-center" id="information-tab" @click="(activeTab = 0)" :class="{'active' : activeTab == 0}">
+                        <i class="feather icon-user mr-2"></i>
+                        <span class="d-none d-sm-block">Личные данные</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link d-flex align-items-center" id="password-tab" @click="(activeTab = 1)" :class="{'active' : activeTab == 1}">
+                        <i class="feather icon-lock mr-2"></i>
+                        <span class="d-none d-sm-block">Пароль</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link d-flex align-items-center" id="social-tab" @click="(activeTab = 2)" :class="{'active' : activeTab == 2}">
+                        <i class="feather icon-share-2 mr-2"></i>
+                        <span class="d-none d-sm-block">Социальные сети</span>
+                    </button>
+                </li>
+            </ul>
+            <div class="user_account_main_block">
+                <div v-if="(activeTab == 0)" class="user_account_main_block-item">
+                    <div>
+                        <div class="user_account_main_block-item-card">
+                            <div class="user_account_main_block-item-card_bottom">
+                                <div class="user_account_main_block-item-card_bottom_info">
+                                    <form @submit.prevent="saveData()" class="profile_form" method="POST" :model="form">
+                                        <!-- Avatar -->
+                                        <div class="profile_form_avatar">
+                                            <div class="user_account_main_block-item-card-header">
+                                                <div class="avatar">
+                                                    <img v-if="!user.image" :src="src" alt="user_avatar" class="img-full" style="object-fit: cover;">
+                                                    <img v-if="user.image" :src="`/file/${user.image}`" alt="user_avatar" class="img-full" style="object-fit: cover;">
+                                                </div>
+                                                <div class="user_info">
+                                                    <p class="mb-0 user_info-p">{{ user.firstname && user.firstname ? (`${user.firstname} ${user.lastname}`) : `User ${user.id}`}}</p>
+                                                    <span class="user_info_span">{{ getFormattedDate(user.created_at) }} год</span>
+                                                </div>
                                             </div>
-                                            <div class="user_info">
-                                                <p class="mb-0 user_info-p">{{ user.firstname && user.firstname ? (`${user.firstname} ${user.lastname}`) : `User ${user.id}`}}</p>
-                                                <span class="user_info_span">{{ getFormattedDate(user.created_at) }} год</span>
+                                            <div class="profile_form_btns">
+                                                <input type="file" id="primary__avatar"  class="d-none" name="user_image" accept="image/png, image/jpeg, image/pjpeg"  @change="onInputChange"> 
+                                                <label  class="avatar__button p-button p-component mr-2 p-button-rounded" for="primary__avatar">
+                                                    {{ user.image ? 'Обновить фото' : 'Сменить Аватар' }}
+                                                </label>
+                                                <Button @click="openBasic" label="Удалить фото" class="p-button-outlined p-button-danger p-button-rounded ml-2" />
                                             </div>
                                         </div>
-                                        <div class="profile_form_btns">
-                                            <input type="file" id="primary__avatar"  class="d-none" name="user_image" accept="image/png, image/jpeg, image/pjpeg"  @change="onInputChange"> 
-                                            <label  class="avatar__button p-button p-component mr-2 p-button-rounded" for="primary__avatar">
-                                                {{ user.image ? 'Обновить фото' : 'Сменить Аватар' }}
+                                        <!-- Avatar -->
+                                        <div class="field mt-3">
+                                            <label for="username1">Имя</label>
+                                            <InputText v-if="!changeFullname && user.firstname" id="username1" type="text" class="w-100" :value="user.firstname" :disabled="user.firstname"/>
+                                            <InputText v-if="changeFullname || !user.firstname" id="username1" v-model="form.firstname" type="text" class="w-100" required/>
+                                        </div>
+                                        <div class="field mt-3">
+                                            <label for="username1">Фамилия</label>
+                                            <InputText v-if="!changeFullname && user.lastname" id="lastname" type="text" class="w-100" :value="user.lastname" :disabled="user.lastname"/>
+                                            <InputText v-if="changeFullname || !user.lastname" id="lastname" v-model="form.lastname" type="text" class="w-100" required/>
+                                        </div>
+                                        <!-- <div class="field mt-3">
+                                            <label for="dateformat">Дата рождения</label>
+                                            <Calendar id="dateformat" v-model="databirth"  dateFormat="mm-dd-yy" class="w-100" />
+                                        </div> -->
+                                        <div class="btn-save mt-3">
+                                            <Button label="Сохранить" type="submit" class="p-button-rounded" />
+                                            <Button label="Изменить" @click="changeFullname = true" type="button" class="p-button-rounded p-button-danger ml-2" :disabled="!user.firstname || !user.lastname" />
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="(activeTab == 0)" class="user_account_main_block-item">
+                    <div>
+                        <div class="widget_phone_email">
+                            <div class="widget_phone">
+                                <div class="phone-div">
+                                    <div class="phone-div_block">
+                                        <div class="phone-div_block_content">
+                                            <label class="phone-div_block_content_label">
+                                                <span class="phone-div_block_content_label_span">
+                                                    Номер телефона
+                                                    <!-- <span class="phone-div_block_content_label_span_notification span_warning" :class="changeNumber === true ? 'span_warning' : user.phone ? 'span_success' : ''">
+                                                        {{ changeNumber === true ? 'Не подтверждён' : user.phone ? 'Номер подтверждён' : '' }}
+                                                    </span> -->
+                                                </span>
+                                                <div v-show="FormPhone" class="alert alert-danger mb-0">
+                                                    <span class="error-msg-phone" id="phone_error"></span>
+                                                </div>
                                             </label>
-                                            <Button @click="openBasic" label="Удалить фото" class="p-button-outlined p-button-danger p-button-rounded ml-2" />
+                                        </div>
+                                        <div class="phone-div_block_input mt-3">
+                                            <label v-if="!changeNumber" class="phone-div_block_input_label">
+                                                <InputText type="text" class="w-100" :value="`+${user.phone}`" :disabled="user.phone" />
+                                                <button  class="phone-form-btn mt-2" type="button" @click="changeNumber = true">Изменить номер телефона</button>
+                                            </label>
+                                            <label v-if="!sendVerifCode && changeNumber" class="phone-div_block_input_label">
+                                                <form @submit.prevent="getVerifCode()" method="POST">
+                                                    <InputText type="text" v-model="phone" class="w-100" placeholder="998901234567" required/>
+                                                    <div class="d-flex mt-2">
+                                                        <button type="submit" class="phone-form-btn">Отправить код</button>
+                                                        <button type="button" @click="changeNumber = false" class="phone-form-btn ml-4" style="color: #D32F2F;">Отмена</button>
+                                                        {{ exampleCode }}
+                                                    </div>
+                                                </form>
+                                            </label>
+                                            <label v-if="sendVerifCode" class="phone-div_block_input_label">
+                                                <form @submit.prevent="saveData()" method="POST" :model="form">
+                                                    <span style="color: red">[ Your code is {{ this.exampleCode }} ]</span>
+                                                    <InputText type="text" v-model="form.code" class="w-100" />
+                                                    <div class="d-flex mt-2">
+                                                        <button type="submit" class="phone-form-btn">Отправить</button>
+                                                    </div>
+                                                </form>
+                                            </label>
                                         </div>
                                     </div>
-                                    <!-- Avatar -->
-                                    <div class="field mt-3">
-                                        <label for="username1">Имя</label>
-                                        <InputText v-if="!changeFullname && user.firstname" id="username1" type="text" class="w-100" :value="user.firstname" :disabled="user.firstname"/>
-                                        <InputText v-if="changeFullname || !user.firstname" id="username1" v-model="form.firstname" type="text" class="w-100" required/>
+                                </div>
+                            </div>
+                            <div class="widget_email">
+                                <form name="EmailForm"  @submit.prevent="saveData()" method="POST" :model="form">
+                                    <div class="widget_email-div">
+                                        <div class="widget_email-div_txt d-flex align-items-center">
+                                            Электронная почта
+                                            <svg v-if="!changeEmail && user.email" class="ml-2" data-name="IconCheck" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 10"><path fill="currentColor" fill-rule="evenodd" d="M5.44 9.5h-.01a1.03 1.03 0 0 1-.727-.31L.293 4.68a1.03 1.03 0 0 1 1.473-1.44l3.686 3.77L12.247.297a1.03 1.03 0 1 1 1.447 1.464L6.164 9.2c-.194.19-.454.298-.725.298"></path></svg>
+                                        </div>
+                                        <div class="email-div_block_input mb-3">
+                                            <label class="email-div_block_input_label">
+                                                <InputText v-if="changeEmail || !user.email" type="email" v-model="form.email" class="w-100"  required/>
+                                            </label>
+                                        </div>
+                                        <p v-if="!changeEmail" class="widget_email-div__email">{{user.email}}</p>
+                                        <button v-if="!changeEmail && user.email" type="button" @click="changeEmail = true" class="phone-form-btn">Изменить электронную почту</button>
+                                        <button v-if="changeEmail || !user.email" type="submit" class="phone-form-btn">Сохранить электронную почту</button>
                                     </div>
-                                    <div class="field mt-3">
-                                        <label for="username1">Фамилия</label>
-                                        <InputText v-if="!changeFullname && user.lastname" id="lastname" type="text" class="w-100" :value="user.lastname" :disabled="user.lastname"/>
-                                        <InputText v-if="changeFullname || !user.lastname" id="lastname" v-model="form.lastname" type="text" class="w-100" required/>
-                                    </div>
-                                    <!-- <div class="field mt-3">
-                                        <label for="dateformat">Дата рождения</label>
-                                        <Calendar id="dateformat" v-model="databirth"  dateFormat="mm-dd-yy" class="w-100" />
-                                    </div> -->
-                                    <div class="btn-save mt-3">
-                                        <Button label="Сохранить" type="submit" class="p-button-rounded" />
-                                        <Button label="Изменить" @click="changeFullname = true" type="button" class="p-button-rounded p-button-danger ml-2" :disabled="!user.firstname || !user.lastname" />
+                                </form>
+                            </div>
+                            <div class="widget_nickname">
+                                <form name="EmailForm"  @submit.prevent="saveData()" method="POST" :model="form">
+                                    <div class="widget_email-div">
+                                        <div class="widget_email-div_txt d-flex align-items-center">
+                                            Ваш усернаме
+                                            <svg v-if="user.username" class="ml-2" data-name="IconCheck" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 10"><path fill="currentColor" fill-rule="evenodd" d="M5.44 9.5h-.01a1.03 1.03 0 0 1-.727-.31L.293 4.68a1.03 1.03 0 0 1 1.473-1.44l3.686 3.77L12.247.297a1.03 1.03 0 1 1 1.447 1.464L6.164 9.2c-.194.19-.454.298-.725.298"></path></svg>
+                                        </div>
+                                        <div v-show="FormValidate[1]" class="alert alert-danger">
+                                            <span class="error-msg-password" id="password_error"></span>
+                                        </div>
+                                        <div class="email-div_block_input mb-3">
+                                            <label v-if="!user.username" class="email-div_block_input_label">
+                                                <InputText type="text" v-model="form.username" class="w-100" v-tooltip.bottom="'Please be careful! You can enter username only once.You cannot change username'" placeholder="Напишите текст без пробелов" required />
+                                            </label>
+                                            <router-link v-else target="_blank" :to="{name: 'agentHome', params: { id: user.username }}" class="widget_email-div__email">{{`http://ibroker.skybox.uz/${user.username}`}}</router-link>
+                                            <span class="d-lg-none d-md-none d-sm-none d-block" style="font-style: italic; color: #EA5455!important;">Please be careful! You can enter username only once.You cannot change username</span>
+                                        </div>
+                                        <button v-if="!user.username" type="submit" class="phone-form-btn">Сохранить</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="user_account_main_block-item">
-                <div>
-                    <div class="widget_phone_email">
-                        <div class="widget_phone">
-                            <div class="phone-div">
-                                <div class="phone-div_block">
-                                    <div class="phone-div_block_content">
-                                        <label class="phone-div_block_content_label">
-                                            <span class="phone-div_block_content_label_span">
-                                                Номер телефона
-                                                <!-- <span class="phone-div_block_content_label_span_notification span_warning" :class="changeNumber === true ? 'span_warning' : user.phone ? 'span_success' : ''">
-                                                    {{ changeNumber === true ? 'Не подтверждён' : user.phone ? 'Номер подтверждён' : '' }}
-                                                </span> -->
-                                            </span>
-                                            <div v-show="FormPhone" class="alert alert-danger mb-0">
-                                                <span class="error-msg-phone" id="phone_error"></span>
-                                            </div>
-                                        </label>
-                                    </div>
-                                    <div class="phone-div_block_input mt-3">
-                                        <label v-if="!changeNumber" class="phone-div_block_input_label">
-                                            <InputText type="text" class="w-100" :value="`+${user.phone}`" :disabled="user.phone" />
-                                            <button  class="phone-form-btn mt-2" type="button" @click="changeNumber = true">Изменить номер телефона</button>
-                                        </label>
-                                        <label v-if="!sendVerifCode && changeNumber" class="phone-div_block_input_label">
-                                            <form @submit.prevent="getVerifCode()" method="POST">
-                                                <InputText type="text" v-model="phone" class="w-100" placeholder="998901234567" required/>
-                                                <div class="d-flex mt-2">
-                                                    <button type="submit" class="phone-form-btn">Отправить код</button>
-                                                    <button type="button" @click="changeNumber = false" class="phone-form-btn ml-4" style="color: #D32F2F;">Отмена</button>
-                                                    {{ exampleCode }}
-                                                </div>
-                                            </form>
-                                        </label>
-                                        <label v-if="sendVerifCode" class="phone-div_block_input_label">
-                                            <form @submit.prevent="saveData()" method="POST" :model="form">
-                                                <span style="color: red">[ Your code is {{ this.exampleCode }} ]</span>
-                                                <InputText type="text" v-model="form.code" class="w-100" />
-                                                <div class="d-flex mt-2">
-                                                    <button type="submit" class="phone-form-btn">Отправить</button>
-                                                </div>
-                                            </form>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="widget_email">
-                            <form name="EmailForm"  @submit.prevent="saveData()" method="POST" :model="form">
-                                <div class="widget_email-div">
-                                    <div class="widget_email-div_txt d-flex align-items-center">
-                                        Электронная почта
-                                        <svg v-if="!changeEmail && user.email" class="ml-2" data-name="IconCheck" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 10"><path fill="currentColor" fill-rule="evenodd" d="M5.44 9.5h-.01a1.03 1.03 0 0 1-.727-.31L.293 4.68a1.03 1.03 0 0 1 1.473-1.44l3.686 3.77L12.247.297a1.03 1.03 0 1 1 1.447 1.464L6.164 9.2c-.194.19-.454.298-.725.298"></path></svg>
-                                    </div>
-                                    <div class="email-div_block_input mb-3">
-                                        <label class="email-div_block_input_label">
-                                            <InputText v-if="changeEmail || !user.email" type="email" v-model="form.email" class="w-100"  required/>
-                                        </label>
-                                    </div>
-                                    <p v-if="!changeEmail" class="widget_email-div__email">{{user.email}}</p>
-                                    <button v-if="!changeEmail && user.email" type="button" @click="changeEmail = true" class="phone-form-btn">Изменить электронную почту</button>
-                                    <button v-if="changeEmail || !user.email" type="submit" class="phone-form-btn">Сохранить электронную почту</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="widget_nickname">
-                            <form name="EmailForm"  @submit.prevent="saveData()" method="POST" :model="form">
-                                <div class="widget_email-div">
-                                    <div class="widget_email-div_txt d-flex align-items-center">
-                                        Ваш усернаме
-                                        <svg v-if="user.username" class="ml-2" data-name="IconCheck" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 10"><path fill="currentColor" fill-rule="evenodd" d="M5.44 9.5h-.01a1.03 1.03 0 0 1-.727-.31L.293 4.68a1.03 1.03 0 0 1 1.473-1.44l3.686 3.77L12.247.297a1.03 1.03 0 1 1 1.447 1.464L6.164 9.2c-.194.19-.454.298-.725.298"></path></svg>
-                                    </div>
-                                    <div v-show="FormValidate[1]" class="alert alert-danger">
-                                        <span class="error-msg-password" id="password_error"></span>
-                                    </div>
-                                    <div class="email-div_block_input mb-3">
-                                        <label v-if="!user.username" class="email-div_block_input_label">
-                                            <InputText type="text" v-model="form.username" class="w-100" v-tooltip.bottom="'Please be careful! You can enter username only once.You cannot change username'" placeholder="Напишите текст без пробелов" required />
-                                        </label>
-                                        <router-link v-else :to="{name: 'agentHome', params: { id: user.username }}" class="widget_email-div__email">{{`http://ibroker.skybox.uz/${user.username}`}}</router-link>
-                                        <span class="d-lg-none d-md-none d-sm-none d-block" style="font-style: italic; color: #EA5455!important;">Please be careful! You can enter username only once.You cannot change username</span>
-                                    </div>
-                                    <button v-if="!user.username" type="submit" class="phone-form-btn">Сохранить</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="change_password">
-                    <Accordion :activeIndex="1">
-                        <AccordionTab>
-                            <template #header>
+                <div v-else-if="(activeTab == 1)" class="user_account_main_block-item">
+                    <div class="user_account_main_block-item-card password_box">
+                        <div class="change_password-box">
+                            <div class="change_password">
                                 <div class="title d-flex align-items-center">
                                     <span>Сменить пароль</span>
                                 </div>
-                            </template>
-                            <div class="change_password_div">
-                                <div v-show="FormValidate[1]" class="alert alert-danger">
-                                    <span class="error-msg-password" id="password_error"></span>
+                                <div class="change_password_div">
+                                    <div v-show="FormValidate[1]" class="alert alert-danger">
+                                        <span class="error-msg-password" id="password_error"></span>
+                                    </div>
+                                    <form @submit.prevent="saveData()" method="POST" :model="form">
+                                        <div class="change_password_div_items">
+                                            <Password v-model="form.password" :feedback="false" toggleMask placeholder="Старый пароль" required></Password>
+                                        </div>
+                                        <div class="change_password_div_items mb-3">
+                                            <Password v-model="form.new_password" toggleMask placeholder="Новый пароль" required></Password>
+                                        </div>
+                                        <div class="change_password_div_btn d-flex justify-content-end">
+                                            <Button type="submit" label="Сохранить" class="p-button-rounded" />
+                                        </div>
+                                    </form>
                                 </div>
-                                <form @submit.prevent="saveData()" method="POST" :model="form">
-                                    <div class="change_password_div_items">
-                                        <Password v-model="form.password" :feedback="false" toggleMask placeholder="Старый пароль" required></Password>
-                                    </div>
-                                    <div class="change_password_div_items mb-3">
-                                        <Password v-model="form.new_password" toggleMask placeholder="Новый пароль" required></Password>
-                                    </div>
-                                    <div class="change_password_div_btn">
-                                        <Button type="submit" label="Сохранить" class="p-button-rounded" />
-                                    </div>
-                                </form>
                             </div>
-                        </AccordionTab>
-                    </Accordion>
+                        </div>
+                    </div>
+                </div>
+                <div v-else class="user_account_main_block-item">
+                    <div class="user_account_main_block-item-card social_box">
+                        <div class="social_box-block">
+                            <div class="title d-flex align-items-center">
+                                    <span>Социальные сети</span>
+                                </div>
+                            <form>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <fieldset>
+                                            <label>Facebook</label>
+                                            <div class="input-group mb-2">
+                                                <div class="p-inputgroup">
+                                                    <span class="p-inputgroup-addon">
+                                                        <i class="pi pi-facebook"></i>
+                                                    </span>
+                                                    <InputText placeholder="Facebook" />
+                                                </div>
+                                            </div>
+                                            <label>Instagram</label>
+                                            <div class="input-group">
+                                                <div class="p-inputgroup">
+                                                    <span class="p-inputgroup-addon">
+                                                        <i class="pi pi-instagram"></i>
+                                                    </span>
+                                                    <InputText placeholder="Instagram" />
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-12 mt-2">
+                                        <div class="change_password_div_btn d-flex justify-content-end">
+                                            <Button type="submit" label="Сохранить" class="p-button-rounded" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="user-info-succes-box">
@@ -200,7 +262,8 @@ import AccordionTab from 'primevue/accordiontab';
 import Password from 'primevue/password';
 import Dialog from 'primevue/dialog';
 import defaultImage from "../../../../../public/images/avatar-dafault.png"
-
+import TabView from 'primevue/tabview';
+import TabPanel from 'primevue/tabpanel';
 import ProgressSpinner from 'primevue/progressspinner';
 import { mapGetters } from 'vuex'
 // Moment
@@ -216,7 +279,9 @@ export default {
         AccordionTab,
         Password,
         Dialog,
-        ProgressSpinner
+        ProgressSpinner,
+        TabView,
+        TabPanel
     },
     props: {
         defimage: {
@@ -251,6 +316,7 @@ export default {
             FormValidate: [false,false],
             FormPhone: false,
             displayBasic: false,
+            activeTab: 0
         }
     },
     methods: {
@@ -423,6 +489,34 @@ export default {
 
 
 <style>
+
+.user_account_main_box .nav.nav-tabs .nav-item {
+    position: relative;
+    margin-bottom: -1px;
+}
+
+.user_account_main_box .nav.nav-tabs .nav-item .nav-link {
+    color: #000;
+    font-size: 16px;
+    border: none;
+    min-width: auto;
+    font-weight: 600;
+    padding: 0.5em 0.9375em;
+    border-radius: 0;
+}
+
+.user_account_main_box .nav.nav-tabs .nav-item .nav-link.active{
+    color: var(--form-button-color);
+}
+.user_account_main_box .nav.nav-tabs .nav-item .nav-link.active:after {
+    background: var(--form-button-color) !important;
+    box-shadow: unset !important;
+}
+
+.change_password-box, .social_box-block{
+    padding: 15px;
+}
+
 .user_account_main{
     display: flex;
     flex: 1 1;
@@ -450,6 +544,12 @@ export default {
     border: 1px solid #e4e4e4;
     border-radius: 3px;
     background-color: #fff;
+}
+
+.user_account_main_block-item-card.password_box,
+.user_account_main_block-item-card.social_box{
+    max-width: 50%;
+    width: 100%;
 }
 
 .user_account_main_block-item-card-header{
@@ -498,7 +598,7 @@ export default {
 
 .user_account_main_block-item-card_bottom{
     position: relative;
-    border-top: 1px solid #e4e4e4;
+    /* border-top: 1px solid #e4e4e4; */
     /* padding-top: 15px; */
 }
 
@@ -612,12 +712,10 @@ export default {
 }
     
     
-.change_password{
-    margin-bottom: 10px;
-    box-shadow: 0 1px 0 0 #e4e4e4;
-    border: 1px solid #e4e4e4;
-    border-radius: 3px;
-    background-color: #fff;
+.change_password .title,
+.social_box-block .title{
+    margin-bottom: 15px;
+    font-size: 16px;
 }
 
 .accordion-custom i, span {
@@ -674,9 +772,12 @@ export default {
     .phone-form-btn{
         line-height: 1.43;
     }
-    
-    .change_password_div_items {
-        max-width: 270px;
+}
+
+@media (max-width: 767px){
+    .user_account_main_block-item-card.password_box,
+    .user_account_main_block-item-card.social_box {
+        max-width: 100%;
     }
 }
 

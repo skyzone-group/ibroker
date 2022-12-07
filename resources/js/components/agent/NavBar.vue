@@ -5,10 +5,11 @@
             <span>Menu</span>
         </button>
         <a href="#!">
-            <div class="alt_mhimg" :class="{ 'mhscrolled': scrollPosition > 50}" style="background:url('https://pics.harstatic.com/agent/554530.jpg?ts=2021-01-05T12:50:00') no-repeat center top; background-size: cover;"></div>
+            <div v-if="(user.image == null)" class="alt_mhimg" :class="{ 'mhscrolled': scrollPosition > 50}" :style="`background:url('/file/${defaultImage}') no-repeat center top; background-size: cover;`"></div>
+            <div v-else class="alt_mhimg" :class="{ 'mhscrolled': scrollPosition > 50}" :style="`background:url('/file/${user.image}') no-repeat center top; background-size: cover;`"></div>
         </a>
         <span class="agentwebsitename" :class="{ 'mhscrolled': scrollPosition > 50}">
-            <a href="#!" class="nohover">Javohir Toirov</a>
+            <a href="#!" class="nohover"> {{user.firstname}} {{user.lastname}} </a>
         </span>
         <div class="menu_left_items d-flex">
             <div class="contact_links" :class="{ 'mhscrolled': scrollPosition > 50}">
@@ -18,7 +19,7 @@
                 </a>
                 <a href="#!" class="phoneicon nohover">
                     <i class="fas fa-phone mr-2"></i>
-                    <span>+99890 359-22-84</span>
+                    <span>+{{user.phone}}</span>
                 </a>
             </div>
             <button type="button" class="signup_btn" :class="{ 'mhscrolled': scrollPosition > 50}">Share</button>
@@ -28,10 +29,17 @@
 
 
 <script>
+import defaultImage from '../../../../public/images/avatar-dafault.png'
 export default {
     data() {
         return {
-            scrollPosition: null
+            scrollPosition: null,
+            defaultImage
+        }
+    },
+    props: {
+        user: {
+            type: Array,
         }
     },
     methods: {

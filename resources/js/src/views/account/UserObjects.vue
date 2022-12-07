@@ -85,7 +85,7 @@
                             <div class="objects_main-content-item">
                                 <div class="item-header d-flex">
                                     <div class="objects_main-row_img">
-                                        <a :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" class="objects_main-row_img-link">
+                                        <a target="_blank" :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" class="objects_main-row_img-link">
                                             <span title="Количество фотографий" class="listing__photos">
                                                 <i class="feather icon-camera icon"></i>
                                                 {{object.images.length}}
@@ -100,14 +100,14 @@
                                     <div class="objects_main-row-content">
                                         <div class="objects_main-row-content-header">
                                             <h5 class="item-title">
-                                                <a :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" v-if="object.object_type_id === 1">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor }} / {{ object.floor_count }} этаж</a>
-                                                <a :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" v-if="object.object_type_id === 2">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }}</a>
-                                                <a :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" v-if="object.object_type_id === 3">{{ object.object_type.name_ru }}, {{object.total_area }} м²</a>
-                                                <a :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" v-if="object.object_type_id === 4">{{ object.object_type.name_ru }}, {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }} м²</a>
-                                                <a :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" v-if="object.object_type_id === 5">{{ object.object_type.name_ru }}, {{ object.land_area }} м²</a>
+                                                <a target="_blank" :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" v-if="object.object_type_id === 1">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor }} / {{ object.floor_count }} этаж</a>
+                                                <a target="_blank" :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" v-if="object.object_type_id === 2">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }}</a>
+                                                <a target="_blank" :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" v-if="object.object_type_id === 3">{{ object.object_type.name_ru }}, {{object.total_area }} м²</a>
+                                                <a target="_blank" :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" v-if="object.object_type_id === 4">{{ object.object_type.name_ru }}, {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }} м²</a>
+                                                <a target="_blank" :href="`/show/object/${object.object_deals}/${object.object_type.name_ru}/${object.id}`" v-if="object.object_type_id === 5">{{ object.object_type.name_ru }}, {{ object.land_area }} м²</a>
                                             </h5>
                                             <div class="objects_main-row-content-price-box d-flex">
-                                                <h6 class="item-title eu5v0x0">{{ vueNumberFormat(object.price, {}) }}</h6>
+                                                <h6 class="item-title eu5v0x0">{{ vueNumberFormat(object.price, {}) }} y.e</h6>
                                             </div>
                                         </div>
                                         <div class="objects_main-row-content-info">

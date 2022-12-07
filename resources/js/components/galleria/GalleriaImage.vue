@@ -16,7 +16,7 @@
             class="mySwiper2 gallery-swipper"
             >
             <swiper-slide v-for="(image,imageIndex) in images" :key="image.id" @click="index = imageIndex" :data-src="`/file/${image.name}`" data-fancybox="gallery">
-              <img :src="`/file/${image.name}`" class="w-100 h-100 gallery_box-swiper-image" style="object-fit: cover;" />
+              <img :src="`/file/${image.name}`" class="w-100 h-100 gallery_box-swiper-image" style="object-fit: cover; border-radius: 4px;" />
             </swiper-slide>
           </swiper>
           <swiper
@@ -152,7 +152,6 @@ export default {
 
 .object-image-gallery  .gallery-swipper .swiper-wrapper .swiper-slide{
   background: #EDEEEE !important;
-  padding: 0 30px !important;
   border-radius: 4px !important;
 }
 

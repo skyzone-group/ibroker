@@ -1,7 +1,7 @@
 <template>
     <div class="object_single_page_frontend">
         <div class="object_single_page_main">
-            <div class="container_fluid">
+            <div class="container_fluid --static">
                 <div v-if="loaderProgress" class="loader-main-box" style="height: 100vh;">
                     <ProgressSpinner style="width:80px; height:80px" strokeWidth="3" fill="var(--surface-ground)" animationDuration="1s" />
                 </div>
@@ -140,7 +140,7 @@
                                         <div class="main_block__price">
                                             <div class="main_block__price_box">
                                                 <div class="price">
-                                                    <span>{{vueNumberFormat(object.price, {})}}</span>
+                                                    <span>{{vueNumberFormat(object.price, {})}} y.e</span>
                                                 </div>
                                                 <!-- <div id="square-price" style="color: #737476;">
                                                     208 196 ₽/м²
@@ -595,7 +595,7 @@ export default {
 .agent_objects_page_main_box{
     display: flex;
     margin: 0 auto;
-    padding: 30px 34px 0;
+    padding: 30px 0;
     width: 100%;
 }
 
@@ -608,7 +608,7 @@ export default {
     flex: none;
     margin-left: 20px;
     padding-top: 50px;
-    width: 380px;
+    width: 350px;
 }
 
 .product-page_btn_style{
