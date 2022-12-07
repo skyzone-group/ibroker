@@ -134,7 +134,7 @@
                                         <label v-if="!user.username" class="email-div_block_input_label">
                                             <InputText type="text" v-model="form.username" class="w-100" v-tooltip.bottom="'Please be careful! You can enter username only once.You cannot change username'" placeholder="Напишите текст без пробелов" required />
                                         </label>
-                                        <a v-else :href="`http://ibroker.skybox.uz/${user.username}`" class="widget_email-div__email">{{`http://ibroker.skybox.uz/${user.username}`}}</a>
+                                        <router-link v-else :to="{name: 'agentHome', params: { id: user.username }}" class="widget_email-div__email">{{`http://ibroker.skybox.uz/${user.username}`}}</router-link>
                                         <span class="d-lg-none d-md-none d-sm-none d-block" style="font-style: italic; color: #EA5455!important;">Please be careful! You can enter username only once.You cannot change username</span>
                                     </div>
                                     <button v-if="!user.username" type="submit" class="phone-form-btn">Сохранить</button>
@@ -221,7 +221,10 @@ export default {
     props: {
         defimage: {
             type: String
-        }
+        },
+        userId: {
+            type: Number
+        },
     },
     data() {
         return {

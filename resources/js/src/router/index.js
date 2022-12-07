@@ -243,8 +243,8 @@ const routes = [
         ]
     },
     {
-        path: '/agent-single',
-        name: 'agentSingle',
+        path: '/agent/:id',
+        name: 'agentHome',
         component: HomePage,
     },
     {

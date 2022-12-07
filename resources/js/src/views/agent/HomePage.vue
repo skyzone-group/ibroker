@@ -2,6 +2,7 @@
     <div id="hero" class="agent-single-page" style="background-image: url('https://s3.amazonaws.com/content.har.com/img/member/heroimages/Agent_Website_Image_4.jpg');">
         <div class="agent-single-div agent-single_overlay h-100">
             <nav-bar></nav-bar>
+            
             <div class="agent-single-div-header">
                 <div class="agent-single-div-header-main">
                     <div class="agent-single-div-header-main-content">
@@ -772,6 +773,11 @@ export default {
         Dialog,
         NavBar
     },
+    props: {
+        userId: {
+            type: Number,
+        },
+    },
     data() {
         return {
             form: {
@@ -821,18 +827,8 @@ export default {
             FilterMoreOptions: false,
             openMobileFilter: false,
             position: false,
-
+            user: []
         }
-    },
-    setup() {
-        return {
-            modules: [Autoplay,Pagination,Lazy,FreeMode,Navigation],
-        };
-    },
-    created() {
-        window.addEventListener('resize', this.checkScreen);
-        this.checkScreen();
-        this.allRegionQuarterDistrict();
     },
     methods: {
         filterData(){
@@ -881,7 +877,6 @@ export default {
                 this.loading[0] = false;
             });
         },
-        
         getDistricts() {
             this.loading[1] = true;
             let region_id = this.form.region_id;
@@ -914,7 +909,20 @@ export default {
                 return a.name_ru.localeCompare(b.name_ru);
             });
             this.loading[2] = false;
+        },
+        async getInfo(){
+            // this.loaderProgress = true;
+            axios.get('/api/agent/info/' + this.$route.params.id)
+            .then(response => {
+                this.user = response.data.result.object;
+            });
         }
+    },
+    created() {
+        window.addEventListener('resize', this.checkScreen);
+        this.checkScreen();
+        this.allRegionQuarterDistrict();
+        this.getInfo();
     },
     mounted() {
         this.$store.dispatch('getObjectTypes');
@@ -925,6 +933,11 @@ export default {
             'objectTypes',
             'objectProperty',
         ]),
+    },
+    setup() {
+        return {
+            modules: [Autoplay,Pagination,Lazy,FreeMode,Navigation],
+        };
     },
 }
 </script>

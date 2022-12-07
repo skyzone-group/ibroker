@@ -9,9 +9,9 @@
             <div class="user__details">
                 <div class="user__header">
                     <div class="user__title title">
-                        <a href="/agent-single">
+                        <router-link :to="{name: 'agentHome'}" href="/agent-single">
                             Javohir Toirov
-                        </a>
+                        </router-link>
                     </div>
                 </div>
                 <div class="user__body">

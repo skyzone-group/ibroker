@@ -10,6 +10,7 @@ use App\Http\Controllers\Blade\ObjectTypesController;
 use App\Http\Controllers\Blade\UserController;
 use App\Http\Controllers\Blade\FriendController;
 use App\Http\Controllers\Blade\NotificationController;
+use App\Http\Controllers\Blade\AgentController;
 use App\Models\ImageUpload;
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,11 @@ Route::get('/additional/{object_id}', [ObjectTypesController::class, 'additional
 Route::get('/object/search', [ObjectController::class, 'search']); //search public objects
 Route::get('/object/show/{object_id}', [ObjectController::class, 'show']);
 Route::get('/object/getOthers/{user_id}', [ObjectController::class, 'getOthers']);
+
+# Agent routes
+Route::get('/agent/info/{agent_username}', [AgentController::class, 'getInfo']);
+
+
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
     
