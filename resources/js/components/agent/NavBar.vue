@@ -5,8 +5,8 @@
             <span>Menu</span>
         </button>
         <a href="#!">
-            <div v-if="(user.image == null)" class="alt_mhimg" :class="{ 'mhscrolled': scrollPosition > 50}" :style="`background:url('/file/${defaultImage}') no-repeat center top; background-size: cover;`"></div>
-            <div v-else class="alt_mhimg" :class="{ 'mhscrolled': scrollPosition > 50}" :style="`background:url('/file/${user.image}') no-repeat center top; background-size: cover;`"></div>
+            <div v-if="(user.image == null)" class="alt_mhimg" :class="{ 'mhscrolled': scrollPosition > 50}" :style="`background:url('/file/${defaultImage}') no-repeat center center; background-size: cover;`"></div>
+            <div v-else class="alt_mhimg" :class="{ 'mhscrolled': scrollPosition > 50}" :style="`background:url('/file/${user.image}') no-repeat center center; background-size: cover;`"></div>
         </a>
         <span class="agentwebsitename" :class="{ 'mhscrolled': scrollPosition > 50}">
             <a href="#!" class="nohover"> {{user.firstname}} {{user.lastname}} </a>
@@ -30,25 +30,33 @@
 
 <script>
 import defaultImage from '../../../../public/images/avatar-dafault.png'
+import { mapGetters } from 'vuex';
 export default {
     data() {
         return {
             scrollPosition: null,
-            defaultImage
-        }
-    },
-    props: {
-        user: {
-            type: Array,
+            defaultImage,
+            user: []
         }
     },
     methods: {
         handleScroll() {
             this.scrollPosition = window.scrollY
         },
+        async getInfo(){
+            // this.loaderProgress = true;
+            axios.get('/api/agent/info/' + this.$route.params.id)
+            .then(response => {
+                this.user = response.data.result.user;
+                // this.loaderProgress = false;
+            });
+        }
     },
     beforeMount() {
         window.addEventListener('scroll', this.handleScroll);
+    },
+    created() {
+        this.getInfo();
     },
 }
 </script>
@@ -66,7 +74,7 @@ export default {
     left: 0px;
     right: 0px;
     top: 0px;
-    z-index: 11111;
+    z-index: 1000;
     transition: all 0.3s ease-in-out;
     min-height: 47px;
     height: 47px;

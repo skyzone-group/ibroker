@@ -36,4 +36,28 @@ class AgentController extends ResponseController
 
         return self::successResponse($data);
     }
+
+
+    public function show($id){
+        $query = Objects::query();
+        $query = $query->where(['id' => $id])
+                ->with([
+                    'user',
+                    'images',
+                    'object_type',
+                    'region',
+                    'district',
+                    'quarter',
+                ])
+                ->with(['additional_values' => function($query){
+                    $query->with('additional_property');
+                }])
+                ->with(['object_types_property_values' => function($query){
+                    $query->with('object_type_property');
+                }]);
+
+        $results = $query->orderBy('id', 'DESC')->get()->first();
+        $data['object'] = $results;
+        return self::successResponse($data);
+    }
 }

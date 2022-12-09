@@ -168,6 +168,16 @@
                                             </router-link>
                                         </li>
                                         <li v-if="loggedIn == true" class="service_item" @click="visibleLeft = !visibleLeft">
+                                            <router-link :to="{ name: 'myaccount'}">
+                                                <div class="icon-div" style="margin-right: 18px;">
+                                                    <svg class="icon_svg" width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"><path fill="currentColor" stroke="none" d="M13.432 13.39c-1.445.866-4.357 1.026-5.42 1.01H7.99c-1.07.016-3.974-.14-5.42-1.01-.05-.704-.065-2.374.79-3.524.522-.703 1.28-1.1 2.317-1.214.01 0 .016-.006.023-.007.623.623 1.395.976 2.3.976.922 0 1.698-.344 2.317-.97l.004.005c1.04.114 1.8.51 2.32 1.214.857 1.15.84 2.82.795 3.523M6.227 2.283C6.62 1.83 7.217 1.6 8 1.6c.78 0 1.377.23 1.77.687.455.527.644 1.37.53 2.38-.16 1.53-.69 3.355-2.3 3.355-1.692 0-2.168-2.102-2.3-3.357-.112-1.013.076-1.86.527-2.382M13.874 8.9c-.638-.863-1.526-1.418-2.622-1.686.284-.668.49-1.452.587-2.368.16-1.466-.166-2.752-.918-3.624C10.232.422 9.222 0 8 0 6.773 0 5.76.42 5.072 1.218c-.76.88-1.077 2.133-.914 3.624.097.912.31 1.697.6 2.37-1.1.267-1.99.822-2.633 1.688-1.505 2.037-1.07 4.953-1.053 5.076.032.204.14.388.3.512C3.197 15.908 6.91 16 7.84 16h.316c.93 0 4.644-.092 6.47-1.512.162-.126.27-.31.3-.512.02-.123.453-3.04-1.054-5.076"></path></svg>
+                                                </div>
+                                                <div class="txt">
+                                                    Профиль
+                                                </div>
+                                            </router-link>
+                                        </li>
+                                        <li v-if="loggedIn == true" class="service_item" @click="visibleLeft = !visibleLeft">
                                             <router-link :to="{ name: 'myObjects'}">
                                                 <div class="icon-div" style="margin-right: 18px;">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>

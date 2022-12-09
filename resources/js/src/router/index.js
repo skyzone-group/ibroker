@@ -263,7 +263,7 @@ const routes = [
         component: HomePage,
     },
     {
-        path: '/agent-single/listing_detail',
+        path: '/rieltor/:id/show/:type_deal/:type/:object_id',
         name: 'agentObject',
         component: ShowObjectAgent,
     }

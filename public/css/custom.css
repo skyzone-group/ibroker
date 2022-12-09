@@ -155,6 +155,7 @@ a:not(.nohover):hover{
 
 .container_fluid.\--static {
     max-width: 1248px;
+    padding: 0 34px;
 }
 
 
@@ -4602,7 +4603,7 @@ textarea.md-form__control {
         padding: 0 !important;
     }
 
-    .object_single_page_frontend .main_block__gallery {
+    .object_single_page_main_box .main_block__gallery {
         order: -3 !important;
     }
 

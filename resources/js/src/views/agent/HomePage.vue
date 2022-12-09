@@ -5,7 +5,7 @@
     <div v-else>
         <div id="hero" class="agent-single-page" style="background-image: url('https://s3.amazonaws.com/content.har.com/img/member/heroimages/Agent_Website_Image_4.jpg');">
             <div class="agent-single-div agent-single_overlay h-100">
-                <nav-bar :user="user" ></nav-bar>
+                <nav-bar ></nav-bar>
                 
                 <div class="agent-single-div-header">
                     <div class="agent-single-div-header-main">
@@ -20,7 +20,8 @@
                                                         <div class="realtor__info-main_img_photo">
                                                             <div class="img-box" style="width: 150px; height: 150px;">
                                                                 <a href="#!">
-                                                                    <img src="/images/agent-img-avatar.png" alt="" class="wDiYI" style="min-width: 150px; max-width: 150px; min-height: 150px;">
+                                                                    <img v-if="user.image == null" src="/images/agent-img-avatar.png" alt="" class="wDiYI" style="min-width: 150px; max-width: 150px; min-height: 150px;">
+                                                                    <img v-else :src="`/file/${user.image}`" alt="" class="wDiYI" style="min-width: 150px; max-width: 150px; min-height: 150px;">
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -35,13 +36,14 @@
                                                         <!-- <div class="realtor__info-main-content_position">Специалист по недвижимости</div>
                                                         <div class="realtor__info-main-content_separator"></div> -->
                                                         <a href="#!" class="realtor__info-main-content_name">
-                                                            <h1 class="realtor__info-main-content_fio text-bold">Javohir Toirov</h1>
+                                                            <h1 v-if="(user.firstname == null && user.lastname == null)" class="realtor__info-main-content_fio text-bold">User {{user.id}}</h1>
+                                                            <h1 v-else class="realtor__info-main-content_fio text-bold">{{user.firstname}} {{user.lastname}}</h1>
                                                         </a>
                                                         <div class="d-flex align-items-center justify-content-lg-start justify-content-md-start justify-content-sm-start justify-content-center">
                                                             <div class="realtor__info-main-content_city">Город: Ташкент</div>
                                                             <div class="realtor__info-main-content_email d-flex align-items-center ml-2">
                                                                 <span>Email: </span> 
-                                                                <a href="test@gmail.com" class="ml-2">test@gmail.com</a> 
+                                                                <a :href="`mail:${user.email}`" class="ml-2">{{user.email}}</a> 
                                                             </div>
                                                         </div>
                                                         <div class="ag_social_icons">
@@ -591,9 +593,9 @@
                     <div class="agent-single-div-content-div">
                         <h1 class="agent-single-div-content-div-objects-title">Мои объявления</h1>
                         <div class="row">
-                            <div class="col-lg-4 mb-2" v-for="object in objects" :key="object.id" >
-                                <router-link :to="{name: 'agentObject'}" class="nohover" target="_blank">
-                                    <div class="object-item">
+                            <div class="col-lg-4 mb-3" v-for="object in objects" :key="object.id" >
+                                <router-link :to="{name: 'agentObject', params: {id: user.username, type_deal: object.object_deals, type: object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land', object_id: object.id} }" class="nohover" target="_blank">
+                                    <div class="object-item h-100">
                                         <div class="object-item-block">
                                             <div class="object-photos">
                                                 <div class="object-photos-thumb">
@@ -628,13 +630,17 @@
                                                         </div>
                                                         <div class="object-details-item object-details-header">
                                                             <a class="NXJyid" href="https://domclick.ru/card/sale__flat__1564626862" target="_blank" rel="noopener noreferrer">
-                                                                <span class="title">2-комн. квартира 51 м² 2/9 этаж</span>
+                                                                <span v-if="object.object_type_id === 1" class="title">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor }} / {{ object.floor_count }} этаж</span>
+                                                                <span v-if="object.object_type_id === 2" class="title">{{ object.object_type.name_ru }}, {{ object.room_count }}-комн , {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }}</span>
+                                                                <span v-if="object.object_type_id === 3" class="title">{{ object.object_type.name_ru }}, {{object.total_area }} м²</span>
+                                                                <span v-if="object.object_type_id === 4" class="title">{{ object.object_type.name_ru }}, {{object.total_area }} м², {{ object.floor_count }} этаж, {{ object.land_area }} м²</span>
+                                                                <span v-if="object.object_type_id === 5" class="title">{{ object.object_type.name_ru }}, {{ object.land_area }} м²</span>
                                                             </a>
                                                         </div>
                                                         <div class="object-details-item object-details-address mt-3">
                                                             <div class="w-100 object-details-item align-items-center">
                                                                 <i class="fas fa-map-marker-alt mr-1"></i>
-                                                                <span class="PjgOZO">Москва, Чертановская улица, 21к1</span>
+                                                                <span class="PjgOZO">{{object.region.name_ru}}, {{object.district.name_ru}}, {{object.quarter.name_ru}}</span>
                                                             </div>
                                                         </div>
                                                         <div class="object-details-item mt-3">
@@ -1986,10 +1992,13 @@ export default {
 }
 
 /* user objects style */
-.agent-single-div-content-div .object-price-list-p,
-.agent-single-div-content-div  .object-details-header .title {
+.agent-single-div-content-div .object-price-list-p{
     font-size: 20px;
     line-height: 25px;
+}
+
+.agent-single-div-content-div  .object-details-header .title {
+    font-size: 18px;
 }
 /* user objects style */
 /* *********************************************************************************** */
