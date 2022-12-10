@@ -3,6 +3,14 @@
     background: #53b374;
 }
 
+.mobile-loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #0000006b;
+    z-index: 1050;
+}
+
 .mobile-filter-body{
     display: flex;
     flex-direction: column;

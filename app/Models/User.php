@@ -22,9 +22,8 @@ class User extends Authenticatable
         'phone',
         'email',
         'password',
-        'username',
         'api_token',
-        'image'
+        'image',
     ];
 
     /**
@@ -50,5 +49,9 @@ class User extends Authenticatable
     public function objects()
     {
         return $this->hasMany(Objects::class, 'user_id', 'id');
+    }
+
+    public function additional_info(){
+        return $this->hasOne(Agents::class, 'user_id', 'id');
     }
 }

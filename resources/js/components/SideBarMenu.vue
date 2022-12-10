@@ -4,8 +4,8 @@
             <div class="user-profile">
                 <div class="user-profile-block d-flex">
                     <a href="#!" class="user-profile-avatar">
-                        <img v-if="user.image == null" :src="defimage" alt="user_avatar" class="img-full" style="object-fit: cover;">
-                        <img v-else :src="`/file/${user.image}`" alt="user_avatar" class="img-full" style="object-fit: cover;">
+                        <div v-if="user.image == null" class="img-full-back" style="background-image:url('/images/avatar-dafault.png')"></div>
+                        <div v-else class="img-full-back" :style="`background-image:url('/file/${user.image}')`"></div>
                     </a>
                     <div class="user-profile-info">
                         <a href="#!" class="user-profile-info-link">

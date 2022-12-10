@@ -2,16 +2,20 @@
     <div class="object_list">
         <div class="objects-main-div">
             <nav class="objects-main-div_nav">
-                <ul class="objects-main-div_nav_ul d-flex m-0 p-0">
-                    <li class="objects-main-div_nav_ul_li">
+                <ul class="objects-main-div_nav_ul d-flex m-0 p-0 nav nav-tabs">
+                    <li class="nav-item">
                         <label for="type__filter_all" class="filters-tabs-item Radio_theme_realty" :class="{'active' : form.object_deals == 'all'}">
                             <input @change="filterData()" v-model="form.object_deals" id="type__filter_all" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="all">
                             Все
                         </label>
+                    </li>
+                    <li class="nav-item">
                         <label for="type__filter_buy" class="filters-tabs-item Radio_theme_realty" :class="{'active' : form.object_deals == 'buy'}">
                             <input @change="filterData()" v-model="form.object_deals" id="type__filter_buy" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="buy">
                             Продажа
                         </label>
+                    </li>
+                    <li class="nav-item">
                         <label for="type__filter_rent" class="filters-tabs-item Radio_theme_realty" :class="{'active' : form.object_deals == 'rent'}">
                             <input @change="filterData()" v-model="form.object_deals" id="type__filter_rent" type="radio" class="single_button_select_box_label_inpt" tabindex="0" value="rent">
                             Аренда
@@ -450,6 +454,36 @@ export default {
 .objects-main-div_nav_ul a.router-link-active{
     border-bottom: 2px solid var(--vc-nav-background-color);
     color: var(--vc-nav-background-color);
+}
+
+.objects-main-div_nav_ul .nav-item .filters-tabs-item{
+    color: #000;
+    font-size: 16px;
+    border: none;
+    min-width: auto;
+    font-weight: 600 !important;
+    padding: 0.5em 0.9375em !important;
+    border-radius: 0;
+    height: unset;
+}
+
+
+.objects-main-div_nav_ul .nav-item .filters-tabs-item.active {
+    color: var(--form-button-color);
+}
+
+.objects-main-div_nav_ul .nav-item .filters-tabs-item.active:after {
+    content: attr(data-before);
+    height: 2px;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    bottom: 0;
+    top: 100%;
+    background: var(--form-button-color) !important;
+    box-shadow: unset !important;
+    transform: translateY(0);
+    transition: all .2s linear;
 }
 
 .object_list{

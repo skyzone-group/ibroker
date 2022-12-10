@@ -20,8 +20,8 @@
                                                         <div class="realtor__info-main_img_photo">
                                                             <div class="img-box" style="width: 150px; height: 150px;">
                                                                 <a href="#!">
-                                                                    <img v-if="user.image == null" src="/images/agent-img-avatar.png" alt="" class="wDiYI" style="min-width: 150px; max-width: 150px; min-height: 150px;">
-                                                                    <img v-else :src="`/file/${user.image}`" alt="" class="wDiYI" style="min-width: 150px; max-width: 150px; min-height: 150px;">
+                                                                    <img v-if="user.image == null" src="/images/agent-img-avatar.png" alt="" class="w-100" style="min-width: 150px; max-width: 150px; min-height: 150px;">
+                                                                    <img v-else :src="`/file/${user.image}`" alt="" class="w-100" style="min-width: 150px; max-width: 150px; min-height: 150px;">
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -1070,7 +1070,6 @@ export default {
     object-position: center top;
 }
 
-.realtor__info-main_img_photo img:after, 
 .realtor__info-main_img_photo object:after,
 .agent-single-div-info-avatar img:after {
     content: "";

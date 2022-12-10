@@ -279,24 +279,24 @@ const router = createRouter({
     },
 })
 
-router.afterEach((to, from) => {
+// router.afterEach((to, from) => {
 
-    document.title = to.meta && to.meta.title ? to.meta.title : 'iBroker - Умный поиск недвижимость в Ташкенте'; // You can add a default here
+//     document.title = to.meta && to.meta.title ? to.meta.title : 'iBroker - Умный поиск недвижимость в Ташкенте'; // You can add a default here
 
-    Array.from(document.querySelectorAll('[data-vue-meta]')).map(el => el.parentNode.removeChild(el));
+//     Array.from(document.querySelectorAll('[data-vue-meta]')).map(el => el.parentNode.removeChild(el));
 
-    if (to.meta && to.meta.metaTags) {
-        to.meta.metaTags.map(tagDef => {
-            let tag = document.createElement('meta');
+//     if (to.meta && to.meta.metaTags) {
+//         to.meta.metaTags.map(tagDef => {
+//             let tag = document.createElement('meta');
 
-            Object.keys(tagDef).forEach(key => tag.setAttribute(key, tagDef[key]));
+//             Object.keys(tagDef).forEach(key => tag.setAttribute(key, tagDef[key]));
 
-            tag.setAttribute('data-vue-meta', '');
+//             tag.setAttribute('data-vue-meta', '');
 
-            return tag;
-        }).forEach(tag => document.head.appendChild(tag));
-    }
-});
+//             return tag;
+//         }).forEach(tag => document.head.appendChild(tag));
+//     }
+// });
 
 
 export default router

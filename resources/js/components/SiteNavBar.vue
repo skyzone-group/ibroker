@@ -11,7 +11,7 @@
                 <!-- hamburger menu icon -->
                 
                 <router-link :to="{name: 'siteIndex'}" class="nabvar__block-logo">
-                    <img src="/images/logo/logo.png" alt="logo" class="w-100 h-100">
+                    <img src="/images/logo/logo.png" alt="logo" class="w-100" style="height: 80%;">
                     <!-- <p><span>i</span>BROKER</p> -->
                 </router-link>
                 <!-- Menu View start -->
@@ -327,8 +327,8 @@
                         
                         <div v-else class="dropdown-avatar avatar_log">
                             <a class="dropdown-toggle nav-link dropdown-user-link avatar_drop" href="#" data-toggle="dropdown">
-                                <img class="round h-100" v-if="user.image == null" :src="defimage" width="100" alt="avatar" style="object-fit: cover;">
-                                <img class="round h-100" v-else :src="`/file/${user.image}`" width="100" alt="avatar" style="object-fit: cover;">
+                                <div v-if="user.image == null" class="img-full-back round" style="background-image:url('/images/avatar-dafault.png')"></div>
+                                <div v-else class="img-full-back round" :style="`background-image:url('/file/${user.image}')`"></div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <div class="avatar-inform">
@@ -510,7 +510,7 @@ export default {
                 align-items: center;
                 box-shadow: none;
                 box-sizing: border-box;
-                height: 40px;
+                height: 50px;
                 outline: none;
                 padding: 0 8px;
                 width: auto;

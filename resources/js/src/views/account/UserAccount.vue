@@ -35,8 +35,8 @@
                                         <div class="profile_form_avatar">
                                             <div class="user_account_main_block-item-card-header">
                                                 <div class="avatar">
-                                                    <img v-if="!user.image" :src="src" alt="user_avatar" class="img-full" style="object-fit: cover;">
-                                                    <img v-if="user.image" :src="`/file/${user.image}`" alt="user_avatar" class="img-full" style="object-fit: cover;">
+                                                    <div v-if="user.image == null" class="img-full-back" style="background-image:url('/images/avatar-dafault.png')"></div>
+                                                    <div v-else class="img-full-back" :style="`background-image:url('/file/${user.image}')`"></div>
                                                 </div>
                                                 <div class="user_info">
                                                     <p class="mb-0 user_info-p">{{ user.firstname && user.firstname ? (`${user.firstname} ${user.lastname}`) : `User ${user.id}`}}</p>
@@ -152,13 +152,13 @@
                                             <span class="error-msg-password" id="password_error"></span>
                                         </div>
                                         <div class="email-div_block_input mb-3">
-                                            <label v-if="!user.username" class="email-div_block_input_label">
+                                            <label v-if="!user.additional_info.username" class="email-div_block_input_label">
                                                 <InputText type="text" v-model="form.username" class="w-100" v-tooltip.bottom="'Please be careful! You can enter username only once.You cannot change username'" placeholder="Напишите текст без пробелов" required />
                                             </label>
-                                            <router-link v-else target="_blank" :to="{name: 'agentHome', params: { id: user.username }}" class="widget_email-div__email">{{`http://ibroker.skybox.uz/${user.username}`}}</router-link>
-                                            <span class="d-lg-none d-md-none d-sm-none d-block" style="font-style: italic; color: #EA5455!important;">Please be careful! You can enter username only once.You cannot change username</span>
+                                            <router-link v-else target="_blank" :to="{name: 'agentHome', params: { id: user.additional_info.username }}" class="widget_email-div__email">{{`http://ibroker.skybox.uz/rieltor/${user.additional_info.username}`}}</router-link>
+                                            <span v-if="!user.additional_info.username" class="d-lg-none d-md-none d-sm-none d-block" style="font-style: italic; color: #EA5455!important;">Please be careful! You can enter username only once.You cannot change username</span>
                                         </div>
-                                        <button v-if="!user.username" type="submit" class="phone-form-btn">Сохранить</button>
+                                        <button v-if="!user.additional_info.username" type="submit" class="phone-form-btn">Сохранить</button>
                                     </div>
                                 </form>
                             </div>
@@ -198,9 +198,32 @@
                             <div class="title d-flex align-items-center">
                                     <span>Социальные сети</span>
                                 </div>
-                            <form>
+                            <form @submit.prevent="saveData()" method="POST" :model="form">
                                 <div class="row">
-                                    <div class="col-12">
+                                    <div class="col-12 col-sm-6">
+                                        <fieldset>
+                                            <label>Telegram</label>
+                                            <div class="input-group mb-2">
+                                                <div class="p-inputgroup">
+                                                    <span class="p-inputgroup-addon">
+                                                        <i class="pi pi-telegram"></i>
+                                                    </span>
+                                                    <InputText :placeholder="user.telegram ? `https://t.me/${user.telegram}` : 'Telegram'" v-model="form.telegram" v-tooltip.bottom.focus="'Please enter your username'" :disabled="user.telegram"/>
+                                                </div>
+                                                <a v-if="user.telegram" target="_blank" :href="`https://t.me/${user.telegram}`" class="widget_email-div__email">{{`https://t.me/${user.telegram}`}}</a>
+                                            </div>
+                                            <label>Whatsapp</label>
+                                            <div class="input-group">
+                                                <div class="p-inputgroup">
+                                                    <span class="p-inputgroup-addon">
+                                                        <i class="pi pi-whatsapp"></i>
+                                                    </span>
+                                                    <InputText placeholder="Whatsapp" v-model="form.whatsapp" v-tooltip.bottom.focus="'Please enter your username'"/>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
                                         <fieldset>
                                             <label>Facebook</label>
                                             <div class="input-group mb-2">
@@ -208,7 +231,7 @@
                                                     <span class="p-inputgroup-addon">
                                                         <i class="pi pi-facebook"></i>
                                                     </span>
-                                                    <InputText placeholder="Facebook" />
+                                                    <InputText placeholder="Facebook" v-model="form.facebook" v-tooltip.bottom.focus="'Please enter your username'"/>
                                                 </div>
                                             </div>
                                             <label>Instagram</label>
@@ -217,7 +240,7 @@
                                                     <span class="p-inputgroup-addon">
                                                         <i class="pi pi-instagram"></i>
                                                     </span>
-                                                    <InputText placeholder="Instagram" />
+                                                    <InputText placeholder="Instagram" v-model="form.instagram" v-tooltip.bottom.focus="'Please enter your username'"/>
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -302,6 +325,10 @@ export default {
                 password: "",
                 new_password: "",
                 username: "",
+                telegram: "",
+                whatsapp: "",
+                facebook: "",
+                instagram: "",
             },
             phone: "",
             exampleCode: "",
@@ -362,7 +389,11 @@ export default {
                 console.log(response);
                 if (response.data.status == true) {
                     this.showSuccess();
-                    this.$store.dispatch('getUserInfo');
+                    this.FormValidate[1] = false;
+                    setTimeout(() => {
+                        this.$store.dispatch('getUserInfo'); 
+                        this.reset();
+                    }, 1000);
                 }
                 else{
                     var password_error = response.data.error.message;
@@ -432,19 +463,6 @@ export default {
         showSuccess() { // success message
             this.$toast.add({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
         },
-        // getUserInfo(){ // get user informations on database
-        //     const token = localStorage.getItem('token');
-        //     this.isLoaded = true ;
-        //     axios.get('/api/getme', {
-        //         headers: {
-        //             'Authorization': `Bearer ${token}`, 
-        //         }
-        //     })
-        //     .then(response => {
-        //         this.user = response.data.result;
-        //         this.isLoaded = false ;
-        //     });
-        // },
         getFormattedDate(date) { // get only year from timestempt
             return moment(date).format("YYYY")
         },
@@ -453,6 +471,16 @@ export default {
         },
         closeBasic() { // close imaga delete model
             this.displayBasic = false;
+        },
+        reset () {
+            this.form.image = "";
+            this.form.firstname = "";
+            this.form.lastname = "";
+            this.form.code =  '',
+            this.form.email = "";
+            this.form.password = "";
+            this.form.new_password = "";
+            this.form.username = "";
         }
     },
     mounted(){
@@ -461,7 +489,8 @@ export default {
     computed: {
         ...mapGetters([
             'user',
-            'isLoaded'
+            'isLoaded',
+            'additionalInfo'
         ]),
     },
     created() {
@@ -490,7 +519,8 @@ export default {
 
 <style>
 
-.user_account_main_box .nav.nav-tabs .nav-item {
+.user_account_main_box .nav.nav-tabs .nav-item,
+.objects-main-div_nav .nav.nav-tabs .nav-item{
     position: relative;
     margin-bottom: -1px;
 }
@@ -550,6 +580,10 @@ export default {
 .user_account_main_block-item-card.social_box{
     max-width: 50%;
     width: 100%;
+}
+
+.user_account_main_block-item-card.social_box{
+    max-width: 80%;
 }
 
 .user_account_main_block-item-card-header{
@@ -774,9 +808,14 @@ export default {
     }
 }
 
-@media (max-width: 767px){
-    .user_account_main_block-item-card.password_box,
+@media (max-width: 991px){
     .user_account_main_block-item-card.social_box {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 767px){
+    .user_account_main_block-item-card.password_box{
         max-width: 100%;
     }
 }

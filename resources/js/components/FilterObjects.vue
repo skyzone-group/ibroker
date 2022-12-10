@@ -355,7 +355,6 @@ export default {
                 this.loading[0] = false;
             });
         },
-        
         getDistricts() {
             this.loading[1] = true;
             let region_id = this.form.region_id;

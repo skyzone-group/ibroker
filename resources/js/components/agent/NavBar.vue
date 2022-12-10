@@ -5,8 +5,8 @@
             <span>Menu</span>
         </button>
         <a href="#!">
-            <div v-if="(user.image == null)" class="alt_mhimg" :class="{ 'mhscrolled': scrollPosition > 50}" :style="`background:url('/file/${defaultImage}') no-repeat center center; background-size: cover;`"></div>
-            <div v-else class="alt_mhimg" :class="{ 'mhscrolled': scrollPosition > 50}" :style="`background:url('/file/${user.image}') no-repeat center center; background-size: cover;`"></div>
+            <div v-if="(user.image == null)" class="alt_mhimg" :class="{ 'mhscrolled': scrollPosition > 50}" :style="`background:url('/file/${defaultImage}'); background-size: cover;`"></div>
+            <div v-else class="alt_mhimg" :class="{ 'mhscrolled': scrollPosition > 50}" :style="`background:url('/file/${user.image}'); background-size: cover;`"></div>
         </a>
         <span class="agentwebsitename" :class="{ 'mhscrolled': scrollPosition > 50}">
             <a href="#!" class="nohover"> {{user.firstname}} {{user.lastname}} </a>

@@ -21,7 +21,7 @@ import VueScrollTo from 'vue-scrollto'
 import VueNumberFormat from 'vue-number-format'
 // Vue Share with social networks
 import VueSocialSharing from 'vue-social-sharing'
-
+import VueMeta from 'vue-meta'
 import VueHtmlToPaper from "../../public/js/vue-print/VueHtmlToPaper.js";
 import VueCountdown from '@chenfengyuan/vue-countdown';
 const options = {

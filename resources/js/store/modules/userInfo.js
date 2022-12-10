@@ -6,7 +6,15 @@ const state = {
         phone: "",
         email: "",
         image: "",
-        created_at: ""
+        created_at: "",
+        additional_info: {
+            facebook: "",
+            instagram: "",
+            main_color: "",
+            telegram: "",
+            username: "",
+            whatsapp: ""
+        }
     },
     friends: [],
     notifications: [],

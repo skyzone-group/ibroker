@@ -15,8 +15,8 @@
                                         <div class="d-flex align-items-center justify-content-between" style="padding-bottom: 16px;">
                                             <!-- <div v-if="!user.image" style="background-color: rgb(156, 198, 196);width: 60px;height: 60px;border-radius: 5px;" class="autor_bottom_top_style">TJ</div> -->
                                             <div style="width: 72px;height: 72px;" class="autor_bottom_top_style">
-                                                <img v-if="!owner.image" :src="defaultImage" alt="user_avatar_default" class="w-100 h-100" style="object-fit: cover;">
-                                                <img v-else :src="`/file/${owner.image}`" alt="user_avatar" class="w-100 h-100" style="object-fit: cover;">
+                                                <div v-if="owner.image == null" class="img-full-back" style="background-image:url('/images/avatar-dafault.png'); border-radius: 5%;"></div>
+                                                <div v-else class="img-full-back" :style="`background-image:url('/file/${owner.image}'); border-radius: 5%;`"></div>
                                             </div>
                                             <div class="share-page-agent d-flex align-items-center">
                                                 <button @click="shareAgentPage = true" type="button" class="share-page-agent-btn">
@@ -362,8 +362,8 @@
                                             <div class="d-flex flex-column align-items-center justify-content-center">
                                                 <!-- <div v-if="!user.image" style="background-color: rgb(156, 198, 196);width: 60px;height: 60px;border-radius: 5px;" class="autor_bottom_top_style">TJ</div> -->
                                                 <div style="width: 120px;height: 120px;" class="autor_bottom_top_style">
-                                                    <img v-if="!owner.image" :src="defaultImage" alt="user_avatar_default" class="w-100 h-100" style="object-fit: cover;">
-                                                    <img v-else :src="`/file/${owner.image}`" alt="user_avatar" class="w-100 h-100" style="object-fit: cover;">
+                                                    <div v-if="owner.image == null" class="img-full-back" style="background-image:url('/images/avatar-dafault.png'); border-radius: 50%;"></div>
+                                                    <div v-else class="img-full-back" :style="`background-image:url('/file/${owner.image}'); border-radius: 50%;`"></div>
                                                 </div>
                                                 <div class="product-page__sidebar_autor_bottom_content text-center" style="flex: auto;">
                                                     <div class="autor_full_name justify-content-center">

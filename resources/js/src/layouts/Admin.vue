@@ -114,6 +114,11 @@ export default {
 
 
 /* ************************************************************* */
+@media (min-width: 1377px){
+    .ual-container {
+        margin-left: calc((100vw - 1376px)/ 2);
+    }
+}
 @media (max-width: 475px){
     .ual-footer-desktop{
         flex-direction: column;

@@ -6,6 +6,7 @@ use App\Http\Controllers\ResponseController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Agents;
 use App\Models\Objects;
 
 class AgentController extends ResponseController
@@ -13,8 +14,8 @@ class AgentController extends ResponseController
     //
 
     public function getInfo($username){
-        $user = User::where('username', '=', $username)->orderBy('id', 'DESC')->get()->first();
-        $user_id = $user->id;
+        $user = Agents::where('username', '=', $username)->orderBy('id', 'DESC')->get()->first();
+        $user_id = $user->user_id;
         $query = Objects::query();
         
         if($user_id)  $query = $query->where('user_id', '=', $user_id);

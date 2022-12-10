@@ -1,5 +1,8 @@
 <template>
-    <div id="__layout">
+    <div v-if="isLoaded" class="mobile-loader loader-main-box">
+        <ProgressSpinner style="width:80px; height:80px" strokeWidth="3" fill="var(--surface-ground)" animationDuration="1s" />
+    </div>
+    <div v-else id="__layout">
         <div class="mobile-filter-body">
             <div class="mobile-filter-content">
                 <form :model="form" method="GET">
@@ -27,7 +30,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <Dialog v-model:visible="regionModal" :position="position" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}" class="address_modal" contentClass="address-modal">
+                            <Dialog v-model:visible="regionModal" 
+                            :position="position" 
+                            :breakpoints="{'960px': '75vw', '640px': '90vw'}" 
+                            :style="{width: '50vw'}" 
+                            class="address_modal" 
+                            contentClass="address-modal"
+                            :modal="true"
+                            :dismissableMask="true">
                                 <template #header>
                                     <h5>Выберите регион для поиска</h5>
                                 </template>
@@ -70,17 +80,29 @@
                                     </div>
                                 </div>
                             </div>
-                            <Dialog v-model:visible="districtModal" :position="position" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}" class="address_modal" contentClass="address-modal">
+                            <Dialog 
+                            v-model:visible="districtModal" 
+                            :position="position" 
+                            :breakpoints="{'960px': '75vw', '640px': '90vw'}" 
+                            :style="{width: '50vw'}" 
+                            class="address_modal" 
+                            contentClass="address-modal"
+                            :modal="true"
+                            :dismissableMask="true">
                                 <template #header>
                                     <h5>Выберите район для поиска</h5>
                                 </template>
-                                <div class="field__items">
+                                <div v-if="form.region_id" class="field__items">
                                     <div v-for="item in districts" :key="item.id" class="field__item">
                                         <Checkbox @change="getQuarters()" :inputId="`district_type_${item.id}`" name="districts" :value="item.id" v-model="form.district_id" />
                                         <label :for="`district_type_${item.id}`">{{item.name_ru}}</label>
                                     </div>
                                 </div>
+                                <div v-else>
+                                    <h4 class="text-center font-weight-bold p-3 text-2">Необходимо указать регион</h4>
+                                </div>
                                 <template #footer>
+                                    <Button label="Найти" :loading="loading" @click="filterData" class="p-button-success" :disabled="form.region_id == null" />
                                     <Button label="Отмена" @click="districtModal = !districtModal" />
                                 </template>
                             </Dialog>
@@ -113,17 +135,29 @@
                                     </div>
                                 </div>
                             </div>
-                            <Dialog v-model:visible="quarterModal" :position="position" :breakpoints="{'960px': '75vw', '640px': '90vw'}" :style="{width: '50vw'}" class="address_modal" contentClass="address-modal">
+                            <Dialog 
+                            v-model:visible="quarterModal" 
+                            :position="position" 
+                            :breakpoints="{'960px': '75vw', '640px': '90vw'}" 
+                            :style="{width: '50vw'}" 
+                            class="address_modal" 
+                            contentClass="address-modal"
+                            :modal="true"
+                            :dismissableMask="true">
                                 <template #header>
                                     <h5>Выберите улица для поиска</h5>
                                 </template>
-                                <div class="field__items">
+                                <div v-if="form.district_id.length > 0" class="field__items">
                                     <div v-for="item in quarters" :key="item.id" class="field__item">
                                         <Checkbox :inputId="`quarter_type_${item.id}`" name="quarters" :value="item.id" v-model="form.quarter_id" />
                                         <label :for="`quarter_type_${item.id}`">{{item.name_ru}}</label>
                                     </div>
                                 </div>
+                                <div v-else>
+                                    <h4 class="text-center font-weight-bold p-3 text-2">Необходимо указать район</h4>
+                                </div>
                                 <template #footer>
+                                    <Button label="Найти" :loading="loading" @click="filterData" class="p-button-success" :disabled="form.district_id.length == 0"/>
                                     <Button label="Отмена" @click="quarterModal = !quarterModal" />
                                 </template>
                             </Dialog>
@@ -177,6 +211,7 @@ import Dialog from 'primevue/dialog';
 import RadioButton from 'primevue/radiobutton';
 import Button from 'primevue/button';
 import Checkbox from 'primevue/checkbox';
+import ProgressSpinner from 'primevue/progressspinner';
 import { mapGetters } from 'vuex'
 import '../../../../public/css/mobile-filter-page.css'
 export default {
@@ -184,7 +219,8 @@ export default {
         Dialog,
         RadioButton,
         Button,
-        Checkbox
+        Checkbox,
+        ProgressSpinner
     },
     data() {
         return {
@@ -203,6 +239,7 @@ export default {
             districtModal: false,
             quarterModal: false,
             position: false,
+            isLoaded: false
         }
     },
     methods: {
@@ -246,30 +283,43 @@ export default {
             this.position = position;
             this.quarterModal = true;
         },
-        getRegions() {
-            axios.get('/api/allRegions')
+        allRegionQuarterDistrict(){
+            axios.get('/api/allRegionQuarterDistrict')
             .then(response => {
                 this.regions = response.data.result
             });
         },
         getDistricts() {
             let region_id = this.form.region_id;
-            axios.get('/api/districts/' + region_id)
-            .then(response => {
-                this.districts = response.data.result
-                this.quarters = []
-            });
+            this.form.district_id = [];
+            this.form.quarter_id = [];
+
+            this.regions.forEach(region => {
+                if(region.id == this.form.region_id){
+                    this.districts = region.districts;
+                }
+            })
         },
         getQuarters() {
-            let district_id = this.form.district_id;
-            axios.get('/api/quarters/' + district_id)
-            .then(response => {
-                this.quarters = response.data.result
+            this.form.quarter_id = [];
+            this.quarters = [];
+
+            this.regions.forEach(region => {
+                if(region.id == this.form.region_id){
+                    region.districts.forEach(district => {
+                        if(this.form.district_id.includes(district.id)){
+                            this.quarters.push(...district.quarters);
+                        }
+                    })
+                }
+            })
+            this.quarters.sort(function (a, b) {
+                return a.name_ru.localeCompare(b.name_ru);
             });
         },
     },
     created() {
-        this.getRegions();
+        this.allRegionQuarterDistrict();
     },
     mounted() {
         this.$store.dispatch('getObjectTypes');
