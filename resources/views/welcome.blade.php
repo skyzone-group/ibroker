@@ -16,7 +16,6 @@
         <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/panzoom.css">
         <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css">
         <link type="text/css" rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
-        
     </head>
     <body class="antialiased">
         <div id="app" style="height: 100%">

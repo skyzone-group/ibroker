@@ -82,7 +82,7 @@ export default {
 
 .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
     background: #fff !important;
-    border-color: #fff !important;
+    border-color: #dee2e6 !important;
 }
 
 .input-div-code{

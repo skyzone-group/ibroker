@@ -1,5 +1,4 @@
 import {createRouter, createWebHistory} from 'vue-router'
-
 // Main Views
 import Main from '../../src/layouts/Main.vue'
 import Admin from '../../src/layouts/Admin.vue'

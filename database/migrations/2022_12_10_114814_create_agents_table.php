@@ -17,6 +17,8 @@ class CreateAgentsTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('username')->unique()->nullable();
+            $table->string('second_phone')->unique()->nullable();
+            $table->string('about')->nullable();
             $table->string('telegram')->nullable();
             $table->string('whatsapp')->nullable();
             $table->string('facebook')->nullable();

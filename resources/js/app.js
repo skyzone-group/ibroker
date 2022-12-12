@@ -1,6 +1,7 @@
 require('./bootstrap');
 
 import { createApp } from 'vue'
+import { createHead } from '@vueuse/head'
 import router from './src/router'
 import store from './store'
 import App from './App.vue'
@@ -71,8 +72,9 @@ router.beforeEach((to, from, next) => {
         next();
     }
 })
-import { createMetaManager } from 'vue-meta'
+
 const app = createApp(App)
+const head = createHead()
 //app.config.globalProperties.$IsLoggedIn = localStorage.getItem('token') ? true : false;
 app.use(router)
 app.use(store)
@@ -90,6 +92,6 @@ app.use(VueEasyLightbox)
 app.use(ToastService)
 app.use(VueNumberFormat, {precision: '', nullValue: '', prefix: '', decimal: ',', thousand: ' '})
 app.use(VueSocialSharing)
-app.use(createMetaManager);
+app.use(head)
 app.mount('#app')
 

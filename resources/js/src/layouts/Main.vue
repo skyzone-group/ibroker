@@ -47,6 +47,6 @@ export default {
     created() {
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen()
-    }
+    },
 }
 </script>

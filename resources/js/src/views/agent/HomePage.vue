@@ -747,6 +747,8 @@ import ProgressSpinner from 'primevue/progressspinner';
 import { mapGetters } from 'vuex';
 // Navbar
 import NavBar from '../../../components/agent/NavBar.vue';
+import { useHead }  from '@vueuse/head'
+import { defineComponent, computed, reactive } from 'vue'
 export default {
     components: {
         Swiper,
@@ -908,6 +910,26 @@ export default {
                 this.objects = response.data.result.objects;
                 this.loaderProgress = false;
             });
+        },
+        metaTags(){
+            console.log(`Meta - ${this.user.firstname}`)
+            return {
+                title: this.user ? `${this.user.firstname} ${this.user.lastname}-website` : 'iBroker - Умный поиск недвижимости Узбекистана - Ташкент',
+                meta: [
+                    {
+                        name: `description`,
+                        content: `My beautiful website`,
+                    },
+                    {
+                        property: `og:image`,
+                        content: `http://ibroker.skybox.uz/file/${this.user.image}`,
+                    },
+                    {
+                        property: `og:title`,
+                        content: this.user ? `${this.user.firstname} ${this.user.lastname}-website` : 'iBroker - Умный поиск недвижимости Узбекистана - Ташкент',
+                    }
+                ],
+            }
         }
     },
     created() {
@@ -916,35 +938,57 @@ export default {
         this.allRegionQuarterDistrict();
         this.getInfo();
     },
+    beforeMount(){
+        
+    },
     mounted() {
         this.$store.dispatch('getObjectTypes');
         this.$store.dispatch('getObjectTypesProperty');
+    },
+    updated(){
+        useHead(this.metaTags());
     },
     computed: {
         ...mapGetters([
             'objectTypes',
             'objectProperty',
         ]),
+        
     },
     setup() {
+        // const siteData = reactive({
+        //     title: `My website`,
+        //     description: `My beautiful website`,
+        // })
+
+        // useHead({
+        //     // Can be static or computed
+        //     title: computed(() => siteData.title),
+        //     meta: [
+        //         {
+        //             name: `description`,
+        //             content: computed(() => siteData.description),
+        //         },
+        //     ],
+        // })
         return {
             modules: [Autoplay,Pagination,Lazy,FreeMode,Navigation],
         };
     },
-    beforeCreate(){
-        // adding title for current view/page using vue-i18n
-        let title = document.createElement(`TITLE`)
-        title.innerText = 'something';
+    // beforeCreate(){
+    //     // adding title for current view/page using vue-i18n
+    //     let title = document.createElement(`TITLE`)
+    //     title.innerText = 'something';
 
-        document.querySelector(`head`).appendChild(title)
+    //     document.querySelector(`head`).appendChild(title)
 
-        // adding og:image
-        let ogImage = document.createElement(`META`)
-        ogImage.setAttribute(`name`,`og:image`)
-        ogImage.setAttribute(`content`,`http://yourwebsite.com/images/default-banner.png`)
+    //     // adding og:image
+    //     let ogImage = document.createElement(`META`)
+    //     ogImage.setAttribute(`name`,`og:image`)
+    //     ogImage.setAttribute(`content`,`http://yourwebsite.com/images/default-banner.png`)
 
-        document.querySelector(`head`).appendChild(ogImage)
-    }
+    //     document.querySelector(`head`).appendChild(ogImage)
+    // }
 }
 </script>
 
