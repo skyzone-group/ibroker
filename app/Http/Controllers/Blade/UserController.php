@@ -54,8 +54,7 @@ class UserController extends ResponseController
 
     public function getMe()
     {
-        $user_id = auth('sanctum')->user()->id;
-        $user = User::where('id', '=', $user_id)->with('additional_info')->get()->first();
+        $user = auth('sanctum')->user();
         return self::successResponse($user);
     }
 
@@ -64,7 +63,7 @@ class UserController extends ResponseController
         $user_id = auth('sanctum')->user()->id;
         if($request->get('username')){
             $validate = $this->validate($request->all(), [
-                'username'     => 'unique:agents',
+                'username'     => 'unique:users',
             ]);
     
             if ($validate !== true) return $validate;
@@ -75,6 +74,7 @@ class UserController extends ResponseController
         if($request->get('firstname')) $user->firstname  = $request->get('firstname');
         if($request->get('lastname')) $user->lastname    = $request->get('lastname');
         if($request->get('email')) $user->email          = $request->get('email');
+        if($request->get('username')) $user->username    = $request->get('username');
         if($request->get('password') && $request->get('new_password'))
         {
             if(!Hash::check($request->password, $user->password))
@@ -103,15 +103,15 @@ class UserController extends ResponseController
             $user->image = null;
         }
 
-        $agent = Agents::where('user_id', '=', $user_id)->first();
-        if($request->get('username')) $agent->username  = $request->get('username');
-        if($request->get('telegram')) $agent->telegram  = $request->get('telegram');
-        if($request->get('whatsapp')) $agent->whatsapp  = $request->get('whatsapp');
-        if($request->get('facebook')) $agent->facebook  = $request->get('facebook');
-        if($request->get('instagram')) $agent->instagram  = $request->get('instagram');
+        // $agent = Agents::where('user_id', '=', $user_id)->first();
+        // if($request->get('username')) $agent->username  = $request->get('username');
+        // if($request->get('telegram')) $agent->telegram  = $request->get('telegram');
+        // if($request->get('whatsapp')) $agent->whatsapp  = $request->get('whatsapp');
+        // if($request->get('facebook')) $agent->facebook  = $request->get('facebook');
+        // if($request->get('instagram')) $agent->instagram  = $request->get('instagram');
 
         $user->save();
-        $agent->save();
+        // $agent->save();
         
         return self::successResponse($user);
     }

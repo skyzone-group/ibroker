@@ -68,14 +68,6 @@ class AuthController extends ResponseController
             'api_token'  => \Illuminate\Support\Str::random(32)
         ]);
 
-
-        $users = User::orderBy('id', 'DESC')->first();
-        $agentId = $users->id;
-        $variable[] = [
-            'user_id'  => $agentId,
-        ];
-        Agents::insert($variable);
-
         $token = $user->createToken(floor(microtime(true) * 1000))->plainTextToken;
 
         return self::successResponse([

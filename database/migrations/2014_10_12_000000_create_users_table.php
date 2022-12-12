@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('api_token', 80)->unique()->nullable()->default(\Illuminate\Support\Str::random(32));
             $table->text('image')->nullable();
+            $table->string('username')->unique()->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

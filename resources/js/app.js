@@ -21,7 +21,6 @@ import VueScrollTo from 'vue-scrollto'
 import VueNumberFormat from 'vue-number-format'
 // Vue Share with social networks
 import VueSocialSharing from 'vue-social-sharing'
-import VueMeta from 'vue-meta'
 import VueHtmlToPaper from "../../public/js/vue-print/VueHtmlToPaper.js";
 import VueCountdown from '@chenfengyuan/vue-countdown';
 const options = {
@@ -72,7 +71,7 @@ router.beforeEach((to, from, next) => {
         next();
     }
 })
-
+import { createMetaManager } from 'vue-meta'
 const app = createApp(App)
 //app.config.globalProperties.$IsLoggedIn = localStorage.getItem('token') ? true : false;
 app.use(router)
@@ -91,6 +90,6 @@ app.use(VueEasyLightbox)
 app.use(ToastService)
 app.use(VueNumberFormat, {precision: '', nullValue: '', prefix: '', decimal: ',', thousand: ' '})
 app.use(VueSocialSharing)
+app.use(createMetaManager);
 app.mount('#app')
-
 

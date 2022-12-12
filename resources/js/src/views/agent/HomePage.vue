@@ -6,7 +6,6 @@
         <div id="hero" class="agent-single-page" style="background-image: url('https://s3.amazonaws.com/content.har.com/img/member/heroimages/Agent_Website_Image_4.jpg');">
             <div class="agent-single-div agent-single_overlay h-100">
                 <nav-bar ></nav-bar>
-                
                 <div class="agent-single-div-header">
                     <div class="agent-single-div-header-main">
                         <div class="agent-single-div-header-main-content">
@@ -588,7 +587,7 @@
             </div>
         </div>
         <div class="container_medium">
-            <div class="agent-single-div-content">
+            <div class="agent-single-div-content h-100vh">
                 <div v-if="objects.length > 0" class="agent-single-div-content-block">
                     <div class="agent-single-div-content-div">
                         <h1 class="agent-single-div-content-div-objects-title">Мои объявления</h1>
@@ -932,6 +931,20 @@ export default {
             modules: [Autoplay,Pagination,Lazy,FreeMode,Navigation],
         };
     },
+    beforeCreate(){
+        // adding title for current view/page using vue-i18n
+        let title = document.createElement(`TITLE`)
+        title.innerText = 'something';
+
+        document.querySelector(`head`).appendChild(title)
+
+        // adding og:image
+        let ogImage = document.createElement(`META`)
+        ogImage.setAttribute(`name`,`og:image`)
+        ogImage.setAttribute(`content`,`http://yourwebsite.com/images/default-banner.png`)
+
+        document.querySelector(`head`).appendChild(ogImage)
+    }
 }
 </script>
 

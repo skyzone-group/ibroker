@@ -152,13 +152,13 @@
                                             <span class="error-msg-password" id="password_error"></span>
                                         </div>
                                         <div class="email-div_block_input mb-3">
-                                            <label v-if="!user.additional_info.username" class="email-div_block_input_label">
+                                            <label v-if="!user.username" class="email-div_block_input_label">
                                                 <InputText type="text" v-model="form.username" class="w-100" v-tooltip.bottom="'Please be careful! You can enter username only once.You cannot change username'" placeholder="Напишите текст без пробелов" required />
                                             </label>
-                                            <router-link v-else target="_blank" :to="{name: 'agentHome', params: { id: user.additional_info.username }}" class="widget_email-div__email">{{`http://ibroker.skybox.uz/rieltor/${user.additional_info.username}`}}</router-link>
-                                            <span v-if="!user.additional_info.username" class="d-lg-none d-md-none d-sm-none d-block" style="font-style: italic; color: #EA5455!important;">Please be careful! You can enter username only once.You cannot change username</span>
+                                            <router-link v-else target="_blank" :to="{name: 'agentHome', params: { id: user.username }}" class="widget_email-div__email">{{`http://ibroker.skybox.uz/rieltor/${user.username}`}}</router-link>
+                                            <span v-if="!user.username" class="d-lg-none d-md-none d-sm-none d-block" style="font-style: italic; color: #EA5455!important;">Please be careful! You can enter username only once.You cannot change username</span>
                                         </div>
-                                        <button v-if="!user.additional_info.username" type="submit" class="phone-form-btn">Сохранить</button>
+                                        <button v-if="!user.username" type="submit" class="phone-form-btn">Сохранить</button>
                                     </div>
                                 </form>
                             </div>

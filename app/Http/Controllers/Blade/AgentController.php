@@ -14,8 +14,8 @@ class AgentController extends ResponseController
     //
 
     public function getInfo($username){
-        $user = Agents::where('username', '=', $username)->orderBy('id', 'DESC')->get()->first();
-        $user_id = $user->user_id;
+        $user = User::where('username', '=', $username)->orderBy('id', 'DESC')->get()->first();
+        $user_id = $user->id;
         $query = Objects::query();
         
         if($user_id)  $query = $query->where('user_id', '=', $user_id);
