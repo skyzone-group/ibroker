@@ -10,7 +10,7 @@ import RentPage from '../../src/views/Rent.vue'
 import PartnersInfo from '../../src/views/PartnersPage.vue'
 import RieltorInfo from '../../src/views/RieltorInfo.vue'
 import Edit from '../../src/views/edit.vue'
-
+import NotFound from '../../src/views/NotFound.vue'
 // User Account Pages
 import UserDashboard  from '../views/account/UsersDashboard.vue'
 import MainView from '../views/account/UserMainView.vue'
@@ -30,6 +30,7 @@ import Zastroyshiki from '../views/partners/DeveloperList.vue'
 // Agent Pages
 import HomePage from '../views/agent/HomePage.vue'
 import ShowObjectAgent from '../views/agent/ShowObject.vue'
+import EditPage from '../views/agent/EditPage.vue'
 
 // Objects Pages
 import ObjectMain from '../views/account/UserObjects.vue'
@@ -105,7 +106,7 @@ const routes = [
                 components: {
                     main: ShowObject,
                 },
-                meta: (router) => ({ title: 'Team Member' + router.params.type_deal}) 
+                meta: (router) => ({ title: 'Team Member'}) 
             },
             {
                 path: '/agent/:id',
@@ -165,7 +166,6 @@ const routes = [
                     }
                 ]
             },
-            
         ]
     },
     {
@@ -243,12 +243,12 @@ const routes = [
         ]
     },
     // {
-    //     path: '/agent/',
+    //     path: '/rieltor/',
     //     name: 'agentIndex',
     //     component: Agent,
     //     children: [
     //         {
-    //             path: 'index',
+    //             path: ':id',
     //             name: 'agentHome',
     //             components: {
     //                 agent: HomePage,
@@ -265,6 +265,16 @@ const routes = [
         path: '/rieltor/:id/show/:type_deal/:type/:object_id',
         name: 'agentObject',
         component: ShowObjectAgent,
+    },
+    {
+        path: '/site/:id/edit',
+        name: 'editPage',
+        component: EditPage,
+    },
+    {
+        path: "/:pathMatch(.*)*",
+        name: "not-found",
+        component: NotFound,
     }
 ]
 

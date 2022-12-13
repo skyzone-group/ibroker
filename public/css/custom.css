@@ -1129,6 +1129,7 @@ a:hover {
 .mobile-filter-dialog .p-dialog-content{
     background: #f3f8fd !important;
     padding: 1.5rem 2rem !important;
+    height: 100%;
 }
 
 .form-item+.form-item{
@@ -1863,7 +1864,7 @@ a:hover {
 }
 
 .filters-view-tab-bottom-item .dc-input-6-1-2{
-    border: 1px solid #ced4da !important;
+    border: 1px solid #ced4da;
 }
 
 .filters-view-tab-bottom-item .dc-input-6-1-2:hover,

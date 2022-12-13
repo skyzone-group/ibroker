@@ -157,7 +157,10 @@
                                                 <label v-if="!user.username" class="email-div_block_input_label">
                                                     <InputText type="text" v-model="form.username" class="w-100" v-tooltip.bottom="'Please be careful! You can enter username only once.You cannot change username'" placeholder="Напишите текст без пробелов" required />
                                                 </label>
-                                                <router-link v-else target="_blank" :to="{name: 'agentHome', params: { id: user.username }}" class="widget_email-div__email">{{`http://ibroker.skybox.uz/rieltor/${user.username}`}}</router-link>
+                                                <div v-else class="d-flex justify-content-between">
+                                                    <router-link  target="_blank" :to="{name: 'agentHome', params: { id: user.username }}" class="widget_email-div__email mb-0">{{`http://ibroker.skybox.uz/rieltor/${user.username}`}}</router-link>
+                                                    <router-link  target="_blank" :to="{name: 'editPage', params: { id: user.username }}" class="widget_email-div__email mb-0 nohover font-weight-bold" style="color: #D32F2F; font-size: 14px;">Редактировать</router-link>                                                    
+                                                </div>
                                                 <span v-if="!user.username" class="d-lg-none d-md-none d-sm-none d-block" style="font-style: italic; color: #EA5455!important;">Please be careful! You can enter username only once.You cannot change username</span>
                                             </div>
                                             <button v-if="!user.username" type="submit" class="phone-form-btn">Сохранить</button>

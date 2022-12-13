@@ -938,9 +938,6 @@ export default {
         this.allRegionQuarterDistrict();
         this.getInfo();
     },
-    beforeMount(){
-        
-    },
     mounted() {
         this.$store.dispatch('getObjectTypes');
         this.$store.dispatch('getObjectTypesProperty');

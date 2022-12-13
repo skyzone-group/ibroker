@@ -157,7 +157,7 @@
                     </div>
                 </div>
             </div>
-            <Paginator v-if="pageInfo" 
+            <Paginator v-if="objectsCount > 0" 
             :CurrentPageReport="pageInfo.current_page"  
             @page="getUserObjects($event.page)" 
             :rows="parseInt(pageInfo.per_page)" 
@@ -299,6 +299,7 @@ export default {
             regions: [],
             districts: [],
             quarters: [],
+            objectsCount: null,
             form: {
                 object_deals: 'all',
                 region_id: null,
@@ -323,6 +324,7 @@ export default {
                 this.objects = response.data.result.objects.data;
                 this.pageInfo = response.data.result.objects;
                 this.totalObject = response.data.result.total;
+                this.objectsCount = response.data.result.count;
                 this.isLoaded = false;
             });
         },

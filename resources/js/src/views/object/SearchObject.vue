@@ -866,13 +866,13 @@ export default {
             console.log('click');
         },
         pushParamsURL(){
-            this.$router.push(
+            this.$router.replace(
             {
                 name: "SearchObject",
                 query: {
                     object_deals: this.form.object_deals,
-                    object_type: this.form.object_type,
-                    region_id: this.form.region_id,
+                    object_type: this.form.object_type ? this.form.object_type : '',
+                    region_id: this.form.region_id ? this.form.region_id : '',
                     'district_id[]': this.form.district_id.map(e => e),
                     'quarter_id[]' : this.form.quarter_id.map(e => e),
                     'object_types_property_id[]' : this.form.object_types_property_id.map(e => e),
@@ -888,7 +888,7 @@ export default {
                     total_area_to: this.form.total_area_to,
                     land_area_from: this.form.land_area_from,
                     land_area_to: this.form.land_area_to,
-                    sort_direction: this.form.sort_direction,
+                    sort_direction: this.form.sort_direction ? this.form.sort_direction : '',
                 }
             });
         },

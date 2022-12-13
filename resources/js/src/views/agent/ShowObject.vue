@@ -102,7 +102,7 @@
                                 </div>
                             </div>
                             <div v-if="Sidebar" class="product-page__content_top_buttons_item ml-2">
-                                <button type="button" id="send-message" class="object_single_page_btn_style dropdown-user-link">
+                                <button type="button" @click="openModal('bottomright')" id="send-message" class="object_single_page_btn_style dropdown-user-link">
                                     <span class="button-root__icon-8-1-3">
                                         <div class="icon-4-0-1">
                                             <i class="far fa-envelope" style="font-size: 16px;font-weight: 500;"></i>
@@ -407,6 +407,92 @@
                 </a>
             </div>
         </div>
+        <!-- Mobile Form -->
+        <div v-if="Sidebar" class="mobile_form">
+            <Dialog header="Фильтры" v-model:visible="mobileForm" 
+                class="mobile-filter-dialog"
+                :closable="false"
+                :breakpoints="{'640px': '100vw'}"
+                :style="{width: '100vw'}"
+                :position="position"
+                :modal="true">
+                <template #header>
+                    <div class="d-flex align-items-center">
+                        <button @click="mobileForm = !mobileForm" class="p-dialog-header-icon p-dialog-header-close p-link" aria-label="close" type="button">
+                            <span class="p-dialog-header-close-icon pi pi-angle-left"></span>
+                        </button>
+                    </div>
+                    <h1 class="mobile-filter-dialog-header-title">Напишите автору</h1>
+                </template>
+                <div class="mobile-filter-dialog-body">
+                    <form method="POST" class="sendChatMessage" :model="form">
+                        <div class="mobile-filter-dialog-form-header">
+                            <div class="Htvpx">
+                                <div class="form-item">
+                                    <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
+                                        <span class="inputs_block_title">
+                                            Ваше имя*
+                                        </span>
+                                        <div class="options_main__items_inputs_block d-flex flex-column">
+                                            <div class="input-medium-6 dc-input-6-1-2 h-100" :class="{'p-invalid': v$.form.name.$invalid && submitted}">
+                                                <div class="dc-input__input-container-6-1-2 input_div">
+                                                    <input id="name" class="dc-input__input-6-1-2" placeholder="Ваше имя*" type="text" tabindex="0" v-model.trim="v$.form.name.$model" />
+                                                </div>
+                                            </div>
+                                            <small v-if="(v$.form.name.$invalid && submitted) || v$.form.name.$pending.$response" class="p-error">{{v$.form.name.required.$message.replace('Value', 'Ваше имя*')}}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-item">
+                                    <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
+                                        <span class="inputs_block_title">
+                                            Ваш email*
+                                        </span>
+                                        <div class="options_main__items_inputs_block d-flex flex-column">
+                                            <div class="input-medium-6 dc-input-6-1-2 h-100" :class="{'p-invalid': v$.form.email.$invalid && submitted}">
+                                                <div class="dc-input__input-container-6-1-2 input_div">
+                                                    <input id="email" class="dc-input__input-6-1-2" placeholder="Ваш email*" type="email" tabindex="0" v-model="v$.form.email.$model"/>
+                                                </div>
+                                            </div>
+                                            <small v-if="(v$.form.email.$invalid && submitted) || v$.form.email.$pending.$response" class="p-error">{{v$.form.email.required.$message.replace('Value', 'Ваш email*')}}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-item">
+                                    <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
+                                        <span class="inputs_block_title">
+                                            Ваш телефон*
+                                        </span>
+                                        <div class="options_main__items_inputs_block d-flex flex-column">
+                                            <div class="input-medium-6 dc-input-6-1-2 h-100" :class="{'p-invalid': v$.form.phone.$invalid && submitted}">
+                                                <div class="dc-input__input-container-6-1-2 input_div">
+                                                    <input id="phone" class="dc-input__input-6-1-2" placeholder="Ваш телефон*" type="number" tabindex="0" v-model="v$.form.phone.$model"/>
+                                                </div>
+                                            </div>
+                                            <small v-if="(v$.form.phone.$invalid && submitted) || v$.form.phone.$pending.$response" class="p-error">{{v$.form.phone.required.$message.replace('Value', 'Ваш телефон*')}}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-item">
+                                    <div class="filters-view-tab-bottom-item options_main__items_inputs_media d-flex flex-column">
+                                        <span class="inputs_block_title">
+                                            Ваше сообщение*
+                                        </span>
+                                        <div class="options_main__items_inputs_block d-flex flex-column">
+                                            <Textarea id="form_message" v-model="v$.form.message.$model" rows="3" :class="{'p-invalid': v$.form.message.$invalid && submitted}"/>
+                                            <small v-if="(v$.form.message.$invalid && submitted) || v$.form.message.$pending.$response" class="p-error">{{v$.form.message.required.$message.replace('Value', 'Ваше сообщение*')}}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <template #footer>
+                    <Button type="submit" @click.prevent="sendChatMessage(!v$.$invalid)" :loading="loading[1]" label="Отправить сообщение автору"/>
+                </template>
+            </Dialog>
+        </div>
     </div>
 </template>
 
@@ -421,6 +507,8 @@ import Textarea from 'primevue/textarea';
 import ProgressSpinner from 'primevue/progressspinner';
 import OverlayPanel from 'primevue/overlaypanel';
 import CopyToClipboard from '../../../components/CopyToClipboard.vue'
+import Dialog from 'primevue/dialog';
+import Button from 'primevue/button';
 // Validation
 import { required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
@@ -440,7 +528,9 @@ export default {
         GalleriaImage,
         ProgressSpinner,
         OverlayPanel,
-        CopyToClipboard
+        CopyToClipboard,
+        Dialog,
+        Button
     },
     data() {
         return {
@@ -456,8 +546,11 @@ export default {
             owner: [],
             youtubeId: false,
             loaderProgress: false,
+            loading: [false,false],
             mobileContant: false,
             mobileContantPhone: false,
+            mobileForm: false,
+            position: 'center',
             sharing: {
                 url: `http://ibroker.skybox.uz${this.$route.path}`,
                 title: 'iBROKER.uz',
@@ -518,6 +611,10 @@ export default {
                 return matches[1];
             }
             return false;
+        },
+        openModal(position) {
+            this.position = position;
+            this.mobileForm = true;
         },
     },
     setup() {
