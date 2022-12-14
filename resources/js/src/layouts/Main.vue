@@ -1,10 +1,10 @@
 <template>
     <div>
-        <nav-bar :loggedIn="loggedIn" :defimage="defaultImage"></nav-bar>
+        <nav-bar :loggedIn="loggedIn" :defimage="defaultImage" v-if="!this.$route.meta.hideNavbar"></nav-bar>
         <auth-modal @loggedIn="authStatus" :loggedIn="loggedIn"></auth-modal>
         
-        <router-view class="main-view" name="main" :loggedIn="loggedIn"></router-view>
-        <footer-nav v-if="mobileView == false"></footer-nav>
+        <router-view class="main-view h-100" name="main" :loggedIn="loggedIn"></router-view>
+        <footer-nav v-if="mobileView == false && !this.$route.meta.hideFooter"></footer-nav>
     </div>
 </template>
 

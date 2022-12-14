@@ -30,7 +30,6 @@ import Zastroyshiki from '../views/partners/DeveloperList.vue'
 // Agent Pages
 import HomePage from '../views/agent/HomePage.vue'
 import ShowObjectAgent from '../views/agent/ShowObject.vue'
-import EditPage from '../views/agent/EditPage.vue'
 
 // Objects Pages
 import ObjectMain from '../views/account/UserObjects.vue'
@@ -43,7 +42,6 @@ import SearchObject from '../views/object/SearchObject.vue'
 import UserObjects from '../views/object/UserObjects.vue'
 // 
 import AddUser from '../views/account/UserFriends.vue'
-
 // Object Single Page Details
 import ObjectSinglePage from '../views/ObjectSinglePage.vue'
 
@@ -166,6 +164,28 @@ const routes = [
                     }
                 ]
             },
+            {
+                path: '/rieltor/:id',
+                name: 'agentHome',
+                components: {
+                    main: HomePage,
+                },
+                meta: {
+                    hideNavbar: true,
+                    hideFooter: true,
+                }
+            },
+            {
+                path: '/rieltor/:id/show/:type_deal/:type/:object_id',
+                name: 'agentObject',
+                components: {
+                    main: ShowObjectAgent,
+                },
+                meta: {
+                    hideNavbar: true,
+                    hideFooter: true,
+                }
+            },
         ]
     },
     {
@@ -256,26 +276,13 @@ const routes = [
     //         },
     //     ]
     // },
-    {
-        path: '/rieltor/:id',
-        name: 'agentHome',
-        component: HomePage,
-    },
-    {
-        path: '/rieltor/:id/show/:type_deal/:type/:object_id',
-        name: 'agentObject',
-        component: ShowObjectAgent,
-    },
-    {
-        path: '/site/:id/edit',
-        name: 'editPage',
-        component: EditPage,
-    },
+    
     {
         path: "/:pathMatch(.*)*",
         name: "not-found",
         component: NotFound,
-    }
+    },
+    
 ]
 
 const router = createRouter({

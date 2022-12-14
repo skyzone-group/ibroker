@@ -158,8 +158,7 @@
                                                     <InputText type="text" v-model="form.username" class="w-100" v-tooltip.bottom="'Please be careful! You can enter username only once.You cannot change username'" placeholder="Напишите текст без пробелов" required />
                                                 </label>
                                                 <div v-else class="d-flex justify-content-between">
-                                                    <router-link  target="_blank" :to="{name: 'agentHome', params: { id: user.username }}" class="widget_email-div__email mb-0">{{`http://ibroker.skybox.uz/rieltor/${user.username}`}}</router-link>
-                                                    <router-link  target="_blank" :to="{name: 'editPage', params: { id: user.username }}" class="widget_email-div__email mb-0 nohover font-weight-bold" style="color: #D32F2F; font-size: 14px;">Редактировать</router-link>                                                    
+                                                    <router-link  target="_blank" :to="{name: 'agentHome', params: { id: user.username }, meta: { userCheck: true }}" class="widget_email-div__email mb-0">{{`http://ibroker.skybox.uz/rieltor/${user.username}`}}</router-link>                                   
                                                 </div>
                                                 <span v-if="!user.username" class="d-lg-none d-md-none d-sm-none d-block" style="font-style: italic; color: #EA5455!important;">Please be careful! You can enter username only once.You cannot change username</span>
                                             </div>
@@ -322,9 +321,6 @@ export default {
     props: {
         defimage: {
             type: String
-        },
-        userId: {
-            type: Number
         },
     },
     data() {

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="loaderProgress" class="loader-main-box" style="height: 100%;">
+    <div v-if="loaderProgress" class="loader-main-box h-100">
         <ProgressSpinner style="width:80px; height:80px" strokeWidth="3" fill="var(--surface-ground)" animationDuration="1s" />
     </div>
     <div v-else>
@@ -723,6 +723,7 @@
                 </div>
             </div>
         </div>
+        <options-page v-if="loggedIn == true" :firstname="user.firstname" :lastname="user.lastname" :user-id="user.id"></options-page>
     </div>
 </template>
 
@@ -747,6 +748,7 @@ import ProgressSpinner from 'primevue/progressspinner';
 import { mapGetters } from 'vuex';
 // Navbar
 import NavBar from '../../../components/agent/NavBar.vue';
+import OptionsPage from '../../../components/agent/OptionsPage.vue'
 import { useHead }  from '@vueuse/head'
 import { defineComponent, computed, reactive } from 'vue'
 export default {
@@ -761,11 +763,15 @@ export default {
         Button,
         Dialog,
         NavBar,
-        ProgressSpinner
+        ProgressSpinner,
+        OptionsPage
     },
     props: {
-        userId: {
-            type: Number,
+        userCheck: {
+            type: Boolean
+        },
+        loggedIn: {
+            type: Boolean,
         },
     },
     data() {
@@ -930,7 +936,7 @@ export default {
                     }
                 ],
             }
-        }
+        },
     },
     created() {
         window.addEventListener('resize', this.checkScreen);
