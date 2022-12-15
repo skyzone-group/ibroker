@@ -69,7 +69,7 @@ export default {
 }
 .sticky.main_nav  {
     border-bottom: 1px solid rgba(255,255,255,0.1);
-    background-color: #0B50D2;
+    background-color: var(--main-color);
     position: fixed;
     left: 0px;
     right: 0px;

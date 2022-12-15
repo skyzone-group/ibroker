@@ -1,9 +1,9 @@
 <template>
-    <div v-if="loaderProgress" class="loader-main-box h-100">
+    <div v-if="loaderProgress" class="loader-main-box" style="height: 100vh !important;">
         <ProgressSpinner style="width:80px; height:80px" strokeWidth="3" fill="var(--surface-ground)" animationDuration="1s" />
     </div>
     <div v-else>
-        <div id="hero" class="agent-single-page" style="background-image: url('https://s3.amazonaws.com/content.har.com/img/member/heroimages/Agent_Website_Image_4.jpg');">
+        <div id="hero" class="agent-single-page" :style="cssProps">
             <div class="agent-single-div agent-single_overlay h-100">
                 <nav-bar ></nav-bar>
                 <div class="agent-single-div-header">
@@ -560,7 +560,7 @@
                                             <div class="filters-wrapper mt-4 w-100 d-flex">
                                                 <div class="filters-button-container d-flex align-items-center justify-content-end w-100">
                                                     <span class="filter_search_btn">
-                                                        <Button  @click="FilterMoreOptions = !FilterMoreOptions" type="button" icon="pi pi-sliders-v" label="Дополнительные параметры" class="p-button-link" style="font-size: 14px;" />
+                                                        <Button  @click="FilterMoreOptions = !FilterMoreOptions" type="button" icon="pi pi-sliders-v" label="Дополнительные параметры" class="filter_search_btn-link-dop p-button-link" style="font-size: 14px;" />
                                                     </span>
                                                     <span class="filter_search_btn">
                                                         <Button @click="filterData" :loading="loading[3]" type="submit" label="Найти" class="filter_search_btn-link" />
@@ -585,6 +585,16 @@
                     </div>
                 </div>
             </div>
+            <options-page 
+            v-if="loggedIn == true" 
+            :firstname="user.firstname" 
+            :lastname="user.lastname" 
+            :user-id="user.id" 
+            @color="getColor" 
+            @image="def_background = $event" 
+            @selected-image="def_background = $event"
+            :main_color="main_color" 
+            :def_background="def_background"></options-page>
         </div>
         <div class="container_medium">
             <div class="agent-single-div-content h-100vh">
@@ -723,7 +733,6 @@
                 </div>
             </div>
         </div>
-        <options-page v-if="loggedIn == true" :firstname="user.firstname" :lastname="user.lastname" :user-id="user.id"></options-page>
     </div>
 </template>
 
@@ -826,6 +835,8 @@ export default {
             loaderProgress: false,
             user: [],
             objects: [],
+            main_color: '0468ff',
+            def_background: 'img_1.jpg'
         }
     },
     methods: {
@@ -937,6 +948,12 @@ export default {
                 ],
             }
         },
+        getColor(value){
+            this.main_color = value
+        },
+        getImage(value){
+            this.def_background = value
+        }
     },
     created() {
         window.addEventListener('resize', this.checkScreen);
@@ -956,7 +973,12 @@ export default {
             'objectTypes',
             'objectProperty',
         ]),
-        
+        cssProps() {
+            return {
+                '--main-color': '#' + this.main_color,
+                'background-image': `url(/images/background/${this.def_background})`,
+            }
+        }
     },
     setup() {
         // const siteData = reactive({
@@ -1528,6 +1550,13 @@ export default {
     width: 100%;
 }
 
+.agent-single-div-header-main-content .filter_search_btn .filter_search_btn-link{
+    background: var(--main-color);
+}
+
+.agent-single-div-header-main-content .filter_search_btn .filter_search_btn-link-dop{
+    color: var(--main-color);
+}
 
 .filter_search_btn .p-button.p-button-link:enabled:focus {
     background: transparent;
