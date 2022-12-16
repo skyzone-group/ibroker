@@ -35,6 +35,22 @@ html body {
     --form-button-invalid-color: #f44336;
     --fill_secondary_hover_20: rgba(8, 241, 4, .2);
     --dc-color-grey-200: #d3d4d4;
+    --background-color-primary: rgb(246, 246, 249);
+    --background-color-secondary: #fafafa;
+    --accent-color: #cacaca;
+    --text-primary-color: #5c6676;
+    --text-primary-hover-color: #919CAB;
+    --border-primary-color: #e4e8ef;
+    --element-size: 4rem;
+}
+
+:root.dark-theme {
+    --background-color-primary: rgb(46, 46, 47);
+    --background-color-secondary: #2d2d30;
+    --accent-color: #3f3f3f;
+    --text-primary-color: #ddd;
+    --text-primary-hover-color: rgb(238, 238, 238);
+    --border-primary-color: hsla(0,0%,100%,.07);
 }
 
 .p-invalid {
