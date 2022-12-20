@@ -5,7 +5,7 @@
     <div v-else>
         <div id="inner" class="section" style="background: url('https://s3.amazonaws.com/content.har.com/awsbg/448838_bg.jpg') no-repeat center center;">
             <div class="agent-single_overlay">
-                <nav-bar></nav-bar>
+                <nav-bar :agent="owner[0]"></nav-bar>
                 <div id="header_content" v-for="user in owner" :key="user.id" class="container_medium" >
                     <a href="#!">
                         <div v-if="(user.image == null)" class="mh_img" style="background:url('https://pics.harstatic.com/agent/554530.jpg?ts=2021-01-05T12:50:00') no-repeat center top; background-size: cover;"></div>

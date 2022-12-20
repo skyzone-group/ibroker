@@ -36,7 +36,7 @@
                                             <div class="profile_form_avatar">
                                                 <div class="user_account_main_block-item-card-header">
                                                     <div class="avatar">
-                                                        <div v-if="user.image == null" class="img-full-back" style="background-image:url('/images/avatar-dafault.png')"></div>
+                                                        <img v-if="user.image == null" :src="src" class="img-full-back" alt="user_avatar">
                                                         <div v-else class="img-full-back" :style="`background-image:url('/file/${user.image}')`"></div>
                                                     </div>
                                                     <div class="user_info">

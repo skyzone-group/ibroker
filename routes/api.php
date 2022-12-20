@@ -56,7 +56,7 @@ Route::get('/object/getOthers/{user_id}', [ObjectController::class, 'getOthers']
 # Agent routes
 Route::get('/agent/info/{agent_username}', [AgentController::class, 'getInfo']);
 Route::get('/agent/object/show/{object_id}', [AgentController::class, 'show']);
-
+Route::post('/agent/options/{agent_username}', [AgentController::class, 'updateAgentInfo']);
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
     # Logout

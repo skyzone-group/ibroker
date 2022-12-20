@@ -5,11 +5,11 @@
             <span>Menu</span>
         </button>
         <a href="#!">
-            <div v-if="(user.image == null)" class="alt_mhimg" :class="{ 'mhscrolled': scrollPosition > 50}" :style="`background:url('/file/${defaultImage}'); background-size: cover;`"></div>
-            <div v-else class="alt_mhimg" :class="{ 'mhscrolled': scrollPosition > 50}" :style="`background:url('/file/${user.image}'); background-size: cover;`"></div>
+            <div v-if="(agent.image == null)" class="alt_mhimg" :class="{ 'mhscrolled': scrollPosition > 50}" :style="`background:url('/file/${defaultImage}'); background-size: cover;`"></div>
+            <div v-else class="alt_mhimg" :class="{ 'mhscrolled': scrollPosition > 50}" :style="`background:url('/file/${agent.image}'); background-size: cover;`"></div>
         </a>
         <span class="agentwebsitename" :class="{ 'mhscrolled': scrollPosition > 50}">
-            <a href="#!" class="nohover"> {{user.firstname}} {{user.lastname}} </a>
+            <a href="#!" class="nohover"> {{agent.firstname}} {{agent.lastname}} </a>
         </span>
         <div class="menu_left_items d-flex">
             <div class="contact_links" :class="{ 'mhscrolled': scrollPosition > 50}">
@@ -19,7 +19,7 @@
                 </a>
                 <a href="#!" class="phoneicon nohover">
                     <i class="fas fa-phone mr-2"></i>
-                    <span>+{{user.phone}}</span>
+                    <span>+{{agent.phone}}</span>
                 </a>
             </div>
             <button type="button" class="signup_btn" :class="{ 'mhscrolled': scrollPosition > 50}">Share</button>
@@ -36,27 +36,20 @@ export default {
         return {
             scrollPosition: null,
             defaultImage,
-            user: []
+        }
+    },
+    props: {
+        agent: {
+            type: Array,
         }
     },
     methods: {
         handleScroll() {
             this.scrollPosition = window.scrollY
         },
-        async getInfo(){
-            // this.loaderProgress = true;
-            axios.get('/api/agent/info/' + this.$route.params.id)
-            .then(response => {
-                this.user = response.data.result.user;
-                // this.loaderProgress = false;
-            });
-        }
     },
     beforeMount() {
         window.addEventListener('scroll', this.handleScroll);
-    },
-    created() {
-        this.getInfo();
     },
 }
 </script>

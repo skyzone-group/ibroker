@@ -41,6 +41,7 @@ html body {
     --text-primary-color: #5c6676;
     --text-primary-hover-color: #919CAB;
     --border-primary-color: #e4e8ef;
+    --color-picker-background: rgb(46, 46, 47);
     --element-size: 4rem;
 }
 
@@ -51,6 +52,7 @@ html body {
     --text-primary-color: #ddd;
     --text-primary-hover-color: rgb(238, 238, 238);
     --border-primary-color: hsla(0,0%,100%,.07);
+    --color-picker-background: rgb(246, 246, 249);
 }
 
 .p-invalid {

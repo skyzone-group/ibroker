@@ -7,77 +7,79 @@
             <!-- <button type="button" class="layout-config-close nohover" @click.capture="optionsBar == false">
                 <i class="pi pi-times"></i>
             </button> -->
-            <div class="option-config-content">
-                <div class="option-config-content-body h-100">
-                    <div class="content-header">
-                        <h4 v-if="firstname == null && lastname == null" class="title">ID {{user-id}}</h4>
-                        <h4 v-else class="title">{{firstname}} {{lastname}}</h4>
-                        <div class="right-header">
-                            <button type="button" class="right-header-btn" @click="optionsBar = !optionsBar">
-                                <i class="pi pi-angle-right"></i>
-                            </button>
+            <form @submit.prevent="saveOptions()" :model="form" class="h-100">
+                <div class="option-config-content">
+                    <div class="option-config-content-body h-100">
+                        <div class="content-header">
+                            <h4 v-if="firstname == null && lastname == null" class="title">ID {{user-id}}</h4>
+                            <h4 v-else class="title">{{firstname}} {{lastname}}</h4>
+                            <div class="right-header">
+                                <button type="button" class="right-header-btn" @click="optionsBar = !optionsBar">
+                                    <i class="pi pi-angle-right"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div  class="content-middle">
-                        <div class="customs_body h-100 settings-collapse" style="max-height: initial;">
-                            <Accordion :multiple="true" lazy>
-                                <AccordionTab header="Color Scheme">
-                                    <ColorPicker v-model="main_color" panelClass="setting-color-panel" @change="$emit('color', main_color)" />
-                                </AccordionTab>
-                                <AccordionTab header="Background">
-                                    <div class="setting-background-panel">
-                                        <div class="default-library">
-                                            <div class="h-100">
-                                                <ul id="theme-selector" class="theme-selector">
-                                                    <li v-for="item in images" :key="item.id" class="theme" @click="selectImage(item.name)">
-                                                        <div class="thumb">
-                                                            <div class="image-wrapper" :style="{'border: 1px solid #fff;' : selected_image == item.name}">
-                                                                <img :src="`/images/background/${item.name}`" :alt="item.name" class="h-100" @mouseover="$emit('image', item.name)" @mouseout="mouseout(images[0].name)">
+                        <div  class="content-middle">
+                            <div class="customs_body h-100 settings-collapse" style="max-height: initial;">
+                                <Accordion :multiple="true" lazy>
+                                    <AccordionTab header="Color Scheme">
+                                        <ColorPicker v-model="form.main_color" panelClass="setting-color-panel" @change="$emit('color', form.main_color)" />
+                                    </AccordionTab>
+                                    <AccordionTab header="Background">
+                                        <div class="setting-background-panel">
+                                            <div class="default-library">
+                                                <div class="h-100">
+                                                    <ul id="theme-selector" class="theme-selector">
+                                                        <li v-for="item in images" :key="item.id" class="theme" @click="selectImage(item.name)">
+                                                            <div class="thumb">
+                                                                <div class="image-wrapper" :style="{'border: 1px solid #fff;' : selected_image == item.name}">
+                                                                    <img :src="item.name" :alt="item.id" class="h-100" @mouseover="$emit('image', item.name)" @mouseout="mouseout(images[0].name)">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="upload-or-remove-buttons">
+                                                <div class="upload-or-remove-btn">
+                                                    <label for="media" class="upload-or-remove-btn-labels">
+                                                        <input @change="onInputChange" multiple="multiple" type="file" name="images[]" accept="image/png, image/jpeg, image/pjpeg" id="media" class="d-none">
+                                                        <span>Выберите фото</span>
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="upload-or-remove-buttons">
-                                            <div class="upload-or-remove-btn">
-                                                <label for="media" class="upload-or-remove-btn-labels">
-                                                    <input @change="onInputChange" multiple="multiple" type="file" name="images[]" accept="image/png, image/jpeg, image/pjpeg" id="media" class="d-none">
-                                                    <span>Выберите фото</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </AccordionTab>
-                            </Accordion>
+                                    </AccordionTab>
+                                </Accordion>
+                            </div>
                         </div>
-                    </div>
-                    <div class="content-bottom">
-                        <div class="content-bottom-toggle-theme">
-                            <input
-                            @change="toggleTheme"
-                            id="checkbox"
-                            type="checkbox"
-                            class="switch-checkbox"
-                            />
-                            <label for="checkbox" class="switch-label">
-                            <span>🌙</span>
-                            <span>☀️</span>
-                            <div
-                                class="switch-toggle"
-                                :class="{ 'switch-toggle-checked': userTheme === 'dark-theme' }"
-                            ></div>
-                            </label>
-                        </div>
-                        <div class="content-bottom-save">
-                            <button class="save-options-btn d-flex align-items-center justify-content-center" type="button">
-                                <i class="fa fa-rocket mr-2"></i>
-                                <span class="publish-text">Публиковать</span>
-                            </button>
+                        <div class="content-bottom">
+                            <div class="content-bottom-toggle-theme">
+                                <input
+                                @change="toggleTheme"
+                                id="checkbox"
+                                type="checkbox"
+                                class="switch-checkbox"
+                                />
+                                <label for="checkbox" class="switch-label">
+                                <span>🌙</span>
+                                <span>☀️</span>
+                                <div
+                                    class="switch-toggle"
+                                    :class="{ 'switch-toggle-checked': userTheme === 'dark-theme' }"
+                                ></div>
+                                </label>
+                            </div>
+                            <div class="content-bottom-save">
+                                <button class="save-options-btn d-flex align-items-center justify-content-center" type="submit">
+                                    <i class="fa fa-rocket mr-2"></i>
+                                    <span class="publish-text">Публиковать</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </template>
@@ -86,27 +88,33 @@
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
 import ColorPicker from 'primevue/colorpicker';
+import defaultImage from '/images/background/img_1.jpg'
 export default {
     components: {
         Accordion,
         AccordionTab,
-        ColorPicker
+        ColorPicker,
     },
-    props: ['firstname', 'lastname', 'user-id', 'main_color', 'def_background'],
+    props: ['firstname', 'lastname', 'user-id', 'def_background'],
     data() {
         return {
             optionsBar: false,
             images: [
-                {id: 1, name: 'img_1.jpg'},
-                {id: 2, name: 'img_2.jpg'},
-                {id: 3, name: 'img_3.jpg'},
-                {id: 4, name: 'img_4.jpg'},
-                {id: 5, name: 'img_5.jpg'},
-                {id: 6, name: 'img_6.jpg'}
+                {id: 1, name: '/images/background/img_1.jpg'},
+                {id: 2, name: '/images/background/img_2.jpg'},
+                {id: 3, name: '/images/background/img_3.jpg'},
+                {id: 4, name: '/images/background/img_4.jpg'},
+                {id: 5, name: '/images/background/img_5.jpg'},
+                {id: 6, name: '/images/background/img_6.jpg'}
             ],
             selected_image: "",
             userTheme: "light-theme",
             file: null,
+            defaultImage,
+            uploadedImage: null,
+            form: {
+                main_color: '0468ff',
+            }
         }
     },
     methods: {
@@ -152,10 +160,26 @@ export default {
             let reader = new FileReader();
             reader.readAsDataURL(this.file);
             reader.onload = (e) => {
-                this.src = e.target.result;
-                // console.log(this.src);
+                this.selected_image = e.target.result;
+                this.$emit('image', this.selected_image)
             }; 
         },
+        profileUpload(){ 
+            // image
+            let formm = new FormData();
+            formm.append('image', this.def_background);
+            axios.post('/api/agent/options/'+ this.$route.params.id, formm)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log("889");
+                alert("bad");
+            });
+        },
+        saveOptions(){
+            console.log(this.file);
+        }
     },
     mounted() {
         const initUserTheme = this.getTheme() || this.getMediaPreference();
@@ -396,6 +420,8 @@ export default {
     margin-right: 10px !important;
     position: fixed !important;
     display: block !important;
+    background: var(--color-picker-background) !important;
+    border: 1px solid var(--color-picker-background) !important;
 }
 
 .setting-background-panel{
@@ -497,7 +523,7 @@ export default {
 .setting-color-panel:after{
     border: solid transparent;
     border-color: rgba(255, 255, 255, 0);
-    border-bottom-color: #323232;
+    border-bottom-color: var(--color-picker-background);
     border-width: 8px;
     top: 0;
     bottom: unset;
@@ -566,4 +592,29 @@ export default {
         transform: rotate(180deg);
     }
 } */
+
+
+@media(max-width: 575px){
+    .setting-color-panel {
+        right: 15px !important;
+        top: 170px !important;
+        margin-right: 0 !important;
+    }
+
+    .setting-color-panel:after {
+        top: -16px;
+        right: unset;
+        transform: rotate(0);
+    }
+}
+
+@media(max-width: 414px){
+    .option-panel {
+        width: 100%;
+    }
+
+    .setting-background-panel #theme-selector .theme .thumb .image-wrapper {
+        height: 110px;
+    }
+}
 </style>

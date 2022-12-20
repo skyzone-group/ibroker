@@ -1,11 +1,11 @@
 <template>
-    <div v-if="loaderProgress" class="loader-main-box" style="height: 100vh !important;">
+    <div v-if="isLoaded" class="loader-main-box" style="height: 100vh !important;">
         <ProgressSpinner style="width:80px; height:80px" strokeWidth="3" fill="var(--surface-ground)" animationDuration="1s" />
     </div>
     <div v-else>
         <div id="hero" class="agent-single-page" :style="cssProps">
             <div class="agent-single-div agent-single_overlay h-100">
-                <nav-bar ></nav-bar>
+                <nav-bar :agent="agent"></nav-bar>
                 <div class="agent-single-div-header">
                     <div class="agent-single-div-header-main">
                         <div class="agent-single-div-header-main-content">
@@ -19,30 +19,24 @@
                                                         <div class="realtor__info-main_img_photo">
                                                             <div class="img-box" style="width: 150px; height: 150px;">
                                                                 <a href="#!">
-                                                                    <img v-if="user.image == null" src="/images/agent-img-avatar.png" alt="" class="w-100" style="min-width: 150px; max-width: 150px; min-height: 150px;">
-                                                                    <img v-else :src="`/file/${user.image}`" alt="" class="w-100" style="min-width: 150px; max-width: 150px; min-height: 150px;">
+                                                                    <img v-if="agent.image == null" src="/images/agent-img-avatar.png" alt="" class="w-100" style="min-width: 150px; max-width: 150px; min-height: 150px;">
+                                                                    <img v-else :src="`/file/${agent.image}`" alt="" class="w-100" style="min-width: 150px; max-width: 150px; min-height: 150px;">
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                        <!-- <div class="PwHgU realtor__info-main_img__rating">
-                                                            <div class="fTgnJ bvmhS It1BH">
-                                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M13.423 2.836a1.848 1.848 0 0 0-3.093.002l-2.526 3.85a.25.25 0 0 1-.134.102L3.304 8.155c-1.214.38-1.697 1.849-.944 2.882l2.812 3.858a.25.25 0 0 1 .048.154l-.124 4.785c-.034 1.318 1.265 2.253 2.494 1.798l4.32-1.599a.25.25 0 0 1 .179.002l4.059 1.597c1.224.456 2.523-.47 2.497-1.785l-.095-4.8a.25.25 0 0 1 .047-.15l2.797-3.864c.747-1.033.264-2.497-.947-2.877L16.088 6.79a.25.25 0 0 1-.134-.102l-2.53-3.852z"></path></svg>
-                                                                <span>5.0</span>
-                                                            </div>
-                                                        </div> -->
                                                     </div>
                                                     <div class="realtor__info-main-content">
                                                         <!-- <div class="realtor__info-main-content_position">Специалист по недвижимости</div>
                                                         <div class="realtor__info-main-content_separator"></div> -->
                                                         <a href="#!" class="realtor__info-main-content_name">
-                                                            <h1 v-if="(user.firstname == null && user.lastname == null)" class="realtor__info-main-content_fio text-bold">User {{user.id}}</h1>
-                                                            <h1 v-else class="realtor__info-main-content_fio text-bold">{{user.firstname}} {{user.lastname}}</h1>
+                                                            <h1 v-if="(agent.firstname == null && agent.lastname == null)" class="realtor__info-main-content_fio text-bold">ID: {{agent.id}}</h1>
+                                                            <h1 v-else class="realtor__info-main-content_fio text-bold">{{agent.firstname}} {{agent.lastname}}</h1>
                                                         </a>
                                                         <div class="d-flex align-items-center justify-content-lg-start justify-content-md-start justify-content-sm-start justify-content-center">
                                                             <div class="realtor__info-main-content_city">Город: Ташкент</div>
                                                             <div class="realtor__info-main-content_email d-flex align-items-center ml-2">
                                                                 <span>Email: </span> 
-                                                                <a :href="`mail:${user.email}`" class="ml-2">{{user.email}}</a> 
+                                                                <a :href="`mail:${agent.email}`" class="ml-2">{{agent.email}}</a> 
                                                             </div>
                                                         </div>
                                                         <div class="ag_social_icons">
@@ -586,14 +580,13 @@
                 </div>
             </div>
             <options-page 
-            v-if="loggedIn == true" 
-            :firstname="user.firstname" 
-            :lastname="user.lastname" 
-            :user-id="user.id" 
+            v-if="agent.id" 
+            :firstname="agent.firstname" 
+            :lastname="agent.lastname" 
+            :user-id="agent.id" 
             @color="getColor" 
             @image="def_background = $event" 
             @selected-image="def_background = $event"
-            :main_color="main_color" 
             :def_background="def_background"></options-page>
         </div>
         <div class="container_medium">
@@ -603,7 +596,7 @@
                         <h1 class="agent-single-div-content-div-objects-title">Мои объявления</h1>
                         <div class="row">
                             <div class="col-lg-4 mb-3" v-for="object in objects" :key="object.id" >
-                                <router-link :to="{name: 'agentObject', params: {id: user.username, type_deal: object.object_deals, type: object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land', object_id: object.id} }" class="nohover" target="_blank">
+                                <router-link :to="{name: 'agentObject', params: {id: agent.username, type_deal: object.object_deals, type: object.object_type.id == 1 ? 'flat' : object.object_type.id == 2 ? 'house' : object.object_type.id == 3 ? 'commercial' : object.object_type.id == 4 ? 'suburban' : 'land', object_id: object.id} }" class="nohover" target="_blank">
                                     <div class="object-item h-100">
                                         <div class="object-item-block">
                                             <div class="object-photos">
@@ -833,10 +826,8 @@ export default {
             openMobileFilter: false,
             position: false,
             loaderProgress: false,
-            user: [],
-            objects: [],
+            def_background: '/images/background/img_1.jpg',
             main_color: '0468ff',
-            def_background: 'img_1.jpg'
         }
     },
     methods: {
@@ -919,19 +910,24 @@ export default {
             });
             this.loading[2] = false;
         },
-        async getInfo(){
-            this.loaderProgress = true;
-            axios.get('/api/agent/info/' + this.$route.params.id)
-            .then(response => {
-                this.user = response.data.result.user;
-                this.objects = response.data.result.objects;
-                this.loaderProgress = false;
-            });
-        },
+        // async getInfo(){
+        //     const token = localStorage.getItem('token');
+        //     this.loaderProgress = true;
+        //     axios.get('/api/agent/info/' + this.$route.params.id, {
+        //         headers: {
+        //             'Authorization': `Bearer ${token}`, 
+        //         }
+        //     })
+        //     .then(response => {
+        //         this.user = response.data.result.user;
+        //         this.objects = response.data.result.objects;
+        //         this.loaderProgress = false;
+        //     });
+        // },
         metaTags(){
-            console.log(`Meta - ${this.user.firstname}`)
+            console.log(`Meta - ${this.agent.firstname}`)
             return {
-                title: this.user ? `${this.user.firstname} ${this.user.lastname}-website` : 'iBroker - Умный поиск недвижимости Узбекистана - Ташкент',
+                title: this.agent ? `${this.agent.firstname} ${this.agent.lastname}-website` : 'iBroker - Умный поиск недвижимости Узбекистана - Ташкент',
                 meta: [
                     {
                         name: `description`,
@@ -939,11 +935,11 @@ export default {
                     },
                     {
                         property: `og:image`,
-                        content: `http://ibroker.skybox.uz/file/${this.user.image}`,
+                        content: `http://ibroker.skybox.uz/file/${this.agent.image}`,
                     },
                     {
                         property: `og:title`,
-                        content: this.user ? `${this.user.firstname} ${this.user.lastname}-website` : 'iBroker - Умный поиск недвижимости Узбекистана - Ташкент',
+                        content: this.agent ? `${this.agent.firstname} ${this.agent.lastname}-website` : 'iBroker - Умный поиск недвижимости Узбекистана - Ташкент',
                     }
                 ],
             }
@@ -953,30 +949,34 @@ export default {
         },
         getImage(value){
             this.def_background = value
-        }
+        },
     },
     created() {
         window.addEventListener('resize', this.checkScreen);
         this.checkScreen();
         this.allRegionQuarterDistrict();
-        this.getInfo();
     },
     mounted() {
         this.$store.dispatch('getObjectTypes');
         this.$store.dispatch('getObjectTypesProperty');
+        this.$store.dispatch('getInfo', this.$route.params.id);
     },
     updated(){
         useHead(this.metaTags());
     },
     computed: {
         ...mapGetters([
+            'agent',
+            'objects',
+            'owner',
+            'isLoaded',
             'objectTypes',
             'objectProperty',
         ]),
         cssProps() {
             return {
                 '--main-color': '#' + this.main_color,
-                'background-image': `url(/images/background/${this.def_background})`,
+                'background-image': `url(${this.def_background})`,
             }
         }
     },
